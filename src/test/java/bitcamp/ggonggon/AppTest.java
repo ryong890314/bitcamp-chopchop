@@ -4,6 +4,7 @@
 package bitcamp.ggonggon;
 
 import org.junit.Test;
+import bitcamp.chopchop.App;
 import static org.junit.Assert.*;
 
 public class AppTest {

@@ -1,4 +1,4 @@
-package bitcamp.ggonggon.config;
+package bitcamp.chopchop.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;

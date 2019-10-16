@@ -1,4 +1,4 @@
-package bitcamp.ggonggon.config;
+package bitcamp.chopchop.config;
 
 import javax.sql.DataSource;
 import org.apache.ibatis.logging.LogFactory;
