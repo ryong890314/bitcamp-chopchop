@@ -5,11 +5,11 @@
 <configuration>
 
   <!-- 설정 파일에서 사용할 .properties 파일을 지정한다. -->
-  <properties resource="bitcamp/ggonggon/conf/jdbc.properties"></properties>
+  <properties resource="bitcamp/chopchop/conf/jdbc.properties"></properties>
   
   <!-- 도메인 클래스에 별명 부여하기 -->
   <typeAliases>
-    <package name="bitcamp.ggonggon.domain"/>
+    <package name="bitcamp.chopchop.domain"/>
   </typeAliases>
   
   <!-- DBMS 접속 정보 목록 
@@ -37,8 +37,8 @@
   <mappers>
   
     <!-- SQL 문이 저장된 파일 -->
-    <mapper resource="bitcamp/ggonggon/mapper/ProductMapper.xml"/>
-    <mapper resource="bitcamp/ggonggon/mapper/PhotoFileMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/ProductMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/PhotoFileMapper.xml"/>
   </mappers>
 </configuration>
 

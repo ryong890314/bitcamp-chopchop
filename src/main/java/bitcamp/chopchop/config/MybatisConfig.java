@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 //@Configuration
-@MapperScan("bitcamp.ggonggon.dao")
+@MapperScan("bitcamp.chopchop.dao")
 public class MybatisConfig {
   
   @Bean
@@ -21,9 +21,9 @@ public class MybatisConfig {
     
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dataSource);
-    sqlSessionFactoryBean.setTypeAliasesPackage("bitcamp.ggonggon.domain");
+    sqlSessionFactoryBean.setTypeAliasesPackage("bitcamp.chopchop.domain");
     sqlSessionFactoryBean.setMapperLocations(
-        appCtx.getResources("classpath:bitcamp/ggonggon/mapper/*Mapper.xml"));
+        appCtx.getResources("classpath:bitcamp/chopchop/mapper/*Mapper.xml"));
     
     return sqlSessionFactoryBean.getObject();
   }

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 // => @Transactional 애노테이션을 처리할 객체를 등록한다.
 @EnableTransactionManagement 
 
-@PropertySource("classpath:bitcamp/ggonggon/conf/jdbc.properties")
+@PropertySource("classpath:bitcamp/chopchop/conf/jdbc.properties")
 public class DatabaseConfig {
   
   @Value("${jdbc.driver}") String jdbcDriver;

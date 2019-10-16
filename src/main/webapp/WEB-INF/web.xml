@@ -9,11 +9,11 @@
     비트캠프 꼰꼰 팀 최종 프로젝트
   </description>
 
-  <display-name>bitcamp-java-application4</display-name>
+  <display-name>bitcamp-chopchop</display-name>
 
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
-    <filter-class>bitcamp.ggonggon.filter.CharacterEncodingFilter</filter-class>
+    <filter-class>bitcamp.chopchop.filter.CharacterEncodingFilter</filter-class>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>UTF-8</param-value>
