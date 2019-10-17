@@ -4,13 +4,13 @@
   url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700")
   ;
 /* :: 2.0 Import All CSS */
-@import url(/css/bootstrap.min.css);
-@import url(/css/classy-nav.css);
-@import url(/css/owl.carousel.min.css);
-@import url(/css/animate.css);
-@import url(/css/magnific-popup.css);
-@import url(/css/font-awesome.min.css);
-@import url(/css/nice-select.css);
+@import url(bootstrap.min.css);
+@import url(classy-nav.css);
+@import url(owl.carousel.min.css);
+@import url(animate.css);
+@import url(magnific-popup.css);
+@import url(font-awesome.min.css);
+@import url(nice-select.css);
 /* :: 3.0 Base CSS */
 * {
   margin: 0;
@@ -52,7 +52,7 @@ form {
 input {
   float: none;
   width: 94%;
-  margin: 2px;
+  margin: 2px !important;
   border: 1px solid #DBE5E7;
   border-radius: 2px;
   padding: 12px 10px;
@@ -64,7 +64,6 @@ input.btn {
   background: rgb(163, 182, 91);
   color: #fff;
   padding: 10px;
-  margin: 0px;
   border-width: 1px;
 }
 
@@ -74,7 +73,6 @@ input.btn:hover, input.btn:focus {
   padding: 10px;
   margin: 0px;
   border-width: 1px;
-  
 }
 
 
@@ -84,7 +82,7 @@ input.btn:hover, input.btn:focus {
   margin text-align: center;
   width: 200px;
   height: 200px;
-  background: url('/images/choplogo.png') no-repeat;
+  background: url('/bitcamp-chopchop/images/choplogo.png') no-repeat;
   background-size: contain;
   background-position: center;
   margin-left: auto;
