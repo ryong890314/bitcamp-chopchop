@@ -13,12 +13,17 @@
     
 <div id='content'>
 <h1>상품 등록폼</h1>
-<form action='add' method='post'>
-  타이틀 : <textarea name='title' rows='1' cols='50'></textarea><br>
-  가격 : <textarea name='price' rows='1' cols='50'></textarea><br>
-  내용 : <textarea name='detail' rows='1' cols='50'></textarea><br>
-  재고 : <textarea name='stock' rows='1' cols='50'></textarea><br>
-  할인 : <textarea name='discount' rows='1' cols='50'></textarea><br>
+<form action='add' method='post' enctype='multipart/form-data'>
+  타이틀 : <input type='text' name='title'><br>
+  가격 : <input type='text' name='price'><br>
+  내용 : <input type='text' name='detail'><br>
+  재고 : <input type='text' name='stock'><br>
+  할인 : <input type='text' name='discount'><br>
+  사진: <input type='file' name='filePath'><br>
+사진: <input type='file' name='filePath'><br>
+사진: <input type='file' name='filePath'><br>
+사진: <input type='file' name='filePath'><br>
+사진: <input type='file' name='filePath'><br>
   <button>등록</button>
 </form>
 </div>

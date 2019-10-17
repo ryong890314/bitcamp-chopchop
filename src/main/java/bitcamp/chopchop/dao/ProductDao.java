@@ -7,8 +7,10 @@ import bitcamp.chopchop.domain.Product;
 public interface ProductDao {
   int insert(Product product) throws Exception;
   List<Product> findAll() throws Exception;
-  Product findBy(int no) throws Exception;
+  Product findBy(int productNo) throws Exception;
+  Product findWithFilesBy(int productNo) throws Exception;
   int update(Product product) throws Exception;
-  int delete(int no) throws Exception;
+  int delete(int productNo) throws Exception;
+  int increaseViewCount(int productNo) throws Exception;
 }
 

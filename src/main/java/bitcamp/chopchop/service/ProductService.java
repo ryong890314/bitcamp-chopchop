@@ -10,10 +10,10 @@ import bitcamp.chopchop.domain.Product;
 //
 public interface ProductService {
   List<Product> list() throws Exception;
-  Product get(int no) throws Exception;
+  Product get(int productNo) throws Exception;
   void insert(Product product) throws Exception;
   void update(Product product) throws Exception;
-  void delete(int no) throws Exception;
+  void delete(int productNo) throws Exception;
 }
 
 

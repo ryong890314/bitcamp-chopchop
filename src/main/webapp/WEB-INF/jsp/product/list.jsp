@@ -26,8 +26,8 @@
 </tr>
 <c:forEach items="${products}" var="product">
   <tr>
-    <td>${product.no}</td>
-    <td><a href='detail?no=${product.no}'>${product.title}</a></td>
+    <td>${product.productNo}</td>
+    <td><a href='detail?productNo=${product.productNo}'>${product.title}</a></td>
     <td>${product.price}</td>
     <td>${product.stock}</td>
   </tr>
