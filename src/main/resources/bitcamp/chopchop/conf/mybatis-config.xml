@@ -37,8 +37,7 @@
   <mappers>
   
     <!-- SQL 문이 저장된 파일 -->
-    <mapper resource="bitcamp/chopchop/mapper/ProductMapper.xml"/>
-    <mapper resource="bitcamp/chopchop/mapper/PhotoFileMapper.xml"/>
+    
   </mappers>
 </configuration>
 

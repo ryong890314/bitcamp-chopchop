@@ -10,7 +10,8 @@ public class Member {
   private String postNo;
   private String baseAddress;
   private String detailAddress;
-  private String grade;
+  private int grade;
+  
   public int getMemberId() {
     return memberId;
   }
@@ -65,10 +66,10 @@ public class Member {
   public void setDetailAddress(String detailAddress) {
     this.detailAddress = detailAddress;
   }
-  public String getGrade() {
+  public int getGrade() {
     return grade;
   }
-  public void setGrade(String grade) {
+  public void setGrade(int grade) {
     this.grade = grade;
   }
   
