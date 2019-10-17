@@ -3,11 +3,10 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-  version="4.0" 
-  metadata-complete="false">
+  version="4.0" metadata-complete="false">
 
   <description>
-    CHOPCHOP Project
+    비트캠프 꼰꼰 팀 최종 프로젝트
   </description>
 
   <display-name>bitcamp-chopchop</display-name>
@@ -24,7 +23,6 @@
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-
   
 </web-app>
 
