@@ -50,11 +50,10 @@ public class ProductController {
   }
 
   @PostMapping("update")
-  public String update(HttpServletRequest request, Product product, MultipartFile[] filePath,
-      int no) throws Exception {
+  public String update(HttpServletRequest request, Product product, MultipartFile[] filePath)
+      throws Exception {
     
     product.setFiles(photoFileWriter.getPhotoFiles(filePath));
-    
     productService.update(product);
     return "redirect:list";
   }

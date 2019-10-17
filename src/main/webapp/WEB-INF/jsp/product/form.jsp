@@ -18,6 +18,11 @@
     재고: <input type='text' name='stock'><br>
     할인율: <input type='text' name='discount'><br>
     사진: <input type='file' name='filePath'><br>
+    사진: <input type='file' name='filePath'><br>
+    사진: <input type='file' name='filePath'><br>
+    사진: <input type='file' name='filePath'><br>
+    사진: <input type='file' name='filePath'><br>
+    사진: <input type='file' name='filePath'><br>
     <button>등록</button>
     </form>
   </div>

@@ -26,6 +26,12 @@
         <img src='/upload/product/${file.filePath}' class='photo2' >
       </c:forEach>
     </p>
+    사진: <input type='file' name='filePath'><br>
+    사진: <input type='file' name='filePath'><br>
+    사진: <input type='file' name='filePath'><br>
+    사진: <input type='file' name='filePath'><br>
+    사진: <input type='file' name='filePath'><br>
+    사진: <input type='file' name='filePath'><br>
     <button>변경</button>
     <a href='delete?no=${product.productNo}'>삭제</a>
   </form>
@@ -33,7 +39,3 @@
     <jsp:include page="../footer.jsp"/>
 </body>
 </html>
-    
-    
-    
-    

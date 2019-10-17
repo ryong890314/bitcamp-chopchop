@@ -33,6 +33,7 @@ public class DefaultProductService implements ProductService {
     }
   }
 
+  @Transactional
   @Override
   public void delete(int no) throws Exception {
     if (productDao.findBy(no) == null) {
@@ -54,17 +55,19 @@ public class DefaultProductService implements ProductService {
 
   @Override
   public List<Product> list() throws Exception {
+    
     return productDao.findAll();
   }
 
   @Override
   public void update(Product product) throws Exception {
+    
     if(product.getFiles().size() == 0) {
       throw new Exception("사진 파일이 없습니다.");
     }
     
-    productDao.update(product);
     photoFileDao.deleteAll(product.getProductNo());
+    productDao.update(product);
     for (PhotoFile file : product.getFiles()) {
       file.setProductNo(product.getProductNo());
       photoFileDao.insert(file);

@@ -30,11 +30,7 @@
   
   <delete id="deleteAll" parameterType="int">
     delete from store_photo
-    where photo_id=#{value}
+    where product_id=#{value}
   </delete>
 
 </mapper>
-
-
-
-
