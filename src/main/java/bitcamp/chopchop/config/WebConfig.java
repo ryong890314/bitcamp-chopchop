@@ -21,9 +21,9 @@ public class WebConfig implements WebMvcConfigurer {
     CommonsMultipartResolver mr = new CommonsMultipartResolver();
     // 이 클래스는 apache-fileupload 라이브러리를 사용한다.
     // 따라서 의존 라이브러리에 명시적으로 추가해야 한다.
-    mr.setMaxUploadSize(10000000);
-    mr.setMaxInMemorySize(20000000);
-    mr.setMaxUploadSizePerFile(50000000);
+    mr.setMaxUploadSize(1000000000);
+    mr.setMaxInMemorySize(2000000000);
+    mr.setMaxUploadSizePerFile(500000000);
     return mr;
   }
 
