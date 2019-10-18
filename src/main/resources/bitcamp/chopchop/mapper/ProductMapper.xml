@@ -32,13 +32,18 @@
 
   <select id="findAll" resultMap="findWithFilesMap">
     select
-      product_id,
-      title,
-      price,
-      discount
-    from
-      product
-    order by product_id desc
+      p.product_id,
+      p.title,
+      p.price,
+      p.detail,
+      p.stock,
+      p.discount,
+      f.photo_id,
+      f.file_path
+    from 
+      product p 
+        left outer join store_photo f on p.product_id=f.product_id
+    order by p.product_id desc
   </select>
   
   <select id="findBy" parameterType="int" resultMap="ProductMap">
@@ -51,7 +56,8 @@
       discount
     from
       product
-    where product_id=#{value}
+    where
+      product_id=#{value}
   </select>
   
     <select id="findWithFilesBy" 

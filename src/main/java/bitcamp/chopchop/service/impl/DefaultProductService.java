@@ -55,7 +55,6 @@ public class DefaultProductService implements ProductService {
 
   @Override
   public List<Product> list() throws Exception {
-    
     return productDao.findAll();
   }
 
