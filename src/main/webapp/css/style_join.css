@@ -82,7 +82,7 @@ input.btn:hover, input.btn:focus {
   margin text-align: center;
   width: 200px;
   height: 200px;
-  background: url('/bitcamp-chopchop/images/choplogo.png') no-repeat;
+  background: url('/images/choplogo.png') no-repeat;
   background-size: contain;
   background-position: center;
   margin-left: auto;

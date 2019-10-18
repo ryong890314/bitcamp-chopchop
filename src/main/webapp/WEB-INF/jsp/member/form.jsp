@@ -4,8 +4,8 @@
 <html>
 <head>
 <title>CHOP CHOP 회원가입</title>
-<link rel="stylesheet" href="/bitcamp-chopchop/css/style_join.css">
-<link rel="stylesheet" href="/bitcamp-chopchop/css/style_footer.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/style_join.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/style_footer.css">
 </head>
 <body>
 <%--   <jsp:include page="../header.jsp" /> --%>
