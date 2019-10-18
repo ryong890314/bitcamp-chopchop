@@ -30,7 +30,7 @@
     </collection>
   </resultMap>
 
-  <select id="findAll" resultMap="ProductMap">
+  <select id="findAll" resultMap="findWithFilesMap">
     select
       product_id,
       title,

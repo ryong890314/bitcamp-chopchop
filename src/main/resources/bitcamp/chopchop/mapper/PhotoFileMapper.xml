@@ -18,7 +18,7 @@
     from 
       store_photo
     where 
-      photo_id=#{value}
+      product_id=#{value}
     order by
       photo_id asc
   </select>
