@@ -5,8 +5,8 @@
 <html>
 <head>
   <title>회원 목록</title>
-  <link rel='stylesheet' href='/bitcamp-chopchop/css/style_join.css'>
-  <link rel='stylesheet' href='/bitcamp-chopchop/css/style_footer.css'>
+  <link rel='stylesheet' href='/css/style_join.css'>
+  <link rel='stylesheet' href='/css/style_footer.css'>
 </head>
 <body>
 

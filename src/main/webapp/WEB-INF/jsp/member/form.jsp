@@ -4,34 +4,49 @@
 <html>
 <head>
 <title>CHOP CHOP 회원가입</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/style_join.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/style_footer.css">
+<link rel="stylesheet" href="/css/style_join.css">
+<link rel="stylesheet" href="/css/style_footer.css">
 </head>
 <body>
-<%--   <jsp:include page="../header.jsp" /> --%>
+  <%--   <jsp:include page="../header.jsp" /> --%>
   <div class="bucket">
     <div class="buffer">
       <div class="header">
-        <div class="logo-area" >
-        </div>
+        <div class="logo-area"></div>
       </div>
-      <form method="post" action="add" name="form" onsubmit="return checkAll()">
-        <input type="text" id="email" name="email" placeholder="이메일"/>
-        <input type="password" id="password" name="password" placeholder="비밀번호" maxlength="20"/>
-        <input type="password" id="password2" name="password2" placeholder="비밀번호 확인" maxlength="20"/>
-        <input type="text" id="nickname" name="nickname" placeholder="닉네임"/>
-        <input type="text" id="tel" name="tel" placeholder="전화번호"/>
-        <input type="submit" class="btn" value="회원가입"/>
+      <form method="post" action="add" name="form"
+        onsubmit="return checkAll()">
+        <input type="text" id="email" name="email" placeholder="이메일" required/>
+        <input type="button" onclick="aaa();" value="중복체크" required/> 
+        <input type="password" id="password" name="password" placeholder="비밀번호" maxlength="20" required/> 
+        <input type="password" id="password2" name="password2" placeholder="비밀번호 확인" maxlength="20" required/> 
+        <input type="text" id="nickname" name="nickname" placeholder="닉네임" maxlength="10" required/> 
+          <input type="text" id="tel" name="tel" placeholder="전화번호 형식) 010-1234-5678" required/> 
+          <input type="submit" class="btn" value="회원가입" />
       </form>
     </div>
   </div>
-	<script type="text/javascript">
+  <script type="text/javascript">
+  function aaa() {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+
+      if (this.readyState == 4 && this.status == 200) {
+        console.log("성공");
+        console.log(httpRequest.responseText);
+      }
+    };
+
+    xhttp.open("GET", "check?email="+form.email.value, true);
+    xhttp.send();
+
+  }
+
+     
 	   function checkAll() {
         if (!checkEmail(form.email.value)) {
-            return false;
-        }
-        
-        if (!checkNickname(form.nickname.value)) {
             return false;
         }
         
@@ -39,7 +54,19 @@
             return false;
         }
         
-        return false;
+        if (!checkNickname(form.nickname.value)) {
+            return false;
+        }
+        
+        return true;
+     }
+	   
+	   function checkEmptyData(value, dataName) {
+       if (value == "") {
+           alert(dataName + " 입력해주세요!");
+           return false;
+       }
+        return true;
      }
 	   
 	   function checkEmail(email) {
@@ -58,13 +85,6 @@
     }
 	   
 	   
-	   function checkEmptyData(value, dataName) {
-       if (value == "") {
-           alert(dataName + " 입력해주세요!");
-           return false;
-       }
-        return true;
-     }
 	   function checkPassword(password, password2) {
 	        //비밀번호가 입력되었는지 확인하기
 	        if (!checkEmptyData(password, "비밀번호를"))
@@ -89,15 +109,17 @@
 	            form.password2.focus();
 	            return false;
 	        }
+	        return true;
 	   }
 	   
 	   function checkNickname(nickname) {
+	     alert(nickname + " / " + checkEmptyData(nickname, "닉네임을"));
         if (!checkEmptyData(nickname, "닉네임을"))
             return false;
  
         var nicknameRegExp = /^[a-zA-z0-9가-힣]{2,8}$/;
         if (!nicknameRegExp.test(nickname)) {
-            alert("형식이 올바르지 않습니다.");
+            alert("닉네임의 형식이 올바르지 않습니다.");
             form.nickname.value = "";
             form.nickname.focus();
             return false;
@@ -107,6 +129,6 @@
 
 	</script>
 
-	<jsp:include page="../footer.jsp" />
+  <jsp:include page="../footer.jsp" />
 </body>
 </html>
