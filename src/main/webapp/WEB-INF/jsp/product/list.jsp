@@ -20,9 +20,11 @@
 <table class='table table-hover'>
 <tr>
   <th>번호</th>
-  <th>타이틀</th>
+  <th>제목</th>
   <th>가격</th>
   <th>재고</th>
+  <th>사진9</th>
+
 </tr>
 <c:forEach items="${products}" var="product">
   <tr>
@@ -30,6 +32,13 @@
     <td><a href='detail?productNo=${product.productNo}'>${product.title}</a></td>
     <td>${product.price}</td>
     <td>${product.stock}</td>
+    <td>
+  <p>
+  <c:forEach items="${product.files}" var="file" end="0">
+    <img src='/upload/product/${file.filePath}' class='photo2'> 
+  </c:forEach>
+  </p>
+    </td>
   </tr>
 </c:forEach>  
 </table>

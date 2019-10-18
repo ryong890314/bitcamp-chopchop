@@ -31,13 +31,17 @@
     </collection>
   </resultMap>
 
-  <select id="findAll" resultMap="ProductMap">
+  <select id="findAll" resultMap="ProductWithFilesMap">
         select
-      product_id,
-      title,
-      price,
-      stock
-    from product
+      p.product_id,
+      p.title,
+      p.price,
+      p.stock,
+      f.photo_id,
+      f.file_path
+        from 
+      product p 
+        left outer join store_photo f on p.product_id=f.product_id
     order by product_id desc
   </select>
   
