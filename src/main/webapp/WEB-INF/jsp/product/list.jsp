@@ -28,17 +28,19 @@
         <th>할인율</th>
       </tr>
       <c:forEach items="${products}" var="product">
+          <c:set property="${product}" var="file"/>
         <tr>
           <td>${product.productNo}</td>
           <td><a href='detail?no=${product.productNo}'>${product.title}</a></td>
           <td>${product.price}</td>
           <td>${product.discount}</td>
+          <td>
+            <img src='/upload/product/${file.filePath}' class='photo2'>
+          </td>
         </tr>
       </c:forEach>
     </table>
-  <c:forEach items="${product.files}" var="file">
-    <img src='/upload/product/${file.filePath}' class='photo2'>
-  </c:forEach>
+    
   </div>
   
   <jsp:include page="../footer.jsp" />
