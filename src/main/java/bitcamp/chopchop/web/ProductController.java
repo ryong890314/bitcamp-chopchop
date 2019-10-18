@@ -50,12 +50,17 @@ public class ProductController {
   }
 
   @PostMapping("update")
-  public String update(HttpServletRequest request, Product product, MultipartFile[] filePath)
+  public String update(Product product, MultipartFile[] filePath)
       throws Exception {
     
     product.setFiles(photoFileWriter.getPhotoFiles(filePath));
     productService.update(product);
     return "redirect:list";
+  }
+  
+  @GetMapping("updateform")
+  public void updateform(Model model, int no) throws Exception {
+    model.addAttribute("product", productService.get(no));
   }
 }
 

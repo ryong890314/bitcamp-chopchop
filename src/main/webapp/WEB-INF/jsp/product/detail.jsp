@@ -13,28 +13,21 @@
 <body>
   <jsp:include page="../header.jsp"/>
   <div id='content'>
+  <form method="post">
   <h1>상품 상세</h1>
-  <form action='update' method='post' enctype='multipart/form-data'>
-    번호 : <input type='text' name='productNo' value='${product.productNo}' readonly><br>
-    상품명 : <input type='text' name='title' value='${product.title}'><br>
-    가격 : <input type='text' name='price' value='${product.price}'><br>
-    상품상세: <input type='text' name='detail' value='${product.detail}'><br>
-    재고: <input type='text' name='stock' value='${product.stock}'><br>
-    할인율: <input type='text' name='discount' value='${product.discount}'><br>
+    번호 : ${product.productNo}<br>
+    상품명 ${product.title}<br>
+    가격 : ${product.price}<br>
+    상품상세: ${product.detail}<br>
+    재고: ${product.stock}<br>
+    할인율: ${product.discount}<br>
     <p>
       <c:forEach items="${product.files}" var="file">
         <img src='/upload/product/${file.filePath}' class='photo2' >
       </c:forEach>
     </p>
-    사진: <input type='file' name='filePath'><br>
-    사진: <input type='file' name='filePath'><br>
-    사진: <input type='file' name='filePath'><br>
-    사진: <input type='file' name='filePath'><br>
-    사진: <input type='file' name='filePath'><br>
-    사진: <input type='file' name='filePath'><br>
-    <button>변경</button>
-    <a href='delete?no=${product.productNo}'>삭제</a>
-  </form>
+    <a href='updateform?no=${product.productNo}'>수정</a>
+    </form>
   </div>
     <jsp:include page="../footer.jsp"/>
 </body>

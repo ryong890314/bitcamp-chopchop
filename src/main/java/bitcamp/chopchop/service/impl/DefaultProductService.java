@@ -12,20 +12,20 @@ import bitcamp.chopchop.service.ProductService;
 
 @Service
 public class DefaultProductService implements ProductService {
-  
+
   @Resource
   private ProductDao productDao;
   @Resource
   private PhotoFileDao photoFileDao;
-  
+
   @Transactional
   @Override
   public void insert(Product product) throws Exception {
-    
+
     if(product.getFiles().size() == 0) {
       throw new Exception("사진 파일이 없습니다.");
     }
-    
+
     productDao.insert(product);
     for (PhotoFile file : product.getFiles()) {
       file.setProductNo(product.getProductNo());
@@ -39,7 +39,7 @@ public class DefaultProductService implements ProductService {
     if (productDao.findBy(no) == null) {
       throw new Exception("해당 데이터가 없습니다.");
     }
-    
+
     photoFileDao.deleteAll(no);
     productDao.delete(no);
   }
@@ -57,14 +57,16 @@ public class DefaultProductService implements ProductService {
   public List<Product> list() throws Exception {
     return productDao.findAll();
   }
-
+  
+  @Transactional
   @Override
   public void update(Product product) throws Exception {
-    
+    int no = product.getProductNo();
+    System.out.println("=====================================================\t"+ no + "\t======================================================================");
     if(product.getFiles().size() == 0) {
       throw new Exception("사진 파일이 없습니다.");
     }
-    
+
     photoFileDao.deleteAll(product.getProductNo());
     productDao.update(product);
     for (PhotoFile file : product.getFiles()) {
@@ -73,6 +75,11 @@ public class DefaultProductService implements ProductService {
     }
   }
 }
+
+
+
+
+
 
 
 

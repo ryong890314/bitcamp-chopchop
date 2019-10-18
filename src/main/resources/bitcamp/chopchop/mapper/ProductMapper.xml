@@ -60,7 +60,7 @@
       product_id=#{value}
   </select>
   
-    <select id="findWithFilesBy" 
+  <select id="findWithFilesBy" 
           parameterType="int" 
           resultMap="findWithFilesMap">
     select
@@ -87,7 +87,6 @@
     insert into product(title,price,detail,stock,discount)
     values(#{title},#{price},#{detail},#{stock},#{discount})
   </insert>
-  
   
   <update id="update" parameterType="Product">
     update product set
