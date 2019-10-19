@@ -19,6 +19,9 @@ public class ProductController {
   private ProductService productService;
   @Resource
   private PhotoFileWriter photoFileWriter;
+  @Resource
+  private CommentWriter commentWriter;
+  
 
   @GetMapping("form")
   public void form() {}
@@ -47,6 +50,7 @@ public class ProductController {
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
     model.addAttribute("product", productService.get(no));
+    
   }
 
   @PostMapping("update")

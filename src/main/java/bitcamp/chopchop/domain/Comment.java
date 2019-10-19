@@ -7,14 +7,9 @@ public class Comment {
   private int commentNo;
   private int productNo;
   private int memberNo;
+  private String title;
   private String content;
   private Date createdDate;
-
-  @Override
-  public String toString() {
-    return "Comment [commentNo=" + commentNo + ", productNo=" + productNo + ", memberNo=" + memberNo
-        + ", content=" + content + ", createdDate=" + createdDate + "]";
-  }
 
   public int getCommentNo() {
     return commentNo;
@@ -40,6 +35,14 @@ public class Comment {
     this.memberNo = memberNo;
   }
 
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
   public String getContent() {
     return content;
   }
@@ -55,6 +58,7 @@ public class Comment {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
+
 
 
 }

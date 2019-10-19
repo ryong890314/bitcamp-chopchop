@@ -21,14 +21,22 @@
     상품상세: ${product.detail}<br>
     재고: ${product.stock}<br>
     할인율: ${product.discount}<br>
+    분류: ${product.category}<br>
     <p>
       <c:forEach items="${product.files}" var="file">
-        <img src='/upload/product/${file.filePath}' class='photo2' >
+        <img src='/upload/product/${file.filePath}' class='photo2' width=200>
       </c:forEach>
     </p>
     <a href='updateform?no=${product.productNo}'>수정</a>
     </form>
   </div>
+  <br><br><br><br><br>
+    <jsp:include page="../comment/list.jsp"/>
+    <form action='${comment.productNo}' method="post">
+      <input type='text' value='${product.productNo}'>
+    </form>
+      <a href='../comment/form?no=${product.productNo}'>상품 문의 등록</a>
+    
     <jsp:include page="../footer.jsp"/>
 </body>
 </html>

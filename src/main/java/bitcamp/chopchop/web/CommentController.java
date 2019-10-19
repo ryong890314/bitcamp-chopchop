@@ -1,13 +1,11 @@
 package bitcamp.chopchop.web;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.service.CommentService;
 
@@ -19,7 +17,8 @@ public class CommentController {
   private CommentService commentService;
 
   @GetMapping("form")
-  public void form() {}
+  public void form() {
+  }
 
   @GetMapping("list")
   public void list(Model model) throws Exception {
@@ -27,11 +26,11 @@ public class CommentController {
   }
 
   @PostMapping("add")
-  public String add(HttpServletRequest request, Comment comment, MultipartFile[] filePath)
-      throws Exception {
+  public String add(Comment comment, Model model) throws Exception {
 
     commentService.insert(comment);
-    return "redirect:list";
+    model.addAttribute("comment", comment);
+    return "redirect:../product/detail?no=" + comment.getProductNo();
   }
 
   @GetMapping("delete")
@@ -46,13 +45,12 @@ public class CommentController {
   }
 
   @PostMapping("update")
-  public String update(Comment comment, MultipartFile[] filePath)
-      throws Exception {
-    
+  public String update(Comment comment) throws Exception {
+
     commentService.update(comment);
     return "redirect:list";
   }
-  
+
   @GetMapping("updateform")
   public void updateform(Model model, int no) throws Exception {
     model.addAttribute("comment", commentService.get(no));

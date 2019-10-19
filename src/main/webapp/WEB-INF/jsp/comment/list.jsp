@@ -8,7 +8,7 @@
 
 <html>
 <head>
-<title>상품 목록</title>
+<title>상품문의</title>
 <link rel='stylesheet'
   href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
   integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
@@ -17,20 +17,21 @@
 </head>
 <body>
   <div id='content'>
-    <h1>상품 목록</h1>
-    <a href='form'>상품 등록</a><br>
+    <h1>상품문의</h1>
     <table class='table table-hover'>
       <tr>
         <th>번호</th>
         <th>제목</th>
         <th>내용</th>
         <th>작성자</th>
+        <th>작성일</th>
       </tr>
       <c:forEach items="${comments}" var="comment">
         <tr>
           <td>${comment.commentNo}</td>
           <td>${comment.title}</td>
           <td>${comment.content}</td>
+          <td>${comment.createdDate}</td>
           <td>
 <%--             <c:set var="member" property='${member}'></c:set> --%>
 <%--             ${member.nickname} --%>

@@ -17,6 +17,7 @@
     상품상세: <input type='text' name='detail'><br>
     재고: <input type='text' name='stock'><br>
     할인율: <input type='text' name='discount'><br>
+    분류: <input type='text' name='category'><br>
     사진: <input type='file' name='filePath'><br>
     사진: <input type='file' name='filePath'><br>
     사진: <input type='file' name='filePath'><br>

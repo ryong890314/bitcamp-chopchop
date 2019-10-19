@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bitcamp.chopchop.dao.ProductDao">
+<mapper namespace="bitcamp.chopchop.dao.CommentDao">
 
   <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
   <resultMap type="Comment" id="CommentMap">
@@ -13,7 +13,7 @@
     <result column="content" property="content"/>
     <result column="created_date" property="createdDate"/>
   </resultMap>
-
+  
   <select id="findAll" resultMap="CommentMap">
     select
       c.comment_id,
@@ -22,35 +22,40 @@
       c.created_date,
       m.nickname
     from
-      comment c 
+      product_comment c 
         left outer join member m on c.member_id=m.member_id
     order by c.comment_id desc
   </select>
   
   <select id="findBy" parameterType="int" resultMap="CommentMap">
     select
-      comment_id
+      comment_id,
+      product_id,
+      member_id,
+      title,
+      content,
+      created_date
     from
-      comment
+      product_comment
     where
       comment_id=#{value}
   </select>
   
   
   <insert id="insert" parameterType="Comment">
-    insert into comment(title, content, created_date)
-    values(#{title},#{content},now())
+    insert into product_comment(product_id, member_id, title, content, created_date)
+    values(#{productNo}, #{memberNo}, #{title}, #{content}, now())
   </insert>
   
-  <update id="update" parameterType="Product">
-    update comment set
+  <update id="update" parameterType="Comment">
+    update product_comment set
       title=#{title},
       content=#{content},
     where comment_id=#{commentNo}
   </update>
   
   <delete id="delete" parameterType="int">
-    delete from comment
+    delete from product_comment
     where comment_id=#{value}
   </delete>
 </mapper>

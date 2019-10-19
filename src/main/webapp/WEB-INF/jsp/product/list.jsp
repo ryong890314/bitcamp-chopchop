@@ -26,6 +26,7 @@
         <th>상품명</th>
         <th>가격</th>
         <th>할인율</th>
+        <th>카테고리</th>
         <th>사진</th>
       </tr>
       <c:forEach items="${products}" var="product">
@@ -34,10 +35,11 @@
           <td><a href='detail?no=${product.productNo}'>${product.title}</a></td>
           <td>${product.price}</td>
           <td>${product.discount}</td>
+          <td>${product.category}</td>
           <td>
             <p>
               <c:forEach items="${product.files}" var="file" end="0">
-                <img src='/upload/product/${file.filePath}' class='photo2' >
+                <img src='/upload/product/${file.filePath}' class='photo2' width=200>
               </c:forEach>
             </p>
           </td>

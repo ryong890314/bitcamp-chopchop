@@ -23,6 +23,7 @@
       상품상세: <input type='text' name='detail' value='${product.detail}'><br>
       재고: <input type='text' name='stock' value='${product.stock}'><br>
       할인율: <input type='text' name='discount' value='${product.discount}'><br>
+      분류: <input type='text' name='category' value='${product.category}'><br>
       <c:forEach items="${product.files}" var="file">
         <img src='/upload/product/${file.filePath}' width=200>
       </c:forEach><br>

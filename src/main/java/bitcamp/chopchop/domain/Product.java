@@ -9,14 +9,17 @@ public class Product {
   private String detail;
   private int stock;
   private int discount;
+  private String category;
   
-  // 사진 파일 담을 list
   private List<PhotoFile> files;
+  private List<Comment> comments;
   
-  @Override
-  public String toString() {
-    return "Product [productNo=" + productNo + ", title=" + title + ", price=" + price + ", detail="
-        + detail + ", stock=" + stock + ", discount=" + discount + "]";
+  public List<Comment> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
   }
 
   public List<PhotoFile> getFiles() {
@@ -75,6 +78,12 @@ public class Product {
     this.discount = discount;
   }
 
+  public String getCategory() {
+    return category;
+  }
 
+  public void setCategory(String category) {
+    this.category = category;
+  }
 
 }
