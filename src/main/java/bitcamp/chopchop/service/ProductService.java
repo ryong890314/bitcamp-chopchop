@@ -1,6 +1,7 @@
 package bitcamp.chopchop.service;
 
 import java.util.List;
+
 import bitcamp.chopchop.domain.Product;
 
 // 역할:
@@ -10,6 +11,7 @@ import bitcamp.chopchop.domain.Product;
 //
 public interface ProductService {
   List<Product> list() throws Exception;
+  List<Product> search(String keyword) throws Exception;
   Product get(int productNo) throws Exception;
   void insert(Product product) throws Exception;
   void update(Product product) throws Exception;

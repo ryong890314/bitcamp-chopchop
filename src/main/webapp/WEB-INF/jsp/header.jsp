@@ -4,7 +4,7 @@
 <nav id='header' class='navbar navbar-expand-lg navbar-light bg-light'>
   <a class='navbar-brand' href='#'>
     <img src='/images/logo.png' class='d-inline-block align-top'>
-    수업관리시스템
+    ChopChop
   </a>
   <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'> 
     <span class='navbar-toggler-icon'></span> 
@@ -12,16 +12,7 @@
   <div class='collapse navbar-collapse' id='navbarSupportedContent'>
     <ul class='navbar-nav'>
       <li class='nav-item active'>
-        <a class='nav-link' href='/app/board/list'>게시판</a>
-      </li>
-      <li class='nav-item active'>
-        <a class='nav-link' href='/app/lesson/list'>수업관리</a>
-      </li>
-      <li class='nav-item active'>
-        <a class='nav-link' href='/app/member/list'>회원관리</a>
-      </li>
-      <li class='nav-item active'>
-        <a class='nav-link' href='/app/photoboard/list'>사진게시판</a>
+        <a class='nav-link' href='/app/product/list'>스토어</a>
       </li>
     </ul>
   </div>

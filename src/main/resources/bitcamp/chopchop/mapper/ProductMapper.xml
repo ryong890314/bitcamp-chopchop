@@ -75,6 +75,27 @@
     where 
       p.product_id=#{value}
   </select>
+
+<!-- 검색기능 추가 시작 -->
+   <select id="findByKeyword"
+          parameterType="string"
+          resultMap="ProductWithFilesMap">
+    <bind name="pattern" value="'%' + _parameter + '%'"/>
+        select
+      p.product_id,
+      p.title,
+      p.price,
+      p.stock,
+      f.photo_id,
+      f.file_path
+        from 
+      product p 
+        left outer join store_photo f on p.product_id=f.product_id
+    where title like #{pattern}
+      or detail like #{pattern}
+    order by product_id asc
+  </select>
+<!-- 검색기능 추가 시작 -->
   
     <update id="increaseViewCount" parameterType="int">
     update product set

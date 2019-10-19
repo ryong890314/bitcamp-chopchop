@@ -1,9 +1,12 @@
 package bitcamp.chopchop.service.impl;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import bitcamp.chopchop.dao.PhotoFileDao;
 import bitcamp.chopchop.dao.ProductDao;
 import bitcamp.chopchop.domain.PhotoFile;
@@ -59,6 +62,11 @@ public class DefaultProductService implements ProductService {
   @Override
   public List<Product> list() throws Exception {
     return productDao.findAll();
+  }
+
+  @Override
+  public List<Product> search(String keyword) throws Exception {
+    return productDao.findByKeyword(keyword);
   }
 
   @Transactional

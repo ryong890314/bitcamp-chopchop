@@ -1,12 +1,10 @@
-<%@page import="bitcamp.chopchop.domain.Product"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>게시물 목록</title>
+  <title>상품 검색</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
   <link rel='stylesheet' href='/css/common.css'>
 </head>
@@ -15,8 +13,7 @@
 <jsp:include page="../header.jsp"/>
 
 <div id='content'>
-<h1>상품 목록</h1>
-<a href='form'>새 상품</a><br>
+<h1>검색 결과</h1>
 <table class='table table-hover'>
 <tr>
   <th>번호</th>
@@ -24,7 +21,6 @@
   <th>가격</th>
   <th>재고</th>
   <th>사진</th>
-
 </tr>
 <c:forEach items="${products}" var="product">
   <tr>
@@ -40,25 +36,8 @@
   </p>
     </td>
   </tr>
-</c:forEach>  
+</c:forEach> 
 </table>
-
-<!-- 검색기능 추가 시작 -->
-<form action='search'>
-  	
-  검색 : 
-
-  	<select name="select_option">
-			<option value="all" selected> 전체
-			<option value="title"> 제목
-			<option value="detail"> 내용
-		</select>
-  
-  <input type='text' name='keyword'>
-  <button>검색</button>
-</form>
-<!-- 검색기능 추가 끝 -->
-
 </div>
 
 <jsp:include page="../footer.jsp"/>
