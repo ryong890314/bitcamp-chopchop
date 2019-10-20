@@ -5,11 +5,12 @@ import java.util.HashMap;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.sevice.TestService;
 
 @Controller
@@ -33,9 +34,11 @@ public class TestController {
 		return testService.dupCheck(map);
 	}
 	
-//	@RequestMapping(value = "/dup2", method = RequestMethod.GET)
-//	public @ResponseBody int dupCheck2(String nickname) throws Exception {
-//		return testService.dupCheck2(nickname);
-//	}
+	@PostMapping("add")
+	  public String add(Member member) throws Exception {
+		testService.insert(member);
+	    return "redirect:form";
+	  }
+	
 	
 }

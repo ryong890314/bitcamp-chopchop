@@ -31,10 +31,12 @@
         <input type="text" id="nickname" name="nickname" placeholder="닉네임" onchange="nicknameChange();"/>
         	<div id="nickname_chk" class="vali_check"></div>
         <input type="button" value="중복체크" onclick="dup_check('n');" /> 
-        <input type="text" id="tel" name="tel" placeholder="전화번호    예)010-123-5678"/> 
+        <input type="text" id="tel" name="tel" placeholder="핸드폰 번호    예)010-123-5678"/> 
         	<div id="tel_chk" class="vali_check"></div>
         <input type="submit" class="btn" value="회원가입" />
       </form>
+      <br>
+      <a href="../mypage/info?email=kim1@test.com">마이페이지</a>
     </div>
   </div>
   <script type="text/javascript">

@@ -14,5 +14,22 @@
 			WHERE nickname = #{nickname}
 		</if>
 	</select>
+	
+	<insert id="insert" parameterType="Member">
+	 insert into member
+    (
+      email, 
+      password, 
+      nickname, 
+      tel
+    )
+    value 
+    (
+      #{email}, 
+      #{password}, 
+      #{nickname}, 
+      #{tel}
+    )
+	</insert>
 
 </mapper>

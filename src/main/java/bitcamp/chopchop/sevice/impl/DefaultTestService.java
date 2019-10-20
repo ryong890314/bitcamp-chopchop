@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import bitcamp.chopchop.dao.TestDao;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.sevice.TestService;
 
 @Service
@@ -19,6 +20,14 @@ public class DefaultTestService implements TestService {
 	public int dupCheck(HashMap<String, Object> map) throws Exception {
 		return testDao.dupCheck(map);
 	}
+
+	@Override
+	public void insert(Member member) throws Exception {
+		testDao.insert(member);
+	}
+
+	
+	
 
 //	@Override
 //	public int dupCheck(String email) throws Exception {
