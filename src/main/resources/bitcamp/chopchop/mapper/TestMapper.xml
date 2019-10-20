@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.chopchop.dao.TestDao">
+
+	<select id="dupCheck" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		<if test='gbn == "e" or gbn.equals("e")'>
+			WHERE email = #{email}
+		</if>
+		<if test='gbn == "n" or gbn.equals("n")'>
+			WHERE nickname = #{nickname}
+		</if>
+	</select>
+
+</mapper>
