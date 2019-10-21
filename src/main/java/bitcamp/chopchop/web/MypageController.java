@@ -49,4 +49,9 @@ public class MypageController {
     file.transferTo(new File(uploadDir + "/" + filename));
     return filename;
   }
+  
+  @RequestMapping("pwUpdate")
+  private void pwUpdate() {
+    
+  }
 }

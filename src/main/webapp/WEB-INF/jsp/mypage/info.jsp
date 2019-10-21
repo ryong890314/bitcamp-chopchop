@@ -54,7 +54,7 @@
 			          비밀번호 변경
 			     </div>
 	         <div class="col-md-4">
-              <input type="button" value="변경" onclick="" />
+              <input type="button" value="변경" onclick="popup();" />
 	         </div>
 			   </div>
 			   
@@ -161,6 +161,10 @@
 		}	
 	}
 	*/
+	
+	function popup() {
+	  window.open("pwUpdate.html", "pwupdate", "width=500, height=500, top=100, left=850");
+	}
 	
 	</script>
 </body>
