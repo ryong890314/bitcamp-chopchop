@@ -20,7 +20,7 @@ public class TestController {
 	@Resource
 	private TestService testService;
 
-	@RequestMapping("/form")
+	@RequestMapping("/test01")
 	private void form() {
 	}
 	

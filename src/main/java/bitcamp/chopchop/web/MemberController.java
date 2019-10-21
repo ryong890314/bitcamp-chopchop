@@ -35,12 +35,6 @@ public class MemberController {
     model.addAttribute("members", members);
   }
 
-//  @RequestMapping(value = "check",  method = RequestMethod.POST)
-//  public String check(Member member) throws Exception {
-//    List<Member> members = memberService.list(); 
-//    return "redirect:/";
-//  }
-
   @RequestMapping(value ="check")
   @ResponseBody
   public String check(@RequestParam(value="email", required=true) String email) {

@@ -84,10 +84,8 @@
 	
 	function updateAll() {
 		if(!checkAll()) {
-			console.log("실패");
 			return false;
 		}
-		console.log("성공");
 		return true;
 	}
 	function dup_check() {
@@ -95,12 +93,10 @@
 	}
 	
 	function nickChange() {
-		console.log("닉 변경");
 		nChange = true;
 	}
 	
 	function telChange() {
-		console.log("텔 변경");
 		tChange = true;
 	}
 	
