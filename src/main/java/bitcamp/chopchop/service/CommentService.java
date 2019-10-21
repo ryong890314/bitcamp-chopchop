@@ -12,5 +12,5 @@ public interface CommentService {
   Comment get(int no) throws Exception;
   void insert(Comment comment) throws Exception;
   void update(Comment comment) throws Exception;
-  void delete(int no) throws Exception;
+  void commentDelete(int no) throws Exception;
 }

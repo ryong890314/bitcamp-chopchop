@@ -50,8 +50,8 @@
       <id column="comment_id" property="commentNo"/>
       <result column="product_id" property="productNo"/>
       <result column="member_id" property="memberNo"/>
-      <result column="title ct" property="title"/>
-      <result column="content cc" property="content"/>
+      <result column="ct" property="title"/>
+      <result column="cc" property="content"/>
       <result column="created_date" property="createdDate"/>
     </collection>
   </resultMap>
@@ -105,7 +105,7 @@
       c.title ct,
       c.content cc,
       c.created_date
-    from 
+    from
       product p 
         left outer join store_photo f on p.product_id=f.product_id
         left outer join product_comment c on p.product_id=c.product_id

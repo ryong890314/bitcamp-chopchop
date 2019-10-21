@@ -3,11 +3,13 @@ package bitcamp.chopchop.service.impl;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.chopchop.dao.CommentDao;
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.service.CommentService;
 
 @Service
+@RequestMapping("/comment")
 public class DefaultCommentService implements CommentService {
 
   @Resource
@@ -19,8 +21,8 @@ public class DefaultCommentService implements CommentService {
   }
   
   @Override
-  public void delete(int no) throws Exception {
-    if (commentDao.delete(no) == 0) {
+  public void commentDelete(int no) throws Exception {
+    if (commentDao.commentDelete(no) == 0) {
       throw new Exception("해당 데이터가 없습니다.");
     }
   }

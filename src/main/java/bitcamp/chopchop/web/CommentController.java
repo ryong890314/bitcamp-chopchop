@@ -1,6 +1,7 @@
 package bitcamp.chopchop.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,10 +34,10 @@ public class CommentController {
     return "redirect:../product/detail?no=" + comment.getProductNo();
   }
 
-  @GetMapping("delete")
-  public String delete(int no) throws Exception {
-    commentService.delete(no);
-    return "redirect:list";
+  @GetMapping("commentDelete")
+  public String commentDelete(int no, HttpServletRequest request, int productNo) throws Exception {
+    commentService.commentDelete(no);
+    return "redirect:../product/detail?no="+ productNo;
   }
 
   @GetMapping("detail")
@@ -45,10 +46,10 @@ public class CommentController {
   }
 
   @PostMapping("update")
-  public String update(Comment comment) throws Exception {
-
+  public String update(Comment comment, HttpServletRequest request, int productNo) 
+      throws Exception {
     commentService.update(comment);
-    return "redirect:list";
+    return "redirect:../product/detail?no=" + productNo;
   }
 
   @GetMapping("updateform")

@@ -15,5 +15,3 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc // Spring WebMVC 관련 애노테이션을 처리할 객체를 처리한다.
 public class AppConfig {
 }
-
-

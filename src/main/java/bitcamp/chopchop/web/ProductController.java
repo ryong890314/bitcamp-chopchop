@@ -19,8 +19,6 @@ public class ProductController {
   private ProductService productService;
   @Resource
   private PhotoFileWriter photoFileWriter;
-  @Resource
-  private CommentWriter commentWriter;
   
 
   @GetMapping("form")

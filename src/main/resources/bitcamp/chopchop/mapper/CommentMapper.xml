@@ -36,11 +36,12 @@
       member_id,
       title,
       content,
-      created_date
+      created_date,
+      product_id
     from
       product_comment
     where
-      product_id=#{value}
+      comment_id=#{value}
   </select>
   
     <select id="findByProductWith" parameterType="int" resultMap="CommentMap">
@@ -68,11 +69,11 @@
   <update id="update" parameterType="Comment">
     update product_comment set
       title=#{title},
-      content=#{content},
+      content=#{content}
     where comment_id=#{commentNo}
   </update>
   
-  <delete id="delete" parameterType="int">
+  <delete id="commentDelete" parameterType="int">
     delete from product_comment
     where comment_id=#{value}
   </delete>

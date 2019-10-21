@@ -20,6 +20,14 @@
   <div id='content'>
     <h1>상품 목록</h1>
     <a href='form'>상품 등록</a><br>
+    <select>
+      <option id='dogs'>dogs</option>
+      <option id='cats'>cats</option>
+      <option id='birds'>birds</option>
+      <option id='fish'>fish</option>
+      <option id='small animals'>small animals</option>
+      <option id='reptiles'>reptiles</option>
+    </select>
     <table class='table table-hover'>
       <tr>
         <th>번호</th>

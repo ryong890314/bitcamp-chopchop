@@ -22,16 +22,12 @@
         <th>제목</th>
         <th>작성일</th>
       </tr>
-      <c:forEach items="${comments}" var="comment">
+      <c:forEach items="${product.comments}" var="comment">
         <tr>
           <td>${comment.commentNo}</td>
           <td><span id='title'>${comment.title}</span></td>
           <td>${comment.createdDate}</td>
-          <td>
-          <div id='content' display='none'>
-            ${comment.content}
-          </div>
-          </td>
+          <td>${comment.content}</td>
         </tr>
       </c:forEach>
     </table>
@@ -39,7 +35,10 @@
   <script type="text/javascript">
     var title = document.getElementById('title');
     var content = document.getElementById('content');
-    title.click(content.hidden=true);
+    for(var e of content) {
+      e.style['display']=hidden;
+    }
+//     title.click(content.hidden=true);
   </script>
 </body>
 </html>
