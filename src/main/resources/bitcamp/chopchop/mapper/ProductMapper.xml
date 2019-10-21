@@ -50,8 +50,8 @@
       <id column="comment_id" property="commentNo"/>
       <result column="product_id" property="productNo"/>
       <result column="member_id" property="memberNo"/>
-      <result column="title" property="title"/>
-      <result column="content" property="content"/>
+      <result column="title ct" property="title"/>
+      <result column="content cc" property="content"/>
       <result column="created_date" property="createdDate"/>
     </collection>
   </resultMap>
@@ -102,8 +102,8 @@
       f.photo_id,
       f.file_path,
       c.comment_id,
-      c.title,
-      c.content,
+      c.title ct,
+      c.content cc,
       c.created_date
     from 
       product p 

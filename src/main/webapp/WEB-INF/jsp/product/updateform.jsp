@@ -34,6 +34,7 @@
       사진: <input type='file' name='filePath'><br>
       사진: <input type='file' name='filePath'><br>
       <button>수정</button>
+      <a href='delete?no=${product.productNo}'>삭제</a>
     </form>
   </div>
   <jsp:include page="../footer.jsp" />

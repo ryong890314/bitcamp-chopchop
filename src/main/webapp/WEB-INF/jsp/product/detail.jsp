@@ -16,7 +16,7 @@
   <form method="post">
   <h1>상품 상세</h1>
     번호 : ${product.productNo}<br>
-    상품명 ${product.title}<br>
+    상품명: ${product.title}<br>
     가격 : ${product.price}<br>
     상품상세: ${product.detail}<br>
     재고: ${product.stock}<br>
@@ -31,12 +31,11 @@
     </form>
   </div>
   <br><br><br><br><br>
+  <div>
     <jsp:include page="../comment/list.jsp"/>
-    <form action='${comment.productNo}' method="post">
-      <input type='text' value='${product.productNo}'>
-    </form>
       <a href='../comment/form?no=${product.productNo}'>상품 문의 등록</a>
-    
+  </div>
+  <br><br><br><br><br>
     <jsp:include page="../footer.jsp"/>
 </body>
 </html>

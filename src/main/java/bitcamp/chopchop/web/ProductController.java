@@ -50,7 +50,6 @@ public class ProductController {
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
     model.addAttribute("product", productService.get(no));
-    
   }
 
   @PostMapping("update")

@@ -14,23 +14,25 @@
     <result column="created_date" property="createdDate"/>
   </resultMap>
   
-  <select id="findAll" resultMap="CommentMap">
+  <select id="findAll" parameterType="int" resultMap="CommentMap">
     select
+      c.product_id,
       c.comment_id,
       c.title,
       c.content,
       c.created_date,
-      m.nickname
+      m.nickname,
+      p.product_id
     from
       product_comment c 
         left outer join member m on c.member_id=m.member_id
+        left outer join product p on c.product_id=p.product_id
     order by c.comment_id desc
   </select>
   
   <select id="findBy" parameterType="int" resultMap="CommentMap">
     select
       comment_id,
-      product_id,
       member_id,
       title,
       content,
@@ -38,8 +40,24 @@
     from
       product_comment
     where
-      comment_id=#{value}
+      product_id=#{value}
   </select>
+  
+    <select id="findByProductWith" parameterType="int" resultMap="CommentMap">
+    select
+      c.comment_id,
+      c.member_id,
+      c.title,
+      c.content,
+      c.created_date,
+      p.product_id
+    from
+      product_comment c
+        left outer join product p on c.product_id=p.product_id
+    where
+      c.product_id=#{value}
+  </select>
+  
   
   
   <insert id="insert" parameterType="Comment">

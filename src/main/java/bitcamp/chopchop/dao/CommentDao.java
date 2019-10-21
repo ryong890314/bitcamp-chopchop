@@ -7,6 +7,7 @@ public interface CommentDao {
   int insert(Comment comment) throws Exception;
   List<Comment> findAll() throws Exception;
   Comment findBy(int no) throws Exception;
+  Comment findByProductWith(int no) throws Exception;
   int update(Comment comment) throws Exception;
   int delete(int no) throws Exception;
 }
