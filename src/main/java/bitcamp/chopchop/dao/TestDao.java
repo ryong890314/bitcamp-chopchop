@@ -11,4 +11,6 @@ public interface TestDao {
 	int dupCheck(HashMap<String, Object> map) throws Exception;
 
 	void insert(Member member) throws Exception;
+
+  int dupEmailCheck(String email) throws Exception;
 }

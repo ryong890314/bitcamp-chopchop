@@ -15,4 +15,6 @@ public interface TestService {
 
 	void insert(Member member) throws Exception;
 
+  int dupEmailCheck(String email) throws Exception;
+
 }

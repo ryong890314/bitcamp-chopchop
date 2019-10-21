@@ -26,7 +26,10 @@ public class DefaultTestService implements TestService {
 		testDao.insert(member);
 	}
 
-	
+    @Override
+    public int dupEmailCheck(String email) throws Exception {
+      return testDao.dupEmailCheck(email);
+    }
 	
 
 //	@Override
