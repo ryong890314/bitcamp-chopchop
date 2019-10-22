@@ -35,7 +35,8 @@ public class CommentController {
   }
 
   @GetMapping("commentDelete")
-  public String commentDelete(int no, HttpServletRequest request, int productNo) throws Exception {
+  public String commentDelete(int no, HttpServletRequest request, int productNo) 
+      throws Exception {
     commentService.commentDelete(no);
     return "redirect:../product/detail?no="+ productNo;
   }

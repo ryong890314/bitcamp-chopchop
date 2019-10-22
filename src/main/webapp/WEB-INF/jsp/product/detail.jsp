@@ -35,10 +35,6 @@
     <c:forEach items="${product.comments}" var = "comment">
       제목: ${comment.title}<br>
       내용: ${comment.content}<br>
-<!--       <form action='../comment/updateform'> -->
-<%--         <input type='hidden' name='no'  value='${comment.commentNo}'> --%>
-<!--         <button>수정</button> -->
-<!--       </form> -->
       <a href='../comment/updateform?no=${comment.commentNo}'>수정</a><br>
       <span>--------------------------------------------<br/></span>
     </c:forEach>

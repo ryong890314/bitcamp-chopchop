@@ -10,15 +10,16 @@
   <div id='content'>
     <h1>문의 수정폼</h1>
     <form action='update' method='post'>
-      <input type='text' name='commentNo' id='commentNo' value='' readonly><br>
+      번호: <input type='text' name='commentNo' id='commentNo' value='' readonly><br>
       제목: <input type='text' name='title' value='${comment.title}'><br>
-      내용: <input type='text' name='content' value='${comment.content}'><br>
-      <input type='text' name='productNo' value='${comment.productNo}'>
+      내용: <textarea name='content' >${comment.content}</textarea><br>
+      <input type='hidden' name='productNo' value='${comment.productNo}'>
       <input type='hidden' name='memberNo' value=1 readonly><br>
       <button>수정</button>
     </form>
     <form action='../comment/commentDelete'>
       <input type='hidden' name='no'  value='${comment.commentNo}'>
+      <input type='hidden' name='productNo' value='${comment.productNo}'>
       <button>삭제</button>
     </form>
   </div>
