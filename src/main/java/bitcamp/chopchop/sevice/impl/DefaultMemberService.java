@@ -8,7 +8,7 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.sevice.MemberService;
 
 @Service
-public class DefaultMemberService implements MemberService{
+public class DefaultMemberService implements MemberService {
   
   @Resource
   private MemberDao memberDao;
@@ -21,6 +21,17 @@ public class DefaultMemberService implements MemberService{
   @Override
   public void insert(Member member) throws Exception {
     memberDao.insert(member);
+  }
+
+  @Override
+  public int dupEmailCheck(String email) throws Exception {
+    System.out.println(memberDao.dupEmailCheck(email));
+    return memberDao.dupEmailCheck(email);
+  }
+
+  @Override
+  public int dupNicknameCheck(String nickname) throws Exception {
+    return memberDao.dupNicknameCheck(nickname);
   } 
 
 }

@@ -22,14 +22,26 @@
     value 
     (
       #{email}, 
-      #{password}, 
+      password(#{password}), 
       #{nickname}, 
       #{tel}
     )
   </insert>
 
-<select id="findAll" resultMap="MemberMap">
-  select * from member
-</select>
+  <select id="findAll" resultMap="MemberMap">
+    select * from member
+  </select>
+
+  <select id="dupEmailCheck" parameterType="String" resultType="int">
+    select count(*)
+    from member 
+    where email = #{email}
+  </select>
+  
+  <select id="dupNicknameCheck" parameterType="String" resultType="int">
+    select count(*)
+    from member 
+    where nickname = #{nickname}
+  </select>
 
 </mapper>

@@ -22,6 +22,10 @@ public class MemberController {
   public void form() {
 
   }
+  
+  @RequestMapping("test02")
+  public void test02(Model model) throws Exception {
+  }
 
   @RequestMapping("add")
   public String add(Member member) throws Exception {
@@ -34,13 +38,27 @@ public class MemberController {
     List<Member> members = memberService.list();
     model.addAttribute("members", members);
   }
-
-  @RequestMapping(value ="check")
-  @ResponseBody
-  public String check(@RequestParam(value="email", required=true) String email) {
-    System.out.println(email);
-    return "sucess";
-
+  
+  @RequestMapping("contact")
+  public void contact(Model model) throws Exception {
   }
+  
+  @RequestMapping(value = "dupE", method = RequestMethod.GET)
+  public @ResponseBody int dupEmailCheck(String email) throws Exception {
+    return memberService.dupEmailCheck(email);
+  }
+  
+  @RequestMapping(value = "dupN", method = RequestMethod.GET)
+  public @ResponseBody int dupNicknameCheck(String nickname) throws Exception {
+    return memberService.dupNicknameCheck(nickname);
+  }
+
+//  @RequestMapping(value ="check")
+//  @ResponseBody
+//  public String check(@RequestParam(value="email", required=true) String email) {
+//    System.out.println(email);
+//    return "sucess";
+//
+//  }
 
 }
