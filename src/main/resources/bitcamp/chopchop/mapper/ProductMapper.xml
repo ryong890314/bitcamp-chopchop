@@ -13,6 +13,7 @@
     <result column="stock" property="stock"/>
     <result column="discount" property="discount"/>
     <result column="category" property="category"/>
+    <result column="species" property="species"/>
   </resultMap>
   
   <resultMap type="Product" id="findWithFilesMap">
@@ -23,6 +24,7 @@
     <result column="stock" property="stock"/>
     <result column="discount" property="discount"/>
     <result column="category" property="category"/>
+    <result column="species" property="species"/>
     
     <collection property="files" ofType="PhotoFile">
       <id column="photo_id" property="photoFileNo"/>
@@ -39,6 +41,7 @@
     <result column="stock" property="stock"/>
     <result column="discount" property="discount"/>
     <result column="category" property="category"/>
+    <result column="species" property="species"/>
     
     <collection property="files" ofType="PhotoFile">
       <id column="photo_id" property="photoFileNo"/>
@@ -65,6 +68,7 @@
       p.stock,
       p.discount,
       p.category,
+      p.species,
       f.photo_id,
       f.file_path
     from 
@@ -81,7 +85,8 @@
       detail,
       stock,
       discount,
-      category
+      category,
+      species
     from
       product
     where
@@ -99,6 +104,7 @@
       p.stock,
       p.discount,
       p.category,
+      p.species,
       f.photo_id,
       f.file_path,
       c.comment_id,
@@ -113,13 +119,38 @@
       p.product_id=#{value}
   </select>
   
+  <select id="findByKeyword"
+          parameterType="string"
+          resultMap="findWithFilesMap">
+  <bind name="pattern" value="'%' + _parameter + '%'"/>
+    select
+      p.product_id,
+      p.title,
+      p.price,
+      p.detail,
+      p.stock,
+      p.discount,
+      p.category,
+      p.species,
+      f.photo_id,
+      f.file_path
+    from 
+      product p 
+        left outer join store_photo f on p.product_id=f.product_id
+    where 
+      p.species like #{pattern}
+    order by p.product_id desc
+  </select>
+  
+  
+  
   <insert id="insert" 
           parameterType="Product"
           useGeneratedKeys="true"
           keyColumn="product_id"
           keyProperty="productNo">
-    insert into product(title,price,detail,stock,discount, category)
-    values(#{title},#{price},#{detail},#{stock},#{discount}, #{category})
+    insert into product(title,price,detail,stock,discount,category,species)
+    values(#{title},#{price},#{detail},#{stock},#{discount},#{category},#{species})
   </insert>
   
   <update id="update" parameterType="Product">
@@ -129,7 +160,8 @@
       detail=#{detail},
       stock=#{stock},
       discount=#{discount},
-      category=#{category}
+      category=#{category},
+      species=#{species}
     where product_id=#{productNo}
   </update>
   

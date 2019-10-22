@@ -23,7 +23,20 @@
       상품상세: <input type='text' name='detail' value='${product.detail}'><br>
       재고: <input type='text' name='stock' value='${product.stock}'><br>
       할인율: <input type='text' name='discount' value='${product.discount}'><br>
-      분류: <input type='text' name='category' value='${product.category}'><br>
+      상품분류: <select name='category'>
+        <option id='category1' value='food'>식품</option>
+        <option id='category2' value='train'>훈련/장난감</option>
+        <option id='category3' value='house'>식기/집/이동장</option>
+        <option id='category4' value='sanitary'>목욕/미용/위생</option>
+      </select><br>
+      동물분류: <select name='species'>
+        <option id='1' value='dog'>강아지</option>
+        <option id='2' value='cat'>고양이</option>
+        <option id='3' value='bird'>새</option>
+        <option id='4' value='fish'>물고기</option>
+        <option id='5' value='smallAnimal'>작은 동물</option>
+        <option id='6' value='reptile'>파충류</option>
+      </select><br>
       <c:forEach items="${product.files}" var="file">
         <img src='/upload/product/${file.filePath}' width=200>
       </c:forEach><br>

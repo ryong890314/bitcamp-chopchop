@@ -1,5 +1,6 @@
 package bitcamp.chopchop.web;
 
+import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,6 @@ public class ProductController {
       throws Exception {
 
     product.setFiles(photoFileWriter.getPhotoFiles(filePath));
-
     productService.insert(product);
     return "redirect:list";
   }
@@ -50,6 +50,12 @@ public class ProductController {
     model.addAttribute("product", productService.get(no));
   }
 
+  @GetMapping("search")
+  public void search(String species, Model model) throws Exception {
+    List<Product> products = productService.search(species);
+    model.addAttribute("products", products);
+  }
+  
   @PostMapping("update")
   public String update(Product product, MultipartFile[] filePath)
       throws Exception {

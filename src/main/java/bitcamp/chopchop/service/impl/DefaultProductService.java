@@ -72,6 +72,11 @@ public class DefaultProductService implements ProductService {
       photoFileDao.insert(file);
     }
   }
+  
+  @Override
+  public List<Product> search(String species) throws Exception {
+    return productDao.findByKeyword(species);
+  }
 }
 
 
