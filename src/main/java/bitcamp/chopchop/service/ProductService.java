@@ -12,6 +12,7 @@ import bitcamp.chopchop.domain.Product;
 public interface ProductService {
   List<Product> list() throws Exception;
   List<Product> search(String keyword) throws Exception;
+  List<Product> category(String species) throws Exception;
   Product get(int productNo) throws Exception;
   void insert(Product product) throws Exception;
   void update(Product product) throws Exception;

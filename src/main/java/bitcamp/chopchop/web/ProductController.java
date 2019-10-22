@@ -61,6 +61,12 @@ public class ProductController {
     List<Product> products = productService.search(keyword);
     model.addAttribute("products", products);
   }
+
+   @GetMapping("category")
+  public void category(String species, Model model) throws Exception {
+    List<Product> products = productService.category(species);
+    model.addAttribute("products", products);
+  }
   
   @PostMapping("update")
   public String update(HttpServletRequest request, Product product, MultipartFile[] filePath) 
@@ -69,6 +75,11 @@ public class ProductController {
         product.setFiles(photoFileWriter.getPhotoFiles(filePath));
     productService.update(product);
     return "redirect:list";
+  }
+
+    @GetMapping("updateform")
+  public void updateform(Model model, int no) throws Exception {
+    model.addAttribute("product", productService.get(no));
   }
 
 }

@@ -69,6 +69,11 @@ public class DefaultProductService implements ProductService {
     return productDao.findByKeyword(keyword);
   }
 
+    @Override
+  public List<Product> category(String species) throws Exception {
+    return productDao.findByKeyword(species);
+  }
+
   @Transactional
   @Override
   public void update(Product product) throws Exception {

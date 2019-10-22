@@ -11,8 +11,12 @@ public class Product {
   private int stock;
   private int discount;
   private int viewCount;
+  private String category;
+  private String species;
   private List<PhotoFile> files;
 
+  private List<Comment> comments;
+  
   public int getProductNo() {
     return ProductNo;
   }
@@ -60,6 +64,14 @@ public class Product {
   public void setDiscount(int discount) {
     this.discount = discount;
   }
+  
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
+  }
 
   public List<PhotoFile> getFiles() {
     return files;
@@ -67,6 +79,14 @@ public class Product {
 
   public void setFiles(List<PhotoFile> files) {
     this.files = files;
+  }
+
+    public String getSpecies() {
+    return species;
+  }
+
+  public void setSpecies(String species) {
+    this.species = species;
   }
 
   public int getViewCount() {
@@ -77,11 +97,19 @@ public class Product {
     this.viewCount = viewCount;
   }
 
-  @Override
-  public String toString() {
-    return "Product [ProductNo=" + ProductNo + ", title=" + title + ", price=" + price + ", detail="
-        + detail + ", stock=" + stock + ", discount=" + discount + ", viewCount=" + viewCount
-        + ", files=" + files + "]";
+ public List<Comment> getComments() {
+    return comments;
   }
 
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
+  }
+
+  @Override
+  public String toString() {
+    return "Product [ProductNo=" + ProductNo + ", category=" + category + ", comments=" + comments + ", detail="
+        + detail + ", discount=" + discount + ", files=" + files + ", price=" + price + ", species=" + species
+        + ", stock=" + stock + ", title=" + title + ", viewCount=" + viewCount + "]";
+  }
+  
 }
