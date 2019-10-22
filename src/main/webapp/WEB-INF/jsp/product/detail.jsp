@@ -7,7 +7,8 @@
 <head>
 <style>
   #abc {
-    background-color:#B0C364
+    background-color:#B0C364;
+    color: #ffffff;
   }
 </style>
   <meta charset="UTF-8">
@@ -23,7 +24,7 @@
   <link rel="icon" href="img/core-img/favicon.ico">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="/css/product/style.css">
 </head>
 <body>
   <jsp:include page="../header.jsp"/>
@@ -43,20 +44,10 @@
         <img src='/upload/product/${file.filePath}' class='photo2' width=200>
       </c:forEach>
     </p>
-    <a href='updateform?no=${product.productNo}'>수정</a>
+    <a href='updateform?no=${product.productNo}'>상품 수정</a>
     </form>
   </div>
-  <br><br><br><br><br>
-  <div>
-    <c:forEach items="${product.comments}" var = "comment">
-      제목: ${comment.title}<br>
-      내용: ${comment.content}<br>
-      <a href='../comment/updateform?no=${comment.commentNo}'>수정</a><br>
-      <span>--------------------------------------------<br/></span>
-    </c:forEach>
-    <a href='../comment/form?no=${product.productNo}'>상품 문의 등록</a>
-  </div>
-  <br><br><br><br><br>
+  
   <div class="col-12 col-lg-8 col-xl-9">
       <!-- Comment Area Start -->
       <div class="comment_area clearfix mb-100">
@@ -77,7 +68,7 @@
                           <a href="#" class="post-author">${comment.title}</a>
                           <a href="#" class="post-date">${comment.createdDate}</a>
                           <a href="#" class="reply">Reply  |</a>
-                          <a href="../comment/updateform?no=${product.productNo}" class="reply">수정</a>
+                          <a href="../comment/updateform?no=${comment.commentNo}" class="reply">수정</a>
                       </div>
                       <p>${comment.content}</p>
                   </div>
@@ -89,30 +80,24 @@
 
       <div class="post-a-comment-area mb-30 clearfix">
           <h4 class="mb-50">Leave a reply</h4>
-
           <!-- Reply Form -->
           <div class="contact-form-area">
-              <form action="#" method="post">
-                  <div class="row">
-                      <div class="col-12 col-lg-6">
-                          <input type="text" class="form-control" id="name" placeholder="Name*">
-                      </div>
-                      <div class="col-12 col-lg-6">
-                          <input type="email" class="form-control" id="email" placeholder="Email*">
-                      </div>
-                      <div class="col-12">
-                          <input type="text" class="form-control" id="subject" placeholder="Website">
-                      </div>
-                      <div class="col-12">
-                          <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                      </div>
-                      <div class="col-12">
-                          <button class="btn bueno-btn mt-30" type="submit">Submit Comment</button>
-                      </div>
-                  </div>
-              </form>
+            <form action="../comment/add" method="post">
+              <div class="row">
+                <input type='hidden' name='productNo' id='productNo' value='${product.productNo}'>
+                <input type='hidden' name='memberNo' value=1 readonly>
+                <div class="col-12 col-lg-6">
+                  <input type="text" name='title' class="form-control" id="title" placeholder="title">
+                </div>
+                <div class="col-12">
+                  <textarea name='content' class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                </div>
+                <div class="col-12">
+                  <button class="btn bueno-btn mt-30" type="submit">Submit Comment</button>
+                </div>
+              </div>
+            </form>
           </div>
-          
       </div>
   </div>
   <jsp:include page="../footer.jsp"/>
