@@ -1,15 +1,20 @@
 package bitcamp.chopchop.service.impl;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import bitcamp.chopchop.dao.PhotoFileDao;
 import bitcamp.chopchop.dao.ProductDao;
 import bitcamp.chopchop.domain.PhotoFile;
 import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.service.ProductService;
 
+// ProductService 기본 구현체 
+//
 @Service
 public class DefaultProductService implements ProductService {
 
@@ -50,6 +55,7 @@ public class DefaultProductService implements ProductService {
     if (product == null) {
       throw new Exception("해당 번호의 데이터가 없습니다!");
     } 
+    productDao.increaseViewCount(no);
     return product;
   }
 
@@ -74,24 +80,13 @@ public class DefaultProductService implements ProductService {
   }
   
   @Override
-  public List<Product> search(String species) throws Exception {
+  public List<Product> categorySearch(String species) throws Exception {
     return productDao.findByKeyword(species);
   }
+
+
+  @Override
+  public List<Product> search(String keyword) throws Exception {
+    return productDao.findByKeyword(keyword);
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

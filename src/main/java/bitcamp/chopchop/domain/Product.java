@@ -11,6 +11,7 @@ public class Product {
   private int discount;
   private String category;
   private String species;
+  private int viewCount;
 
   private List<PhotoFile> files;
   private List<Comment> comments;
@@ -20,6 +21,14 @@ public class Product {
     return "Product [productNo=" + productNo + ", title=" + title + ", price=" + price + ", detail="
         + detail + ", stock=" + stock + ", discount=" + discount + ", category=" + category
         + ", species=" + species + ", files=" + files + ", comments=" + comments + "]";
+  }
+
+  public int getViewCount() {
+    return viewCount;
+  }
+
+  public void setViewCount(int viewCount) {
+    this.viewCount = viewCount;
   }
 
   public int getProductNo() {
@@ -101,7 +110,4 @@ public class Product {
   public void setComments(List<Comment> comments) {
     this.comments = comments;
   }
-
-
-
 }

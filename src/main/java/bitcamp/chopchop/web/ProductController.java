@@ -20,7 +20,7 @@ public class ProductController {
   private ProductService productService;
   @Resource
   private PhotoFileWriter photoFileWriter;
-  
+
 
   @GetMapping("form")
   public void form() {}
@@ -31,9 +31,7 @@ public class ProductController {
   }
 
   @PostMapping("add")
-  public String add(HttpServletRequest request, Product product, MultipartFile[] filePath)
-      throws Exception {
-
+  public String add(HttpServletRequest request, Product product, MultipartFile[] filePath) throws Exception {
     product.setFiles(photoFileWriter.getPhotoFiles(filePath));
     productService.insert(product);
     return "redirect:list";
@@ -50,21 +48,28 @@ public class ProductController {
     model.addAttribute("product", productService.get(no));
   }
 
+
   @GetMapping("search")
-  public void search(String species, Model model) throws Exception {
-    List<Product> products = productService.search(species);
+  public void search(Model model, String keyword) throws Exception {
+    List<Product> products = productService.search(keyword);
     model.addAttribute("products", products);
   }
-  
+
+  @GetMapping("category")
+  public void categorySearch(String species, Model model) throws Exception {
+    List<Product> products = productService.categorySearch(species);
+    model.addAttribute("products", products);
+  }
+
   @PostMapping("update")
   public String update(Product product, MultipartFile[] filePath)
       throws Exception {
-    
+
     product.setFiles(photoFileWriter.getPhotoFiles(filePath));
     productService.update(product);
     return "redirect:list";
   }
-  
+
   @GetMapping("updateform")
   public void updateform(Model model, int no) throws Exception {
     model.addAttribute("product", productService.get(no));
