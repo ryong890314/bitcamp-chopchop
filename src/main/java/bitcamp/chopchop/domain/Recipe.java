@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.List;
 
 public class Recipe {
-  private int no;
+  private int recipeNo;
   private int memberNo;
   private String title;
   private Date createdDate;
@@ -24,11 +24,11 @@ public class Recipe {
   // 자식테이블 'RecipeLike'의 데이터를 담을 RecipeLike 객체 목록.
   private List<RecipeLike> recipeLikes;
 
-  public int getNo() {
-    return no;
+  public int getRecipeNo() {
+    return recipeNo;
   }
-  public void setNo(int no) {
-    this.no = no;
+  public void setRecipeNo(int recipeNo) {
+    this.recipeNo = recipeNo;
   }
   public int getMemberNo() {
     return memberNo;

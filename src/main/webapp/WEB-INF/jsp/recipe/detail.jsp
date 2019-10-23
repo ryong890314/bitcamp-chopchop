@@ -137,10 +137,10 @@
 </c:forEach>
 -->
 태그:${recipe.tag}<br>
-<a href="updateform?no=${recipe.no}">수정하기</a>
+<a href="updateform?no=${recipe.recipeNo}">수정하기</a>
 
 <form action="like" method='post' enctype='multipart/form-data'>
-<input type="hidden" name='no' value="${recipe.no}">
+<input type="hidden" name='no' value="${recipe.recipeNo}">
 <input type="hidden" name='memberNo' value="${recipe.memberNo}">
 <input type="submit" value="좋아요">
 <input type="text" name='scrap' value="${recipe.scrap}" readonly>

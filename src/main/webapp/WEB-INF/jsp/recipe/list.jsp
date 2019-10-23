@@ -67,7 +67,7 @@
          <c:forEach items="${recipes}" var="recipe">
             <div class="w3-quarter">
                 <img src='/upload/recipe/${recipe.thumbnail}' alt="Sandwich" style="width:280px; height:250px">
-                <h3><a href='detail?no=${recipe.no}'>${recipe.title}</a></h3>
+                <h3><a href='detail?no=${recipe.recipeNo}'>${recipe.title}</a></h3>
                 <p>${recipe.content}</p>
             </div>
             <!-- 

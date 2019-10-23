@@ -1,16 +1,17 @@
 package bitcamp.chopchop.domain;
 
 public class Ingredient {
-  private int no;
+  private int ingredientNo;
   private int recipeNo;
   private String name;
   private String quantity;
   
-  public int getNo() {
-    return no;
+
+  public int getIngredientNo() {
+    return ingredientNo;
   }
-  public void setNo(int no) {
-    this.no = no;
+  public void setIngredientNo(int ingredientNo) {
+    this.ingredientNo = ingredientNo;
   }
   public int getRecipeNo() {
     return recipeNo;

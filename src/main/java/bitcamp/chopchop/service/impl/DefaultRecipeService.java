@@ -30,12 +30,12 @@ public class DefaultRecipeService implements RecipeService {
     
     recipeDao.insert(recipe);
     for (Ingredient i : recipe.getIngredients()) {
-      i.setRecipeNo(recipe.getNo());
+      i.setRecipeNo(recipe.getRecipeNo());
       ingredientDao.insert(i);
     }
     
     for (Cooking c : recipe.getCookings()) {
-      c.setRecipeNo(recipe.getNo());
+      c.setRecipeNo(recipe.getRecipeNo());
       cookingDao.insert(c);
     }
   }
@@ -79,15 +79,15 @@ public class DefaultRecipeService implements RecipeService {
       throw new Exception("재료 입력해주세요");
     }
     
-    cookingDao.delete(recipe.getNo());
-    ingredientDao.delete(recipe.getNo());
+    cookingDao.delete(recipe.getRecipeNo());
+    ingredientDao.delete(recipe.getRecipeNo());
     recipeDao.update(recipe);
     for (Ingredient i : recipe.getIngredients()) {
-      i.setRecipeNo(recipe.getNo());
+      i.setRecipeNo(recipe.getRecipeNo());
       ingredientDao.insert(i);
     }
     for (Cooking c : recipe.getCookings()) {
-      c.setRecipeNo(recipe.getNo());
+      c.setRecipeNo(recipe.getRecipeNo());
       cookingDao.insert(c);
     }
     
@@ -96,13 +96,13 @@ public class DefaultRecipeService implements RecipeService {
   @Transactional
   @Override
   public void insertRecipeLike(Recipe recipe) throws Exception {
-    recipeDao.increaseScrapCount(recipe.getNo());
+    recipeDao.increaseScrapCount(recipe.getRecipeNo());
     
     for (RecipeLike rl : recipe.getRecipeLikes()) {
-      rl.setRecipeNo(recipe.getNo());
+      rl.setRecipeNo(recipe.getRecipeNo());
       rl.setMemberNo(recipe.getMemberNo());
       System.out.println("-------------------------------------");
-      System.out.println(recipe.getNo());
+      System.out.println(recipe.getRecipeNo());
       recipeLikeDao.insertRecipeLike(rl);
     }
   }

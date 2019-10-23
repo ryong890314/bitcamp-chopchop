@@ -5,7 +5,7 @@
 <mapper namespace="bitcamp.chopchop.dao.IngredientDao">
 
 <resultMap type="Ingredient" id="IngredientMap">
-<id column="ingredient_id" property="no"/>
+<id column="ingredient_id" property="ingredientNo"/>
 <result column="recipe_id" property="recipeNo"/>
 <result column="ingredient" property="name"/>
 <result column="quantity" property="quantity"/>

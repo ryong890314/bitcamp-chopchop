@@ -5,7 +5,7 @@
 <mapper namespace="bitcamp.chopchop.dao.RecipeDao">
   
   <resultMap type="Recipe" id="RecipeMap">
-    <id column="recipe_id" property="no"/>
+    <id column="recipe_id" property="recipeNo"/>
     <result column="member_id" property="memberNo"/>
     <result column="title" property="title"/>
     <result column="created_date" property="createdDate"/>
@@ -19,7 +19,7 @@
   </resultMap>
   
   <resultMap type="Recipe" id="RecipeWithIngredientMap">
-    <id column="recipe_id" property="no"/>
+    <id column="recipe_id" property="recipeNo"/>
     <result column="member_id" property="memberNo"/>
     <result column="title" property="title"/>
     <result column="created_date" property="createdDate"/>
@@ -32,7 +32,7 @@
     <result column="scrap" property="scrap"/>
     <!-- 자식 테이블의 데이터와 Ingredient 객체 연결 -->
     <collection property="ingredients" ofType="Ingredient">
-      <id column="ingredient_id" property="no"/>
+      <id column="ingredient_id" property="ingredientNo"/>
       <result column="recipe_id" property="recipeNo"/>
       <result column="ingredient" property="name"/>
       <result column="quantity" property="quantity"/>
@@ -40,7 +40,7 @@
   </resultMap>
   
   <resultMap type="Recipe" id="TotalRecipeMap">
-    <id column="recipe_id" property="no"/>
+    <id column="recipe_id" property="recipeNo"/>
     <result column="member_id" property="memberNo"/>
     <result column="title" property="title"/>
     <result column="created_date" property="createdDate"/>
@@ -53,14 +53,14 @@
     <result column="scrap" property="scrap"/>
     <!-- 자식 테이블의 데이터와 Ingredient 객체 연결 -->
     <collection property="ingredients" ofType="Ingredient">
-      <id column="ingredient_id" property="no"/>
+      <id column="ingredient_id" property="ingredientNo"/>
       <result column="recipe_id" property="recipeNo"/>
       <result column="ingredient" property="name"/>
       <result column="quantity" property="quantity"/>
     </collection>
     <!-- 자식 테이블 Cooking 객체 연결 -->
     <collection property="cookings" ofType="Cooking">
-      <id column="cooking_id" property="no"/>
+      <id column="cooking_id" property="cookingNo"/>
       <result column="recipe_id" property="recipeNo"/>
       <result column="process_no" property="processNo"/>
       <result column="photo" property="filePath"/>
@@ -68,7 +68,7 @@
     </collection>
     <!-- 자식 테이블 RecipeLike 객체 연결 -->
     <collection property="recipeLikes" ofType="RecipeLike">
-      <id column="like_id" property="no"/>
+      <id column="like_id" property="recipeLikeNo"/>
       <result column="recipe_id" property="recipeNo"/>
       <result column="member_id" property="memberNo"/>
     </collection>

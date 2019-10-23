@@ -5,7 +5,7 @@
 <mapper namespace="bitcamp.chopchop.dao.CookingDao">
 
 <resultMap type="Cooking" id="CookingMap">
-<id column="cooking_id" property="no"/>
+<id column="cooking_id" property="cookingNo"/>
 <result column="recipe_id" property="recipeNo"/>
 <result column="process_no" property="processNo"/>
 <result column="photo" property="filePath"/>

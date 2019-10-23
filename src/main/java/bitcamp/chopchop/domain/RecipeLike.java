@@ -1,15 +1,15 @@
 package bitcamp.chopchop.domain;
 
 public class RecipeLike {
-  private int no;
+  private int recipeLikeNo;
   private int memberNo;
   private int recipeNo;
   
-  public int getNo() {
-    return no;
+  public int getRecipeLikeNo() {
+    return recipeLikeNo;
   }
-  public void setNo(int no) {
-    this.no = no;
+  public void setRecipeLikeNo(int recipeLikeNo) {
+    this.recipeLikeNo = recipeLikeNo;
   }
   public int getMemberNo() {
     return memberNo;

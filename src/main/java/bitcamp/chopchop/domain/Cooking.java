@@ -2,17 +2,17 @@ package bitcamp.chopchop.domain;
 
 public class Cooking {
   
-  private int no;
+  private int cookingNo;
   private int recipeNo;
   private int processNo;
   private String filePath;
   private String content;
   
-  public int getNo() {
-    return no;
+  public int getCookingNo() {
+    return cookingNo;
   }
-  public void setNo(int no) {
-    this.no = no;
+  public void setCookingNo(int cookingNo) {
+    this.cookingNo = cookingNo;
   }
   public int getRecipeNo() {
     return recipeNo;

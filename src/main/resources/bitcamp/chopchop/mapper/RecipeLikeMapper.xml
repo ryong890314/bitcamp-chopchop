@@ -5,7 +5,7 @@
 <mapper namespace="bitcamp.chopchop.dao.RecipeLikeDao">
 
 <resultMap type="RecipeLike" id="RecipeLikeMap">
-<id column="like_id" property="no"/>
+<id column="like_id" property="recipeLikeNo"/>
 <result column="member_id" property="memberNo"/>
 <result column="recipe_id" property="recipeNo"/>
 </resultMap>

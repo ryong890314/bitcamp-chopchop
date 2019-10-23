@@ -22,7 +22,7 @@
 <h1>레시피 수정하기</h1>
 
 <form action='update' method='post' enctype='multipart/form-data'>
-번호: <input type='text' name='no' value='${recipe.no}' readonly><br>
+번호: <input type='text' name='no' value='${recipe.recipeNo}' readonly><br>
 회원번호:${recipe.memberNo}<br>
 제목: <input type='text' name='title' value='${recipe.title}'><br>
 작성일: ${recipe.createdDate}<br>
@@ -50,7 +50,7 @@
 태그:<input type='text' name='tag' value='${recipe.tag}'><br>
 
 <button>수정</button>
-<a href='delete?no=${recipe.no}'>삭제하기</a>
+<a href='delete?no=${recipe.recipeNo}'>삭제하기</a>
 </form>
 
 </div>
