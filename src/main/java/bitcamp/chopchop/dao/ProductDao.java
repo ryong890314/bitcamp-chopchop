@@ -12,4 +12,5 @@ public interface ProductDao {
   int increaseViewCount(int no) throws Exception;
   int update(Product product) throws Exception;
   int delete(int no) throws Exception;
+  List<Product> findCategory(String species) throws Exception;
 }

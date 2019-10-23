@@ -101,9 +101,9 @@
                         <img src="img/bg-img/4.jpg" alt="">
                         <!-- Content -->
                         <div class="catagory-content-bg">
-                            <div class="catagory-content">
-                                <a href="category?species=강아지" class="post-tag">강아지</a>
-                                <a href="category?species=강아지" class="post-title">강아지</a>
+                            <div class="catagory-content" style="margin-bottom:200px">
+                                <a href="category?species=dog" class="post-tag">강아지</a>
+                                <a href="category?species=dog" class="post-title">강아지</a>
                             </div>
                         </div>
                     </div>
@@ -115,8 +115,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=고양이" id="species" class="post-tag">고양이</a>
-                                <a href="category?species=고양이" class="post-title">고양이</a>
+                                <a href="category?species=cat" id="species" class="post-tag">고양이</a>
+                                <a href="category?species=cat" class="post-title">고양이</a>
                             </div>
                         </div>
                     </div>
@@ -128,13 +128,58 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=물고기" id="species" class="post-tag">물고기</a>
-                                <a href="category?species=물고기" class="post-title">물고기</a>
+                                <a href="category?species=bird" id="species" class="post-tag">새</a>
+                                <a href="category?species=bird" class="post-title">새</a>
                             </div>
                         </div>
                     </div>
                 </div>
-        </div>
+                </div>
+    </div>
+    </div>
+        <div class="post-catagory section-padding-100">
+        <div class="container">
+            <div class="row">
+                <!-- Single Post Catagory -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-post-catagory mb-30">
+                        <img src="img/bg-img/6.jpg" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="category?species=fish" id="species" class="post-tag">물고기</a>
+                                <a href="category?species=fish" class="post-title">물고기</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Post Catagory -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-post-catagory mb-30">
+                        <img src="img/bg-img/6.jpg" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="category?species=small animal" id="species" class="post-tag">작은 동물</a>
+                                <a href="category?species=small animal" class="post-title">작은 동물</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Post Catagory -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-post-catagory mb-30">
+                        <img src="img/bg-img/6.jpg" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="category?species=reptile" id="species" class="post-tag">파충류</a>
+                                <a href="category?species=reptile" class="post-title">파충류</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        </div>
     </div>
     </div>
   <button type="button" onclick="location.href='form'">새 상품</button>
@@ -161,21 +206,5 @@
 </div>
 
 <jsp:include page="../footer.jsp"/>
-
-
-  <script>
-    var species = document.querySelector("#species");
-    switch(species.innerHTML) {
-      case '강아지' : 
-        species.href = 'category?species=강아지';
-        break;
-      case '고양이' : 
-        species.href ='category?species=고양이';
-        break;
-      case '물고기' : 
-        species.href ='category?species=물고기';
-        break;
-    }
-  </script>
 
 </body></html>

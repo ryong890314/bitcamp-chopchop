@@ -144,6 +144,28 @@
       or category like #{pattern}
     order by product_id asc
   </select>
+  
+  <select id="findCategory"
+          parameterType="string"
+          resultMap="findWithFilesMap">
+  <bind name="pattern" value="'%' + _parameter + '%'"/>
+      select
+      p.product_id,
+      p.title,
+      p.price,
+      p.detail,
+      p.stock,
+      p.discount,
+      p.category,
+      p.species,
+      f.photo_id,
+      f.file_path
+    from 
+      product p 
+        left outer join store_photo f on p.product_id=f.product_id
+    where species like #{pattern}
+    order by product_id asc
+  </select>
 
   <update id="increaseViewCount" parameterType="int">
     update product set
