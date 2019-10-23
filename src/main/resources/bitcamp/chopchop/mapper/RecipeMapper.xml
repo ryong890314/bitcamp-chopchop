@@ -63,7 +63,7 @@
       <id column="cooking_id" property="cookingNo"/>
       <result column="recipe_id" property="recipeNo"/>
       <result column="process_no" property="processNo"/>
-      <result column="photo" property="filePath"/>
+      <result column="file_path" property="filePath"/>
       <result column="cc" property="content"/>
     </collection>
     <!-- 자식 테이블 RecipeLike 객체 연결 -->
@@ -169,7 +169,7 @@
       i.quantity,
       c.cooking_id,
       c.process_no,
-      c.photo,
+      c.file_path,
       c.content cc
     from recipe r
       left outer join ingredient i on r.recipe_id=i.recipe_id

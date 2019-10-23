@@ -8,7 +8,7 @@
 <id column="cooking_id" property="cookingNo"/>
 <result column="recipe_id" property="recipeNo"/>
 <result column="process_no" property="processNo"/>
-<result column="photo" property="filePath"/>
+<result column="file_path" property="filePath"/>
 <result column="content" property="content"/>
 </resultMap>
 
@@ -16,14 +16,14 @@
   select
     cooking_id,
     process_no,
-    photo,
+    file_path,
     content
   from cooking
   where recipe_id=#{value}
 </select>
 
 <insert id="insert" parameterType="Cooking">
-  insert into cooking(recipe_id, process_no, photo, content)
+  insert into cooking(recipe_id, process_no, file_path, content)
   values(#{recipeNo},#{processNo},#{filePath},#{content})
 </insert>
 
