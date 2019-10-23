@@ -14,14 +14,13 @@
 </style>
 </head>
 <body>
-  <%--   <jsp:include page="../header.jsp" /> --%>
   <div class="bucket">
     <div class="buffer">
       <div class="header">
         <div class="logo-area"></div>
       </div>
       <form method="POST" action="add" name="form" onsubmit="return checkAll();">
-        <input type="text" id="email" name="email" placeholder="이메일" />
+        <input type="email" id="email" name="email" placeholder="이메일" />
           <div id="email_chk" class="vali_check"></div>
         <input type="password" id="password" name="password" placeholder="비밀번호" maxlength="20"/> 
           <div id="password_chk" class="vali_check"></div>
@@ -29,7 +28,7 @@
           <div id="password2_chk" class="vali_check"></div>
         <input type="text" id="nickname" name="nickname" placeholder="닉네임" maxlength="8"/>
           <div id="nickname_chk" class="vali_check"></div>
-        <input type="text" id="tel" name="tel" placeholder="핸드폰 번호    예)01012305678" maxlength="11"/> 
+        <input type="tel" id="tel" name="tel" placeholder="핸드폰 번호    예)01012305678" maxlength="13"/> 
           <div id="tel_chk" class="vali_check"></div>
         <input type="submit" class="btn" value="회원가입" />
       </form>

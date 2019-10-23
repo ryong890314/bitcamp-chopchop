@@ -56,7 +56,7 @@
     resultMap="MemberMap">
     <include refid="basicColumn" />
     from member
-    where email= #{email} and password=password(#{password})
+    where email = #{email} and password = password(#{password})
   </select>
   
 </mapper>

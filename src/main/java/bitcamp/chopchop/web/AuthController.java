@@ -42,8 +42,7 @@ public class AuthController {
   }
   
   @GetMapping("logout")
-  public String logout(HttpSession session) 
-      throws Exception {
+  public String logout(HttpSession session) throws Exception {
     session.invalidate();
     return "redirect:form";
   }

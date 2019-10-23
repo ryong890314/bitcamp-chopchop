@@ -12,7 +12,7 @@
 	<display-name>chopchop</display-name>
 	<filter>
 		<filter-name>AuthFilter</filter-name>
-		<filter-class>com.eomcs.lms.filter.AuthFilter</filter-class>
+		<filter-class>bitcamp.chopchop.filter.AuthFilter</filter-class>
 		<init-param>
 			<param-name>path</param-name>
 			<param-value>add,delete,update</param-value>

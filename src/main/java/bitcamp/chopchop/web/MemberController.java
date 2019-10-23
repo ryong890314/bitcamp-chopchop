@@ -18,7 +18,6 @@ public class MemberController {
 
   @RequestMapping("form")
   public void form() {
-
   }
 
   @RequestMapping("add")
