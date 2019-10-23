@@ -45,8 +45,6 @@ public class DefaultCommentService implements CommentService {
   public void update(Comment comment) throws Exception {
     commentDao.update(comment);
   }
-  
-  
 }
 
 

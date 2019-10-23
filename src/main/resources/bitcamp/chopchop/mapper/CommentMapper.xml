@@ -73,6 +73,11 @@
     where comment_id=#{commentNo}
   </update>
   
+  <delete id="deleteAll" parameterType="int">
+    delete from product_comment
+    where product_id=#{value}
+  </delete>
+  
   <delete id="commentDelete" parameterType="int">
     delete from product_comment
     where comment_id=#{value}
