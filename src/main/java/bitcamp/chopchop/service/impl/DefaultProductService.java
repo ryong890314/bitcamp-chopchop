@@ -1,12 +1,10 @@
 package bitcamp.chopchop.service.impl;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import bitcamp.chopchop.dao.CommentDao;
 import bitcamp.chopchop.dao.PhotoFileDao;
 import bitcamp.chopchop.dao.ProductDao;
 import bitcamp.chopchop.domain.PhotoFile;
@@ -22,6 +20,8 @@ public class DefaultProductService implements ProductService {
   private ProductDao productDao;
   @Resource
   private PhotoFileDao photoFileDao;
+  @Resource
+  private CommentDao commentDao;
 
   @Transactional
   @Override
@@ -44,7 +44,8 @@ public class DefaultProductService implements ProductService {
     if (productDao.findBy(no) == null) {
       throw new Exception("해당 데이터가 없습니다.");
     }
-
+    
+    commentDao.deleteAll(no);
     photoFileDao.deleteAll(no);
     productDao.delete(no);
   }

@@ -8,15 +8,61 @@
 
 <html>
 <head>
-<title>상품 목록</title>
+  <title>게시물 목록</title>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
   <link rel='stylesheet' href='/css/product/style.css'>
+  <style>
+
+    #header {
+  width: 1100px;
+  margin: 0 auto;
+}
+
+    #content {
+  width: 1100px;
+  padding-top: 10px;
+  margin: auto auto;
+    }
+
+        #productBody {
+  width: 1100px;
+  margin: auto auto;
+  text-align: center;
+  vertical-align: middle;
+
+    }
+
+  #productList {
+
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+  float: left;
+    }
+
+   #footer {
+  background-color: #524845;
+  color: #ffffff;
+  height: 40px;
+  width: 1100px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 10px;
+  margin: auto auto;
+  clear: left; 
+  
+    }
+  </style>
+
+
+
 </head>
 <body>
   <jsp:include page="../header.jsp" />
   <div id='content'>
     <h1>상품 목록</h1>
     <a href='form'>상품 등록</a><br>
-    <form action='search'>
+    <form action='category'>
       <select name='species' id='species' onchange=''>
         <option id='1' value='강아지'>강아지</option>
         <option id='2' value='고양이'>고양이</option>

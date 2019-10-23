@@ -83,20 +83,66 @@
         </div>
         </header>
 
-    <form action='category'>
-      <select name='species' id='species' onchange=''>
-        <option id='1' value='강아지'>강아지</option>
-        <option id='2' value='고양이'>고양이</option>
-        <option id='3' value='새'>새</option>
-        <option id='4' value='물고기'>물고기</option>
-        <option id='5' value='작은'>작은 동물</option>
-        <option id='6' value='파충류'>파충류</option>
-      </select><br>
-      <input type='text' id='inputValue' value=''></input>
-      <button>검색</button>
-    </form>
-  
-  
+<!--     <form action='category'> -->
+<!--       <select name='species' id='species' onchange=''> -->
+<!--         <option id='1' value='강아지'>강아지</option> -->
+<!--         <option id='2' value='고양이'>고양이</option> -->
+<!--         <option id='3' value='새'>새</option> -->
+<!--         <option id='4' value='물고기'>물고기</option> -->
+<!--         <option id='5' value='작은'>작은 동물</option> -->
+<!--         <option id='6' value='파충류'>파충류</option> -->
+<!--       </select><br> -->
+<!--       <input type='text' id='inputValue' value=''></input> -->
+<!--       <button>검색</button> -->
+<!--     </form> -->
+    
+    <!-- ##### Catagory Area Start ##### -->
+    <div class="post-catagory section-padding-100">
+        <div class="container">
+            <div class="row">
+                <!-- Single Post Catagory -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-post-catagory mb-30">
+                        <img src="img/bg-img/4.jpg" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="#" id="species" class="post-tag">강아지</a>
+                                <a href="#" class="post-title">강아지</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Post Catagory -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-post-catagory mb-30">
+                        <img src="img/bg-img/5.jpg" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="#" id="species" class="post-tag">고양이</a>
+                                <a href="#" class="post-title">고양이</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Post Catagory -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-post-catagory mb-30">
+                        <img src="img/bg-img/6.jpg" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="#" id="species" class="post-tag">물고기</a>
+                                <a href="#" class="post-title">물고기</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    </div>
   <button type="button" onclick="location.href='form'">새 상품</button>
   
 <div id="productBody">
@@ -111,7 +157,7 @@
   
   <div class="card-body">
     <h5 class="card-title">${product.title}</h5>
-    <p class="card-text">${product.price}</p>
+    <p class="card-text">${product.price}원</p>
     <a href='detail?no=${product.productNo}' class="btn bueno-btn">구매하기</a>
   </div>
 </div>
@@ -124,10 +170,19 @@
 
 
   <script>
-    var selectedOption = document.getElementById("species");
-    var species = selectedOption.options[selectedOption.selectedIndex].value;
-    var inputValue = document.getElementById("inputValue");
-    inputValue.value=species;
+    var species = document.querySelectorAll("#species");
+    switch(species.innerHTML) {
+    case '강아지' : 
+      species.setAttribute('href','category?species=강아지');
+      break;
+    case '고양이' : 
+      species.setAttribute('href','category?species=고양이');
+      break;
+    case '물고기' : 
+      species.setAttribute('href','category?species=물고기');
+      break;
+    }
+    species.href='category?species=' + species.innerHTML;
   </script>
 
 </body></html>

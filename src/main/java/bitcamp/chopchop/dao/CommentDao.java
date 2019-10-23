@@ -9,5 +9,6 @@ public interface CommentDao {
   Comment findBy(int no) throws Exception;
   Comment findByProductWith(int no) throws Exception;
   int update(Comment comment) throws Exception;
+  int deleteAll(int no) throws Exception;
   int commentDelete(int no) throws Exception;
 }
