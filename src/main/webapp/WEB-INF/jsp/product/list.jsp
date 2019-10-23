@@ -8,28 +8,8 @@
 <head>
   <title>게시물 목록</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel='stylesheet' href='/css/style.css'>
+  <link rel='stylesheet' href='/css/product/style.css'>
   <style>
-
-/*
-.btn-primary {
-    background-color: #b0c364;
-    border-color: #b0c364;
-    color: #FFF; }
-.btn-primary:hover,
-.btn-primary:focus {
-    border-color: #b0c364;
-    background-color: #b0c364;
-    color: #FFF; }
-.btn-primary:active,
-.btn-primary:visited,
-.btn-primary:active:focus,
-.btn-primary:active:hover {
-    border-color: #b0c364;
-    background-color: #b0c364;
-    color: #FFF; }
-    
-    */
 
     #header {
   width: 1100px;
@@ -119,51 +99,6 @@
   
   <button type="button" onclick="location.href='form'">새 상품</button>
   
-<!-- 검색기능 추가 시작 -->
-<!--
-<form action='search'>
-  <input type='text' name='keyword'>
-  <button>검색</button>
-</form>
--->
-
-<!-- 검색기능 추가 끝 -->
-
-<!-- list backup 
-<table class='table table-hover'>
-<tr>
-  <th>번호</th>
-  <th>제목</th>
-  <th>가격</th>
-  <th>재고</th>
-  <th>카테고리</th>
-  <th>사진</th>
-
-</tr>
-<c:forEach items="${products}" var="product">
-  <tr>
-    <td>${product.productNo}</td>
-    <td><a href='detail?productNo=${product.productNo}'>${product.title}</a></td>
-    <td>${product.price}</td>
-    <td>${product.stock}</td>
-    <td>${product.category}</td>
-    <td>
-  <p>
-  <c:forEach items="${product.files}" var="file" end="0">
-    <img src='/upload/product/${file.filePath}' class='photo2'> 
-  </c:forEach>
-  </p>
-    </td>
-  </tr>
-</c:forEach>  
-</table>
-
-
-
-  ...
-</div>
-
--->
 <div id="productBody">
   <div class="d-flex align-content-start flex-wrap">
 <c:forEach items="${products}" var="product">
@@ -173,22 +108,17 @@
   <c:forEach items="${product.files}" var="file" end="0">
     <img src='/upload/product/${file.filePath}' class='card-img-top'> 
   </c:forEach>
- 
-
   
   <div class="card-body">
     <h5 class="card-title">${product.title}</h5>
     <p class="card-text">${product.price}</p>
-    <a href='detail?productNo=${product.productNo}' class="btn bueno-btn">구매하기</a>
+    <a href='detail?no=${product.productNo}' class="btn bueno-btn">구매하기</a>
   </div>
 </div>
 </div>
 </c:forEach> 
 </div>
 </div>
-  <!--
--->
-
 
 <jsp:include page="../footer.jsp"/>
 
