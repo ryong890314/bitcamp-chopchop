@@ -1,29 +1,319 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<nav id='header' class='navbar navbar-expand-lg navbar-light bg-light'>
-  <a class='navbar-brand' href='#'>
-    <img src='/images/logo.png' class='d-inline-block align-top'>
-    ChopChop
-  </a>
-  <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'> 
-    <span class='navbar-toggler-icon'></span> 
-  </button>
-  <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-    <ul class='navbar-nav'>
-      <li class='nav-item active'>
-        <a class='nav-link' href='/app/product/list'>스토어</a>
-      </li>
-    </ul>
-  </div>
-    
-  <div>
-  <c:if test="${empty loginUser}">
-    <a href='/app/auth/form' class='btn btn-outline-dark btn-sm'>로그인</a>
-  </c:if>
-  <c:if test="${not empty loginUser}">
-    <a href='detail?no=${loginUser.no}'>${loginUser.name}</a>
-    <a href='/app/auth/logout' class='btn btn-outline-dark btn-sm'>로그아웃</a>
-  </c:if>
-  </div>
-</nav>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>ChopChop - Pet Food Blog</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/member/style.css">
+    <link rel="stylesheet" href="/css/classy-nav.css">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+<!--     <div class="preloader d-flex align-items-center justify-content-center"> -->
+<!--         <div class="preloader-content"> -->
+<!--             <h3>Cooking in progress..</h3> -->
+<!--             <div id="cooking"> -->
+<!--                 <div class="bubble"></div> -->
+<!--                 <div class="bubble"></div> -->
+<!--                 <div class="bubble"></div> -->
+<!--                 <div class="bubble"></div> -->
+<!--                 <div class="bubble"></div> -->
+<!--                 <div id="area"> -->
+<!--                     <div id="sides"> -->
+<!--                         <div id="pan"></div> -->
+<!--                         <div id="handle"></div> -->
+<!--                     </div> -->
+<!--                     <div id="pancake"> -->
+<!--                         <div id="pastry"></div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Logo Area -->
+        <div class="logo-area">
+            <a href="index.html"><img src="/img/core-img/logo.png" alt=""></a>
+        </div>
+
+        <!-- Top Header Area -->
+        <div class="top-header-area bg-img bg-overlay" style="background-image: url(/img/bg-img/header.jpg);">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-between">
+                    <div class="col-12 col-sm-6 col-lg-5 col-xl-4">
+                        <!-- Top Search Area -->
+                        <div class="top-search-area">
+                            <form action="#" method="post">
+                                <input type="search" name="top-search" id="topSearch" placeholder="Search">
+                                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar Area -->
+        <div class="bueno-main-menu" id="sticker">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="buenoNav">
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Nav Start -->
+                            <div class="classynav">
+
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Recipe</a>
+                                        <div class="megamenu">
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="#">Dog</a></li>
+                                                <li><a href="#">Cat</a></li>
+                                                <li><a href="#">Small Food</a>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li><a href="single-post.html">ChopTalk</a></li>
+                                    <li><a href="contact.html">ChopStore</a></li>
+                                </ul>
+
+                                <ul>
+
+                                    <!-- Login/Register -->
+                                    <div>
+                                        <c:if test="${empty loginUser}">
+                                            <a class='classy-btn sign-btn login-area' href='/app/auth/form'>Sign in</a>
+                                        </c:if>
+                                        <c:if test="${not empty loginUser}">
+                                            <a class='nav-user'>${loginUser.nickname}</a>
+                                            <a class='classy-btn sign-btn login-area' href='/app/auth/logout'>Sign out</a>
+                                        </c:if>
+                                    </div>
+
+
+
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+    <div class="hero-area">
+        <!-- Hero Post Slides -->
+        <div class="hero-post-slides owl-carousel">
+            <!-- Single Slide -->
+            <div class="single-slide">
+                <!-- Blog Thumbnail -->
+                <div class="blog-thumbnail">
+                    <a href="#"><img src="/img/bg-img/1.jpg" alt=""></a>
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-content-bg">
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Healthy Food</a>
+                        <a href="#" class="post-title">Chicken Salad</a>
+                        <div class="post-meta">
+                            <a href="#" class="post-date">July 11, 2018</a>
+                            <a href="#" class="post-author">By Julia Stiles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Slide -->
+            <div class="single-slide">
+                <!-- Blog Thumbnail -->
+                <div class="blog-thumbnail">
+                    <a href="#"><img src="/img/bg-img/2.jpg" alt=""></a>
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-content-bg">
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Healthy Food</a>
+                        <a href="#" class="post-title">Chicken Salad</a>
+                        <div class="post-meta">
+                            <a href="#" class="post-date">July 11, 2018</a>
+                            <a href="#" class="post-author">By Julia Stiles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Slide -->
+            <div class="single-slide">
+                <!-- Blog Thumbnail -->
+                <div class="blog-thumbnail">
+                    <a href="#"><img src="/img/bg-img/3.jpg" alt=""></a>
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-content-bg">
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Healthy Food</a>
+                        <a href="#" class="post-title">Chicken Salad</a>
+                        <div class="post-meta">
+                            <a href="#" class="post-date">July 11, 2018</a>
+                            <a href="#" class="post-author">By Julia Stiles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Slide -->
+            <div class="single-slide">
+                <!-- Blog Thumbnail -->
+                <div class="blog-thumbnail">
+                    <a href="#"><img src="/img/bg-img/3.jpg" alt=""></a>
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-content-bg">
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Healthy Food</a>
+                        <a href="#" class="post-title">Chicken Salad</a>
+                        <div class="post-meta">
+                            <a href="#" class="post-date">July 11, 2018</a>
+                            <a href="#" class="post-author">By Julia Stiles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Hero Area End ##### -->
+    <!-- ##### Hero Area Start ##### -->
+    <div class="hero-area">
+        <!-- Hero Post Slides -->
+        <div class="hero-post-slides owl-carousel">
+            <!-- Single Slide -->
+            <div class="single-slide">
+                <!-- Blog Thumbnail -->
+                <div class="blog-thumbnail">
+                    <a href="#"><img src="/img/bg-img/1.jpg" alt=""></a>
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-content-bg">
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Healthy Food</a>
+                        <a href="#" class="post-title">Chicken Salad</a>
+                        <div class="post-meta">
+                            <a href="#" class="post-date">July 11, 2018</a>
+                            <a href="#" class="post-author">By Julia Stiles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Slide -->
+            <div class="single-slide">
+                <!-- Blog Thumbnail -->
+                <div class="blog-thumbnail">
+                    <a href="#"><img src="/img/bg-img/2.jpg" alt=""></a>
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-content-bg">
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Healthy Food</a>
+                        <a href="#" class="post-title">Chicken Salad</a>
+                        <div class="post-meta">
+                            <a href="#" class="post-date">July 11, 2018</a>
+                            <a href="#" class="post-author">By Julia Stiles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Slide -->
+            <div class="single-slide">
+                <!-- Blog Thumbnail -->
+                <div class="blog-thumbnail">
+                    <a href="#"><img src="/img/bg-img/3.jpg" alt=""></a>
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-content-bg">
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Healthy Food</a>
+                        <a href="#" class="post-title">Chicken Salad</a>
+                        <div class="post-meta">
+                            <a href="#" class="post-date">July 11, 2018</a>
+                            <a href="#" class="post-author">By Julia Stiles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Slide -->
+            <div class="single-slide">
+                <!-- Blog Thumbnail -->
+                <div class="blog-thumbnail">
+                    <a href="#"><img src="/img/bg-img/3.jpg" alt=""></a>
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-content-bg">
+                    <div class="blog-content">
+                        <a href="#" class="post-tag">Healthy Food</a>
+                        <a href="#" class="post-title">Chicken Salad</a>
+                        <div class="post-meta">
+                            <a href="#" class="post-date">July 11, 2018</a>
+                            <a href="#" class="post-author">By Julia Stiles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Hero Area End ##### -->
+</body>
+
+<!-- ##### Footer Area End ##### -->
+
+<!-- ##### All Javascript Script ##### -->
+<!-- jQuery-2.2.4 js -->
+<script src="/js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="/js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="/js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="/js/plugins/plugins.js"></script>
+<!-- Active js -->
+<script src="/js/active.js"></script>
+
+</html>

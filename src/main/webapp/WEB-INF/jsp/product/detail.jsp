@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>상품 상세</title>
+  <title>상품 상세테스트</title>
   <link rel='stylesheet' href='/css/product/style.css'>
   <link rel="icon" href="img/core-img/favicon.ico">
   <style>

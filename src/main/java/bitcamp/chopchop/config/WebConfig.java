@@ -15,12 +15,11 @@ import org.springframework.web.util.UrlPathHelper;
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
-  // multipart/form-data 처리할 때
+  // multipart 처리
   @Bean
   public MultipartResolver multipartResolver() {
     CommonsMultipartResolver mr = new CommonsMultipartResolver();
-    // 이 클래스는 apache-fileupload 라이브러리를 사용한다.
-    // 따라서 의존 라이브러리에 명시적으로 추가해야 한다.
+
     mr.setMaxUploadSize(1000000000);
     mr.setMaxInMemorySize(2000000000);
     mr.setMaxUploadSizePerFile(500000000);
@@ -41,12 +40,4 @@ public class WebConfig implements WebMvcConfigurer {
     configurer.setUrlPathHelper(helper);
   }
 
-  //  @Override
-  //  public void addInterceptors(InterceptorRegistry registry) {
-  //    registry.addInterceptor(new Controller04_1_Interceptor1());
-  //    registry.addInterceptor(new Controller04_1_Interceptor3()).addPathPatterns("/c04_1/**");
-  //  }
-
 }
-
-
