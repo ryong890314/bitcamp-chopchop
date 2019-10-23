@@ -107,6 +107,7 @@
       p.discount,
       p.category,
       p.species,
+      p.view_count,
       f.photo_id,
       f.file_path,
       c.comment_id,
