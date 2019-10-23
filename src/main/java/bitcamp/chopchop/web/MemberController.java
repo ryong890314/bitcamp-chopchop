@@ -34,6 +34,9 @@ public class MemberController {
   
   @RequestMapping("contact")
   public void contact(Model model) throws Exception {
+    System.out.println("타는거 맞냐");
+    memberService.sendMail();
+    
   }
   
   @RequestMapping(value = "dupE", method = RequestMethod.GET)
