@@ -24,18 +24,18 @@
       재고: <input type='text' name='stock' value='${product.stock}'><br>
       할인율: <input type='text' name='discount' value='${product.discount}'><br>
       상품분류: <select name='category'>
-        <option id='category1' value='food'>식품</option>
-        <option id='category2' value='train'>훈련/장난감</option>
-        <option id='category3' value='house'>식기/집/이동장</option>
-        <option id='category4' value='sanitary'>목욕/미용/위생</option>
+        <option id='category1' value='식품'>식품</option>
+        <option id='category2' value='훈련'>훈련/장난감</option>
+        <option id='category3' value='식기'>식기/집/이동장</option>
+        <option id='category4' value='목욕'>목욕/미용/위생</option>
       </select><br>
       동물분류: <select name='species'>
-        <option id='1' value='dog'>강아지</option>
-        <option id='2' value='cat'>고양이</option>
-        <option id='3' value='bird'>새</option>
-        <option id='4' value='fish'>물고기</option>
-        <option id='5' value='smallAnimal'>작은 동물</option>
-        <option id='6' value='reptile'>파충류</option>
+        <option id='1' value='강아지'>강아지</option>
+        <option id='2' value='고양이'>고양이</option>
+        <option id='3' value='새'>새</option>
+        <option id='4' value='물고기'>물고기</option>
+        <option id='5' value='작은'>작은 동물</option>
+        <option id='6' value='파충류'>파충류</option>
       </select><br>
       <c:forEach items="${product.files}" var="file">
         <img src='/upload/product/${file.filePath}' width=200>
