@@ -40,6 +40,7 @@
     <mapper resource="bitcamp/chopchop/mapper/ProductMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/PhotoFileMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/CommentMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/MemberMapper.xml"/>
   </mappers>
 </configuration>
 

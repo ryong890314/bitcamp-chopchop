@@ -6,39 +6,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>게시물 목록</title>
+  <title>상품 목록</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
   <link rel='stylesheet' href='/css/product/style.css'>
   <style>
 
-    #header {
-  width: 1100px;
-  margin: 0 auto;
-}
+  #header {
+    width: 1100px;
+    margin: 0 auto;
+  }
 
-    #content {
-  width: 1100px;
-  padding-top: 10px;
-  margin: auto auto;
-    }
+  #content {
+    width: 1100px;
+    padding-top: 10px;
+    margin: auto auto;
+  }
 
-        #productBody {
-  width: 1100px;
-  margin: auto auto;
-  text-align: center;
-  vertical-align: middle;
-
-    }
+  #productBody {
+    width: 1100px;
+    margin: auto auto;
+    text-align: center;
+    vertical-align: middle;
+  }
 
   #productList {
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    float: left;
+  }
 
-  padding: 5px;
-  margin: 5px;
-  text-align: center;
-  float: left;
-    }
-
-   #footer {
+ #footer {
   background-color: #524845;
   color: #ffffff;
   height: 40px;
@@ -48,11 +46,8 @@
   padding-top: 10px;
   margin: auto auto;
   clear: left; 
-  
-    }
+  }
   </style>
-
-
 
 </head>
 <body>
@@ -107,8 +102,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="#" id="species" class="post-tag">강아지</a>
-                                <a href="#" class="post-title">강아지</a>
+                                <a href="category?species=강아지" class="post-tag">강아지</a>
+                                <a href="category?species=강아지" class="post-title">강아지</a>
                             </div>
                         </div>
                     </div>
@@ -120,13 +115,12 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="#" id="species" class="post-tag">고양이</a>
-                                <a href="#" class="post-title">고양이</a>
+                                <a href="category?species=고양이" id="species" class="post-tag">고양이</a>
+                                <a href="category?species=고양이" class="post-title">고양이</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- Single Post Catagory -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-post-catagory mb-30">
@@ -134,8 +128,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="#" id="species" class="post-tag">물고기</a>
-                                <a href="#" class="post-title">물고기</a>
+                                <a href="category?species=물고기" id="species" class="post-tag">물고기</a>
+                                <a href="category?species=물고기" class="post-title">물고기</a>
                             </div>
                         </div>
                     </div>
@@ -170,19 +164,18 @@
 
 
   <script>
-    var species = document.querySelectorAll("#species");
+    var species = document.querySelector("#species");
     switch(species.innerHTML) {
-    case '강아지' : 
-      species.setAttribute('href','category?species=강아지');
-      break;
-    case '고양이' : 
-      species.setAttribute('href','category?species=고양이');
-      break;
-    case '물고기' : 
-      species.setAttribute('href','category?species=물고기');
-      break;
+      case '강아지' : 
+        species.href = 'category?species=강아지';
+        break;
+      case '고양이' : 
+        species.href ='category?species=고양이';
+        break;
+      case '물고기' : 
+        species.href ='category?species=물고기';
+        break;
     }
-    species.href='category?species=' + species.innerHTML;
   </script>
 
 </body></html>

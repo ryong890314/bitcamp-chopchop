@@ -145,8 +145,6 @@
     order by product_id asc
   </select>
 
-<!-- 검색기능 추가 끝 -->
-  
   <update id="increaseViewCount" parameterType="int">
     update product set
       view_count = view_count + 1
