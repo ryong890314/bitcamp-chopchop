@@ -9,9 +9,10 @@
   <link rel='stylesheet' href='/css/product/style.css'>
   <link rel="icon" href="img/core-img/favicon.ico">
   <style>
-    #abc {
-      background-color:#B0C364;
-      color: #ffffff;
+
+    #jumbotron.jumbotron-fluid {
+      background-color:white;
+      
     }
 
     #header {
@@ -98,9 +99,8 @@
                       
             </div>
         </div>
-        
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
+        <hr class="my-4">
+
     <h1 class="display-4">${product.title}</h1>
     <p class="lead">${product.detail}</p>
     <hr class="my-4">
@@ -109,14 +109,14 @@
       <img src="/upload/product/${file.filePath}" class="rounded mx-auto d-block" alt="...">
     </c:forEach>
   </p>
-  </div>
-</div>
-      </div>
+ 
+      
+<hr class="my-4">
 
 <div class="col-12 col-lg-8 col-xl-9">
       <!-- Comment Area Start -->
       <div class="comment_area clearfix mb-100">
-        <h4 class="mb-50" id='abc'>상품 문의</h4>
+        <h4 class="mb-50">상품 문의</h4>
         <c:forEach items="${product.comments}" var = "comment">
           <ol>
             <!-- Single Comment Area -->
@@ -164,6 +164,7 @@
             </form>
           </div>
       </div>
+  </div>
   </div>
 
 <p>====관리자 모드=====</p>
