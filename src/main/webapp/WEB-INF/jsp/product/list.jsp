@@ -152,7 +152,7 @@
 
 <div class="card" style="width: 18rem;">
   <c:forEach items="${product.files}" var="file" end="0">
-    <img src='/upload/product/${file.filePath}' class='card-img-top'> 
+    <img src='/upload/product/${file.filePath}' style="width: 286px; height: 286px;"> 
   </c:forEach>
   
   <div class="card-body">
