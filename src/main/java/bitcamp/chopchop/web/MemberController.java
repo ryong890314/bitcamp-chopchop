@@ -8,22 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.chopchop.domain.Member;
-import bitcamp.chopchop.sevice.MemberService;
+import bitcamp.chopchop.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
-  @Resource 
-  private MemberService memberService;
+  @Resource private MemberService memberService;
 
   @RequestMapping("form")
   public void form() {
 
-  }
-  
-  @RequestMapping("form1")
-  public void test02(Model model) throws Exception {
   }
 
   @RequestMapping("add")

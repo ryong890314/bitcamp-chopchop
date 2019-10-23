@@ -5,8 +5,7 @@
 <html>
 <head>
   <title>회원 목록</title>
-  <link rel='stylesheet' href='/css/style_join.css'>
-  <link rel='stylesheet' href='/css/style_footer.css'>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
 </head>
 <body>
 
@@ -24,10 +23,10 @@
 </tr>
 <c:forEach items="${members}" var="member">
   <tr>
-    <td>${member.memberId}</td>
+    <td>${member.memberNo}</td>
     <td>${member.email}</td>
-    <td>${member.nickname}</td>
     <td>${member.tel}</td>
+    <td>${member.nickname}</td>
   </tr>
 </c:forEach>
 </table>
@@ -35,4 +34,5 @@
 
 <jsp:include page="../footer.jsp"/>
 
-</body></html>
+</body>
+</html>

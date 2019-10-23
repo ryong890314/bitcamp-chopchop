@@ -2,19 +2,16 @@ package bitcamp.chopchop.web;
 
 import java.io.File;
 import java.util.UUID;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.MyPage;
-import bitcamp.chopchop.sevice.MyPageService;
+import bitcamp.chopchop.service.MyPageService;
 
 @Controller
 @RequestMapping("/mypage")

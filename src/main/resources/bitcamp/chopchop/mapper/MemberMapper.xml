@@ -5,11 +5,19 @@
 <mapper namespace="bitcamp.chopchop.dao.MemberDao">
 
 <resultMap type="Member" id="MemberMap">
-  <id column="member_id" property="memberId"/>
+  <id column="member_id" property="memberNo"/>
   <result column="post_no" property="postNo"/>
   <result column="base_address" property="baseAddress"/>
   <result column="detail_address" property="detailAddress"/>
 </resultMap>
+
+ <sql id="basicColumn">
+    select 
+      member_id,
+      nickname,
+      email,
+      tel
+  </sql>
 
   <insert id="insert" parameterType="Member">
     insert into member
@@ -44,4 +52,11 @@
     where nickname = #{nickname}
   </select>
 
+  <select id="findByEmailPassword" parameterType="map"
+    resultMap="MemberMap">
+    <include refid="basicColumn" />
+    from member
+    where email= #{email} and password=password(#{password})
+  </select>
+  
 </mapper>

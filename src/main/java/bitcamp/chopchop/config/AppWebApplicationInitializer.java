@@ -26,7 +26,6 @@ public class AppWebApplicationInitializer
   protected String getServletName() {
     return "app";
   }
-
   @Override
   protected Filter[] getServletFilters() {
     return new Filter[] {
