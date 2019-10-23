@@ -20,7 +20,7 @@
       </div>
       <form method="post" action="add" name="form" onsubmit="return checkAll();">
         <input type="text" id="email" name="email" placeholder="이메일     예)xxxx@xxx.xxx" onchange="change_email();">
-          <div id="email_chk" class="vali_chk"></div>
+          <div id="email_chk" class="vali_chk" value=""></div>
         <input type="button" value="중복체크" onclick="dup_email();"/> 
         <input type="password" id="password" name="password" placeholder="비밀번호" maxlength="20" /> 
           <div id="password_chk" class="vali_chk"></div>
@@ -36,6 +36,12 @@
     </div>
   </div>
   <script type="text/javascript">
+  
+  document.getElementById("email").blur() = function() {
+    console.log("sadasdasd");
+    document.getElementById("email_chk").innerHTML = "글씨";
+  }
+
     // 중복검사 시도 여부만 알수있다.
     var eFlag = false;
     var nFlag = false;

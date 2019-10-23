@@ -25,7 +25,6 @@ public class DefaultMemberService implements MemberService {
 
   @Override
   public int dupEmailCheck(String email) throws Exception {
-    System.out.println(memberDao.dupEmailCheck(email));
     return memberDao.dupEmailCheck(email);
   }
 

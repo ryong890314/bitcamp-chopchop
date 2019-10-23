@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.sevice.MemberService;
@@ -23,7 +22,7 @@ public class MemberController {
 
   }
   
-  @RequestMapping("test02")
+  @RequestMapping("form1")
   public void test02(Model model) throws Exception {
   }
 
@@ -53,12 +52,5 @@ public class MemberController {
     return memberService.dupNicknameCheck(nickname);
   }
 
-//  @RequestMapping(value ="check")
-//  @ResponseBody
-//  public String check(@RequestParam(value="email", required=true) String email) {
-//    System.out.println(email);
-//    return "sucess";
-//
-//  }
 
 }
