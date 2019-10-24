@@ -13,6 +13,5 @@ public interface MemberService {
   int dupNicknameCheck(String nickname) throws Exception;
   Member get(String email, String password) throws Exception;
   void sendMail() throws Exception;
-  Member get(int no);
 
 }

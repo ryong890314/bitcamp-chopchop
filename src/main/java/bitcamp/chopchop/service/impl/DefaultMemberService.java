@@ -79,10 +79,4 @@ public class DefaultMemberService implements MemberService {
 //      }
   }
 
-  @Override
-  public Member get(int no) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
 }
