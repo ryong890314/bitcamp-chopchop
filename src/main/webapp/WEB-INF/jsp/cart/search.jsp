@@ -27,11 +27,11 @@
     <td>${cart.cartNo}</td>
     <td>
       
-      ${cart.title}
+      ${cart.products}.var="title"
 
     </td>
     <td>${cart.createdDate}</td>
-    <td>${cart.price}</td>
+    <td>${cart.cartNo}</td>
     <td>${cart.quantity}</td>
   </tr>
 </c:forEach> 
