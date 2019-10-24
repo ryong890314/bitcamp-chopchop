@@ -21,13 +21,14 @@ public class MypageController {
   private MyPageService myPageService;
   
   String uploadDir;
+
   public MypageController(ServletContext sc) {
     uploadDir = sc.getRealPath("/upload/member");
   }
   
   @RequestMapping("info")
-  public void detail(Model model, String email) throws Exception {
-	  MyPage myPage = myPageService.detail(email); 
+  public void detail(Model model, int memberNo) throws Exception {
+	  MyPage myPage = myPageService.get(memberNo); 
 	  model.addAttribute("myPage", myPage);
   }
   

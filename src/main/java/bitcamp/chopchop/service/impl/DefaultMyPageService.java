@@ -14,8 +14,12 @@ public class DefaultMyPageService implements MyPageService {
 	private MyPageDao myPageDao;
 	
 	@Override
-	public MyPage detail(String email) throws Exception {
-		return myPageDao.detail(email);
+	public MyPage get(int memberNo) throws Exception {
+		MyPage myPage = myPageDao.findBy(memberNo);
+		if (myPage == null) {
+			throw new Exception("해당 번호의 데이터가 없습니다.");
+		}
+		return myPage;
 	}
 
 	@Override

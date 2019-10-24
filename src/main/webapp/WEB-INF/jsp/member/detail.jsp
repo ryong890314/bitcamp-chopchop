@@ -3,29 +3,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>회원 보기</title>
+  <title>My Page</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
   <link rel='stylesheet' href='/css/common.css'>
 </head>
 <body>
 
-<jsp:include page="../header.jsp"/>
+<!--<jsp:include page="../header.jsp"/>-->
     
 <div id='content'>
-<h1>회원</h1>
+<h1>내정보</h1>
 <form action='update' method='post' enctype='multipart/form-data'>
 <img src='/upload/member/${member.photo}' class='photo1'><br> 
 <input type='file' name='file'><br>
-번호: <input type='text' name='no' value='${member.no}' readonly><br>
-이름: <input type='text' name='nickname' value='${member.nickname}'><br>
+번호: <input type='text' name='memberNo' value='${member.memberNo}' readonly><br>
 이메일: <input type='text' name='email' value='${member.email}'><br>
-암호: <input type='text' name='password' value='${member.password}'><br>
-전화: <input type='text' name='tel' value='${member.tel}'><br>
+암호: <input type='password' name='password' value='${member.password}'><br>
+닉네임: <input type='text' name='nickname' value='${member.nickname}'><br>
+전화: <input type='tel' name='tel' value='${member.tel}'><br>
 우편번호: <input type='text' name='post_no' value='${member.postNo}'><br>
 주소: <input type='text' name='base_address' value='${member.baseAddress}'><br>
 상세주소: <input type='text' name='detail_address' value='${member.detailAddress}'><br>
 <button>변경</button>
-<a href='delete?no=${member.no}'>삭제</a>
+<a href='delete?no=${member.memberNo}'>삭제</a>
 </form>
 </div>
 

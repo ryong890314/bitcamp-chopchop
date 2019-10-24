@@ -2,6 +2,7 @@ package bitcamp.chopchop.web;
 
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,12 @@ import bitcamp.chopchop.service.MemberService;
 public class MemberController {
 
   @Resource private MemberService memberService;
+  
+  String uploadDir;
+  
+  public MemberController(ServletContext sc) {
+    uploadDir = sc.getRealPath("/upload/member");
+  }
 
   @RequestMapping("form")
   public void form() {
@@ -31,12 +38,17 @@ public class MemberController {
     List<Member> members = memberService.list();
     model.addAttribute("members", members);
   }
+
+  @RequestMapping("detail")
+  public void detail(Model model, int no) throws Exception {
+    Member member = memberService.get(no);
+    model.addAttribute("member", member);
+  }
   
   @RequestMapping("contact")
   public void contact(Model model) throws Exception {
     System.out.println("타는거 맞냐");
     memberService.sendMail();
-    
   }
   
   @RequestMapping(value = "dupE", method = RequestMethod.GET)

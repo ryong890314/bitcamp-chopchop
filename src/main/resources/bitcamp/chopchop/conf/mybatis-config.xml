@@ -38,6 +38,7 @@
   
     <!-- SQL 문이 저장된 파일 -->
     <mapper resource="bitcamp/chopchop/mapper/MemberMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/MyPageMapper.xml"/>
   </mappers>
 </configuration>
 

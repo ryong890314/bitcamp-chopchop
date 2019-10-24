@@ -12,6 +12,7 @@ public interface MemberService {
   int dupEmailCheck(String email) throws Exception;
   int dupNicknameCheck(String nickname) throws Exception;
   Member get(String email, String password) throws Exception;
-  void sendMail() throws Exception;;
+  void sendMail() throws Exception;
+  Member get(int no);;
 
 }

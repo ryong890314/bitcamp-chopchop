@@ -3,16 +3,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.chopchop.dao.MyPageDao">
+  
   <resultMap type="MyPage" id="MyPageMap">
-  <id column="member_id" property="memberId"/>
-  <result column="post_no" property="postNo"/>
-  <result column="base_address" property="baseAddress"/>
-  <result column="detail_address" property="detailAddress"/>
-</resultMap>
+    <id column="member_id" property="memberNo"/>
+    <result column="post_no" property="postNo"/>
+    <result column="base_address" property="baseAddress"/>
+    <result column="detail_address" property="detailAddress"/>
+  </resultMap>
 
-  <select id="detail" parameterType="String" resultMap="MyPageMap">
-    select * from member
-    where email = #{email}
+  <select id="findBy" parameterType="int" resultMap="MyPageMap">
+    select 
+      member_id, 
+      nickname, 
+      email, 
+      tel, 
+      photo
+    from member
+    where member_id = #{memberNo}
   </select>
   
   <update id="update" parameterType="Member">
