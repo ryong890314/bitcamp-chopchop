@@ -16,7 +16,7 @@
       member_id,
       nickname,
       email,
-      tel,
+      tel
   </sql>
 
   <insert id="insert" parameterType="Member">
@@ -61,6 +61,7 @@
   
   <select id="findBy" parameterType="int" resultMap="MemberMap">
     <include refid="basicColumn"/>
+      ,
       photo, 
       post_no,
       base_address, 

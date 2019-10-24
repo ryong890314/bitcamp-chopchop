@@ -80,6 +80,10 @@ public class MemberController {
     file.transferTo(new File(uploadDir + "/" + filename));
     return filename;
   }
+  
+  @RequestMapping("pwUpdate")
+  public void pwUpdate(Model model) throws Exception {
+  }
 
 
 }
