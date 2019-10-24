@@ -82,7 +82,7 @@ public class DefaultProductService implements ProductService {
   
   @Override
   public List<Product> categorySearch(String species) throws Exception {
-    return productDao.findByKeyword(species);
+    return productDao.findCategory(species);
   }
 
 
