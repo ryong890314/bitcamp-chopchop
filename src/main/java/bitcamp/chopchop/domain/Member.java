@@ -19,6 +19,9 @@ public class Member implements Serializable {
   public int getMemberNo() {
     return memberNo;
   }
+  public void setMemberNo(int memberNo) {
+    this.memberNo = memberNo;
+  }
   public String getNickname() {
     return nickname;
   }

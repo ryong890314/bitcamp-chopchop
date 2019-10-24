@@ -13,6 +13,7 @@ public interface MemberDao {
   Member findByEmailPassword(Map<String,Object> params) throws Exception;
   int dupEmailCheck(String email) throws Exception;
   int dupNicknameCheck(String nickname) throws Exception;
+  Member findBy(int no) throws Exception;
 }
 
 

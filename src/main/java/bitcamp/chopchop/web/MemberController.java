@@ -1,13 +1,17 @@
 package bitcamp.chopchop.web;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.service.MemberService;
 
@@ -39,12 +43,6 @@ public class MemberController {
     model.addAttribute("members", members);
   }
 
-//  @RequestMapping("detail")
-//  public void detail(Model model, int no) throws Exception {
-//    Member member = memberService.get(no);
-//    model.addAttribute("member", member);
-//  }
-  
   @RequestMapping("contact")
   public void contact(Model model) throws Exception {
     System.out.println("타는거 맞냐");
@@ -59,6 +57,28 @@ public class MemberController {
   @RequestMapping(value = "dupN", method = RequestMethod.GET)
   public @ResponseBody int dupNicknameCheck(String nickname) throws Exception {
     return memberService.dupNicknameCheck(nickname);
+  }
+  
+  @RequestMapping("detail")
+  public void detail(Model model, int no) throws Exception {
+    Member member = memberService.get(no);
+    model.addAttribute("member", member);
+  }
+  
+  @PostMapping("update")
+  public String update(Member member, MultipartFile file) throws Exception {
+    member.setPhoto(writeFile(file));
+    memberService.update(member);
+    return "redirect:list";
+  }
+  
+  private String writeFile(MultipartFile file) throws Exception {
+    if (file.isEmpty())
+      return null;
+    
+    String filename = UUID.randomUUID().toString();
+    file.transferTo(new File(uploadDir + "/" + filename));
+    return filename;
   }
 
 
