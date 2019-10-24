@@ -10,8 +10,6 @@
 </head>
 <body>
 
-<jsp:include page="../header.jsp"/>
-
 <div id='cart'>
 <h1>장바구니</h1>
 <table class='table table-hover'>
@@ -24,17 +22,20 @@
   <th>삭제</th>
 
 </tr>
-<c:forEach items="${members}" var="member">
+<c:forEach items="${carts}" var="cart">
   <tr>
-    <td>${member.no}</td>
-    <td><a href='detail?no=${member.no}'>${member.nickname}</a></td>
-    <td>${member.email}</td>
-    <td>${member.tel}</td>
+    <td>${cart.cartNo}</td>
+    <td>
+      
+      ${cart.title}
+
+    </td>
+    <td>${cart.createdDate}</td>
+    <td>${cart.price}</td>
+    <td>${cart.quantity}</td>
   </tr>
 </c:forEach> 
 </table>
 </div>
-
-<jsp:include page="../footer.jsp"/>
 
 </body></html>
