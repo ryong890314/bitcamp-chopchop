@@ -76,35 +76,6 @@
     where
       cart_id=#{value}
   </select>
-  <!--
-  <select id="findWithFilesBy" 
-          parameterType="int" 
-          resultMap="findWithFilesCommentMap">
-    select
-      p.product_id,
-      p.title,
-      p.price,
-      p.detail,
-      p.stock,
-      p.discount,
-      p.category,
-      p.species,
-      p.view_count,
-      f.photo_id,
-      f.file_path,
-      c.comment_id,
-      c.title ct,
-      c.content cc,
-      c.created_date
-    from
-      product p 
-        left outer join store_photo f on p.product_id=f.product_id
-        left outer join product_comment c on p.product_id=c.product_id
-    where
-      p.product_id=#{value}
-  </select>
-
-  -->
   
   <select id="findByKeyword"
           parameterType="string"
@@ -113,13 +84,16 @@
       c.created_date,
       c.quantity,
       p.title,
-      p.price
+      p.price,
+      f.photo_id,
+      f.file_path
     from 
       cart c 
         left outer join member m on c.member_id=m.member_id
         left outer join product p on c.product_id=p.product_id
+        left outer join store_photo f on p.product_id=f.product_id
     where c.member_id like #{keyword}
-    order by created_date asc
+    order by created_date
   </select>
   
   <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyColumn="cart_id" keyProperty="cartNo">
