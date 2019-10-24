@@ -137,7 +137,7 @@
 										<a class='nav-user'>${loginUser.nickname}</a>
 										<a class='classy-btn sign-btn login-area'
 											href='/app/auth/logout'>Sign out</a>
-									</c:if>
+									</c:if> 
 								</div>
 							</div>
 							<!-- Nav End -->
