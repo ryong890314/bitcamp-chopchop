@@ -77,7 +77,9 @@ public class RecipeController {
   @GetMapping("detail")
   public void detail(Model model, int no, HttpSession session) throws Exception {
     //    session.setAttribute("no", 1);
-
+    System.out.println("==========================================");
+    System.out.println("넘버는???????????????????" + no);
+    System.out.println("==========================================");
     Recipe recipe = recipeService.get(no);
     model.addAttribute("recipe", recipe);
     //    model.addAttribute("memberNo", session.getAttribute("no"));

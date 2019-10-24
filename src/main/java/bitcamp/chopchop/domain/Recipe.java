@@ -24,7 +24,9 @@ public class Recipe {
   // 자식테이블 'RecipeLike'의 데이터를 담을 RecipeLike 객체 목록.
   private List<RecipeLike> recipeLikes;
 
+
   public int getRecipeNo() {
+    System.out.println("getRecipeNo()호출~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     return recipeNo;
   }
   public void setRecipeNo(int recipeNo) {

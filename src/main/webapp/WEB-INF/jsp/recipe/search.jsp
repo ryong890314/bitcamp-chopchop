@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8"><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="../../css/findRecipe.css">
+<link rel="stylesheet" href="../../css/recipe/findRecipe.css">
    <style>
         .bueno-btn {
           background-color: #b0c364;
@@ -67,28 +67,6 @@
             </c:forEach>
         </div>
 
-
-
-
-
-
-
- 
- <table>
-<tr>
-  <th>번호</th>
-  <th>제목</th>
-  <th>대표사진</th>
-</tr>
- <c:forEach items="${recipes}" var="recipe">
-  <tr>
-    <td>${recipe.recipeNo}</td>
-    <td><a href='detail?no=${recipe.recipeNo}'>${recipe.title}</a></td>
-    <td><img src='/upload/recipe/${recipe.thumbnail}' style="height:50px"></td>
-  </tr>
-</c:forEach>
-
-</table>
 
 </body>
 </html>
