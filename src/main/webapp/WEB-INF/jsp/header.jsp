@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/style_contact.css">
 <link rel="stylesheet" href="/css/style_footer.css">
+<link rel="stylesheet" href="/css/style-header.css">
 
 </head>
 
@@ -139,7 +140,7 @@
 										<a class='nav-user'>${loginUser.nickname}</a>
 										<a class='classy-btn sign-btn login-area'
 											href='/app/auth/logout'>Sign out</a>
-									</c:if>
+									</c:if> 
 								</div>
 							</div>
 							<!-- Nav End -->

@@ -16,13 +16,13 @@
             </div>
             <form action='login' method='post'>
                 <label for="email">이메일</label>
-                <input type="email" name="email" value='${cookie.email.value}' required/>
+                <input type="text" name="email" value='${cookie.email.value}' required/>
                 <label for="password">비밀번호</label>
                 <input type="password" name="password" required/>
 
                 <input class="btn" type="submit" value="로그인" />
-                <input class="btnn" type="submit" value="회원가입" />
             </form>
+                <input class="btnn" type="button" onclick="window.location.href = '/app/member/form';"value="회원가입" />
         </div>
     </div>
 
