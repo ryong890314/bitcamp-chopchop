@@ -21,10 +21,10 @@ public class CommentController {
   public void form() {
   }
 
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    model.addAttribute("comments", commentService.list());
-  }
+//  @GetMapping("list")
+//  public void list(Model model) throws Exception {
+//    model.addAttribute("comments", commentService.list());
+//  }
 
   @PostMapping("add")
   public String add(Comment comment, Model model) throws Exception {
