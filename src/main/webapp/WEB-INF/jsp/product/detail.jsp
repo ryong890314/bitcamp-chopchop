@@ -6,8 +6,10 @@
 <html>
 <head>
   <title>상품 상세</title>
-  <link rel='stylesheet' href='/css/product/style.css'>
+  <link rel='stylesheet' href='/css/style.css'>
   <link rel="icon" href="img/core-img/favicon.ico">
+  <link rel="stylesheet" href="/css/style_contact.css">
+  <link rel="stylesheet" href="/css/style_footer.css">
   <style>
 
     #jumbotron.jumbotron-fluid {
@@ -114,25 +116,24 @@
 <hr class="my-4">
 
 <div class="col-12 col-lg-8 col-xl-9">
+        <c:forEach items="${product.comments}" var = "comment">
       <!-- Comment Area Start -->
       <div class="comment_area clearfix mb-100">
         <h4 class="mb-50">상품 문의</h4>
-        <c:forEach items="${product.comments}" var = "comment">
           <ol>
             <!-- Single Comment Area -->
-            <li class="single_comment_area">
+            <li class="single_comment_area" hidden="" id="isComment">
               <!-- Comment Content -->
               <div class="comment-content d-flex">
                   <!-- Comment Author -->
                   <div class="comment-author">
-                      <img src="img/bg-img/32.jpg" alt="author">
+                      <img src="/img/bg-img/person.png" alt="author" width="70px">
                   </div>
                   <!-- Comment Meta -->
                   <div class="comment-meta">
                       <div class="d-flex">
                           <a href="#" class="post-author">${comment.title}</a>
                           <a href="#" class="post-date">${comment.createdDate}</a>
-                          <a href="#" class="reply">Reply  |</a>
                           <a href="../comment/updateform?no=${comment.commentNo}" class="reply">수정</a>
                       </div>
                       <p>${comment.content}</p>
@@ -140,8 +141,8 @@
               </div>
             </li>
           </ol>
-        </c:forEach>
       </div>
+        </c:forEach>
 
       <div class="post-a-comment-area mb-30 clearfix">
           <h4 class="mb-50">Leave a reply</h4>

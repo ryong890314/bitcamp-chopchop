@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>문의 수정폼</title>
-<link rel="stylesheet" href="/css/product/style.css">
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <!--   <div id='content'> -->

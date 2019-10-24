@@ -16,6 +16,7 @@
 <!-- Stylesheet -->
 <link rel="stylesheet" href="/css/style_contact.css">
 <link rel="stylesheet" href="/css/style_footer.css">
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
