@@ -176,10 +176,11 @@
       left outer join cooking c on r.recipe_id=c.recipe_id
     where 
       r.recipe_id=#{value}
+    order by c.process_no asc
   </select>
   
   <insert id="insert" parameterType="Recipe"
-          useGeneratedKeys="true" keyColumn="recipe_id" keyProperty="no">
+          useGeneratedKeys="true" keyColumn="recipe_id" keyProperty="recipeNo">
     insert into 
     recipe
     (member_id,title,content,thumbnail,category,tag,other_info)        
