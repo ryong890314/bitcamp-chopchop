@@ -16,8 +16,8 @@
     default: Mybatis를 실행하는 동안 사용할 DBMS 정보 아이디
   -->
   <environments default="development">
-    
-    <!-- 한 개의 DBMS 접속 정보 -->
+      
+    <!-- 한 개의 DBMS 접속 정보 -->    
     <environment id="development">
       
       <!-- 트랜잭션 설정 -->

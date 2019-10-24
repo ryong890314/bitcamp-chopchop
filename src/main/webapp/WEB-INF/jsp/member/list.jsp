@@ -23,7 +23,7 @@
 </tr>
 <c:forEach items="${members}" var="member">
   <tr>
-    <td>${member.no}</td>
+    <td>${member.memberNo}</td>
     <td>${member.email}</td>
     <td>${member.tel}</td>
     <td>${member.nickname}</td>
@@ -31,7 +31,7 @@
 </c:forEach>
 </table>
 </div>
-
 <jsp:include page="../footer.jsp"/>
 
-</body></html>
+</body>
+</html>
