@@ -30,8 +30,6 @@
           <td>${comment.title}</td>
           <td>${comment.content}</td>
           <td>${comment.createdDate}</td>
-          <td>
-          </td>
         </tr>
       </c:forEach>
     </table>
