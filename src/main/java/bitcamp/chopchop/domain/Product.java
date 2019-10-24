@@ -1,6 +1,7 @@
 package bitcamp.chopchop.domain;
 
 import java.util.List;
+import bitcamp.chopchop.domain.PhotoFile;
 
 public class Product {
   private int productNo;

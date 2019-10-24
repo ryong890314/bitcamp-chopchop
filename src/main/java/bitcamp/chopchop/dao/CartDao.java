@@ -11,5 +11,4 @@ public interface CartDao {
   Cart findBy(int no) throws Exception;
   int update(Cart cart) throws Exception;
   int delete(int no) throws Exception;
-  
 }

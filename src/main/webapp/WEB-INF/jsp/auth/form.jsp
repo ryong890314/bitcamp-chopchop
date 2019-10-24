@@ -16,7 +16,7 @@
             </div>
             <form action='login' method='post'>
                 <label for="email">이메일</label>
-                <input type="text" name="email" value='${cookie.email.value}' required/>
+                <input type="email" name="email" value='${cookie.email.value}' required/>
                 <label for="password">비밀번호</label>
                 <input type="password" name="password" required/>
 

@@ -1,0 +1,10 @@
+1. 프로젝트 받기
+2. 내가만든 JSP 파일을 webapp / WEB-INF / jsp 폴더에 넣는다.
+3. Controller 파일을 생성해서 내가만든 jsp를 호출해본다.
+4. 파일이 열렸다면 CSS가 제대로 적용되었는지 확인 후 경로를 맞춰준다. (footer등 참고하는 jsp도 마찬가지
+  -- src/main/css(js, images등등...)
+5. 내가만든 JSP에 css가 적용이 안된다면 아래처럼 임시방편으로 처리하자
+   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style_footer.css">
+6. 화면이 정상적으로 떴다면 C,R,U,D를 작성한다.
+   6-1. 순서는 DB를 보고 model부터 생성한다.
+   6-2. Controller생성 -> Service 생성 -> DefaultService 생성 -> Dao 생성 -> Mapper.xml 생성

@@ -12,46 +12,6 @@
     <result column="created_date" property="createdDate"/>
   </resultMap>
 
-   <resultMap type="Cart" id="findWithCartMap">
-    <id column="cart_id" property="cartNo"/>
-    <result column="member_id" property="memberNo"/>
-    <result column="product_id" property="productNo"/>
-    <result column="quantity" property="quantity"/>
-    <result column="created_date" property="createdDate"/>
-
-    <collection property="products" ofType="Product">
-    <id column="product_id" property="productNo"/>
-    <result column="title" property="title"/>
-    <result column="price" property="price"/>
-    <result column="detail" property="detail"/>
-    <result column="stock" property="stock"/>
-    <result column="discount" property="discount"/>
-    <result column="category" property="category"/>
-    <result column="species" property="species"/>
-    <result column="view_count" property="viewCount"/>
-    </collection>
-
-    <collection property="files" ofType="PhotoFile">
-      <id column="photo_id" property="photoFileNo"/>
-      <result column="file_path" property="filePath"/>
-      <result column="product_id" property="productNo"/>
-    </collection>
-
-    <collection property="members" ofType="Member">
-      <id column="member_id" property="memberNo"/>
-      <result column="password" property="password"/>
-      <result column="email" property="email"/>
-      <result column="photo" property="photo"/>
-      <result column="nickname" property="nickName"/>
-      <result column="tel" property="tel"/>
-      <result column="post_no" property="postNo"/>
-      <result column="base_address" property="baseAddress"/>
-      <result column="detail_address" property="detailAddress"/>
-      <result column="grade" property="grade"/>
-    </collection>
-  
-  </resultMap>
-
   <select id="findAll" resultMap="CartMap">
     select
       cart_id,
