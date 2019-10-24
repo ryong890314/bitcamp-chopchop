@@ -26,17 +26,11 @@ public class AppWebApplicationInitializer
   protected String getServletName() {
     return "app";
   }
+
   @Override
   protected Filter[] getServletFilters() {
     return new Filter[] {
         new CharacterEncodingFilter("UTF-8")
-    /*, new AuthFilter()*/ };
+        /*, new AuthFilter()*/};
   }
-
 }
-
-
-
-
-
-

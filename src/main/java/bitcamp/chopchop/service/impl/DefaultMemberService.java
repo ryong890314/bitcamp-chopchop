@@ -2,15 +2,7 @@ package bitcamp.chopchop.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
 import javax.annotation.Resource;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import org.springframework.stereotype.Service;
 import bitcamp.chopchop.dao.MemberDao;
 import bitcamp.chopchop.domain.Member;
@@ -85,6 +77,12 @@ public class DefaultMemberService implements MemberService {
 //    catch (MessagingException e) {
 //      e.printStackTrace(); 
 //      }
+  }
+
+  @Override
+  public Member get(int no) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }

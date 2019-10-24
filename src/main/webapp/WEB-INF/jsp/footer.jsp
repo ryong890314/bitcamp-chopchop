@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<!-- ##### Footer Area Start ##### -->
-<!-- <link rel="stylesheet" href="/css/style_contact.css"> -->
+<link rel="stylesheet" href="/css/style_contact.css">
 <link rel="stylesheet" href="/css/style_footer.css">
 <footer class="footer-area">
 	<div class="container">
@@ -30,4 +29,3 @@
 		</div>
 	</div>
 </footer>
-<!-- ##### Footer Area End ##### -->

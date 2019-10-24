@@ -32,6 +32,13 @@ public class MemberController {
     memberService.insert(member);
     return "redirect:list";
   }
+  
+//  @PostMapping("add")
+//  public String add(Member member, MultipartFile file) throws Exception {
+//    member.setPhoto(writeFile(file));
+//    memberService.insert(member);
+//    return "redirect:list";
+//  }
 
   @RequestMapping("list")
   public void list(Model model) throws Exception {

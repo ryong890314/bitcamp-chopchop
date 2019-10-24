@@ -37,8 +37,16 @@
   <mappers>
   
     <!-- SQL 문이 저장된 파일 -->
+    <mapper resource="bitcamp/chopchop/mapper/ProductMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/PhotoFileMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/CartMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/CommentMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/MemberMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/MyPageMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/RecipeMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/IngredientMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/CookingMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/RecipeLikeMapper.xml"/>
   </mappers>
 </configuration>
 

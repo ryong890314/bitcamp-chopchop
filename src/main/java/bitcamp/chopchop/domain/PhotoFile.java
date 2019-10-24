@@ -1,36 +1,37 @@
 package bitcamp.chopchop.domain;
 
-import java.io.Serializable;
+public class PhotoFile {
+  int photoFileNo;
+  String filePath;
+  int productNo;
 
-public class PhotoFile implements Serializable {
-  private static final long serialVersionUID = 1L;
-
-  private int no;
-  private String filePath;
-  private int boardNo;
-  
   @Override
   public String toString() {
-    return "PhotoFile [no=" + no + ", filePath=" + filePath + ", boardNo=" + boardNo + "]";
+    return "PhotoFile [photoFileNo=" + photoFileNo + ", filePath=" + filePath + ", productNo="
+        + productNo + "]";
   }
-  public int getNo() {
-    return no;
+
+  public int getPhotoFileNo() {
+    return photoFileNo;
   }
-  public void setNo(int no) {
-    this.no = no;
+
+  public void setPhotoFileNo(int photoFileNo) {
+    this.photoFileNo = photoFileNo;
   }
+
   public String getFilePath() {
     return filePath;
   }
+
   public void setFilePath(String filePath) {
     this.filePath = filePath;
   }
-  public int getBoardNo() {
-    return boardNo;
+
+  public int getProductNo() {
+    return productNo;
   }
-  public void setBoardNo(int boardNo) {
-    this.boardNo = boardNo;
+
+  public void setProductNo(int productNo) {
+    this.productNo = productNo;
   }
-  
-  
 }
