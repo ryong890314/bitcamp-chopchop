@@ -3,10 +3,19 @@ package bitcamp.chopchop.domain;
 import java.sql.Date;
 
 public class Cart {
+  private int cartNo;
   private int memberNo;
   private int productNo;
   private int quantity;
   private Date createdDate;
+
+  public int getCartNo() {
+    return cartNo;
+  }
+
+  public void setCartNo(int cartNo) {
+    this.cartNo = cartNo;
+  }
 
   public int getMemberNo() {
     return memberNo;
@@ -42,8 +51,8 @@ public class Cart {
 
   @Override
   public String toString() {
-    return "Cart [createdDate=" + createdDate + ", memberNo=" + memberNo + ", productNo=" + productNo + ", quantity="
-        + quantity + "]";
+    return "Cart [cartNo=" + cartNo + ", createdDate=" + createdDate + ", memberNo=" + memberNo + ", productNo="
+        + productNo + ", quantity=" + quantity + "]";
   }
-  
+
 }

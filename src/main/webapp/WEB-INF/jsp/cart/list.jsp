@@ -5,40 +5,36 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
-<title>상품문의</title>
-<link rel='stylesheet'
-  href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
-  integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
-  crossorigin='anonymous'>
-<link rel='stylesheet' href='/css/common.css'>
+  <title>장바구니 리스트</title>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+
 </head>
+
 <body>
-  <div id='comment'>
-    <h6>상품문의</h6>
+  <div id='cart'>
+
     <table class='table table-hover'>
       <tr>
-        <th>문의번호</th>
-        <th>제목</th>
-        <th>작성일</th>
+        <th>장바구니 번호</th>
+        <th>회원번호</th>
+        <th>상품번호</th>
+        <th>수량</th>
+        <th>등록일</th>
       </tr>
-      <c:forEach items="${product.comments}" var="comment">
+      <c:forEach items="${carts}" var="cart">
         <tr>
-          <td>${comment.commentNo}</td>
-          <td><span id='title'>${comment.title}</span></td>
-          <td>${comment.createdDate}</td>
-          <td>${comment.content}</td>
+          <td>${cart.cartNo}</td>
+          <td>${cart.memberNo}</td>
+          <td>${cart.productNo}</td>
+          <td>${cart.quantity}</td>
+          <td>${cart.createdDate}</td>
         </tr>
       </c:forEach>
     </table>
   </div>
-  <script type="text/javascript">
-    var title = document.getElementById('title');
-    var content = document.getElementById('content');
-    for(var e of content) {
-      e.style['display']=hidden;
-    }
-//     title.click(content.hidden=true);
-  </script>
+
 </body>
+
 </html>

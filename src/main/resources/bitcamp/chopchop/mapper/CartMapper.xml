@@ -4,19 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.chopchop.dao.CartDao">
 
-  <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
   <resultMap type="Cart" id="CartMap">
-    <id column="product_id" property="productNo"/>
-    <result column="title" property="title"/>
-    <result column="price" property="price"/>
-    <result column="detail" property="detail"/>
-    <result column="stock" property="stock"/>
-    <result column="discount" property="discount"/>
-    <result column="view_count" property="viewCount"/>
-    <result column="category" property="category"/>
-    <result column="species" property="species"/>
+    <id column="cart_id" property="cartNo"/>
+    <result column="member_id" property="memberNo"/>
+    <result column="product_id" property="productNo"/>
+    <result column="quantity" property="quantity"/>
+    <result column="created_date" property="createdDate"/>
   </resultMap>
-  
+  <!--
   <resultMap type="Product" id="findWithFilesMap">
     <id column="product_id" property="productNo"/>
     <result column="title" property="title"/>
@@ -60,41 +55,33 @@
       <result column="created_date" property="createdDate"/>
     </collection>
   </resultMap>
+  -->
 
-  <select id="findAll" resultMap="findWithFilesMap">
+  <select id="findAll" resultMap="CartMap">
     select
-      p.product_id,
-      p.title,
-      p.price,
-      p.detail,
-      p.stock,
-      p.discount,
-      p.category,
-      p.species,
-      f.photo_id,
-      f.file_path
-    from 
-      product p 
-        left outer join store_photo f on p.product_id=f.product_id
-    order by p.product_id desc
-  </select>
-  
-  <select id="findBy" parameterType="int" resultMap="ProductMap">
-    select
+      cart_id,
+      member_id,
       product_id,
-      title,
-      price,
-      detail,
-      stock,
-      discount,
-      category,
-      species
-    from
-      product
-    where
-      product_id=#{value}
+      quantity,
+      created_date
+    from 
+      cart    
+    order by cart_id desc
   </select>
   
+  <select id="findBy" parameterType="int" resultMap="CartMap">
+    select
+      cart_id,
+      member_id,
+      product_id,
+      quantity,
+      created_date
+    from
+      cart
+    where
+      cart_id=#{value}
+  </select>
+  <!--
   <select id="findWithFilesBy" 
           parameterType="int" 
           resultMap="findWithFilesCommentMap">
@@ -144,34 +131,25 @@
       or category like #{pattern}
     order by product_id asc
   </select>
-
-<!-- 검색기능 추가 끝 -->
+-->
   
-  <update id="increaseViewCount" parameterType="int">
-    update product set
-      view_count = view_count + 1
-    where product_id=#{value}
-  </update>
-  
-  <insert id="insert" parameterType="Product" useGeneratedKeys="true" keyColumn="product_id" keyProperty="productNo">
-    insert into product(title, price, detail, stock, discount, category,species)
-    values(#{title},#{price},#{detail},#{stock},#{discount},#{category},#{species}) 
+  <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyColumn="cart_id" keyProperty="cartNo">
+    insert into product(member_id, product_id, quantity, created_date)
+    values(#{memberNo},#{productNo},#{quantity},#{createdDate}) 
   </insert>
   
-  <update id="update" parameterType="Product">
-    update product set
-      title=#{title},
-      price=#{price},
-      detail=#{detail},
-      stock=#{stock},
-      discount=#{discount},
-      category=#{category},
-      species=#{species}
-    where product_id=#{productNo}
+  <update id="update" parameterType="Cart">
+    update cart set
+      cart_id=#{cartNo},
+      member_id=#{memberNo},
+      product_id=#{productNo},
+      quantity=#{quantity},
+      created_date=#{createdDate}
+    where cart_id=#{cartNo}
   </update>
   
   <delete id="delete" parameterType="int">
-    delete from product
-    where product_id=#{value}
+    delete from cart
+    where cart_id=#{value}
   </delete>
 </mapper>
