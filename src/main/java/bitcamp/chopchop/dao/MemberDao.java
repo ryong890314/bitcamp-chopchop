@@ -14,6 +14,7 @@ public interface MemberDao {
   int dupEmailCheck(String email) throws Exception;
   int dupNicknameCheck(String nickname) throws Exception;
   Member findBy(int no) throws Exception;
+  int delete(int no) throws Exception;
 }
 
 

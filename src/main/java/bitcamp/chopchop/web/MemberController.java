@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
@@ -27,39 +27,39 @@ public class MemberController {
     uploadDir = sc.getRealPath("/upload/member");
   }
 
-  @RequestMapping("form")
+  @GetMapping("form")
   public void form() {
   }
 
-  @RequestMapping("add")
+  @PostMapping("add")
   public String add(Member member) throws Exception {
     memberService.insert(member);
     return "redirect:list";
   }
 
-  @RequestMapping("list")
+  @GetMapping("list")
   public void list(Model model) throws Exception {
     List<Member> members = memberService.list();
     model.addAttribute("members", members);
   }
 
-  @RequestMapping("contact")
+  @GetMapping("contact")
   public void contact(Model model) throws Exception {
     System.out.println("타는거 맞냐");
     memberService.sendMail();
   }
   
-  @RequestMapping(value = "dupE", method = RequestMethod.GET)
+  @GetMapping("dupE")
   public @ResponseBody int dupEmailCheck(String email) throws Exception {
     return memberService.dupEmailCheck(email);
   }
   
-  @RequestMapping(value = "dupN", method = RequestMethod.GET)
+  @GetMapping("dupN")
   public @ResponseBody int dupNicknameCheck(String nickname) throws Exception {
     return memberService.dupNicknameCheck(nickname);
   }
   
-  @RequestMapping("detail")
+  @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Member member = memberService.get(no);
     model.addAttribute("member", member);
@@ -81,9 +81,10 @@ public class MemberController {
     return filename;
   }
   
-  @RequestMapping("pwUpdate")
-  public void pwUpdate(Model model) throws Exception {
+  @GetMapping("delete")
+  public String delete(int no) throws Exception {
+    memberService.delete(no);
+    return "redirect:list";
   }
-
 
 }

@@ -93,4 +93,11 @@ public class DefaultMemberService implements MemberService {
     memberDao.update(member);
   }
 
+  @Override
+  public void delete(int no) throws Exception {
+    if (memberDao.delete(no) == 0) {
+      throw new Exception("해당 데이터가 없습니다.");
+    }
+  }
+
 }

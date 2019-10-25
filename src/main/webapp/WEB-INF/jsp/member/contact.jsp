@@ -95,6 +95,7 @@
                   </div>
                   <div class="col-12">
                     <button class="input-btn" type="submit">전송</button>
+                    <a href="mailto:test@test.com">관리자 문의</a>
                   </div>
                 </div>
               </form>

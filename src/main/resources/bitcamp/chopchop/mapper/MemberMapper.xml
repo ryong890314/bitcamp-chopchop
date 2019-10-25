@@ -9,7 +9,12 @@
   <result column="post_no" property="postNo"/>
   <result column="base_address" property="baseAddress"/>
   <result column="detail_address" property="detailAddress"/>
-</resultMap>
+  <result column="email" property="email"/>
+  <result column="password" property="password"/>
+  <result column="photo" property="photo"/>
+  <result column="nickname" property="nickname"/>
+  <result column="tel" property="tel"/>
+</resultMap> 
 
  <sql id="basicColumn">
     select 
@@ -84,5 +89,14 @@
     </set>
     where member_id = #{memberNo}
   </update>
+  
+  <select id="test" parameterType="Member">
+    select * from member
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    delete from member
+    where member_id = #{member.memberNo}
+  </delete>
   
 </mapper>

@@ -37,11 +37,6 @@
   </div>
   <script type="text/javascript">
   
-  document.getElementById("email").blur() = function() {
-    console.log("sadasdasd");
-    document.getElementById("email_chk").innerHTML = "글씨";
-  }
-
     // 중복검사 시도 여부만 알수있다.
     var eFlag = false;
     var nFlag = false;
