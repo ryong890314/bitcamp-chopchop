@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>CHOP CHOP 회원가입</title>
+<title>CHOPCHOP 회원가입</title>
 <link rel="stylesheet" href="/css/style_join.css">
 <link rel="stylesheet" href="/css/style_footer.css">
 <style type="text/css">
@@ -35,6 +35,7 @@
       <br>
     </div>
   </div>
+  
   <script type="text/javascript">
   
   function email_check() {
