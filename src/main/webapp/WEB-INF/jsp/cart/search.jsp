@@ -6,9 +6,7 @@
 
 <head>
   <title>장바구니</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
-    integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel='stylesheet' href='/css/common.css'>
+  <link rel='stylesheet' href='/css/style.css'>
 </head>
 
 <body>
@@ -23,8 +21,7 @@
         <th>등록일</th>
         <th>판매가</th>
         <th>수량</th>
-        <th>삭제</th>
-
+    
       </tr>
       <c:forEach items="${carts}" var="cart">
         <tr>
@@ -45,10 +42,25 @@
           <c:forEach items="${cart.products}" var="product">
             <td>${product.price}</td>
           </c:forEach>
-          <td>${cart.quantity}</td>
+          <td>
+            <div class="input-group input-number-group">
+              <form action="update" method="post">
+              <input class="input-number" type="number" style="text-align:center" value="${cart.quantity}" min="0" max="1000">
+              <button class="btn btn-default pull-right" style="margin-left: 5px; padding: 0px 5px 0px 5px">적용</button>
+            </form>
+            </div>
+          </td>
         </tr>
       </c:forEach>
-      </table>
+    </table>
+
+<hr class="my-4">
+<div><label class="label"></label>합계금액</label></div>
+<hr class="my-4">
+
+<a href='#' class="btn bueno-btn">선택삭제</a>
+<a href='#' class="btn bueno-btn">선택구매</a>
+<a href='#' class="btn bueno-btn">전체구매</a>
 
   </div>
 
