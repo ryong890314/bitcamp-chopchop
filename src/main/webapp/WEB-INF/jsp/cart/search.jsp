@@ -6,7 +6,8 @@
 
 <head>
   <title>장바구니</title>
-  <link rel='stylesheet' href='/css/style.css'>
+  <link rel='stylesheet' href='/css/product/style.css'>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 </head>
 
 <body>
@@ -21,6 +22,7 @@
         <th>등록일</th>
         <th>판매가</th>
         <th>수량</th>
+        <th>삭제</th>
     
       </tr>
       <c:forEach items="${carts}" var="cart">
@@ -40,15 +42,18 @@
           </c:forEach>
           <td>${cart.createdDate}</td>
           <c:forEach items="${cart.products}" var="product">
-            <td>${product.price}</td>
+            <td><fmt:formatNumber value="${product.price}" pattern="#,###"/></td>
           </c:forEach>
           <td>
+            <form action="update" method="POST">
             <div class="input-group input-number-group">
-              <form action="update" method="post">
               <input class="input-number" type="number" style="text-align:center" value="${cart.quantity}" min="0" max="1000">
-              <button class="btn btn-default pull-right" style="margin-left: 5px; padding: 0px 5px 0px 5px">적용</button>
-            </form>
+              <button class="btn btn-default pull-right" style="margin-left: 5px; padding: 0px 5px 0px 5px" type="submit">적용</button>
             </div>
+            </form>
+          </td>
+          <td>
+            <a href="delete?no=${cart.cartNo}">삭제</a>
           </td>
         </tr>
       </c:forEach>

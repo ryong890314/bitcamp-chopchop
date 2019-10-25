@@ -81,8 +81,11 @@
           parameterType="string"
           resultMap="findWithCartMap">
     select
+      c.cart_id,
       c.created_date,
       c.quantity,
+      c.member_id,
+      m.member_id,
       p.title,
       p.price,
       f.photo_id,
@@ -93,7 +96,7 @@
         left outer join product p on c.product_id=p.product_id
         left outer join store_photo f on p.product_id=f.product_id
     where c.member_id like #{keyword}
-    order by created_date
+    order by created_date desc
   </select>
   
   <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyColumn="cart_id" keyProperty="cartNo">
@@ -103,16 +106,18 @@
   
   <update id="update" parameterType="Cart">
     update cart set
+    <!--
       cart_id=#{cartNo},
       member_id=#{memberNo},
       product_id=#{productNo},
-      quantity=#{quantity},
       created_date=#{createdDate}
+      -->
+      quantity=#{quantity}
     where cart_id=#{cartNo}
   </update>
   
   <delete id="delete" parameterType="int">
     delete from cart
-    where cart_id=#{value}
+    where cart_id=#{cartNo}
   </delete>
 </mapper>
