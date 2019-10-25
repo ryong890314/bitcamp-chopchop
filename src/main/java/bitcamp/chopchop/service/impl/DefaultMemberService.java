@@ -41,9 +41,18 @@ public class DefaultMemberService implements MemberService {
     params.put("password", password);
     Member member = memberDao.findByEmailPassword(params);
     if (member == null) {
-      throw new Exception(email  + "====" +  password + "해당 번호의 데이터가 없습니다!");
     } 
     return member;
+  }
+  
+  @Override
+  public int signEmailCheck(String email) throws Exception {
+    return memberDao.signEmailCheck(email);
+  }
+  
+  @Override
+  public int signPasswordCheck(String password) throws Exception {
+    return memberDao.signPasswordCheck(password);
   }
 
   @Override

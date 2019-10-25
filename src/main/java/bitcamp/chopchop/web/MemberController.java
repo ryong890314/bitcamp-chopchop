@@ -45,7 +45,6 @@ public class MemberController {
 
   @RequestMapping("contact")
   public void contact(Model model) throws Exception {
-    System.out.println("타는거 맞냐");
     memberService.sendMail();
   }
   
@@ -57,6 +56,16 @@ public class MemberController {
   @RequestMapping(value = "dupN", method = RequestMethod.GET)
   public @ResponseBody int dupNicknameCheck(String nickname) throws Exception {
     return memberService.dupNicknameCheck(nickname);
+  }
+  
+  @RequestMapping(value = "signE", method = RequestMethod.GET)
+  public @ResponseBody int signEmailCheck(String email) throws Exception {
+    return memberService.signEmailCheck(email);
+  }
+  
+  @RequestMapping(value = "signP", method = RequestMethod.GET)
+  public @ResponseBody int signPasswordCheck(String password) throws Exception {
+    return memberService.signPasswordCheck(password);
   }
   
   @RequestMapping("detail")

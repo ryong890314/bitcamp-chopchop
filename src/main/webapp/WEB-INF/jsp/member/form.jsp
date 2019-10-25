@@ -198,17 +198,3 @@ function password_check() {
 </body>
 </html>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

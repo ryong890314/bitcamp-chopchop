@@ -15,5 +15,7 @@ public interface MemberService {
   void sendMail() throws Exception;
   Member get(int no) throws Exception;
   void update(Member member) throws Exception;
+  int signEmailCheck(String email) throws Exception;
+  int signPasswordCheck(String password) throws Exception;
 
 }
