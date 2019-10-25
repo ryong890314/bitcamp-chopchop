@@ -1,8 +1,9 @@
 package bitcamp.chopchop.domain;
 
 import java.sql.Date;
+import java.util.List;
 
-public class StoreOrder {
+public class Order {
   private int orderNo;
   private int memberNo;
   private String postNo;
@@ -12,13 +13,14 @@ public class StoreOrder {
   private String paymentMethod;
   private String shipDate; // (주문 상태)
   private String invoice;
+  private List<OrderProduct> orderProducts;
 
   @Override
   public String toString() {
-    return "StoreOrder [orderNo=" + orderNo + ", memberNo=" + memberNo + ", postNo=" + postNo
+    return "Order [orderNo=" + orderNo + ", memberNo=" + memberNo + ", postNo=" + postNo
         + ", address=" + address + ", detailAddress=" + detailAddress + ", paymentDate="
         + paymentDate + ", paymentMethod=" + paymentMethod + ", shipDate=" + shipDate + ", invoice="
-        + invoice + "]";
+        + invoice + ", orderProducts=" + orderProducts + "]";
   }
 
   public int getOrderNo() {
@@ -91,6 +93,14 @@ public class StoreOrder {
 
   public void setInvoice(String invoice) {
     this.invoice = invoice;
+  }
+
+  public List<OrderProduct> getOrderProducts() {
+    return orderProducts;
+  }
+
+  public void setOrderProducts(List<OrderProduct> orderProducts) {
+    this.orderProducts = orderProducts;
   }
 
 

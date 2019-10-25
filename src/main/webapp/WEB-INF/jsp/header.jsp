@@ -20,35 +20,35 @@
 <link rel="icon" href="/img/core-img/favicon.ico">
 
 <!-- Stylesheet -->
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/style_contact.css">
-<link rel="stylesheet" href="/css/style_footer.css">
+<link rel="stylesheet" href="/css/member/style.css">
+<link rel="stylesheet" href="/css/member/style_contact.css">
+<link rel="stylesheet" href="/css/member/style_footer.css">
 
 </head>
 
 <body>
-	<!-- Preloader -->
-<!-- 	<div class="preloader d-flex align-items-center justify-content-center"> -->
-<!-- 		<div class="preloader-content"> -->
-<!-- 			<h3>Cooking in progress..</h3> -->
-<!-- 			<div id="cooking"> -->
-<!-- 				<div class="bubble"></div> -->
-<!-- 				<div class="bubble"></div> -->
-<!-- 				<div class="bubble"></div> -->
-<!-- 				<div class="bubble"></div> -->
-<!-- 				<div class="bubble"></div> -->
-<!-- 				<div id="area"> -->
-<!-- 					<div id="sides"> -->
-<!-- 						<div id="pan"></div> -->
-<!-- 						<div id="handle"></div> -->
-<!-- 					</div> -->
-<!-- 					<div id="pancake"> -->
-<!-- 						<div id="pastry"></div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
+	Preloader
+	<div class="preloader d-flex align-items-center justify-content-center">
+		<div class="preloader-content">
+			<h3>Cooking in progress..</h3>
+			<div id="cooking">
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div class="bubble"></div>
+				<div id="area">
+					<div id="sides">
+						<div id="pan"></div>
+						<div id="handle"></div>
+					</div>
+					<div id="pancake">
+						<div id="pastry"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- ##### Header Area Start ##### -->
 	<header class="header-area">

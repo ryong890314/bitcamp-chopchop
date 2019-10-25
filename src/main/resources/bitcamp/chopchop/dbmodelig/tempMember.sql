@@ -19,4 +19,4 @@ value ('test4@test.com', password(4444), 'test4', '4444-4444');
 
 insert into 
   member (email, password, nickname, tel)
-value ('test1=@test.com', password(5555), 'test5', '5555-5555');
+value ('test1@test.com', password(5555), 'test5', '5555-5555');
