@@ -29,7 +29,7 @@
     기본주소 <input type='text' id="baseAddress" name='baseAddress' value='${member.baseAddress}'><br>
     상세주소 <input type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'><br>
   <button>변경</button>
-    회원 탈퇴 <input value='delete?no=${member.memberNo}' onclick="memberDelete();"/>
+    회원 탈퇴 <input type="button" value='delete?no=${member.memberNo}' onclick="memberDelete();"/>
 </form>
 </div>
 

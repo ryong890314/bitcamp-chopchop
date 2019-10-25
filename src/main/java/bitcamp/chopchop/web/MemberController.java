@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
@@ -45,7 +46,6 @@ public class MemberController {
 
   @GetMapping("contact")
   public void contact(Model model) throws Exception {
-    System.out.println("타는거 맞냐");
     memberService.sendMail();
   }
   
@@ -59,7 +59,17 @@ public class MemberController {
     return memberService.dupNicknameCheck(nickname);
   }
   
-  @GetMapping("detail")
+  @RequestMapping(value = "signE", method = RequestMethod.GET)
+  public @ResponseBody int signEmailCheck(String email) throws Exception {
+    return memberService.signEmailCheck(email);
+  }
+  
+  @RequestMapping(value = "signP", method = RequestMethod.GET)
+  public @ResponseBody int signPasswordCheck(String password) throws Exception {
+    return memberService.signPasswordCheck(password);
+  }
+  
+  @RequestMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Member member = memberService.get(no);
     model.addAttribute("member", member);
