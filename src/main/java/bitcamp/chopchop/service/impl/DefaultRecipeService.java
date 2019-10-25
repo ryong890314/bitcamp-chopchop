@@ -90,7 +90,6 @@ public class DefaultRecipeService implements RecipeService {
       c.setRecipeNo(recipe.getRecipeNo());
       cookingDao.insert(c);
     }
-    
   }
   
   @Transactional
