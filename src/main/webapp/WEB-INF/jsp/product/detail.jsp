@@ -116,13 +116,13 @@
 <hr class="my-4">
 
 <div class="col-12 col-lg-8 col-xl-9">
-        <c:forEach items="${product.comments}" var = "comment">
       <!-- Comment Area Start -->
       <div class="comment_area clearfix mb-100">
         <h4 class="mb-50">상품 문의</h4>
           <ol>
             <!-- Single Comment Area -->
-            <li class="single_comment_area" hidden="" id="isComment">
+        <c:forEach items="${product.comments}" var = "comment">
+            <li class="single_comment_area" id="isComment">
               <!-- Comment Content -->
               <div class="comment-content d-flex">
                   <!-- Comment Author -->
@@ -140,9 +140,9 @@
                   </div>
               </div>
             </li>
+        </c:forEach>
           </ol>
       </div>
-        </c:forEach>
 
       <div class="post-a-comment-area mb-30 clearfix">
           <h4 class="mb-50">Leave a reply</h4>

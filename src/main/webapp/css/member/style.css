@@ -161,13 +161,13 @@ img {
 
 /* :: 3.3.0 Section Padding */
 .section-padding-100 {
-    padding-top: 100px;
-    padding-bottom: 100px;
+  padding: 50px !important; 
 }
+
 
 .section-padding-100-0 {
     padding-top: 100px;
-    padding-bottom: 0;
+    padding-bottom: 0 ;
 }
 
 .section-padding-0-100 {
