@@ -1,6 +1,7 @@
 package bitcamp.chopchop.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +23,9 @@ public class OrderController {
   }
   
   @GetMapping("list")
-  public void list(Model model) throws Exception {
+  public void list(Model model, HttpSession httpSession) throws Exception {
     model.addAttribute("orders", orderService.list());
+    httpSession.getAttribute("member");
   }
   
   @PostMapping("add")
