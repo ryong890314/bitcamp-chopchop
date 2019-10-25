@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,10 +39,10 @@ public class CartController {
   }
 
   @GetMapping("delete")
-  public String delete(int no, HttpServletRequest request, int cartNo) 
+  public String delete(int no, HttpServletRequest request) 
       throws Exception {
     cartService.delete(no);
-    return "redirect:../cart/detail?no="+ cartNo;
+    return "redirect:list";
   }
 
   @GetMapping("detail")
