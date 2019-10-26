@@ -47,8 +47,9 @@
           <td>
             <form action="update" method="POST">
             <div class="input-group input-number-group">
-              <input class="input-number" type="number" style="text-align:center" value="${cart.quantity}" min="0" max="1000">
-              <button class="btn btn-default pull-right" style="margin-left: 5px; padding: 0px 5px 0px 5px" type="submit">적용</button>
+              <input class="input-number" name="quantity" type="number" style="text-align:center" value="${cart.quantity}" min="0" max="1000">
+              <input type="hidden" name="cartNo" value="${cart.cartNo}">
+              <button class="btn btn-default pull-right" style="margin-left: 5px; padding: 0px 5px 0px 5px">적용</button>
             </div>
             </form>
           </td>

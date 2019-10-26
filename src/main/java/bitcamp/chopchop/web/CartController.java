@@ -57,10 +57,10 @@ public class CartController {
   }
 
   @PostMapping("update")
-  public String update(Cart cart, HttpServletRequest request, int cartNo) 
+  public String update(Cart cart, HttpServletRequest request) 
       throws Exception {
     cartService.update(cart);
-    return "redirect:../cart/detail?no=" + cartNo;
+    return "redirect:list";
   }
 
   @GetMapping("updateform")
