@@ -67,6 +67,13 @@ public class CartController {
   public void updateform(Model model, int no) throws Exception {
     model.addAttribute("cart", cartService.get(no));
   }
+
+  // 테스트용
+  @GetMapping("test")
+  public void test(Model model, String keyword) throws Exception {
+    List<Cart> carts = cartService.search(keyword);
+    model.addAttribute("carts", carts);
+  }
 }
 
 

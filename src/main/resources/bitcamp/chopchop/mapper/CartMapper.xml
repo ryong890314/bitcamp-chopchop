@@ -96,7 +96,7 @@
         left outer join product p on c.product_id=p.product_id
         left outer join store_photo f on p.product_id=f.product_id
     where c.member_id like #{keyword}
-    order by created_date desc
+    order by cart_id desc
   </select>
   
   <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyColumn="cart_id" keyProperty="cartNo">

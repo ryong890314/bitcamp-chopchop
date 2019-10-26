@@ -32,7 +32,7 @@
       <c:forEach items="${carts}" var="cart">
         <tr>
           <td>
-            <form name="form">
+            <form name="checkForm">
               <input class="myChkbox" type="checkbox" name="chkbox" value="${cart.cartNo}"><br>
             </form>
           </td>
@@ -66,37 +66,72 @@
 
 <hr class="my-4">
 <div>합계금액</div>
-<td height="25">&nbsp;합계:&nbsp;<input id="totalSum" name="total_sum" type="text" size="20" readonly></td>
+<td height="25">&nbsp;카트ID 합계:&nbsp;<input id="totalSum" name="total_sum" type="text" size="20" readonly></td>
 <hr class="my-4">
 
-<a href='#' class="btn bueno-btn">선택삭제</a>
+<input type='button' onclick='check_all();' value='모두 선택' />
+<input type='button' onclick='uncheck_all();' value='모두 해제' />
+
+<button class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
 <a href='#' class="btn bueno-btn">선택구매</a>
 <a href='#' class="btn bueno-btn">전체구매</a>
 
   </div>
 
   <script>
-
+    // cartNo sum
     var myCheckBoxes = document.getElementsByClassName('myChkbox');
-
     for (var i = 0; i < myCheckBoxes.length; i++) {
-      myCheckBoxes[i].addEventListener('change', function() {
-        
+      myCheckBoxes[i].addEventListener('change', function () {
         var sum = 0;
         var totalSum = document.getElementById('totalSum');
-
-        for(var j = 0; j < myCheckBoxes.length; j++){
+        for (var j = 0; j < myCheckBoxes.length; j++) {
           if (myCheckBoxes[j].checked) {
             sum += parseInt(myCheckBoxes[j].value);
           }
         }
         totalSum.value = sum;
       });
-
     }
+  </script>
 
-    
+<script>
+  // checkbox 전체 선택/해제
+  var myCheckBoxes = document.getElementsByClassName('myChkbox');
+    function check_all() {
+      for(i=0; i < myCheckBoxes.length; i++) {
+        myCheckBoxes[i].checked = true;
+      }
+    }
+    function uncheck_all() {
+      for(i=0; i < myCheckBoxes.length; i++) {
+        myCheckBoxes[i].checked = false;
+      }
+    }
     </script>
+
+<script>
+    // 선택삭제
+    function check_Del() {
+      var myCheckBoxes = document.getElementsByClassName('myChkbox');
+      for (var i = 0; i < myCheckBoxes.length; i++) {
+        //location.href = "delete?no=" + parseInt(myCheckBoxes[i].value);
+        alert(parseInt(myCheckBoxes[i].value));
+        if (myCheckBoxes[i].checked) {
+        location.href = "delete?no=" + parseInt(myCheckBoxes[i].value);
+        alert(parseInt(myCheckBoxes[i].value) + " 삭제");
+        }
+      }
+    }
+  </script>
+
+  <script>
+  
+  //var checkPrice = document.getElemntsByclassName('');
+
+
+
+  </script>
 
 </body>
 
