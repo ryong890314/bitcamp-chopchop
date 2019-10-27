@@ -2,7 +2,15 @@ package bitcamp.chopchop.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 import javax.annotation.Resource;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import org.springframework.stereotype.Service;
 import bitcamp.chopchop.dao.MemberDao;
 import bitcamp.chopchop.domain.Member;
@@ -62,7 +70,7 @@ public class DefaultMemberService implements MemberService {
 //    // 네이버일 경우 네이버 계정, gmail경우 gmail 계정 
 //    String user = "skybrend@naver.com"; 
 //    // 패스워드 
-//    String password = "22342342";   
+//    String password = "062279pbr";   
 //    // SMTP 서버 정보를 설정한다. 
 //    Properties props = new Properties(); 
 //    props.put("mail.smtp.host", host); 
@@ -107,6 +115,22 @@ public class DefaultMemberService implements MemberService {
     if (memberDao.delete(no) == 0) {
       throw new Exception("해당 데이터가 없습니다.");
     }
+  }
+
+  @Override
+  public int chkPw(String password, int memberNo) throws Exception {
+    HashMap<String, Object> map = new HashMap<String, Object>();
+    map.put("password", password);
+    map.put("memberNo", memberNo);
+    return memberDao.chkPw(map);
+  }
+
+  @Override
+  public int uptPw(String password, int memberNo) throws Exception {
+    HashMap<String, Object> map = new HashMap<String, Object>();
+    map.put("password", password);
+    map.put("memberNo", memberNo);
+    return memberDao.uptPw(map);
   }
 
 }

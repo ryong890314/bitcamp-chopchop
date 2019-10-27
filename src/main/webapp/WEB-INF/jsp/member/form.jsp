@@ -26,7 +26,7 @@
           <div id="password_chk" class="vali_check"></div>
         <input type="password" id="password2" name="password2" placeholder="비밀번호 확인" onblur="password2_check();" maxlength="20"/> 
           <div id="password2_chk" class="vali_check"></div>
-        <input type="text" id="nickname" name="nickname" placeholder="닉네임" onblur="nickname_check();" maxlength="8"/>
+        <input type="text" id="nickname" name="nickname" placeholder="닉네임" onblur="nickname_check();" maxlength="12"/>
           <div id="nickname_chk" class="vali_check"></div>
         <input type="tel" id="tel" name="tel" placeholder="핸드폰 번호    '-'없이 숫자만 입력해주세요." onblur="tel_check();" maxlength="11"/> 
           <div id="tel_chk" class="vali_check"></div>
@@ -123,7 +123,7 @@ function password_check() {
     // 닉네임 정규식 검사 
     var nRegPass = false;
     if (form.nickname.value != "") {
-      var nicknameRegExp = /^[a-zA-z0-9가-힣]{2,8}$/;
+      var nicknameRegExp = /^[a-zA-z0-9가-힣]{2,12}$/;
       if (!nicknameRegExp.test(form.nickname.value)) {
           document.getElementById("nickname_chk").innerHTML = "닉네임 형식이 올바르지 않습니다!";
       } else {

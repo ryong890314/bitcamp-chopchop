@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,46 +9,307 @@
   <link rel='stylesheet' href='/css/common.css'>
   <link rel="stylesheet" href="/css/style.css">
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-</head>
-<body>
+  <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+  <style>
+    .vali_check {
+      color: red;
+    }
+    /*
+    .photo1 {
+	     width: auto; height: auto;
+	     max-width: 100px;
+	     max-height: 100px;
+    }
+    */
+    .profile_photo {
+	    position: relative;
+	    width: 100px;
+	    height: 100px;
+    }
+    
+    .profile_photo .mask {
+	    position: absolute;
+	    z-index: 10;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    width: 100px;
+      height: 100px;
+	    background: url(/upload/member/my_photo.png) 0 0;
+	 }
+	 .imgThumb {
+	   width: 100px;
+	   height: 100px;
+	 }
+  </style>
 
+</head>
+<body onload="formLoad();">
 <jsp:include page="../header.jsp"/>
     
 <div id='content'>
 <h1>내정보</h1>
-<form action='update' method='post' enctype='multipart/form-data'>
-  <img src='/upload/member/${member.photo}' id="image" class='photo1'><br> 
+<form action='update' method='post' name="form" enctype='multipart/form-data' onsubmit="return checkAll();">
+<%--   <img src='/upload/member/${member.photo}' id="image" class='photo1'><br>  --%>
+  <div class="profile_photo">
+    <input type="hidden" id="photo2" value="${member.photo}" />
+    <%-- JSTL이용
+         이미지 있는 경우에는 이미지 불러오자 
+    <c:if test="${not empty member.photo}">
+      <img id="imgThumb" class="imgThumb" src="/upload/member/${member.photo}">
+    </c:if>
+    <c:if test="${empty member.photo}">
+      <img id="imgThumb" class="imgThumb" src="/upload/member/info_photo.jpg">
+    </c:if>
+    --%>
+    <img id="imgThumb" class="imgThumb" src="/upload/member/info_photo.jpg">
+    <span class="mask"></span>
+  </div>
   <input type='file' id="file" name='file'><br>
-    번호 <input type='text' name='memberNo' value='${member.memberNo}' readonly><br>
-    이메일 <input type='text' name='email' value='${member.email}' readonly><br>
-    비밀번호 <input type="password" name="password" value="${member.password}" />
-    <input type="button" name="pwUpdate" value="비밀번호 변경" /><br>
-    닉네임 <input type='text' name='nickname' value='${member.nickname}'><br>
-    핸드폰 번호 <input type='tel' name='tel' value='${member.tel}'><br>
+    번호 <input type='text' id='memberNo' name='memberNo' value='${member.memberNo}' readonly><br>
+    이메일 <input type='text' id='email' name='email' value='${member.email}' readonly><br>
+    비밀번호 <input type="button" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal"/><br>
+    닉네임 <input type='text' name='nickname' value='${member.nickname}' maxlength="12" onblur="nickname_check();"><br>
+    <div id="nickname_chk" class="vali_check"></div>
+    핸드폰 번호 <input type='tel' name='tel' value='${member.tel}' maxlength="11" onblur="tel_check();"><br>
+    <div id="tel_chk" class="vali_check"></div>
     우편번호 <input type='text' id="postNo" name='postNo' value='${member.postNo}'>
   <input type="button" name="post_search" value="우편번호 찾기" onclick="myPostcode();"/><br>
     기본주소 <input type='text' id="baseAddress" name='baseAddress' value='${member.baseAddress}'><br>
     상세주소 <input type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'><br>
+  <input type="hidden" id="nickname1" value="${member.nickname}"/> <!-- 원래 닉네임값  -->
   <button>변경</button>
-    회원 탈퇴 <input type="button" value='delete?no=${member.memberNo}' onclick="memberDelete();"/>
+<%--   <a href="delete?no=${member.memberNo}">회원 탈퇴</a> --%>
+  <a href="delete?no=${member.memberNo}" onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
 </form>
 </div>
+<hr>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">비밀번호 변경</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword" onblur="nowpw_check();"/>
+            <div id="password1_chk" class="vali_check"></div>
+            새 비밀번호 <input type="password" id="newPassword"  name="newPassword" onblur="newpw_check();"/><br>
+            <div id="password2_chk" class="vali_check"></div>
+            새 비밀번호 확인<input type="password" id="newPassword2"  name="newPassword2" onblur="newpw2_check();"/>
+            <div id="password3_chk" class="vali_check"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary" onclick="changePw();">변경</button>
+      </div>
+    </div>
+  </div>
+</div>
 <jsp:include page="../footer.jsp"/>
-
 <script>
-  function memberDelete() {
-    if (confirm("정말 탈퇴하시겠습니까??") == true){    //확인
+  function changePw() {
+	  var cnt = 0;
+	  
+	  if(nowpw_check()) {
+		  cnt++;
+	  }
+	  if(newpw_check()) {
+      cnt++;
+    }
+	  if(newpw2_check()) {
+      cnt++;
+    }
+	  
+	  // 업데이트 해줄 ajax memberNo, 변경할 패스워드
+	  if(cnt == 3){
+		  var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          if (xhr.responseText == "1") { // 1이면 변경완료, 0이면 변경 못함, insert, update, delete xml에서 완료된 카운트 리턴
+            alert("변경완료 되었습니다.");
+            $('#exampleModal').modal("hide"); 
+            document.getElementById("nowPassword").value = "";
+            document.getElementById("newPassword").value = "";
+            document.getElementById("newPassword2").value = "";
+          } else {
+            alert("변경하지 못했습니다.");
+          }
+        } else {
+          alert("시스템 오류 발생!");
+        }
+       }
+      };
+      xhr.open("POST", "uptPw", false);
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      // 포스트는 파라미터 여기로 보내주는 듯?
+      xhr.send("password=" + document.getElementById("newPassword").value + "&memberNo=" + document.getElementById("memberNo").value);
+	  }
+	  
+  }
+  
+  function nowpw_check() {
+	  var pCheckFlag = false;
+	  if (document.getElementById("nowPassword").value == "") {
+	    document.getElementById("password1_chk").innerHTML = "비밀번호를 입력하세요.";
+	  } 
 
-      document.form.submit();
+	  // 비밀번호 정규식 검사 
+	  if (document.getElementById("nowPassword").value != "") {
+	    var passwordRegExp = /^[a-zA-z0-9]{4,20}$/; 
+		  if (!passwordRegExp.test(document.getElementById("nowPassword").value)) {
+		    document.getElementById("password1_chk").innerHTML = "비밀번호는 영문 대소문자와 숫자 4~20자리로 입력해야합니다!";
+		  } else {
+			  var xhr = new XMLHttpRequest();
+		      xhr.onreadystatechange = function() {
+		        if (xhr.readyState == 4) {
+		        if (xhr.status == 200) {
+		          if (xhr.responseText == "0") { // 1이면 동일, 0이면 패스워드 틀림
+		            document.getElementById("password1_chk").innerHTML = "패스워드를 다시 확인해주세요.";
+		          } else {
+		            document.getElementById("password1_chk").innerHTML = "";
+		            pCheckFlag = true;
+		          }
+		        } else {
+		          alert("시스템 오류 발생!");
+		        }
+		       }
+		      };
+		      xhr.open("POST", "chkPw", false);
+		      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		      // 포스트는 파라미터 여기로 보내주는 듯?
+		      xhr.send("password=" + document.getElementById("nowPassword").value + "&memberNo=" + document.getElementById("memberNo").value);
+		  }
+	  } 
+	  return pCheckFlag;
+	}
+  function newpw_check() {
+	  var pCheckFlag = false;
+	  if (document.getElementById("newPassword").value == "") {
+		  document.getElementById("password2_chk").innerHTML = "새 비밀번호를 입력하세요.";
+	  }
+	  
+    // 비밀번호 정규식 검사 
+    if (document.getElementById("newPassword").value != "") {
+      var passwordRegExp = /^[a-zA-z0-9]{4,20}$/; 
+    if (!passwordRegExp.test(document.getElementById("newPassword").value)) {
+      document.getElementById("password2_chk").innerHTML = "비밀번호는 영문 대소문자와 숫자 4~20자리로 입력해야합니다!";
+    } else {
+      document.getElementById("password2_chk").innerHTML = "";
+      pCheckFlag = true;
+    }
+   } 
+   return pCheckFlag;
+  }
+  
+  function newpw2_check() {
+	  var p2CheckFlag = false;
+    if (document.getElementById("newPassword2").value == "") {
+       document.getElementById("password3_chk").innerHTML = "비밀번호 확인을 입력하세요.";
+     } 
+    
+    // 비밀번호 & 비밀번호 확인이 같은 값인지 검사 
+    if (document.getElementById("newPassword2").value != "") {
+      if (document.getElementById("newPassword").value != document.getElementById("newPassword2").value) {
+        document.getElementById("password3_chk").innerHTML = "두 비밀번호가 다릅니다.";
+      } else {
+        document.getElementById("password3_chk").innerHTML = "";
+        p2CheckFlag = true;
+      }
+    } 
+    return p2CheckFlag;
+  }
 
-  }else{   //취소
+  function formLoad() {
+	  // hidden값을 이용해서 자바스크립트를 이용한 경우
+	  if (document.getElementById("photo2").value != null 
+			  || document.getElementById("photo2").value != ""){
+		  document.getElementById("imgThumb").src = "/upload/member/" + document.getElementById("photo2").value;
+	  }
+  }
+	function checkAll() {
+		var checkCnt = 0;
+		if (nickname_check()) {
+			checkCnt++;
+		}
+		if (tel_check()) {
+			checkCnt++;
+		}
+		return checkCnt == 2 ? true : false;
+	}
+	
+  function nickname_check() {
+    var nCheckFlag = false;
+	  if (form.nickname.value == "") {
+       document.getElementById("nickname_chk").innerHTML = "닉네임을 입력하세요.";
+     } 
+    // 닉네임 정규식 검사 
+    var nRegPass = false;
+    if (form.nickname.value != "") {
+      var nicknameRegExp = /^[a-zA-z0-9가-힣]{2,12}$/;
+      if (!nicknameRegExp.test(form.nickname.value)) {
+          document.getElementById("nickname_chk").innerHTML = "닉네임 형식이 올바르지 않습니다!";
+      } else {
+        nRegPass = true;
+      }
+    }
+      
+    // 닉네임 중복체크
+    if(nRegPass) {
+    	// 원래 닉네임과 동일하게 쓴다면 ajax 돌 필요도 없다.
+    	if (form.nickname.value == form.nickname1.value) {
+    		 document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
+         nCheckFlag = true;
+    	} else {
+    		var xhr = new XMLHttpRequest();
+  	      xhr.onreadystatechange = function() {
+  	        if (xhr.readyState == 4) {
+  	          if (xhr.status == 200) {
+  	            // 0이면 가입 가능, 아니면 중복!
+  	            if (xhr.responseText == "1") {
+  	              document.getElementById("nickname_chk").innerHTML = "중복된 닉네임입니다.";
+  	            } else {
+  	              document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
+  	              nCheckFlag = true;
+  	            }
+  	          } else {
+  	            alert("시스템 오류 발생!");
+  	          }
+  	        }
+  	      }
+  	      // false는 동기식(Ajax 순서대로 진행하도록 동기식으로)
+  	      xhr.open("GET", "dupN?nickname=" + form.nickname.value, false);
+  	      xhr.send();
+  	    }
+    	}
+      
+    return nCheckFlag;
+  }
 
-      return;
+  function tel_check() {
+	  var tCheckFlag = false;
+	  if (form.tel.value == "") {
+      document.getElementById("tel_chk").innerHTML = "핸드폰 번호를 입력하세요.";
+    } 
+	  // 핸드폰 번호 정규식 검사 
+    if (form.tel.value != "") {
+      var telRegExp = /^[0-9]{3}[0-9]{3,4}[0-9]{4}$/;
+      if (!telRegExp.test(form.tel.value)) {
+       document.getElementById("tel_chk").innerHTML = "핸드폰 번호의 형식이 올바르지 않습니다.";
+      } else {
+        document.getElementById("tel_chk").innerHTML = "";
+        tCheckFlag = true;
+      }
+    } 
+   return tCheckFlag;
+  }
 
- }
-</script>
-<script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function myPostcode() {
         new daum.Postcode({
@@ -80,15 +342,12 @@
             }
         }).open();
     }
-    
-   
-</script>
 
-<script>
+  // 사진 미리보기 
   document.getElementById("file").onchange = function () {
     var reader = new FileReader();
     reader.onload = function (e) {
-        document.getElementById("image").src = e.target.result;
+        document.getElementById("imgThumb").src = e.target.result;
     };
     reader.readAsDataURL(this.files[0]);
 };
