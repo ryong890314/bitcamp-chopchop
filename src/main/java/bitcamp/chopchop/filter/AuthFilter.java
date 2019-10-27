@@ -20,6 +20,7 @@ public class AuthFilter implements Filter {
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
     // web.xml에 설정된 초기화 파라미터 값을 가져온다.
+    System.out.println(filterConfig.getInitParameter("path"));
     path = filterConfig.getInitParameter("path").split(",");
   }
   
@@ -34,14 +35,15 @@ public class AuthFilter implements Filter {
     HttpServletResponse httpResp = (HttpServletResponse) response;
     
     String servletPath = httpReq.getServletPath();
+    String pathInfo = httpReq.getPathInfo();
     
     for (String p : path) {
       // web.xml에 지정된 경로라면, 로그인 여부를 검사한다.
-      if (servletPath.endsWith(p)) {
+      if (pathInfo.endsWith(p)) {
         
         if (httpReq.getSession().getAttribute("loginUser") == null) {
           // 로그인 하지 않았다면 로그인 폼으로 보낸다.
-          httpResp.sendRedirect("/auth/login");
+          httpResp.sendRedirect("../auth/signin");
           return;
           
         } else {
@@ -50,10 +52,10 @@ public class AuthFilter implements Filter {
         }
       }
     }
-      
     // 로그인 했다면 원래의 목적지로 보낸다.
     chain.doFilter(request, response);
   }
+
 }
 
 
