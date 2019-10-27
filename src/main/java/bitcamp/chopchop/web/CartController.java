@@ -42,7 +42,18 @@ public class CartController {
   public String delete(int no, HttpServletRequest request) 
       throws Exception {
     cartService.delete(no);
-    return "redirect:list";
+    return "redirect:search?keyword=1";
+  }
+
+  //선택삭제
+  @GetMapping("chkDelete")
+  public String chkDelete(List<Integer> chkArr, HttpServletRequest request, Cart cart) throws Exception {
+
+    for (int i = 0; i < chkArr.size(); ++i) {
+      int no = chkArr.get(i);
+      cartService.delete(no);
+    }
+    return "redirect:search?keyword=1";
   }
 
   @GetMapping("detail")

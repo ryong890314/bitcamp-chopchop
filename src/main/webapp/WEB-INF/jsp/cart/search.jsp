@@ -18,6 +18,10 @@
 
   <div id='cart'>
     <h1>장바구니</h1>
+
+    <input type='button' onclick='check_all();' value='모두 선택' />
+    <input type='button' onclick='uncheck_all();' value='모두 해제' />
+
     <table class='table table-hover'>
       <tr>
         <th>선택</th>
@@ -32,8 +36,8 @@
       <c:forEach items="${carts}" var="cart">
         <tr>
           <td>
-            <form name="checkForm">
-              <input class="myChkbox" type="checkbox" name="chkbox" value="${cart.cartNo}"><br>
+            <form>
+              <input class="myChkbox" type="checkbox" name="chkbox" value="${cart.cartNo}">
             </form>
           </td>
           <td>
@@ -64,17 +68,24 @@
       </c:forEach>
     </table>
 
-<hr class="my-4">
-<div>합계금액</div>
-<td height="25">&nbsp;카트ID 합계:&nbsp;<input id="totalSum" name="total_sum" type="text" size="20" readonly></td>
-<hr class="my-4">
+    <hr class="my-4">
+    
+    <div style="float: right">
+      <a1>상품금액 </a1><a>price</a>
+      <a1>원 + 배송비 </a1><a>0</a>
+      <a1>원 = 합계금액 </a1><a style="color:red">0</a>
+      <a1>원</a1>
+    </div>
+    <td height="25">&nbsp;카트ID 합계:&nbsp;<input id="totalSum" name="total_sum" type="text" size="20" readonly></td>
 
-<input type='button' onclick='check_all();' value='모두 선택' />
-<input type='button' onclick='uncheck_all();' value='모두 해제' />
+    <hr class="my-4">
 
+<div style="float: right">
 <button class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
+<button class="btn bueno-btn" onclick='check_Price();'>금액확인</button>
 <a href='#' class="btn bueno-btn">선택구매</a>
 <a href='#' class="btn bueno-btn">전체구매</a>
+</div>
 
   </div>
 
@@ -115,21 +126,25 @@
     function check_Del() {
       var myCheckBoxes = document.getElementsByClassName('myChkbox');
       for (var i = 0; i < myCheckBoxes.length; i++) {
-        //location.href = "delete?no=" + parseInt(myCheckBoxes[i].value);
-        alert(parseInt(myCheckBoxes[i].value));
         if (myCheckBoxes[i].checked) {
-        location.href = "delete?no=" + parseInt(myCheckBoxes[i].value);
-        alert(parseInt(myCheckBoxes[i].value) + " 삭제");
+          location.href = "delete?no=" + parseInt(myCheckBoxes[i].value);
+          //alert(parseInt(myCheckBoxes[i].value) + '삭제'); // 없으면 반복문 안돌아감...
         }
       }
     }
   </script>
 
   <script>
-  
-  //var checkPrice = document.getElemntsByclassName('');
+    // 선택 상품금액
+    function check_Price(){
+      var myCheckBoxes = document.getElementsByClassName('myChkbox');
+      for (var i = 0; i < myCheckBoxes.length; i++){
+        if (myCheckBoxes[i].checked) {
+          alert(parseInt(myCheckBoxes[i].value)); //
 
-
+        }
+      }
+    }
 
   </script>
 
