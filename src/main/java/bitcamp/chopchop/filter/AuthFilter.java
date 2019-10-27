@@ -52,7 +52,6 @@ public class AuthFilter implements Filter {
         }
       }
     }
-      
     // 로그인 했다면 원래의 목적지로 보낸다.
     chain.doFilter(request, response);
   }

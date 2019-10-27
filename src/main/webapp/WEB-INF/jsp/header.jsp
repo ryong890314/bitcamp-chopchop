@@ -14,13 +14,12 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title -->
-<title>ChopChop - Food Blog HTML Template</title>
+<title>ChopChop - Food Blog</title>
 
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
 
 <!-- Stylesheet -->
-<link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/style_contact.css">
 <link rel="stylesheet" href="/css/style_footer.css">
 <link rel="stylesheet" href="/css/style-header.css">
