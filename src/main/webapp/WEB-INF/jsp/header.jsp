@@ -133,14 +133,14 @@
 								<!-- Login/Register -->
 								<div>
 									<c:if test="${empty loginUser}">
-										<a class='classy-btn sign-btn login-area'
-											href='/app/auth/form'>Sign in</a>
+										<a class='classy-btn login-area' href='/app/auth/signin'>Sign
+											in</a>
 									</c:if>
 									<c:if test="${not empty loginUser}">
 										<a class='nav-user'>${loginUser.nickname}</a>
-										<a class='classy-btn sign-btn login-area'
-											href='/app/auth/logout'>Sign out</a>
-									</c:if> 
+										<a class='classy-btn login-area' href='/app/auth/logout'>Sign
+											out</a>
+									</c:if>
 								</div>
 							</div>
 							<!-- Nav End -->
