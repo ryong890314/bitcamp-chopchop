@@ -18,7 +18,7 @@ public class AuthController {
   @Resource
   private MemberService memberService;
 
-  @GetMapping("form")
+  @GetMapping("signin")
   public void form() {
   }
   
@@ -42,9 +42,10 @@ public class AuthController {
   }
   
   @GetMapping("logout")
-  public String logout(HttpSession session) throws Exception {
+  public String logout(HttpSession session) 
+      throws Exception {
     session.invalidate();
-    return "redirect:form";
+    return "redirect:signin";
   }
 
 }

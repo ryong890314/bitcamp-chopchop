@@ -20,6 +20,7 @@ public class AuthFilter implements Filter {
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
     // web.xml에 설정된 초기화 파라미터 값을 가져온다.
+    System.out.println(filterConfig.getInitParameter("path"));
     path = filterConfig.getInitParameter("path").split(",");
   }
   
@@ -42,7 +43,7 @@ public class AuthFilter implements Filter {
         
         if (httpReq.getSession().getAttribute("loginUser") == null) {
           // 로그인 하지 않았다면 로그인 폼으로 보낸다.
-          httpResp.sendRedirect("/auth/form");
+          httpResp.sendRedirect("../auth/signin");
           return;
           
         } else {
@@ -51,10 +52,10 @@ public class AuthFilter implements Filter {
         }
       }
     }
-      
     // 로그인 했다면 원래의 목적지로 보낸다.
     chain.doFilter(request, response);
   }
+
 }
 
 
