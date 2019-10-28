@@ -52,7 +52,7 @@
 	<header class="header-area">
 		<!-- Logo Area -->
 		<div class="logo-area">
-			<a href="/app/member/list"><img src="/img/core-img/logo.png"
+			<a href="/app/member/list"><img src="/img/logo/choplogo.png"
 				alt=""></a>
 		</div>
 
