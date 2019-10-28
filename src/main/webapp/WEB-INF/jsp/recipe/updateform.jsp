@@ -132,7 +132,7 @@
 <img src='/upload/recipe/${cooking.filePath}'></div>
 <button class='btn btn-outline btn-block btn-sm' type='button' onclick='delCooking("+cookingCount+")'>순서 삭제"+cookingCount+"</button>
 </div>
-<div class='des'><textarea class='form-control' name='cookingContent' value='{{content}}'>조리방법입력해주세요</textarea></div>
+<div class='des'><textarea class='form-control' name='cookingContent' value='{{content}}'></textarea></div>
 </div>
 {{/each}}
 </script>
@@ -162,9 +162,7 @@
   loadData2();
   function loadData2() {
     $.get("/app/json/recipe/detail?no=" + ${recipe.recipeNo}, function(data) {
-      
-      $('#cookingDiv').html(template2(data.result));
-      console.log(data.result.cookings);
+        $('#cookingDiv').html(template2(data.result));
     });
   }
 </script>
