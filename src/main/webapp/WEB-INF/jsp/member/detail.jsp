@@ -42,49 +42,83 @@
 	   width: 100px;
 	   height: 100px;
 	 }
+	 
+	 .container{
+	   border: 1px solid red;
+	 }
   </style>
 
 </head>
 <body onload="formLoad();">
 <jsp:include page="../header.jsp"/>
-    
-<div id='content'>
-<h1>내정보</h1>
-<form action='update' method='post' name="form" enctype='multipart/form-data' onsubmit="return checkAll();">
-<%--   <img src='/upload/member/${member.photo}' id="image" class='photo1'><br>  --%>
-  <div class="profile_photo">
-    <input type="hidden" id="photo2" value="${member.photo}" />
-    <%-- JSTL이용
-         이미지 있는 경우에는 이미지 불러오자 
-    <c:if test="${not empty member.photo}">
-      <img id="imgThumb" class="imgThumb" src="/upload/member/${member.photo}">
-    </c:if>
-    <c:if test="${empty member.photo}">
-      <img id="imgThumb" class="imgThumb" src="/upload/member/info_photo.jpg">
-    </c:if>
-    --%>
-    <img id="imgThumb" class="imgThumb" src="/upload/member/info_photo.jpg">
-    <span class="mask"></span>
-  </div>
-  <input type='file' id="file" name='file'><br>
-    번호 <input type='text' id='memberNo' name='memberNo' value='${member.memberNo}' readonly><br>
-    이메일 <input type='text' id='email' name='email' value='${member.email}' readonly><br>
-    비밀번호 <input type="button" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal"/><br>
-    닉네임 <input type='text' name='nickname' value='${member.nickname}' maxlength="12" onblur="nickname_check();"><br>
-    <div id="nickname_chk" class="vali_check"></div>
-    핸드폰 번호 <input type='tel' name='tel' value='${member.tel}' maxlength="11" onblur="tel_check();"><br>
-    <div id="tel_chk" class="vali_check"></div>
-    우편번호 <input type='text' id="postNo" name='postNo' value='${member.postNo}'>
-  <input type="button" name="post_search" value="우편번호 찾기" onclick="myPostcode();"/><br>
-    기본주소 <input type='text' id="baseAddress" name='baseAddress' value='${member.baseAddress}'><br>
-    상세주소 <input type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'><br>
-  <input type="hidden" id="nickname1" value="${member.nickname}"/> <!-- 원래 닉네임값  -->
-  <button>변경</button>
-<%--   <a href="delete?no=${member.memberNo}">회원 탈퇴</a> --%>
-  <a href="delete?no=${member.memberNo}" onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
-</form>
+<div class="container"> 
+  <div class="row"> 
+    <div class="col-4">
+		    <div id='content'>
+				<h1>내정보</h1>
+				<form action='update' method='post' name="form" enctype='multipart/form-data' onsubmit="return checkAll();">
+				<%--   <img src='/upload/member/${member.photo}' id="image" class='photo1'><br>  --%>
+				  <div class="profile_photo">
+				    <input type="hidden" id="photo2" value="${member.photo}" />
+				    <%-- JSTL이용
+				         이미지 있는 경우에는 이미지 불러오자
+				    <c:if test="${not empty member.photo}">
+				      <img id="imgThumb" class="imgThumb" src="/upload/member/${member.photo}">
+				    </c:if>
+				    <c:if test="${empty member.photo}">
+				      <img id="imgThumb" class="imgThumb" src="/upload/member/info_photo.jpg">
+				    </c:if>
+				     --%>
+				    <img id="imgThumb" class="imgThumb" src="/upload/member/info_photo.jpg">
+				    <span class="mask"></span>
+				  </div>
+				  <input type='file' id="file" name='file'><br>
+	    </div>
+    </div> 
+    <div class="col-2"></div>
+    <div class="col-6">
+           번호 <input type='text' id='memberNo' name='memberNo' value='${member.memberNo}' readonly><br>
+		    이메일 <input type='text' id='email' name='email' value='${member.email}' readonly><br>
+		    비밀번호 <input type="button" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal"/><br>
+		    닉네임 <input type='text' name='nickname' value='${member.nickname}' maxlength="12" onblur="nickname_check();"><br>
+		    <div id="nickname_chk" class="vali_check"></div>
+		    핸드폰 번호 <input type='tel' name='tel' value='${member.tel}' maxlength="11" onblur="tel_check();"><br>
+		    <div id="tel_chk" class="vali_check"></div>
+		    우편번호 <input type='text' id="postNo" name='postNo' value='${member.postNo}'>
+		  <input type="button" name="post_search" value="우편번호 찾기" onclick="myPostcode();"/><br>
+		    기본주소 <input type='text' id="baseAddress" name='baseAddress' value='${member.baseAddress}'><br>
+		    상세주소 <input type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'><br>
+		  <input type="hidden" id="nickname1" value="${member.nickname}"/> <!-- 원래 닉네임값  -->
+		  <button>변경</button>
+		  <a href="delete?no=${member.memberNo}" onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
+		</form>
+		</div>
+    </div>
+</div> 
+
+<hr> 
+
+<div class="container"> 
+  <div class="row"> 
+    <div class="col-6">
+      <div class="card" style="width: 18rem;">
+        <img src="/upload/member/15.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+	        <h5 class="card-title">누렁이</h5>
+	        <p class="card-text">이름: 누렁이 <br>성별: 암컷<br>나이: 3세</p>
+	        <a href="#" class="btn btn-primary">구경가기</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6"></div>
+  </div> 
+		<div class="row">
+		<div class="col-3"></div>
+		<div class="col-3"></div>
+		<div class="col-3"></div>
+		<div class="col-3"></div>
+  </div> 
 </div>
-<hr>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -132,7 +166,7 @@
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
         if (xhr.status == 200) {
-          if (xhr.responseText == "1") { // 1이면 변경완료, 0이면 변경 못함, insert, update, delete xml에서 완료된 카운트 리턴
+          if (xhr.responseText == "1") { // 1이면 변경완료, 0이면 변경 못함
             alert("변경완료 되었습니다.");
             $('#exampleModal').modal("hide"); 
             document.getElementById("nowPassword").value = "";
@@ -148,8 +182,8 @@
       };
       xhr.open("POST", "uptPw", false);
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-      // 포스트는 파라미터 여기로 보내주는 듯?
-      xhr.send("password=" + document.getElementById("newPassword").value + "&memberNo=" + document.getElementById("memberNo").value);
+      xhr.send("password=" + document.getElementById("newPassword").value 
+    		  + "&memberNo=" + document.getElementById("memberNo").value);
 	  }
 	  
   }
@@ -183,8 +217,8 @@
 		      };
 		      xhr.open("POST", "chkPw", false);
 		      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		      // 포스트는 파라미터 여기로 보내주는 듯?
-		      xhr.send("password=" + document.getElementById("nowPassword").value + "&memberNo=" + document.getElementById("memberNo").value);
+		      xhr.send("password=" + document.getElementById("nowPassword").value 
+		    		  + "&memberNo=" + document.getElementById("memberNo").value);
 		  }
 	  } 
 	  return pCheckFlag;
@@ -230,6 +264,7 @@
 	  // hidden값을 이용해서 자바스크립트를 이용한 경우
 	  if (document.getElementById("photo2").value != null 
 			  || document.getElementById("photo2").value != ""){
+		  console.log(document.getElementById("photo2").value);
 		  document.getElementById("imgThumb").src = "/upload/member/" + document.getElementById("photo2").value;
 	  }
   }
