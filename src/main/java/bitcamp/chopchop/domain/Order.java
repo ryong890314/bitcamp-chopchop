@@ -14,13 +14,14 @@ public class Order {
   private String shipDate; // (주문 상태)
   private String invoice;
   private List<OrderProduct> orderProducts;
+  private List<Member> members;
 
   @Override
   public String toString() {
     return "Order [orderNo=" + orderNo + ", memberNo=" + memberNo + ", postNo=" + postNo
         + ", address=" + address + ", detailAddress=" + detailAddress + ", paymentDate="
         + paymentDate + ", paymentMethod=" + paymentMethod + ", shipDate=" + shipDate + ", invoice="
-        + invoice + ", orderProducts=" + orderProducts + "]";
+        + invoice + ", orderProducts=" + orderProducts + ", members=" + members + "]";
   }
 
   public int getOrderNo() {
@@ -101,6 +102,14 @@ public class Order {
 
   public void setOrderProducts(List<OrderProduct> orderProducts) {
     this.orderProducts = orderProducts;
+  }
+
+  public List<Member> getMembers() {
+    return members;
+  }
+
+  public void setMembers(List<Member> members) {
+    this.members = members;
   }
 
 

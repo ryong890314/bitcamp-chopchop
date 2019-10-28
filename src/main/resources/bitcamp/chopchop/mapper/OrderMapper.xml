@@ -35,6 +35,10 @@
       <result column="discount_price" property="discountPrice"/>
     </collection>
     
+    <collection property="members" ofType="Member">
+      
+    </collection>
+    
   </resultMap>
   
   <select id="findAll" resultMap="findByMember">
