@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.chopchop.dao.MemberDao">
+
+<resultMap type="Member" id="MemberMap">
+  <id column="member_id" property="memberNo"/>
+  <result column="post_no" property="postNo"/>
+  <result column="base_address" property="baseAddress"/>
+  <result column="detail_address" property="detailAddress"/>
+</resultMap>
+
+ <sql id="basicColumn">
+    select 
+      member_id,
+      nickname,
+      email,
+      tel
+  </sql>
+
+  <insert id="insert" parameterType="Member">
+    insert into member
+    (
+      email, 
+      password, 
+      nickname, 
+      tel
+    )
+    value 
+    (
+      #{email}, 
+      password(#{password}), 
+      #{nickname}, 
+      #{tel}
+    )
+  </insert>
+
+  <select id="findAll" resultMap="MemberMap">
+    select * from member
+  </select>
+
+  <select id="dupEmailCheck" parameterType="String" resultType="int">
+    select count(*)
+    from member 
+    where email = #{email}
+  </select>
+  
+  <select id="dupNicknameCheck" parameterType="String" resultType="int">
+    select count(*)
+    from member 
+    where nickname = #{nickname}
+  </select>
+
+  <select id="findByEmailPassword" parameterType="map"
+    resultMap="MemberMap">
+    <include refid="basicColumn" />
+    from member
+    where email = #{email} and password = password(#{password})
+  </select>
+  
+</mapper>

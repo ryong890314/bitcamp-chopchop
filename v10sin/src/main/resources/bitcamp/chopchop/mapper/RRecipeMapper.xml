@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.chopchop.dao.RRecipeDao">
+
+  <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+   <resultMap type="RRecipe" id="RRecipeMap">
+    <id column="recipe_id"         property="recipeNo"/>
+    <result column="member_id"         property="memberNo"/>
+    <result column="title"   property="title"/>
+    <result column="created_date" property="createdDate"/>
+    <result column="view_count"   property="viewCount"/>
+    <result column="content"   property="content"/>
+    <result column="thumbnail"   property="thumbnail"/>
+    <result column="category"   property="category"/>
+    <result column="tag"   property="tag"/>
+    <result column="other_info"   property="otherInfo"/>
+    <result column="scrap"   property="scrap"/>
+    </resultMap>
+    
+     <resultMap type="RRecipe" id="RecipeWithComment">
+    <id column="recipe_id"         property="recipeNo"/>
+    <result column="member_id"         property="memberNo"/>
+    <result column="title"   property="title"/>
+    <result column="created_date" property="createdDate"/>
+    <result column="view_count"   property="viewCount"/>
+    <result column="content"   property="content"/>
+    <result column="thumbnail"   property="thumbnail"/>
+    <result column="category"   property="category"/>
+    <result column="tag"   property="tag"/>
+    <result column="other_info"   property="otherInfo"/>
+    <result column="scrap"   property="scrap"/>
+     <collection property="comments" ofType="RecipeComment">
+     <id column="comment_id"         property="commentNo"/>
+    <result column="recipe_id"         property="recipeNo"/>
+    <result column="member_id"         property="memberNo"/>
+    <result column="r"   property="content" />
+    <result column="created_date" property="createdDate"/>
+    <result column="nickname"   property="nickname"/>
+    </collection>
+    
+    
+  </resultMap>
+
+  <sql id="where1">
+    where recipe_id=#{recipeNo}
+  </sql>
+  
+  
+  
+  
+  <select id="findAll" resultMap="RRecipeMap">
+  
+  select 
+    recipe_id,
+    title,
+    thumbnail
+  from recipe 
+  order by recipe_id
+  </select>
+  
+  
+  
+  
+  
+  <insert id="insert" parameterType="RRecipe"
+  useGeneratedKeys="true"
+          keyColumn="recipe_id"
+          keyProperty="recipeNo">
+    insert into recipe(title, content, category, other_info, thumbnail, tag, member_id, created_date, view_count)
+    values(#{title}, #{content}, #{category}, #{otherInfo}, #{thumbnail}, #{tag}, #{memberNo},now(), #{viewCount}) 
+  </insert>
+  
+  
+  
+  <select id="findBy" parameterType="int" resultMap="RRecipeMap">
+    select * 
+    from recipe
+    where recipe_id=#{value}
+  </select>
+  
+  
+<select id="findWithCommentBy" 
+  parameterType="int" 
+  resultMap="RecipeWithComment">
+  select
+      r.recipe_id,
+      r.member_id,
+      r.title,
+      r.content,
+      r.view_count,
+      r.thumbnail,
+      r.category,
+      r.tag,
+      r.other_info,
+      r.scrap,
+      rc.comment_id,
+      rc.content r,
+      rc.created_date
+    from recipe as r
+       left outer join recipe_comment as rc on r.recipe_id=rc.recipe_id
+    where 
+      r.recipe_id=#{value}
+  </select>
+  
+  
+  
+  
+  <update id="increaseViewCount" parameterType="int">
+    update recipe set
+      view_count = view_count + 1
+    where recipe_id=#{value}
+  </update>
+  
+  <update id="update" parameterType="RRecipe">
+    update recipe
+    <set>
+      <if test="title != null">title=#{title},</if>
+      <if test="content != null">content=#{content},</if> 
+      <if test="thumbnail != null">thumbnail=#{thumbnail}, </if>
+      <if test="category != null">category=#{category},</if>
+      <if test="tag != null">tag=#{tag},</if>
+      <if test="otherInfo != null">other_info=#{otherInfo},</if>
+      <if test="scrap > 0">scrap=#{scrap}</if>
+    </set>
+    where recipe_id=#{recipeNo}
+  </update>
+  
+   <delete id="delete" parameterType="int">
+    delete from recipe
+    where recipe_id=#{no}
+  </delete>
+  
+  
+</mapper>
