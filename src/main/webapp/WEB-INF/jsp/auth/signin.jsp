@@ -8,13 +8,13 @@
 	href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
 	integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
 	crossorigin='anonymous'>
-<link rel='stylesheet' href='/css/signin.css'>
+<link rel='stylesheet' href='/css/member/signin.css'>
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
 
 	<div class="bucket">
-		<div class="buffer">
+		<div class="buffer">social
 			<div class="header">
 				<div class="logo-area"></div>
 			</div>
@@ -30,7 +30,10 @@
 				<input class="btn" type="submit" value="로그인" />
 			</form>
 			<input class="btnn" type="button"
-				onclick="window.location.href = '/app/member/form';" value="회원가입" />
+				onclick="window.location.href = '/app/member/form';" value="회원가입" /> 
+				<a href="/app/auth/findPassword" 
+				onclick="window.open(this.href, '_blank', 'width=600px,height=600px,toolbars=no,scrollbars=no'); return false;">
+				Forgot your password?</a>
 		</div>
 	</div>
 

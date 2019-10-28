@@ -20,9 +20,7 @@
 <link rel="icon" href="/img/core-img/favicon.ico">
 
 <!-- Stylesheet -->
-<link rel="stylesheet" href="/css/style_contact.css">
-<link rel="stylesheet" href="/css/style_footer.css">
-<link rel="stylesheet" href="/css/style-header.css">
+<link rel="stylesheet" href="/css/member/style-header.css">
 
 </head>
 
@@ -133,7 +131,7 @@
 											class="fa fa-shopping-cart"></i>
 										</a>
 										<a href="" class="nav-link nav-item"> <i
-											class="fa fa-pencil-square-o" aria-hidden="true"></i>
+											class="fa fa-pencil-square-o"></i>
 										</a>
 
 									</c:if>

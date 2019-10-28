@@ -74,6 +74,11 @@ public class ProductController {
   public void updateform(Model model, int no) throws Exception {
     model.addAttribute("product", productService.get(no));
   }
+  
+  @GetMapping("addorder")
+  public void addOrder(int no, Model model) throws Exception {
+    model.addAttribute("product2", productService.get(no));
+  }
 }
 
 
