@@ -128,7 +128,7 @@
 		WHERE member_id = #{memberNo}
   </update>
   
-  <!-- find password -->
+  <!-- find password - signin -->
    <update  id="findPw" parameterType="member">
    select password from member where email= #{email}
   </update>
