@@ -69,10 +69,6 @@
 </table>
 </div>
 </div>
-<c:forEach items="${order.members}" var="member">
-  ${member.nickname}<br>
-  ${member.email}<br>
-</c:forEach>
 <jsp:include page="../footer.jsp"/>
 
 </body></html>

@@ -55,8 +55,6 @@ dependencies {
     compile group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
     
     
-    
-    
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'
 }

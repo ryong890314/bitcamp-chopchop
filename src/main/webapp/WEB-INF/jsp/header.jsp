@@ -14,7 +14,7 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title -->
-<title>ChopChop - Food Blog HTML Template</title>
+<title>ChopChop - Food Blog</title>
 
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
@@ -27,6 +27,10 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+=======
+	<!-- Preloader -->
+>>>>>>> 9037f122cb8c6b8e86e3abd75342b7e29179caca
 	<div class="preloader d-flex align-items-center justify-content-center">
 		<div class="preloader-content">
 			<h3>Cooking in progress..</h3>
@@ -105,12 +109,10 @@
 						<div class="classy-navbar-toggler">
 							<span class="navbarToggler"><span></span><span></span><span></span></span>
 						</div>
-
 						<!-- Menu -->
 						<div class="classy-menu">
 							<!-- Nav Start -->
 							<div class="classynav">
-
 								<ul>
 									<li><a href="/app/member/list">Home</a></li>
 									<li><a href="#">ChopRecipe</a>
@@ -127,22 +129,30 @@
 									<li><a href="">ChopRank</a></li>
 								</ul>
 
-
 								<!-- Login/Register -->
 								<div>
+									<c:if test="${not empty loginUser}">
+										<a href="" class="nav-link nav-item"> <i
+											class="fa fa-shopping-cart"></i>
+										</a>
+										<a href="" class="nav-link nav-item"> <i
+											class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										</a>
+
+									</c:if>
 									<c:if test="${empty loginUser}">
-										<a class='classy-btn sign-btn login-area'
-											href='/app/auth/form'>Sign in</a>
+										<a class='classy-btn login-area' href='/app/auth/signin'>Sign
+											in</a>
 									</c:if>
 									<c:if test="${not empty loginUser}">
+										<a>Hello!</a>
 										<a class='nav-user'>${loginUser.nickname}</a>
-										<a class='classy-btn sign-btn login-area'
-											href='/app/auth/logout'>Sign out</a>
+										<a class='classy-btn login-area' href='/app/auth/logout'>Sign
+											out</a>
 									</c:if>
 								</div>
 							</div>
 							<!-- Nav End -->
-
 						</div>
 					</nav>
 				</div>

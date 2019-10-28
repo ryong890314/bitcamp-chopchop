@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
 import bitcamp.chopchop.service.OrderService;
@@ -23,9 +24,14 @@ public class OrderController {
   }
   
   @GetMapping("list")
-  public void list(Model model, HttpSession httpSession) throws Exception {
+  public void list(Model model) throws Exception {
     model.addAttribute("orders", orderService.list());
-    httpSession.getAttribute("member");
+  }
+
+  @GetMapping("searchbymember")
+  public void searchByMember(Model model, HttpSession httpSession) throws Exception {
+    Member member = (Member) httpSession.getAttribute("member");
+    model.addAttribute("orders", orderService.searchByMember(member.getMemberNo()));
   }
   
   @PostMapping("add")

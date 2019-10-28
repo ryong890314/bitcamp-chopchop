@@ -9,42 +9,42 @@ import bitcamp.chopchop.service.OrderService;
 
 @Service
 public class DefaultOrderService implements OrderService {
-  
+
   @Resource
-  OrderDao storeOrderDao;
-  
+  OrderDao orderDao;
+
   @Override
   public List<Order> list() throws Exception {
-    return storeOrderDao.findAll();
+    return orderDao.findAll();
   }
 
   @Override
   public List<Order> searchByMember(int no) throws Exception {
-    return storeOrderDao.findByMember(no);
+    return orderDao.findByMember(no);
   }
 
   @Override
   public Order get(int no) throws Exception {
-    Order storeOrder = storeOrderDao.findBy(no);
-    if (storeOrder == null) {
+    Order order = orderDao.findBy(no);
+    if (order == null) {
       throw new Exception("해당 주문 데이터가 없습니다.");
     }
-    return storeOrder;
+    return order;
   }
 
   @Override
-  public void insert(Order storeOrder) throws Exception {
-    storeOrderDao.insert(storeOrder);
+  public void insert(Order order) throws Exception {
+    orderDao.insert(order);
   }
 
   @Override
-  public void update(Order storeOrder) throws Exception {
-    storeOrderDao.update(storeOrder);
+  public void update(Order order) throws Exception {
+    orderDao.update(order);
   }
 
   @Override
   public void delete(int no) throws Exception {
-    storeOrderDao.delete(no);
+    orderDao.delete(no);
   }
 
 }
