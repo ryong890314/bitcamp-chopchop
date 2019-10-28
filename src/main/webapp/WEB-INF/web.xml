@@ -10,6 +10,7 @@
   </description>
 
   <display-name>chopchop</display-name>
+  <!-- 
   <filter>
     <filter-name>AuthFilter</filter-name>
     <filter-class>bitcamp.chopchop.filter.AuthFilter</filter-class>
@@ -22,7 +23,7 @@
     <filter-name>AuthFilter</filter-name>
     <url-pattern>/app/*</url-pattern>
   </filter-mapping>
-
+ -->
 </web-app>
 
 

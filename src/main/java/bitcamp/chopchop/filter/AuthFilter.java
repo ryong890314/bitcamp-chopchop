@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 // => 로그인 사용자만 등록, 변경, 삭제를 수행할 수 있게 한다.
 //
 public class AuthFilter implements Filter {
-
   String[] path;
   
   @Override
@@ -54,9 +53,7 @@ public class AuthFilter implements Filter {
     // 로그인 했다면 원래의 목적지로 보낸다.
     chain.doFilter(request, response);
   }
-
 }
-
 
 
 
