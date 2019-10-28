@@ -6,6 +6,9 @@
 
 <head>
   <title>장바구니</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
   <link rel='stylesheet' href='/css/product/style.css'>
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -121,15 +124,25 @@
     }
     </script>
 
+
 <script>
-    // 선택삭제
     function check_Del() {
-      var myCheckBoxes = document.getElementsByClassName('myChkbox');
-      for (var i = 0; i < myCheckBoxes.length; i++) {
-        if (myCheckBoxes[i].checked) {
-          location.href = "delete?no=" + parseInt(myCheckBoxes[i].value);
-          //alert(parseInt(myCheckBoxes[i].value) + '삭제'); // 없으면 반복문 안돌아감...
-        }
+      var chkbox = "";
+      $("input[name='chkbox']:checked").each(function () {
+        chkbox = chkbox + $(this).val() + ",";
+      });
+      chkbox = chkbox.substring(0, chkbox.lastIndexOf(",")); //맨끝 콤마 지우기
+  
+      if (chkbox == '') {
+        alert("삭제할 대상을 선택하세요.");
+        return false;
+      }
+      console.log("### chkbox => {}" + chkbox);
+  
+      if (confirm("정보를 삭제 하시겠습니까?")) {
+  
+        //삭제처리 후 다시 불러올 리스트 url      
+        location.href = "chkdelete?chkbox=" + chkbox;
       }
     }
   </script>

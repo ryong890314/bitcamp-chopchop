@@ -1,15 +1,21 @@
 package bitcamp.chopchop.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.service.CartService;
@@ -45,16 +51,38 @@ public class CartController {
     return "redirect:search?keyword=1";
   }
 
-  //선택삭제
-  @GetMapping("chkDelete")
-  public String chkDelete(List<Integer> chkArr, HttpServletRequest request, Cart cart) throws Exception {
-
-    for (int i = 0; i < chkArr.size(); ++i) {
-      int no = chkArr.get(i);
-      cartService.delete(no);
-    }
-    return "redirect:search?keyword=1";
-  }
+// 카트 삭제
+// @ResponseBody
+// @RequestMapping(value = "chkdelete", method = RequestMethod.GET)
+@GetMapping("chkdelete")
+public String chkdelete(HttpSession session,
+     @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
+ 
+      String[] arrIdx = paramMap.get("chkbox").toString().split(",");
+      for (int i = 0; i < arrIdx.length; i++) {
+          cartService.delete(Integer.parseInt(arrIdx[i]));
+      }
+      
+      return "redirect:search?keyword=1";
+//  MemberVO member = (MemberVO)session.getAttribute("member");
+//  String userId = member.getUserId();
+ 
+//  int result = 0;
+//  int cartNum = 0;
+ 
+ 
+//  if(member != null) {
+//   cart.setUserId(userId);
+  
+//   for(String i : chArr) {   
+//    cartNum = Integer.parseInt(i);
+//    cart.setCartNum(cartNum);
+//    cartService.deleteCart(cart);
+//   }   
+//   result = 1;
+//  }  
+//  return result;  
+}
 
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
