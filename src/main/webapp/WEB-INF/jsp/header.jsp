@@ -106,12 +106,10 @@
 						<div class="classy-navbar-toggler">
 							<span class="navbarToggler"><span></span><span></span><span></span></span>
 						</div>
-
 						<!-- Menu -->
 						<div class="classy-menu">
 							<!-- Nav Start -->
 							<div class="classynav">
-
 								<ul>
 									<li><a href="/app/member/list">Home</a></li>
 									<li><a href="#">ChopRecipe</a>
@@ -128,15 +126,23 @@
 									<li><a href="">ChopRank</a></li>
 								</ul>
 
-
 								<!-- Login/Register -->
 								<div>
+									<c:if test="${not empty loginUser}">
+										<a href="" class="nav-link nav-item"> <i
+											class="fa fa-shopping-cart"></i>
+										</a>
+										<a href="" class="nav-link nav-item"> <i
+											class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										</a>
+
+									</c:if>
 									<c:if test="${empty loginUser}">
 										<a class='classy-btn login-area' href='/app/auth/signin'>Sign
 											in</a>
 									</c:if>
 									<c:if test="${not empty loginUser}">
-									<a>Hello! </a>
+										<a>Hello!</a>
 										<a class='nav-user'>${loginUser.nickname}</a>
 										<a class='classy-btn login-area' href='/app/auth/logout'>Sign
 											out</a>
@@ -144,7 +150,6 @@
 								</div>
 							</div>
 							<!-- Nav End -->
-
 						</div>
 					</nav>
 				</div>
