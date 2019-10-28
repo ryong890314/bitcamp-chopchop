@@ -97,7 +97,7 @@
                   <div style="position: absolute; right: 0px; bottom: 0px;">
                   <form action="../order/form" method="post"> 
                     <a href='#' class="btn bueno-btn">장바구니</a>
-                    <a href='addorder' class="btn bueno-btn">구매하기</a>
+                    <a href='../order/addorder' class="btn bueno-btn">구매하기</a>
                   </form>
                   </div>
                       
