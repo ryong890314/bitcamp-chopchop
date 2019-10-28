@@ -4,8 +4,8 @@
 <html>
 <head>
 <title>CHOPCHOP 회원가입</title>
-<link rel="stylesheet" href="/css/style_join.css">
-<link rel="stylesheet" href="/css/style_footer.css">
+<link rel="stylesheet" href="/css/member/style_join.css">
+<link rel="stylesheet" href="/css/member/style_footer.css">
 <style type="text/css">
   .vali_check {
     color : red;
