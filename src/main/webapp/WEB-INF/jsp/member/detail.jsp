@@ -42,42 +42,33 @@
 	   width: 100px;
 	   height: 100px;
 	 }
+   
+   .container {
+     margin-bottom: 10px;
+   }
 	 
-	 .container{
-	   border: 1px solid red;
-	 }
   </style>
 
 </head>
 <body onload="formLoad();">
 <jsp:include page="../header.jsp"/>
 <div class="container"> 
+<h1>내정보</h1>
+<form action='update' method='post' name="form" enctype='multipart/form-data' onsubmit="return checkAll();">
   <div class="row"> 
     <div class="col-4">
 		    <div id='content'>
-				<h1>내정보</h1>
-				<form action='update' method='post' name="form" enctype='multipart/form-data' onsubmit="return checkAll();">
-				<%--   <img src='/upload/member/${member.photo}' id="image" class='photo1'><br>  --%>
 				  <div class="profile_photo">
 				    <input type="hidden" id="photo2" value="${member.photo}" />
-				    <%-- JSTL이용
-				         이미지 있는 경우에는 이미지 불러오자
-				    <c:if test="${not empty member.photo}">
-				      <img id="imgThumb" class="imgThumb" src="/upload/member/${member.photo}">
-				    </c:if>
-				    <c:if test="${empty member.photo}">
-				      <img id="imgThumb" class="imgThumb" src="/upload/member/info_photo.jpg">
-				    </c:if>
-				     --%>
-				    <img id="imgThumb" class="imgThumb" src="/upload/member/info_photo.jpg">
+            <img id="imgThumb" class="imgThumb">
 				    <span class="mask"></span>
 				  </div>
 				  <input type='file' id="file" name='file'><br>
 	    </div>
     </div> 
-    <div class="col-2"></div>
-    <div class="col-6">
-           번호 <input type='text' id='memberNo' name='memberNo' value='${member.memberNo}' readonly><br>
+    <div class="col-1"></div>
+    <div class="col-7">
+        번호 <input type='text' id='memberNo' name='memberNo' value='${member.memberNo}' readonly><br>
 		    이메일 <input type='text' id='email' name='email' value='${member.email}' readonly><br>
 		    비밀번호 <input type="button" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal"/><br>
 		    닉네임 <input type='text' name='nickname' value='${member.nickname}' maxlength="12" onblur="nickname_check();"><br>
@@ -91,18 +82,19 @@
 		  <input type="hidden" id="nickname1" value="${member.nickname}"/> <!-- 원래 닉네임값  -->
 		  <button>변경</button>
 		  <a href="delete?no=${member.memberNo}" onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
-		</form>
 		</div>
-    </div>
+  </div>
+</form>
 </div> 
 
 <hr> 
 
 <div class="container"> 
+      <h1>My Pet 정보</h1>
   <div class="row"> 
-    <div class="col-6">
+    <div class="col-4">
       <div class="card" style="width: 18rem;">
-        <img src="/upload/member/15.jpg" class="card-img-top" alt="...">
+        <img src="/upload/member/my_pet1.jpg" class="card-img-top" alt="...">
         <div class="card-body">
 	        <h5 class="card-title">누렁이</h5>
 	        <p class="card-text">이름: 누렁이 <br>성별: 암컷<br>나이: 3세</p>
@@ -110,7 +102,28 @@
         </div>
       </div>
     </div>
-    <div class="col-6"></div>
+    <div class="col-4">
+      <h1></h1>
+      <div class="card" style="width: 18rem;">
+        <img src="/upload/member/my_pet2.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">찰스</h5>
+          <p class="card-text">이름: 찰스 <br>성별: 암컷<br>나이: 2세</p>
+          <a href="#" class="btn btn-primary">구경가기</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <h1></h1>
+      <div class="card" style="width: 18rem;">
+        <img src="/upload/member/my_pet3.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">햄식이</h5>
+          <p class="card-text">이름: 햄식이 <br>성별: 암컷<br>나이: 1세</p>
+          <a href="#" class="btn btn-primary">구경가기</a>
+        </div>
+      </div>
+    </div>
   </div> 
 		<div class="row">
 		<div class="col-3"></div>
@@ -133,7 +146,7 @@
       <div class="modal-body">
             현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword" onblur="nowpw_check();"/>
             <div id="password1_chk" class="vali_check"></div>
-            새 비밀번호 <input type="password" id="newPassword"  name="newPassword" onblur="newpw_check();"/><br>
+            새 비밀번호 <input type="password" id="newPassword"  name="newPassword" onblur="newpw_check();"/>
             <div id="password2_chk" class="vali_check"></div>
             새 비밀번호 확인<input type="password" id="newPassword2"  name="newPassword2" onblur="newpw2_check();"/>
             <div id="password3_chk" class="vali_check"></div>
@@ -262,12 +275,14 @@
 
   function formLoad() {
 	  // hidden값을 이용해서 자바스크립트를 이용한 경우
-	  if (document.getElementById("photo2").value != null 
-			  || document.getElementById("photo2").value != ""){
-		  console.log(document.getElementById("photo2").value);
-		  document.getElementById("imgThumb").src = "/upload/member/" + document.getElementById("photo2").value;
+	  if (document.getElementById("photo2").value == null 
+			  || document.getElementById("photo2").value == ""){
+		  document.getElementById("imgThumb").src = "/upload/member/info_photo.jpg";
+	  } else {
+	    document.getElementById("imgThumb").src = "/upload/member/" + document.getElementById("photo2").value;
 	  }
   }
+  
 	function checkAll() {
 		var checkCnt = 0;
 		if (nickname_check()) {
