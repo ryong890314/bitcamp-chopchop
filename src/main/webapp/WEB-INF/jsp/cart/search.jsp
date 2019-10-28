@@ -12,9 +12,6 @@
   <link rel='stylesheet' href='/css/product/style.css'>
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
-
-
 </head>
 
 <body>

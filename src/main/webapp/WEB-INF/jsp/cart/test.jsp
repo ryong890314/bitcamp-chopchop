@@ -21,6 +21,8 @@
       <tr>
         <th>선택</th>
         <th>장바구니ID</th>
+        <th>상품명</th>
+        <th>가격</th>
       </tr>
       <c:forEach items="${carts}" var="cart">
         <tr>
@@ -30,16 +32,46 @@
             </form>
           </td>
           <td>${cart.cartNo}</td>
+          <c:forEach items="${cart.products}" var="product">
+            <td>${product.title}</td>
+          </c:forEach>
+          <c:forEach items="${cart.products}" var="product">
+            <td><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</td>
+          </c:forEach>
         </tr>
       </c:forEach>
     </table>
 
+    <hr class="my-4">
+
     <input type='button' onclick='check_all();' value='모두 선택' />
     <input type='button' onclick='uncheck_all();' value='모두 해제' />
     <input type='button' onclick='check_Del();' value='선택 삭제' />
+    <input type='button' onclick='check_price();' value='금액 확인'' />
+
+    <hr class="my-4">
+    
+    <div style="float: right">
+      <a1>상품금액 </a1><a>price</a>
+      <a1>원 + 배송비 </a1><a>0</a>
+      <a1>원 = 합계금액 </a1><a style="color:red">0</a>
+      <a1>원</a1>
+    </div>
 
 </div>
 
+<script>
+    var myCheckBoxes = document.getElementsByClassName('myChkbox');
+
+    function check_price() {
+    for (i = 0; i < myCheckBoxes.length; i++) {
+      if (myCheckBoxes[i].checked) {
+        alert(parseInt(myCheckBoxes[i].value));
+          }
+          
+    }
+  }
+  </script>
 
 <script>
   var myCheckBoxes = document.getElementsByClassName('myChkbox');
