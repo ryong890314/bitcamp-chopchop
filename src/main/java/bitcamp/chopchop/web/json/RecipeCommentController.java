@@ -23,25 +23,33 @@ public class RecipeCommentController {
   @PostMapping("add")
   public JsonResult add(RecipeComment recipeComment) 
       throws Exception {
+    System.out.println("json add1");
     try {
       recipeCommentService.insert(recipeComment);
+      System.out.println("json add2");
       return new JsonResult().setState(JsonResult.SUCCESS);
       
+      
     } catch (Exception e) {
+      System.out.println("json add3");
       return new JsonResult()
           .setState(JsonResult.FAILURE)
           .setMessage(e.getMessage());
     }
+    
   }
   
   @GetMapping("delete")
   public JsonResult delete(int no) 
       throws Exception {
+    System.out.println("json delete1");
     try {
       recipeCommentService.delete(no);
+      System.out.println("json delete2");
       return new JsonResult().setState(JsonResult.SUCCESS);
       
     } catch (Exception e) {
+      System.out.println("json delete3");
       return new JsonResult()
           .setState(JsonResult.FAILURE)
           .setMessage(e.getMessage());
@@ -51,13 +59,16 @@ public class RecipeCommentController {
   @GetMapping("detail")
   public JsonResult detail(int no) 
       throws Exception {
+    System.out.println("json detail1");
     try {
       RecipeComment recipeComment = recipeCommentService.get(no);
+      System.out.println("json detail2");
       return new JsonResult()
           .setState(JsonResult.SUCCESS)
           .setResult(recipeComment);
       
     } catch (Exception e) {
+      System.out.println("json detail3");
       return new JsonResult()
           .setState(JsonResult.FAILURE)
           .setMessage(e.getMessage());
@@ -67,13 +78,16 @@ public class RecipeCommentController {
   @GetMapping("list")
   public JsonResult list() 
       throws Exception {
+    System.out.println("json list1");
     try {
       List<RecipeComment> recipeComments = recipeCommentService.list();
+      System.out.println("json list2");
       return new JsonResult()
           .setState(JsonResult.SUCCESS)
           .setResult(recipeComments);
       
     } catch (Exception e) {
+      System.out.println("json list3");
       return new JsonResult()
           .setState(JsonResult.FAILURE)
           .setMessage(e.getMessage());
@@ -83,11 +97,15 @@ public class RecipeCommentController {
   @PostMapping("update")
   public JsonResult update(RecipeComment recipeComment) 
       throws Exception {
+    System.out.println("json update1");
     try {
       recipeCommentService.update(recipeComment);
+      System.out.println("json update2");
       return new JsonResult().setState(JsonResult.SUCCESS);
       
+      
     } catch (Exception e) {
+      System.out.println("json update3");
       return new JsonResult()
           .setState(JsonResult.FAILURE)
           .setMessage(e.getMessage());
