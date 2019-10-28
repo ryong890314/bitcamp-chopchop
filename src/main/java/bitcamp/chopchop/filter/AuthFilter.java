@@ -34,14 +34,15 @@ public class AuthFilter implements Filter {
     HttpServletResponse httpResp = (HttpServletResponse) response;
     
     String servletPath = httpReq.getServletPath();
+    String pathInfo = httpReq.getPathInfo();
     
     for (String p : path) {
       // web.xml에 지정된 경로라면, 로그인 여부를 검사한다.
-      if (servletPath.endsWith(p)) {
+      if (pathInfo.endsWith(p)) {
         
         if (httpReq.getSession().getAttribute("loginUser") == null) {
           // 로그인 하지 않았다면 로그인 폼으로 보낸다.
-          httpResp.sendRedirect("/auth/login");
+          httpResp.sendRedirect("/auth/form");
           return;
           
         } else {
