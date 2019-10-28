@@ -26,7 +26,6 @@ public class Recipe {
 
 
   public int getRecipeNo() {
-    System.out.println("getRecipeNo()호출~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     return recipeNo;
   }
   public void setRecipeNo(int recipeNo) {

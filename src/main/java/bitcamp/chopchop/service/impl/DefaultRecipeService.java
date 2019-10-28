@@ -42,11 +42,6 @@ public class DefaultRecipeService implements RecipeService {
   
   @Override
   public Recipe get(int no) throws Exception {
-    System.out.println("==========================================");
-    System.out.println("서비스 호출됨요");
-    System.out.println("넘버는???????????????????" + no);
-    System.out.println("==========================================");
-    
     Recipe recipe = recipeDao.findTotalBy(no);
     if (recipe == null) {
       throw new Exception("데이터가 없습니다!");
@@ -88,6 +83,9 @@ public class DefaultRecipeService implements RecipeService {
     ingredientDao.delete(recipe.getRecipeNo());
     recipeDao.update(recipe);
     for (Ingredient i : recipe.getIngredients()) {
+      System.out.println("==========================");
+      System.out.println(recipe.getRecipeNo());
+      System.out.println("==========================");
       i.setRecipeNo(recipe.getRecipeNo());
       ingredientDao.insert(i);
     }

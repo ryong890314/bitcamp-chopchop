@@ -30,7 +30,8 @@
                       <h4 class="post-title">${recipe.title}</h4>
                       <div class="post-meta mb-50">
                           <a href="#" class="post-date">${recipe.createdDate}</a>
-                          <a href="#" class="post-author">By ${recipe.memberNo}</a><br>
+                          <a href="#" class="post-author">By ${member.nickname}</a><br>
+                          <a href="#" class="post-author">By ${recipe.viewCount}</a><br>
                       </div>
                       <c:forEach items="${recipe.cookings}" var="cooking">
                       <h5 class="mb-30">Step ${cooking.processNo} :</h5>
@@ -79,7 +80,6 @@
 </section>
 
 
-태그:${recipe.tag}<br>
 <a href="updateform?no=${recipe.recipeNo}">수정하기</a>
 
 <form action="like" method='post' enctype='multipart/form-data'>

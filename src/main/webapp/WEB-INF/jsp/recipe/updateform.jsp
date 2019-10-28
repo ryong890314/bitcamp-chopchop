@@ -19,7 +19,7 @@
                   <div class="block-gird-item">
                       <div>
                           <form name="frmRecipe" action='update' method='post' enctype='multipart/form-data'>
-                           <input type='hidden' name='no' value='${recipe.recipeNo}' readonly><br>
+                           <input type='hidden' name='recipeNo' value='${recipe.recipeNo}' readonly><br>
                               <div class="toobar"><strong class="title pull-left">레시피 수정 </strong><button class="btn btn-default pull-right">등록</button></div>
                               <div class="block-write">
                                   <div class="block-content">

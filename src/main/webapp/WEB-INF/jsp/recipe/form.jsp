@@ -23,8 +23,8 @@
                               <div class="block-write">
                                   <div class="block-content">
                                       <div class="row form-group">
-                                          <div class="col-xs-2"><label class="label">회원번호</label></div>
-                                          <div class="col-xs-10"><input type="text" name="memberNo" class="form-control" placeholder="회원번호" value=""></div>
+                                          <div class="col-xs-2"><label class="label">작성자</label></div>
+                                          <div class="col-xs-10"><input type="text" name="nickname" class="form-control" placeholder="${loginUser.nickname}" value=""></div>
                                       </div>
                                       <div class="row form-group">
                                           <div class="col-xs-2"><label class="label">제목</label></div>
