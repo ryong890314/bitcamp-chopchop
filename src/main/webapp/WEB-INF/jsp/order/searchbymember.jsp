@@ -34,41 +34,30 @@
 
 </head>
 <body>
-  
-
-<jsp:include page="../header.jsp"/>
-
-  
-<div id="orderBody">
-  <div class="d-flex align-content-start flex-wrap">
+  <jsp:include page="../header.jsp"/>
+  <div id="orderBody">
+    <div class="d-flex align-content-start flex-wrap">
       <table class='table table-hover'>
-      <tr>
-        <th>문의번호</th>
-        <th>회원번호</th>
-        <th>우편번호</th>
-        <th>기본주소</th>
-        <th>상세주소</th>
-        <th>결제일</th>
-        <th>결제수단</th>
-        <th>주문상태</th>
-        <th>운송장</th>
-      </tr>
-<c:forEach items="${orders}" var="order">
-<tr>
-  <td>${order.orderNo}</td>
-  <td>${order.memberNo}</td>
-  <td>${order.postNo}</td>
-  <td>${order.address}</td>
-  <td>${order.detailAddress}</td>
-  <td>${order.paymentDate}</td>
-  <td>${order.paymentMethod}</td>
-  <td>${order.shipDate}</td>
-  <td>${order.invoice}</td>
-</tr>
-</c:forEach>
-</table>
-</div>
-</div>
-<jsp:include page="../footer.jsp"/>
-
+        <tr>
+          <th>주문번호</th>
+          <th>결제일</th>
+          <th>결제수단</th>
+          <th>주문상태</th>
+          <th>운송장</th>
+        </tr>
+        <c:forEach items="${orders}" var="order">
+          <c:if test="${loginUser.memberNo eq order.memberNo}">
+          <tr>
+            <td>${order.orderNo}</td>
+            <td>${order.paymentDate}</td>
+            <td>${order.paymentMethod}</td>
+            <td>${order.shipDate}</td>
+            <td>${order.invoice}</td>
+          </tr>
+          </c:if>
+        </c:forEach>
+      </table>
+    </div>
+  </div>
+  <jsp:include page="../footer.jsp"/>
 </body></html>

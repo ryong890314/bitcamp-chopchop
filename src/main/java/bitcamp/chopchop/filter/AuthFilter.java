@@ -36,7 +36,6 @@ public class AuthFilter implements Filter {
     
     String servletPath = httpReq.getServletPath();
     String pathInfo = httpReq.getPathInfo();
-    
     for (String p : path) {
       // web.xml에 지정된 경로라면, 로그인 여부를 검사한다.
       if (pathInfo.endsWith(p)) {

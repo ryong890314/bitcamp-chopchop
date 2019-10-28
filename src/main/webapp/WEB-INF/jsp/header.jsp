@@ -27,10 +27,7 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-=======
 	<!-- Preloader -->
->>>>>>> 9037f122cb8c6b8e86e3abd75342b7e29179caca
 	<div class="preloader d-flex align-items-center justify-content-center">
 		<div class="preloader-content">
 			<h3>Cooking in progress..</h3>

@@ -30,8 +30,9 @@ public class OrderController {
 
   @GetMapping("searchbymember")
   public void searchByMember(Model model, HttpSession httpSession) throws Exception {
-    Member member = (Member) httpSession.getAttribute("member");
+    Member member = (Member) httpSession.getAttribute("loginUser");
     model.addAttribute("orders", orderService.searchByMember(member.getMemberNo()));
+    model.addAttribute("loginMember", member);
   }
   
   @PostMapping("add")
