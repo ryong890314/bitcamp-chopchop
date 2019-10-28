@@ -30,7 +30,10 @@
 				<input class="btn" type="submit" value="로그인" />
 			</form>
 			<input class="btnn" type="button"
-				onclick="window.location.href = '/app/member/form';" value="회원가입" />
+				onclick="window.location.href = '/app/member/form';" value="회원가입" /> 
+				<a href="/app/auth/findPassword" 
+				onclick="window.open(this.href, '_blank', 'width=600px,height=600px,toolbars=no,scrollbars=no'); return false;">
+				Forgot your password?</a>
 		</div>
 	</div>
 

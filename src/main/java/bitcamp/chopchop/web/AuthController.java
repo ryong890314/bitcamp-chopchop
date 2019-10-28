@@ -19,7 +19,14 @@ public class AuthController {
   private MemberService memberService;
 
   @GetMapping("signin")
-  public void form() {
+  public void signin() {
+  }
+  
+  @GetMapping("findPassword")
+  public void findPassword() {
+  }
+  @PostMapping("getPassword")
+  public void getPassword() {
   }
   
   @PostMapping("login")
@@ -47,5 +54,4 @@ public class AuthController {
     session.invalidate();
     return "redirect:signin";
   }
-
 }

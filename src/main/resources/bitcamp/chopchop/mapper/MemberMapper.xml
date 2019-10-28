@@ -128,4 +128,8 @@
 		WHERE member_id = #{memberNo}
   </update>
   
+  <!-- find password -->
+   <update  id="findPw" parameterType="member">
+   select password from member where email= #{email}
+  </update>
 </mapper>
