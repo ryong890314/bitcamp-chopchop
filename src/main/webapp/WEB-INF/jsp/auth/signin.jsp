@@ -14,7 +14,7 @@
 	<jsp:include page="../header.jsp" />
 
 	<div class="bucket">
-		<div class="buffer">
+		<div class="buffer">social
 			<div class="header">
 				<div class="logo-area"></div>
 			</div>

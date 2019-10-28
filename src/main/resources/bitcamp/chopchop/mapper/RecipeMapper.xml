@@ -176,10 +176,11 @@
       left outer join cooking c on r.recipe_id=c.recipe_id
     where 
       r.recipe_id=#{value}
+    order by c.process_no asc
   </select>
   
   <insert id="insert" parameterType="Recipe"
-          useGeneratedKeys="true" keyColumn="recipe_id" keyProperty="no">
+          useGeneratedKeys="true" keyColumn="recipe_id" keyProperty="recipeNo">
     insert into 
     recipe
     (member_id,title,content,thumbnail,category,tag,other_info)        
@@ -197,15 +198,15 @@
   <update id="update" parameterType="Recipe">
     update recipe
     <set>
-      title=#{title},
-      content=#{content},
-      thumbnail=#{thumbnail},
-      category=#{category},
-      tag=#{tag},
+      <if test="title != null">title=#{title},</if>
+      <if test="content != null">content=#{content},</if>
+      <if test="thumbnail != null">thumbnail=#{thumbnail},</if>
+      <if test="category != null">category=#{category},</if>
+      <if test="tag != null">tag=#{tag},</if>
       <if test="otherInfo != null">other_info=#{otherInfo}</if>
     </set>
     where
-      recipe_id=#{no}
+      recipe_id=#{recipeNo}
   </update>
   
   <update id="increaseScrapCount" parameterType="int">

@@ -13,17 +13,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-import bitcamp.chopchop.domain.Cooking;
 import bitcamp.chopchop.domain.Ingredient;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Recipe;
 import bitcamp.chopchop.domain.RecipeLike;
+import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.RecipeService;
 
 @Controller
 @RequestMapping("/recipe")
 public class RecipeController {
-  @Resource
-  private RecipeService recipeService;
+  @Resource private RecipeService recipeService;
+  @Resource private CookingFileWriter cookingFileWriter;
+  @Resource private MemberService memberService;
 
   String uploadDir;
 
@@ -33,36 +35,29 @@ public class RecipeController {
 
   @GetMapping("form")
   public void form() {
-
+    
   }
 
   @PostMapping("add")
-  public String add(Recipe recipe, int memberNo, MultipartFile filePath, MultipartFile filePath2, String[] ingredientNames, String[] quantity, String cookingContent, 
-      int processNo) throws Exception {
-    recipe.setMemberNo(memberNo);
-
+  public String add(HttpSession session, Recipe recipe, /*int memberNo,*/ MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
+      int[] processNo) throws Exception {
+    Member member = (Member)session.getAttribute("loginUser");
+    recipe.setMemberNo(member.getMemberNo());
+    
     String filename = UUID.randomUUID().toString();
     recipe.setThumbnail(filename);
     filePath.transferTo(new File(uploadDir + "/" + filename));
-
+                                 
     List<Ingredient> ingredients = new ArrayList<>();
     for (int i = 0; i < ingredientNames.length; i++) {
       Ingredient temp = new Ingredient();
       temp.setName(ingredientNames[i]);
       temp.setQuantity(quantity[i]);
       ingredients.add(temp);
+      System.out.println(i +"번재료입니다ㅏㅏㅏㅏ" + ingredientNames[i]);
     }
 
-    String filename2 = UUID.randomUUID().toString();
-    List<Cooking> cookings = new ArrayList<>();
-    Cooking temp = new Cooking();
-    temp.setProcessNo(processNo);
-    temp.setFilePath(filename2);
-    filePath2.transferTo(new File(uploadDir + "/" + filename2));
-    temp.setContent(cookingContent);
-    cookings.add(temp);
-
-    recipe.setCookings(cookings);
+    recipe.setCookings(cookingFileWriter.getCookings(filePath2, processNo, cookingContent));
     recipe.setIngredients(ingredients);
     recipeService.insert(recipe);
     return "redirect:list";
@@ -76,11 +71,11 @@ public class RecipeController {
 
   @GetMapping("detail")
   public void detail(Model model, int no, HttpSession session) throws Exception {
-    //    session.setAttribute("no", 1);
-
     Recipe recipe = recipeService.get(no);
+    Member member = memberService.get(recipe.getMemberNo());
     model.addAttribute("recipe", recipe);
-    //    model.addAttribute("memberNo", session.getAttribute("no"));
+    model.addAttribute("member", member);
+    
   }
 
   @GetMapping("updateform")
@@ -90,11 +85,8 @@ public class RecipeController {
   }
 
   @PostMapping("update")
-  public String update(Recipe recipe, 
-      MultipartFile filePath, MultipartFile filePath2, String[] ingredientNames, 
-      String[] quantity, String cookingContent, 
-      int processNo) throws Exception {
-
+  public String update(HttpSession session, Recipe recipe, int memberNo, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
+      int[] processNo) throws Exception {
     String filename = UUID.randomUUID().toString();
     recipe.setThumbnail(filename);
 
@@ -108,36 +100,20 @@ public class RecipeController {
       ingredients.add(temp);
     }
 
-    String filename2 = UUID.randomUUID().toString();
-    List<Cooking> cookings = new ArrayList<>();
-    Cooking temp = new Cooking();
-    temp.setProcessNo(processNo);
-    temp.setFilePath(filename2);
-    filePath2.transferTo(new File(uploadDir + "/" + filename2));
-    temp.setContent(cookingContent);
-    cookings.add(temp);
-
-    recipe.setCookings(cookings);
+    recipe.setCookings(cookingFileWriter.getCookings(filePath2, processNo, cookingContent));
     recipe.setIngredients(ingredients);
-
     recipeService.update(recipe);
-    System.out.println("-----------------------------------");
-    System.out.println("레시피내용" +recipe.getContent());
-    System.out.println("레시피제목" + recipe.getTitle());
-    System.out.println("-----------------------------------");
     return "redirect:list";
   }
 
   @GetMapping("list")
   public void list(Model model) throws Exception {
-    System.out.println("리스트실행됨?????????????????");
     List<Recipe> recipes = recipeService.list();
     model.addAttribute("recipes", recipes);
   }
 
   @GetMapping("search")
   public void search(Model model, String keyword) throws Exception {
-    System.out.println("@@@@@@@@@@@@@@@@@@@@@@"+ keyword);
     List<Recipe> recipes = recipeService.search(keyword);
     model.addAttribute("recipes", recipes);
   }

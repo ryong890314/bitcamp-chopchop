@@ -9,7 +9,7 @@
 <title>레시피 수정</title>
 </head>
 
-<body onload="form()">
+<body>
 
 <div id="app">
   <div>
@@ -109,44 +109,6 @@
   </div>
 </div>
 
-<script id="t1" type="text/x-handlebars-template">
-{{#each result}}
-
-<div id='addIngredientDiv' class='group-flex'>
-<div class='form-group'><label id='ingredient' class='label'>재료 </label><input type='text' name='ingredientNames' class='form-control' value='{{name}}'></div>
-<div class='form-group'><label id='quantity' class='label'>용량 </label><input type='text' name='quantity' class='form-control' value='{{quantity}}'></div>
-<div class='form-group'><button class='btn btn-outline btn-sm' type='button' onclick='delIngredient("+ingredientCount+")'>삭제"+ingredientCount+"</button></div>
-</div>
-{{/each}}
-</script>
-
-<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-
-<script>
-"use strict";
- function form() {
-  var xhr = new XMLHttpRequest();
-   console.log("xml()들어오나요???");
-  
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState == 4) {
-      if (xhr.status == 200) {
-        var data = JSON.parse(xhr.responseText);
-        
-        for (var d of data) {
-         alert(d.name);
-        var templateSrc = $('#t1').html();
-        var template = Handlebars.compile(templateSrc);
-        $('#ingredient-block').append(template(data));
-        }
-      }
-    }
-  };
-  xhr.open("GET", "/app/json/recipe/detail?no=" + ${recipe.recipeNo}, false);
-  xhr.send();
-};
-</script>
 
 <script> // 재료, 용량  추가
 "use strict"
@@ -158,6 +120,7 @@
      str+="<div id='addIngredientDiv' class='group-flex'>";
      str+="<div class='form-group'><label id='ingredient' class='label'>재료 </label><input type='text' name='ingredientNames' class='form-control' value=''></div>";
      str+="<div class='form-group'><label id='quantity' class='label'>용량 </label><input type='text' name='quantity' class='form-control' value=''></div>";
+//     str+="<div class='form-group'><button class='btn btn-outline btn-sm' type='button' onclick='delIngredient()'>삭제"+ingredientCount+"</button></div>";
      str+="<div class='form-group'><button class='btn btn-outline btn-sm' type='button' onclick='delIngredient("+ingredientCount+")'>삭제"+ingredientCount+"</button></div>";
      str+="</div>";
      // 추가할 폼(에 들어갈 HTML)

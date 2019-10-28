@@ -90,14 +90,16 @@
                 <a class="post-title">판매가 ${product.price} 원</a>
                 
                 <div class="input-group input-number-group"><a class="post-title">수량
-                  <input class="input-number" type="number" value="1" min="0" max="1000">
+                  <input class="input-number" id="quantity" type="number" value="1" min="0" max="1000">
                 </a>
                 </div>
 
                   <div style="position: absolute; right: 0px; bottom: 0px;">
-                      <a href='#' class="btn bueno-btn">장바구니</a>
-                      <a href='#' class="btn bueno-btn">구매하기</a>
-                    </div>
+                  <form action="../order/form" method="post"> 
+                    <a href='#' class="btn bueno-btn">장바구니</a>
+                    <a href='addorder' class="btn bueno-btn">구매하기</a>
+                  </form>
+                  </div>
                       
             </div>
         </div>
@@ -116,13 +118,13 @@
 <hr class="my-4">
 
 <div class="col-12 col-lg-8 col-xl-9">
-        <c:forEach items="${product.comments}" var = "comment">
       <!-- Comment Area Start -->
       <div class="comment_area clearfix mb-100">
         <h4 class="mb-50">상품 문의</h4>
           <ol>
             <!-- Single Comment Area -->
-            <li class="single_comment_area" hidden="" id="isComment">
+        <c:forEach items="${product.comments}" var = "comment">
+            <li class="single_comment_area" id="isComment">
               <!-- Comment Content -->
               <div class="comment-content d-flex">
                   <!-- Comment Author -->
@@ -140,9 +142,9 @@
                   </div>
               </div>
             </li>
+        </c:forEach>
           </ol>
       </div>
-        </c:forEach>
 
       <div class="post-a-comment-area mb-30 clearfix">
           <h4 class="mb-50">Leave a reply</h4>
@@ -206,6 +208,23 @@
 </div>
 
 <jsp:include page="../footer.jsp"/>
-
+<script>
+  var quantity = document.getElementById('quantity');
+  var productInfo = {
+    productNo:${product.productNo},
+    title:'${product.title}',
+    price:${product.price},
+    detail:'${product.detail}',
+    stock:${product.stock},
+    discount:${product.discount},
+    categoty:'${product.category}',
+    species:'${product.species}',
+    quantity:quantity.value
+  }
+  
+  console.log(productInfo);
+  
+  
+</script>
 </body>
 </html>

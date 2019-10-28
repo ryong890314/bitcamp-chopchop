@@ -12,10 +12,10 @@ public interface ProductService {
   List<Product> list() throws Exception;
   List<Product> search(String keyword) throws Exception;
   List<Product> categorySearch(String species) throws Exception;
-  Product get(int productNo) throws Exception;
+  Product get(int no) throws Exception;
   void insert(Product product) throws Exception;
   void update(Product product) throws Exception;
-  void delete(int productNo) throws Exception;
+  void delete(int no) throws Exception;
 }
 
 

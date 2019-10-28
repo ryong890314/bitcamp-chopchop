@@ -113,7 +113,7 @@
 									<li><a href="#">ChopRecipe</a>
 										<div class="megamenu">
 											<ul class="single-mega cn-col-4">
-												<li><a href="#">Dog</a></li>
+												<li><a href="/app/recipe/list">Dog</a></li>
 												<li><a href="#">Cat</a></li>
 												<li><a href="#">Small Animal</a>
 												<li><a href="#">Reptilien</a>
