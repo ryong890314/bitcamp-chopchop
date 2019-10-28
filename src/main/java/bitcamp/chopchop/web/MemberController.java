@@ -96,5 +96,15 @@ public class MemberController {
     memberService.delete(no);
     return "redirect:list";
   }
+  
+  @PostMapping("chkPw")
+  public @ResponseBody int chkPw(String password, int memberNo) throws Exception {
+    return memberService.chkPw(password, memberNo);
+  }
+  
+  @PostMapping("uptPw")
+  public @ResponseBody int uptPw(String password, int memberNo) throws Exception {
+    return memberService.uptPw(password, memberNo);
+  }
 
 }

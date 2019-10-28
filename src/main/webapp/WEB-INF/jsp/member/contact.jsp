@@ -73,7 +73,7 @@
               <h4 class="mb-50">Get In Touch</h4>
               <p>고객님의 의견을 E-MAIL로 보내주세요.</p> 
 
-              <form id="firstForm" onsubmit="return proceedSubmission()" action="contact" method="post" enctype="text/plain">
+              <form id="firstForm" onsubmit="return proceedSubmission()" action="contact" method="get" enctype="text/plain">
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">

@@ -57,6 +57,11 @@
 		select count(*)
 		from member
 		where nickname = #{nickname}
+		<!-- 자기 자신을 제외한 닉네임을 찾는다. 
+		내가 이미 쓰고 있는 닉네임이 아닌 다른사람이 쓰고 있는 닉네임만을 찾는다. -->
+<!-- 		<if test="memberNo != null"> -->
+<!-- 		and member_id = #{memberNo} -->
+<!-- 		</if> -->
 	</select>
 
 	<select id="signEmailCheck" parameterType="String"
@@ -110,5 +115,17 @@
     delete from member
     where member_id = #{member.memberNo}
   </delete>
+  
+  <select id="chkPw" parameterType="map" resultType="int">
+    SELECT count(*) FROM member
+		WHERE member_id = #{memberNo}
+		AND PASSWORD = password(#{password})
+  </select>
+  
+  <update id="uptPw" parameterType="map">
+    UPDATE member
+		SET PASSWORD = password(#{password})
+		WHERE member_id = #{memberNo}
+  </update>
   
 </mapper>

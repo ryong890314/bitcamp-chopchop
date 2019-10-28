@@ -1,5 +1,6 @@
 package bitcamp.chopchop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import bitcamp.chopchop.domain.Member;
@@ -17,6 +18,8 @@ public interface MemberDao {
   int delete(int no) throws Exception;
   int signEmailCheck(String email);
   int signPasswordCheck(String password);
+  int chkPw(HashMap<String, Object> map) throws Exception;
+  int uptPw(HashMap<String, Object> map) throws Exception;
 }
 
 
