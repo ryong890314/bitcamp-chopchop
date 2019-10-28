@@ -133,7 +133,7 @@
 											class="fa fa-shopping-cart"></i>
 										</a>
 										<a href="" class="nav-link nav-item"> <i
-											class="fa fa-pencil-square-o" aria-hidden="true"></i>
+											class="fa fa-pencil-square-o"></i>
 										</a>
 
 									</c:if>

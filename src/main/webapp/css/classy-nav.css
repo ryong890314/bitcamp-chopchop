@@ -24,7 +24,7 @@ img {
 	width: 10%;
 }
 .nav-user {
-	margin: 20px;
+	margin: 5px;
 }
 .bg-img {
 	background-position: center center;
@@ -207,7 +207,6 @@ img {
 
 /* button css */
 .classy-btn {
-	margin: 10%;
 	position: relative;
 	z-index: 1;
 	min-width: 120px;
