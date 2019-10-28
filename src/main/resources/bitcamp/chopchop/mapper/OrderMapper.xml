@@ -21,7 +21,7 @@
     <id column="order_id" property="orderNo"/>
     <result column="member_id" property="memberNo"/>
     <result column="post_no" property="postNo"/>
-    <result column="base_address" property="baseAddress"/>
+    <result column="base_address" property="address"/>
     <result column="detail_address" property="detailAddress"/>
     <result column="payment_date" property="paymentDate"/>
     <result column="payment_method" property="paymentMethod"/>
