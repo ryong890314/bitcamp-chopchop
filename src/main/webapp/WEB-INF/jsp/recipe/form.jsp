@@ -150,18 +150,6 @@
      }
  }
 </script>
- 
- <!--  <div class="row form-group">
-   순서: <input type='text' name='processNo'>
-</div>
-<div class="box-photo">
-    <div class="photo">
-        <div class="img"><input class="btn btn-outline btn-images" type="file" name='filePath2' id="ip-1" style="width: 100%; height: 100%; opacity: 0; overflow: hidden;"></div>
-      <button class="btn btn-outline btn-block btn-sm" type="button" onclick="delCooking()">사진 삭제</button>
-    </div>
-    <div class="des"><textarea class="form-control" name="cookingContent">조리방법입력해주세요</textarea></div>
-</div> -->
- 
 
  <script> // 조리순서, 사진, 내용 추가
 "use strict"
