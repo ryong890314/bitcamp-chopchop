@@ -224,8 +224,9 @@ img {
 	padding: 0 25px;
 	line-height: 42px;
 	height: 42px;
-	border: 1px solid #b0c364; border-radius : 50px;
-	color: #fff !important;
+	border: 1px solid #b0c364; 
+	border-radius : 50px;
+	color: black !important;
 	margin-left: 30px;
 	text-align: center;
 	border-radius: 50px;
