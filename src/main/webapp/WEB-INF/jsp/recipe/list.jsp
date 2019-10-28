@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="../../css/recipe/findRecipe.css">
+<link rel="stylesheet" href="/css/recipe/findRecipe.css">
    <style>
         .bueno-btn {
           background-color: #b0c364;

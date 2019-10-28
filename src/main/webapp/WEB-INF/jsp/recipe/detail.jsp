@@ -11,7 +11,7 @@
  }
 </style>
 
-<link rel="stylesheet" href="../../css/recipe/detail.css">
+<link rel="stylesheet" href="/css/recipe/detail.css">
 
 <title>레시피 보기</title>
 </head>

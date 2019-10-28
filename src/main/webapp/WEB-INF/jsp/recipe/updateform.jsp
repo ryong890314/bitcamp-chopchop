@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../../css/recipe/form.css">
+<link rel="stylesheet" href="/css/recipe/form.css">
 <title>레시피 수정</title>
 </head>
 
