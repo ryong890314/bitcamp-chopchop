@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
 /* :: 2.0 Import All CSS */
 @import url(/css/bootstrap.min.css);
-@import url(/css/classy-nav.css);
+@import url(/css/member/classy-nav.css);
 @import url(/css/owl.carousel.min.css);
 @import url(/css/animate.css);
 @import url(/css/magnific-popup.css);
@@ -719,7 +719,7 @@ h3 {
 .header-area .bueno-main-menu .login-area {
     position: relative;
     z-index: 1;
-    margin-left: 20%;
+    margin-left: 100px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
