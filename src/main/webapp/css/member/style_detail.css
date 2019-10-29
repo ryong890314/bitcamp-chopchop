@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.vali_check {
+  color: red;
+}
+/*
+.photo1 {
+   width: auto; height: auto;
+   max-width: 100px;
+   max-height: 100px;
+}
+*/
+.profile_photo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.profile_photo .mask {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background: url(/upload/member/my_photo.png) 0 0;
+}
+.imgThumb {
+ width: 100px;
+ height: 100px;
+}
+
+.container {
+ margin-bottom: 10px;
+}
+   

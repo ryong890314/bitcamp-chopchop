@@ -75,14 +75,12 @@ input.btn:hover, input.btn:focus {
   border-width: 1px;
 }
 
-
-
 .logo-area {
   position: relative;
   margin text-align: center;
   width: 200px;
   height: 200px;
-  background: url('/images/choplogo.png') no-repeat;
+  background: url('../choplogo.png') no-repeat;
   background-size: contain;
   background-position: center;
   margin-left: auto;
