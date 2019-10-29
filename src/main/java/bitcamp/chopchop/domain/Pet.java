@@ -8,11 +8,15 @@ public class Pet implements Serializable {
 
   private int petNo;
   private String name;
-  private int breedNo;
   private Date createdDate;
   private int registerNo;
   private String photo;
+  private int gender;
+  private int age;
 
+  private int breedNo;
+  private String breed;
+  
   public int getPetNo() {
     return petNo;
   }
@@ -61,5 +65,27 @@ public class Pet implements Serializable {
     this.photo = photo;
   }
 
+  public int getGender() {
+    return gender;
+  }
 
+  public void setGender(int gender) {
+    this.gender = gender;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public String getBreed() {
+    return breed;
+  }
+
+  public void setBreed(String breed) {
+    this.breed = breed;
+  }
 }
