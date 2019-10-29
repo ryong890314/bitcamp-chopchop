@@ -64,6 +64,7 @@
 	<select id="findBy" parameterType="int" resultMap="PetMap">
 		select
 			p.pet_id,
+		  p.file_path,
 			p.name,
 			p.age,
 			p.gender,
