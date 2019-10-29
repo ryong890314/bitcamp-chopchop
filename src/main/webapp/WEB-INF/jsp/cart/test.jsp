@@ -61,6 +61,7 @@
       <a1>상품금액 </a1><a id="sumCheckPrice">0</a>
       <a1>원 + 배송비 </a1><a id="shipCheckPrice">0</a>
       <a1>원 = 합계금액 </a1><a id="totalCheckPrice" style="color: red">0</a>
+      <fmt:formatNumber value="1989" pattern="#,###"/>
       <a1>원</a1>
     </div>
 
