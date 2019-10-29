@@ -47,7 +47,7 @@ public class OrderController {
     orderProduct.setOrderNo(order.getOrderNo());
     orderProduct.setProductNo(productService.get(no).getProductNo());
     orderService.insert(order, orderProduct);
-    return "redirect:../product/detail?no=" + orderProduct.getProductNo(); // -> 주문 완료 페이지로
+    return "redirect:result"; // -> 주문 완료 페이지로
   }
   
   @GetMapping("delete")
@@ -68,4 +68,10 @@ public class OrderController {
     orderService.update(order, orderProduct);
     return "redirect:../product/detail?no=" + orderProduct.getProductNo(); // -> 주문 완료 페이지로
   }
+  
+  @GetMapping("result")
+  public void result() throws Exception {
+    
+  }
+  
 }

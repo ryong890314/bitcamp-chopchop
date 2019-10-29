@@ -44,6 +44,13 @@
       margin: auto auto;
       clear: left; 
       }
+      
+      #qt {
+        width: 162px;
+        float: left;
+        margin-right: 10px;
+      }
+      
   </style>
 </head>
 <body>
@@ -72,16 +79,18 @@
                 </a>
                 </div>
 
-                  <div style="position: absolute; right: 0px; bottom: 0px;">
-                  <form action="../order/form" method="post">
-                    <input type='text' name='no' value='${product.productNo}'>
-                    <input type='text' name='price' id='finalPrice' value=''>
-                    <a href='#' class="btn bueno-btn">장바구니</a>
-                    <a href='#' class="btn bueno-btn">구매하기</a>
-                    <button class="btn-bueno-btn">aaaa</button>
-                  </form>
+                  <div id="tq">
+                    <form action="../order/form" method="post" id="qt">
+                      <input type='hidden' name='no' value='${product.productNo}'>
+                      <input type='hidden' name='price' id='finalPrice' value=''>
+                      <button class="btn bueno-btn">구매하기</button>
+                    </form>
                   </div>
-                      
+                  <div id="tq">
+                    <form id="qt">
+                      <button class="btn bueno-btn">장바구니</button>
+                    </form>
+                  </div>
             </div>
         </div>
         <hr class="my-4">
@@ -190,19 +199,10 @@
 <jsp:include page="../footer.jsp"/>
 <script>
   var quantity = parseInt(document.getElementById('quantity').value);
-  var productInfo = {
-    productNo:${product.productNo},
-    title:'${product.title}',
-    price:${product.price},
-    detail:'${product.detail}',
-    stock:${product.stock},
-    discount:${product.discount},
-    categoty:'${product.category}',
-    species:'${product.species}',
-    quantity:quantity
-  }
+  var finalPrice = document.getElementById('finalPrice').value;
+  quantity.change(finalPrice = quantity * ${product.price})
+  console.log(finalPrice);
   console.log(productInfo);
-  var finalPrice = ${product.price} * quantity;
   document.getElementById('finalPrice').value=finalPrice;
   
   
