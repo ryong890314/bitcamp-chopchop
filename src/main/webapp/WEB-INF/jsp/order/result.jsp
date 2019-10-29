@@ -15,8 +15,8 @@
     가격<br>${product.price}원<br>
     회원 번호<br>${loginUser.memberNo}<br>
     이름<br>${loginUser.nickname}<br>
-    이메일<br>${loginUser.email}"<br>
-    연락처<br>${loginUser.tel}"<br>
+    이메일<br>${loginUser.email}<br>
+    연락처<br>${loginUser.tel}<br>
     우편번호<br>${loginUser.postNo}<br>
     기본주소<br>${loginUser.baseAddress}<br>
     상세주소<br>${loginUser.detailAddress}<br>

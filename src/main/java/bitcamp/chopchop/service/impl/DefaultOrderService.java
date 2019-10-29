@@ -57,5 +57,11 @@ public class DefaultOrderService implements OrderService {
     orderProductDao.delete(no);
     orderDao.delete(no);
   }
-
+  
+  @Override
+  public Order result() throws Exception {
+    Order order = orderDao.result();
+    System.out.println(order);
+    return order;
+  }
 }

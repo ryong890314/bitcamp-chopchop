@@ -92,6 +92,27 @@
     order by s.order_id desc
   </select>
 
+  <select id="result" resultMap="findByMember">
+    select
+      s.order_id,
+      s.post_no,
+      s.base_address,
+      s.detail_address,
+      s.payment_date,
+      s.payment_method,
+      s.ship_date,
+      s.invoice,
+      p.quantity,
+      p.discount_price,
+      m.member_id
+    from 
+      store_order s
+        left outer join order_product p on s.order_id=p.order_id
+        left outer join member m on s.member_id=m.member_id
+    where s.member_id=m.member_id
+    order by s.order_id desc
+  </select>
+
   <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyColumn="order_id" keyProperty="orderNo">
     insert into store_order(member_id, post_no, base_address, detail_address, payment_date, payment_method, ship_date, invoice)
     values(#{memberNo}, #{postNo},#{baseAddress},#{detailAddress},#{paymentDate},#{paymentMethod},#{shipDate},#{invoice}) 

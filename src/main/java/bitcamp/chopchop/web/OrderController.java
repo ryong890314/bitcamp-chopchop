@@ -42,11 +42,13 @@ public class OrderController {
   }
   
   @PostMapping("add")
-  public String add(Order order, int no) throws Exception {
+  public String add(Order order, int no, Model model) throws Exception {
     OrderProduct orderProduct = new OrderProduct();
     orderProduct.setOrderNo(order.getOrderNo());
     orderProduct.setProductNo(productService.get(no).getProductNo());
     orderService.insert(order, orderProduct);
+    model.addAttribute("order", order);
+    model.addAttribute("orderProduct", orderProduct);
     return "redirect:result"; // -> 주문 완료 페이지로
   }
   
@@ -70,8 +72,8 @@ public class OrderController {
   }
   
   @GetMapping("result")
-  public void result() throws Exception {
-    
+  public void result(Order order, Model model) throws Exception {
+    System.out.println("-----------------번호는 " + order + "--------------------");
+    model.addAttribute("order", order);
   }
-  
 }

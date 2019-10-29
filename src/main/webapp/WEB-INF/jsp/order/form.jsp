@@ -21,10 +21,10 @@
     우편번호<br><input type="text" name="postNo" value="${loginUser.postNo}"><br>
     기본주소<br><input type="text" name="baseAddress" value="${loginUser.baseAddress}"><br>
     상세주소<br><input type="text" name="detailAddress" value="${loginUser.detailAddress}"><br>
-    결제수단<br><input type="text" name="paymentMethod" value=""><br>
+    결제수단<br><input type="text" name="paymentMethod" value="${order.paymentMethod}"><br>
     관리자<br><br>
-    입금일<br><input type="date" name="paymentDate" value="$"><br>
-    주문상태<br><input type="text" name="shipDate" value=""><br>
+    입금일<br><input type="date" name="paymentDate" value="${order.paymentDate}"><br>
+    주문상태<br><input type="text" name="shipDate" value="${order.shipDate}"><br>
     상품번호<br><input type="text" name="no" value="${product.productNo}">
     <button>주문</button>
   </form>
