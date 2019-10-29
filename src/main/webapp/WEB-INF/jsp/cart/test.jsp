@@ -23,6 +23,8 @@
         <th>장바구니ID</th>
         <th>상품명</th>
         <th>가격</th>
+        <th>수량</th>
+        <th>합계</th>
       </tr>
       <c:forEach items="${carts}" var="cart">
         <tr>
@@ -37,7 +39,11 @@
           </c:forEach>
           <c:forEach items="${cart.products}" var="product">
             <td><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</td>
+            <input type="hidden" name="chkprice" value="${product.price}">
           </c:forEach>
+          <td><input class="input-number" name = chkquantity value="${cart.quantity}"></td>
+          <td></td>
+        </tr>
         </tr>
       </c:forEach>
     </table>
@@ -52,39 +58,57 @@
     <hr class="my-4">
     
     <div style="float: right">
-      <a1>상품금액 </a1><a>price</a>
-      <a1>원 + 배송비 </a1><a>0</a>
-      <a1>원 = 합계금액 </a1><a style="color:red">0</a>
+      <a1>상품금액 </a1><a id="sumCheckPrice">0</a>
+      <a1>원 + 배송비 </a1><a id="shipCheckPrice">0</a>
+      <a1>원 = 합계금액 </a1><a id="totalCheckPrice" style="color: red">0</a>
       <a1>원</a1>
     </div>
 
 </div>
 
 <script>
-    var myCheckBoxes = document.getElementsByClassName('myChkbox');
-
-    function check_price() {
-    for (i = 0; i < myCheckBoxes.length; i++) {
-      if (myCheckBoxes[i].checked) {
-        alert(parseInt(myCheckBoxes[i].value));
-          }
-          
-    }
+  var myCheckBoxes = document.getElementsByClassName('myChkbox');
+  
+  for (var i = 0; i < myCheckBoxes.length; i++) {
+    myCheckBoxes[i].addEventListener('change', function () {
+      reprice()
+    });
   }
-  </script>
+</script>
 
 <script>
-  var myCheckBoxes = document.getElementsByClassName('myChkbox');
+  myCheckBoxes = document.getElementsByClassName('myChkbox');
   function check_all() {
     for (i = 0; i < myCheckBoxes.length; i++) {
       myCheckBoxes[i].checked = true;
+      reprice()
     }
   }
   function uncheck_all() {
     for (i = 0; i < myCheckBoxes.length; i++) {
       myCheckBoxes[i].checked = false;
+      reprice()
     }
   }
+</script>
+
+<script>
+
+function reprice() {
+// 중복코드 제거용
+  var myCheckPrice = document.getElementsByName('chkprice');
+      var myCheckQuantity = document.getElementsByName('chkquantity');
+      var checkPrice = 0;
+      for (j = 0; j < myCheckBoxes.length; j++) {
+        if (myCheckBoxes[j].checked) {
+          checkPrice += parseInt(myCheckPrice[j].value) * parseInt(myCheckQuantity[j].value);
+        }
+      }
+      sumCheckPrice.innerText = checkPrice; // 상품합계
+      shipCheckPrice.innerText = 0; // 배송비
+      totalCheckPrice.innerText = checkPrice + 0; // 합계
+}
+
 </script>
 
 <script>
@@ -99,7 +123,6 @@
       alert("삭제할 대상을 선택하세요.");
       return false;
     }
-    console.log("### chkbox => {}" + chkbox);
 
     if (confirm("정보를 삭제 하시겠습니까?")) {
 

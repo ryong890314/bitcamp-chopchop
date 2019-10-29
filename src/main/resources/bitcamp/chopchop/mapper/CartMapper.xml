@@ -89,7 +89,8 @@
       p.title,
       p.price,
       f.photo_id,
-      f.file_path
+      f.file_path,
+      (price * quantity) money
     from 
       cart c 
         left outer join member m on c.member_id=m.member_id
@@ -120,4 +121,5 @@
     delete from cart
     where cart_id=#{cartNo}
   </delete>
+
 </mapper>

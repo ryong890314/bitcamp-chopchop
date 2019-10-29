@@ -13,10 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.service.CartService;
 
@@ -51,9 +48,6 @@ public class CartController {
     return "redirect:search?keyword=1";
   }
 
-// 카트 삭제
-// @ResponseBody
-// @RequestMapping(value = "chkdelete", method = RequestMethod.GET)
 @GetMapping("chkdelete")
 public String chkdelete(HttpSession session,
      @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
@@ -62,26 +56,7 @@ public String chkdelete(HttpSession session,
       for (int i = 0; i < arrIdx.length; i++) {
           cartService.delete(Integer.parseInt(arrIdx[i]));
       }
-      
       return "redirect:search?keyword=1";
-//  MemberVO member = (MemberVO)session.getAttribute("member");
-//  String userId = member.getUserId();
- 
-//  int result = 0;
-//  int cartNum = 0;
- 
- 
-//  if(member != null) {
-//   cart.setUserId(userId);
-  
-//   for(String i : chArr) {   
-//    cartNum = Integer.parseInt(i);
-//    cart.setCartNum(cartNum);
-//    cartService.deleteCart(cart);
-//   }   
-//   result = 1;
-//  }  
-//  return result;  
 }
 
   @GetMapping("detail")
@@ -99,12 +74,7 @@ public String chkdelete(HttpSession session,
   public String update(Cart cart, HttpServletRequest request) 
       throws Exception {
     cartService.update(cart);
-    return "redirect:list";
-  }
-
-  @GetMapping("updateform")
-  public void updateform(Model model, int no) throws Exception {
-    model.addAttribute("cart", cartService.get(no));
+    return "redirect:search?keyword=1";
   }
 
   // 테스트용
