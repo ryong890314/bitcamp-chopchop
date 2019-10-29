@@ -35,7 +35,7 @@
                 <!-- Single Contact Info -->
                 <div class="single-contact-info d-flex align-items-center">
                   <div class="icon mr-15">
-                    <img src="/images/placeholder.png" alt="">
+                    <img src="/img/core-img/placeholder.png" alt="">
                   </div>
                   <p>서울특별시 서초구 서초4동 강남대로 459</p>
                 </div>
@@ -43,7 +43,7 @@
                 <!-- Single Contact Info -->
                 <div class="single-contact-info d-flex align-items-center">
                   <div class="icon mr-15">
-                    <img src="/images/smartphone.png" alt="">
+                    <img src="/img/core-img/smartphone.png" alt="">
                   </div>
                   <p>02-3486-9600</p>
                 </div>
@@ -51,7 +51,7 @@
                 <!-- Single Contact Info -->
                 <div class="single-contact-info d-flex align-items-center">
                   <div class="icon mr-15">
-                    <img src="/images/message.png" alt="">
+                    <img src="/img/core-img/message.png" alt="">
                   </div>
                   <p>chopchop@gmail.com</p>
                 </div>
