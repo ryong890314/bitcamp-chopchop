@@ -5,48 +5,19 @@
 <html>
 <head>
   <title>My Page</title>
+  <link rel="stylesheet" href="/css/member/style_detail.css">
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/js/jquery/jquery-2.2.4.min.js"></script>
-  <style>
-    .vali_check {
-      color: red;
+  <style type="text/css">
+    .container {
+      border: 1px solid tomato;
     }
-    /*
-    .photo1 {
-	     width: auto; height: auto;
-	     max-width: 100px;
-	     max-height: 100px;
-    }
-    */
     .profile_photo {
-	    position: relative;
-	    width: 100px;
-	    height: 100px;
+      border: 1px solid tomato;
+      text-align: center;
     }
-    
-    .profile_photo .mask {
-	    position: absolute;
-	    z-index: 10;
-	    top: 0;
-	    right: 0;
-	    bottom: 0;
-	    left: 0;
-	    width: 100px;
-      height: 100px;
-	    background: url(/upload/member/my_photo.png) 0 0;
-	 }
-	 .imgThumb {
-	   width: 100px;
-	   height: 100px;
-	 }
-   
-   .container {
-     margin-bottom: 10px;
-   }
-	 
   </style>
-
 </head>
 <body onload="formLoad();">
 <jsp:include page="../header.jsp"/>
@@ -54,7 +25,7 @@
 <h1>내정보</h1>
 <form action='update' method='post' name="form" enctype='multipart/form-data' onsubmit="return checkAll();">
   <div class="row"> 
-    <div class="col-4">
+    <div class="col-5">
 		    <div id='content'>
 				  <div class="profile_photo">
 				    <input type="hidden" id="photo2" value="${member.photo}" />
@@ -64,7 +35,6 @@
 				  <input type='file' id="file" name='file'><br>
 	    </div>
     </div> 
-    <div class="col-1"></div>
     <div class="col-7">
         번호 <input type='text' id='memberNo' name='memberNo' value='${member.memberNo}' readonly><br>
 		    이메일 <input type='text' id='email' name='email' value='${member.email}' readonly><br>
@@ -79,7 +49,7 @@
 		    상세주소 <input type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'><br>
 		  <input type="hidden" id="nickname1" value="${member.nickname}"/> <!-- 원래 닉네임값  -->
 		  <button>변경</button>
-		  <a href="delete?no=${member.memberNo}" onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
+		  //<img src="http://cfile213.uf.daum.net/R400x0/275BA53451FB087428F770" alt="..." class="img-circle">
 		</div>
   </div>
 </form>
@@ -123,12 +93,14 @@
       </div>
     </div>
   </div> 
-		<div class="row">
-		<div class="col-3"></div>
-		<div class="col-3"></div>
-		<div class="col-3"></div>
-		<div class="col-3"></div>
-  </div> 
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <a href="delete?no=${member.memberNo}" onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
+    </div>
+  </div>
 </div>
 
 <!-- Modal -->
@@ -142,11 +114,11 @@
         </button>
       </div>
       <div class="modal-body">
-            현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword" onblur="nowpw_check();"/>
+            현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword" onblur="nowpw_check();" maxlength="20"/>
             <div id="password1_chk" class="vali_check"></div>
-            새 비밀번호 <input type="password" id="newPassword"  name="newPassword" onblur="newpw_check();"/>
+            새 비밀번호 <input type="password" id="newPassword"  name="newPassword" onblur="newpw_check();" maxlength="20"/>
             <div id="password2_chk" class="vali_check"></div>
-            새 비밀번호 확인<input type="password" id="newPassword2"  name="newPassword2" onblur="newpw2_check();"/>
+            새 비밀번호 확인<input type="password" id="newPassword2"  name="newPassword2" onblur="newpw2_check();" maxlength="20"/>
             <div id="password3_chk" class="vali_check"></div>
       </div>
       <div class="modal-footer">
@@ -183,9 +155,7 @@
             document.getElementById("nowPassword").value = "";
             document.getElementById("newPassword").value = "";
             document.getElementById("newPassword2").value = "";
-          } else {
-            alert("변경하지 못했습니다.");
-          }
+          } 
         } else {
           alert("시스템 오류 발생!");
         }

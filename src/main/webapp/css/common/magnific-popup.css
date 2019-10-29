@@ -41,7 +41,7 @@
         input {
             float: none;
             width: 94%;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border: 1px solid #DBE5E7;
             border-radius: 2px;
             padding: 12px 10px;
@@ -76,7 +76,7 @@
             margin text-align: center;
             width: 200px;
             height: 200px;
-            background: url('img/core-img/logo.png') no-repeat;
+            background: url('/img/core-img/choplogo.png') no-repeat;
             background-size: contain;
             background-position: center;
             margin-left: auto;
