@@ -7,11 +7,19 @@
 
 
   <title>댓글 등록폼</title>
-  <link rel='stylesheet' href='/css/recipe/common.css'>
-<link rel='stylesheet' href='/css/recipe/style.css'>
+<!-- Stylesheet -->
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="/css/recipe/detail.css">
 </head>
 <body>
-    <div class="comment_area mb-30">
+  
+    
+    
+    
+    
+ 
+ <div class="comment_area mb-30">
     <h4 class="mb-50">댓글입력</h4>
 
     <!-- Reply Form -->
@@ -62,10 +70,6 @@
     </ol>
   </div>
 
-
-  
-</form>
-</div>
 
 
 
