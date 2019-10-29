@@ -5,9 +5,8 @@
 <head>
   <title>주문 폼</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel='stylesheet' href='/css/common.css'>
-  <link rel="stylesheet" href="/css/style_contact.css">
-  <link rel="stylesheet" href="/css/style_footer.css">
+  <link rel="stylesheet" href="/css/member/style_contact.css">
+  <link rel="stylesheet" href="/css/member/style_footer.css">
   
 </head>
 <body>
@@ -24,14 +23,16 @@
 <!--       <button>등록</button> -->
 <!--     </form> -->
 <!--   </div> -->
-  
-  ${product2.productNo}<br>
-  ${product2.title}<br>
-  ${product2.detail}<br>
-  ${product2.price}<br>
-  ${product2.stock}<br>
-  ${product2.discount}<br>
-  
+  <form action="add" method="post">
+    <input type="text" id="no" value="${product.productNo}"><br>
+    <input type="text" id="price" value="${product.price}" readonly><br>
+    <input type="text" id="memberNo" value="${loginMember.memberNo}"><br>
+    <input type="text" id="email" value="${loginMember.email}"><br>
+    <input type="text" id="postNo" value="${loginMember.postNo}"><br>
+    <input type="text" id="baseAddress" value="${loginMember.baseAddress}"><br>
+    <input type="text" id="detailAddress" value="${loginMember.detailAddress}"><br>
+    <button>주문</button>
+  </form>
   <jsp:include page="../footer.jsp"/>
 </body>
 </html>
