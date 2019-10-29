@@ -83,6 +83,9 @@ public class DefaultRecipeService implements RecipeService {
     ingredientDao.delete(recipe.getRecipeNo());
     recipeDao.update(recipe);
     for (Ingredient i : recipe.getIngredients()) {
+      System.out.println("==========================");
+      System.out.println(recipe.getRecipeNo());
+      System.out.println("==========================");
       i.setRecipeNo(recipe.getRecipeNo());
       ingredientDao.insert(i);
     }

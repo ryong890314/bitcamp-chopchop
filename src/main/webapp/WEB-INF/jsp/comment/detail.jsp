@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
@@ -41,15 +41,15 @@
                         <h4 class="mb-50">Comments</h4>
 
                         <ol>
-                            <!-- Single Comment Area -->
+<!--                             Single Comment Area -->
                             <li class="single_comment_area">
-                                <!-- Comment Content -->
+                                Comment Content
                                 <div class="comment-content d-flex">
-                                    <!-- Comment Author -->
+                                    Comment Author
                                     <div class="comment-author">
                                         <img src="img/bg-img/32.jpg" alt="author">
                                     </div>
-                                    <!-- Comment Meta -->
+                                    Comment Meta
                                     <div class="comment-meta">
                                         <div class="d-flex">
                                             <a href="#" class="post-author">Jane Smith</a>
@@ -62,13 +62,13 @@
 
                                 <ol class="children">
                                     <li class="single_comment_area">
-                                        <!-- Comment Content -->
+                                        Comment Content
                                         <div class="comment-content d-flex">
-                                            <!-- Comment Author -->
+                                            Comment Author
                                             <div class="comment-author">
                                                 <img src="img/bg-img/33.jpg" alt="author">
                                             </div>
-                                            <!-- Comment Meta -->
+                                            Comment Meta
                                             <div class="comment-meta">
                                                 <div class="d-flex">
                                                     <a href="#" class="post-author">Christian Williams</a>
@@ -81,16 +81,15 @@
                                     </li>
                                 </ol>
                             </li>
-
-                            <!-- Single Comment Area -->
+<!--                             Single Comment Area -->
                             <li class="single_comment_area">
-                                <!-- Comment Content -->
+                                Comment Content
                                 <div class="comment-content d-flex">
-                                    <!-- Comment Author -->
+                                    Comment Author
                                     <div class="comment-author">
                                         <img src="img/bg-img/32.jpg" alt="author">
                                     </div>
-                                    <!-- Comment Meta -->
+                                    Comment Meta
                                     <div class="comment-meta">
                                         <div class="d-flex">
                                             <a href="#" class="post-author">Cris Williams</a>

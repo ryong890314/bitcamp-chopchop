@@ -4,13 +4,13 @@
 	url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700")
 	;
 /* :: 2.0 Import All CSS */
-@import url(bootstrap.min.css);
-@import url(classy-nav.css);
-@import url(owl.carousel.min.css);
-@import url(animate.css);
-@import url(magnific-popup.css);
-@import url(font-awesome.min.css);
-@import url(nice-select.css);
+@import url(/css/common/bootstrap.min.css);
+@import url(/css/member/classy-nav.css);
+@import url(/css/common/owl.carousel.min.css);
+@import url(/css/common/animate.css);
+@import url(/css/common/magnific-popup.css);
+@import url(/css/common/font-awesome.min.css);
+@import url(/css/common/nice-select.css);
 /* :: 3.0 Base CSS */
 
 /* :: 8.0 Footer Area CSS */
@@ -80,6 +80,7 @@
 	margin: 0 10px;
 	font-weight: 400;
 	padding: 0 5px;
+	text-decoration: none;
 }
 
 @media only screen and (max-width: 767px) {
@@ -87,7 +88,7 @@
 		padding: 0 2px;
 		margin: 0 3px;
 	}
-}
+} 
 
 .footer-area .footer-nav li a::after {
 	-webkit-transition-duration: 500ms;

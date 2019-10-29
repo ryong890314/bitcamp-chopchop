@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>CHOP CHOP 회원가입</title>
-<link rel="stylesheet" href="/css/style_join.css">
-<link rel="stylesheet" href="/css/style_footer.css">
+<title>CHOPCHOP 회원가입</title>
+<link rel="stylesheet" href="/css/member/style_join.css">
+<link rel="stylesheet" href="/css/member/style_footer.css">
 <style type="text/css">
   .vali_check {
     color : red;
@@ -26,75 +26,76 @@
           <div id="password_chk" class="vali_check"></div>
         <input type="password" id="password2" name="password2" placeholder="비밀번호 확인" onblur="password2_check();" maxlength="20"/> 
           <div id="password2_chk" class="vali_check"></div>
-        <input type="text" id="nickname" name="nickname" placeholder="닉네임" onblur="nickname_check();" maxlength="8"/>
+        <input type="text" id="nickname" name="nickname" placeholder="닉네임" onblur="nickname_check();" maxlength="12"/>
           <div id="nickname_chk" class="vali_check"></div>
-        <input type="tel" id="tel" name="tel" placeholder="핸드폰 번호    예)01012305678" onblur="tel_check();" maxlength="11"/> 
+        <input type="tel" id="tel" name="tel" placeholder="핸드폰 번호    '-'없이 숫자만 입력해주세요." onblur="tel_check();" maxlength="11"/> 
           <div id="tel_chk" class="vali_check"></div>
         <input type="submit" class="btn" value="회원가입" />
       </form>
       <br>
     </div>
   </div>
+  
   <script type="text/javascript">
   
   function email_check() {
 	  var eCheckFlag = false;
 	  console.log("email_check");
-     if (form.email.value == "") { // 빈 값 검사
-         document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
-       }
-     // 이메일 값이 들어있다면 정규식 검사 
-     var eRegPass = false;
-     if (form.email.value != "") { 
-       var emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-       if (!emailRegExp.test(form.email.value)) {
-         document.getElementById("email_chk").innerHTML = "이메일 형식이 올바르지 않습니다!";
-       } else {
-         eRegPass = true;
-       }
-     }
+    if (form.email.value == "") { // 빈 값 검사
+      document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
+    }
+    // 이메일 값이 들어있다면 정규식 검사 
+    var eRegPass = false;
+    if (form.email.value != "") { 
+      var emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+      if (!emailRegExp.test(form.email.value)) {
+        document.getElementById("email_chk").innerHTML = "이메일 형식이 올바르지 않습니다!";
+      } else {
+        eRegPass = true;
+      }
+    }
       
-     // 이메일 중복체크
-     if(eRegPass) {
-       var xhr = new XMLHttpRequest();
-       xhr.onreadystatechange = function() {
-         if (xhr.readyState == 4) {
-          if (xhr.status == 200) {
-            if (xhr.responseText == "1") { // 0이면 가입 가능, 아니면 중복!
-              document.getElementById("email_chk").innerHTML = "중복된 이메일입니다.";
-            } else {
-              document.getElementById("email_chk").innerHTML = "가입 가능한 이메일입니다. ";
-              eCheckFlag = true;
-            }
+    // 이메일 중복체크
+    if(eRegPass) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          if (xhr.responseText == "1") { // 0이면 가입 가능, 아니면 중복!
+            document.getElementById("email_chk").innerHTML = "중복된 이메일입니다.";
           } else {
-            alert("시스템 오류 발생!");
+            document.getElementById("email_chk").innerHTML = "가입 가능한 이메일입니다. ";
+            eCheckFlag = true;
           }
-         }
-       };
-       xhr.open("GET", "dupE?email=" + form.email.value, false);
-       xhr.send();
-     }
-     return eCheckFlag;
-   }
-  
-  function password_check() {
-	  var pCheckFlag = false;
-	  if (form.password.value == "") {
-        document.getElementById("password_chk").innerHTML = "비밀번호를 입력하세요.";
-      } 
-  
-	// 비밀번호 정규식 검사 
-     if (form.password.value != "") {
-       var passwordRegExp = /^[a-zA-z0-9]{4,20}$/; 
-       if (!passwordRegExp.test(form.password.value)) {
-         document.getElementById("password_chk").innerHTML = "비밀번호는 영문 대소문자와 숫자 4~20자리로 입력해야합니다!";
-       } else {
-         document.getElementById("password_chk").innerHTML = "";
-         pCheckFlag = true;
-       }
-     } 
-    return pCheckFlag;
+        } else {
+          alert("시스템 오류 발생!");
+        }
+        }
+      };
+      xhr.open("GET", "dupE?email=" + form.email.value, false);
+      xhr.send();
+    }
+    return eCheckFlag;
   }
+  
+function password_check() {
+  var pCheckFlag = false;
+  if (form.password.value == "") {
+    document.getElementById("password_chk").innerHTML = "비밀번호를 입력하세요.";
+  } 
+
+  // 비밀번호 정규식 검사 
+  if (form.password.value != "") {
+    var passwordRegExp = /^[a-zA-z0-9]{4,20}$/; 
+  if (!passwordRegExp.test(form.password.value)) {
+    document.getElementById("password_chk").innerHTML = "비밀번호는 영문 대소문자와 숫자 4~20자리로 입력해야합니다!";
+  } else {
+    document.getElementById("password_chk").innerHTML = "";
+    pCheckFlag = true;
+  }
+  } 
+  return pCheckFlag;
+}
   
   function password2_check() {
 	  var p2CheckFlag = false;
@@ -119,40 +120,40 @@
 	  if (form.nickname.value == "") {
        document.getElementById("nickname_chk").innerHTML = "닉네임을 입력하세요.";
      } 
-	// 닉네임 정규식 검사 
-      var nRegPass = false;
-      if (form.nickname.value != "") {
-        var nicknameRegExp = /^[a-zA-z0-9가-힣]{2,8}$/;
-        if (!nicknameRegExp.test(form.nickname.value)) {
-            document.getElementById("nickname_chk").innerHTML = "닉네임 형식이 올바르지 않습니다!";
-        } else {
-          nRegPass = true;
-        }
+    // 닉네임 정규식 검사 
+    var nRegPass = false;
+    if (form.nickname.value != "") {
+      var nicknameRegExp = /^[a-zA-z0-9가-힣]{2,12}$/;
+      if (!nicknameRegExp.test(form.nickname.value)) {
+          document.getElementById("nickname_chk").innerHTML = "닉네임 형식이 올바르지 않습니다!";
+      } else {
+        nRegPass = true;
       }
+    }
       
-      // 닉네임 중복체크
-      if(nRegPass) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState == 4) {
-           if (xhr.status == 200) {
-             // 0이면 가입 가능, 아니면 중복!
-             if (xhr.responseText == "1") {
-               document.getElementById("nickname_chk").innerHTML = "중복된 닉네임입니다.";
-             } else {
-               document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
-               nCheckFlag = true;
-             }
-           } else {
-             alert("시스템 오류 발생!");
-           }
+    // 닉네임 중복체크
+    if(nRegPass) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            // 0이면 가입 가능, 아니면 중복!
+            if (xhr.responseText == "1") {
+              document.getElementById("nickname_chk").innerHTML = "중복된 닉네임입니다.";
+            } else {
+              document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
+              nCheckFlag = true;
+            }
+          } else {
+            alert("시스템 오류 발생!");
           }
         }
-        // false는 동기식(Ajax 순서대로 진행하도록 동기식으로 )
-        xhr.open("GET", "dupN?nickname=" + form.nickname.value, false);
-        xhr.send();
       }
-      return nCheckFlag;
+      // false는 동기식(Ajax 순서대로 진행하도록 동기식으로 )
+      xhr.open("GET", "dupN?nickname=" + form.nickname.value, false);
+      xhr.send();
+    }
+    return nCheckFlag;
   }
   
   function tel_check() {
@@ -164,7 +165,7 @@
     if (form.tel.value != "") {
       var telRegExp = /^[0-9]{3}[0-9]{3,4}[0-9]{4}$/;
       if (!telRegExp.test(form.tel.value)) {
-       document.getElementById("tel_chk").innerHTML = "전화번호의 형식이 올바르지 않습니다.";
+       document.getElementById("tel_chk").innerHTML = "핸드폰 번호의 형식이 올바르지 않습니다.";
       } else {
         document.getElementById("tel_chk").innerHTML = "";
         tCheckFlag = true;
@@ -173,42 +174,28 @@
    return tCheckFlag;
   }
   
-    function checkAll() {
-    	var checkCnt = 0;
-    	if (email_check()) {
-    		checkCnt++;
-    	}
-    	if (password_check()) {
-        checkCnt++;
-      }
-    	if (password2_check()) {
-        checkCnt++;
-      }
-    	if (nickname_check()) {
-        checkCnt++;
-      }
-    	if (tel_check()) {
-        checkCnt++;
-      }
-    	
-      return checkCnt == 5 ? true : false; 
-     }
-  </script>
+  function checkAll() {
+    var checkCnt = 0;
+    if (email_check()) {
+      checkCnt++;
+    }
+    if (password_check()) {
+      checkCnt++;
+    }
+    if (password2_check()) {
+      checkCnt++;
+    }
+    if (nickname_check()) {
+      checkCnt++;
+    }
+    if (tel_check()) {
+      checkCnt++;
+    }
+    
+    return checkCnt == 5 ? true : false; 
+    }
+</script>
 <jsp:include page="../footer.jsp"/>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

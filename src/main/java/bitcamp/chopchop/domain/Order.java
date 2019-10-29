@@ -7,20 +7,21 @@ public class Order {
   private int orderNo;
   private int memberNo;
   private String postNo;
-  private String address;
+  private String baseAddress;
   private String detailAddress;
   private Date paymentDate;
   private String paymentMethod;
   private String shipDate; // (주문 상태)
   private String invoice;
   private List<OrderProduct> orderProducts;
+  private List<Member> members;
 
   @Override
   public String toString() {
     return "Order [orderNo=" + orderNo + ", memberNo=" + memberNo + ", postNo=" + postNo
-        + ", address=" + address + ", detailAddress=" + detailAddress + ", paymentDate="
+        + ", baseAddress=" + baseAddress + ", detailAddress=" + detailAddress + ", paymentDate="
         + paymentDate + ", paymentMethod=" + paymentMethod + ", shipDate=" + shipDate + ", invoice="
-        + invoice + ", orderProducts=" + orderProducts + "]";
+        + invoice + ", orderProducts=" + orderProducts + ", members=" + members + "]";
   }
 
   public int getOrderNo() {
@@ -47,12 +48,12 @@ public class Order {
     this.postNo = postNo;
   }
 
-  public String getAddress() {
-    return address;
+  public String getBaseAddress() {
+    return baseAddress;
   }
 
-  public void setAddress(String address) {
-    this.address = address;
+  public void setBaseAddress(String baseAddress) {
+    this.baseAddress = baseAddress;
   }
 
   public String getDetailAddress() {
@@ -103,6 +104,11 @@ public class Order {
     this.orderProducts = orderProducts;
   }
 
+  public List<Member> getMembers() {
+    return members;
+  }
 
-
+  public void setMembers(List<Member> members) {
+    this.members = members;
+  }
 }

@@ -14,9 +14,9 @@
 <title>CHOP CHOP</title>
 
 <!-- Stylesheet -->
-<link rel="stylesheet" href="/css/style_contact.css">
-<link rel="stylesheet" href="/css/style_footer.css">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/member/style_contact.css">
+<link rel="stylesheet" href="/css/member/style_footer.css">
+<jsp:include page="../header.jsp" />
 </head>
 <body>
 
@@ -35,7 +35,7 @@
                 <!-- Single Contact Info -->
                 <div class="single-contact-info d-flex align-items-center">
                   <div class="icon mr-15">
-                    <img src="/images/placeholder.png" alt="">
+                    <img src="/img/core-img/placeholder.png" alt="">
                   </div>
                   <p>서울특별시 서초구 서초4동 강남대로 459</p>
                 </div>
@@ -43,7 +43,7 @@
                 <!-- Single Contact Info -->
                 <div class="single-contact-info d-flex align-items-center">
                   <div class="icon mr-15">
-                    <img src="/images/smartphone.png" alt="">
+                    <img src="/img/core-img/smartphone.png" alt="">
                   </div>
                   <p>02-3486-9600</p>
                 </div>
@@ -51,7 +51,7 @@
                 <!-- Single Contact Info -->
                 <div class="single-contact-info d-flex align-items-center">
                   <div class="icon mr-15">
-                    <img src="/images/message.png" alt="">
+                    <img src="/img/core-img/message.png" alt="">
                   </div>
                   <p>chopchop@gmail.com</p>
                 </div>
@@ -73,7 +73,7 @@
               <h4 class="mb-50">Get In Touch</h4>
               <p>고객님의 의견을 E-MAIL로 보내주세요.</p> 
 
-              <form id="firstForm" onsubmit="return proceedSubmission()" action="contact" method="post" enctype="text/plain">
+              <form id="firstForm" onsubmit="return proceedSubmission()" action="contact" method="get" enctype="text/plain">
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -95,6 +95,7 @@
                   </div>
                   <div class="col-12">
                     <button class="input-btn" type="submit">전송</button>
+                    <a href="mailto:test@test.com">관리자 문의</a>
                   </div>
                 </div>
               </form>

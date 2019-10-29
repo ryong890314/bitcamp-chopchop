@@ -52,9 +52,10 @@ dependencies {
     compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
     
     // 이메일 전송  
-    compile group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
+    // compile group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
     
-    
+    // 이메일  전송
+    compile group: 'javax.mail', name: 'mail', version: '1.4.7'
     
     
     implementation 'com.google.guava:guava:27.1-jre'

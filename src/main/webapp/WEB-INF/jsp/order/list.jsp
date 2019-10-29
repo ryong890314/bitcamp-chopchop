@@ -41,20 +41,38 @@
   
 <div id="orderBody">
   <div class="d-flex align-content-start flex-wrap">
+      <table class='table table-hover'>
+      <tr>
+        <th>문의번호</th>
+        <th>회원번호</th>
+        <th>우편번호</th>
+        <th>기본주소</th>
+        <th>상세주소</th>
+        <th>결제일</th>
+        <th>결제수단</th>
+        <th>주문상태</th>
+        <th>운송장</th>
+      </tr>
 <c:forEach items="${orders}" var="order">
-  ${order.orderNo}
-  ${order.memberNo}
-  ${order.postNo}
-  ${order.address}
-  ${order.detailAddress}
-  ${order.paymentDate}
-  ${order.paymentMethod}
-  ${order.shipDate}
-  ${order.invoice}
-</c:forEach> 
+<tr>
+  <td>${order.orderNo}</td>
+  <td>${order.memberNo}</td>
+  <td>${order.postNo}</td>
+  <td>${order.address}</td>
+  <td>${order.detailAddress}</td>
+  <td>${order.paymentDate}</td>
+  <td>${order.paymentMethod}</td>
+  <td>${order.shipDate}</td>
+  <td>${order.invoice}</td>
+</tr>
+</c:forEach>
+</table>
 </div>
 </div>
-
+<c:forEach items="${order.members}" var="member">
+  ${member.nickname}<br>
+  ${member.email}<br>
+</c:forEach>
 <jsp:include page="../footer.jsp"/>
 
 </body></html>

@@ -23,5 +23,4 @@ public class RecipeLike {
   public void setRecipeNo(int recipeNo) {
     this.recipeNo = recipeNo;
   }
-  
 }

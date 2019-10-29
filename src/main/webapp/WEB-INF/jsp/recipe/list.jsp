@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="../../css/findRecipe.css">
+<link rel="stylesheet" href="../../css/recipe/findRecipe.css">
    <style>
         .bueno-btn {
           background-color: #b0c364;
@@ -54,14 +54,12 @@
             </div>
             </div>
         </span></span>
-<!-- 
-<a href='form'>레시피 등록</a></br>
- -->
+        
 <form action='form'>
   <button class="btn bueno-btn mt-30">레시피 등록</button>
 </form>
-
  <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+ 
          <!-- First Photo Grid-->
         <div class="w3-row-padding w3-padding-16 w3-center" id="food">
          <c:forEach items="${recipes}" var="recipe">
@@ -70,47 +68,10 @@
                 <h3><a href='detail?no=${recipe.recipeNo}'>${recipe.title}</a></h3>
                 <p>${recipe.content}</p>
             </div>
-            <!-- 
-            <div class="w3-quarter">
-                <img src="/w3images/steak.jpg" alt="Steak" style="width:100%">
-                <h3>Let Me Tell You About This Steak</h3>
-                <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-            </div>
-            <div class="w3-quarter">
-                <img src="/w3images/cherries.jpg" alt="Cherries" style="width:100%">
-                <h3>Cherries, interrupted</h3>
-                <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-                <p>What else?</p>
-            </div>
-            <div class="w3-quarter">
-                <img src="/w3images/wine.jpg" alt="Pasta and Wine" style="width:100%">
-                <h3>Once Again, Robust Wine and Vegetable Pasta</h3>
-                <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-            </div>
-             -->
         </c:forEach>
         </div>
  
  </div>
-
-<!-- 
-<table>
-<tr>
-  <th>번호</th>
-  <th>제목</th>
-  <th>대표사진</th>
-</tr>
-
-<c:forEach items="${recipes}" var="recipe">
-  <tr>
-    <td>${recipe.no}</td>
-    <td><a href='detail?no=${recipe.no}'>${recipe.title}</a></td>
-    <td><img src='/upload/recipe/${recipe.thumbnail}' class='photo2'></td>
-  </tr>
-</c:forEach>
-
-</table>
- -->
 
 </body>
 </html>

@@ -6,7 +6,7 @@
 <head>
   <title>회원 목록</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel="stylesheet" href="/css/style_contact.css">
+  <link rel="stylesheet" href="/css/member/style_contact.css">
 </head>
 <body>
 
@@ -24,7 +24,7 @@
 </tr>
 <c:forEach items="${members}" var="member">
   <tr>
-    <td>${member.memberNo}</td>
+    <td><a href='detail?no=${member.memberNo}'>${member.memberNo}</a></td>
     <td>${member.email}</td>
     <td>${member.tel}</td>
     <td>${member.nickname}</td>
