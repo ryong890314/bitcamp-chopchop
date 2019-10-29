@@ -11,26 +11,21 @@
 </head>
 <body>
   <jsp:include page="../header.jsp"/>
-<!--   <div id='content'> -->
-<!--     <h1>주문 폼</h1> -->
-<!--     <form action='add' method='post' enctype='multipart/form-data'> -->
-<!--       상품명: <input type='text' name='title'><br> -->
-<%--       상품명: <input type='text' name='quantity' readonly>${quantity}개<br> --%>
-<!--       가격: <input type='text' name='price'><br> -->
-<!--       상품상세: <textarea name='detail'></textarea><br> -->
-<!--       재고: <input type='text' name='stock'><br> -->
-<!--       할인율: <input type='text' name='discount'><br> -->
-<!--       <button>등록</button> -->
-<!--     </form> -->
-<!--   </div> -->
   <form action="add" method="post">
-    <input type="text" id="no" value="${product.productNo}"><br>
-    <input type="text" id="price" value="${product.price}" readonly><br>
-    <input type="text" id="memberNo" value="${loginMember.memberNo}"><br>
-    <input type="text" id="email" value="${loginMember.email}"><br>
-    <input type="text" id="postNo" value="${loginMember.postNo}"><br>
-    <input type="text" id="baseAddress" value="${loginMember.baseAddress}"><br>
-    <input type="text" id="detailAddress" value="${loginMember.detailAddress}"><br>
+    ${product.title}<br>
+    ${product.price}원<br>
+    회원 번호<br><input type="text" name="memberNo" value="${loginUser.memberNo}"><br>
+    이름<br><input type="text" name="nickname" value="${loginUser.nickname}"><br>
+    이메일<br><input type="text" name="email" value="${loginUser.email}"><br>
+    연락처<br><input type="text" name="tel" value="${loginUser.tel}"><br>
+    우편번호<br><input type="text" name="postNo" value="${loginUser.postNo}"><br>
+    기본주소<br><input type="text" name="baseAddress" value="${loginUser.baseAddress}"><br>
+    상세주소<br><input type="text" name="detailAddress" value="${loginUser.detailAddress}"><br>
+    결제수단<br><input type="text" name="paymentMethod" value=""><br>
+    관리자<br><br>
+    입금일<br><input type="date" name="paymentDate" value="$"><br>
+    주문상태<br><input type="text" name="shipDate" value=""><br>
+    상품번호<br><input type="text" name="no" value="${product.productNo}">
     <button>주문</button>
   </form>
   <jsp:include page="../footer.jsp"/>

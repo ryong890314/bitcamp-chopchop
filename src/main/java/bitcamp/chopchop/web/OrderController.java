@@ -24,17 +24,9 @@ public class OrderController {
   private ProductService productService;
   
   @PostMapping("form")
-  public void form(int no, int price, Model model, HttpSession session) throws Exception {
-    Member member = (Member) session.getAttribute("loginUser");
+  public void form(int no, Model model) throws Exception {
     Product product = productService.get(no);
     model.addAttribute("product", product);
-    model.addAttribute("loginMember", member);
-    System.out.println("-----------------------------------------------------------------");
-    System.out.println(member.getMemberNo());
-    System.out.println(member.getPostNo());
-    System.out.println(member.getBaseAddress());
-    System.out.println(member.getDetailAddress());
-    System.out.println("-----------------------------------------------------------------");
   }
   
   @GetMapping("list")
@@ -50,7 +42,7 @@ public class OrderController {
   }
   
   @PostMapping("add")
-  public String add(Order order, int no, int price) throws Exception {
+  public String add(Order order, int no) throws Exception {
     OrderProduct orderProduct = new OrderProduct();
     orderProduct.setOrderNo(order.getOrderNo());
     orderProduct.setProductNo(productService.get(no).getProductNo());
