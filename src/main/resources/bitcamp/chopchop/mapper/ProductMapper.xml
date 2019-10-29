@@ -15,6 +15,7 @@
     <result column="view_count" property="viewCount"/>
     <result column="category" property="category"/>
     <result column="species" property="species"/>
+    <result column="option" property="option"/>
   </resultMap>
   
   <resultMap type="Product" id="findWithFilesMap">
@@ -26,6 +27,7 @@
     <result column="discount" property="discount"/>
     <result column="category" property="category"/>
     <result column="species" property="species"/>
+    <result column="option" property="option"/>
     
     <collection property="files" ofType="PhotoFile">
       <id column="photo_id" property="photoFileNo"/>
@@ -43,6 +45,7 @@
     <result column="discount" property="discount"/>
     <result column="category" property="category"/>
     <result column="species" property="species"/>
+    <result column="option" property="option"/>
     <result column="view_count" property="viewCount"/>
 
     <collection property="files" ofType="PhotoFile">
@@ -108,6 +111,7 @@
       p.category,
       p.species,
       p.view_count,
+      p.option,
       f.photo_id,
       f.file_path,
       c.comment_id,
@@ -135,6 +139,7 @@
       p.discount,
       p.category,
       p.species,
+      p.option,
       f.photo_id,
       f.file_path
     from 
@@ -158,6 +163,7 @@
       p.discount,
       p.category,
       p.species,
+      p.option,
       f.photo_id,
       f.file_path
     from 
@@ -174,8 +180,8 @@
   </update>
   
   <insert id="insert" parameterType="Product" useGeneratedKeys="true" keyColumn="product_id" keyProperty="productNo">
-    insert into product(title, price, detail, stock, discount, category,species)
-    values(#{title},#{price},#{detail},#{stock},#{discount},#{category},#{species}) 
+    insert into product(title, price, detail, stock, discount, category,species,option)
+    values(#{title},#{price},#{detail},#{stock},#{discount},#{category},#{species},#{option}) 
   </insert>
   
   <update id="update" parameterType="Product">
@@ -186,7 +192,8 @@
       stock=#{stock},
       discount=#{discount},
       category=#{category},
-      species=#{species}
+      species=#{species},
+      option=#{option}
     where product_id=#{productNo}
   </update>
   

@@ -12,6 +12,7 @@ public class Product {
   private int discount;
   private String category;
   private String species;
+  private String option;
   private int viewCount;
 
   private List<PhotoFile> files;
@@ -21,7 +22,7 @@ public class Product {
   public String toString() {
     return "Product [productNo=" + productNo + ", title=" + title + ", price=" + price + ", detail="
         + detail + ", stock=" + stock + ", discount=" + discount + ", category=" + category
-        + ", species=" + species + ", files=" + files + ", comments=" + comments + "]";
+        + ", species=" + species + ", files=" + files + ", comments=" + comments+ ", option=" + option + "]";
   }
 
   public int getViewCount() {
@@ -111,4 +112,14 @@ public class Product {
   public void setComments(List<Comment> comments) {
     this.comments = comments;
   }
+
+  public String getOption() {
+    return option;
+  }
+
+  public void setOption(String option) {
+    this.option = option;
+  }
+
+  
 }
