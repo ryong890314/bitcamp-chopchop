@@ -12,7 +12,7 @@
 		<result column="photo" property="photo" />
 	</resultMap>
 
-  <resultMap type="Pet" id="PetMap">
+    <resultMap type="Pet" id="PetMap">
     <id column="pet_id" property="petNo" />
     <result column="name" property="name" />
     <result column="created_date" property="createdDate" />
@@ -54,14 +54,11 @@
 		)
 	</insert>
 
-	<!-- select pet_id, name, breed, age, gender <include refid="basicColumn" 
-		/> , photo from pet where pet_id = #{petNo} -->
-
 	<select id="findAll" resultMap="PetMap">
 		select * from pet
 	</select>
 
-	<select id="findBy" parameterType="int" resultMap="PetMap">
+ 	<select id="findBy" parameterType="int" resultMap="PetMap">
 		select
 			p.pet_id,
 		  p.file_path,
@@ -74,7 +71,7 @@
 		from pet p
 		  left outer join breed b on p.breed_id=b.breed_id
 		  where p.pet_id=${petNo}
-	</select>
+	</select> 
 
 	<update id="update" parameterType="Pet">
 		update pet
