@@ -46,8 +46,10 @@
     <mapper resource="bitcamp/chopchop/mapper/IngredientMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/CookingMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/RecipeLikeMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/RecipeCommentMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/OrderMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/OrderProductMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/RecipeMapper2.xml"/>
   </mappers>
 </configuration>
 

@@ -60,6 +60,7 @@ public class DefaultOrderService implements OrderService {
   
   @Override
   public Order result() throws Exception {
+    orderDao.findBy(57);
     Order order = orderDao.result();
     System.out.println(order);
     return order;

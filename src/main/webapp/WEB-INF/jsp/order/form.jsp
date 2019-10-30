@@ -12,8 +12,8 @@
 <body>
   <jsp:include page="../header.jsp"/>
   <form action="add" method="post">
-    ${product.title}<br>
-    ${product.price}원<br>
+    <h2>${product.title}</h2><br>
+    <h5>${product.price}원</h5><br>
     회원 번호<br><input type="text" name="memberNo" value="${loginUser.memberNo}"><br>
     이름<br><input type="text" name="nickname" value="${loginUser.nickname}"><br>
     이메일<br><input type="text" name="email" value="${loginUser.email}"><br>

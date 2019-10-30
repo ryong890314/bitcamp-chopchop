@@ -1,58 +1,80 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
+/* Master Stylesheet - 1.0 */
+/* :: 1.0 Import Fonts */
 /* :: 2.0 Import All CSS */
-@import url(css2/bootstrap.min.css);
-@import url(css2/classy-nav.css);
-@import url(css2/owl.carousel.min.css);
-@import url(css2/animate.css);
-@import url(css2/magnific-popup.css);
-@import url(css2/font-awesome.min.css);
-@import url(css2/nice-select.css);
-
-        * {
-  margin: 0;
-  padding: 0; }
-
-body {
-  font-family: "Montserrat", sans-serif;
-  font-size: 14px; }
+@import url(/css/common/bootstrap.min.css);
+@import url(/css/common/classy-nav.css);
+@import url(/css/common/nice-select.css);
+/* :: 3.0 Base CSS */
 
 .pb-70 {
-  padding-bottom: 70px !important; }
-        
-        
-        .bueno-btn {
-          background-color: #b0c364;
-          -webkit-transition-duration: 500ms;
-          transition-duration: 500ms;
-          position: relative;
-          z-index: 1;
-          display: inline-block;
-          min-width: 160px;
-          height: 50px;
-          color: #ffffff;
-          border-radius: 0;
-          padding: 0 30px;
-          margin-left: 50px;
-          font-size: 14px;
-          line-height: 50px;
-          font-weight: 500;
-          text-transform: capitalize; }
-        .bueno-btn:hover, .bueno-btn:focus {
-          font-size: 14px;
-          font-weight: 500;
-          background-color: #000000;
-          color: #ffffff; }
-          
-          .bueno-search-area {
-  position: relative;
-  z-index: 1; }
-  .bueno-search-area .form-group {
-    margin-bottom: 0; }
-    .bueno-search-area .form-group:focus {
-      box-shadow: none; }
-    .bueno-search-area .form-group .form-control:focus {
-      box-shadow: none; }
-  .bueno-search-area .nice-select {
+    padding-bottom: 70px !important;
+}
+
+
+.section-padding-100-0 {
+    padding-top: 100px;
+    padding-bottom: 0;
+}
+
+
+.bg-img {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* :: 3.7.0 bueno Button */
+.bueno-btn {
+    background-color: #b0c364;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    min-width: 160px;
+    height: 50px;
+    color: #ffffff;
+    border-radius: 0;
+    padding: 0 30px;
+    font-size: 14px;
+    line-height: 50px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.bueno-btn:hover,
+.bueno-btn:focus {
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+content: "";
+}
+
+.bueno-search-area {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.bueno-search-area .form-group {
+    margin-bottom: 0;
+}
+
+.bueno-search-area .form-group:focus {
+    box-shadow: none;
+}
+
+.bueno-search-area .form-group .form-control:focus {
+    box-shadow: none;
+}
+
+.bueno-search-area .nice-select {
     border-radius: 0;
     border: 1px solid #dadfe5;
     float: none;
@@ -60,20 +82,26 @@ body {
     height: 50px;
     line-height: 50px;
     width: 100%;
-    padding: 0 20px; }
-    .bueno-search-area .nice-select .current {
-      color: #7a7a7a;
-      font-size: 12px;
-      text-transform: uppercase;
-      font-weight: 600; }
-    .bueno-search-area .nice-select .list {
-      border-radius: 0;
-      width: 100%;
-      border-top: 2px solid #b0c364;
-      margin-top: 0; }
-      .bueno-search-area .nice-select .list li {
-        color: #7a7a7a;
-        font-size: 12px;
-        text-transform: uppercase;
-        font-weight: 600; }
-          
+    padding: 0 20px;
+}
+
+.bueno-search-area .nice-select .current {
+    color: #7a7a7a;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.bueno-search-area .nice-select .list {
+    border-radius: 0;
+    width: 100%;
+    border-top: 2px solid #b0c364;
+    margin-top: 0;
+}
+
+.bueno-search-area .nice-select .list li {
+    color: #7a7a7a;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+}

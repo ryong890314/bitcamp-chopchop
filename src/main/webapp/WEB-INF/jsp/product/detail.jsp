@@ -118,7 +118,8 @@
               <div class="comment-content d-flex">
                   <!-- Comment Author -->
                   <div class="comment-author">
-                      <img src="/img/bg-img/person.png" alt="author" width="70px">
+<%--                       <img src="/img/bg-img/person.png" alt="${loginUser.nickname}" width="70px"> --%>
+                    <span style="font-size:14px;">${loginUser.nickname}</span>
                   </div>
                   <!-- Comment Meta -->
                   <div class="comment-meta">

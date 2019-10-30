@@ -5,59 +5,95 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="../../css/recipe/findRecipe.css">
+<link rel="stylesheet" href="/css/recipe/w3.css">
+<link rel="stylesheet" href="/css/recipe/list.css">
    <style>
-        .bueno-btn {
-          background-color: #b0c364;
-          -webkit-transition-duration: 500ms;
-          transition-duration: 500ms;
-          position: relative;
-          z-index: 1;
-          display: inline-block;
-          min-width: 160px;
-          height: 50px;
-          color: #ffffff;
-          border-radius: 0;
-          padding: 0 30px;
-          margin-left: 50px;
-          font-size: 14px;
-          line-height: 50px;
-          font-weight: 500;
-          text-transform: capitalize; }
-        .bueno-btn:hover, .bueno-btn:focus {
-          font-size: 14px;
-          font-weight: 500;
-          background-color: #000000;
-          color: #ffffff; }
+   a {
+   color: black;
+   }
+   /* :: 3.7.0 bueno Button */
+.bueno-btn {
+    background-color: #b0c364;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    min-width: 160px;
+    height: 50px;
+    color: #ffffff;
+    border-radius: 0;
+    padding: 0 30px;
+    font-size: 14px;
+    line-height: 50px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.bueno-btn:hover,
+.bueno-btn:focus {
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #000000;
+    color: #ffffff;
+}
     </style>
     <title>Recipe List</title>
 </head>
 <body>
 
-<span class="page-wrap" id="page-mount-point"><span class="page">
-                    <div class="search-utility-hero" data-photo-lightness="dark" data-track-location="above-the-fold" data-track-source="page-region"><strong class="find-a-recipe">Find a Recipe</strong>
-                        <form action="search" autocomplete="off" class="search-utility-hero-form" method="get" data-reactid="62">
-                            <div><input type='text' name='keyword' placeholder="태그를 입력해주세요.">
-                       </div>
-                       <input type='submit' class="advanced-search" value='Search by Tag'>
-                        </form>
-                            <div class="photo-wrap">
-                                <picture class="component-responsive-image photo-wrap">
-                                    <source media="(min-width: 1400px)" srcset="https://assets.epicurious.com/photos/5b158b8e2d124719c33e5a45/4:1/w_1944,h_486,c_limit/61-bread_16042018.jpg, https://assets.epicurious.com/photos/5b158b8e2d124719c33e5a45/4:1/w_3888,h_972,c_limit/61-bread_16042018.jpg 2x" />
-                                    <source media="(min-width: 1024px)" srcset="https://assets.epicurious.com/photos/5b158b8e2d124719c33e5a45/3:1/w_1458,h_486,c_limit/61-bread_16042018.jpg, https://assets.epicurious.com/photos/5b158b8e2d124719c33e5a45/3:1/w_2916,h_972,c_limit/61-bread_16042018.jpg 2x" />
-                                    <source media="(min-width: 768px)" srcset="https://assets.epicurious.com/photos/5b158b8e2d124719c33e5a45/9:4/w_1094,h_486,c_limit/61-bread_16042018.jpg, https://assets.epicurious.com/photos/5b158b8e2d124719c33e5a45/9:4/w_2188,h_972,c_limit/61-bread_16042018.jpg 2x" />
-                                    <source media="(min-width: 0px)" srcset="https://assets.epicurious.com/photos/5b158b8e2d124719c33e5a45/6:4/w_618,h_412,c_limit/61-bread_16042018.jpg, https://assets.epicurious.com/photos/5b158b8e2d124719c33e5a45/6:4/w_1236,h_824,c_limit/61-bread_16042018.jpg 2x" /><img alt="61-bread_16042018.jpg" src="https://assets.epicurious.com/photos/5b158b8e2d124719c33e5a45/6:4/w_618,h_412,c_limit/61-bread_16042018.jpg" title="" /></picture>
+<%-- findRecipe --%>
+<jsp:include page="findRecipe.jsp"/>
+
+
+<!-- ##### Search Area Start ##### -->
+    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="height: 50px; background-image: url(/img/core-img/pattern.png);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#" method="post">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="form-group mb-30" style="display: none">
+                                </div>
                             </div>
-                    </div>
-                </span>
+<!--                             <div class="col-12 col-sm-6 col-lg-3"> -->
+<!--                                 <div class="form-group mb-30"  style="display: none"> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+
+                            <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="form-group mb-30">
+                                    <select id="sort" class="form-control" id="ingredients">
+                                      <option value="">Recipe List</option>
+                                      <option value="">Order by Views</option>
+                                      <option value="">Order by Scraps</option>
+                                      <option value="">Order by latest</option>
+                                      <option value="">Ingredients 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="form-group mb-30">
+                                    <button class="btn bueno-btn w-100">Search</button>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-lg-3">
+                              <button id="add" class="btn bueno-btn w-100" type="button" onclick="location='form.jsp'">레시피등록</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            </div>
-        </span></span>
+        </div>
+    </div>
+
         
-<form action='form'>
-  <button class="btn bueno-btn mt-30">레시피 등록</button>
-</form>
+<!-- <form action='form'> -->
+<!--   <button class="btn bueno-btn mt-30">레시피 등록</button> -->
+<!-- </form> -->
+
+
  <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
  
          <!-- First Photo Grid-->
@@ -70,8 +106,12 @@
             </div>
         </c:forEach>
         </div>
- 
  </div>
-
+ 
+     <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="/js/active.js"></script>
 </body>
 </html>
