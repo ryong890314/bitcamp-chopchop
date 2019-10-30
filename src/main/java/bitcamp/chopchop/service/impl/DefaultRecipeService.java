@@ -27,19 +27,22 @@ public class DefaultRecipeService implements RecipeService {
     if (recipe.getIngredients().size() == 0 || recipe.getCookings().size() == 0) {
       throw new Exception("내용을 입력해주세요");
     }
-    
-    recipeDao.insert(recipe);
+
+    int result = recipeDao.insert(recipe);
+    System.out.println("=============================");
+    System.out.println(result);
+    System.out.println("=============================");
     for (Ingredient i : recipe.getIngredients()) {
       i.setRecipeNo(recipe.getRecipeNo());
       ingredientDao.insert(i);
     }
-    
+
     for (Cooking c : recipe.getCookings()) {
       c.setRecipeNo(recipe.getRecipeNo());
       cookingDao.insert(c);
     }
   }
-  
+
   @Override
   public Recipe get(int no) throws Exception {
     Recipe recipe = recipeDao.findTotalBy(no);
@@ -54,7 +57,7 @@ public class DefaultRecipeService implements RecipeService {
   public List<Recipe> list() throws Exception {
     return recipeDao.findAll();
   }
-  
+
   @Transactional
   @Override
   public void delete(int no) throws Exception {
@@ -65,7 +68,7 @@ public class DefaultRecipeService implements RecipeService {
     ingredientDao.delete(no);
     recipeDao.delete(no);
   }
-  
+
 
   @Override
   public List<Recipe> search(String keyword) throws Exception {
@@ -78,7 +81,7 @@ public class DefaultRecipeService implements RecipeService {
     if (recipe.getIngredients().size() == 0) {
       throw new Exception("재료 입력해주세요");
     }
-    
+
     cookingDao.delete(recipe.getRecipeNo());
     ingredientDao.delete(recipe.getRecipeNo());
     recipeDao.update(recipe);
@@ -94,19 +97,24 @@ public class DefaultRecipeService implements RecipeService {
       cookingDao.insert(c);
     }
   }
-  
+
+
   @Transactional
   @Override
-  public void insertRecipeLike(Recipe recipe) throws Exception {
-    recipeDao.increaseScrapCount(recipe.getRecipeNo());
-    
-    for (RecipeLike rl : recipe.getRecipeLikes()) {
-      rl.setRecipeNo(recipe.getRecipeNo());
-      rl.setMemberNo(recipe.getMemberNo());
-      System.out.println("-------------------------------------");
-      System.out.println(recipe.getRecipeNo());
-      recipeLikeDao.insertRecipeLike(rl);
-    }
+  public void insertLike(RecipeLike recipeLike) throws Exception {
+    recipeDao.increaseScrapCount(recipeLike.getRecipeNo());
+    recipeLikeDao.insertLike(recipeLike);
+  }
+
+  @Override
+  public void deleteLike(RecipeLike recipeLike) throws Exception {
+    recipeDao.decreaseScrapCount(recipeLike.getRecipeNo());
+    recipeLikeDao.deleteLike(recipeLike);
+  }
+
+  @Override
+  public int findLike(RecipeLike recipeLike) throws Exception {
+    return recipeLikeDao.findLike(recipeLike);
   }
 
 }

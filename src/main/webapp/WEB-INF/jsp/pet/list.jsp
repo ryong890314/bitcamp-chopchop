@@ -21,10 +21,6 @@
   <th>이름</th>
   <th>나이</th>
   <th>성별</th>
-<<<<<<< HEAD
-=======
-  <th>Breed</th>
->>>>>>> 791cf2040e7fabe6e7fa28c6df5b1a83dc4d827c
 </tr>
 <c:forEach items="${pets}" var="pet">
   <tr>
@@ -32,10 +28,6 @@
     <td>${pet.name}</td>
     <td>${pet.age}</td>
     <td>${pet.gender}</td>
-<<<<<<< HEAD
-=======
-    <td>${pet.breedNo}</td>
->>>>>>> 791cf2040e7fabe6e7fa28c6df5b1a83dc4d827c
   </tr>
 </c:forEach>
 </table>

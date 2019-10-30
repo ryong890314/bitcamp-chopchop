@@ -19,8 +19,8 @@
 <tr>
   <th>번호</th>
   <th>이메일</th>
-  <th>닉네임</th>
   <th>전화번호</th>
+  <th>닉네임</th>
 </tr>
 <c:forEach items="${members}" var="member">
   <tr>

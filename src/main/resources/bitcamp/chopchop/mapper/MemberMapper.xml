@@ -81,6 +81,11 @@
 	<select id="findByEmailPassword" parameterType="map"
 		resultMap="MemberMap">
 		<include refid="basicColumn" />
+        ,
+    photo,
+    post_no,
+    base_address,
+    detail_address
 		from member
 		where email = #{email} and password = password(#{password})
 	</select>

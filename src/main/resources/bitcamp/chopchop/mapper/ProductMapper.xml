@@ -158,6 +158,7 @@
       p.discount,
       p.category,
       p.species,
+      p.option,
       f.photo_id,
       f.file_path
     from 
@@ -186,7 +187,8 @@
       stock=#{stock},
       discount=#{discount},
       category=#{category},
-      species=#{species}
+      species=#{species},
+      option=#{option}
     where product_id=#{productNo}
   </update>
   

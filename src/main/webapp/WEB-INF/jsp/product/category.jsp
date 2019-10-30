@@ -54,8 +54,6 @@
     }
   </style>
 
-
-
 </head>
 <body>
   <jsp:include page="../header.jsp" />
@@ -71,7 +69,7 @@
         <option id='5' value='작은'>작은 동물</option>
         <option id='6' value='파충류'>파충류</option>
       </select><br>
-      <input type='text' id='inputValue' value=''></input>
+      <input type='hidden' id='inputValue' value=''></input>
       <button>검색</button>
     </form>
     <table class='table table-hover' id='table1'>
@@ -80,8 +78,8 @@
         <th>상품명</th>
         <th>가격</th>
         <th>할인율</th>
-        <th>카테고리</th>
-        <th>동물분류</th>
+        <th hidden="true">카테고리</th>
+        <th hidden="true">동물분류</th>
         <th>사진</th>
       </tr>
       <c:forEach items="${products}" var="product">
@@ -90,8 +88,8 @@
           <td><a href='detail?no=${product.productNo}'>${product.title}</a></td>
           <td>${product.price}</td>
           <td>${product.discount}</td>
-          <td>${product.category}</td>
-          <td>${product.species}</td>
+          <td hidden="true">${product.category}</td>
+          <td hidden="true">${product.species}</td>
           <td>
             <p>
               <c:forEach items="${product.files}" var="file" end="0">

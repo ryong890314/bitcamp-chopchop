@@ -9,16 +9,14 @@
 		<result column="name" property="name" />
 		<result column="created_date" property="createdDate" />
 		<result column="register_no" property="registerNo" />
-		<result column="photo" property="photo" />
+		<result column="file_path" property="photo" />
 	</resultMap>
-  
-  
 <!--   <resultMap type="Pet" id="PetMap"> -->
 <!--     <id column="pet_id" property="petNo" /> -->
 <!--     <result column="name" property="name" /> -->
 <!--     <result column="created_date" property="createdDate" /> -->
 <!--     <result column="register_no" property="registerNo" /> -->
-<!--     <result column="photo" property="photo" /> -->
+<!--     <result column="file_path" property="photo" /> -->
     
 <!--     <collection property="breeds" ofType="Breed"> -->
 <!--       <id column="breed_id" property="breedNo"/> -->

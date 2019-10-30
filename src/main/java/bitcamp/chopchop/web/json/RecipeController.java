@@ -2,6 +2,7 @@ package bitcamp.chopchop.web.json;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Ingredient;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Recipe;
 import bitcamp.chopchop.domain.RecipeLike;
+import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.RecipeService;
 import bitcamp.chopchop.web.CookingFileWriter;
 
@@ -23,6 +26,7 @@ import bitcamp.chopchop.web.CookingFileWriter;
 public class RecipeController {
   @Resource private RecipeService recipeService;
   @Resource private CookingFileWriter cookingFileWriter;
+  @Resource private MemberService memberService;
 
   String uploadDir;
 
@@ -72,7 +76,15 @@ public class RecipeController {
     //    session.setAttribute("no", 1);
     try {
       Recipe recipe = recipeService.get(no);
-      return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipe);
+      Member member = memberService.get(recipe.getMemberNo());
+
+      JsonResult jsonResult = new JsonResult();
+      HashMap<String,Object> hashMap = new HashMap<>();
+      hashMap.put("member", member);
+      hashMap.put("recipe", recipe);
+      jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
+
+      return jsonResult;
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
@@ -134,20 +146,43 @@ public class RecipeController {
     }
   }
 
-  @PostMapping("like")
-  public JsonResult like(int no, int memberNo) throws Exception {
+  @GetMapping("like")
+  public JsonResult like(int no, HttpSession session) throws Exception {
     try {
+      Member member = (Member)session.getAttribute("loginUser");
       Recipe recipe = recipeService.get(no);
-      List<RecipeLike> recipeLikes = new ArrayList<>();
-      RecipeLike temp = new RecipeLike();
-      temp.setMemberNo(memberNo);
-      temp.setRecipeNo(no);
-      recipeLikes.add(temp);
 
-      recipe.setRecipeLikes(recipeLikes);
-      recipeService.update(recipe);
-      recipeService.insertRecipeLike(recipe);
-      return new JsonResult().setState(JsonResult.SUCCESS);
+      RecipeLike recipeLike = new RecipeLike();
+      recipeLike.setMemberNo(member.getMemberNo());
+      recipeLike.setRecipeNo(recipe.getRecipeNo());
+
+      JsonResult jsonResult = new JsonResult();
+      HashMap<String,Object> hashMap = new HashMap<>();
+      
+      recipe = recipeService.get(no);
+      System.out.println("findLike  " + recipeService.findLike(recipeLike));
+      
+      if (recipeService.findLike(recipeLike) == 1) { // 좋아요 취소해야함
+        recipeService.deleteLike(recipeLike);
+        hashMap.put("recipeNo", recipe.getRecipeNo());
+        hashMap.put("member", member);
+        hashMap.put("isLike", false);
+        hashMap.put("scrap", recipeService.get(no).getScrap());
+        System.out.println("좋아요취소 ===> 스크랩수" + recipeService.get(no).getScrap());
+        jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
+        return jsonResult;
+
+      } else { // 좋아요 를 눌렀음
+        recipeService.insertLike(recipeLike);
+        
+        hashMap.put("recipeNo", recipe.getRecipeNo());
+        hashMap.put("member", member);
+        hashMap.put("isLike", true);
+        hashMap.put("scrap", recipeService.get(no).getScrap());
+        System.out.println("조아요====> 스크랩수" + recipeService.get(no).getScrap());
+        jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
+        return jsonResult;
+      }
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }

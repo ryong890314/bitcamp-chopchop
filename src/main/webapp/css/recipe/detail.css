@@ -2,13 +2,13 @@
 /* :: 1.0 Import Fonts */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
 /* :: 2.0 Import All CSS */
-@import url(css2/bootstrap.min.css);
-@import url(css2/classy-nav.css);
-@import url(css2/owl.carousel.min.css);
-@import url(css2/animate.css);
-@import url(css2/magnific-popup.css);
-@import url(css2/font-awesome.min.css);
-@import url(css2/nice-select.css);
+@import url(/css/common/bootstrap.min.css);
+@import url(/css/member/classy-nav.css);
+@import url(/css/common/owl.carousel.min.css);
+@import url(/css/common/animate.css);
+@import url(/css/common/magnific-popup.css);
+@import url(/css/common/font-awesome.min.css);
+@import url(/css/common/nice-select.css);
 /* :: 3.0 Base CSS */
 * {
   margin: 0;
@@ -128,7 +128,7 @@ img {
         z-index: 1;
         display: inline-block;
         color: #7a7a7a;
-        font-size: 12px;
+        font-size: 15px;
         font-weight: 600;
         text-transform: uppercase; }
         .post-details-content .blog-content .post-meta a:first-child {

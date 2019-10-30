@@ -141,7 +141,7 @@
 									</c:if>
 									<c:if test="${not empty loginUser}">
 										<a>Hello!</a>
-										<a class='nav-user'>${loginUser.nickname}</a>
+										<a href="/app/member/main" class='nav-user'>${loginUser.nickname}</a>
 										<a class='classy-btn login-area' href='/app/auth/logout'>Sign
 											out</a>
 									</c:if>

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
+import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.service.OrderService;
+import bitcamp.chopchop.service.ProductService;
 
 @Controller
 @RequestMapping("/order")
@@ -18,9 +20,13 @@ public class OrderController {
   
   @Resource
   private OrderService orderService;
+  @Resource
+  private ProductService productService;
   
-  @GetMapping("form")
-  public void form() {
+  @PostMapping("form")
+  public void form(int no, Model model) throws Exception {
+    Product product = productService.get(no);
+    model.addAttribute("product", product);
   }
   
   @GetMapping("list")
@@ -29,16 +35,21 @@ public class OrderController {
   }
 
   @GetMapping("searchbymember")
-  public void searchByMember(Model model, HttpSession httpSession) throws Exception {
-    Member member = (Member) httpSession.getAttribute("loginUser");
+  public void searchByMember(Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
     model.addAttribute("orders", orderService.searchByMember(member.getMemberNo()));
     model.addAttribute("loginMember", member);
   }
   
   @PostMapping("add")
-  public String add(Order order, OrderProduct orderProduct) throws Exception {
-    orderService.insert(order);
-    return "redirect:../product/detail?no=" + orderProduct.getProductNo();
+  public String add(Order order, int no, Model model) throws Exception {
+    OrderProduct orderProduct = new OrderProduct();
+    orderProduct.setOrderNo(order.getOrderNo());
+    orderProduct.setProductNo(productService.get(no).getProductNo());
+    orderService.insert(order, orderProduct);
+    model.addAttribute("order", order);
+    model.addAttribute("orderProduct", orderProduct);
+    return "redirect:result"; // -> 주문 완료 페이지로
   }
   
   @GetMapping("delete")
@@ -53,8 +64,16 @@ public class OrderController {
   }
   
   @PostMapping("update")
-  public String update(Order order, OrderProduct orderProduct) throws Exception {
-    orderService.update(order);
-    return "redirect:../product/detail?no" + orderProduct.getProductNo();
+  public String update(Order order) throws Exception {
+    OrderProduct orderProduct = new OrderProduct();
+    orderProduct.setOrderNo(order.getOrderNo());
+    orderService.update(order, orderProduct);
+    return "redirect:../product/detail?no=" + orderProduct.getProductNo(); // -> 주문 완료 페이지로
+  }
+  
+  @GetMapping("result")
+  public void result(Order order, Model model) throws Exception {
+    System.out.println("-----------------번호는 " + order + "--------------------");
+    model.addAttribute("order", order);
   }
 }

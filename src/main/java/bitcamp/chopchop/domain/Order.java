@@ -7,7 +7,7 @@ public class Order {
   private int orderNo;
   private int memberNo;
   private String postNo;
-  private String address;
+  private String baseAddress;
   private String detailAddress;
   private Date paymentDate;
   private String paymentMethod;
@@ -19,7 +19,7 @@ public class Order {
   @Override
   public String toString() {
     return "Order [orderNo=" + orderNo + ", memberNo=" + memberNo + ", postNo=" + postNo
-        + ", address=" + address + ", detailAddress=" + detailAddress + ", paymentDate="
+        + ", baseAddress=" + baseAddress + ", detailAddress=" + detailAddress + ", paymentDate="
         + paymentDate + ", paymentMethod=" + paymentMethod + ", shipDate=" + shipDate + ", invoice="
         + invoice + ", orderProducts=" + orderProducts + ", members=" + members + "]";
   }
@@ -48,12 +48,12 @@ public class Order {
     this.postNo = postNo;
   }
 
-  public String getAddress() {
-    return address;
+  public String getBaseAddress() {
+    return baseAddress;
   }
 
-  public void setAddress(String address) {
-    this.address = address;
+  public void setBaseAddress(String baseAddress) {
+    this.baseAddress = baseAddress;
   }
 
   public String getDetailAddress() {
@@ -111,7 +111,4 @@ public class Order {
   public void setMembers(List<Member> members) {
     this.members = members;
   }
-
-
-
 }
