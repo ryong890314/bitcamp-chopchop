@@ -2,6 +2,7 @@ package bitcamp.chopchop.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 public class Pet implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -14,8 +15,7 @@ public class Pet implements Serializable {
   private int gender;
   private int age;
 
-  private int breedNo;
-  private String breed;
+  private List<Breed> breeds;
   
   public int getPetNo() {
     return petNo;
@@ -31,14 +31,6 @@ public class Pet implements Serializable {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public int getBreedNo() {
-    return breedNo;
-  }
-
-  public void setBreedNo(int breedNo) {
-    this.breedNo = breedNo;
   }
 
   public Date getCreatedDate() {
@@ -81,11 +73,11 @@ public class Pet implements Serializable {
     this.age = age;
   }
 
-  public String getBreed() {
-    return breed;
+  public List<Breed> getBreeds() {
+    return breeds;
   }
 
-  public void setBreed(String breed) {
-    this.breed = breed;
+  public void setBreeds(List<Breed> breeds) {
+    this.breeds = breeds;
   }
 }
