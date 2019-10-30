@@ -82,14 +82,17 @@ DROP TABLE IF EXISTS store_photo RESTRICT;
 -- 상품문의
 DROP TABLE IF EXISTS product_comment RESTRICT;
 
+-- 상품옵션
+DROP TABLE IF EXISTS product_option RESTRICT;
+
 -- 회원
 CREATE TABLE member (
   member_id      INTEGER      NOT NULL, -- 회원번호
-  password       VARCHAR(255) NOT NULL, -- 비밀번호
+  password       VARCHAR(50)  NOT NULL, -- 비밀번호
   email          VARCHAR(40)  NOT NULL, -- 이메일
   photo          VARCHAR(50)  NULL,     -- 회원사진
-  nickname       VARCHAR(8)   NOT NULL, -- 닉네임
-  tel            VARCHAR(30)  NOT NULL, -- 전화번호
+  nickname       VARCHAR(12)  NOT NULL, -- 닉네임
+  tel            VARCHAR(11)  NOT NULL, -- 전화번호
   post_no        VARCHAR(255) NULL,     -- 우편번호
   base_address   VARCHAR(255) NULL,     -- 기본주소
   detail_address VARCHAR(255) NULL,     -- 상세주소
@@ -157,8 +160,7 @@ CREATE TABLE product (
   discount   INTEGER     NOT NULL, -- 할인률
   view_count INTEGER     NOT NULL DEFAULT 0, -- 조회수
   category   VARCHAR(50) NOT NULL, -- 상품카테고리
-  species    VARCHAR(50) NOT NULL, -- 동물분류
-  option     VARCHAR(50) NOT NULL  -- 옵션
+  species    VARCHAR(50) NOT NULL  -- 동물분류
 );
 
 -- 상품
@@ -672,6 +674,30 @@ ALTER TABLE product_comment
 ALTER TABLE product_comment
   MODIFY COLUMN comment_id INTEGER NOT NULL AUTO_INCREMENT;
 
+-- 상품옵션
+CREATE TABLE product_option (
+  option_id  INTEGER     NOT NULL, -- 옵션 번호
+  product_id INTEGER     NOT NULL, -- 상품 번호
+  title      VARCHAR(50) NOT NULL, -- 이름
+  price      INTEGER     NOT NULL DEFAULT 0 -- 가격
+);
+
+-- 상품옵션
+ALTER TABLE product_option
+  ADD CONSTRAINT PK_product_option -- 상품옵션 기본키
+    PRIMARY KEY (
+      option_id -- 옵션 번호
+    );
+
+-- 상품옵션 유니크 인덱스
+CREATE UNIQUE INDEX UIX_product_option
+  ON product_option ( -- 상품옵션
+    title ASC -- 이름
+  );
+
+ALTER TABLE product_option
+  MODIFY COLUMN option_id INTEGER NOT NULL AUTO_INCREMENT;
+
 -- 반려동물 정보
 ALTER TABLE pet
   ADD CONSTRAINT FK_member_TO_pet -- 회원 -> 반려동물 정보
@@ -1000,4 +1026,14 @@ ALTER TABLE product_comment
     )
     REFERENCES member ( -- 회원
       member_id -- 회원번호
+    );
+
+-- 상품옵션
+ALTER TABLE product_option
+  ADD CONSTRAINT FK_product_TO_product_option -- 상품 -> 상품옵션
+    FOREIGN KEY (
+      product_id -- 상품 번호
+    )
+    REFERENCES product ( -- 상품
+      product_id -- 상품 번호
     );

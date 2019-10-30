@@ -36,6 +36,8 @@ public class DefaultProductService implements ProductService {
       file.setProductNo(product.getProductNo());
       photoFileDao.insert(file);
     }
+    
+    
   }
   
   @Transactional
