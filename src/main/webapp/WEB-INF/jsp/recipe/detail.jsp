@@ -34,7 +34,7 @@
                           <a href="#" class="post-author">By ${member.nickname}</a><br>
                           <a href="#" class="post-author">Views ${recipe.viewCount}</a>
                           
-<button style="border:none; background-color: #ffffff; " id="likeBtn" type="button" ><img id="likeimg" class="btn-img" style="margin-top:-2px; margin-left:10px; height:15px;" src="${likeCheck ? '/img/recipe/like.png' : '/img/recipe/unlike.png'}"></button>
+<button style="border:none; background-color: #ffffff; " id="likeBtn" type="button" ><img id="likeimg" class="btn-img" style="margin-top:-2px; margin-left:10px; height:15px;" src="${isCheck ? '/img/recipe/like.png' : '/img/recipe/unlike.png'}"></button>
                           <input type="hidden" name='no' value="${recipe.recipeNo}">
                           <span id="scrap" style="margin-left:5px; margin-bottom:5px;font-size:15px;">${recipe.scrap}</span>
 <%--                           <input type="hidden" name='memberNo' value="${recipe.memberNo}"> --%>

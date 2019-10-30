@@ -39,8 +39,10 @@
                                           <div class="col-xs-10">
                                           <select class="form-control" name="category">
                                                   <option value="1">분류</option>
-                                                  <option value="강아지">멍키친</option>
-                                                  <option value="고양이">냥키친</option>
+                                                  <option value="강아지">강아지</option>
+                                                  <option value="고양이">고양이</option>
+                                                  <option value="작은동물">작은동물</option>
+                                                  <option value="기타">기타</option>
                                               </select></div>
                                       </div>
                                       <div class="row form-group">

@@ -43,7 +43,7 @@ public class RecipeController {
   }
 
   @PostMapping("add")
-  public String add(HttpSession session, Recipe recipe, /*int memberNo,*/ MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
+  public String add(HttpSession session, Recipe recipe, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
       int[] processNo) throws Exception {
     Member member = (Member)session.getAttribute("loginUser");
     recipe.setMemberNo(member.getMemberNo());
@@ -76,7 +76,7 @@ public class RecipeController {
   @GetMapping("detail")
   public void detail(Model model, int no, HttpSession session) throws Exception {
     Recipe recipe = recipeService.get(no);
-    Member member = memberService.get(recipe.getMemberNo());
+    Member member = (Member) session.getAttribute("loginUser");
     System.out.println("memberNo::::::::" + member.getMemberNo());
     RecipeLike recipeLike = new RecipeLike();
     recipeLike.setMemberNo(member.getMemberNo());
