@@ -24,9 +24,10 @@ public class OrderController {
   private ProductService productService;
   
   @PostMapping("form")
-  public void form(int no, Model model) throws Exception {
+  public void form(int no, Model model, int quantity) throws Exception {
     Product product = productService.get(no);
     model.addAttribute("product", product);
+    model.addAttribute("quantity", quantity);
   }
   
   @GetMapping("list")
@@ -46,6 +47,7 @@ public class OrderController {
     OrderProduct orderProduct = new OrderProduct();
     orderProduct.setOrderNo(order.getOrderNo());
     orderProduct.setProductNo(productService.get(no).getProductNo());
+    orderProduct.setQuantity(11);
     orderService.insert(order, orderProduct);
     System.out.println(order);
     session.setAttribute("order", order);

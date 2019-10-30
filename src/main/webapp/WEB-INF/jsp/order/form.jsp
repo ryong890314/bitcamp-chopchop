@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     
 <html>
 <head>
@@ -13,7 +14,10 @@
   <jsp:include page="../header.jsp"/>
   <form action="add" method="post">
     <h2>${product.title}</h2><br>
-    <h5>${product.price}원</h5><br>
+    <h5><span id="totalPrice">${product.price * quantity * (100-product.discount)/100}</span>원</h5><br>
+    <h5>수량: ${quantity}</h5>
+    <h5>할인률: ${product.discount}%</h5>
+    
     회원 번호<br><input type="text" name="memberNo" value="${loginUser.memberNo}"><br>
     이름<br><input type="text" name="nickname" value="${loginUser.nickname}"><br>
     이메일<br><input type="text" name="email" value="${loginUser.email}"><br>
@@ -25,9 +29,15 @@
     관리자<br><br>
     입금일<br><input type="date" name="paymentDate" value="${order.paymentDate}"><br>
     주문상태<br><input type="text" name="shipDate" value="${order.shipDate}"><br>
-    상품번호<br><input type="text" name="no" value="${product.productNo}">
+    상품번호<br><input type="text" name="no" value="${product.productNo}"><br>
+    할인률<br><input type="text" name="discount" value="${product.discount}"><br>
     <button>주문</button>
   </form>
   <jsp:include page="../footer.jsp"/>
+  <script>
+    var totalPrice = document.querySelector('#totalPrice');
+    var resultPrice = parseInt(totalPrice.innerHTML);
+    totalPrice.innerHTML = resultPrice;
+  </script>
 </body>
 </html>
