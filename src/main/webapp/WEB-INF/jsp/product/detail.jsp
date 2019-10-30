@@ -59,6 +59,7 @@
 
 <div>
 <div id="productBody"> 
+<a href="updateform?no=${product.productNo}">수정</a>
         <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
             <!-- Blog Thumbnail -->
             <div class="blog-thumbnail">
@@ -136,7 +137,8 @@
           </ol>
       </div>
 
-      <div class="post-a-comment-area mb-30 clearfix">
+<!--       <div class="post-a-comment-area mb-30 clearfix"> -->
+      <div>
           <h4 class="mb-50">Leave a reply</h4>
           <!-- Reply Form -->
           <div class="contact-form-area">
@@ -159,42 +161,6 @@
       </div>
   </div>
   </div>
-<p>====관리자 모드=====</p>
-
-    <form action='update' method='post' enctype='multipart/form-data'>
-      번호: <input type='text' name='productNo' value='${product.productNo}' readonly><br>
-      상품명: <input type='text' name='title' value='${product.title}'><br>
-      가격: <input type='text' name='price' value='${product.price}'><br>
-      상품상세: <input type='text' name='detail' value='${product.detail}'><br>
-      재고: <input type='text' name='stock' value='${product.stock}'><br>
-      할인율: <input type='text' name='discount' value='${product.discount}'><br>
-      옵션: <input type='text' name='option' value='${product.option}'><br>
-      상품분류: <select name='category'>
-        <option id='category1' value='식품'>식품</option>
-        <option id='category2' value='훈련'>훈련/장난감</option>
-        <option id='category3' value='식기'>식기/집/이동장</option>
-        <option id='category4' value='목욕'>목욕/미용/위생</option>
-      </select><br>
-      동물분류: <select name='species'>
-        <option id='1' value='강아지'>강아지</option>
-        <option id='2' value='고양이'>고양이</option>
-        <option id='3' value='새'>새</option>
-        <option id='4' value='물고기'>물고기</option>
-        <option id='5' value='작은'>작은 동물</option>
-        <option id='6' value='파충류'>파충류</option>
-      </select><br>
-      <c:forEach items="${product.files}" var="file">
-        <img src='/upload/product/${file.filePath}' width=200>
-      </c:forEach><br>
-      사진: <input type='file' name='filePath'><br>
-      사진: <input type='file' name='filePath'><br>
-      사진: <input type='file' name='filePath'><br>
-      사진: <input type='file' name='filePath'><br>
-      사진: <input type='file' name='filePath'><br>
-      사진: <input type='file' name='filePath'><br>
-      <button>수정</button>
-      <a href='delete?no=${product.productNo}'>삭제</a>
-    </form>
 </div>
 
 <jsp:include page="../footer.jsp"/>
