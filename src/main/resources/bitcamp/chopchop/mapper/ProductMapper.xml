@@ -187,8 +187,7 @@
       stock=#{stock},
       discount=#{discount},
       category=#{category},
-      species=#{species},
-      option=#{option}
+      species=#{species}
     where product_id=#{productNo}
   </update>
   

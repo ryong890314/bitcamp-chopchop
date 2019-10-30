@@ -48,7 +48,6 @@
       <result column="grade" property="grade"/>
       
     </collection>
-    
   </resultMap>
   
   <select id="findAll" resultMap="findByMember">
@@ -118,21 +117,15 @@
     values(#{memberNo}, #{postNo},#{baseAddress},#{detailAddress},#{paymentDate},#{paymentMethod},#{shipDate},#{invoice}) 
   </insert>
   
-<!--   <select id="findBy" parameterType="int" resultMap="OrderMap"> -->
-<!--     select -->
-<!--       product_id, -->
-<!--       title, -->
-<!--       price, -->
-<!--       detail, -->
-<!--       stock, -->
-<!--       discount, -->
-<!--       category, -->
-<!--       species -->
-<!--     from -->
-<!--       product -->
-<!--     where -->
-<!--       product_id=#{value} -->
-<!--   </select> -->
+  <select id="findBy" parameterType="int" resultMap="OrderMap">
+    select
+      order_id,
+      member_id
+    from
+      store_order
+    where
+      product_id=#{value}
+  </select>
   
 <!--   <update id="update" parameterType="Product"> -->
 <!--     update product set -->

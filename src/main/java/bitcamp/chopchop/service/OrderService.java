@@ -12,5 +12,4 @@ public interface OrderService {
   void insert(Order order, OrderProduct orderProduct) throws Exception;
   void update(Order order, OrderProduct orderProduct) throws Exception;
   void delete(int no) throws Exception;
-  Order result() throws Exception;
 }

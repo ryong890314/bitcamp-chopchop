@@ -20,7 +20,7 @@
     우편번호<br>${loginUser.postNo}<br>
     기본주소<br>${loginUser.baseAddress}<br>
     상세주소<br>${loginUser.detailAddress}<br>
-    결제수단<br>${order.paymentMethod}<br><br>
+    결제수단<br>${order.paymentMethod}<br><br><hr>
     관리자<br>
     입금일<br>${order.paymentDate}<br>
     주문상태<br>${order.shipDate}<br>

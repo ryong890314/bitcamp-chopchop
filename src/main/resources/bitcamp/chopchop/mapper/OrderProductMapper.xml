@@ -17,6 +17,17 @@
     values(#{orderNo}, #{productNo},#{quantity},#{discountPrice}) 
   </insert>
   
+  <select id="findBy" parameterType="int" resultMap="OrderProductMap">
+    select 
+      order_id,
+      product_id,
+      quantity,
+      discount_price
+    from 
+      order_product
+    order by
+      order_id desc
+  </select>
 <!--   <delete id="delete" parameterType="int"> -->
 <!--     delete from order_product -->
 <!--     where product_id=#{value} -->
