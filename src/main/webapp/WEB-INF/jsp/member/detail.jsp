@@ -5,48 +5,40 @@
 <html>
 <head>
   <title>My Page</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+  <link rel="stylesheet" href="/css/member/style_detail.css">
+  <link rel="stylesheet" href="../node_modules/jquery-ui-dist/jquery-ui.css">
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script src="/js/jquery/jquery-2.2.4.min.js"></script>
-  <style>
-    .vali_check {
-      color: red;
-    }
-    /*
-    .photo1 {
-	     width: auto; height: auto;
-	     max-width: 100px;
-	     max-height: 100px;
-    }
-    */
-    .profile_photo {
-	    position: relative;
-	    width: 100px;
-	    height: 100px;
+  <style type="text/css">
+    .carousel-inner > .carousel-item > img {
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      width: 700px;
+      height: 500px;
+    } 
+    
+    header.carousel {
+      height: 30%;
     }
     
-    .profile_photo .mask {
-	    position: absolute;
-	    z-index: 10;
-	    top: 0;
-	    right: 0;
-	    bottom: 0;
-	    left: 0;
-	    width: 100px;
-      height: 100px;
-	    background: url(/upload/member/my_photo.png) 0 0;
-	 }
-	 .imgThumb {
-	   width: 100px;
-	   height: 100px;
-	 }
-   
-   .container {
-     margin-bottom: 10px;
-   }
-	 
-  </style>
+    header.carousel .item, header.carousel .item.active, header.carousel .carousel-inner {
+      height: 100%;
+    }
+    
+    header.carousel .fill {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: auto 100%;
+    }
+    .carousel {
+      margin: 0 auto;
+      width: 700px;
+      height: 500px;
+    }
 
+  </style>
 </head>
 <body onload="formLoad();">
 <jsp:include page="../header.jsp"/>
@@ -54,7 +46,7 @@
 <h1>내정보</h1>
 <form action='update' method='post' name="form" enctype='multipart/form-data' onsubmit="return checkAll();">
   <div class="row"> 
-    <div class="col-4">
+    <div class="col-5">
 		    <div id='content'>
 				  <div class="profile_photo">
 				    <input type="hidden" id="photo2" value="${member.photo}" />
@@ -64,7 +56,6 @@
 				  <input type='file' id="file" name='file'><br>
 	    </div>
     </div> 
-    <div class="col-1"></div>
     <div class="col-7">
         번호 <input type='text' id='memberNo' name='memberNo' value='${member.memberNo}' readonly><br>
 		    이메일 <input type='text' id='email' name='email' value='${member.email}' readonly><br>
@@ -79,7 +70,6 @@
 		    상세주소 <input type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'><br>
 		  <input type="hidden" id="nickname1" value="${member.nickname}"/> <!-- 원래 닉네임값  -->
 		  <button>변경</button>
-		  <a href="delete?no=${member.memberNo}" onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
 		</div>
   </div>
 </form>
@@ -89,47 +79,95 @@
 
 <div class="container"> 
       <h1>My Pet 정보</h1>
-  <div class="row"> 
-    <div class="col-4">
-      <div class="card" style="width: 18rem;">
-        <img src="/upload/member/my_pet1.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-	        <h5 class="card-title">누렁이</h5>
-	        <p class="card-text">이름: 누렁이 <br>성별: 암컷<br>나이: 3세</p>
-	        <a href="#" class="btn btn-primary">구경가기</a>
+<!--   <div class="row">  -->
+<!--     <div class="col-4"> -->
+<!--       <div class="card" style="width: 18rem;"> -->
+<!--         <img src="/upload/member/my_pet1.jpg" class="card-img-top" alt="..."> -->
+<!--         <div class="card-body"> -->
+<!-- 	        <h5 class="card-title">누렁이</h5> -->
+<!-- 	        <p class="card-text">이름: 누렁이 <br>성별: 암컷<br>나이: 3세</p> -->
+<!-- 	        <a href="#" class="btn btn-primary">구경가기</a> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--     <div class="col-4"> -->
+<!--       <h1></h1> -->
+<!--       <div class="card" style="width: 18rem;"> -->
+<!--         <img src="/upload/member/my_pet2.jpg" class="card-img-top" alt="..."> -->
+<!--         <div class="card-body"> -->
+<!--           <h5 class="card-title">찰스</h5> -->
+<!--           <p class="card-text">이름: 찰스 <br>성별: 암컷<br>나이: 2세</p> -->
+<!--           <a href="#" class="btn btn-primary">구경가기</a> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--     <div class="col-4"> -->
+<!--       <h1></h1> -->
+<!--       <div class="card" style="width: 18rem;"> -->
+<!--         <img src="/upload/member/my_pet3.jpg" class="card-img-top" alt="..."> -->
+<!--         <div class="card-body"> -->
+<!--           <h5 class="card-title">햄식이</h5> -->
+<!--           <p class="card-text">이름: 햄식이 <br>성별: 암컷<br>나이: 1세</p> -->
+<!--           <a href="#" class="btn btn-primary">구경가기</a> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div>  -->
+<!-- </div> -->
+
+
+
+
+<div class="bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/upload/member/my_pet1.jpg" class="d-block" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>누렁이</h5>
+          <p>♂ 5세</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="/upload/member/my_pet2.jpg" class="d-block" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>찌글이</h5>
+          <p>♀ 4세</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="/upload/member/my_pet3.jpg" class="d-block" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>carousel-item</h5>
+          <p>♂ 2세</p>
         </div>
       </div>
     </div>
-    <div class="col-4">
-      <h1></h1>
-      <div class="card" style="width: 18rem;">
-        <img src="/upload/member/my_pet2.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">찰스</h5>
-          <p class="card-text">이름: 찰스 <br>성별: 암컷<br>나이: 2세</p>
-          <a href="#" class="btn btn-primary">구경가기</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-4">
-      <h1></h1>
-      <div class="card" style="width: 18rem;">
-        <img src="/upload/member/my_pet3.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">햄식이</h5>
-          <p class="card-text">이름: 햄식이 <br>성별: 암컷<br>나이: 1세</p>
-          <a href="#" class="btn btn-primary">구경가기</a>
-        </div>
-      </div>
-    </div>
-  </div> 
-		<div class="row">
-		<div class="col-3"></div>
-		<div class="col-3"></div>
-		<div class="col-3"></div>
-		<div class="col-3"></div>
-  </div> 
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 </div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <a href="delete?no=${member.memberNo}" onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
+    </div>
+  </div>
+</div>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -142,11 +180,11 @@
         </button>
       </div>
       <div class="modal-body">
-            현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword" onblur="nowpw_check();"/>
+            현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword" onblur="nowpw_check();" maxlength="20"/>
             <div id="password1_chk" class="vali_check"></div>
-            새 비밀번호 <input type="password" id="newPassword"  name="newPassword" onblur="newpw_check();"/>
+            새 비밀번호 <input type="password" id="newPassword"  name="newPassword" onblur="newpw_check();" maxlength="20"/>
             <div id="password2_chk" class="vali_check"></div>
-            새 비밀번호 확인<input type="password" id="newPassword2"  name="newPassword2" onblur="newpw2_check();"/>
+            새 비밀번호 확인<input type="password" id="newPassword2"  name="newPassword2" onblur="newpw2_check();" maxlength="20"/>
             <div id="password3_chk" class="vali_check"></div>
       </div>
       <div class="modal-footer">
@@ -183,9 +221,7 @@
             document.getElementById("nowPassword").value = "";
             document.getElementById("newPassword").value = "";
             document.getElementById("newPassword2").value = "";
-          } else {
-            alert("변경하지 못했습니다.");
-          }
+          } 
         } else {
           alert("시스템 오류 발생!");
         }
@@ -400,6 +436,10 @@
     reader.readAsDataURL(this.files[0]);
 };
 </script>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>

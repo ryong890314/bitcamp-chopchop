@@ -116,6 +116,14 @@ public class MemberController {
     return memberService.uptPw(password, memberNo);
   }
 
+  
+  
+  
+  
+  
+  
+  
+  
   //  "/member/register2",했었음 이것은 무엇인가.
   @RequestMapping(path = "/auth/getPassword",
       method = RequestMethod.POST)

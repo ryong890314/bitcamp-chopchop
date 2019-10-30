@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.chopchop.dao.PetDao">
+
+	<resultMap type="Pet" id="PetMap">
+		<id column="pet_id" property="petNo" />
+		<result column="name" property="name" />
+		<result column="created_date" property="createdDate" />
+		<result column="register_no" property="registerNo" />
+		<result column="photo" property="photo" />
+	</resultMap>
+
+<<<<<<< HEAD
+<!--   <resultMap type="Pet" id="PetMap"> -->
+<!--     <id column="pet_id" property="petNo" /> -->
+<!--     <result column="name" property="name" /> -->
+<!--     <result column="created_date" property="createdDate" /> -->
+<!--     <result column="register_no" property="registerNo" /> -->
+<!--     <result column="photo" property="photo" /> -->
+=======
+    <resultMap type="Pet" id="PetMap">
+    <id column="pet_id" property="petNo" />
+    <result column="name" property="name" />
+    <result column="created_date" property="createdDate" />
+    <result column="register_no" property="registerNo" />
+    <result column="photo" property="photo" />
+>>>>>>> 791cf2040e7fabe6e7fa28c6df5b1a83dc4d827c
+    
+<!--     <collection property="breeds" ofType="Breed"> -->
+<!--       <id column="breed_id" property="breedNo"/> -->
+<!--       <result column="breed" property="breed"/> -->
+<!--       <result column="category_id" property="categoryNO"/> -->
+<!--     </collection> -->
+<!--   </resultMap> -->
+  
+	<sql id="basicColumn">
+		select
+		pet_id,
+		name,
+		breed,
+		age,
+		gender
+	</sql>
+
+	<insert id="insert" parameterType="Pet">
+		insert into pet
+		(
+		name,
+		breed,
+		age,
+		gender,
+		register_no
+		)
+		value
+		(
+		#{name},
+		#{breed},
+		#{age},
+		#{gender},
+		#{register_no}
+		)
+	</insert>
+
+	<select id="findAll" resultMap="PetMap">
+		select * from pet
+	</select>
+
+ 	<select id="findBy" parameterType="int" resultMap="PetMap">
+		select
+			p.pet_id,
+		  p.file_path,
+			p.name,
+			p.age,
+			p.gender,
+			p.breed_id,
+			b.breed_id,
+			b.breed
+		from pet p
+		  left outer join breed b on p.breed_id=b.breed_id
+		  where p.pet_id=${petNo}
+	</select> 
+
+	<update id="update" parameterType="Pet">
+		update pet
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="photo != null">photo=#{photo},</if>
+			<if test="register_no != null">register_no=#{register_no},</if>
+		</set>
+		where pet_id = #{petNo}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from pet
+		where pet_id = #{pet.petNo}
+	</delete>
+</mapper>
