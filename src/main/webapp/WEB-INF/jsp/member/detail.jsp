@@ -6,17 +6,38 @@
 <head>
   <title>My Page</title>
   <link rel="stylesheet" href="/css/member/style_detail.css">
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+  <link rel="stylesheet" href="../node_modules/jquery-ui-dist/jquery-ui.css">
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script src="/js/jquery/jquery-2.2.4.min.js"></script>
   <style type="text/css">
-    .container {
-      border: 1px solid tomato;
+    .carousel-inner > .carousel-item > img {
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      width: 700px;
+      height: 500px;
+    } 
+    
+    header.carousel {
+      height: 30%;
     }
-    .profile_photo {
-      border: 1px solid tomato;
-      text-align: center;
+    
+    header.carousel .item, header.carousel .item.active, header.carousel .carousel-inner {
+      height: 100%;
     }
+    
+    header.carousel .fill {
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: auto 100%;
+    }
+    .carousel {
+      margin: 0 auto;
+      width: 700px;
+      height: 500px;
+    }
+
   </style>
 </head>
 <body onload="formLoad();">
@@ -49,7 +70,6 @@
 		    상세주소 <input type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'><br>
 		  <input type="hidden" id="nickname1" value="${member.nickname}"/> <!-- 원래 닉네임값  -->
 		  <button>변경</button>
-		  //<img src="http://cfile213.uf.daum.net/R400x0/275BA53451FB087428F770" alt="..." class="img-circle">
 		</div>
   </div>
 </form>
@@ -59,40 +79,84 @@
 
 <div class="container"> 
       <h1>My Pet 정보</h1>
-  <div class="row"> 
-    <div class="col-4">
-      <div class="card" style="width: 18rem;">
-        <img src="/upload/member/my_pet1.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-	        <h5 class="card-title">누렁이</h5>
-	        <p class="card-text">이름: 누렁이 <br>성별: 암컷<br>나이: 3세</p>
-	        <a href="#" class="btn btn-primary">구경가기</a>
+<!--   <div class="row">  -->
+<!--     <div class="col-4"> -->
+<!--       <div class="card" style="width: 18rem;"> -->
+<!--         <img src="/upload/member/my_pet1.jpg" class="card-img-top" alt="..."> -->
+<!--         <div class="card-body"> -->
+<!-- 	        <h5 class="card-title">누렁이</h5> -->
+<!-- 	        <p class="card-text">이름: 누렁이 <br>성별: 암컷<br>나이: 3세</p> -->
+<!-- 	        <a href="#" class="btn btn-primary">구경가기</a> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--     <div class="col-4"> -->
+<!--       <h1></h1> -->
+<!--       <div class="card" style="width: 18rem;"> -->
+<!--         <img src="/upload/member/my_pet2.jpg" class="card-img-top" alt="..."> -->
+<!--         <div class="card-body"> -->
+<!--           <h5 class="card-title">찰스</h5> -->
+<!--           <p class="card-text">이름: 찰스 <br>성별: 암컷<br>나이: 2세</p> -->
+<!--           <a href="#" class="btn btn-primary">구경가기</a> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--     <div class="col-4"> -->
+<!--       <h1></h1> -->
+<!--       <div class="card" style="width: 18rem;"> -->
+<!--         <img src="/upload/member/my_pet3.jpg" class="card-img-top" alt="..."> -->
+<!--         <div class="card-body"> -->
+<!--           <h5 class="card-title">햄식이</h5> -->
+<!--           <p class="card-text">이름: 햄식이 <br>성별: 암컷<br>나이: 1세</p> -->
+<!--           <a href="#" class="btn btn-primary">구경가기</a> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div>  -->
+<!-- </div> -->
+
+
+
+
+<div class="bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/upload/member/my_pet1.jpg" class="d-block" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>누렁이</h5>
+          <p>♂ 5세</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="/upload/member/my_pet2.jpg" class="d-block" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>찌글이</h5>
+          <p>♀ 4세</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="/upload/member/my_pet3.jpg" class="d-block" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>carousel-item</h5>
+          <p>♂ 2세</p>
         </div>
       </div>
     </div>
-    <div class="col-4">
-      <h1></h1>
-      <div class="card" style="width: 18rem;">
-        <img src="/upload/member/my_pet2.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">찰스</h5>
-          <p class="card-text">이름: 찰스 <br>성별: 암컷<br>나이: 2세</p>
-          <a href="#" class="btn btn-primary">구경가기</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-4">
-      <h1></h1>
-      <div class="card" style="width: 18rem;">
-        <img src="/upload/member/my_pet3.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">햄식이</h5>
-          <p class="card-text">이름: 햄식이 <br>성별: 암컷<br>나이: 1세</p>
-          <a href="#" class="btn btn-primary">구경가기</a>
-        </div>
-      </div>
-    </div>
-  </div> 
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 </div>
 <hr>
 <div class="container">
@@ -102,6 +166,8 @@
     </div>
   </div>
 </div>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -370,6 +436,10 @@
     reader.readAsDataURL(this.files[0]);
 };
 </script>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>
