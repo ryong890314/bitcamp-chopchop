@@ -37,7 +37,6 @@
 <button style="border:none; background-color: #ffffff; " id="likeBtn" type="button" ><img id="likeimg" class="btn-img" style="margin-top:-2px; margin-left:10px; height:15px;" src="${isCheck ? '/img/recipe/like.png' : '/img/recipe/unlike.png'}"></button>
                           <input type="hidden" name='no' value="${recipe.recipeNo}">
                           <span id="scrap" style="margin-left:5px; margin-bottom:5px;font-size:15px;">${recipe.scrap}</span>
-<%--                           <input type="hidden" name='memberNo' value="${recipe.memberNo}"> --%>
                       </div>
                       
                       <c:forEach items="${recipe.cookings}" var="cooking">
@@ -46,8 +45,6 @@
                       <p class="mb-30">내용: ${cooking.content}</p>
                       </c:forEach>
                       
-                      <h5 class="mb-30">Step 2</h5>
-                      <p class="mb-30">Suspendisse nisl leo, gravida quis tortor at, ornare commodo neque. Donec tortor turpis, pharetra et pulvinar vitae, ullamcorper et mi. Sed eu magna aliquam, suscipit massa sit amet, mattis augue. Nam ut tortor ut ligula molestie feugiat vitae et nulla. Sed porta erat vitae leo pellentesque malesuada. In sollicitudin, massa euismod aliquet volutpat, enim metus varius dui, vestibulum efficitur ante velit non nisi. Cras varius bibendum sapien, id tincidunt velit placerat id. Nunc vitae facilisis nunc. Suspendisse ut felis sagittis mauris faucibus tincidunt vitae id tortor. Nullam tincidunt finibus turpis, a accumsan mauris laoreet cursus. Phasellus pharetra odio sapien, id suscipit nisi lobortis ut.</p>
                   </div>
               </div>
           </div>

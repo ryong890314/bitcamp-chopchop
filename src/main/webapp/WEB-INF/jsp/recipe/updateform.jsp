@@ -54,13 +54,12 @@
                                   <div id="ingredient-block" class="block-content">
                                   <c:forEach items="${recipe.ingredients}" var="ingredients">
                                   <!-- 재료 용량 들어가는 Div -->
-                                  <div id='addIngredientDiv' class='group-flex'>
-                                  <div class='form-group'><label id='ingredient' class='label'>재료 </label><input type='text' name='ingredientNames' class='form-control' value='${ingredients.name}'></div>
-                                  <div class='form-group'><label id='quantity' class='label'>용량 </label><input type='text' name='quantity' class='form-control' value='${ingredients.quantity}'></div>
-                                  <div class='form-group'><button class='btn btn-outline btn-sm' type='button' name="delIngredientBtn" onclick="delIngredient(this)">삭제</button></div>
+                                  <div class='group-flex my-ingredient'>
+                                  <div class='form-group'><label class='label'>재료 </label><input type='text' name='ingredientNames' class='form-control' value='${ingredients.name}'></div>
+                                  <div class='form-group'><label class='label'>용량 </label><input type='text' name='quantity' class='form-control' value='${ingredients.quantity}'></div>
+                                  <div class='form-group'><button class='btn btn-outline btn-sm' type='button' name="delIngredientBtn" onclick="delIngredient(event)">삭제</button></div>
                                   </div>
                                   </c:forEach>
-                                  <hr>
                                   </div>
                                   
                                   <div id="block_3" class="block-content">
@@ -71,16 +70,26 @@
                                   
                                   
                                   <div class="step-list"> 
-                                      <div id="cookingDiv222">
                                           <div class="block-title _gray">
                                           <span class="title">STEP</span></div>
                                           
                                           <div id="cookingDiv" class="block-content">
+                                          <c:forEach items="${recipe.cookings}" var="cooking">
                                           <!-- 순서 박스 들어갈 Div -->
-                                          <input type="hidden" name="cookingCount" value="0">
+                                          <div class='row form-group my-cooking'>
+                                          <div class='row form-group'>
+                                                                                             순서: <input type='text' name='processNo' value='${cooking.processNo}'></div>
+                                          <div class='box-photo'><div class='photo'>
+                                          <div class='img'><input class='btn btn-outline btn-images' type='file' name='filePath2' value='${cooking.filePath}' style='width: 100%; height: 100%; opacity: 0; overflow: hidden;'>
+                                          <img src='/upload/recipe/${cooking.filePath}'></div>
+                                          <button class='btn btn-outline btn-block btn-sm' name='delCookingBtn' type='button' onclick='delCooking(event)'>순서 삭제</button>
+                                          </div>
+                                          <div class='des'><textarea class='form-control' name='cookingContent'>'${cooking.content}'</textarea></div>
+                                          </div>
+                                        </div>
+                                          </c:forEach>
                                       <!-- 순서 박스 들어갈 Div -->
                                           </div>
-                                      </div>
                                   </div>
                                   <!-- 순서추가버튼 -->
                                   <div class="block-content">
@@ -89,6 +98,7 @@
                                       </div>
                                   </div>
                                   <!-- 순서추가버튼 -->
+                                  
                                   <div class="block-title _gray"><span class="title">요리 완성</span></div>
                                   <div class="block-content">
                                       <div>
@@ -96,7 +106,7 @@
                                           <div class="box-photo">
                                                   <div class="photo">
                                                       <div class="img"><input class="btn btn-outline btn-images" type="file" name='filePath' id="ip-1" style="width: 100%; height: 100%; opacity: 0; overflow: hidden;">
-                                                      <img src='/upload/recipe/${cooking.filePath}' class='photo'></div>
+                                                      <img src='/upload/recipe/${recipe.thumbnail}' class='photo'></div>
                                                       <button class="btn btn-outline btn-block btn-sm" type="button">사진 삭제</button>
                                                   </div>
                                                   <div class="des"><textarea class="form-control" name="content">${recipe.content}</textarea></div>
@@ -121,13 +131,12 @@
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 <script id="t1" type="ingredientHtml">
-<div id='addIngredientDiv' class='group-flex'>
-<div class='form-group'><label id='ingredient' class='label'>재료 </label><input type='text' name='ingredientNames' class='form-control' value=''></div>
-<div class='form-group'><label id='quantity' class='label'>용량 </label><input type='text' name='quantity' class='form-control' value=''></div>
-<div class='form-group'><button class='btn btn-outline btn-sm' type='button' name="delIngredientBtn" onclick='delIngredient(this)'>삭제</button></div>
+<div class='group-flex my-ingredient'>
+<div class='form-group'><label class='label'>재료 </label><input type='text' name='ingredientNames' class='form-control' value=''></div>
+<div class='form-group'><label class='label'>용량 </label><input type='text' name='quantity' class='form-control' value=''></div>
+<div class='form-group'><button class='btn btn-outline btn-sm' type='button' name='delIngredientBtn' onclick='delIngredient(event)'>삭제</button></div>
 </div>
 </script>
-
 
 <script> // 재료,용량 추가
  "use strict";
@@ -140,97 +149,47 @@
 
 <script> // 재료, 용량 삭제
  "use strict";
-  function delIngredient(object) {
-    var index = $('#ingredient-block.form-group[name=delIngredientBtn]').index(object); // -1
-    console.log(index);
+  function delIngredient(event) {
     
-    var i = $('#addIngredientDiv').index();
-    console.log("i" + i); // 0
-    
-    $('#addIngredientDiv').eq(index + 1).remove(); // -1
+    $(event.target.parentNode.parentNode).remove();
+// 방법1)
+//    event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode); // DOM API
+
+// 방법2)
+//  이벤트가 발생한 버튼이 포함된 , 제거할 div 태그를 찾는다.
+//  => event.target.parentNode.parentNode <div class="group-flex my-ingredient">
+//     그 찾은 div 태그를 remove() 로 제거한다.
+//     $(event.target.parentNode.parentNode).remove(); // jquery
   };
 </script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<script id="t2" type="text/x-handlebars-template">
-{{#each cookings}}
-<div class='row form-group'>
-순서: <input type='text' name='processNo' value='{{processNo}}'></div>
+<script id="t2" type="cookingHtml">
+<div class='row form-group my-cooking'>
+순서: <input type='text' name='processNo' value=''>
 <div class='box-photo'><div class='photo'>
-<div class='img'><input class='btn btn-outline btn-images' type='file' name='filePath2' value='{{filePath}} id='ip-1' style='width: 100%; height: 100%; opacity: 0; overflow: hidden;'>
+<div class='img'><input class='btn btn-outline btn-images' type='file' name='filePath2' value='' style='width: 100%; height: 100%; opacity: 0; overflow: hidden;'>
 <img src='/upload/recipe/${cooking.filePath}'></div>
-<button class='btn btn-outline btn-block btn-sm' type='button' onclick='delCooking("+cookingCount+")'>순서 삭제"+cookingCount+"</button>
+<button class='btn btn-outline btn-block btn-sm' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
 </div>
-<div class='des'><textarea class='form-control' name='cookingContent' value='{{content}}'></textarea></div>
-</div>
-{{/each}}
+<div class='des'><textarea class='form-control' name='cookingContent'></textarea></div>
+</div></div>
 </script>
 
-<script>
+<script>//조리순서 추가
 "use strict";
-  var templateSrc2 = $('#t2').html();
-  var template2 = Handlebars.compile(templateSrc2);
-  
-  loadData2();
-  function loadData2() {
-    $.get("/app/json/recipe/detail?no=" + ${recipe.recipeNo}, function(data) {
-        $('#cookingDiv').html(template2(data.result.recipe));
-    });
-  }
+function addCooking() {
+  console.log("추가버튼누름");
+  var html = $('#t2').html();
+  $('#cookingDiv').append(html);
+};
 </script>
 
-
-<script> // 조리순서, 사진, 내용 추가
-"use strict"
-
- var cookingCount = 0;
- function addCooking() {
-     
-     var addedFormDiv2 = document.getElementById("cookingDiv");
-     var str = "";
-     //str+="<div class='block-title _gray'><span class='title'>STEP 1</span></div>";
-     str+="<div class='row form-group'>";
-     str+="순서: <input type='text' name='processNo'></div>";
-     str+="<div class='box-photo'><div class='photo'>";
-     str+="<div class='img'><input class='btn btn-outline btn-images' type='file' name='filePath2' id='ip-1' style='width: 100%; height: 100%; opacity: 0; overflow: hidden;'></div>";
-     str+="<button class='btn btn-outline btn-block btn-sm' type='button' onclick='delCooking("+cookingCount+")'>순서 삭제"+cookingCount+"</button>";
-     str+="</div>";
-     str+="<div class='des'><textarea class='form-control' name='cookingContent'>조리방법입력해주세요</textarea></div>";
-     str+="</div>";
-     // 추가할 폼(에 들어갈 HTML)
-     var addedDiv2 = document.createElement("div"); // 폼 생성
-     addedDiv2.id = "added_"+cookingCount; // 폼 Div에 ID 부여 (삭제를 위해)
-     addedDiv2.innerHTML = str; // 폼 Div안에 HTML삽입
-     addedFormDiv2.appendChild(addedDiv2); // 삽입할 DIV에 생성한 폼 삽입
-  
-     cookingCount++;
-     document.frmRecipe.cookingCount.value=cookingCount;
-     // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
- }
-
- function delCooking(i){
-     var addedFormDiv2 = document.getElementById("cookingDiv");
-     if(cookingCount >0){ // 현재 폼이 두개 이상이면
-      //var addedDiv2 = document.getElementById("added_"+(--ingredientCount));
-      var addedDiv2 = document.getElementById("added_"+i);
-      // 마지막으로 생성된 폼의 ID를 통해 Div객체를 가져옴
-      addedFormDiv2.removeChild(addedDiv2); // 폼 삭제 
-     }else{ // 마지막 폼만 남아있다면
-                document.frmRecipe.reset(); // 폼 내용 삭제
-     }
- }
+<script> // 조리순서 삭제
+"use strict";
+function delCooking(event) {
+  $(event.target.parentNode.parentNode.parentNode).remove();
+};
 </script> 
 
 </body>

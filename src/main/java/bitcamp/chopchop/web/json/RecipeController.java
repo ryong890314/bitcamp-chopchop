@@ -135,6 +135,22 @@ public class RecipeController {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
   }
+  
+  @GetMapping("listSort")
+  public JsonResult listSort(String column) throws Exception {
+    try {
+      System.out.println("들어온 컬럼????????" + column);
+      List<Recipe> recipes = recipeService.listSort(column);
+      for (int i =0; i <recipes.size(); i++) {
+        System.out.println("=========================");
+        System.out.println(recipes.get(0).getTitle());
+        
+      }
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipes);
+    } catch (Exception e) {
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
+    }
+  }
 
   @GetMapping("search")
   public JsonResult search(String keyword) throws Exception {

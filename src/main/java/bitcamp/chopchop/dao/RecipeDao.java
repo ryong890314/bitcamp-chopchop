@@ -6,6 +6,7 @@ import bitcamp.chopchop.domain.Recipe;
 public interface RecipeDao {
   int insert(Recipe recipe) throws Exception;
   List<Recipe> findAll() throws Exception;
+  List<Recipe> findSort(String column) throws Exception;
   Recipe findBy(int no) throws Exception;
   Recipe findWithIngredientBy(int no) throws Exception;
   Recipe findTotalBy(int no) throws Exception;

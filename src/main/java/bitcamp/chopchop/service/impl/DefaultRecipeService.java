@@ -57,6 +57,11 @@ public class DefaultRecipeService implements RecipeService {
   public List<Recipe> list() throws Exception {
     return recipeDao.findAll();
   }
+  
+  @Override
+  public List<Recipe> listSort(String column) throws Exception {
+    return recipeDao.findSort(column);
+  }
 
   @Transactional
   @Override
@@ -78,23 +83,25 @@ public class DefaultRecipeService implements RecipeService {
   @Transactional
   @Override
   public void update(Recipe recipe) throws Exception {
-    if (recipe.getIngredients().size() == 0) {
-      throw new Exception("재료 입력해주세요");
-    }
-
-    cookingDao.delete(recipe.getRecipeNo());
-    ingredientDao.delete(recipe.getRecipeNo());
+    
     recipeDao.update(recipe);
-    for (Ingredient i : recipe.getIngredients()) {
-      System.out.println("==========================");
-      System.out.println(recipe.getRecipeNo());
-      System.out.println("==========================");
-      i.setRecipeNo(recipe.getRecipeNo());
-      ingredientDao.insert(i);
+    
+    if (recipe.getIngredients().size() > 0) {
+      ingredientDao.delete(recipe.getRecipeNo());
+      for (Ingredient i : recipe.getIngredients()) {
+        System.out.println("==========================");
+        System.out.println(recipe.getRecipeNo());
+        System.out.println("==========================");
+        i.setRecipeNo(recipe.getRecipeNo());
+        ingredientDao.insert(i);
+      }
     }
-    for (Cooking c : recipe.getCookings()) {
-      c.setRecipeNo(recipe.getRecipeNo());
-      cookingDao.insert(c);
+    if (recipe.getCookings().size() > 0) {
+      cookingDao.delete(recipe.getRecipeNo());
+      for (Cooking c : recipe.getCookings()) {
+        c.setRecipeNo(recipe.getRecipeNo());
+        cookingDao.insert(c);
+      }
     }
   }
 

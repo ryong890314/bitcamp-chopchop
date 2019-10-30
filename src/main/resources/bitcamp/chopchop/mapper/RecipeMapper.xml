@@ -93,6 +93,23 @@
       recipe_id desc
   </select>
   
+  <select id="findSort" parameterType="String" resultMap="RecipeMap">
+   select
+     recipe_id,
+     title,
+     created_date,
+     view_count,
+     thumbnail,
+     other_info,
+     category,
+     content
+   from 
+     recipe
+   
+   order by ${column} desc
+   
+  </select>
+  
   <select id="findBy" parameterType="int" resultMap="RecipeMap">
     select
       recipe_id,

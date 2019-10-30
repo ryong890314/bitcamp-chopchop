@@ -29,7 +29,7 @@ public class RecipeController {
   @Resource private CookingFileWriter cookingFileWriter;
   @Resource private MemberService memberService;
   @Resource private RecipeCommentService recipeCommentService;
-  
+
 
   String uploadDir;
 
@@ -39,7 +39,7 @@ public class RecipeController {
 
   @GetMapping("form")
   public void form() {
-    
+
   }
 
   @PostMapping("add")
@@ -47,11 +47,11 @@ public class RecipeController {
       int[] processNo) throws Exception {
     Member member = (Member)session.getAttribute("loginUser");
     recipe.setMemberNo(member.getMemberNo());
-    
+
     String filename = UUID.randomUUID().toString();
     recipe.setThumbnail(filename);
     filePath.transferTo(new File(uploadDir + "/" + filename));
-                                 
+
     List<Ingredient> ingredients = new ArrayList<>();
     for (int i = 0; i < ingredientNames.length; i++) {
       Ingredient temp = new Ingredient();
@@ -93,11 +93,11 @@ public class RecipeController {
     //List<RecipeComment> comments = recipe.getComments();
     //RecipeComment recipeComment = recipeCommentService.get(no);
     //model.addAttribute("recipeComment", recipeComment);
-    
+
     model.addAttribute("recipe", recipe);
     model.addAttribute("member", member);
     model.addAttribute("isCheck", likeCheck);
-    
+
   }
 
   @GetMapping("updateform")
@@ -109,9 +109,9 @@ public class RecipeController {
   @PostMapping("update")
   public String update(HttpSession session, Recipe recipe, int memberNo, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
       int[] processNo) throws Exception {
+
     String filename = UUID.randomUUID().toString();
     recipe.setThumbnail(filename);
-
     filePath.transferTo(new File(uploadDir + "/" + filename));
 
     List<Ingredient> ingredients = new ArrayList<>();
@@ -120,10 +120,11 @@ public class RecipeController {
       temp.setName(ingredientNames[i]);
       temp.setQuantity(quantity[i]);
       ingredients.add(temp);
+      recipe.setIngredients(ingredients);
     }
 
     recipe.setCookings(cookingFileWriter.getCookings(filePath2, processNo, cookingContent));
-    recipe.setIngredients(ingredients);
+
     recipeService.update(recipe);
     return "redirect:list";
   }
