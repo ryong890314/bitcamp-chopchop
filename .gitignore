@@ -7,6 +7,7 @@ build/
 temp/
 Debug/
 Release/
+ver/
 
 package-lock.json
 .DS_Store
