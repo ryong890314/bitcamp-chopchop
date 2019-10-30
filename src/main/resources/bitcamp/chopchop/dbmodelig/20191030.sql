@@ -84,18 +84,17 @@ DROP TABLE IF EXISTS product_comment RESTRICT;
 
 -- 회원
 CREATE TABLE member (
-  member_id      INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  password       VARCHAR(255) NOT NULL COMMENT '비밀번호', -- 비밀번호
-  email          VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
-  photo          VARCHAR(50)  NULL     COMMENT '회원사진', -- 회원사진
-  nickname       VARCHAR(8)   NOT NULL COMMENT '닉네임', -- 닉네임
-  tel            VARCHAR(30)  NOT NULL COMMENT '전화번호', -- 전화번호
-  post_no        VARCHAR(255) NULL     COMMENT '우편번호', -- 우편번호
-  base_address   VARCHAR(255) NULL     COMMENT '기본주소', -- 기본주소
-  detail_address VARCHAR(255) NULL     COMMENT '상세주소', -- 상세주소
-  grade          INTEGER      NOT NULL DEFAULT 1 COMMENT '등급' -- 등급
-)
-COMMENT '회원';
+  member_id      INTEGER      NOT NULL, -- 회원번호
+  password       VARCHAR(255) NOT NULL, -- 비밀번호
+  email          VARCHAR(40)  NOT NULL, -- 이메일
+  photo          VARCHAR(50)  NULL,     -- 회원사진
+  nickname       VARCHAR(8)   NOT NULL, -- 닉네임
+  tel            VARCHAR(30)  NOT NULL, -- 전화번호
+  post_no        VARCHAR(255) NULL,     -- 우편번호
+  base_address   VARCHAR(255) NULL,     -- 기본주소
+  detail_address VARCHAR(255) NULL,     -- 상세주소
+  grade          INTEGER      NOT NULL DEFAULT 1 -- 등급
+);
 
 -- 회원
 ALTER TABLE member
@@ -117,21 +116,20 @@ CREATE UNIQUE INDEX UIX_member2
   );
 
 ALTER TABLE member
-  MODIFY COLUMN member_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원번호';
+  MODIFY COLUMN member_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 반려동물 정보
 CREATE TABLE pet (
-  pet_id       INTEGER      NOT NULL COMMENT '반려동물 번호', -- 반려동물 번호
-  member_id    INTEGER      NOT NULL COMMENT '회원 번호', -- 회원 번호
-  breed_id     INTEGER      NULL     COMMENT '동물품종번호', -- 동물품종번호
-  name         VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
-  created_date DATE         NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  register_no  VARCHAR(255) NULL     COMMENT '등록번호', -- 등록번호
-  age          INTEGER      NULL     COMMENT '나이', -- 나이
-  gender       INTEGER      NOT NULL COMMENT '성별', -- 성별
-  file_path    VARCHAR(50)  NULL     COMMENT '사진' -- 사진
-)
-COMMENT '반려동물 정보';
+  pet_id       INTEGER      NOT NULL, -- 반려동물 번호
+  member_id    INTEGER      NOT NULL, -- 회원 번호
+  name         VARCHAR(50)  NOT NULL, -- 이름
+  created_date DATE         NOT NULL DEFAULT now(), -- 등록일
+  register_no  VARCHAR(255) NULL,     -- 등록번호
+  age          INTEGER      NULL,     -- 나이
+  gender       INTEGER      NOT NULL, -- 성별
+  file_path    VARCHAR(50)  NULL,     -- 사진
+  breed_id     INTEGER      NULL      -- 동물품종번호
+);
 
 -- 반려동물 정보
 ALTER TABLE pet
@@ -147,22 +145,21 @@ CREATE UNIQUE INDEX UIX_pet
   );
 
 ALTER TABLE pet
-  MODIFY COLUMN pet_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '반려동물 번호';
+  MODIFY COLUMN pet_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 상품
 CREATE TABLE product (
-  product_id INTEGER     NOT NULL COMMENT '상품 번호', -- 상품 번호
-  title      VARCHAR(50) NOT NULL COMMENT '이름', -- 이름
-  price      INTEGER     NOT NULL COMMENT '가격', -- 가격
-  detail     TEXT        NOT NULL COMMENT '상세', -- 상세
-  stock      INTEGER     NOT NULL COMMENT '재고', -- 재고
-  discount   INTEGER     NOT NULL COMMENT '할인률', -- 할인률
-  view_count INTEGER     NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
-  category   VARCHAR(50) NOT NULL COMMENT '상품카테고리', -- 상품카테고리
-  species    VARCHAR(50) NOT NULL COMMENT '동물분류', -- 동물분류
-  option     VARCHAR(50) NOT NULL COMMENT '옵션' -- 옵션
-)
-COMMENT '상품';
+  product_id INTEGER     NOT NULL, -- 상품 번호
+  title      VARCHAR(50) NOT NULL, -- 이름
+  price      INTEGER     NOT NULL, -- 가격
+  detail     TEXT        NOT NULL, -- 상세
+  stock      INTEGER     NOT NULL, -- 재고
+  discount   INTEGER     NOT NULL, -- 할인률
+  view_count INTEGER     NOT NULL DEFAULT 0, -- 조회수
+  category   VARCHAR(50) NOT NULL, -- 상품카테고리
+  species    VARCHAR(50) NOT NULL, -- 동물분류
+  option     VARCHAR(50) NOT NULL  -- 옵션
+);
 
 -- 상품
 ALTER TABLE product
@@ -172,23 +169,22 @@ ALTER TABLE product
     );
 
 ALTER TABLE product
-  MODIFY COLUMN product_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '상품 번호';
+  MODIFY COLUMN product_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 레시피
 CREATE TABLE recipe (
-  recipe_id    INTEGER      NOT NULL COMMENT '레시피 번호', -- 레시피 번호
-  member_id    INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  title        VARCHAR(255) NOT NULL COMMENT '이름', -- 이름
-  created_date DATE         NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
-  view_count   INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
-  content      TEXT         NOT NULL COMMENT '내용', -- 내용
-  thumbnail    VARCHAR(50)  NOT NULL COMMENT '대표사진', -- 대표사진
-  category     VARCHAR(255) NOT NULL COMMENT '카테고리', -- 카테고리
-  tag          VARCHAR(255) NULL     COMMENT '태그', -- 태그
-  other_info   VARCHAR(255) NULL     COMMENT '기타정보', -- 기타정보
-  scrap        INTEGER      NULL     COMMENT '스크랩' -- 스크랩
-)
-COMMENT '레시피';
+  recipe_id    INTEGER      NOT NULL, -- 레시피 번호
+  member_id    INTEGER      NOT NULL, -- 회원번호
+  title        VARCHAR(255) NOT NULL, -- 이름
+  created_date DATE         NOT NULL DEFAULT now(), -- 작성일
+  view_count   INTEGER      NOT NULL DEFAULT 0, -- 조회수
+  content      TEXT         NOT NULL, -- 내용
+  thumbnail    VARCHAR(50)  NOT NULL, -- 대표사진
+  category     VARCHAR(255) NOT NULL, -- 카테고리
+  tag          VARCHAR(255) NULL,     -- 태그
+  other_info   VARCHAR(255) NULL,     -- 기타정보
+  scrap        INTEGER      NULL     DEFAULT 0 -- 스크랩
+);
 
 -- 레시피
 ALTER TABLE recipe
@@ -198,17 +194,16 @@ ALTER TABLE recipe
     );
 
 ALTER TABLE recipe
-  MODIFY COLUMN recipe_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '레시피 번호';
+  MODIFY COLUMN recipe_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 레시피댓글
 CREATE TABLE recipe_comment (
-  comment_id   INTEGER NOT NULL COMMENT '레시피댓글번호', -- 레시피댓글번호
-  recipe_id    INTEGER NOT NULL COMMENT '레시피 번호', -- 레시피 번호
-  member_id    INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
-  content      TEXT    NOT NULL COMMENT '댓글 내용', -- 댓글 내용
-  created_date DATE    NOT NULL DEFAULT now() COMMENT '작성일' -- 작성일
-)
-COMMENT '레시피댓글';
+  comment_id   INTEGER NOT NULL, -- 레시피댓글번호
+  recipe_id    INTEGER NOT NULL, -- 레시피 번호
+  member_id    INTEGER NOT NULL, -- 회원번호
+  content      TEXT    NOT NULL, -- 댓글 내용
+  created_date DATE    NOT NULL DEFAULT now() -- 작성일
+);
 
 -- 레시피댓글
 ALTER TABLE recipe_comment
@@ -218,17 +213,16 @@ ALTER TABLE recipe_comment
     );
 
 ALTER TABLE recipe_comment
-  MODIFY COLUMN comment_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '레시피댓글번호';
+  MODIFY COLUMN comment_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 후기
 CREATE TABLE review (
-  review_id    INTEGER NOT NULL COMMENT '후기번호', -- 후기번호
-  recipe_id    INTEGER NOT NULL COMMENT '레시피 번호', -- 레시피 번호
-  member_id    INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
-  content      TEXT    NOT NULL COMMENT '내용', -- 내용
-  created_date DATE    NOT NULL DEFAULT now() COMMENT '작성일' -- 작성일
-)
-COMMENT '후기';
+  review_id    INTEGER NOT NULL, -- 후기번호
+  recipe_id    INTEGER NOT NULL, -- 레시피 번호
+  member_id    INTEGER NOT NULL, -- 회원번호
+  content      TEXT    NOT NULL, -- 내용
+  created_date DATE    NOT NULL DEFAULT now() -- 작성일
+);
 
 -- 후기
 ALTER TABLE review
@@ -238,15 +232,14 @@ ALTER TABLE review
     );
 
 ALTER TABLE review
-  MODIFY COLUMN review_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '후기번호';
+  MODIFY COLUMN review_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 즐겨찾기
 CREATE TABLE bookmark (
-  recipe_id    INTEGER NOT NULL COMMENT '레시피 번호', -- 레시피 번호
-  member_id    INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
-  created_date DATE    NOT NULL DEFAULT now() COMMENT '등록일' -- 등록일
-)
-COMMENT '즐겨찾기';
+  recipe_id    INTEGER NOT NULL, -- 레시피 번호
+  member_id    INTEGER NOT NULL, -- 회원번호
+  created_date DATE    NOT NULL DEFAULT now() -- 등록일
+);
 
 -- 즐겨찾기
 ALTER TABLE bookmark
@@ -258,13 +251,12 @@ ALTER TABLE bookmark
 
 -- 공지
 CREATE TABLE notice (
-  notice_id    INTEGER     NOT NULL COMMENT '공지번호', -- 공지번호
-  title        VARCHAR(50) NOT NULL COMMENT '공지제목', -- 공지제목
-  content      TEXT        NOT NULL COMMENT '공지내용', -- 공지내용
-  created_date DATE        NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
-  view_count   INTEGER     NOT NULL DEFAULT 0 COMMENT '조회수' -- 조회수
-)
-COMMENT '공지';
+  notice_id    INTEGER     NOT NULL, -- 공지번호
+  title        VARCHAR(50) NOT NULL, -- 공지제목
+  content      TEXT        NOT NULL, -- 공지내용
+  created_date DATE        NOT NULL DEFAULT now(), -- 작성일
+  view_count   INTEGER     NOT NULL DEFAULT 0 -- 조회수
+);
 
 -- 공지
 ALTER TABLE notice
@@ -274,19 +266,18 @@ ALTER TABLE notice
     );
 
 ALTER TABLE notice
-  MODIFY COLUMN notice_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '공지번호';
+  MODIFY COLUMN notice_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 이벤트
 CREATE TABLE event (
-  event_id     INTEGER     NOT NULL COMMENT '이벤트 번호', -- 이벤트 번호
-  title        VARCHAR(50) NOT NULL COMMENT '이벤트제목', -- 이벤트제목
-  content      TEXT        NOT NULL COMMENT '이벤트내용', -- 이벤트내용
-  start_date   CHAR(8)     NOT NULL COMMENT '시작일', -- 시작일
-  end_date     CHAR(8)     NULL     COMMENT '종료일', -- 종료일
-  created_date DATE        NOT NULL DEFAULT now() COMMENT '작성일', -- 작성일
-  view_count   INTEGER     NOT NULL DEFAULT 0 COMMENT '조회수' -- 조회수
-)
-COMMENT '이벤트';
+  event_id     INTEGER     NOT NULL, -- 이벤트 번호
+  title        VARCHAR(50) NOT NULL, -- 이벤트제목
+  content      TEXT        NOT NULL, -- 이벤트내용
+  start_date   CHAR(8)     NOT NULL, -- 시작일
+  end_date     CHAR(8)     NULL,     -- 종료일
+  created_date DATE        NOT NULL DEFAULT now(), -- 작성일
+  view_count   INTEGER     NOT NULL DEFAULT 0 -- 조회수
+);
 
 -- 이벤트
 ALTER TABLE event
@@ -296,17 +287,16 @@ ALTER TABLE event
     );
 
 ALTER TABLE event
-  MODIFY COLUMN event_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '이벤트 번호';
+  MODIFY COLUMN event_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 레시피랭킹
 CREATE TABLE recipe_ranking (
-  recipe_raking_id INTEGER NOT NULL COMMENT '레시피랭킹번호', -- 레시피랭킹번호
-  recipe_id        INTEGER NOT NULL COMMENT '레시피 번호', -- 레시피 번호
-  date             DATE    NOT NULL COMMENT '년월', -- 년월
-  week             INTEGER NOT NULL COMMENT '주차', -- 주차
-  rank             INTEGER NOT NULL COMMENT '등수' -- 등수
-)
-COMMENT '레시피랭킹';
+  recipe_raking_id INTEGER NOT NULL, -- 레시피랭킹번호
+  recipe_id        INTEGER NOT NULL, -- 레시피 번호
+  date             DATE    NOT NULL, -- 년월
+  week             INTEGER NOT NULL, -- 주차
+  rank             INTEGER NOT NULL  -- 등수
+);
 
 -- 레시피랭킹
 ALTER TABLE recipe_ranking
@@ -333,17 +323,16 @@ CREATE UNIQUE INDEX UIX_recipe_ranking2
   );
 
 ALTER TABLE recipe_ranking
-  MODIFY COLUMN recipe_raking_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '레시피랭킹번호';
+  MODIFY COLUMN recipe_raking_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 찹톡
 CREATE TABLE gallery (
-  gallery_id   INTEGER NOT NULL COMMENT '찹톡 번호', -- 찹톡 번호
-  member_id    INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
-  content      TEXT    NOT NULL COMMENT '내용', -- 내용
-  view_count   INTEGER NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
-  created_date DATE    NOT NULL DEFAULT now() COMMENT '작성일' -- 작성일
-)
-COMMENT '찹톡';
+  gallery_id   INTEGER NOT NULL, -- 찹톡 번호
+  member_id    INTEGER NOT NULL, -- 회원번호
+  content      TEXT    NOT NULL, -- 내용
+  view_count   INTEGER NOT NULL DEFAULT 0, -- 조회수
+  created_date DATE    NOT NULL DEFAULT now() -- 작성일
+);
 
 -- 찹톡
 ALTER TABLE gallery
@@ -353,17 +342,16 @@ ALTER TABLE gallery
     );
 
 ALTER TABLE gallery
-  MODIFY COLUMN gallery_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '찹톡 번호';
+  MODIFY COLUMN gallery_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 장바구니
 CREATE TABLE cart (
-  cart_id      INTEGER NOT NULL COMMENT '장바구니 번호', -- 장바구니 번호
-  member_id    INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
-  product_id   INTEGER NOT NULL COMMENT '상품 번호', -- 상품 번호
-  quantity     INTEGER NOT NULL DEFAULT 1 COMMENT '수량', -- 수량
-  created_date DATE    NOT NULL DEFAULT now() COMMENT '등록일' -- 등록일
-)
-COMMENT '장바구니';
+  cart_id      INTEGER NOT NULL, -- 장바구니 번호
+  member_id    INTEGER NOT NULL, -- 회원번호
+  product_id   INTEGER NOT NULL, -- 상품 번호
+  quantity     INTEGER NOT NULL DEFAULT 1, -- 수량
+  created_date DATE    NOT NULL DEFAULT now() -- 등록일
+);
 
 -- 장바구니
 ALTER TABLE cart
@@ -373,21 +361,20 @@ ALTER TABLE cart
     );
 
 ALTER TABLE cart
-  MODIFY COLUMN cart_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '장바구니 번호';
+  MODIFY COLUMN cart_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 주문
 CREATE TABLE store_order (
-  order_id       INTEGER      NOT NULL COMMENT '주문번호', -- 주문번호
-  member_id      INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  post_no        VARCHAR(255) NOT NULL COMMENT '배송지우편번호', -- 배송지우편번호
-  base_address   VARCHAR(255) NOT NULL COMMENT '배송지기본주소', -- 배송지기본주소
-  detail_address VARCHAR(255) NOT NULL COMMENT '배송지상세주소', -- 배송지상세주소
-  payment_date   DATE         NOT NULL DEFAULT now() COMMENT '주문일', -- 주문일
-  payment_method VARCHAR(255) NOT NULL COMMENT '결제수단', -- 결제수단
-  ship_date      VARCHAR(255) NOT NULL COMMENT '상태', -- 상태
-  invoice        VARCHAR(255) NULL     COMMENT '운송장번호' -- 운송장번호
-)
-COMMENT '주문';
+  order_id       INTEGER      NOT NULL, -- 주문번호
+  member_id      INTEGER      NOT NULL, -- 회원번호
+  post_no        VARCHAR(255) NOT NULL, -- 배송지우편번호
+  base_address   VARCHAR(255) NOT NULL, -- 배송지기본주소
+  detail_address VARCHAR(255) NOT NULL, -- 배송지상세주소
+  payment_date   DATE         NOT NULL DEFAULT now(), -- 주문일
+  payment_method VARCHAR(255) NOT NULL, -- 결제수단
+  ship_date      VARCHAR(255) NOT NULL, -- 상태
+  invoice        VARCHAR(255) NULL      -- 운송장번호
+);
 
 -- 주문
 ALTER TABLE store_order
@@ -403,14 +390,13 @@ CREATE UNIQUE INDEX UIX_store_order
   );
 
 ALTER TABLE store_order
-  MODIFY COLUMN order_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '주문번호';
+  MODIFY COLUMN order_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 구독회원
 CREATE TABLE subscriptior (
-  chef   INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
-  viewer INTEGER NOT NULL COMMENT '구독자' -- 구독자
-)
-COMMENT '구독회원';
+  chef   INTEGER NOT NULL, -- 회원번호
+  viewer INTEGER NOT NULL  -- 구독자
+);
 
 -- 구독회원
 ALTER TABLE subscriptior
@@ -422,11 +408,10 @@ ALTER TABLE subscriptior
 
 -- 이벤트사진
 CREATE TABLE photo (
-  photo_id  INTEGER     NOT NULL COMMENT '이벤트사진번호', -- 이벤트사진번호
-  event_id  INTEGER     NOT NULL COMMENT '이벤트 번호', -- 이벤트 번호
-  file_path VARCHAR(50) NOT NULL COMMENT '파일 경로' -- 파일 경로
-)
-COMMENT '이벤트사진';
+  photo_id  INTEGER     NOT NULL, -- 이벤트사진번호
+  event_id  INTEGER     NOT NULL, -- 이벤트 번호
+  file_path VARCHAR(50) NOT NULL  -- 파일 경로
+);
 
 -- 이벤트사진
 ALTER TABLE photo
@@ -436,15 +421,14 @@ ALTER TABLE photo
     );
 
 ALTER TABLE photo
-  MODIFY COLUMN photo_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '이벤트사진번호';
+  MODIFY COLUMN photo_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 후기사진
 CREATE TABLE review_photo (
-  photo_id  INTEGER     NOT NULL COMMENT '사진 번호', -- 사진 번호
-  review_id INTEGER     NOT NULL COMMENT '후기번호', -- 후기번호
-  file_path VARCHAR(50) NOT NULL COMMENT '파일 경로' -- 파일 경로
-)
-COMMENT '후기사진';
+  photo_id  INTEGER     NOT NULL, -- 사진 번호
+  review_id INTEGER     NOT NULL, -- 후기번호
+  file_path VARCHAR(50) NOT NULL  -- 파일 경로
+);
 
 -- 후기사진
 ALTER TABLE review_photo
@@ -454,17 +438,16 @@ ALTER TABLE review_photo
     );
 
 ALTER TABLE review_photo
-  MODIFY COLUMN photo_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '사진 번호';
+  MODIFY COLUMN photo_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 후기댓글
 CREATE TABLE review_comment (
-  comment_id   INTEGER NOT NULL COMMENT '후기댓글번호', -- 후기댓글번호
-  review_id    INTEGER NOT NULL COMMENT '후기번호', -- 후기번호
-  member_id    INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
-  content      TEXT    NOT NULL COMMENT '댓글 내용', -- 댓글 내용
-  created_date DATE    NOT NULL DEFAULT now() COMMENT '작성일' -- 작성일
-)
-COMMENT '후기댓글';
+  comment_id   INTEGER NOT NULL, -- 후기댓글번호
+  review_id    INTEGER NOT NULL, -- 후기번호
+  member_id    INTEGER NOT NULL, -- 회원번호
+  content      TEXT    NOT NULL, -- 댓글 내용
+  created_date DATE    NOT NULL DEFAULT now() -- 작성일
+);
 
 -- 후기댓글
 ALTER TABLE review_comment
@@ -474,15 +457,14 @@ ALTER TABLE review_comment
     );
 
 ALTER TABLE review_comment
-  MODIFY COLUMN comment_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '후기댓글번호';
+  MODIFY COLUMN comment_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 찹톡사진
 CREATE TABLE gallery_photo (
-  photo_id   INTEGER     NOT NULL COMMENT '찹톡사진번호', -- 찹톡사진번호
-  gallery_id INTEGER     NOT NULL COMMENT '찹톡 번호', -- 찹톡 번호
-  file_path  VARCHAR(50) NOT NULL COMMENT '파일 경로' -- 파일 경로
-)
-COMMENT '찹톡사진';
+  photo_id   INTEGER     NOT NULL, -- 찹톡사진번호
+  gallery_id INTEGER     NOT NULL, -- 찹톡 번호
+  file_path  VARCHAR(50) NOT NULL  -- 파일 경로
+);
 
 -- 찹톡사진
 ALTER TABLE gallery_photo
@@ -492,14 +474,13 @@ ALTER TABLE gallery_photo
     );
 
 ALTER TABLE gallery_photo
-  MODIFY COLUMN photo_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '찹톡사진번호';
+  MODIFY COLUMN photo_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 동물분류
 CREATE TABLE category (
-  category_id INTEGER      NOT NULL COMMENT '동물분류번호', -- 동물분류번호
-  category    VARCHAR(255) NOT NULL COMMENT '분류명' -- 분류명
-)
-COMMENT '동물분류';
+  category_id INTEGER      NOT NULL, -- 동물분류번호
+  category    VARCHAR(255) NOT NULL  -- 분류명
+);
 
 -- 동물분류
 ALTER TABLE category
@@ -509,15 +490,14 @@ ALTER TABLE category
     );
 
 ALTER TABLE category
-  MODIFY COLUMN category_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '동물분류번호';
+  MODIFY COLUMN category_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 동물품종
 CREATE TABLE breed (
-  breed_id    INTEGER      NOT NULL COMMENT '동물품종번호', -- 동물품종번호
-  breed       VARCHAR(255) NOT NULL COMMENT '품종명', -- 품종명
-  category_id INTEGER      NOT NULL COMMENT '동물분류번호' -- 동물분류번호
-)
-COMMENT '동물품종';
+  breed_id    INTEGER      NOT NULL, -- 동물품종번호
+  breed       VARCHAR(255) NOT NULL, -- 품종명
+  category_id INTEGER      NOT NULL  -- 동물분류번호
+);
 
 -- 동물품종
 ALTER TABLE breed
@@ -527,16 +507,15 @@ ALTER TABLE breed
     );
 
 ALTER TABLE breed
-  MODIFY COLUMN breed_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '동물품종번호';
+  MODIFY COLUMN breed_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 반려동물사진
 CREATE TABLE pet_photo (
-  photo_id     INTEGER     NOT NULL COMMENT '반려동물사진번호', -- 반려동물사진번호
-  pet_id       INTEGER     NOT NULL COMMENT '반려동물 번호', -- 반려동물 번호
-  file_path    VARCHAR(50) NOT NULL COMMENT '파일 경로', -- 파일 경로
-  created_date DATE        NOT NULL DEFAULT now() COMMENT '등록일' -- 등록일
-)
-COMMENT '반려동물사진';
+  photo_id     INTEGER     NOT NULL, -- 반려동물사진번호
+  pet_id       INTEGER     NOT NULL, -- 반려동물 번호
+  file_path    VARCHAR(50) NOT NULL, -- 파일 경로
+  created_date DATE        NOT NULL DEFAULT now() -- 등록일
+);
 
 -- 반려동물사진
 ALTER TABLE pet_photo
@@ -546,16 +525,15 @@ ALTER TABLE pet_photo
     );
 
 ALTER TABLE pet_photo
-  MODIFY COLUMN photo_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '반려동물사진번호';
+  MODIFY COLUMN photo_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 주문상품
 CREATE TABLE order_product (
-  order_id       INTEGER NOT NULL COMMENT '주문번호', -- 주문번호
-  product_id     INTEGER NOT NULL COMMENT '상품 번호', -- 상품 번호
-  quantity       INTEGER NOT NULL COMMENT '수량', -- 수량
-  discount_price INTEGER NOT NULL COMMENT '단위가격' -- 단위가격
-)
-COMMENT '주문상품';
+  order_id       INTEGER NOT NULL, -- 주문번호
+  product_id     INTEGER NOT NULL, -- 상품 번호
+  quantity       INTEGER NOT NULL, -- 수량
+  discount_price INTEGER NOT NULL  -- 단위가격
+);
 
 -- 주문상품
 ALTER TABLE order_product
@@ -567,13 +545,12 @@ ALTER TABLE order_product
 
 -- 회원랭킹
 CREATE TABLE member_ranking (
-  member_raking_id INTEGER NOT NULL COMMENT '회원랭킹번호', -- 회원랭킹번호
-  member_id        INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
-  date             DATE    NOT NULL COMMENT '년월', -- 년월
-  week             INTEGER NOT NULL COMMENT '주차', -- 주차
-  rank             INTEGER NOT NULL COMMENT '등수' -- 등수
-)
-COMMENT '회원랭킹';
+  member_raking_id INTEGER NOT NULL, -- 회원랭킹번호
+  member_id        INTEGER NOT NULL, -- 회원번호
+  date             DATE    NOT NULL, -- 년월
+  week             INTEGER NOT NULL, -- 주차
+  rank             INTEGER NOT NULL  -- 등수
+);
 
 -- 회원랭킹
 ALTER TABLE member_ranking
@@ -600,17 +577,16 @@ CREATE UNIQUE INDEX UIX_member_ranking2
   );
 
 ALTER TABLE member_ranking
-  MODIFY COLUMN member_raking_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원랭킹번호';
+  MODIFY COLUMN member_raking_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 조리과정
 CREATE TABLE cooking (
-  cooking_id INTEGER     NOT NULL COMMENT '조리과정번호', -- 조리과정번호
-  recipe_id  INTEGER     NOT NULL COMMENT '레시피 번호', -- 레시피 번호
-  process    INTEGER     NOT NULL COMMENT '조리순서', -- 조리순서
-  file_path  VARCHAR(50) NOT NULL COMMENT '파일 경로', -- 파일 경로
-  content    TEXT        NOT NULL COMMENT '내용' -- 내용
-)
-COMMENT '조리과정';
+  cooking_id INTEGER     NOT NULL, -- 조리과정번호
+  recipe_id  INTEGER     NOT NULL, -- 레시피 번호
+  process_no INTEGER     NOT NULL, -- 조리순서
+  file_path  VARCHAR(50) NOT NULL, -- 파일 경로
+  content    TEXT        NOT NULL  -- 내용
+);
 
 -- 조리과정
 ALTER TABLE cooking
@@ -620,16 +596,15 @@ ALTER TABLE cooking
     );
 
 ALTER TABLE cooking
-  MODIFY COLUMN cooking_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '조리과정번호';
+  MODIFY COLUMN cooking_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 재료
 CREATE TABLE ingredient (
-  ingredient_id INTEGER     NOT NULL COMMENT '재료번호', -- 재료번호
-  recipe_id     INTEGER     NOT NULL COMMENT '레시피 번호', -- 레시피 번호
-  ingredient    VARCHAR(50) NOT NULL COMMENT '재료', -- 재료
-  quantity      VARCHAR(50) NOT NULL COMMENT '용량' -- 용량
-)
-COMMENT '재료';
+  ingredient_id INTEGER     NOT NULL, -- 재료번호
+  recipe_id     INTEGER     NOT NULL, -- 레시피 번호
+  ingredient    VARCHAR(50) NOT NULL, -- 재료
+  quantity      VARCHAR(50) NOT NULL  -- 용량
+);
 
 -- 재료
 ALTER TABLE ingredient
@@ -639,15 +614,14 @@ ALTER TABLE ingredient
     );
 
 ALTER TABLE ingredient
-  MODIFY COLUMN ingredient_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '재료번호';
+  MODIFY COLUMN ingredient_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 레시피좋아요
 CREATE TABLE recipe_like (
-  like_id   INTEGER NOT NULL COMMENT '좋아요번호', -- 좋아요번호
-  member_id INTEGER NOT NULL COMMENT '회원번호', -- 회원번호
-  recipe_id INTEGER NOT NULL COMMENT '레시피 번호' -- 레시피 번호
-)
-COMMENT '레시피좋아요';
+  like_id   INTEGER NOT NULL, -- 좋아요번호
+  member_id INTEGER NOT NULL, -- 회원번호
+  recipe_id INTEGER NOT NULL  -- 레시피 번호
+);
 
 -- 레시피좋아요
 ALTER TABLE recipe_like
@@ -659,15 +633,14 @@ ALTER TABLE recipe_like
     );
 
 ALTER TABLE recipe_like
-  MODIFY COLUMN like_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '좋아요번호';
+  MODIFY COLUMN like_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 상품사진
 CREATE TABLE store_photo (
-  photo_id   INTEGER     NOT NULL COMMENT '찹톡사진번호', -- 찹톡사진번호
-  product_id INTEGER     NOT NULL COMMENT '상품 번호', -- 상품 번호
-  file_path  VARCHAR(50) NOT NULL COMMENT '파일 경로' -- 파일 경로
-)
-COMMENT '상품사진';
+  photo_id   INTEGER     NOT NULL, -- 찹톡사진번호
+  product_id INTEGER     NOT NULL, -- 상품 번호
+  file_path  VARCHAR(50) NOT NULL  -- 파일 경로
+);
 
 -- 상품사진
 ALTER TABLE store_photo
@@ -677,18 +650,17 @@ ALTER TABLE store_photo
     );
 
 ALTER TABLE store_photo
-  MODIFY COLUMN photo_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '찹톡사진번호';
+  MODIFY COLUMN photo_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 상품문의
 CREATE TABLE product_comment (
-  comment_id   INTEGER     NOT NULL COMMENT '상품문의번호', -- 상품문의번호
-  product_id   INTEGER     NOT NULL COMMENT '상품 번호', -- 상품 번호
-  member_id    INTEGER     NOT NULL COMMENT '회원번호', -- 회원번호
-  title        VARCHAR(50) NOT NULL COMMENT '제목', -- 제목
-  content      TEXT        NOT NULL COMMENT '댓글 내용', -- 댓글 내용
-  created_date DATE        NOT NULL DEFAULT now() COMMENT '작성일' -- 작성일
-)
-COMMENT '상품문의';
+  comment_id   INTEGER     NOT NULL, -- 상품문의번호
+  product_id   INTEGER     NOT NULL, -- 상품 번호
+  member_id    INTEGER     NOT NULL, -- 회원번호
+  title        VARCHAR(50) NOT NULL, -- 제목
+  content      TEXT        NOT NULL, -- 댓글 내용
+  created_date DATE        NOT NULL DEFAULT now() -- 작성일
+);
 
 -- 상품문의
 ALTER TABLE product_comment
@@ -698,7 +670,7 @@ ALTER TABLE product_comment
     );
 
 ALTER TABLE product_comment
-  MODIFY COLUMN comment_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '상품문의번호';
+  MODIFY COLUMN comment_id INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 반려동물 정보
 ALTER TABLE pet
