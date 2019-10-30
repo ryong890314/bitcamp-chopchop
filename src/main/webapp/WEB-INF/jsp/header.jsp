@@ -52,8 +52,8 @@
 	<header class="header-area">
 		<!-- Logo Area -->
 		<div class="logo-area">
-			<a href="/app/member/list"><img src="/img/core-img/choplogo.png"
-				alt=""></a>
+			<a href="/app/member/list">
+				</a>
 		</div>
 
 		<!-- Top Header Area -->
@@ -141,7 +141,7 @@
 									</c:if>
 									<c:if test="${not empty loginUser}">
 										<a>Hello!</a>
-										<a href="/app/member/main" class='nav-user'>${loginUser.nickname}</a>
+										<a href="/app/member/myProfile" class='nav-user'>${loginUser.nickname}</a>
 										<a class='classy-btn login-area' href='/app/auth/logout'>Sign
 											out</a>
 									</c:if>

@@ -26,8 +26,8 @@
   <tr>
     <td><a href='detail?no=${member.memberNo}'>${member.memberNo}</a></td>
     <td>${member.email}</td>
-    <td>${member.tel}</td>
     <td>${member.nickname}</td>
+    <td>${member.tel}</td>
   </tr>
 </c:forEach>
 </table>

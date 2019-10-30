@@ -11,9 +11,9 @@ public class Pet implements Serializable {
   private String name;
   private Date createdDate;
   private int registerNo;
-  private String photo;
   private int gender;
   private int age;
+  private String photo;
 
   private List<Breed> breeds;
   

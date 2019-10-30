@@ -9,23 +9,31 @@
 		<result column="name" property="name" />
 		<result column="created_date" property="createdDate" />
 		<result column="register_no" property="registerNo" />
+		<result column="gender" property="gender" />
+		<result column="age" property="age" />
 		<result column="file_path" property="photo" />
 	</resultMap>
+	
+	<resultMap type="Breed" id="BreedMap">
+		<id column="breed_id" property="breedNo" />
+		<result column="breed" property="breed" />
+	</resultMap>
 
-<!--   <resultMap type="Pet" id="PetMap"> -->
-<!--     <id column="pet_id" property="petNo" /> -->
-<!--     <result column="name" property="name" /> -->
-<!--     <result column="created_date" property="createdDate" /> -->
-<!--     <result column="register_no" property="registerNo" /> -->
-<!--     <result column="file_path" property="photo" /> -->
-    
-<!--     <collection property="breeds" ofType="Breed"> -->
-<!--       <id column="breed_id" property="breedNo"/> -->
-<!--       <result column="breed" property="breed"/> -->
-<!--       <result column="category_id" property="categoryNO"/> -->
-<!--     </collection> -->
-<!--   </resultMap> -->
-  
+ 	<resultMap type="Pet" id="PetBreedMap">
+    <id column="pet_id" property="petNo" />
+    <result column="name" property="name" />
+    <result column="created_date" property="createdDate" />
+    <result column="register_no" property="registerNo" />
+    <result column="gender" property="gender" />
+    <result column="age" property="age" />
+    <result column="file_path" property="photo" />
+
+		<collection property="breeds" ofType="Breed">
+			<id column="breed_id" property="breedNo" />
+			<result column="breed" property="breed" />
+		</collection>
+	</resultMap>
+
 	<sql id="basicColumn">
 		select
 		pet_id,
@@ -58,20 +66,20 @@
 		select * from pet
 	</select>
 
- 	<select id="findBy" parameterType="int" resultMap="PetMap">
+	<select id="findBy" parameterType="int" resultMap="PetBreedMap">
 		select
-			p.pet_id,
-		  p.file_path,
-			p.name,
-			p.age,
-			p.gender,
-			p.breed_id,
-			b.breed_id,
-			b.breed
+		p.pet_id,
+		p.file_path,
+		p.name,
+		p.age,
+		p.gender,
+		p.breed_id,
+		b.breed_id,
+		b.breed
 		from pet p
-		  left outer join breed b on p.breed_id=b.breed_id
-		  where p.pet_id=${petNo}
-	</select> 
+		left outer join breed b on p.breed_id=b.breed_id
+		where p.pet_id=${petNo}
+	</select>
 
 	<update id="update" parameterType="Pet">
 		update pet

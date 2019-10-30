@@ -38,8 +38,8 @@ public class MemberController {
     uploadDir = sc.getRealPath("/upload/member");
   }
 
-  @GetMapping("main")
-  public void main() {}
+  @GetMapping("myProfile")
+  public void myProfile() {}
   
   @GetMapping("form")
   public void form() {}
