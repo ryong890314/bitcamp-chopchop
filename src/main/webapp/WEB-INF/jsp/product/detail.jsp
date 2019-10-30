@@ -169,6 +169,7 @@
       상품상세: <input type='text' name='detail' value='${product.detail}'><br>
       재고: <input type='text' name='stock' value='${product.stock}'><br>
       할인율: <input type='text' name='discount' value='${product.discount}'><br>
+      옵션: <input type='text' name='option' value='${product.option}'><br>
       상품분류: <select name='category'>
         <option id='category1' value='식품'>식품</option>
         <option id='category2' value='훈련'>훈련/장난감</option>
