@@ -53,6 +53,7 @@
         eRegPass = true;
       }
     }
+    
       
     // 이메일 중복체크
     if(eRegPass) {
@@ -64,6 +65,7 @@
             document.getElementById("email_chk").innerHTML = "중복된 이메일입니다.";
           } else {
             document.getElementById("email_chk").innerHTML = "가입 가능한 이메일입니다. ";
+            $( "#email_chk" ).css( 'color', 'green' );
             eCheckFlag = true;
           }
         } else {
@@ -89,7 +91,8 @@ function password_check() {
   if (!passwordRegExp.test(form.password.value)) {
     document.getElementById("password_chk").innerHTML = "8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
   } else {
-    document.getElementById("password_chk").innerHTML = "";
+    document.getElementById("password_chk").innerHTML = "사용 가능한 비밀번호입니다.";
+    $( "#password_chk" ).css( 'color', 'green' );
     pCheckFlag = true;
   }
   } 
@@ -107,7 +110,8 @@ function password_check() {
       if (form.password.value != form.password2.value) {
         document.getElementById("password2_chk").innerHTML = "두 비밀번호가 다릅니다.";
       } else {
-        document.getElementById("password2_chk").innerHTML = "";
+        document.getElementById("password2_chk").innerHTML = "두 비밀번호가 일치합니다.";
+        $( "#password2_chk" ).css( 'color', 'green' );
         p2CheckFlag = true;
       }
     } 
@@ -141,6 +145,7 @@ function password_check() {
               document.getElementById("nickname_chk").innerHTML = "중복된 닉네임입니다.";
             } else {
               document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
+              $( "#nickname_chk" ).css( 'color', 'green' );
               nCheckFlag = true;
             }
           } else {
@@ -168,6 +173,7 @@ function password_check() {
       } else {
         document.getElementById("tel_chk").innerHTML = "";
         tCheckFlag = true;
+
       }
     } 
    return tCheckFlag;
@@ -194,6 +200,8 @@ function password_check() {
     return checkCnt == 5 ? true : false; 
     }
 </script>
+<script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <jsp:include page="../footer.jsp"/>
 </body>
 </html>

@@ -6,13 +6,13 @@
 <head>
   <title>My Page</title>
   <link rel="stylesheet" href="/css/member/style_detail.css">
-  <link rel="stylesheet" href="../node_modules/jquery-ui-dist/jquery-ui.css">
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <link rel="stylesheet" href="/node_modules/jquery-ui-dist/jquery-ui.css">
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 
 </head>
 <body onload="formLoad();">
-<jsp:include page="../header.jsp"/>
+
+<%-- <jsp:include page="../header.jsp"/> --%>
 <div class="container"> 
 <h1>내정보</h1>
 <form action='update' method='post' name="form" enctype='multipart/form-data' onsubmit="return checkAll();">
@@ -128,6 +128,12 @@
   </div>
 </div>
 <jsp:include page="../footer.jsp"/>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+<script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script>
   function changePw() {
 	  var cnt = 0;
@@ -369,10 +375,7 @@
     reader.readAsDataURL(this.files[0]);
 };
 </script>
-<script src="../node_modules/jquery/dist/jquery.min.js"></script>
-<script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>
