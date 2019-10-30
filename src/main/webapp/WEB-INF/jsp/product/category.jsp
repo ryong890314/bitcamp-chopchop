@@ -54,8 +54,6 @@
     }
   </style>
 
-
-
 </head>
 <body>
   <jsp:include page="../header.jsp" />
@@ -80,6 +78,8 @@
         <th>상품명</th>
         <th>가격</th>
         <th>할인율</th>
+        <th hidden="true">카테고리</th>
+        <th hidden="true">동물분류</th>
         <th>사진</th>
       </tr>
       <c:forEach items="${products}" var="product">
@@ -88,6 +88,8 @@
           <td><a href='detail?no=${product.productNo}'>${product.title}</a></td>
           <td>${product.price}</td>
           <td>${product.discount}</td>
+          <td hidden="true">${product.category}</td>
+          <td hidden="true">${product.species}</td>
           <td>
             <p>
               <c:forEach items="${product.files}" var="file" end="0">
