@@ -73,6 +73,8 @@
 		p.name,
 		p.age,
 		p.gender,
+		p.register_no,
+		p.created_date,
 		p.breed_id,
 		b.breed_id,
 		b.breed
@@ -85,7 +87,7 @@
 		update pet
 		<set>
 			<if test="name != null">name=#{name},</if>
-			<if test="photo != null">photo=#{photo},</if>
+			<if test="photo != null">photo=#{photo},</if>   
 			<if test="register_no != null">register_no=#{register_no},</if>
 		</set>
 		where pet_id = #{petNo}

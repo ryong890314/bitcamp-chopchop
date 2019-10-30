@@ -21,7 +21,6 @@
   <th>이름</th>
   <th>나이</th>
   <th>성별</th>
-  <th>Breed</th>
 </tr>
 <c:forEach items="${pets}" var="pet">
   <tr>
@@ -30,7 +29,6 @@
     <td>${pet.age}</td>
     <td>${pet.gender}</td>
     <c:forEach items="${pet.breeds}" var="breed">
-    <td><input value="${breed.breed}"></td>
     </c:forEach>
   </tr>
 </c:forEach>
