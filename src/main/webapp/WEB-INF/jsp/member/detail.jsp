@@ -9,36 +9,7 @@
   <link rel="stylesheet" href="../node_modules/jquery-ui-dist/jquery-ui.css">
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <style type="text/css">
-    .carousel-inner > .carousel-item > img {
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      width: 700px;
-      height: 500px;
-    } 
-    
-    header.carousel {
-      height: 30%;
-    }
-    
-    header.carousel .item, header.carousel .item.active, header.carousel .carousel-inner {
-      height: 100%;
-    }
-    
-    header.carousel .fill {
-      width: 100%;
-      height: 100%;
-      background-position: center;
-      background-size: auto 100%;
-    }
-    .carousel {
-      margin: 0 auto;
-      width: 700px;
-      height: 500px;
-    }
 
-  </style>
 </head>
 <body onload="formLoad();">
 <jsp:include page="../header.jsp"/>
@@ -78,45 +49,7 @@
 <hr> 
 
 <div class="container"> 
-      <h1>My Pet 정보</h1>
-<!--   <div class="row">  -->
-<!--     <div class="col-4"> -->
-<!--       <div class="card" style="width: 18rem;"> -->
-<!--         <img src="/upload/member/my_pet1.jpg" class="card-img-top" alt="..."> -->
-<!--         <div class="card-body"> -->
-<!-- 	        <h5 class="card-title">누렁이</h5> -->
-<!-- 	        <p class="card-text">이름: 누렁이 <br>성별: 암컷<br>나이: 3세</p> -->
-<!-- 	        <a href="#" class="btn btn-primary">구경가기</a> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--     <div class="col-4"> -->
-<!--       <h1></h1> -->
-<!--       <div class="card" style="width: 18rem;"> -->
-<!--         <img src="/upload/member/my_pet2.jpg" class="card-img-top" alt="..."> -->
-<!--         <div class="card-body"> -->
-<!--           <h5 class="card-title">찰스</h5> -->
-<!--           <p class="card-text">이름: 찰스 <br>성별: 암컷<br>나이: 2세</p> -->
-<!--           <a href="#" class="btn btn-primary">구경가기</a> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--     <div class="col-4"> -->
-<!--       <h1></h1> -->
-<!--       <div class="card" style="width: 18rem;"> -->
-<!--         <img src="/upload/member/my_pet3.jpg" class="card-img-top" alt="..."> -->
-<!--         <div class="card-body"> -->
-<!--           <h5 class="card-title">햄식이</h5> -->
-<!--           <p class="card-text">이름: 햄식이 <br>성별: 암컷<br>나이: 1세</p> -->
-<!--           <a href="#" class="btn btn-primary">구경가기</a> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div>  -->
-<!-- </div> -->
-
-
-
+<h1>My Pet 정보</h1>
 
 <div class="bd-example">
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -180,11 +113,11 @@
         </button>
       </div>
       <div class="modal-body">
-            현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword" onblur="nowpw_check();" maxlength="20"/>
+            현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword" onblur="nowpw_check();" maxlength="15"/>
             <div id="password1_chk" class="vali_check"></div>
-            새 비밀번호 <input type="password" id="newPassword"  name="newPassword" onblur="newpw_check();" maxlength="20"/>
+            새 비밀번호 <input type="password" id="newPassword"  name="newPassword" onblur="newpw_check();" maxlength="15"/>
             <div id="password2_chk" class="vali_check"></div>
-            새 비밀번호 확인<input type="password" id="newPassword2"  name="newPassword2" onblur="newpw2_check();" maxlength="20"/>
+            새 비밀번호 확인<input type="password" id="newPassword2"  name="newPassword2" onblur="newpw2_check();" maxlength="15"/>
             <div id="password3_chk" class="vali_check"></div>
       </div>
       <div class="modal-footer">
@@ -243,9 +176,9 @@
 
 	  // 비밀번호 정규식 검사 
 	  if (document.getElementById("nowPassword").value != "") {
-	    var passwordRegExp = /^[a-zA-z0-9]{4,20}$/; 
+	    var passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 		  if (!passwordRegExp.test(document.getElementById("nowPassword").value)) {
-		    document.getElementById("password1_chk").innerHTML = "비밀번호는 영문 대소문자와 숫자 4~20자리로 입력해야합니다!";
+		    document.getElementById("password1_chk").innerHTML = "8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
 		  } else {
 			  var xhr = new XMLHttpRequest();
 		      xhr.onreadystatechange = function() {
@@ -278,11 +211,11 @@
 	  
     // 비밀번호 정규식 검사 
     if (document.getElementById("newPassword").value != "") {
-      var passwordRegExp = /^[a-zA-z0-9]{4,20}$/; 
+      var passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
     if (!passwordRegExp.test(document.getElementById("newPassword").value)) {
-      document.getElementById("password2_chk").innerHTML = "비밀번호는 영문 대소문자와 숫자 4~20자리로 입력해야합니다!";
+      document.getElementById("password2_chk").innerHTML = "8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
     } else {
-      document.getElementById("password2_chk").innerHTML = "";
+      document.getElementById("password2_chk").innerHTML = "안전한 비밀번호입니다.";
       pCheckFlag = true;
     }
    } 

@@ -11,22 +11,14 @@
 		<result column="register_no" property="registerNo" />
 		<result column="photo" property="photo" />
 	</resultMap>
-
-<<<<<<< HEAD
+  
+  
 <!--   <resultMap type="Pet" id="PetMap"> -->
 <!--     <id column="pet_id" property="petNo" /> -->
 <!--     <result column="name" property="name" /> -->
 <!--     <result column="created_date" property="createdDate" /> -->
 <!--     <result column="register_no" property="registerNo" /> -->
 <!--     <result column="photo" property="photo" /> -->
-=======
-    <resultMap type="Pet" id="PetMap">
-    <id column="pet_id" property="petNo" />
-    <result column="name" property="name" />
-    <result column="created_date" property="createdDate" />
-    <result column="register_no" property="registerNo" />
-    <result column="photo" property="photo" />
->>>>>>> 791cf2040e7fabe6e7fa28c6df5b1a83dc4d827c
     
 <!--     <collection property="breeds" ofType="Breed"> -->
 <!--       <id column="breed_id" property="breedNo"/> -->
