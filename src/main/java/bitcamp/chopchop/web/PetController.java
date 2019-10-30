@@ -57,6 +57,12 @@ public class PetController {
     return "redirect:list";
   }
 
+  @GetMapping("delete")
+  public String delete(int no) throws Exception {
+    petService.delete(no);
+    return "redirect:list";
+  }
+  
   private String writeFile(MultipartFile file) throws Exception {
     if (file.isEmpty())
       return null;
