@@ -1,10 +1,13 @@
 package bitcamp.chopchop.domain;
 
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-public class Recipe {
+public class Recipe implements Serializable {
+  private static final long serialVersionUID = 1L;
+  
   private int recipeNo;
   private int memberNo;
   private String title;
@@ -19,12 +22,26 @@ public class Recipe {
 
   // 자식테이블 'ingredient'의 데이터를 담을 Ingredient 객체 목록.
   private List<Ingredient> ingredients;
+  private List<RecipeLike> recipeLikes;
   // 자식테이블 'Cooking'의 데이터를 담을 Cooking 객체 목록.
   private List<Cooking> cookings;
   // 자식테이블 'RecipeLike'의 데이터를 담을 RecipeLike 객체 목록.
-  private List<RecipeLike> recipeLikes;
+  private List<RecipeComment> comments;
+  
 
 
+  public List<RecipeLike> getRecipeLikes() {
+    return recipeLikes;
+  }
+  public void setRecipeLikes(List<RecipeLike> recipeLikes) {
+    this.recipeLikes = recipeLikes;
+  }
+  public List<RecipeComment> getComments() {
+    return comments;
+  }
+  public void setComments(List<RecipeComment> comments) {
+    this.comments = comments;
+  }
   public int getRecipeNo() {
     return recipeNo;
   }
@@ -102,12 +119,6 @@ public class Recipe {
   }
   public void setIngredients(List<Ingredient> ingredients) {
     this.ingredients = ingredients;
-  }
-  public List<RecipeLike> getRecipeLikes() {
-    return recipeLikes;
-  }
-  public void setRecipeLikes(List<RecipeLike> recipeLikes) {
-    this.recipeLikes = recipeLikes;
   }
 
 }

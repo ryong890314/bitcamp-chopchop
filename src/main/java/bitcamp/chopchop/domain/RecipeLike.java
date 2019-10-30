@@ -1,6 +1,10 @@
 package bitcamp.chopchop.domain;
 
-public class RecipeLike {
+import java.io.Serializable;
+
+public class RecipeLike implements Serializable {
+  private static final long serialVersionUID = 1L;
+  
   private int recipeLikeNo;
   private int memberNo;
   private int recipeNo;
@@ -23,5 +27,4 @@ public class RecipeLike {
   public void setRecipeNo(int recipeNo) {
     this.recipeNo = recipeNo;
   }
-  
 }

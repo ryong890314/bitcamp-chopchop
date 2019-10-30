@@ -6,10 +6,11 @@
 <html>
 <head>
   <title>상품 상세</title>
-  <link rel='stylesheet' href='/css/style.css'>
+  <link rel='stylesheet' href='/css/product/style.css'>
+  <link rel='stylesheet' href='/css/member/style_footer.css'>
+  <link rel='stylesheet' href='/css/member/style-header.css'>
   <link rel="icon" href="img/core-img/favicon.ico">
-  <link rel="stylesheet" href="/css/style_contact.css">
-  <link rel="stylesheet" href="/css/style_footer.css">
+  
   <style>
 
     #jumbotron.jumbotron-fluid {
@@ -43,35 +44,19 @@
       margin: auto auto;
       clear: left; 
       }
+      
+      #qt {
+        width: 162px;
+        float: left;
+        margin-right: 10px;
+      }
+      
   </style>
 </head>
 <body>
 
 <jsp:include page="../header.jsp"/>
 
-<header class="header-area">
-        <div class="top-header-area bg-img bg-overlay" style="background-image: url(img/bg-img/header.jpg);">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center justify-content-between">
-                    <div class="col-12 col-sm-6">
-                      <div id='content'>
-                      <h1>상품 상세</h1>
-                      </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-5 col-xl-4">
-                        <!-- Top Search Area -->
-                        <div class="top-search-area">
-                            <form action='search'>
-                              <input type='text' name='keyword' placeholder="Search">
-                                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </header>
-    
 <div>
 <div id="productBody"> 
         <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
@@ -94,13 +79,18 @@
                 </a>
                 </div>
 
-                  <div style="position: absolute; right: 0px; bottom: 0px;">
-                  <form action="../order/form" method="post"> 
-                    <a href='#' class="btn bueno-btn">장바구니</a>
-                    <a href='addorder' class="btn bueno-btn">구매하기</a>
-                  </form>
+                  <div id="tq">
+                    <form action="../order/form" method="post" id="qt">
+                      <input type='hidden' name='no' value='${product.productNo}'>
+                      <input type='hidden' name='price' id='finalPrice' value=''>
+                      <button class="btn bueno-btn">구매하기</button>
+                    </form>
                   </div>
-                      
+                  <div id="tq">
+                    <form id="qt">
+                      <button class="btn bueno-btn">장바구니</button>
+                    </form>
+                  </div>
             </div>
         </div>
         <hr class="my-4">
@@ -114,7 +104,6 @@
     </c:forEach>
   </p>
  
-      
 <hr class="my-4">
 
 <div class="col-12 col-lg-8 col-xl-9">
@@ -123,13 +112,14 @@
         <h4 class="mb-50">상품 문의</h4>
           <ol>
             <!-- Single Comment Area -->
-        <c:forEach items="${product.comments}" var = "comment">
             <li class="single_comment_area" id="isComment">
+        <c:forEach items="${product.comments}" var = "comment">
               <!-- Comment Content -->
               <div class="comment-content d-flex">
                   <!-- Comment Author -->
                   <div class="comment-author">
-                      <img src="/img/bg-img/person.png" alt="author" width="70px">
+<%--                       <img src="/img/bg-img/person.png" alt="${loginUser.nickname}" width="70px"> --%>
+                    <span style="font-size:14px;">${loginUser.nickname}</span>
                   </div>
                   <!-- Comment Meta -->
                   <div class="comment-meta">
@@ -141,8 +131,8 @@
                       <p>${comment.content}</p>
                   </div>
               </div>
-            </li>
         </c:forEach>
+            </li>
           </ol>
       </div>
 
@@ -179,6 +169,7 @@
       상품상세: <input type='text' name='detail' value='${product.detail}'><br>
       재고: <input type='text' name='stock' value='${product.stock}'><br>
       할인율: <input type='text' name='discount' value='${product.discount}'><br>
+      옵션: <input type='text' name='option' value='${product.option}'><br>
       상품분류: <select name='category'>
         <option id='category1' value='식품'>식품</option>
         <option id='category2' value='훈련'>훈련/장난감</option>
@@ -209,20 +200,12 @@
 
 <jsp:include page="../footer.jsp"/>
 <script>
-  var quantity = document.getElementById('quantity');
-  var productInfo = {
-    productNo:${product.productNo},
-    title:'${product.title}',
-    price:${product.price},
-    detail:'${product.detail}',
-    stock:${product.stock},
-    discount:${product.discount},
-    categoty:'${product.category}',
-    species:'${product.species}',
-    quantity:quantity.value
-  }
-  
+  var quantity = parseInt(document.getElementById('quantity').value);
+  var finalPrice = document.getElementById('finalPrice').value;
+  quantity.change(finalPrice = quantity * ${product.price})
+  console.log(finalPrice);
   console.log(productInfo);
+  document.getElementById('finalPrice').value=finalPrice;
   
   
 </script>

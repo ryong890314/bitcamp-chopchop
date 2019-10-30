@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.chopchop.dao.OrderProductDao">
+
+  <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+  <resultMap type="OrderProduct" id="OrderProductMap">
+    <id column="order_id" property="orderNo"/>
+    <id column="product_id" property="productNo"/>
+    <result column="quantity" property="quantity"/>
+    <result column="discount_price" property="discountPrice"/>
+  </resultMap>
+  
+  <insert id="insert" parameterType="OrderProduct" useGeneratedKeys="true" keyColumn="order_id" keyProperty="orderNo">
+    insert into order_product(order_id, product_id, quantity, discount_price)
+    values(#{orderNo}, #{productNo},#{quantity},#{discountPrice}) 
+  </insert>
+  
+<!--   <delete id="delete" parameterType="int"> -->
+<!--     delete from order_product -->
+<!--     where product_id=#{value} -->
+<!--   </delete> -->
+  
+</mapper>

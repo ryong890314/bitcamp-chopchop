@@ -216,6 +216,13 @@
       recipe_id=#{value}
   </update>
   
+    <update id="decreaseScrapCount" parameterType="int">
+    update recipe set
+      scrap = scrap - 1
+    where
+      recipe_id=#{value}
+  </update>
+  
   <!-- 
   <select id="increaseScrapCount" parameterType="Recipe" resultMap="TotalRecipeMap">
     select count(r.scrap) from recipe r

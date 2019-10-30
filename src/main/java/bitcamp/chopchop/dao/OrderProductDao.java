@@ -3,7 +3,7 @@ package bitcamp.chopchop.dao;
 import bitcamp.chopchop.domain.OrderProduct;
 
 public interface OrderProductDao {
-  void insertOrderProduct(OrderProduct orderProduct) throws Exception;
-  void updateOrderProduct(OrderProduct orderProduct) throws Exception;
-  void deleteOrderProduct(int no) throws Exception;
+  void insert(OrderProduct orderProduct) throws Exception; // 최종 주문건
+  void update(OrderProduct orderProduct) throws Exception; // 주소지, 수령인 변경 등
+  void delete(int no) throws Exception; // 주문 취소
 }

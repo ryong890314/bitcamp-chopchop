@@ -8,7 +8,7 @@
 <head>
   <title>상품 목록</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel='stylesheet' href='/css/style.css'>
+  <link rel='stylesheet' href='/css/product/style.css'>
   <style>
 
   #content {
@@ -72,8 +72,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=dog" class="post-tag">강아지</a>
-                                <a href="category?species=dog" class="post-title" style="color:#524845">강아지</a>
+                                <a href="category?species=강아지" class="post-tag">강아지</a>
+                                <a href="category?species=강아지" class="post-title" style="color:#524845">강아지</a>
                             </div>
                         </div>
                     </div>
@@ -85,8 +85,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=cat" id="species" class="post-tag">고양이</a>
-                                <a href="category?species=cat" class="post-title" style="color:#524845">고양이</a>
+                                <a href="category?species=고양이" id="species" class="post-tag">고양이</a>
+                                <a href="category?species=고양이" class="post-title" style="color:#524845">고양이</a>
                             </div>
                         </div>
                     </div>
@@ -98,8 +98,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=bird" id="species" class="post-tag">새</a>
-                                <a href="category?species=bird" class="post-title" style="color:#524845">새</a>
+                                <a href="category?species=새" id="species" class="post-tag">새</a>
+                                <a href="category?species=새" class="post-title" style="color:#524845">새</a>
                             </div>
                         </div>
                     </div>
@@ -117,8 +117,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=fish" id="species" class="post-tag">물고기</a>
-                                <a href="category?species=fish" class="post-title" style="color:#524845">물고기</a>
+                                <a href="category?species=물고기" id="species" class="post-tag">물고기</a>
+                                <a href="category?species=물고기" class="post-title" style="color:#524845">물고기</a>
                             </div>
                         </div>
                     </div>
@@ -130,8 +130,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=small animal" id="species" class="post-tag">작은 동물</a>
-                                <a href="category?species=small animal" class="post-title" style="color:#524845">작은 동물</a>
+                                <a href="category?species=작은 동물" id="species" class="post-tag">작은 동물</a>
+                                <a href="category?species=작은 동물" class="post-title" style="color:#524845">작은 동물</a>
                             </div>
                         </div>
                     </div>
@@ -143,8 +143,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=reptile" id="species" class="post-tag">파충류</a>
-                                <a href="category?species=reptile" class="post-title" style="color:#524845">파충류</a>
+                                <a href="category?species=파충류" id="species" class="post-tag">파충류</a>
+                                <a href="category?species=파충류" class="post-title" style="color:#524845">파충류</a>
                             </div>
                         </div>
                     </div>

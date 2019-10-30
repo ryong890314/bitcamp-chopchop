@@ -3,7 +3,7 @@ package bitcamp.chopchop.dao;
 import bitcamp.chopchop.domain.RecipeLike;
 
 public interface RecipeLikeDao {
-  int insertRecipeLike(RecipeLike recipeLike) throws Exception;
-  void deleteRecipeLike(RecipeLike recipeLike) throws Exception;
-  int findRecipeLike(RecipeLike recipeLike) throws Exception;
+  int insertLike(RecipeLike recipeLike) throws Exception;
+  void deleteLike(RecipeLike recipeLike) throws Exception;
+  int findLike(RecipeLike recipeLike) throws Exception;
 }

@@ -16,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Ingredient;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Recipe;
+import bitcamp.chopchop.domain.RecipeComment;
 import bitcamp.chopchop.domain.RecipeLike;
 import bitcamp.chopchop.service.MemberService;
+import bitcamp.chopchop.service.RecipeCommentService;
 import bitcamp.chopchop.service.RecipeService;
 
 @Controller
@@ -26,6 +28,8 @@ public class RecipeController {
   @Resource private RecipeService recipeService;
   @Resource private CookingFileWriter cookingFileWriter;
   @Resource private MemberService memberService;
+  @Resource private RecipeCommentService recipeCommentService;
+  
 
   String uploadDir;
 
@@ -39,7 +43,7 @@ public class RecipeController {
   }
 
   @PostMapping("add")
-  public String add(HttpSession session, Recipe recipe, /*int memberNo,*/ MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
+  public String add(HttpSession session, Recipe recipe, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
       int[] processNo) throws Exception {
     Member member = (Member)session.getAttribute("loginUser");
     recipe.setMemberNo(member.getMemberNo());
@@ -72,9 +76,27 @@ public class RecipeController {
   @GetMapping("detail")
   public void detail(Model model, int no, HttpSession session) throws Exception {
     Recipe recipe = recipeService.get(no);
-    Member member = memberService.get(recipe.getMemberNo());
+    Member member = (Member) session.getAttribute("loginUser");
+    System.out.println("memberNo::::::::" + member.getMemberNo());
+    RecipeLike recipeLike = new RecipeLike();
+    recipeLike.setMemberNo(member.getMemberNo());
+    recipeLike.setRecipeNo(recipe.getRecipeNo());
+    int check = recipeService.findLike(recipeLike);
+    System.out.println("============================");
+    System.out.println("check" + check);
+    boolean likeCheck = false;
+    if (check == 1) {
+      likeCheck = true;
+    } else if (check == 0){
+      likeCheck = false;
+    }
+    //List<RecipeComment> comments = recipe.getComments();
+    //RecipeComment recipeComment = recipeCommentService.get(no);
+    //model.addAttribute("recipeComment", recipeComment);
+    
     model.addAttribute("recipe", recipe);
     model.addAttribute("member", member);
+    model.addAttribute("isCheck", likeCheck);
     
   }
 
@@ -116,21 +138,5 @@ public class RecipeController {
   public void search(Model model, String keyword) throws Exception {
     List<Recipe> recipes = recipeService.search(keyword);
     model.addAttribute("recipes", recipes);
-  }
-
-  @PostMapping("like")
-  public String like(int no, int memberNo) throws Exception {
-    Recipe recipe = recipeService.get(no);
-    List<RecipeLike> recipeLikes = new ArrayList<>();
-    RecipeLike temp = new RecipeLike();
-    temp.setMemberNo(memberNo);
-    temp.setRecipeNo(no);
-    recipeLikes.add(temp);
-    
-    recipe.setRecipeLikes(recipeLikes);
-    recipeService.update(recipe);
-    
-    recipeService.insertRecipeLike(recipe);
-    return "redirect:list";
   }
 }

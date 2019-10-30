@@ -1,16 +1,19 @@
 package bitcamp.chopchop.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.service.CartService;
 
@@ -42,8 +45,19 @@ public class CartController {
   public String delete(int no, HttpServletRequest request) 
       throws Exception {
     cartService.delete(no);
-    return "redirect:list";
+    return "redirect:search?keyword=1";
   }
+
+@GetMapping("chkdelete")
+public String chkdelete(HttpSession session,
+     @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
+ 
+      String[] arrIdx = paramMap.get("chkbox").toString().split(",");
+      for (int i = 0; i < arrIdx.length; i++) {
+          cartService.delete(Integer.parseInt(arrIdx[i]));
+      }
+      return "redirect:search?keyword=1";
+}
 
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
@@ -57,15 +71,17 @@ public class CartController {
   }
 
   @PostMapping("update")
-  public String update(Cart cart, HttpServletRequest request, int cartNo) 
+  public String update(Cart cart, HttpServletRequest request) 
       throws Exception {
     cartService.update(cart);
-    return "redirect:../cart/detail?no=" + cartNo;
+    return "redirect:search?keyword=1";
   }
 
-  @GetMapping("updateform")
-  public void updateform(Model model, int no) throws Exception {
-    model.addAttribute("cart", cartService.get(no));
+  // 테스트용
+  @GetMapping("test")
+  public void test(Model model, String keyword) throws Exception {
+    List<Cart> carts = cartService.search(keyword);
+    model.addAttribute("carts", carts);
   }
 }
 

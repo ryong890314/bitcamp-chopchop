@@ -89,14 +89,15 @@
       p.title,
       p.price,
       f.photo_id,
-      f.file_path
+      f.file_path,
+      (price * quantity) money
     from 
       cart c 
         left outer join member m on c.member_id=m.member_id
         left outer join product p on c.product_id=p.product_id
         left outer join store_photo f on p.product_id=f.product_id
     where c.member_id like #{keyword}
-    order by created_date desc
+    order by cart_id desc
   </select>
   
   <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyColumn="cart_id" keyProperty="cartNo">
@@ -110,7 +111,7 @@
       cart_id=#{cartNo},
       member_id=#{memberNo},
       product_id=#{productNo},
-      created_date=#{createdDate}
+      created_date=#{createdDate},
       -->
       quantity=#{quantity}
     where cart_id=#{cartNo}
@@ -120,4 +121,5 @@
     delete from cart
     where cart_id=#{cartNo}
   </delete>
+
 </mapper>

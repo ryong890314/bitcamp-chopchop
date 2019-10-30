@@ -3,13 +3,13 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
 @import url("https://fonts.googleapis.com/css?family=Jua&display=swap");
 /* :: 2.0 Import All CSS */
-@import url(bootstrap.min.css);
-@import url(classy-nav.css);
-@import url(owl.carousel.min.css);
-@import url(animate.css);
-@import url(magnific-popup.css);
-@import url(font-awesome.min.css);
-@import url(nice-select.css);
+@import url(../common/bootstrap.min.css);
+@import url(../common/classy-nav.css);
+@import url(../common/owl.carousel.min.css);
+@import url(../common/animate.css);
+@import url(../common/magnific-popup.css);
+@import url(../common/font-awesome.min.css);
+@import url(../common/nice-select.css);
 /* :: 3.0 Base CSS */
 * {
   margin: 0;

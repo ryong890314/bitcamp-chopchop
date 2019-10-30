@@ -2,6 +2,7 @@ package bitcamp.chopchop.service;
 
 import java.util.List;
 import bitcamp.chopchop.domain.Recipe;
+import bitcamp.chopchop.domain.RecipeLike;
 
 public interface RecipeService {
   List<Recipe> list() throws Exception;
@@ -11,11 +12,9 @@ public interface RecipeService {
   void delete(int no) throws Exception;
   List<Recipe> search(String keyword) throws Exception;
   
-  void insertRecipeLike(Recipe recipe) throws Exception;
-  /*
-  void insertRecipeLike(RecipeLike recipeLike, Recipe recipe) throws Exception;
-  void deleteRecipeLike(RecipeLike recipeLike, Recipe recipe) throws Exception;
-  int findRecipeLike(RecipeLike recipeLike) throws Exception;
-  */
+  void insertLike(RecipeLike recipeLike) throws Exception;
+  void deleteLike(RecipeLike recipeLike) throws Exception;
+  int findLike(RecipeLike recipeLike) throws Exception;
+//  int likeCheck(RecipeLike recipeLike) throws Exception;
 }
 

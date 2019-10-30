@@ -11,7 +11,7 @@
  }
 </style>
 
-<link rel="stylesheet" href="../../css/recipe/detail.css">
+<link rel="stylesheet" href="/css/recipe/detail.css">
 
 <title>레시피 보기</title>
 </head>
@@ -27,12 +27,19 @@
                   <img src='/upload/recipe/${recipe.thumbnail}' alt="">
                   </div>
                   <div class="blog-content">
-                      <h4 class="post-title">${recipe.title}</h4>
+                      <h4 class="post-title">${recipe.title}
+                       </h4>
                       <div class="post-meta mb-50">
                           <a href="#" class="post-date">${recipe.createdDate}</a>
                           <a href="#" class="post-author">By ${member.nickname}</a><br>
-                          <a href="#" class="post-author">By ${recipe.viewCount}</a><br>
+                          <a href="#" class="post-author">Views ${recipe.viewCount}</a>
+                          
+<button style="border:none; background-color: #ffffff; " id="likeBtn" type="button" ><img id="likeimg" class="btn-img" style="margin-top:-2px; margin-left:10px; height:15px;" src="${isCheck ? '/img/recipe/like.png' : '/img/recipe/unlike.png'}"></button>
+                          <input type="hidden" name='no' value="${recipe.recipeNo}">
+                          <span id="scrap" style="margin-left:5px; margin-bottom:5px;font-size:15px;">${recipe.scrap}</span>
+<%--                           <input type="hidden" name='memberNo' value="${recipe.memberNo}"> --%>
                       </div>
+                      
                       <c:forEach items="${recipe.cookings}" var="cooking">
                       <h5 class="mb-30">Step ${cooking.processNo} :</h5>
                       <img src='/upload/recipe/${cooking.filePath}' class='cookingphoto'>
@@ -82,12 +89,24 @@
 
 <a href="updateform?no=${recipe.recipeNo}">수정하기</a>
 
-<form action="like" method='post' enctype='multipart/form-data'>
-<input type="hidden" name='no' value="${recipe.recipeNo}">
-<input type="hidden" name='memberNo' value="${recipe.memberNo}">
-<input type="submit" value="좋아요">
-<input type="text" name='scrap' value="${recipe.scrap}" readonly>
-</form>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+
+<script>
+"use strict";
+$('#likeBtn').click(function() {
+  
+  $.get("/app/json/recipe/like?no=" + ${recipe.recipeNo}, function(data) {
+    console.log(data.result);
+    if(data.result.isLike) { //좋아요를 눌름
+      $('#likeimg').attr('src', '/img/recipe/like.png');
+      $('span#scrap').html(data.result.scrap);
+    } else { // 좋아요를 취소
+      $('#likeimg').attr('src', '/img/recipe/unlike.png');
+      $('span#scrap').html(data.result.scrap);
+    }
+  })
+})
+</script>
 
 </body>
 </html>

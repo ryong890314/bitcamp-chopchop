@@ -15,5 +15,6 @@ public interface RecipeDao {
   List<Recipe> findByTag(String keyword) throws Exception;
   
   int increaseScrapCount(int no) throws Exception;
+  int decreaseScrapCount(int no) throws Exception;
 //  int updateRecipeLike(Recipe recipe) throws Exception;
 }
