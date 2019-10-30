@@ -17,20 +17,14 @@ public class Product {
 
   private List<PhotoFile> files;
   private List<Comment> comments;
+  private List<ProductOption> options;
 
   @Override
   public String toString() {
     return "Product [productNo=" + productNo + ", title=" + title + ", price=" + price + ", detail="
         + detail + ", stock=" + stock + ", discount=" + discount + ", category=" + category
-        + ", species=" + species + ", files=" + files + ", comments=" + comments+ ", option=" + option + "]";
-  }
-
-  public int getViewCount() {
-    return viewCount;
-  }
-
-  public void setViewCount(int viewCount) {
-    this.viewCount = viewCount;
+        + ", species=" + species + ", option=" + option + ", viewCount=" + viewCount + ", files="
+        + files + ", comments=" + comments + ", options=" + options + "]";
   }
 
   public int getProductNo() {
@@ -97,6 +91,22 @@ public class Product {
     this.species = species;
   }
 
+  public String getOption() {
+    return option;
+  }
+
+  public void setOption(String option) {
+    this.option = option;
+  }
+
+  public int getViewCount() {
+    return viewCount;
+  }
+
+  public void setViewCount(int viewCount) {
+    this.viewCount = viewCount;
+  }
+
   public List<PhotoFile> getFiles() {
     return files;
   }
@@ -113,13 +123,14 @@ public class Product {
     this.comments = comments;
   }
 
-  public String getOption() {
-    return option;
+  public List<ProductOption> getOptions() {
+    return options;
   }
 
-  public void setOption(String option) {
-    this.option = option;
+  public void setOptions(List<ProductOption> options) {
+    this.options = options;
   }
 
-  
+
+
 }

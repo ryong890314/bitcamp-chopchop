@@ -3,20 +3,20 @@
  */
 insert into 
   member (email, password, nickname, tel)
-value ('test1@test.com', password(1111), 'test1', '01011111111');
+value ('test1@test.com', password('1111aaaaBB!!'), 'test1', '01011111111');
 
 insert into 
   member (email, password, nickname, tel)
-value ('test2@test.com', password(1111), 'test2', '01022222222');
+value ('test2@test.com', password('1111aaaaBB!!'), 'test2', '01022222222');
 
 insert into 
   member (email, password, nickname, tel)
-value ('test3@test.com', password(1111), 'test3', '01033333333');
+value ('test3@test.com', password('1111aaaaBB!!'), 'test3', '01033333333');
 
 insert into 
   member (email, password, nickname, tel)
-value ('test4@test.com', password(1111), 'test4', '01044444444');
+value ('test4@test.com', password('1111aaaaBB!!'), 'test4', '01044444444');
 
 insert into 
   member (email, password, nickname, tel)
-value ('test5@test.com', password(1111), 'test5', '01055555555');
+value ('test5@test.com', password('1111aaaaBB!!'), 'test5', '01055555555');

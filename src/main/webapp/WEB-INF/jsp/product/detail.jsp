@@ -159,7 +159,6 @@
       </div>
   </div>
   </div>
-
 <p>====관리자 모드=====</p>
 
     <form action='update' method='post' enctype='multipart/form-data'>

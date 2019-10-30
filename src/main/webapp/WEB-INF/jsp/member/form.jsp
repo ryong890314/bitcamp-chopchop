@@ -21,9 +21,9 @@
       <form method="POST" action="add" name="form" onsubmit="return checkAll();">
         <input type="email" id="email" name="email" placeholder="이메일" onblur="email_check();"/>
           <div id="email_chk" class="vali_check"></div>
-        <input type="password" id="password" name="password" placeholder="비밀번호" onblur="password_check();" maxlength="20"/> 
+        <input type="password" id="password" name="password" placeholder="비밀번호" onblur="password_check();" maxlength="15"/> 
           <div id="password_chk" class="vali_check"></div>
-        <input type="password" id="password2" name="password2" placeholder="비밀번호 확인" onblur="password2_check();" maxlength="20"/> 
+        <input type="password" id="password2" name="password2" placeholder="비밀번호 확인" onblur="password2_check();" maxlength="15"/> 
           <div id="password2_chk" class="vali_check"></div>
         <input type="text" id="nickname" name="nickname" placeholder="닉네임" onblur="nickname_check();" maxlength="12"/>
           <div id="nickname_chk" class="vali_check"></div>
@@ -85,9 +85,9 @@ function password_check() {
 
   // 비밀번호 정규식 검사 
   if (form.password.value != "") {
-    var passwordRegExp = /^[a-zA-z0-9]{4,20}$/; 
+    var passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
   if (!passwordRegExp.test(form.password.value)) {
-    document.getElementById("password_chk").innerHTML = "비밀번호는 영문 대소문자와 숫자 4~20자리로 입력해야합니다!";
+    document.getElementById("password_chk").innerHTML = "8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
   } else {
     document.getElementById("password_chk").innerHTML = "";
     pCheckFlag = true;
