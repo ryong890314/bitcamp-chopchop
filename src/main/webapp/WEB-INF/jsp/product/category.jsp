@@ -71,7 +71,7 @@
         <option id='5' value='작은'>작은 동물</option>
         <option id='6' value='파충류'>파충류</option>
       </select><br>
-      <input type='text' id='inputValue' value=''></input>
+      <input type='hidden' id='inputValue' value=''></input>
       <button>검색</button>
     </form>
     <table class='table table-hover' id='table1'>
