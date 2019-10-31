@@ -11,29 +11,30 @@ import bitcamp.chopchop.domain.Cooking;
 
 @Component
 public class CookingFileWriter {
-   
+
   String uploadDir;
-  
+
   public CookingFileWriter(ServletContext sc) {
     uploadDir = sc.getRealPath("/upload/recipe");
   }
 
   public List<Cooking> getCookings(MultipartFile[] filePath2, int[] processNo, String[] cookingContent) throws Exception {
     // 넘어온 파라미터가 있는지 체크하기 //안함
-    
-    int len = filePath2.length;
-    
+
+
     List<Cooking> cookings = new ArrayList<>();
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < processNo.length; i++) {
       Cooking cooking = new Cooking();
-      
+
+      if (filePath2[i].isEmpty())
+        continue;
       String filename = UUID.randomUUID().toString();
       cooking.setFilePath(filename);
       filePath2[i].transferTo(new File(uploadDir + "/" + filename));
-      
+
       cooking.setProcessNo(processNo[i]);
       cooking.setContent(cookingContent[i]);
-      
+
       cookings.add(cooking);
     }
     return cookings;

@@ -84,7 +84,7 @@
                                           <img src='/upload/recipe/${cooking.filePath}'></div>
                                           <button class='btn btn-outline btn-block btn-sm' name='delCookingBtn' type='button' onclick='delCooking(event)'>순서 삭제</button>
                                           </div>
-                                          <div class='des'><textarea class='form-control' name='cookingContent'>'${cooking.content}'</textarea></div>
+                                          <div class='des'><textarea class='form-control' name='cookingContent'>${cooking.content}</textarea></div>
                                           </div>
                                         </div>
                                           </c:forEach>

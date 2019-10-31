@@ -107,13 +107,16 @@ public class RecipeController {
   }
 
   @PostMapping("update")
-  public String update(HttpSession session, Recipe recipe, int memberNo, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
+  public String update(Recipe recipe, int memberNo, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
       int[] processNo) throws Exception {
-
-    String filename = UUID.randomUUID().toString();
-    recipe.setThumbnail(filename);
-    filePath.transferTo(new File(uploadDir + "/" + filename));
-
+    System.out.println("파일넘어옴??????==>"+filePath.getSize());
+    
+    if (filePath.getSize() > 0) {
+      String filename = UUID.randomUUID().toString();
+      recipe.setThumbnail(filename);
+      filePath.transferTo(new File(uploadDir + "/" + filename));
+    }
+    
     List<Ingredient> ingredients = new ArrayList<>();
     for (int i = 0; i < ingredientNames.length; i++) {
       Ingredient temp = new Ingredient();
