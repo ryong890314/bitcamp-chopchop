@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.chopchop.dao.OrderDao">
+
+  <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+  <resultMap type="Order" id="OrderMap">
+    <id column="order_id" property="orderNo"/>
+    <result column="member_id" property="memberNo"/>
+    <result column="post_no" property="postNo"/>
+    <result column="base_address" property="baseAddress"/>
+    <result column="detail_address" property="detailAddress"/>
+    <result column="payment_date" property="paymentDate"/>
+    <result column="payment_method" property="paymentMethod"/>
+    <result column="ship_date" property="shipDate"/>
+    <result column="invoice" property="invoice"/>
+  </resultMap>
+  
+  <resultMap type="Order" id="findByMember">
+    <id column="order_id" property="orderNo"/>
+    <result column="member_id" property="memberNo"/>
+    <result column="post_no" property="postNo"/>
+    <result column="base_address" property="address"/>
+    <result column="detail_address" property="detailAddress"/>
+    <result column="payment_date" property="paymentDate"/>
+    <result column="payment_method" property="paymentMethod"/>
+    <result column="ship_date" property="shipDate"/>
+    <result column="invoice" property="invoice"/>
+    
+    <collection property="orderProducts" ofType="OrderProduct">
+      <id column="order_id" property="orderNo"/>
+      <id column="product_id" property="productNo"/>
+      <result column="quantity" property="quantity"/>
+      <result column="discount_price" property="discountPrice"/>
+    </collection>
+    
+    <collection property="members" ofType="Member">
+      <id column="member_id" property="memberNo"/>
+      <result column="password" property="password"/>
+      <result column="email" property="email"/>
+      <result column="photo" property="photo"/>
+      <result column="nickname" property="nickname"/>
+      <result column="tel" property="nickname"/>
+      <result column="post_no" property="postNo"/>
+      <result column="base_address" property="baseAddress"/>
+      <result column="detail_address" property="detailAddress"/>
+      <result column="grade" property="grade"/>
+      
+    </collection>
+    
+  </resultMap>
+  
+  <select id="findAll" resultMap="findByMember">
+    select
+      s.order_id,
+      s.post_no,
+      s.base_address,
+      s.detail_address,
+      s.payment_date,
+      s.payment_method,
+      s.ship_date,
+      s.invoice,
+      p.quantity,
+      p.discount_price,
+      m.member_id
+    from 
+      store_order s
+        left outer join order_product p on s.order_id=p.order_id
+        left outer join member m on s.member_id=m.member_id
+    order by s.order_id desc
+  </select>
+  
+  <select id="findByMember" 
+          parameterType="int" 
+          resultMap="findByMember">
+    select
+      s.order_id,
+      s.post_no,
+      s.base_address,
+      s.detail_address,
+      s.payment_date,
+      s.payment_method,
+      s.ship_date,
+      s.invoice,
+      p.quantity,
+      p.discount_price,
+      m.member_id
+    from 
+      store_order s
+        left outer join order_product p on s.order_id=p.order_id
+        left outer join member m on s.member_id=m.member_id
+    where s.member_id=m.member_id
+    order by s.order_id desc
+  </select>
+  
+<!--   <select id="findBy" parameterType="int" resultMap="OrderMap"> -->
+<!--     select -->
+<!--       product_id, -->
+<!--       title, -->
+<!--       price, -->
+<!--       detail, -->
+<!--       stock, -->
+<!--       discount, -->
+<!--       category, -->
+<!--       species -->
+<!--     from -->
+<!--       product -->
+<!--     where -->
+<!--       product_id=#{value} -->
+<!--   </select> -->
+  
+
+  
+<!--   <insert id="insert" parameterType="Product" useGeneratedKeys="true" keyColumn="product_id" keyProperty="productNo"> -->
+<!--     insert into product(title, price, detail, stock, discount, category,species) -->
+<!--     values(#{title},#{price},#{detail},#{stock},#{discount},#{category},#{species})  -->
+<!--   </insert> -->
+  
+<!--   <update id="update" parameterType="Product"> -->
+<!--     update product set -->
+<!--       title=#{title}, -->
+<!--       price=#{price}, -->
+<!--       detail=#{detail}, -->
+<!--       stock=#{stock}, -->
+<!--       discount=#{discount}, -->
+<!--       category=#{category}, -->
+<!--       species=#{species} -->
+<!--     where product_id=#{productNo} -->
+<!--   </update> -->
+  
+<!--   <delete id="delete" parameterType="int"> -->
+<!--     delete from product -->
+<!--     where product_id=#{value} -->
+<!--   </delete> -->
+</mapper>
