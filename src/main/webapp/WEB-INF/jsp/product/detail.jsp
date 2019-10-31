@@ -73,7 +73,7 @@
                 <a class="post-title">${product.title}</a>
                 <a>조회수 ${product.viewCount} 회</a>
                 <hr class="my-4">
-                <a class="post-title">판매가 ${product.price} 원</a>
+                <a class="post-title"><span style="text-decoration-line:line-through; color:gray; margin-right:50px;">${product.price}원</span><span id="totalPrice">${product.price * (100-product.discount)/100}</span>원</a>
                 
                 <div class="input-group input-number-group">수량
                 </div>
@@ -162,10 +162,10 @@
 
 <jsp:include page="../footer.jsp"/>
 <script>
-  var quantity = document.querySelector('#quantity')
-  var quan = document.querySelector('#quan');
-  quantity.value = quan.value;
-  console.log(quantity.value);
+  var totalPrice = document.querySelector('#totalPrice');
+  var resultPrice = parseInt(totalPrice.innerHTML);
+  console.log(resultPrice);
+  totalPrice.innerHTML = resultPrice;
 </script>
 </body>
 </html>
