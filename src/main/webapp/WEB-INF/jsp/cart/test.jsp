@@ -43,7 +43,11 @@
             <input type="hidden" name="chkprice" value="${product.price}">
           </c:forEach>
           <td><input class="input-number" name = chkquantity value="${cart.quantity}"></td>
-          <td></td>
+
+          <c:forEach items="${cart.products}" var="product">
+          <td><span id="totalPrice">${product.price * (100 - product.discount) / 100}</span></td>
+        </c:forEach>
+
         </tr>
         </tr>
       </c:forEach>
@@ -62,11 +66,16 @@
       <a1>상품금액 </a1><a id="sumCheckPrice">0</a>
       <a1>원 + 배송비 </a1><a id="shipCheckPrice">0</a>
       <a1>원 = 합계금액 </a1><a id="totalCheckPrice" style="color: red">0</a>
-      <fmt:formatNumber value="1989" pattern="#,###"/>
       <a1>원</a1>
     </div>
 
 </div>
+
+<script>
+    var totalPrice = document.querySelector('#totalPrice');
+    var resultPrice = parseInt(totalPrice.innerHTML);
+    totalPrice.innerHTML = resultPrice;
+  </script>
 
 <script>
   var myCheckBoxes = document.getElementsByClassName('myChkbox');
@@ -101,14 +110,17 @@ function reprice() {
   var myCheckPrice = document.getElementsByName('chkprice');
       var myCheckQuantity = document.getElementsByName('chkquantity');
       var checkPrice = 0;
+      // var testTotalCheckPrice = 0;
       for (j = 0; j < myCheckBoxes.length; j++) {
         if (myCheckBoxes[j].checked) {
           checkPrice += parseInt(myCheckPrice[j].value) * parseInt(myCheckQuantity[j].value);
         }
       }
-      sumCheckPrice.innerText = checkPrice; // 상품합계
-      shipCheckPrice.innerText = 0; // 배송비
-      totalCheckPrice.innerText = checkPrice + 0; // 합계
+      sumCheckPrice.innerHTML = checkPrice; // 상품합계
+      shipCheckPrice.innerHTML = 0; // 배송비
+      totalCheckPrice.innerHTML = checkPrice + 0; // 합계
+      // testTotalCheckPrice = totalCheckPrice.innerText;
+      // alert(testTotalCheckPrice);
 }
 
 </script>

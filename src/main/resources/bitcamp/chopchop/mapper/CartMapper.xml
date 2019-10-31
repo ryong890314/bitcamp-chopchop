@@ -88,6 +88,7 @@
       m.member_id,
       p.title,
       p.price,
+      p.discount,
       f.photo_id,
       f.file_path,
       (price * quantity) money

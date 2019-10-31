@@ -10,6 +10,7 @@
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
   crossorigin="anonymous"></script>
   <link rel='stylesheet' href='/css/product/style.css'>
+<!--   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'> -->
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 </head>
@@ -27,10 +28,12 @@
         <th>선택</th>
         <th>상품사진</th>
         <th>상품/옵션정보</th>
-        <th>등록일</th>
-        <th>판매가</th>
-        <th>수량</th>
-        <th>삭제</th>
+        <th style="width: 80px">수량</th>
+        <th>상품금액</th>
+        <th>할인율</th>
+        <th>할인적용금액</th>
+        <th>배송비</th>
+        <th>주문</th>
     
       </tr>
       <c:forEach items="${carts}" var="cart">
@@ -46,23 +49,40 @@
             </c:forEach>
           </td>
           <c:forEach items="${cart.products}" var="product">
-            <td>${product.title}</td>
-          </c:forEach>
-          <td>${cart.createdDate}</td>
-          <c:forEach items="${cart.products}" var="product">
-            <td><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</td>
-            <input type="hidden" name="chkprice" value="${product.price}">
+            <td>${product.title}<br><hr>product_option</td>
           </c:forEach>
           <td>
             <form action="update" method="POST">
             <div class="input-group input-number-group">
-              <input class="input-number" name="quantity" type="number" style="text-align:center" value="${cart.quantity}" min="0" max="1000">
+              <input class="input-number" name="quantity" type="number" style="text-align:center; width: 80px;" value="${cart.quantity}" min="0" max="1000">
               <input type="hidden" name="cartNo" value="${cart.cartNo}">
-              <button>적용</button>
+              <button>변경</button>
             </div>
             </form>
           </td>
+          <c:forEach items="${cart.products}" var="product">
+            <td><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</td>
+            
+          </c:forEach>
+
+          <c:forEach items="${cart.products}" var="product">
+              <td>${product.discount}%</td>
+            </c:forEach>
+
+            <c:forEach items="${cart.products}" var="product">
+                <td>
+                    <a style=" text-decoration:line-through"><fmt:formatNumber value="${product.price * cart.quantity}" pattern="#,###"/>원</a><br>
+                    <a style="color:red"><fmt:formatNumber value="${product.price * (100 - product.discount) / 100 * cart.quantity}" pattern="#,###"/>원</a><br>
+                    <input type="hidden" name="chkprice" value="${product.price * (100 - product.discount) / 100 * cart.quantity}">
+                  </td>
+              </c:forEach>
+
+              <td>
+                <span class="tempShip" id="tempShipCheckPrice">들어가기전</span>
+              </td>
+
           <td>
+            <button type="button">주문</button><br>
             <button type="button" onclick="location.href='delete?no=${cart.cartNo}' ">삭제</button>
           </td>
         </tr>
@@ -77,6 +97,7 @@
         <a1>원 = 합계금액 </a1><a id="totalCheckPrice" style="color: red">0</a>
         <a1>원</a1>
       </div>
+      
 
     <hr class="my-4">
 
@@ -116,22 +137,24 @@
     </script>
     
     <script>
-    
-    function reprice() {
-    // 중복코드 제거용
-      var myCheckPrice = document.getElementsByName('chkprice');
-          var myCheckQuantity = document.getElementsByName('quantity');
-          var checkPrice = 0;
-          for (j = 0; j < myCheckBoxes.length; j++) {
-            if (myCheckBoxes[j].checked) {
-              checkPrice += parseInt(myCheckPrice[j].value) * parseInt(myCheckQuantity[j].value);
-            }
+      function reprice() {
+        // 중복코드 제거용
+        var myCheckPrice = document.getElementsByName('chkprice');
+        var myCheckQuantity = document.getElementsByName('quantity');
+        var checkPrice = 0;
+        for (j = 0; j < myCheckBoxes.length; j++) {
+          if (myCheckBoxes[j].checked) {
+            checkPrice += parseInt(myCheckPrice[j].value);
           }
-          sumCheckPrice.innerText = checkPrice; // 상품합계
-          shipCheckPrice.innerText = 0; // 배송비
-          totalCheckPrice.innerText = checkPrice + 0; // 합계
-    }
-    
+        }
+        var tempShip = document.getElementsByClassName('tempShip');
+        for (var i of tempShip) {
+          i.innerText = checkPrice >= 50000 || checkPrice == 0 ? "무료" : "2,500원";
+        }
+        sumCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en'); // 상품합계
+        shipCheckPrice.innerHTML = Number(checkPrice >= 50000 || checkPrice == 0 ? 0 : 2500).toLocaleString('en'); // 배송비
+        totalCheckPrice.innerHTML = Number(checkPrice + parseInt(checkPrice >= 50000 || checkPrice == 0 ? 0 : 2500)).toLocaleString('en'); // 합계
+      }
     </script>
 
 
