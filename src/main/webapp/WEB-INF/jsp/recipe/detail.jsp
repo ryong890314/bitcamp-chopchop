@@ -116,7 +116,6 @@
 
 
 
-=============================================================================================
 
 
 
@@ -140,8 +139,6 @@
 
 <!-- 댓글 입력 -->
 <%@ include file="../recipecomment/form.jsp" %>
-<%@ include file="../recipecomment/list.jsp" %>
-<%@ include file="../recipecomment/detail.jsp" %>
 
 
 

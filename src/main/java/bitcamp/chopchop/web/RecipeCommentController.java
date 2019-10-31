@@ -2,7 +2,6 @@ package bitcamp.chopchop.web;
 
 import java.util.List;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,7 +52,7 @@ public class RecipeCommentController {
   }
   
   @GetMapping("detail")
-  public void detail(Model model, int no, HttpSession session) throws Exception {
+  public void detail(Model model, int no) throws Exception {
     RecipeComment recipeComment = recipeCommentService.get(no);
     model.addAttribute("recipeComment", recipeComment);
     Member member = recipeComment.getMember();
@@ -63,7 +62,7 @@ public class RecipeCommentController {
   
    
   @PostMapping("update")
-  public String update(RecipeComment recipeComment, HttpSession session)  throws Exception {
+  public String update(RecipeComment recipeComment)  throws Exception {
 
     recipeCommentService.update(recipeComment);
     return "redirect:../recipe/detail?no=" + recipeComment.getRecipeNo();
