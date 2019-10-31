@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.chopchop.dao.RecipeCommentDao">
+
+   <resultMap type="RecipeComment" id="RecipeCommentMap">
+    <id column="comment_id"         property="commentNo"/>
+    <result column="recipe_id"         property="recipeNo"/>
+    <result column="member_id"         property="memberNo"/>
+    <result column="content"   property="content"/>
+    <result column="created_date" property="createdDate"/>
+    <result column="nickname" property="nickname"/>
+    <!-- <association property="members" javaType="Member">
+      <id column="member_id"      property="memberNo"/>
+      <result column="nickname"   property="nickname"/>
+    </association> -->
+  </resultMap>
+  
+  <resultMap type="RecipeComment" id="RecipeCommentWithMemberMap">
+   <id column="comment_id"         property="commentNo"/>
+    <result column="recipe_id"         property="recipeNo"/>
+    <result column="member_id"         property="memberNo"/>
+    <result column="content"   property="content"/>
+    <result column="created_date" property="createdDate"/>
+    <result column="nickname"   property="nickname"/>
+    <association property="member" javaType="Member">
+      <id column="member_id"      property="memberNo"/>
+      <result column="nickname"   property="nickname"/>
+      <!-- <result column="email"   property="email"/>
+      <result column="password"   property="password"/>
+      <result column="tel"   property="tel"/>
+      <result column="photo"   property="photo"/>
+      <result column="post_no"   property="post_no"/>
+      <result column="base_address"   property="base_address"/>
+      <result column="detail_address"   property="detail_address"/>
+      <result column="grade"   property="grade"/> -->
+      
+    </association>
+   <!--  <association property="rcipe" javaType="Recipe">
+    <id column="recipe_id" property="recipeNo"/>
+    </association> -->
+  </resultMap>
+  
+  
+ 
+  
+  
+
+
+<select id="findAll" parameterType="int" resultMap="RecipeCommentWithMemberMap">
+select rc.*, m.nickname
+from recipe_comment rc left join member m on rc.member_id=m.member_id
+  
+  </select>
+
+
+<select id="findWithMemberBy"
+  parameterType="int"
+  resultMap="RecipeCommentWithMemberMap">
+select rc.*, m.nickname
+from recipe_comment rc left join member m on rc.member_id=m.member_id
+where comment_id = #{comment_id} 
+  
+  <!-- select 
+    m.nickname,
+    rc.comment_id,
+    rc.recipe_id,
+    rc.member_id,
+    rc.content,
+    rc.created_date,
+    r.recipe_id
+  from recipe_comment as rc
+     left outer join member as m on rc.member_id = m.member_id
+     left outer join recipe as r on r.recipe_id=rc.recipe_id
+     where rc.recipe_id=#{value}
+  order by comment_id -->
+  </select>
+
+
+
+  
+  <select id="findBy" parameterType="int" resultMap="RecipeCommentWithMemberMap">
+     
+     select rc.*, m.nickname
+from recipe_comment rc left join member m on rc.member_id=m.member_id
+    where recipe_id=#{haha}
+     
+     <!-- select * from recipe_comment
+    where recipe_id=#{haha} -->
+  </select>
+  
+  
+  <insert id="insert" parameterType="RecipeComment"
+  useGeneratedKeys="true"
+          keyColumn="comment_id"
+          keyProperty="commentNo">
+    insert into recipe_comment(recipe_id, member_id, content, created_date)
+    values(#{recipeNo}, #{memberNo}, #{content}, now()) 
+  </insert>
+  
+  
+ <update id="update" parameterType="RecipeComment">
+    update recipe_comment
+     set
+     content = #{content}
+  where comment_id=#{commentNo}
+  </update>
+  
+  
+  
+  <delete id="delete" parameterType="int">
+     delete from recipe_comment 
+   where comment_id=#{value}
+   
+  </delete>
+  
+  <delete id="deleteAll" parameterType="int">
+    delete from recipe_comment
+    where comment_id=#{value}
+  </delete>
+  
+</mapper>
