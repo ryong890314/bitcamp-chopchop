@@ -9,13 +9,27 @@
   <link rel="stylesheet" href="/css/member/style_contact.css">
   <link rel="stylesheet" href="/css/member/style_footer.css">
   <style>
-/*     #textbox { */
-/*       width: 500px; */
-/*     } */
+    #textbox {
+      width: 500px;
+    }
     
     #radio-button {
       width:40px;
     }
+    
+    #memberInfo {
+      width:600px;
+      margin:0px;
+      display:relative;
+    }
+    
+    #recipientInfo {
+      position: relative;
+      left: 700px;
+      bottom: 670px;
+      width: 600px;
+    }
+    
   </style>
 </head>
 <body>
@@ -31,7 +45,7 @@
     </tr>
     <tr>
       <td>${product.title}</td>
-      <td>${product.price}</td>
+      <td>${product.price}원</td>
       <td>${quantity}</td>
       <td>${product.discount}%</td>
       <td><span style="text-decoration-line:line-through; color:gray;">${product.price * quantity}원</span><br>
@@ -40,43 +54,76 @@
   </table>
     <input type="hidden" name="quantity" value="${quantity}">
     <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
+    <div id="memberInfo">
     <div class="form-group">
-      <label for="exampleInput">이름</label>
+      <label for="exampleInput">주문자 이름</label>
       <input type="text" id="textbox" name="nickname" value="${loginUser.nickname}">
     </div>
     <div class="form-group">
-      <label for="exampleInput">이메일</label>
-    <input type="text" id="textbox" name="email" value="${loginUser.email}">
+      <label for="exampleInput">주문자 이메일</label>
+      <input type="text" id="textbox" name="email" value="${loginUser.email}">
     </div>
     <div class="form-group">
-      <label for="exampleInput">연락처</label>
-    <input type="text" id="textbox" name="tel" value="${loginUser.tel}">
+      <label for="exampleInput">주문자 연락처</label>
+      <input type="text" id="textbox" name="tel" value="${loginUser.tel}">
     </div>
     <div class="form-group">
       <label for="exampleInput">우편번호</label>
-    <input type="text" id="textbox" name="postNo" value="${loginUser.postNo}">
+      <input type="text" id="textbox" name="postNo" value="${loginUser.postNo}">
     </div>
     <div class="form-group">
       <label for="exampleInput">기본주소</label>
-    <input type="text" id="textbox" name="baseAddress" value="${loginUser.baseAddress}">
+      <input type="text" id="textbox" name="baseAddress" value="${loginUser.baseAddress}">
     </div>
     <div class="form-group">
       <label for="exampleInput">상세주소</label>
-    <input type="text" id="textbox" name="detailAddress" value="${loginUser.detailAddress}">
+      <input type="text" id="textbox" name="detailAddress" value="${loginUser.detailAddress}">
     </div>
-    
     <label for="exampleInput">결제수단</label>
-    <input type="radio" id="radio-button" name="paymentMethod" value="신용카드">신용카드
-    <input type="radio" id="radio-button" name="paymentMethod" value="무통장 입금">무통장 입금
-    <input type="radio" id="radio-button" name="paymentMethod" value="간편결제">간편결제
+      <input type="radio" id="radio-button" name="paymentMethod" value="신용카드">신용카드
+      <input type="radio" id="radio-button" name="paymentMethod" value="무통장 입금">무통장 입금
+      <input type="radio" id="radio-button" name="paymentMethod" value="간편결제">간편결제
+    </div>
+    <div id="recipientInfo">
+    <div class="form-group">
+      <label for="exampleInput">수령인 이름</label>
+      <input type="text" id="textbox" name="nickname" value="${loginUser.nickname}">
+    </div>
+    <div class="form-group">
+      <label for="exampleInput">수령인 이메일</label>
+      <input type="text" id="textbox" name="email" value="${loginUser.email}">
+    </div>
+    <div class="form-group">
+      <label for="exampleInput">수령인 연락처</label>
+      <input type="text" id="textbox" name="tel" value="${loginUser.tel}">
+    </div>
+    <div class="form-group">
+      <label for="exampleInput">수령인 우편번호</label>
+      <input type="text" id="textbox" name="postNo" value="${loginUser.postNo}">
+    </div>
+    <div class="form-group">
+      <label for="exampleInput">수령인 기본주소</label>
+      <input type="text" id="textbox" name="baseAddress" value="${loginUser.baseAddress}">
+    </div>
+    <div class="form-group">
+      <label for="exampleInput">수령인 상세주소</label>
+      <input type="text" id="textbox" name="detailAddress" value="${loginUser.detailAddress}">
+    </div>
+    <span>
+      <label for="exampleInput">주문자 정보와 동일<input type="checkbox" style="width:30px;"></label>
+    </span>
+    </div>
     <hr>
+    
     관리자<br><br>
     입금일<br><input type="date" id="textbox" name="paymentDate"><br>
     주문상태<br><input type="text" id="textbox" name="shipDate" value="${order.shipDate}"><br>
+    <div>
     <input type="hidden" id="textbox" name="no" value="${product.productNo}"><br>
     <input type="hidden" id="textbox" name="discount" value="${product.discount}"><br>
     <button class="btn btn-success">주문</button>
     <a href="../product/detail?no=${product.productNo}" class="btn btn-danger" style="margin-left:30px;">취소</a>
+    </div>
   </form>
   <jsp:include page="../footer.jsp"/>
   <script>
