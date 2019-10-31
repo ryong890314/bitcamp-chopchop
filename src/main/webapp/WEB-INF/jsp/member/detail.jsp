@@ -8,7 +8,12 @@
   <link rel="stylesheet" href="/css/member/style_detail.css">
   <link rel="stylesheet" href="/node_modules/jquery-ui-dist/jquery-ui.css">
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-
+<style type="text/css">
+  .petInfo {
+    margin: 0 auto;
+    
+  }
+</style>
 </head>
 <body onload="formLoad();">
 
@@ -24,7 +29,9 @@
             <img id="imgThumb" class="imgThumb">
 				    <span class="mask"></span>
 				  </div>
-				  <input type='file' id="file" name='file'><br>
+				  <div style="display: none;">
+          <input type='file' id="file" name='file'/></div>
+          <label id="label" for="file" >사진 변경</label>
 	    </div>
     </div> 
     <div class="col-7">
@@ -50,47 +57,42 @@
 
 <div class="container"> 
 <h1>My Pet 정보</h1>
-
-<div class="bd-example">
-  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/upload/member/my_pet1.jpg" class="d-block" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>누렁이</h5>
-          <p>♂ 5세</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="/upload/member/my_pet2.jpg" class="d-block" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>찌글이</h5>
-          <p>♀ 4세</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="/upload/member/my_pet3.jpg" class="d-block" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>carousel-item</h5>
-          <p>♂ 2세</p>
-        </div>
-      </div>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/upload/member/my_pet4.jpg" class="d-block" alt="...">
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    <div class="carousel-item">
+      <img src="/upload/member/my_pet5.jpg" class="d-block" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/upload/member/my_pet6.jpg" class="d-block" alt="...">
+    </div>
   </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
+
+<div class="petInfo">
+<h5>이름 : 멍(3세)</h5>
+<h6>성별 : 수컷(♂)</h6>
+<h6>등록번호 : 1256629</h6>
+<h6>품종 : 푸들</h6>
+</div>
+
+
+
+
+
+
+
+
 <hr>
 <div class="container">
   <div class="row">

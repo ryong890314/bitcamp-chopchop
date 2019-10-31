@@ -39,8 +39,8 @@
   top: 0;
   left: 0;
   min-width: 100%;
-  width: 700px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
 } 
 
 header.carousel {
@@ -59,7 +59,7 @@ header.carousel .fill {
 }
 .carousel {
   margin: 0 auto;
-  width: 700px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
 }
    
