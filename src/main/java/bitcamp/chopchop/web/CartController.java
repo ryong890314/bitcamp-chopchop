@@ -1,6 +1,5 @@
 package bitcamp.chopchop.web;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.chopchop.domain.Cart;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.service.CartService;
+import bitcamp.chopchop.service.MemberService;
 
 @Controller
 @RequestMapping("/cart")
@@ -23,6 +24,9 @@ public class CartController {
 
   @Resource
   private CartService cartService;
+  @Resource
+  private MemberService memberService;
+  
 
   @GetMapping("form")
   public void form() {
@@ -41,13 +45,15 @@ public class CartController {
     return "redirect:../cart/detail?no=" + cart.getCartNo();
   }
 
+  // button delete
   @GetMapping("delete")
   public String delete(int no, HttpServletRequest request) 
       throws Exception {
     cartService.delete(no);
-    return "redirect:search?keyword=1";
+    return "redirect:search";
   }
 
+  // checkbox delete controller
 @GetMapping("chkdelete")
 public String chkdelete(HttpSession session,
      @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
@@ -56,7 +62,7 @@ public String chkdelete(HttpSession session,
       for (int i = 0; i < arrIdx.length; i++) {
           cartService.delete(Integer.parseInt(arrIdx[i]));
       }
-      return "redirect:search?keyword=1";
+      return "redirect:search";
 }
 
   @GetMapping("detail")
@@ -65,8 +71,9 @@ public String chkdelete(HttpSession session,
   }
 
   @GetMapping("search")
-  public void search(Model model, String keyword) throws Exception {
-    List<Cart> carts = cartService.search(keyword);
+  public void search(Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
+    List<Cart> carts = cartService.search(Integer.toString(member.getMemberNo()));
     model.addAttribute("carts", carts);
   }
 
@@ -74,13 +81,17 @@ public String chkdelete(HttpSession session,
   public String update(Cart cart, HttpServletRequest request) 
       throws Exception {
     cartService.update(cart);
-    return "redirect:search?keyword=1";
+    return "redirect:search";
   }
 
   // 테스트용
   @GetMapping("test")
-  public void test(Model model, String keyword) throws Exception {
-    List<Cart> carts = cartService.search(keyword);
+  public void test(Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
+    System.out.println(member.getMemberNo());
+    List<Cart> carts = cartService.search(Integer.toString(member.getMemberNo()));
+
+    // Member member = memberService.get(no);
     model.addAttribute("carts", carts);
   }
 }

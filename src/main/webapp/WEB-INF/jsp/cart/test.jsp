@@ -35,7 +35,8 @@
           </td>
           <td>${cart.cartNo}</td>
           <c:forEach items="${cart.products}" var="product">
-            <td>${product.title}</td>
+            <td>${product.title}<br>${product.title}</td>
+
           </c:forEach>
           <c:forEach items="${cart.products}" var="product">
             <td><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</td>
