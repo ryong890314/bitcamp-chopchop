@@ -39,9 +39,7 @@ public class RecipeCommentController {
   }
   
   @PostMapping("add")
-  public String add(RecipeComment recipeComment, HttpSession session) throws Exception {
-    Member member = (Member)session.getAttribute("loginUser");
-    recipeComment.setMemberNo(member.getMemberNo());
+  public String add(RecipeComment recipeComment) throws Exception {
     recipeCommentService.insert(recipeComment);
     System.out.println(recipeComment.getCommentNo());
     return "redirect:../recipe/detail?no=" + recipeComment.getRecipeNo();

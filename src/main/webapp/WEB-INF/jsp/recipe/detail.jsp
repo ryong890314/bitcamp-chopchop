@@ -118,64 +118,7 @@
 
 =============================================================================================
 
-<div class="comment_area mb-30">
-    <h4 class="mb-50">댓글입력</h4>
 
-    <!-- Reply Form -->
-    <div class="contact-form-area">
-      <form action='../recipecomment/add' method='post'>
-       <div class="row">
-         <div class="col-12 col-lg-6">
-          <input type='hidden' name='memberNo'value='${recipeComment.memberNo}' readonly>
-         </div>
-         <div class="col-12 col-lg-6">
-           <input type='text' name='recipeNo' value='${recipeComment.commentNo}' readonly><br>
-           <input type="text" name="nickname" value="${loginUser.nickname}" readonly></div>
-         </div>
-        <div class="col-12">
-          <textarea name='content' class="form-control" id="message" rows='10' cols='30' placeholder="Message"></textarea>
-          </div>
-        <div class="col-12">  
-          <button class="btn bueno-btn mt-30" type="submit">Submit Comment</button>
-        </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-
- 
-  <div class="comment_area mb-100">
-    <h4 class="mb-50">댓글 목록</h4>
-    <ol>
-      <!-- Single Comment Area -->
-      <c:forEach items="${recipe.comments}" var="recipeComment">
-        <li class="single_comment_area" id="isComment">
-          <!-- Comment Content -->
-          <div class="comment-content d-flex">
-            <!-- Comment Author -->
-            <div class="comment-author">
-              <img src="/img/bg-img/person.png" alt="author" width="70px">
-              
-            </div>
-            <!-- Comment Meta -->
-            <div class="comment-meta">
-              <div class="d-flex">
-                <a href="#" class="post-author"  >${recipeComment.commentNo} </a>
-                
-                <a href="#" class="post-author" >${member.nickname} / ${recipeComment.member.nickname} / ${loginUser.nickname}
-                해당 레시피 댓글 작성자 이름 아님.</a>
-                 <%-- <input type='text' name='member.nickname' value='${recipeComment.member.nickname}' readonly> --%>
-                 <a href="#" class="post-date" >${recipeComment.createdDate}</a>
-                 <a href="../recipecomment/detail?no=${recipeComment.commentNo}" class="reply">수정</a>
-              </div>
-              <p>${recipeComment.content}</p>
-            </div>
-          </div>
-        </li>
-      </c:forEach>
-    </ol>
-  </div>
 
 
 
@@ -196,11 +139,11 @@
 
 
 <!-- 댓글 입력 -->
-<%-- 
 <%@ include file="../recipecomment/form.jsp" %>
 <%@ include file="../recipecomment/list.jsp" %>
 <%@ include file="../recipecomment/detail.jsp" %>
- --%>
+
+
 
 
 

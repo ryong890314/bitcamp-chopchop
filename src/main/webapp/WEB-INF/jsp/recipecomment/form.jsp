@@ -30,8 +30,7 @@
           <input type='hidden' name='memberNo'value='${recipeComment.memberNo}' readonly>
          </div>
          <div class="col-12 col-lg-6">
-           <input type='text' name='recipeNo' value='${recipeComment.commentNo}' readonly><br>
-           <input type="text" name="nickname" value="${loginUser.nickname}" readonly></div>
+           <input type='hidden' name='recipeNo' value='${recipeComment.commentNo}' readonly>
          </div>
         <div class="col-12">
           <textarea name='content' class="form-control" id="message" rows='10' cols='30' placeholder="Message"></textarea>
@@ -50,7 +49,7 @@
     <h4 class="mb-50">댓글 목록</h4>
     <ol>
       <!-- Single Comment Area -->
-      <c:forEach items="${recipe.comments}" var="recipeComment">
+      <c:forEach items="${recipe.comments}" var="RecipeComment">
         <li class="single_comment_area" id="isComment">
           <!-- Comment Content -->
           <div class="comment-content d-flex">
@@ -61,13 +60,12 @@
             <!-- Comment Meta -->
             <div class="comment-meta">
               <div class="d-flex">
-                <a href="#" class="post-author"  >${recipeComment.commentNo} </a>
-                <a href="#" class="post-author"  >${member.nickname} </a>
+                <a href="#" class="post-author"  >${recipeComment.member.nickname} </a>
                  <%-- <input type='text' name='member.nickname' value='${recipeComment.member.nickname}' readonly> --%>
-                 <a href="#" class="post-date" >${recipeComment.createdDate}</a>
-                 <a href="../recipecomment/detail?no=${recipeComment.commentNo}" class="reply">수정</a>
+                 <a href="#" class="post-date" >${RecipeComment.createdDate}</a>
+                 <a href="../recipecomment/detail?no=${RecipeComment.commentNo}" class="reply">수정</a>
               </div>
-              <p>${recipeComment.content}</p>
+              <p>${RecipeComment.content}</p>
             </div>
           </div>
         </li>
