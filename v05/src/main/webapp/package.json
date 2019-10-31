@@ -1,0 +1,32 @@
+{
+<<<<<<< HEAD
+  "name": "webapp",
+=======
+  "name": "bitcamp",
+>>>>>>> 835682cec1fc93cc2edd64f47a3eb76eb797f010
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+<<<<<<< HEAD
+    "alertifyjs": "^1.11.2",
+    "blueimp-file-upload": "^9.30.0",
+    "bootstrap": "^4.3.1",
+    "jquery": "~>3.4.0",
+    "popper.js": "^1.15.0"
+=======
+    "bootstrap": "^4.3.1",
+    "handlebars": "^4.4.5",
+    "jquery": "^3.4.1",
+    "sweetalert": "^2.1.2"
+>>>>>>> 835682cec1fc93cc2edd64f47a3eb76eb797f010
+  }
+}
