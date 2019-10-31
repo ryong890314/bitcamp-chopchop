@@ -97,7 +97,7 @@
     <p class="lead">${product.detail}</p>
     <hr class="my-4">
   <p>
-    <c:forEach items="${product.files}" var="file">
+    <c:forEach items="${product.files}" var="file" begin="1">
       <img src="/upload/product/${file.filePath}" class="rounded mx-auto d-block" alt="...">
     </c:forEach>
   </p>

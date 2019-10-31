@@ -42,7 +42,7 @@
       <c:forEach items="${product.files}" var="file">
         <img src='/upload/product/${file.filePath}' width=200>
       </c:forEach><br>
-      사진: <input type='file' name='filePath'><br>
+      대표 사진: <input type='file' name='filePath'><br>
       사진: <input type='file' name='filePath'><br>
       사진: <input type='file' name='filePath'><br>
       사진: <input type='file' name='filePath'><br>
