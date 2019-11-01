@@ -59,11 +59,11 @@
 						class="nav-link"> <i class="nav-icon fa fa-user"></i>
 							<p>My Profile</p>
 					</a></li>
-					<li class="nav-item"><a href="pages/widgets.html"
+					<li class="nav-item"><a href="/app/member/detail?no=${loginUser.memberNo}"
 						class="nav-link"> <i class="nav-icon fa fa-utensils"></i>
 							<p>My Recipe</p>
 					</a></li>
-					<li class="nav-item"><a href="pages/widgets.html"
+					<li class="nav-item"><a href="/app/member/detail?no=${loginUser.memberNo}"
 						class="nav-link"> <i class="nav-icon fa fa-book"></i>
 							<p>My Review</p>
 					</a></li>
@@ -87,7 +87,7 @@
     <!-- jQuery UI 1.11.4 -->
     <script src="/js/jquery-ui/jquery-ui.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="/js/bootstrap/sidebar/bootstrap.bundle.min.js"></script>
+    <script src="/node_modules/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/js/dist/adminlte.js"></script>
 </body>

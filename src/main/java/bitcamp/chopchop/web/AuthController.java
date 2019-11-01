@@ -1,6 +1,7 @@
 package bitcamp.chopchop.web;
 
 import java.util.Properties;
+import java.util.UUID;
 import javax.annotation.Resource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -64,7 +65,7 @@ public class AuthController {
   
 @RequestMapping(path = "getPassword",
     method = RequestMethod.POST)
-public static void gGmailSend() {
+public static void gGmailSend(String email) {
   String user = "bitcamp1234@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
   String password = "kim1016!"; // 패스워드
   
@@ -84,17 +85,22 @@ public static void gGmailSend() {
   });
 
   try {
+    String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // -를 제거해 주었다.
     MimeMessage message = new MimeMessage(session);
     message.setFrom(new InternetAddress(user));
     
     // 수신자메일주소
-    message.addRecipient(Message.RecipientType.TO, new InternetAddress("kimyoulim1016@gmail.com"));
+    message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+
+    for (int i = 0; i < 1; i++) {
+      uuid = uuid.substring(0, 10); //uuid를 앞에서부터 10자리 잘라줌.
+    }
 
     // Subject
     message.setSubject("[ChopChop] - Temporary Password"); // 메일 제목을 입력
 
     // Text
-    message.setText("내용을 입력하세요"); // 메일 내용을 입력
+    message.setText("비밀번호 찾기 임시 비밀번호: " + uuid); // 메일 내용을 입력
 
     // send the message
     Transport.send(message); //// 전송

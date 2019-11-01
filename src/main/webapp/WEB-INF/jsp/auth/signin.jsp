@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ChopChop 로그인</title>
+<title>ChopChop Sign in</title>
 <link rel='stylesheet'
 	href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
 	integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
@@ -20,17 +20,17 @@
 			</div>
 			<form method='POST' action='login' name="signinform"
 				onsubmit="return checkAll();">
-				<label for="email">이메일</label> <input type="email" name="email"
+				<label for="email">Email</label> <input type="email" name="email"
 					value='${cookie.email.value}' onblur="email_check();" />
 				<div id="email_chk" class="vali_check"></div>
-				<label for="password">비밀번호</label> <input type="password"
+				<label for="password">Password</label> <input type="password"
 					name="password" onblur="password_check();" />
 				<div id="password_chk" class="vali_check"></div>
 				<div id="emailPassword_chk" class="vali_check"></div>
-				<input class="btn" type="submit" value="로그인" />
+				<input class="btn" type="submit" value="Sign in" />
 			</form>
 			<input class="btnn" type="button"
-				onclick="window.location.href = '/app/member/form';" value="회원가입" /> 
+				onclick="window.location.href = '/app/member/form';" value="Create Account" /> 
 				<a href="/app/auth/findPassword" 
 				onclick="window.open(this.href, '_blank', 'width=600px,height=600px,toolbars=no,scrollbars=no'); return false;">
 				Forgot your password?</a>

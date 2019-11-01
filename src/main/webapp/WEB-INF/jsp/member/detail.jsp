@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/css/member/style_detail.css">
   <link rel="stylesheet" href="/node_modules/jquery-ui-dist/jquery-ui.css">
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  
 <style type="text/css">
   .petInfo {
     margin: 0 auto;
