@@ -22,7 +22,7 @@
     <result column="content" property="content"/>
     <result column="created_date" property="createdDate"/>
     
-    <association property="Member" javaType="Member">
+    <association property="member" javaType="Member">
       <id column="member_id" property="memberNo"/>
       <result column="post_no" property="postNo"/>
       <result column="base_address" property="baseAddress"/>
@@ -66,7 +66,7 @@
       comment_id=#{value}
   </select>
   
-    <select id="findByProductWith" parameterType="int" resultMap="CommentMap">
+  <select id="findByProductWith" parameterType="int" resultMap="CommentMemberMap">
     select
       c.comment_id,
       c.member_id,
@@ -83,7 +83,15 @@
       c.product_id=#{value}
   </select>
   
-  
+  <select id="simplyGetComments" parameterType="int" resultMap="CommentMap">
+    select
+      *
+    from
+      product_comment
+    where
+      product_id=#{fuck}
+    
+  </select>
   
   <insert id="insert" parameterType="Comment">
     insert into product_comment(product_id, member_id, title, content, created_date)

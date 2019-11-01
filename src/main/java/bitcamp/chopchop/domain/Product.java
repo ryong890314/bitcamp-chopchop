@@ -14,7 +14,8 @@ public class Product {
   private String species;
   private String option;
   private int viewCount;
-
+  private Member member;
+  
   private List<PhotoFile> files;
   private List<Comment> comments;
   private List<ProductOption> options;
@@ -131,6 +132,12 @@ public class Product {
     this.options = options;
   }
 
+  public Member getMember() {
+    return member;
+  }
 
+  public void setMember(Member member) {
+    this.member = member;
+  }
 
 }

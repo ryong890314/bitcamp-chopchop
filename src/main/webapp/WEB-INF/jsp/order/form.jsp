@@ -139,7 +139,13 @@
       <label for="exampleInput">입금일</label><input type="date" id="textbox" name="paymentDate">
       </div>
       <div class="col-md-6">
-      <label for="exampleInput">주문상태</label><input type="text" id="textbox" name="shipDate" value="${order.shipDate}">
+      <label for="exampleInput">주문상태</label>
+      <select id="selectBox" name="shipDate" class="form-control">
+        <option value="${order.shipDate}">입금 전</option>
+        <option value="${order.shipDate}">입금 확인</option>
+        <option value="${order.shipDate}">발송</option>
+        <option value="${order.shipDate}">배송완료</option>
+      </select>
       </div>
       </div>
       <div>

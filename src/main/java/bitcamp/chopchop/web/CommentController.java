@@ -27,7 +27,6 @@ public class CommentController {
   @PostMapping("add")
   public String add(Comment comment) throws Exception {
     commentService.insert(comment);
-    System.out.println(comment);
     return "redirect:../product/detail?no=" + comment.getProductNo();
   }
 
