@@ -95,7 +95,8 @@ input.btn:hover, input.btn:focus {
 
 .logo-area {
   position: relative;
-  margin text-align: center;
+  margin:0 auto;
+  text-align: center;
   width: 200px;
   height: 200px;
   background: url('../choplogo.png') no-repeat;
