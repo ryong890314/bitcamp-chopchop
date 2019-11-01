@@ -47,7 +47,7 @@ public class MemberController {
     model.addAttribute("members", members);
   }
 
-  @GetMapping("con tact")
+  @GetMapping("contact")
   public void contact(Model model) throws Exception {
     memberService.sendMail();
   }
