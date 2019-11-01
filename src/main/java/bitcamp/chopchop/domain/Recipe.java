@@ -22,25 +22,16 @@ public class Recipe implements Serializable {
 
   // 자식테이블 'ingredient'의 데이터를 담을 Ingredient 객체 목록.
   private List<Ingredient> ingredients;
-  private List<RecipeLike> recipeLikes;
   // 자식테이블 'Cooking'의 데이터를 담을 Cooking 객체 목록.
   private List<Cooking> cookings;
   // 자식테이블 'RecipeLike'의 데이터를 담을 RecipeLike 객체 목록.
-  private List<RecipeComment> comments;
+  private List<RecipeLike> recipeLikes;
   
-
-
   public List<RecipeLike> getRecipeLikes() {
     return recipeLikes;
   }
   public void setRecipeLikes(List<RecipeLike> recipeLikes) {
     this.recipeLikes = recipeLikes;
-  }
-  public List<RecipeComment> getComments() {
-    return comments;
-  }
-  public void setComments(List<RecipeComment> comments) {
-    this.comments = comments;
   }
   public int getRecipeNo() {
     return recipeNo;

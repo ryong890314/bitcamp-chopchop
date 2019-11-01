@@ -22,6 +22,7 @@
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
  }
+
 </style>
 <title>레시피 등록폼</title>
 </head>
@@ -153,16 +154,20 @@
 
 <script id="t2" type="cookingHtml"> 
 <div class='row form-group my-cooking'>
-<div class='row form-group'>
-순서: <input type='text' name='processNo' value=''></div>
-<div class='box-photo'><div class='photo'>
-<div class='img'>
-<img class='preview-cooking-image'>
-<input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value=''></div>
-<button class='btn btn-outline btn-block btn-sm' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
+  <div class='row form-group'>
+         순서: <input type='text' name='processNo' value=''>
+  </div>
+  <div class='box-photo'>
+    <div class='photo'>
+      <div class='img'>
+       <img class='preview-cooking-image'>
+      </div>
+      <input class='my-cooking-image' type='file' name='filePath2' value=''>
+      <button class='btn btn-outline btn-block btn-sm' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
+    </div>
+    <div class='des'><textarea class='form-control' name='cookingContent'></textarea></div>
+  </div>
 </div>
-<div class='des'><textarea class='form-control' name='cookingContent'></textarea></div>
-</div></div>
 </script>
 
 <script>//조리순서 추가
@@ -196,25 +201,16 @@ $('.my-thumbnail').change(function() {
 
 // cooking image 미리보기
 function readURL2(input) {
-  var parent = $(input.parentNode);
-  console.log(parent);
-  
   var reader2 = new FileReader();
   reader2.onload = function(e) {
-    $('.preview-cooking-image').attr('src', e.target.result);
+    $(input.parentNode).find('.preview-cooking-image').attr('src', e.target.result);
   }
   reader2.readAsDataURL(input.files[0]);
 };
 
 $(document).on('change', '.my-cooking-image', function() {
-  console.log('호출 확인');
   readURL2(this);
-  
 });
-</script>
-
-<script>
-console.log(change.target.parentNode);
 </script>
 
 

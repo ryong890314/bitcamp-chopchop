@@ -97,11 +97,13 @@
                                           <div class='row form-group my-cooking'>
                                           <div class='row form-group'>
                                                                                              순서: <input type='text' name='processNo' value='${cooking.processNo}'></div>
-                                          <div class='box-photo'><div class='photo'>
-                                          <div class='img'><input class='btn btn-outline btn-images' type='file' name='filePath2' value='${cooking.filePath}' style='width: 100%; height: 100%; opacity: 0; overflow: hidden;'>
-                                          <img src='/upload/recipe/${cooking.filePath}'></div>
+                                          <div class='box-photo'>
+                                            <div class='photo'>
+                                              <div class='img'>
+                                               <img class='preview-cooking-image' src='/upload/recipe/${cooking.filePath}'></div>
+                                              <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value='${cooking.filePath}'>
                                           <button class='btn btn-outline btn-block btn-sm' name='delCookingBtn' type='button' onclick='delCooking(event)'>순서 삭제</button>
-                                          </div>
+                                            </div>
                                           <div class='des'><textarea class='form-control' name='cookingContent'>${cooking.content}</textarea></div>
                                           </div>
                                         </div>
@@ -109,6 +111,7 @@
                                       <!-- 순서 박스 들어갈 Div -->
                                           </div>
                                   </div>
+                                  
                                   <!-- 순서추가버튼 -->
                                   <div class="block-content">
                                       <div class="row form-group">
@@ -187,15 +190,20 @@
 
 <script id="t2" type="cookingHtml">
 <div class='row form-group my-cooking'>
-<div class='row form-group'>
-순서: <input type='text' name='processNo' value=''></div>
-<div class='box-photo'><div class='photo'>
-<div class='img'><input class='btn btn-outline btn-images' type='file' name='filePath2' value='' style='width: 100%; height: 100%; opacity: 0; overflow: hidden;'>
-<img src='/upload/recipe/${cooking.filePath}'></div>
-<button class='btn btn-outline btn-block btn-sm' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
+  <div class='row form-group'>
+         순서: <input type='text' name='processNo' value=''>
+  </div>
+  <div class='box-photo'>
+    <div class='photo'>
+      <div class='img'>
+       <img class='preview-cooking-image'>
+      </div>
+      <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value=''>
+      <button class='btn btn-outline btn-block btn-sm' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
+    </div>
+    <div class='des'><textarea class='form-control' name='cookingContent'></textarea></div>
+  </div>
 </div>
-<div class='des'><textarea class='form-control' name='cookingContent'></textarea></div>
-</div></div>
 </script>
 
 <script>//조리순서 추가
@@ -215,6 +223,7 @@ function delCooking(event) {
 </script> 
 
 <script>
+// 완성사진 미리보기
 function readURL(input) {
   var reader = new FileReader();
   reader.onload = function(e) {
@@ -224,8 +233,20 @@ function readURL(input) {
 };
 
 $('.my-thumbnail').change(function() {
-  console.log("change???????????")
   readURL(this);
+});
+
+// cooking image 미리보기
+function readURL2(input) {
+  var reader2 = new FileReader();
+  reader2.onload = function(e) {
+    $(input.parentNode).find('.preview-cooking-image').attr('src', e.target.result);
+  }
+  reader2.readAsDataURL(input.files[0]);
+};
+
+$(document).on('change', '.my-cooking-image', function() {
+  readURL2(this);
 });
 </script>
 
