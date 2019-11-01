@@ -10,14 +10,6 @@
 <link rel="stylesheet"
 	href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 
-<style>
-.hold-transition .content-wrapper, .hold-transition .control-sidebar,
-	.hold-transition .control-sidebar *, .hold-transition .main-footer,
-	.hold-transition .main-header, .hold-transition .main-sidebar,
-	.hold-transition .main-sidebar * {
-	transition: none !important
-}
-</style>
 <style type="text/css">
 .petInfo {
 	margin: 0 auto;
@@ -28,7 +20,7 @@
 
 	<%-- <jsp:include page="../header.jsp"/> --%>
 	<jsp:include page="../member/mypage_sidebar.jsp" />
-	<div class="hold-transition sidebar-mini layout-fixed content-wrapper">
+	<div class="content-wrapper">
 
 		<div class="container">
 			<h1>내정보</h1>
