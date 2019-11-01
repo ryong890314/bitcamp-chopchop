@@ -106,29 +106,31 @@
         <!-- Comment Area Start -->
         <div class="comment_area mb-100">
           <h4 class="mb-50">상품 문의</h4>
-          <c:forEach items="${product.comments}" var = "comment">
           <ol>
             <!-- Single Comment Area -->
             <li class="single_comment_area" id="isComment">
-                <!-- Comment Content -->
-                <div class="comment-content d-flex">
-                  <!-- Comment Author -->
+              <!-- Comment Content -->
+              <div class="comment-content d-flex">
+                <!-- Comment Author -->
                   <div class="comment-author">
-                    <span id="memberName" style="font-size:14px;">${member.nickname}</span>
+                <c:forEach items="${members2}" var= "member2">
+                    <p><span id="memberName" style="font-size:14px;">${member2.nickname}</span></p>
+                </c:forEach>
                   </div>
-                  <!-- Comment Meta -->
-                  <div class="comment-meta">
+                <!-- Comment Meta -->
+                <div class="comment-meta">
+                  <c:forEach items="${product.comments}" var = "comment">
                     <div class="d-flex">
                       <a href="#" class="post-author">${comment.title}</a>
                       <a href="#" class="post-date">${comment.createdDate}</a>
                       <a href="../comment/updateform?no=${comment.commentNo}" class="reply">수정</a>
                     </div>
                     <p>${comment.content}</p>
-                  </div>
+                  </c:forEach>
                 </div>
+              </div>
             </li>
           </ol>
-          </c:forEach>
         </div>
         
 <!--         <div class="post-a-comment-area mb-30"> -->

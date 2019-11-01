@@ -44,7 +44,10 @@ public class DefaultCommentService implements CommentService {
     commentDao.update(comment);
   }
 
-  
+  @Override
+  public List<Comment> findByProductWith(int no) throws Exception {
+    return commentDao.findByProductWith(no);
+  }
 }
 
 
