@@ -18,6 +18,8 @@
 <body onload="formLoad();">
 
 <%-- <jsp:include page="../header.jsp"/> --%>
+<jsp:include page="../member/mypage_sidebar.jsp"/>
+
 <div class="container"> 
 <h1>내정보</h1>
 <form action='update' method='post' name="form" enctype='multipart/form-data' onsubmit="return checkAll();">

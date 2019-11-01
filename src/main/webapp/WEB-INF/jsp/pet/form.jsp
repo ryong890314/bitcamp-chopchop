@@ -13,9 +13,13 @@
 <div id='content'>
 <h1>펫 등록</h1>
 <form action='add' method='post' enctype='multipart/form-data'>
+사진  
 펫 이름: <input type='text' name='name'><br>
 등록 번호: <input type='text' name='email'><br>
 품종: <input type='text' name='password'><br>
+성별
+나이
+<%-- created DAte --%>
 <button>등록</button>
 </form>
 </div>
