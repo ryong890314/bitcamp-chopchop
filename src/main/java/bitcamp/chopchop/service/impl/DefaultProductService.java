@@ -36,8 +36,6 @@ public class DefaultProductService implements ProductService {
       file.setProductNo(product.getProductNo());
       photoFileDao.insert(file);
     }
-    
-    
   }
   
   @Transactional
@@ -70,10 +68,6 @@ public class DefaultProductService implements ProductService {
   @Transactional
   @Override
   public void update(Product product) throws Exception {
-//    if(product.getFiles().size() == 0) {
-//      throw new Exception("사진 파일이 없습니다.");
-//    }
-
     productDao.update(product);
     if(product.getFiles().size() > 0) {
       photoFileDao.deleteAll(product.getProductNo());

@@ -73,23 +73,20 @@
                 <a class="post-title">${product.title}</a>
                 <a>조회수 ${product.viewCount} 회</a>
                 <hr class="my-4">
-                <a class="post-title">판매가 ${product.price} 원</a>
+                <a class="post-title"><span style="text-decoration-line:line-through; color:gray; margin-right:50px;">${product.price}원</span><span id="totalPrice">${product.price * (100-product.discount)/100}</span>원</a>
                 
-                <div class="input-group input-number-group"><a class="post-title">수량
-                  <input class="input-number" id="quantity" type="number" value="1" min="0" max="1000">
-                </a>
+                <div class="input-group input-number-group">수량
                 </div>
-
-                  <div id="tq">
+                <div id="tq">
                     <form action="../order/form" method="post" id="qt">
                       <input type='hidden' name='no' value='${product.productNo}'>
-                      <input type='hidden' name='price' id='finalPrice' value=''>
+                      <input class="input-number" name='quantity' type="number" value="1" min="0" max="1000">
                       <button class="btn bueno-btn">구매하기</button>
                     </form>
-                  </div>
+                </div>
                   <div id="tq">
                     <form id="qt">
-                      <button class="btn bueno-btn">장바구니</button>
+                      <button class="btn bueno-btn" style="margin-top:57px;">장바구니</button>
                     </form>
                   </div>
             </div>
@@ -100,7 +97,7 @@
     <p class="lead">${product.detail}</p>
     <hr class="my-4">
   <p>
-    <c:forEach items="${product.files}" var="file">
+    <c:forEach items="${product.files}" var="file" begin="1">
       <img src="/upload/product/${file.filePath}" class="rounded mx-auto d-block" alt="...">
     </c:forEach>
   </p>
@@ -165,14 +162,10 @@
 
 <jsp:include page="../footer.jsp"/>
 <script>
-  var quantity = parseInt(document.getElementById('quantity').value);
-  var finalPrice = document.getElementById('finalPrice').value;
-  quantity.change(finalPrice = quantity * ${product.price})
-  console.log(finalPrice);
-  console.log(productInfo);
-  document.getElementById('finalPrice').value=finalPrice;
-  
-  
+  var totalPrice = document.querySelector('#totalPrice');
+  var resultPrice = parseInt(totalPrice.innerHTML);
+  console.log(resultPrice);
+  totalPrice.innerHTML = resultPrice;
 </script>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <html>
 <head>
   <title>상품 목록</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <link rel='stylesheet' href='/css/product/style.css'>
   <style>
 
@@ -156,7 +156,7 @@
   
 <div id="productBody">
   <div class="d-flex align-content-start flex-wrap">
-<c:forEach items="${products}" var="product">
+<c:forEach items="${products}" var="product" varStatus="status">
   <div id="productList">
 
 <div class="card" style="width: 18rem;">
@@ -166,7 +166,8 @@
   
   <div class="card-body">
     <h5 class="card-title">${product.title}</h5>
-    <p class="card-text">${product.price}원</p>
+    <p class="card-text"><span style="text-decoration-line:line-through; color:gray;">${product.price}원</span><br>
+    <span class="totalPrice">${product.price * (100-product.discount)/100}</span>원</p>
     <a href='detail?no=${product.productNo}' class="btn bueno-btn">구매하기</a>
   </div>
 </div>
@@ -176,5 +177,10 @@
 </div>
 
 <jsp:include page="../footer.jsp"/>
-
+  <script>
+    var totalPrice = document.getElementsByClassName('totalPrice');
+    for(var i of totalPrice) {
+      i.innerText = parseInt(i.innerText)
+    }
+  </script>
 </body></html>

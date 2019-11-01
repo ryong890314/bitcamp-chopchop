@@ -158,11 +158,10 @@
       p.discount,
       p.category,
       p.species,
-      p.option,
       f.photo_id,
       f.file_path
     from 
-      product p 
+      product p
         left outer join store_photo f on p.product_id=f.product_id
     where species like #{pattern}
     order by product_id asc
