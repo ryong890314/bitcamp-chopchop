@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.domain.Member;
+import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.MemberService;
+import bitcamp.chopchop.service.ProductService;
 
 @Controller
 @RequestMapping("/cart")
@@ -26,7 +28,8 @@ public class CartController {
   private CartService cartService;
   @Resource
   private MemberService memberService;
-  
+  @Resource
+  private ProductService productService;
 
   @GetMapping("form")
   public void form() {
@@ -38,12 +41,33 @@ public class CartController {
   }
 
   @PostMapping("add")
-  public String add(Cart cart, Model model) throws Exception {
-
+  public String add(Cart cart, Product product, int no, Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
+    cart.setMemberNo(member.getMemberNo());
+    cart.setProductNo(productService.get(no).getProductNo());
+    System.out.println(cart);
     cartService.insert(cart);
-    model.addAttribute("cart", cart);
-    return "redirect:../cart/detail?no=" + cart.getCartNo();
+    
+    System.out.println("출력!!!" + cart);
+    return "redirect:search";
   }
+
+  // // =======================================================
+
+  // @PostMapping("add")
+  // public String add(Order order, int no, HttpSession session) throws Exception {
+  //   OrderProduct orderProduct = new OrderProduct();
+  //   orderProduct.setOrderNo(order.getOrderNo());
+  //   orderProduct.setProductNo(productService.get(no).getProductNo());
+  //   orderProduct.setQuantity(11);
+  //   orderService.insert(order, orderProduct);
+  //   System.out.println(order);
+  //   session.setAttribute("order", order);
+  //   session.setAttribute("orderProduct", orderProduct);
+  //   return "redirect:result"; // -> 주문 완료 페이지로
+  // }
+
+  // // =================================================
 
   // button delete
   @GetMapping("delete")

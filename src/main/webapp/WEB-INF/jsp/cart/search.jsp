@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body onload="check_all()">
 
   <div id='cart'>
     <h1>장바구니</h1>
@@ -25,14 +25,14 @@
 
     <table class='table table-hover'>
       <tr>
-        <th>선택</th>
-        <th>상품사진</th>
+        <th style="width: 80px">선택</th>
+        <th style="width: 130px">상품사진</th>
         <th>상품/옵션정보</th>
         <th style="width: 80px">수량</th>
         <th>상품금액</th>
         <th>할인율</th>
         <th>할인적용금액</th>
-        <th>배송비</th>
+        <th style="width: 130px">배송비</th>
         <th>주문</th>
     
       </tr>
@@ -48,9 +48,15 @@
               <img src='/upload/product/${file.filePath}' style="width: 100px; height: 100px;">
             </c:forEach>
           </td>
-          <c:forEach items="${cart.products}" var="product">
-            <td>${product.title}<br><hr>product_option</td>
-          </c:forEach>
+          <td>
+            <c:forEach items="${cart.products}" var="product">
+              ${product.title}<br>
+            </c:forEach>
+              <hr>
+              <c:forEach items="${cart.options}" var="productOption">
+              ${productOption.title}
+            </c:forEach>
+            </td>
           <td>
             <form action="update" method="POST">
             <div class="input-group input-number-group">
@@ -62,7 +68,6 @@
           </td>
           <c:forEach items="${cart.products}" var="product">
             <td><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</td>
-            
           </c:forEach>
 
           <c:forEach items="${cart.products}" var="product">
@@ -78,7 +83,8 @@
               </c:forEach>
 
               <td>
-                <span class="tempShip" id="tempShipCheckPrice">들어가기전</span>
+                <!-- <span class="tempShip" id="tempShipCheckPrice">[기본배송]<br>조건</span> -->
+                <span data-toggle="tooltip" data-placement="top" title="주문금액이 50,000원 미만시 배송비 2,500원이 청구됩니다.">[기본배송]<br>조건</span>
               </td>
 
           <td>
@@ -103,7 +109,6 @@
 
 <div style="float: right">
 <button class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
-<button class="btn bueno-btn" onclick='check_Price();'>금액확인</button>
 <a href='#' class="btn bueno-btn">선택구매</a>
 <a href='#' class="btn bueno-btn">전체구매</a>
 </div>
@@ -147,10 +152,10 @@
             checkPrice += parseInt(myCheckPrice[j].value);
           }
         }
-        var tempShip = document.getElementsByClassName('tempShip');
-        for (var i of tempShip) {
-          i.innerText = checkPrice >= 50000 || checkPrice == 0 ? "무료" : "2,500원";
-        }
+        // var tempShip = document.getElementsByClassName('tempShip');
+        // for (var i of tempShip) {
+        //   i.innerText = checkPrice >= 50000 || checkPrice == 0 ? "무료" : "2,500원";
+        // }
         sumCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en'); // 상품합계
         shipCheckPrice.innerHTML = Number(checkPrice >= 50000 || checkPrice == 0 ? 0 : 2500).toLocaleString('en'); // 배송비
         totalCheckPrice.innerHTML = Number(checkPrice + parseInt(checkPrice >= 50000 || checkPrice == 0 ? 0 : 2500)).toLocaleString('en'); // 합계
@@ -190,7 +195,6 @@
         }
       }
     }
-
   </script>
 
 </body>

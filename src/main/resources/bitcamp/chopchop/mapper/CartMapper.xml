@@ -8,6 +8,7 @@
     <id column="cart_id" property="cartNo"/>
     <result column="member_id" property="memberNo"/>
     <result column="product_id" property="productNo"/>
+    <result column="option_id" property="optionNo"/>
     <result column="quantity" property="quantity"/>
     <result column="created_date" property="createdDate"/>
   </resultMap>
@@ -37,12 +38,19 @@
       <result column="product_id" property="productNo"/>
     </collection>
 
+    <collection property="options" ofType="ProductOption">
+      <id column="option_id" property="optionNo"/>
+      <result column="product_id" property="productNo"/>
+      <result column="title" property="title"/>
+      <result column="price" property="price"/>
+    </collection>
+
     <collection property="members" ofType="Member">
       <id column="member_id" property="memberNo"/>
       <result column="password" property="password"/>
       <result column="email" property="email"/>
       <result column="photo" property="photo"/>
-      <result column="nickname" property="nickName"/>
+      <result column="nickname" property="nickname"/>
       <result column="tel" property="tel"/>
       <result column="post_no" property="postNo"/>
       <result column="base_address" property="baseAddress"/>
@@ -86,24 +94,28 @@
       c.quantity,
       c.member_id,
       m.member_id,
+      m.nickname,
       p.title,
       p.price,
       p.discount,
       f.photo_id,
       f.file_path,
-      (price * quantity) money
+      o.option_id,
+      o.title,
+      o.price
     from 
       cart c 
         left outer join member m on c.member_id=m.member_id
         left outer join product p on c.product_id=p.product_id
         left outer join store_photo f on p.product_id=f.product_id
-    where c.member_id like #{keyword}
+        left outer join product_option o on p.product_id=o.product_id
+    where c.member_id like #{memberNo} and o.option_id like #{optionNo}
     order by cart_id desc
   </select>
   
   <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyColumn="cart_id" keyProperty="cartNo">
-    insert into product(member_id, product_id, quantity, created_date)
-    values(#{memberNo},#{productNo},#{quantity},#{createdDate}) 
+    insert into cart(member_id, product_id, option_id, quantity)
+    values(#{memberNo},#{productNo},#{optionNo},#{quantity}) 
   </insert>
   
   <update id="update" parameterType="Cart">

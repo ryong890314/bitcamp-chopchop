@@ -54,16 +54,45 @@
   </style>
 </head>
 <body>
-  <jsp:include page="../header.jsp"/>
-  <div>
-    <div id="productBody"> 
-      <a href="updateform?no=${product.productNo}">수정</a>
-      <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
-        <!-- Blog Thumbnail -->
-        <div class="blog-thumbnail">
-          <c:forEach items="${product.files}" var="file" end="0">
-            <img src="/upload/product/${file.filePath}"> 
-          </c:forEach>
+
+<jsp:include page="../header.jsp"/>
+
+<div>
+<div id="productBody"> 
+<a href="updateform?no=${product.productNo}">수정</a>
+        <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
+            <!-- Blog Thumbnail -->
+            <div class="blog-thumbnail">
+                  <c:forEach items="${product.files}" var="file" end="0">
+    <img src="/upload/product/${file.filePath}"> 
+  </c:forEach>
+            </div>
+            <!-- Blog Content -->
+            <div class="blog-content">
+                <a class="post-tag">${product.category}</a>
+                <a class="post-title">${product.title}</a>
+                <a>조회수 ${product.viewCount} 회</a>
+                <hr class="my-4">
+                <a class="post-title"><span style="text-decoration-line:line-through; color:gray; margin-right:50px;">${product.price}원</span><span id="totalPrice">${product.price * (100-product.discount)/100}</span>원</a>
+                
+                <div class="input-group input-number-group">수량
+                </div>
+                <div id="tq">
+                    <form action="../order/form" method="post" id="qt">
+                      <input type='hidden' name='no' value='${product.productNo}'>
+                      <input class="input-number" name='quantity' type="number" value="1" min="0" max="1000">
+                      <button class="btn bueno-btn">구매하기</button>
+                    </form>
+                </div>
+                  <div id="tq">
+                    <form action="../cart/add" method="post" id="qt">
+                        <input type='hidden' name='no' value='${product.productNo}'>
+                        <input type='text' name='optionNo' value='${productOtion.optionNo}'>
+                        <input class="input-number" name='quantity' type="number" value="1" min="0" max="1000">
+                      <button class="btn bueno-btn" style="margin-top:57px;">장바구니</button>
+                    </form>
+                  </div>
+            </div>
         </div>
         <!-- Blog Content -->
         <div class="blog-content">
