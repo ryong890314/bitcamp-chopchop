@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.chopchop.dao.ProductOptionDao">
+
+  <resultMap type="ProductOption" id="ProductOptionMap">
+    <id column="option_id" property="optionNo"/>
+    <result column="product_id" property="productNo"/>
+    <result column="title" property="title"/>
+    <result column="price" property="price"/>
+  </resultMap>
+  
+  <select id="findAll" resultMap="ProductOptionMap">
+    select 
+      option_id,
+      product_id,
+      title,
+      price
+    from 
+      product_option
+    order by
+      option_id asc
+  </select>
+  
+  <insert id="insert" parameterType="ProductOption">
+    insert into product_option(option_id,product_id,title,price)
+    values(#{optionNo},#{productNo},#{title},#{price})
+  </insert>
+  
+  <delete id="deleteAll" parameterType="int">
+    delete from store_photo
+    where product_id=#{value}
+  </delete>
+
+</mapper>
