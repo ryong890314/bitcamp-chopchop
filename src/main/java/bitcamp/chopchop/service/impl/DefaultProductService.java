@@ -55,7 +55,7 @@ public class DefaultProductService implements ProductService {
     Product product = productDao.findWithFilesBy(no);
     if (product == null) {
       throw new Exception("해당 번호의 데이터가 없습니다!");
-    } 
+    }
     productDao.increaseViewCount(no);
     return product;
   }
