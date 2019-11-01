@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/css/member/style_detail.css">
   <link rel="stylesheet" href="/node_modules/jquery-ui-dist/jquery-ui.css">
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  
 <style type="text/css">
   .petInfo {
     margin: 0 auto;
@@ -18,6 +19,8 @@
 <body onload="formLoad();">
 
 <%-- <jsp:include page="../header.jsp"/> --%>
+<jsp:include page="../member/mypage_sidebar.jsp"/>
+
 <div class="container"> 
 <h1>내정보</h1>
 <form action='update' method='post' name="form" enctype='multipart/form-data' onsubmit="return checkAll();">

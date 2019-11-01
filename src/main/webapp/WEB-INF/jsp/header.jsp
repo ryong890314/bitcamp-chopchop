@@ -127,11 +127,11 @@
 								<!-- Login/Register -->
 								<div>
 									<c:if test="${not empty loginUser}">
-										<a href="" class="nav-link nav-item"> <i
-											class="fa fa-shopping-cart"></i>
+										<a href="/app/recipe/form" class="nav-link nav-item"> <i
+											class="fa fa-cutlery fa-lg" title="Add Recipe"></i>
 										</a>
-										<a href="" class="nav-link nav-item"> <i
-											class="fa fa-pencil-square-o"></i>
+										<a href="/app/cart/search" class="nav-link nav-item" title="View Cart"> <i
+											class="fa fa-shopping-cart fa-lg"></i>
 										</a>
 
 									</c:if>
