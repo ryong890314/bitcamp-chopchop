@@ -4,7 +4,7 @@
 package bitcamp.chopchop;
 
 import org.junit.Test;
-import bitcamp.chopchop.App;
+import bitcamp.chopchop.web.App;
 import static org.junit.Assert.*;
 
 public class AppTest {

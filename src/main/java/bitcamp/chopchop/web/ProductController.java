@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.service.CommentService;
 import bitcamp.chopchop.service.ProductService;
 
 @Controller
@@ -20,6 +21,8 @@ public class ProductController {
   private ProductService productService;
   @Resource
   private PhotoFileWriter photoFileWriter;
+  @Resource
+  private CommentService commentService;
 
 
   @GetMapping("form")
@@ -47,7 +50,6 @@ public class ProductController {
   public void detail(Model model, int no) throws Exception {
     model.addAttribute("product", productService.get(no));
   }
-
 
   @GetMapping("search")
   public void search(Model model, String keyword) throws Exception {

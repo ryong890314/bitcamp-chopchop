@@ -11,6 +11,12 @@ public class Comment {
   private String content;
   private Date createdDate;
 
+  @Override
+  public String toString() {
+    return "Comment [commentNo=" + commentNo + ", productNo=" + productNo + ", memberNo=" + memberNo
+        + ", title=" + title + ", content=" + content + ", createdDate=" + createdDate + "]";
+  }
+
   public int getCommentNo() {
     return commentNo;
   }
@@ -58,7 +64,4 @@ public class Comment {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
-
-
-
 }

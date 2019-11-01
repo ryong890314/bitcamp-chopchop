@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.service.CommentService;
+import bitcamp.chopchop.service.MemberService;
 
 @Controller
 @RequestMapping("/comment")
@@ -16,20 +17,22 @@ public class CommentController {
 
   @Resource
   private CommentService commentService;
+  @Resource
+  private MemberService memberService;
 
   @GetMapping("form")
   public void form() {
   }
 
   @PostMapping("add")
-  public String add(Comment comment, Model model) throws Exception {
+  public String add(Comment comment) throws Exception {
     commentService.insert(comment);
-    model.addAttribute("comment", comment);
+    System.out.println(comment);
     return "redirect:../product/detail?no=" + comment.getProductNo();
   }
 
   @GetMapping("commentDelete")
-  public String commentDelete(int no, HttpServletRequest request, int productNo) 
+  public String commentDelete(int no, int productNo) 
       throws Exception {
     commentService.commentDelete(no);
     return "redirect:../product/detail?no="+ productNo;

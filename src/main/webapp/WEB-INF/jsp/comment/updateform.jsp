@@ -2,29 +2,16 @@
   pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>문의 수정폼</title>
-<link rel="stylesheet" href="/css/style.css">
+  <title>문의 수정폼</title>
+  <link rel='stylesheet' href='/css/product/style.css'>
+  <link rel='stylesheet' href='/css/member/style_footer.css'>
+  <link rel='stylesheet' href='/css/member/style-header.css'>
+  <link rel="icon" href="img/core-img/favicon.ico">
 </head>
 <body>
-<!--   <div id='content'> -->
-<!--     <h1>문의 수정폼</h1> -->
-<!--     <form action='update' method='post'> -->
-<!--       번호: <input type='text' name='commentNo' id='commentNo' value='' readonly><br>  -->
-<%--       제목: <input type='text' name='title' value='${comment.title}'><br>  --%>
-<%--       내용: <textarea name='content'>${comment.content}</textarea><br>  --%>
-<%--       <input type='hidden' name='productNo' value='${comment.productNo}'>  --%>
-<!--       <input type='hidden' name='memberNo' value=1 readonly><br> -->
-<!--       <button>수정</button> -->
-<!--     </form> -->
-    <form action='../comment/commentDelete'>
-      <input type='hidden' name='no' value='${comment.commentNo}'>
-      <input type='hidden' name='productNo' value='${comment.productNo}'>
-      <button>삭제</button>
-    </form>
-<!--   </div> -->
 
   <div class="post-a-comment-area mb-30 clearfix">
-    <h4 class="mb-50">Leave a reply</h4>
+    <h4 class="mb-50">Update a reply</h4>
 
     <!-- Reply Form -->
     <div class="contact-form-area">
