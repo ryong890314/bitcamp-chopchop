@@ -100,7 +100,7 @@ public static void gGmailSend(String email) {
     message.setSubject("[ChopChop] - Temporary Password"); // 메일 제목을 입력
 
     // Text
-    message.setText("비밀번호 찾기 임시 비밀번호: " + uuid); // 메일 내용을 입력
+    message.setText("비밀번호 찾기 임시 비밀번호: " + uuid + "변경  하시려면 링크를 클릭해 주세요." + "<a href=/'" + "/'"); // 메일 내용을 입력
 
     // send the message
     Transport.send(message); //// 전송
