@@ -14,7 +14,6 @@ public class Pet2 implements Serializable {
   private int age;
   private int gender;
   private String filePath;
-  private int breedId;
   
   public int getPetNo() {
     return petNo;
@@ -63,12 +62,6 @@ public class Pet2 implements Serializable {
   }
   public void setFilePath(String filePath) {
     this.filePath = filePath;
-  }
-  public int getBreedId() {
-    return breedId;
-  }
-  public void setBreedId(int breedId) {
-    this.breedId = breedId;
   }
 
 }

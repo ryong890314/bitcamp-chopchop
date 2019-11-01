@@ -35,7 +35,7 @@ public class Pet2Controller {
   public String add(Pet2 pet2, MultipartFile file) throws Exception {
     pet2.setFilePath(writeFile(file));
     pet2Service.insert(pet2);
-    return "redirect:list";
+    return "redirect:../member/detail?no=" + pet2.getMemberNo();
   }
 
   @GetMapping("list")
