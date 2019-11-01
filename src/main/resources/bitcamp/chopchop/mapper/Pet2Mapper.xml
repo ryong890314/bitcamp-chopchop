@@ -13,7 +13,6 @@
   <result column="age" property="age"/>
   <result column="gender" property="gender"/>
   <result column="file_path" property="filePath"/>
-  <result column="breed_id" property="breedId"/>
 </resultMap>
 
 <select id="findAll" resultMap="Pet2Map">
@@ -29,19 +28,17 @@
     register_no,
     age, 
     gender, 
-    file_path, 
-    breed_id
+    file_path
   )
   values
   (
     #{memberNo},
     #{name},
-    #{createdDate},
+    now(),
     #{registerNo},
     #{age},
     #{gender},
-    #{filePath},
-    #{breedNo}
+    #{filePath}
   )
 </insert>
 

@@ -14,24 +14,19 @@
 <div id='content'>
 <h1>마이펫 등록</h1>
 <form action='add' method='post' enctype='multipart/form-data'>
-  <label for="petNo">펫 번호</label>
-  <input type="text" id="petNo" name="petNo"/><br>
   <label for="memberNo">회원 번호</label>
   <input type="text" id="memberNo" name="memberNo"/><br>
   <label for="name">펫 이름</label>
   <input type="text" id="name" name="name"/><br>
-  <label for="createdDate">등록일</label>
-  <input type="text" id="createdDate" name="createdDate"/><br>
+ 
   <label for="registerNo">등록번호</label>
   <input type="text" id="registerNo" name="registerNo"/><br>
   <label for="age">펫 나이</label>
   <input type="text" id="age" name="age"/><br>
-  성별<br> <label for="gender"><input type='radio' id='gender' name='gender' value='gender' />암컷</label>
-  <label><input type='radio' name='gender' value='gender' />수컷</label><br>
+  성별<br> <label for="gender"><input type='radio' id='gender' name='gender' value=0 />암컷</label>
+  <label><input type='radio' name='gender' value=1 />수컷</label><br>
   <label for="filePath">대표사진</label>
-  <input type="file" id="filePath" name="filePath"/><br>
-  <label for="breedId">품종</label>
-  <input type="text" id="breedId" name="breedId"/><br>
+  <input type="file" id="file" name="file"/><br>
 <button>등록</button>
 </form>
 </div>

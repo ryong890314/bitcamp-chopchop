@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
+import bitcamp.chopchop.domain.Pet2;
 import bitcamp.chopchop.service.MemberService;
+import bitcamp.chopchop.service.Pet2Service;
 
 @Controller
 @RequestMapping("/member")
@@ -22,6 +24,8 @@ public class MemberController {
 
   @Resource
   private MemberService memberService;
+  @Resource
+  private Pet2Service pet2Service;
 
   String uploadDir;
 
@@ -45,6 +49,10 @@ public class MemberController {
   public void list(Model model) throws Exception {
     List<Member> members = memberService.list();
     model.addAttribute("members", members);
+    System.out.println("members ====> " + members);
+    List<Pet2> pets = pet2Service.list();
+    model.addAttribute("pets", pets);
+    System.out.println("pets ===> " + pets);
   }
 
   @GetMapping("contact")

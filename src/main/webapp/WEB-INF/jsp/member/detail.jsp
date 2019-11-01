@@ -55,43 +55,34 @@
 
 <hr> 
 
-<div class="container"> 
-<h1>My Pet 정보</h1>
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/upload/member/my_pet4.jpg" class="d-block" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="/upload/member/my_pet5.jpg" class="d-block" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="/upload/member/my_pet6.jpg" class="d-block" alt="...">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+<div id='content'>
+<h1>펫 목록</h1>
+<a href='../pet2/form'>펫 등록</a><br>
+<table class='table table-hover'>
+<tr>
+  <th>대표사진</th>
+  <th>펫 이름</th>
+  <th>펫 나이</th>
+  <th>성별</th>
+  <th>펫 번호</th>
+  <th>회원 번호</th>
+  <th>등록일</th>
+  <th>등록번호</th>
+</tr>
+<c:forEach items="${pets}" var="pet">
+  <tr>
+    <td><img src="/upload/pet/${pet.filePath}" class="photo1"></td>
+    <td>${pet.name}</td>
+    <td>${pet.age}</td>
+    <td>${pet.gender}</td>
+    <td><a href='detail?no=${pet.petNo}'>${pet.petNo}</a></td>
+    <td>${pet.memberNo}</td>
+    <td>${pet.createdDate}</td>
+    <td>${pet.registerNo}</td>
+  </tr>
+</c:forEach>
+</table>
 </div>
-
-<div class="petInfo">
-<h5>이름 : 멍(3세)</h5>
-<h6>성별 : 수컷(♂)</h6>
-<h6>등록번호 : 1256629</h6>
-<h6>품종 : 푸들</h6>
-</div>
-
-
-
-
-
-
-
 
 <hr>
 <div class="container">
@@ -100,7 +91,6 @@
       <a href="delete?no=${member.memberNo}" onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
     </div>
   </div>
-</div>
 </div>
 
 
