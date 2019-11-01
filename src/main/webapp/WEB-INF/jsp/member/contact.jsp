@@ -16,7 +16,7 @@
 <!-- Stylesheet -->
 <link rel="stylesheet" href="/css/member/style_contact.css">
 <link rel="stylesheet" href="/css/member/style_footer.css">
-<jsp:include page="../header.jsp" />
+<%-- <jsp:include page="../header.jsp" /> --%>
 </head>
 <body>
 
@@ -106,15 +106,15 @@
     </div>
   </section>
   
-  <script type="text/javascript">
-    function submitForm(sub) {
-      document.forms[sub].submit();
-    }
+<!-- <!--   <script type="text/javascript"> --> -->
+<!-- //      function submitForm(sub) { -->
+<!-- //        document.forms[sub].submit(); -->
+<!-- //      } -->
     
-    function proceedSubmission() {
-      return confirm("이 내용을 메일로 전송하려면 확인 버튼을 클릭하세요!");
-    }
-  </script>
+<!-- //      function proceedSubmission() { -->
+<!-- //        return confirm("이 내용을 메일로 전송하려면 확인 버튼을 클릭하세요!"); -->
+<!-- //      } -->
+<!-- <!--  </script> --> -->
 
   <!-- ##### Footer Area Start ##### -->
   <jsp:include page="../footer.jsp" />
