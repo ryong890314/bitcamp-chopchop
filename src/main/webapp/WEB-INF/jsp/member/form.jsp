@@ -5,7 +5,6 @@
 <title>CHOPCHOP 회원가입</title>
 <link rel="stylesheet" href="/css/member/style_join.css">
 <link rel="stylesheet" href="/css/member/style_footer.css">
-
 </head>
 <body>
   <div class="bucket">
@@ -204,9 +203,9 @@ function password_check() {
     }
     
     return checkCnt == 5 ? true : false; 
-    }
+   }
 </script>
-<script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-3.1.0.min.js"></script> -->
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <jsp:include page="../footer.jsp"/>
 </body>
