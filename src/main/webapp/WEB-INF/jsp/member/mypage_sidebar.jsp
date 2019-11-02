@@ -44,7 +44,7 @@
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 				<div class="info">
 					<!-- user name받기~ -->
-					<a href="/app/member/myProfile" class='nav-user'>${loginUser.nickname}</a>
+					<a href="/app/pet/list" class='nav-user'>${loginUser.nickname}</a>
 				</div>
 			</div>
 

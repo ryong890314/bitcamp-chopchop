@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
 import bitcamp.chopchop.service.PetService;
 
@@ -29,11 +32,14 @@ public class PetController {
 
   @GetMapping("form")
   public void form() {
-    
+
   }
 
   @PostMapping("add")
-  public String add(Pet pet) throws Exception {
+  public String add(Pet pet, Member member, MultipartFile file) throws Exception {
+    System.out.println("Add form 일때 memberNo ==================================>" + pet.getMemberNo());
+    member.setPhoto(writeFile(file));
+    pet.setMemberNo(member.getMemberNo());
     petService.insert(pet);
     return "redirect:list";
   }
@@ -62,7 +68,7 @@ public class PetController {
     petService.delete(no);
     return "redirect:list";
   }
-  
+
   private String writeFile(MultipartFile file) throws Exception {
     if (file.isEmpty())
       return null;

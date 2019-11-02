@@ -5,7 +5,7 @@
 <head>
   <title>ChopChop-Add My Pet</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel='stylesheet' href='/css/common.css'>
+
 </head>
 <body>
 
@@ -14,12 +14,12 @@
 <div id='content'>
 <h1>Register My Pet</h1>
 <form action='add' method='post' enctype='multipart/form-data'>
-사진: <input type='file' name='file'><br>
-이름: <input type='text' name='name'><br>
-이메일: <input type='text' name='email'><br>
-암호: <input type='text' name='password'><br>
-전화: <input type='text' name='tel'><br>
-<button>등록</button>
+<!-- Photo: <input type='file' name='photo'><br> -->
+My Pet Name: <input type='text' name='name'><br>
+Age: <input type='text' name='age'><br>
+Register Number: <input type='text' name='registerNo'><br>
+Gender: <input type='text' name='gender'><br>
+<button>Add My Pet</button>
 </form>
 </div>
 

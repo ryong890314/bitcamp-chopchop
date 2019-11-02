@@ -6,6 +6,7 @@ import java.sql.Date;
 public class Pet implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  private int memberNo;
   private int petNo;
   private String name;
   private Date createdDate;
@@ -13,7 +14,9 @@ public class Pet implements Serializable {
   private int gender;
   private int age;
   private String photo;
-
+  
+  private Member members;
+  
   private Breed breeds;
   
   public int getPetNo() {
@@ -78,6 +81,22 @@ public class Pet implements Serializable {
 
   public void setBreeds(Breed breeds) {
     this.breeds = breeds;
+  }
+
+  public int getMemberNo() {
+    return memberNo;
+  }
+
+  public void setMemberNo(int memberNo) {
+    this.memberNo = memberNo;
+  }
+
+  public Member getMembers() {
+    return members;
+  }
+
+  public void setMembers(Member members) {
+    this.members = members;
   }
 
 }

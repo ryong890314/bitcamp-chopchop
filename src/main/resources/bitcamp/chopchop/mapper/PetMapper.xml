@@ -4,29 +4,44 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.chopchop.dao.PetDao">
 
+	<resultMap type="Member" id="MemberMap">
+		<id column="member_id" property="memberNo" />
+		<result column="post_no" property="postNo" />
+		<result column="base_address" property="baseAddress" />
+		<result column="detail_address" property="detailAddress" />
+		<result column="email" property="email" />
+		<result column="password" property="password" />
+		<result column="photo" property="photo" />
+		<result column="nickname" property="nickname" />
+		<result column="tel" property="tel" />
+	</resultMap>
+	
 	<resultMap type="Pet" id="PetMap">
 		<id column="pet_id" property="petNo" />
+		<result column="member_id" property="memberNo" />
 		<result column="name" property="name" />
 		<result column="created_date" property="createdDate" />
 		<result column="register_no" property="registerNo" />
 		<result column="gender" property="gender" />
 		<result column="age" property="age" />
 		<result column="file_path" property="photo" />
+		<collection resultMap="MemberMap" property="member"/>
 	</resultMap>
-	
+
 	<resultMap type="Breed" id="BreedMap">
 		<id column="breed_id" property="breedNo" />
 		<result column="breed" property="breed" />
 	</resultMap>
 
- 	<resultMap type="Pet" id="PetBreedMap">
-    <id column="pet_id" property="petNo" />
-    <result column="name" property="name" />
-    <result column="created_date" property="createdDate" />
-    <result column="register_no" property="registerNo" />
-    <result column="gender" property="gender" />
-    <result column="age" property="age" />
-    <result column="file_path" property="photo" />
+	<resultMap type="Pet" id="PetBreedMap">
+		<id column="pet_id" property="petNo" />
+		<result column="member_id" property="memberNo" /> 
+		<result column="name" property="name" /> 
+		<result column="created_date" property="createdDate" />
+		<result column="register_no" property="registerNo" />
+		<result column="gender" property="gender" />
+		<result column="age" property="age" />
+		<result column="file_path" property="photo" />
 
 		<collection property="breeds" ofType="Breed">
 			<id column="breed_id" property="breedNo" />
@@ -47,21 +62,16 @@
 		insert into pet
 		(
 		name,
-		breed,
 		age,
+		register_no,
 		gender,
-		register_no
+		created_date
 		)
 		value
 		(
-		#{name},
-		#{breed},
-		#{age},
-		#{gender},
-		#{register_no}
-		)
+		#{name},#{age},#{registerNo},#{gender},now())
 	</insert>
-
+	
 	<select id="findAll" resultMap="PetMap">
 		select * from pet
 	</select>
@@ -79,7 +89,8 @@
 		b.breed_id,
 		b.breed
 		from pet p
-		left outer join breed b on p.breed_id=b.breed_id
+		left outer join
+		breed b on p.breed_id=b.breed_id
 		where p.pet_id=${petNo}
 	</select>
 
@@ -87,7 +98,7 @@
 		update pet
 		<set>
 			<if test="name != null">name=#{name},</if>
-			<if test="photo != null">photo=#{photo},</if>   
+			<if test="photo != null">photo=#{photo},</if>
 			<if test="register_no != null">register_no=#{register_no},</if>
 		</set>
 		where pet_id = #{petNo}
@@ -95,6 +106,7 @@
 
 	<delete id="delete" parameterType="int">
 		delete from pet
-		where pet_id = #{pet.petNo}
+		where pet_id =
+		#{pet.petNo}
 	</delete>
 </mapper>
