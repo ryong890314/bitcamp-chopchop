@@ -10,26 +10,10 @@
    max-height: 100px;
 }
 */
-.profile_photo {
-  position: relative;
-  width: 100px;
-  height: 100px;
-}
 
-.profile_photo .mask {
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100px;
-  height: 100px;
-  background: url(/upload/member/my_photo.png) 0 0;
-}
 .imgThumb {
- width: 100px;
- height: 100px;
+ width: 200px;
+ height: 200px;
 }
 
 .container {

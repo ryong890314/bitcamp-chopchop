@@ -28,7 +28,8 @@ public class Pet2Controller {
   }
 
   @GetMapping("form")
-  public void form() {
+  public void form(Model model, int no) {
+    model.addAttribute("memberNo", no);
   }
   
   @PostMapping("add")

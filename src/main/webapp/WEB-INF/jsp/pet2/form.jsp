@@ -15,7 +15,7 @@
 <h1>마이펫 등록</h1>
 <form action='add' method='post' enctype='multipart/form-data'>
   <label for="memberNo">회원 번호</label>
-  <input type="text" id="memberNo" name="memberNo"/><br>
+  <input type="text" id="memberNo" name="memberNo" value="${memberNo}" readonly/><br>
   <label for="name">펫 이름</label>
   <input type="text" id="name" name="name"/><br>
  
