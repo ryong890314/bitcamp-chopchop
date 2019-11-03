@@ -83,6 +83,7 @@
 					<th>등록일</th>
 					<th>등록번호</th>
 				</tr>
+        
 				<c:forEach items="${pets}" var="pet">
 					<tr>
 						<td><img src="/upload/pet/${pet.filePath}" class="photo1"></td>

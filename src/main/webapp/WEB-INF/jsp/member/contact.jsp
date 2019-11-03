@@ -106,7 +106,7 @@
     </div>
   </section>
   
-<!-- <!--   <script type="text/javascript"> --> -->
+<!-- <!--   <script type="text/javascript"> -->
 <!-- //      function submitForm(sub) { -->
 <!-- //        document.forms[sub].submit(); -->
 <!-- //      } -->
@@ -114,7 +114,7 @@
 <!-- //      function proceedSubmission() { -->
 <!-- //        return confirm("이 내용을 메일로 전송하려면 확인 버튼을 클릭하세요!"); -->
 <!-- //      } -->
-<!-- <!--  </script> --> -->
+ <!--  </script> -->
 
   <!-- ##### Footer Area Start ##### -->
   <jsp:include page="../footer.jsp" />

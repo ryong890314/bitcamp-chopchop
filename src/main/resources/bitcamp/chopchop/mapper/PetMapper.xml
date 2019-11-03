@@ -61,6 +61,7 @@
 	<insert id="insert" parameterType="Pet">
 		insert into pet
 		(
+		member_id,
 		name,
 		age,
 		register_no,

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
 <style>
 .find-password-page {
@@ -86,17 +89,56 @@
 </div>
 
 <script type="text/javascript">
-function email_check() {
+
+/* function email_check() {
     var eCheckFlag = false;
     console.log("email_check");
     if (signinform.email.value == "") { // 빈 값 검사
       document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
+      $("#email_chk").css('color', 'red');
     } else {
       document.getElementById("email_chk").innerHTML = "";
       eCheckFlag = true;
     }
     return eCheckFlag;
+  } */
+  
+  function email_check() {
+    var eCheckFlag = false;
+    console.log("email_check");
+    if (signinform.email.value == "") { // 빈 값 검사
+      document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
+      $("#email_chk").css('color', 'red');
+    } else {
+      document.getElementById("email_chk").innerHTML = "";
+      eCheckFlag = true;
+    }
+    
+  // 이메일 중복체크
+  if(eCheckFlag) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        if (xhr.responseText == "1") { // 0이면 가입 가능, 아니면 중복!
+          document.getElementById("email_chk").innerHTML = "메일이 확인 되었습니다.";
+          $("#email_chk").css('color', 'green');
+          eCheckFlag = true; 
+        } else {
+          document.getElementById("email_chk").innerHTML = "없는 회원 이메일 입니다.";
+          $("#email_chk").css('color', 'red');
+        }
+      } else {
+        alert("시스템 오류 발생!");
+      }
+      }
+    };
+    xhr.open("GET", "signE?email=" + signform.email.value, false);
+    xhr.send();
   }
+  return eCheckFlag;
+}
+  
 
 	function checkAll() {
 		var checkCnt = 0;
