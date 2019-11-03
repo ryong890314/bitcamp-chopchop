@@ -90,11 +90,11 @@
           resultMap="findWithCartMap">
     select
       c.cart_id,
-      c.created_date,
+      c.option_id,
       c.quantity,
+      c.created_date,
       c.member_id,
-      m.member_id,
-      m.nickname,
+      p.product_id,
       p.title,
       p.price,
       p.discount,
@@ -104,12 +104,11 @@
       o.title,
       o.price
     from 
-      cart c 
-        left outer join member m on c.member_id=m.member_id
-        left outer join product p on c.product_id=p.product_id
-        left outer join store_photo f on p.product_id=f.product_id
-        left outer join product_option o on p.product_id=o.product_id
-    where c.member_id like #{memberNo} and o.option_id like #{optionNo}
+      cart c
+        left join product p on c.product_id=p.product_id
+	      left join store_photo f on p.product_id=f.product_id
+        left join product_option o on c.option_id=o.option_id
+    where c.member_id like #{memberNo}
     order by cart_id desc
   </select>
   
