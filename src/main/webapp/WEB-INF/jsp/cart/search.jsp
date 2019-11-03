@@ -10,6 +10,8 @@
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
   crossorigin="anonymous"></script>
   <link rel='stylesheet' href='/css/product/style.css'>
+  <link rel='stylesheet' href='/css/product/bootstrap.min.css'>
+  
 <!--   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'> -->
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
