@@ -43,6 +43,7 @@
 			console.log("email_check");
 			if (signinform.email.value == "") { // 빈 값 검사
 				document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
+				$("#email_chk").css('color', 'red');
 			} else {
 				document.getElementById("email_chk").innerHTML = "";
 				eCheckFlag = true;
@@ -55,6 +56,7 @@
 			console.log("password_check");
 			if (signinform.password.value == "") {
 				document.getElementById("password_chk").innerHTML = "비밀번호를 입력하세요.";
+				$("#password_chk").css('color', 'red');
 			} else {
 				document.getElementById("password_chk").innerHTML = "";
 				pCheckFlag = true;
