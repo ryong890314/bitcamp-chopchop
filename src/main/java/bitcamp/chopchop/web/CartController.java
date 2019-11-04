@@ -105,6 +105,7 @@ public String chkdelete(HttpSession session,
   @PostMapping("update")
   public String update(Cart cart, HttpServletRequest request) 
       throws Exception {
+        System.out.println("=======" + cart.getQuantity());
     cartService.update(cart);
     return "redirect:search";
   }

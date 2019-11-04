@@ -191,10 +191,6 @@
             checkPrice += parseInt(myCheckPrice[j].value);
           }
         }
-        // var tempShip = document.getElementsByClassName('tempShip');
-        // for (var i of tempShip) {
-        //   i.innerText = checkPrice >= 50000 || checkPrice == 0 ? "무료" : "2,500원";
-        // }
         sumCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en'); // 상품합계
         shipCheckPrice.innerHTML = Number(checkPrice >= 50000 || checkPrice == 0 ? 0 : 2500).toLocaleString('en'); // 배송비
         totalCheckPrice.innerHTML = Number(checkPrice + parseInt(checkPrice >= 50000 || checkPrice == 0 ? 0 : 2500)).toLocaleString('en'); // 합계

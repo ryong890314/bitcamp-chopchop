@@ -41,8 +41,8 @@
     <collection property="options" ofType="ProductOption">
       <id column="option_id" property="optionNo"/>
       <result column="product_id" property="productNo"/>
-      <result column="title" property="title"/>
-      <result column="price" property="price"/>
+      <result column="optionTitle" property="title"/>
+      <result column="optionPrice" property="price"/>
     </collection>
 
     <collection property="members" ofType="Member">
@@ -101,8 +101,8 @@
       f.photo_id,
       f.file_path,
       o.option_id,
-      o.title,
-      o.price
+      o.title optionTitle,
+      o.price optionPrice
     from 
       cart c
         left join product p on c.product_id=p.product_id
