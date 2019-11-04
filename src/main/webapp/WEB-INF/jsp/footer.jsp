@@ -21,7 +21,7 @@
 						<li><a href="#">이용약관</a></li>
 						<li><a href="#">개인정보처리방침</a></li>
 						<li><a href="#">광고문의</a></li>
-						<li><a href="/app/questions/form">문의사항</a></li>
+						<li><a href="/app/question/form">문의사항</a></li>
 					</ul>
 				</div>
 			</div>

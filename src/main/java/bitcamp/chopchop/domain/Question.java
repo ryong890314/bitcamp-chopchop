@@ -2,7 +2,7 @@ package bitcamp.chopchop.domain;
 
 import java.sql.Date;
 
-public class Questions {
+public class Question {
   private int no;
   private String name;
   private String email;
