@@ -2,9 +2,19 @@ package bitcamp.chopchop.web;
 
 import java.io.File;
 import java.util.List;
+import java.util.Properties;
 import java.util.UUID;
 import javax.annotation.Resource;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +24,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
+import bitcamp.chopchop.domain.Pet;
 import bitcamp.chopchop.domain.Pet2;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.Pet2Service;
+import bitcamp.chopchop.service.PetService;
 
 @Controller
 @RequestMapping("/member")
@@ -26,6 +38,8 @@ public class MemberController {
   private MemberService memberService;
   @Resource
   private Pet2Service pet2Service;
+  @Resource
+  private PetService petService;
 
   String uploadDir;
 
@@ -37,7 +51,8 @@ public class MemberController {
   public void myProfile() {}
   
   @GetMapping("form")
-  public void form() {}
+  public void form() {
+  }
 
   @PostMapping("add")
   public String add(Member member) throws Exception {
@@ -56,7 +71,14 @@ public class MemberController {
   }
 
   @GetMapping("contact")
-  public void contact(Model model) throws Exception {
+  public void contact(Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
+    model.addAttribute("member", member);
+  }
+  
+  @RequestMapping(path = "sendMail",
+  method = RequestMethod.POST)
+  public void sendMail(Model model) throws Exception {
     memberService.sendMail();
   }
 
@@ -83,7 +105,9 @@ public class MemberController {
   @RequestMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Member member = memberService.get(no);
+    List<Pet> pets = petService.getPets(no);
     model.addAttribute("member", member);
+    model.addAttribute("pets", pets);
   }
 
   @PostMapping("update")

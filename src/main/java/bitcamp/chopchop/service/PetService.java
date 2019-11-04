@@ -10,4 +10,5 @@ public interface PetService {
   Pet get(int no) throws Exception;
   void update(Pet pet) throws Exception;
   void delete(int no) throws Exception;
+  List<Pet> getPets(int no) throws Exception;
 }

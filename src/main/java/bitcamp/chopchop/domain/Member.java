@@ -1,6 +1,7 @@
 package bitcamp.chopchop.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Member implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -15,6 +16,15 @@ public class Member implements Serializable {
   private String baseAddress;
   private String detailAddress;
   private int grade;
+  private List<Pet> pets;
+
+  public List<Pet> getPets() {
+    return pets;
+  }
+
+  public void setPets(List<Pet> pets) {
+    this.pets = pets;
+  }
 
   public int getMemberNo() {
     return memberNo;
