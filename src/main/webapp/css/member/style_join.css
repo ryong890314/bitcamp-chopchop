@@ -1,16 +1,5 @@
-/* Master Stylesheet - 1.0 */
-/* :: 1.0 Import Fonts */
-@import
-  url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700")
-  ;
 /* :: 2.0 Import All CSS */
 @import url(/css/common/bootstrap.min.css);
-@import url(/css/member/classy-nav.css);
-@import url(/css/common/owl.carousel.min.css);
-@import url(/css/common/animate.css);
-@import url(/css/common/magnific-popup.css);
-@import url(/css/common/font-awesome.min.css);
-@import url(/css/common/nice-select.css);
 /* :: 3.0 Base CSS */
 * {
   margin: 0;
@@ -45,6 +34,10 @@ h1.title {
   height: 0px;
 }
 
+/* .vali_check { */
+/*   color : red; */
+/* } */
+
 form {
   width: auto;
 }
@@ -54,10 +47,26 @@ input {
   width: 94%;
   margin: 2px !important;
   border: 1px solid #DBE5E7;
-  border-radius: 0;
+  border-radius: 0 !important;
   padding: 12px 10px;
   font-size: 1rem;
-  width: 100%;
+  width: 100%; 
+
+/*   position: relative; */
+/*   z-index: 2; */
+/*   height: 54px; */
+/*   width: 100%; */
+/*   background-color: #ffffff; */
+/*   font-size: 12px; */
+/*   margin-bottom: 15px; */
+/*   border: 1px solid #dadfe5; */
+/*   border-bottom: 2px solid #dadfe5; */
+/*   border-radius: 0; */
+/*   padding: 15px 30px; */
+/*   font-weight: 500; */
+/*   color: #666666; */
+/*   -webkit-transition-duration: 500ms; */
+/*   transition-duration: 500ms;  */
 }
 
 input.btn {
@@ -77,10 +86,11 @@ input.btn:hover, input.btn:focus {
 
 .logo-area {
   position: relative;
-  margin text-align: center;
+  margin:0 auto;
+  text-align: center;
   width: 200px;
   height: 200px;
-  background: url('../choplogo.png') no-repeat;
+  background: url('/img/core-img/choplogo.png') no-repeat;
   background-size: contain;
   background-position: center;
   margin-left: auto;

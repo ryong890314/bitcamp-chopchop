@@ -2,20 +2,22 @@ package bitcamp.chopchop.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
 
 public class Pet implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  private int memberNo;
   private int petNo;
   private String name;
   private Date createdDate;
   private int registerNo;
-  private String photo;
   private int gender;
   private int age;
-
-  private List<Breed> breeds;
+  private String filePath;
+  
+  private Member members;
+  
+  private Breed breeds;
   
   public int getPetNo() {
     return petNo;
@@ -49,14 +51,6 @@ public class Pet implements Serializable {
     this.registerNo = registerNo;
   }
 
-  public String getPhoto() {
-    return photo;
-  }
-
-  public void setPhoto(String photo) {
-    this.photo = photo;
-  }
-
   public int getGender() {
     return gender;
   }
@@ -73,11 +67,36 @@ public class Pet implements Serializable {
     this.age = age;
   }
 
-  public List<Breed> getBreeds() {
+  public Breed getBreeds() {
     return breeds;
   }
 
-  public void setBreeds(List<Breed> breeds) {
+  public void setBreeds(Breed breeds) {
     this.breeds = breeds;
   }
+
+  public int getMemberNo() {
+    return memberNo;
+  }
+
+  public void setMemberNo(int memberNo) {
+    this.memberNo = memberNo;
+  }
+
+  public Member getMembers() {
+    return members;
+  }
+
+  public void setMembers(Member members) {
+    this.members = members;
+  }
+
+  public String getFilePath() {
+    return filePath;
+  }
+
+  public void setFilePath(String filePath) {
+    this.filePath = filePath;
+  }
+
 }

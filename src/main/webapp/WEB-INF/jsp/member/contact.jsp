@@ -16,7 +16,7 @@
 <!-- Stylesheet -->
 <link rel="stylesheet" href="/css/member/style_contact.css">
 <link rel="stylesheet" href="/css/member/style_footer.css">
-<jsp:include page="../header.jsp" />
+<%-- <jsp:include page="../header.jsp" /> --%>
 </head>
 <body>
 
@@ -26,10 +26,13 @@
       <div class="row justify-content-center">
         <div class="col-12 col-lg-8 col-xl-9">
           <div class="contact-content mb-100">
-            <h4 class="mb-50">CONTACT US</h4>
-            <p>고객님! 무엇을 도와드릴까요? <br>
-            고객님의 작은 질문까지 소중히 생각하며 고객님의 의견을 항상 열린 마음으로 수용하겠습니다. </p>
+            <h3 class="mb-50">CHOPCHOP RECIPE</h3>
+            <p>건강한 식재료로 만드는 반려동물 집밥!<br>
+            "밥이 보약이다!"<br>
+            내 아이에게 좋은 것만 먹이고 싶은 부모의 마음을 담습니다. <br>
+            반려 동물들에게 신선한 재료와 정성이 담긴 엄마의 집밥은 든든합니다.</p><br><br>
 
+          <h4 class="mb-50">CHOPCHOP INFOMATION</h4>
             <div class="row align-items-center mt-30 mb-50">
               <div class="col-12 col-lg-4">
                 <!-- Single Contact Info -->
@@ -68,53 +71,13 @@
               </div>
             </div>
 
-            <!-- Contact Form Area -->
-            <div class="contact-form-area mb-70">
-              <h4 class="mb-50">Get In Touch</h4>
-              <p>고객님의 의견을 E-MAIL로 보내주세요.</p> 
-
-              <form id="firstForm" onsubmit="return proceedSubmission()" action="contact" method="get" enctype="text/plain">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <input type="text" class="form-control" id="name"
-                        placeholder="이름">
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <input type="email" class="form-control" id="email"
-                        placeholder="E-mail">
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-group">
-                      <textarea name="message" class="form-control" id="message"
-                        cols="40" rows="10" placeholder="문의사항을 적어주세요."></textarea>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <button class="input-btn" type="submit">전송</button>
-                    <a href="mailto:test@test.com">관리자 문의</a>
-                  </div>
-                </div>
-              </form>
-            </div>
+            
           </div>
         </div>
       </div>
     </div>
   </section>
   
-  <script type="text/javascript">
-    function submitForm(sub) {
-      document.forms[sub].submit();
-    }
-    
-    function proceedSubmission() {
-      return confirm("이 내용을 메일로 전송하려면 확인 버튼을 클릭하세요!");
-    }
-  </script>
 
   <!-- ##### Footer Area Start ##### -->
   <jsp:include page="../footer.jsp" />
