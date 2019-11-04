@@ -48,7 +48,7 @@
                                     <p>My Profile</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-bag"></i>
+                                    <i class="ion ion-person"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
@@ -60,10 +60,10 @@
                                 <div class="inner">
                                     <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                                    <p>My Pet</p>
+                                    <p>My Recipe</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
+                                    <i class="ion ion-ios-paw"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
