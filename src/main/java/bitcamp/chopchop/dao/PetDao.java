@@ -10,5 +10,5 @@ public interface PetDao {
   int update(Pet pet) throws Exception;
   Pet findBy(int no) throws Exception;
   int delete(int no) throws Exception;
-  List<Pet> getPets(int no) throws Exception;
+//  List<Pet> getPets(int no) throws Exception;
 }

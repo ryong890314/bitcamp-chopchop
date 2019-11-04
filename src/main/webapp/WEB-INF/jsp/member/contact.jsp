@@ -26,10 +26,13 @@
       <div class="row justify-content-center">
         <div class="col-12 col-lg-8 col-xl-9">
           <div class="contact-content mb-100">
-            <h4 class="mb-50">CONTACT US</h4>
-            <p>고객님! 무엇을 도와드릴까요? <br>
-            고객님의 작은 질문까지 소중히 생각하며 고객님의 의견을 항상 열린 마음으로 수용하겠습니다. </p>
+            <h3 class="mb-50">CHOPCHOP RECIPE</h3>
+            <p>건강한 식재료로 만드는 반려동물 집밥!<br>
+            "밥이 보약이다!"<br>
+            내 아이에게 좋은 것만 먹이고 싶은 부모의 마음을 담습니다. <br>
+            반려 동물들에게 신선한 재료와 정성이 담긴 엄마의 집밥은 든든합니다.</p><br><br>
 
+          <h4 class="mb-50">CHOPCHOP INFOMATION</h4>
             <div class="row align-items-center mt-30 mb-50">
               <div class="col-12 col-lg-4">
                 <!-- Single Contact Info -->

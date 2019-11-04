@@ -40,34 +40,35 @@
             </div>
           </div>
           <div class="col-7">
-            번호 <input type='text' id='memberNo' name='memberNo'
-              value='${member.memberNo}' readonly><br> 이메일 <input
-              type='text' id='email' name='email' value='${member.email}'
-              readonly><br> 비밀번호 <input type="button"
-              name="pwUpdate" value="비밀번호 변경" data-toggle="modal"
-              data-target="#exampleModal" /><br> 닉네임 <input type='text'
-              name='nickname' value='${member.nickname}' maxlength="12"
-              onblur="nickname_check();"><br>
+            <input type='hidden' id='memberNo' name='memberNo' value='${member.memberNo}' readonly>
+            이메일 <input type='text' id='email' name='email' value='${member.email}' readonly><br>
+            비밀번호 <input type="button" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal" /><br> 
+            닉네임 <input type='text' name='nickname' value='${member.nickname}' maxlength="12" onblur="nickname_check();"><br>
             <div id="nickname_chk" class="vali_check"></div>
-            핸드폰 번호 <input type='tel' name='tel' value='${member.tel}'
-              maxlength="11" onblur="tel_check();"><br>
+            핸드폰 번호 <input type='tel' name='tel' value='${member.tel}' maxlength="11" onblur="tel_check();"><br>
             <div id="tel_chk" class="vali_check"></div>
-            우편번호 <input type='text' id="postNo" name='postNo'
-              value='${member.postNo}'> <input type="button"
-              name="post_search" value="우편번호 찾기" onclick="myPostcode();" /><br>
-            기본주소 <input type='text' id="baseAddress" name='baseAddress'
-              value='${member.baseAddress}'><br> 상세주소 <input
-              type='text' id="detailAddress" name='detailAddress'
-              value='${member.detailAddress}'><br> <input
-              type="hidden" id="nickname1" value="${member.nickname}" />
+            우편번호 <input type='text' id="postNo" name='postNo' value='${member.postNo}'> 
+            <input type="button" name="post_search" value="우편번호 찾기" onclick="myPostcode();" /><br>
+            기본주소 <input type='text' id="baseAddress" name='baseAddress' value='${member.baseAddress}'><br> 
+            상세주소 <input type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'><br> 
+            <input type="hidden" id="nickname1" value="${member.nickname}" />
             <!-- 원래 닉네임값  -->
             <button>변경</button>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <a href="delete?no=${member.memberNo}"
+                  onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
+              </div>
+            </div>
           </div>
         </div>
       </form>
     </div>
 
     <hr>
+    
     <div id='content' class="container">
       <h1>My Pet Infomation</h1>
       <a href='/app/pet2/form?no=${member.memberNo}'>펫 등록</a><br>
@@ -75,7 +76,7 @@
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row">
             <div class="col-md-4">
-              <img src="/upload/pet/${pet.photo}" class="card-img" alt="...">
+              <img src="/upload/pet/${pet.filePath}" class="card-img" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -91,43 +92,30 @@
         </div>
       </c:forEach>
     </div>
-    <!-- 이미지 상하정렬 
-    <div class="container">
-      <h1>My Pet Infomation</h1>
-      <a href='/app/pet2/form?no=${member.memberNo}'>펫 등록</a><br>
-      <div class="card-deck">
-        <c:forEach items="${pets}" var="pet">
-          <div class="card" style="max-width: 300px;">
-          <img src="/upload/pet/${pet.photo}" class="card-img-top card-img">
-          <div class="card-body" style="">
-            <h5 class="card-title">${pet.name}(${pet.age}세, 
-                <c:if test="${pet.gender eq 0}">
-                           수컷
-                </c:if>
-                <c:if test="${pet.gender eq 1}">
-                          암컷
-                </c:if>
-                )</h5>
-                <p class="card-text">등록일 : ${pet.createdDate}<br>등록번호 : ${pet.registerNo}<br></p>
-                <p class="card-text"><small class="text-muted"><a href="#">수정 </a><a href="#"> 삭제</a></small></p>
-          </div>
-        </div>
-        </c:forEach>
-      </div>
-    </div>
-     -->
-    
-    
-    <hr>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <a href="delete?no=${member.memberNo}"
-            onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
-        </div>
-      </div>
-    </div>
-
+<!--    이미지 상하정렬  -->
+<!--     <div class="container"> -->
+<!--       <h1>My Pet Infomation</h1> -->
+<%--       <a href='/app/pet2/form?no=${member.memberNo}'>펫 등록</a><br> --%>
+<!--       <div class="card-deck"> -->
+<%--         <c:forEach items="${pets}" var="pet"> --%>
+<!--           <div class="card" style="max-width: 300px;"> -->
+<%--           <img src="/upload/pet/${pet.photo}" class="card-img-top card-img"> --%>
+<!--           <div class="card-body" style=""> -->
+<%--             <h5 class="card-title">${pet.name}(${pet.age}세,  --%>
+<%--                 <c:if test="${pet.gender eq 0}"> --%>
+<!--                            수컷 -->
+<%--                 </c:if> --%>
+<%--                 <c:if test="${pet.gender eq 1}"> --%>
+<!--                           암컷 -->
+<%--                 </c:if> --%>
+<!--                 )</h5> -->
+<%--                 <p class="card-text">등록일 : ${pet.createdDate}<br>등록번호 : ${pet.registerNo}<br></p> --%>
+<!--                 <p class="card-text"><small class="text-muted"><a href="#">수정 </a><a href="#"> 삭제</a></small></p> -->
+<!--           </div> -->
+<!--         </div> -->
+<%--         </c:forEach> --%>
+<!--       </div> -->
+<!--     </div> -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -217,6 +205,7 @@
       var pCheckFlag = false;
       if (document.getElementById("nowPassword").value == "") {
         document.getElementById("password1_chk").innerHTML = "비밀번호를 입력하세요.";
+        $("#password1_chk").css('color', 'red');
       }
 
       // 비밀번호 정규식 검사 
@@ -225,6 +214,7 @@
         if (!passwordRegExp
             .test(document.getElementById("nowPassword").value)) {
           document.getElementById("password1_chk").innerHTML = "8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+          $("#password1_chk").css('color', 'red');
         } else {
           var xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function() {
@@ -232,6 +222,7 @@
               if (xhr.status == 200) {
                 if (xhr.responseText == "0") { // 1이면 동일, 0이면 패스워드 틀림
                   document.getElementById("password1_chk").innerHTML = "패스워드를 다시 확인해주세요.";
+                  $("#password1_chk").css('color', 'red');
                 } else {
                   document.getElementById("password1_chk").innerHTML = "";
                   pCheckFlag = true;
@@ -256,6 +247,7 @@
       var pCheckFlag = false;
       if (document.getElementById("newPassword").value == "") {
         document.getElementById("password2_chk").innerHTML = "새 비밀번호를 입력하세요.";
+        $("#password2_chk").css('color', 'red');
       }
 
       // 비밀번호 정규식 검사 
@@ -264,8 +256,10 @@
         if (!passwordRegExp
             .test(document.getElementById("newPassword").value)) {
           document.getElementById("password2_chk").innerHTML = "8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+          $("#password2_chk").css('color', 'red');
         } else {
           document.getElementById("password2_chk").innerHTML = "안전한 비밀번호입니다.";
+          $("#password2_chk").css('color', 'green');
           pCheckFlag = true;
         }
       }
@@ -276,6 +270,7 @@
       var p2CheckFlag = false;
       if (document.getElementById("newPassword2").value == "") {
         document.getElementById("password3_chk").innerHTML = "비밀번호 확인을 입력하세요.";
+        $("#password3_chk").css('color', 'red');
       }
 
       // 비밀번호 & 비밀번호 확인이 같은 값인지 검사 
@@ -283,6 +278,7 @@
         if (document.getElementById("newPassword").value != document
             .getElementById("newPassword2").value) {
           document.getElementById("password3_chk").innerHTML = "두 비밀번호가 다릅니다.";
+          $("#password3_chk").css('color', 'red');
         } else {
           document.getElementById("password3_chk").innerHTML = "";
           p2CheckFlag = true;
@@ -317,6 +313,7 @@
       var nCheckFlag = false;
       if (form.nickname.value == "") {
         document.getElementById("nickname_chk").innerHTML = "닉네임을 입력하세요.";
+        $("#nickname_chk").css('color', 'red');
       }
       // 닉네임 정규식 검사 
       var nRegPass = false;
@@ -324,6 +321,7 @@
         var nicknameRegExp = /^[a-zA-z0-9가-힣]{2,12}$/;
         if (!nicknameRegExp.test(form.nickname.value)) {
           document.getElementById("nickname_chk").innerHTML = "닉네임 형식이 올바르지 않습니다!";
+          $("#nickname_chk").css('color', 'red');
         } else {
           nRegPass = true;
         }
@@ -334,6 +332,7 @@
         // 원래 닉네임과 동일하게 쓴다면 ajax 돌 필요도 없다.
         if (form.nickname.value == form.nickname1.value) {
           document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
+          $("#nickname_chk").css('color', 'green');
           nCheckFlag = true;
         } else {
           var xhr = new XMLHttpRequest();
@@ -343,8 +342,10 @@
                 // 0이면 가입 가능, 아니면 중복!
                 if (xhr.responseText == "1") {
                   document.getElementById("nickname_chk").innerHTML = "중복된 닉네임입니다.";
+                  $("#nickname_chk").css('color', 'red');
                 } else {
                   document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
+                  $("#nickname_chk").css('color', 'green');
                   nCheckFlag = true;
                 }
               } else {
@@ -366,12 +367,14 @@
       var tCheckFlag = false;
       if (form.tel.value == "") {
         document.getElementById("tel_chk").innerHTML = "핸드폰 번호를 입력하세요.";
+        $("#tel_chk").css('color', 'red');
       }
       // 핸드폰 번호 정규식 검사 
       if (form.tel.value != "") {
         var telRegExp = /^[0-9]{3}[0-9]{3,4}[0-9]{4}$/;
         if (!telRegExp.test(form.tel.value)) {
           document.getElementById("tel_chk").innerHTML = "핸드폰 번호의 형식이 올바르지 않습니다.";
+          $("#tel_chk").css('color', 'red');
         } else {
           document.getElementById("tel_chk").innerHTML = "";
           tCheckFlag = true;

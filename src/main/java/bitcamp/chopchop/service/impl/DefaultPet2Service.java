@@ -23,4 +23,13 @@ public class DefaultPet2Service implements Pet2Service {
     pet2Dao.insert(pet2);
   }
 
+  @Override
+  public List<Pet2> getPets(int no) throws Exception {
+    List<Pet2> pets = pet2Dao.getPets(no);
+    if (pets == null) {
+      throw new Exception("해당번호의 데이터가 없음");
+    }
+    return pets;
+  }
+
 }

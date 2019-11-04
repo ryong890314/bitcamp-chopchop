@@ -2,17 +2,8 @@ package bitcamp.chopchop.web;
 
 import java.io.File;
 import java.util.List;
-import java.util.Properties;
 import java.util.UUID;
 import javax.annotation.Resource;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -64,10 +55,8 @@ public class MemberController {
   public void list(Model model) throws Exception {
     List<Member> members = memberService.list();
     model.addAttribute("members", members);
-    System.out.println("members ====> " + members);
-    List<Pet2> pets = pet2Service.list();
-    model.addAttribute("pets", pets);
-    System.out.println("pets ===> " + pets);
+    List<Pet> pets = petService.list();
+    model.addAttribute("pets", pets); 
   }
 
   @GetMapping("contact")
@@ -105,7 +94,7 @@ public class MemberController {
   @RequestMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Member member = memberService.get(no);
-    List<Pet> pets = petService.getPets(no);
+    List<Pet2> pets = pet2Service.getPets(no);
     model.addAttribute("member", member);
     model.addAttribute("pets", pets);
   }

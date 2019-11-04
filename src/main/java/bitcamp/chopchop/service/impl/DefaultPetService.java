@@ -44,13 +44,13 @@ public class DefaultPetService implements PetService{
     }
   }
 
-  @Override
-  public List<Pet> getPets(int no) throws Exception {
-    List<Pet> pets = petDao.getPets(no);
-    if (pets == null) {
-      throw new Exception("해당번호의 데이터가 없음");
-    }
-    return pets;
-  }
+//  @Override
+//  public List<Pet> getPets(int no) throws Exception {
+//    List<Pet> pets = petDao.getPets(no);
+//    if (pets == null) {
+//      throw new Exception("해당번호의 데이터가 없음");
+//    }
+//    return pets;
+//  }
 
 }
