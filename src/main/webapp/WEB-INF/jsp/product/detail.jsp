@@ -119,7 +119,6 @@
             </form>
           </div>
         </div>
-      </div>
       <hr class="my-4">
       <h1 class="display-4">${product.title}</h1>
       <p class="lead">${product.detail}</p>
@@ -131,37 +130,9 @@
       </p>
       <hr class="my-4">
 
-<!--       <div class="col-12 col-lg-8 col-xl-9"> -->
-        <!-- Comment Area Start -->
-        <div class="comment_area mb-100">
-          <h4 class="mb-50">상품 문의</h4>
-          <ol>
-            <!-- Single Comment Area -->
-            <li class="single_comment_area" id="isComment">
-              <!-- Comment Content -->
-              <div class="comment-content d-flex">
-                <!-- Comment Author -->
-                  <div class="comment-author">
-                <c:forEach items="${members2}" var= "member2">
-                    <p><span id="memberName" style="font-size:14px;">${member2.nickname}</span></p>
-                </c:forEach>
-                  </div>
-                <!-- Comment Meta -->
-                <div class="comment-meta">
-                  <c:forEach items="${product.comments}" var = "comment">
-                    <div class="d-flex">
-                      <a href="#" class="post-author">${comment.title}</a>
-                      <a href="#" class="post-date">${comment.createdDate}</a>
-                      <a href="../comment/updateform?no=${comment.commentNo}" class="reply">수정</a>
-                    </div>
-                    <p>${comment.content}</p>
-                  </c:forEach>
-                </div>
-              </div>
-            </li>
-          </ol>
-        </div>
-        
+      <jsp:include page="../comment/productCommentList.jsp"/>
+      
+      
 <!--         <div class="post-a-comment-area mb-30"> -->
 <!--           <h4 class="mb-50" style="margin-top:30px !important;">Leave a reply</h4> -->
 <!--           <form action="..comment/add" method="post"> -->
@@ -201,7 +172,7 @@
         </div>
       </div>
     </div>
-  </div>
+      </div>
 
   <jsp:include page="../footer.jsp"/>
   <script>
