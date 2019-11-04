@@ -25,8 +25,9 @@
 </head>
 
 <body>
+
 	<!-- Preloader -->
-	<div class="preloader d-flex align-items-center justify-content-center">
+<!-- 	<div class="preloader d-flex align-items-center justify-content-center">
 		<div class="preloader-content">
 			<h3>Cooking in progress..</h3>
 			<div id="cooking">
@@ -46,14 +47,13 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
+	</div> -->
+	
 	<!-- ##### Header Area Start ##### -->
 	<header class="header-area">
 		<!-- Logo Area -->
 		<div class="logo-area">
-			<a href="/app/member/list">
-				</a>
+			<a href="/app/member/list"> </a>
 		</div>
 
 		<!-- Top Header Area -->
@@ -122,30 +122,38 @@
 									<li><a href="">ChopStore</a></li>
 									<li><a href="">ChopTalk</a></li>
 									<li><a href="">ChopRank</a></li>
+									<c:if test="${not empty loginUser}">
+										<li><a href="/app/recipe/form" class="nav-link nav-item">
+												<i class="fa fa-cutlery fa-lg" title="Add Recipe"></i>
+										</a></li>
+										<li><a href="/app/cart/search" class="nav-link nav-item"
+											title="View Cart"> <i class="fa fa-shopping-cart fa-lg"></i>
+										</a></li>
+									</c:if>
+									<c:if test="${empty loginUser}">
+										<li><a class='classy-btn login-area'
+											href='/app/auth/signin'>Sign in</a></li>
+									</c:if>
+									<c:if test="${not empty loginUser}">
+										<li><a href="/app/member/myProfile" class='nav-user'>Hello!
+												${loginUser.nickname}</a></li>
+									</c:if>
+									<c:if test="${not empty loginUser}">
+										<li><a class='classy-btn c' href='/app/auth/logout'>Sign
+												out</a></li>
+									</c:if>
+
 								</ul>
 
 								<!-- Login/Register -->
-								<div>
-									<c:if test="${not empty loginUser}">
-										<a href="/app/recipe/form" class="nav-link nav-item"> <i
-											class="fa fa-cutlery fa-lg" title="Add Recipe"></i>
-										</a>
-										<a href="/app/cart/search" class="nav-link nav-item" title="View Cart"> <i
-											class="fa fa-shopping-cart fa-lg"></i>
-										</a>
-
-									</c:if>
-									<c:if test="${empty loginUser}">
-										<a class='classy-btn login-area' href='/app/auth/signin'>Sign
-											in</a>
-									</c:if>
+								<%-- 								<div>
 									<c:if test="${not empty loginUser}">
 										<a>Hello!</a>
 										<a href="/app/member/myProfile" class='nav-user'>${loginUser.nickname}</a>
 										<a class='classy-btn login-area' href='/app/auth/logout'>Sign
 											out</a>
 									</c:if>
-								</div>
+								</div> --%>
 							</div>
 							<!-- Nav End -->
 						</div>
