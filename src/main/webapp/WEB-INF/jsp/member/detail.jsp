@@ -77,7 +77,7 @@
 		</div>
 
 		<hr>
-<jsp:include page="../pet/detail.jsp" />
+<jsp:include page="../pet2/detail.jsp" />
 
 		<!--    이미지 상하정렬  -->
 		<!--     <div class="container"> -->
