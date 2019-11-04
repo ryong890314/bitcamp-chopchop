@@ -56,10 +56,12 @@
     <button id="addOption">추가</button><br><br>
   </div>
   <jsp:include page="../footer.jsp"/>
+  <script id="str">
+    '<input type="text" name="options">'
+  </script>
   <script>
     "use strict"
-    var str = '<input type="text" name="options">';
-    var html = str.html()
+    var html = $('#str').html;
     $('#addOption').on('click', function() {
       $('#optionForm').append(str);
     })
