@@ -74,22 +74,22 @@ public class RecipeController {
   @GetMapping("detail")
   public void detail(Model model, int no, HttpSession session) throws Exception {
     Recipe recipe = recipeService.get(no);
-    //Member member = (Member) session.getAttribute("loginUser");
-    Member member = memberService.get(recipe.getMemberNo());
+    Member member = memberService.get(recipe.getMemberNo()); // 작성자멤버
+    Member member2 = (Member) session.getAttribute("loginUser"); // 글을 보는사람
     System.out.println("memberNo::::::::" + member.getMemberNo());
     RecipeLike recipeLike = new RecipeLike();
-    recipeLike.setMemberNo(member.getMemberNo());
+    recipeLike.setMemberNo(member2.getMemberNo());
     recipeLike.setRecipeNo(recipe.getRecipeNo());
     int check = recipeService.findLike(recipeLike);
     System.out.println("============================");
-    System.out.println("check" + check);
+    System.out.println("check좋아요했는지  1이면 했음" + check);
     boolean likeCheck = false;
-    if (check == 1) {
+    if (check == 1) { // 좋아요햇음
       likeCheck = true;
-    } else if (check == 0){
+    } else if (check == 0){ // 좋아요 안했음
       likeCheck = false;
     }
-    System.out.println("멤버닉네임====>" + member.getNickname());
+    System.out.println("멤버닉네임====>" + member2.getNickname());
     
     model.addAttribute("recipe", recipe);
     model.addAttribute("member", member);
