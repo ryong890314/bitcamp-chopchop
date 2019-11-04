@@ -102,6 +102,7 @@
                                               <div class='img'>
                                                <img class='preview-cooking-image' src='/upload/recipe/${cooking.filePath}'></div>
                                               <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value='${cooking.filePath}'>
+                                              <input class='cooking-check' type='hidden' name='fileNo' value='${cooking.cookingNo}'>
                                           <button class='btn btn-outline btn-block btn-sm' name='delCookingBtn' type='button' onclick='delCooking(event)'>순서 삭제</button>
                                             </div>
                                           <div class='des'><textarea class='form-control' name='cookingContent'>${cooking.content}</textarea></div>
@@ -199,6 +200,7 @@
        <img class='preview-cooking-image'>
       </div>
       <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value=''>
+      <input class='cooking-check' type='hidden' name='fileNo' value='${cooking.cookingNo}'>
       <button class='btn btn-outline btn-block btn-sm' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
     </div>
     <div class='des'><textarea class='form-control' name='cookingContent'></textarea></div>
@@ -246,6 +248,9 @@ function readURL2(input) {
 };
 
 $(document).on('change', '.my-cooking-image', function() {
+  var check = $(this.parentNode).find('.cooking-check');
+  check.val(0);
+  console.log(check.val());
   readURL2(this);
 });
 </script>

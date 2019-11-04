@@ -83,7 +83,6 @@ public class RecipeController {
       hashMap.put("member", member);
       hashMap.put("recipe", recipe);
       jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
-
       return jsonResult;
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());

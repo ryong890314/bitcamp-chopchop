@@ -1,5 +1,6 @@
 package bitcamp.chopchop.service;
 
+import java.util.HashMap;
 import java.util.List;
 import bitcamp.chopchop.domain.Recipe;
 import bitcamp.chopchop.domain.RecipeLike;
@@ -11,6 +12,7 @@ public interface RecipeService {
   Recipe get(int no) throws Exception;
   void insert(Recipe recipe) throws Exception;
   void update(Recipe recipe) throws Exception;
+  void deleteFile(HashMap<String,Object> hashMap) throws Exception;
   void delete(int no) throws Exception;
   List<Recipe> search(String keyword) throws Exception; 
   

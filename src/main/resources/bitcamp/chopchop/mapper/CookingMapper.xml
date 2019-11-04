@@ -27,8 +27,31 @@
   values(#{recipeNo},#{processNo},#{filePath},#{content})
 </insert>
 
-<delete id="delete" parameterType="int">
+<delete id="deleteAll" parameterType="int">
   delete from cooking
   where recipe_id=#{value}
 </delete>
+
+<delete id="delete" parameterType="map">
+  delete from cooking
+  where 
+    not cooking_id in (
+    <foreach collection="fileNo" item="cookingNo" index="index" separator=",">
+      #{cookingNo} 
+    </foreach>
+    )
+    and recipe_id=#{recipeNo}
+</delete>
+
+<update id="update" parameterType="Cooking">
+  update cooking
+  <set>
+    <if test="processNo != null">process_no=#{processNo},</if>
+    <if test="filePath != null">file_path=#{filePath},</if>
+    <if test="content != null">content=#{content}</if>
+  </set>
+  where cooking_id=#{cookingNo}
+</update>
+
+
 </mapper>

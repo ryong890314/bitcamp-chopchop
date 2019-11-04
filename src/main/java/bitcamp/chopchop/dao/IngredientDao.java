@@ -6,6 +6,6 @@ import bitcamp.chopchop.domain.Ingredient;
 public interface IngredientDao {
   int insert(Ingredient ingredient) throws Exception;
   List<Ingredient> findAll(int recipeNo) throws Exception;
-  int delete(int no) throws Exception;
+  int deleteAll(int no) throws Exception;
   
 }

@@ -2,6 +2,7 @@ package bitcamp.chopchop.web;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import bitcamp.chopchop.domain.Cooking;
 import bitcamp.chopchop.domain.Ingredient;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Recipe;
@@ -88,11 +90,10 @@ public class RecipeController {
       likeCheck = false;
     }
     System.out.println("멤버닉네임====>" + member.getNickname());
-
+    
     model.addAttribute("recipe", recipe);
     model.addAttribute("member", member);
     model.addAttribute("isCheck", likeCheck);
-
   }
 
   @GetMapping("updateform")
@@ -101,17 +102,17 @@ public class RecipeController {
     model.addAttribute("recipe", recipe);
   }
 
+  /*
   @PostMapping("update")
-  public String update(Recipe recipe, int memberNo, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
+  public String update(Recipe recipe, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
       int[] processNo) throws Exception {
-    System.out.println("파일넘어옴??????==>"+filePath.getSize());
-    
+
     if (filePath.getSize() > 0) {
       String filename = UUID.randomUUID().toString();
       recipe.setThumbnail(filename);
       filePath.transferTo(new File(uploadDir + "/" + filename));
     }
-    
+
     List<Ingredient> ingredients = new ArrayList<>();
     for (int i = 0; i < ingredientNames.length; i++) {
       Ingredient temp = new Ingredient();
@@ -120,9 +121,57 @@ public class RecipeController {
       ingredients.add(temp);
       recipe.setIngredients(ingredients);
     }
-
     recipe.setCookings(cookingFileWriter.getCookings(filePath2, processNo, cookingContent));
 
+
+    recipeService.update(recipe);
+    return "redirect:list";
+  }
+  */
+  
+  @PostMapping("update")
+  public String update(Recipe recipe, MultipartFile filePath, MultipartFile[] filePath2, int[] fileNo, String[] ingredientNames, String[] quantity, String[] cookingContent, 
+      int[] processNo) throws Exception {
+    
+    for (int no : fileNo) {
+      System.out.println("====================");
+      System.out.println(no);
+    }
+
+    if (filePath.getSize() > 0) {
+      String filename = UUID.randomUUID().toString();
+      recipe.setThumbnail(filename);
+      filePath.transferTo(new File(uploadDir + "/" + filename));
+    }
+
+    List<Ingredient> ingredients = new ArrayList<>();
+    for (int i = 0; i < ingredientNames.length; i++) {
+      Ingredient temp = new Ingredient();
+      temp.setName(ingredientNames[i]);
+      temp.setQuantity(quantity[i]);
+      ingredients.add(temp);
+      recipe.setIngredients(ingredients);
+    }
+    HashMap<String,Object> hashMap = new HashMap<>();
+    hashMap.put("fileNo", fileNo);
+    hashMap.put("recipeNo", recipe.getRecipeNo());
+    recipeService.deleteFile(hashMap);
+    
+    List<Cooking> cookings = new ArrayList<>();
+    for (int i = 0; i < processNo.length; i++) {
+      if (filePath2[i].isEmpty())
+        continue;
+      String filename = UUID.randomUUID().toString();
+      filePath2[i].transferTo(new File(uploadDir + "/" + filename));
+      
+      Cooking cooking = new Cooking();
+      cooking.setProcessNo(processNo[i]);
+      cooking.setFilePath(filename);
+      cooking.setContent(cookingContent[i]);
+      cookings.add(cooking);
+      recipe.setCookings(cookings);
+    }
+    
     recipeService.update(recipe);
     return "redirect:list";
   }

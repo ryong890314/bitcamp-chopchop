@@ -1,5 +1,6 @@
 package bitcamp.chopchop.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -29,17 +30,14 @@ public class DefaultRecipeService implements RecipeService {
     }
 
     int result = recipeDao.insert(recipe);
-    System.out.println("=============================");
-    System.out.println(result);
-    System.out.println("=============================");
-    for (Ingredient i : recipe.getIngredients()) {
-      i.setRecipeNo(recipe.getRecipeNo());
-      ingredientDao.insert(i);
+    for (Ingredient ingredient : recipe.getIngredients()) {
+      ingredient.setRecipeNo(recipe.getRecipeNo());
+      ingredientDao.insert(ingredient);
     }
 
-    for (Cooking c : recipe.getCookings()) {
-      c.setRecipeNo(recipe.getRecipeNo());
-      cookingDao.insert(c);
+    for (Cooking cooking : recipe.getCookings()) {
+      cooking.setRecipeNo(recipe.getRecipeNo());
+      cookingDao.insert(cooking);
     }
   }
 
@@ -57,7 +55,7 @@ public class DefaultRecipeService implements RecipeService {
   public List<Recipe> list() throws Exception {
     return recipeDao.findAll();
   }
-  
+
   @Override
   public List<Recipe> listSort(String column) throws Exception {
     return recipeDao.findSort(column);
@@ -70,8 +68,8 @@ public class DefaultRecipeService implements RecipeService {
       throw new Exception("데이터가 없습니다.");
     }
     recipeLikeDao.deleteAll(no);
-    cookingDao.delete(no);
-    ingredientDao.delete(no);
+    cookingDao.deleteAll(no);
+    ingredientDao.deleteAll(no);
     recipeDao.delete(no);
   }
 
@@ -84,28 +82,29 @@ public class DefaultRecipeService implements RecipeService {
   @Transactional
   @Override
   public void update(Recipe recipe) throws Exception {
-    
+
     recipeDao.update(recipe);
-    
+
     if (recipe.getIngredients().size() > 0) {
-      ingredientDao.delete(recipe.getRecipeNo());
+      ingredientDao.deleteAll(recipe.getRecipeNo());
       for (Ingredient i : recipe.getIngredients()) {
-        System.out.println("==========================");
-        System.out.println(recipe.getRecipeNo());
-        System.out.println("==========================");
         i.setRecipeNo(recipe.getRecipeNo());
         ingredientDao.insert(i);
       }
     }
-    if (recipe.getCookings().size() > 0) {
-      cookingDao.delete(recipe.getRecipeNo());
-      for (Cooking c : recipe.getCookings()) {
-        c.setRecipeNo(recipe.getRecipeNo());
-        cookingDao.insert(c);
+
+    if (recipe.getCookings() != null) {
+      for (Cooking cooking : recipe.getCookings()) {
+        cooking.setRecipeNo(recipe.getRecipeNo());
+        cookingDao.insert(cooking);
       }
     }
   }
 
+  @Override
+  public void deleteFile(HashMap<String, Object> hashMap) throws Exception {
+    cookingDao.delete(hashMap);
+  }
 
   @Transactional
   @Override

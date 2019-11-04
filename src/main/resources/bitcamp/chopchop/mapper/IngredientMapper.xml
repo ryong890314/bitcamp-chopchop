@@ -27,7 +27,7 @@
   values(#{recipeNo},#{name},#{quantity})
 </insert>
 
-<delete id="delete" parameterType="int">
+<delete id="deleteAll" parameterType="int">
   delete from ingredient
   where recipe_id=#{value}
 </delete>

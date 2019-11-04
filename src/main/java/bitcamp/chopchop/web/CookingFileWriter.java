@@ -25,7 +25,8 @@ public class CookingFileWriter {
     List<Cooking> cookings = new ArrayList<>();
     for (int i = 0; i < processNo.length; i++) {
       Cooking cooking = new Cooking();
-
+      System.out.println("=========================사진 들어왓나");
+      System.out.println(filePath2[i].getSize());
       if (filePath2[i].isEmpty())
         continue;
       String filename = UUID.randomUUID().toString();
