@@ -60,7 +60,7 @@
 							<p>My Profile</p>
 					</a></li>
 					<li class="nav-item"><a href="/app/member/detail?no=${loginUser.memberNo}"
-						class="nav-link"> <i class="nav-icon fa fa-utensils"></i>
+						class="nav-link"> <i class="nav-icon fa fa-paw"></i>
 							<p>My Recipe</p>
 					</a></li>
 					<li class="nav-item"><a href="/app/member/detail?no=${loginUser.memberNo}"

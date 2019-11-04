@@ -16,19 +16,8 @@
 <img src='/upload/pet/${pet.photo}' class='photo1'><br> 
 
 <input type='file' name='file'><br>
-    <div class="col-5">
-        <div id='content'>
-          <div class="profile_photo">
-            <input type="hidden" id="photo2" value="${member.photo}" />
-            <img id="imgThumb" class="imgThumb">
-            <span class="mask"></span>
-          </div>
-          <input type='file' id="file" name='file'><br>
-      </div>
-    </div> 
-    
 번호: <input type='text' name='no' value='${pet.petNo}' readonly><br>
-펫 이름: <input type='text' name='name' value='${pet.name}'><br>
+펫 이름: ${pet.name}
 등록 번호: <input type='text' name='password' value='${pet.registerNo}'><br>
 가입일: ${pet.createdDate}<br>
 Breed: <input type='text' name='breed' value='${pet.breeds.breed}' readonly><br>

@@ -13,7 +13,7 @@ public class Pet implements Serializable {
   private int registerNo;
   private int gender;
   private int age;
-  private String photo;
+  private String filePath;
   
   private Member members;
   
@@ -49,14 +49,6 @@ public class Pet implements Serializable {
 
   public void setRegisterNo(int registerNo) {
     this.registerNo = registerNo;
-  }
-
-  public String getPhoto() {
-    return photo;
-  }
-
-  public void setPhoto(String photo) {
-    this.photo = photo;
   }
 
   public int getGender() {
@@ -97,6 +89,14 @@ public class Pet implements Serializable {
 
   public void setMembers(Member members) {
     this.members = members;
+  }
+
+  public String getFilePath() {
+    return filePath;
+  }
+
+  public void setFilePath(String filePath) {
+    this.filePath = filePath;
   }
 
 }
