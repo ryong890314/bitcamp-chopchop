@@ -2,6 +2,7 @@ package bitcamp.chopchop.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 //레시피 댓글
 public class RecipeComment implements Serializable {
@@ -11,6 +12,8 @@ public class RecipeComment implements Serializable {
   private int recipeNo;
   private int memberNo;
   private String content;
+  
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   
   public int getCommentNo() {

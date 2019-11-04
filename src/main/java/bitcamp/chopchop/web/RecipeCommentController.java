@@ -2,11 +2,13 @@ package bitcamp.chopchop.web;
 
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.RecipeComment;
 import bitcamp.chopchop.service.RecipeCommentService;
 
@@ -20,7 +22,10 @@ public class RecipeCommentController {
   }
   
   @PostMapping("add")
-  public String add(RecipeComment recipeComment) throws Exception {
+  public String add(RecipeComment recipeComment, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
+    recipeComment.setMemberNo(member.getMemberNo());
+    
     recipeCommentService.insert(recipeComment);
     return "redirect:/app/recipe/list";
   }
@@ -41,8 +46,8 @@ public class RecipeCommentController {
   @GetMapping("list")
   public void list(Model model) throws Exception {
     // 모든 댓글 불러온다.
-    List<RecipeComment> recipeComment = recipeCommentService.list();
-    model.addAttribute("recipeComments", recipeComment);
+    List<RecipeComment> recipeComments = recipeCommentService.list();
+    model.addAttribute("recipeComments", recipeComments);
   }
   
   @PostMapping("update")

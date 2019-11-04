@@ -77,11 +77,25 @@ public class RecipeController {
     try {
       Recipe recipe = recipeService.get(no);
       Member member = memberService.get(recipe.getMemberNo());
+      Member viewer = (Member) session.getAttribute("loginUser");
+      
+      RecipeLike recipeLike = new RecipeLike();
+      recipeLike.setMemberNo(viewer.getMemberNo());
+      recipeLike.setRecipeNo(recipe.getRecipeNo());
+      int check = recipeService.findLike(recipeLike);
+      boolean likeCheck = false;
+      if (check == 1) { // 좋아요햇음
+        likeCheck = true;
+      } else if (check == 0){ // 좋아요 안했음
+        likeCheck = false;
+      }
 
       JsonResult jsonResult = new JsonResult();
       HashMap<String,Object> hashMap = new HashMap<>();
       hashMap.put("member", member);
       hashMap.put("recipe", recipe);
+      hashMap.put("isCheck", likeCheck);
+      hashMap.put("viewer", viewer);
       jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
       return jsonResult;
     } catch (Exception e) {

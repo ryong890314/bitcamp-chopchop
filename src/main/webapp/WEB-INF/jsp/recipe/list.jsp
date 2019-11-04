@@ -139,15 +139,12 @@ function loadList() {
 }
 </script>
 
-
-
 <script>
 "use strict";
 
 var dbody = $('#food');
 var templateSrc = $('#t1').html();
 var template = Handlebars.compile(templateSrc);
-console.log(templateSrc + "템플릿html");
 
 $('#sortBtn').click(function() {
   $('.my-list').remove();

@@ -113,9 +113,24 @@
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 <script>
+loadData();
+
+function loadData() {
+  $.get("/app/json/recipe/detail?no=" + ${recipe.recipeNo}, function(data) {
+    console.log(data.result);
+    var viewerNo = data.result.viewer.memberNo;
+    var writerNo = data.result.member.memberNo;
+    if (viewerNo != writerNo) {
+      $('#updateBtn').css('display', 'none');
+    }
+  });
+}
+
+</script>
+
+<script>
 "use strict";
 $('#likeBtn').click(function() {
-  
   $.get("/app/json/recipe/like?no=" + ${recipe.recipeNo}, function(data) {
     if(data.result.isLike) { //좋아요를 눌름
       $('#likeimg').attr('src', '/img/recipe/like.png');

@@ -75,10 +75,10 @@ public class RecipeController {
   public void detail(Model model, int no, HttpSession session) throws Exception {
     Recipe recipe = recipeService.get(no);
     Member member = memberService.get(recipe.getMemberNo()); // 작성자멤버
-    Member member2 = (Member) session.getAttribute("loginUser"); // 글을 보는사람
+    Member viewer = (Member) session.getAttribute("loginUser"); // 글을 보는사람
     System.out.println("memberNo::::::::" + member.getMemberNo());
     RecipeLike recipeLike = new RecipeLike();
-    recipeLike.setMemberNo(member2.getMemberNo());
+    recipeLike.setMemberNo(viewer.getMemberNo());
     recipeLike.setRecipeNo(recipe.getRecipeNo());
     int check = recipeService.findLike(recipeLike);
     System.out.println("============================");
@@ -89,10 +89,10 @@ public class RecipeController {
     } else if (check == 0){ // 좋아요 안했음
       likeCheck = false;
     }
-    System.out.println("멤버닉네임====>" + member2.getNickname());
     
     model.addAttribute("recipe", recipe);
     model.addAttribute("member", member);
+    model.addAttribute("viewer", viewer);
     model.addAttribute("isCheck", likeCheck);
   }
 
@@ -101,33 +101,6 @@ public class RecipeController {
     Recipe recipe = recipeService.get(no);
     model.addAttribute("recipe", recipe);
   }
-
-  /*
-  @PostMapping("update")
-  public String update(Recipe recipe, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
-      int[] processNo) throws Exception {
-
-    if (filePath.getSize() > 0) {
-      String filename = UUID.randomUUID().toString();
-      recipe.setThumbnail(filename);
-      filePath.transferTo(new File(uploadDir + "/" + filename));
-    }
-
-    List<Ingredient> ingredients = new ArrayList<>();
-    for (int i = 0; i < ingredientNames.length; i++) {
-      Ingredient temp = new Ingredient();
-      temp.setName(ingredientNames[i]);
-      temp.setQuantity(quantity[i]);
-      ingredients.add(temp);
-      recipe.setIngredients(ingredients);
-    }
-    recipe.setCookings(cookingFileWriter.getCookings(filePath2, processNo, cookingContent));
-
-
-    recipeService.update(recipe);
-    return "redirect:list";
-  }
-  */
   
   @PostMapping("update")
   public String update(Recipe recipe, MultipartFile filePath, MultipartFile[] filePath2, int[] fileNo, String[] ingredientNames, String[] quantity, String[] cookingContent, 

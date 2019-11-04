@@ -4,6 +4,7 @@ package bitcamp.chopchop.domain;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Recipe implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -11,6 +12,8 @@ public class Recipe implements Serializable {
   private int recipeNo;
   private int memberNo;
   private String title;
+  
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   private int viewCount;
   private String content;
@@ -26,6 +29,8 @@ public class Recipe implements Serializable {
   private List<Cooking> cookings;
   // 자식테이블 'RecipeLike'의 데이터를 담을 RecipeLike 객체 목록.
   private List<RecipeLike> recipeLikes;
+  // 자식테이블 'RecipeComment"의 데이터를 담을 RecipeComment 객체 목록.
+  private List<RecipeComment> recipeComments;
   
   public List<RecipeLike> getRecipeLikes() {
     return recipeLikes;
@@ -110,6 +115,12 @@ public class Recipe implements Serializable {
   }
   public void setIngredients(List<Ingredient> ingredients) {
     this.ingredients = ingredients;
+  }
+  public List<RecipeComment> getRecipeComments() {
+    return recipeComments;
+  }
+  public void setRecipeComments(List<RecipeComment> recipeComments) {
+    this.recipeComments = recipeComments;
   }
 
 }
