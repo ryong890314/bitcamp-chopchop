@@ -70,7 +70,7 @@
             <form>
                 <input class="input-number" name="quantity" type="number" style="text-align:center; width: 80px;" value="${cart.quantity}" min="0" max="1000">
                 <input type="hidden" name="cartNo" value="${cart.cartNo}">
-                <button class="btn btn-default btn-sm" style="width:80px" onclick="check_Quantity()">변경</button>
+                <button class="btn btn-default btn-sm" id="requestBtzn" style="width:80px">변경</button>
             </form>
 
 
@@ -128,6 +128,23 @@
 
   <jsp:include page="../footer.jsp"/>
 
+	<script>
+      $(function() {
+        $("#requestBtn").on("click", function() {
+          alert("ajax?") // 이까지 온다
+          $.ajax("update")
+          .done(function() {
+            alert("요청 성공");
+          })
+          .fail(function() {
+            alert("요청 실패");
+          })
+          .always(function() {
+            alert("요청 완료");
+          });
+        });
+      });
+    </script>
 
   <script>
   function check_Quantity() {
