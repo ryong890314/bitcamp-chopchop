@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +24,8 @@
   <input type="text" id="registerNo" name="registerNo"/><br>
   <label for="age">펫 나이</label>
   <input type="text" id="age" name="age"/><br>
-  성별<br> <label for="gender"><input type='radio' id='gender' name='gender' value=0 />암컷</label>
-  <label><input type='radio' name='gender' value=1 />수컷</label><br>
+  성별<br> <label for="gender"><input type='radio' id='gender' name='gender' value=0 />수컷</label>
+  <label><input type='radio' name='gender' value=1 />암컷</label><br>
   <label for="filePath">대표사진</label>
   <input type="file" id="file" name="file"/><br>
 <button>등록</button>

@@ -72,6 +72,7 @@
     <div id='content' class="container">
       <h1>My Pet Infomation</h1>
       <a href='/app/pet2/form?no=${member.memberNo}'>펫 등록</a><br>
+      <form action='update' method='post'>
       <c:forEach items="${pets}" var="pet">
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row">
@@ -85,12 +86,13 @@
                   <c:if test="${pet.gender eq 1}">암컷</c:if>)
                 </h5>
                 <p class="card-text">등록일 : ${pet.createdDate}<br>등록번호 : ${pet.registerNo}<br></p>
-                <p class="card-text"><small class="text-muted"><a href="#">수정 </a><a href="#"> 삭제</a></small></p>
+                <p class="card-text"><small class="text-muted"><a href="#">수정 </a><a href="/app/pet/delete?no=${pet.petNo}"> 삭제</a></small></p>
               </div>
             </div>
           </div>
         </div>
       </c:forEach>
+      </form>
     </div>
 <!--    이미지 상하정렬  -->
 <!--     <div class="container"> -->

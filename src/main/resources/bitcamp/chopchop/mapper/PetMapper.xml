@@ -4,21 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.chopchop.dao.PetDao">
 
-<<<<<<< HEAD
-  <resultMap type="Member" id="MemberMap">
-    <id column="member_id" property="memberNo" />
-    <result column="post_no" property="postNo" />
-    <result column="base_address" property="baseAddress" />
-    <result column="detail_address" property="detailAddress" />
-    <result column="email" property="email" />
-    <result column="password" property="password" />
-    <result column="photo" property="photo" />
-    <result column="nickname" property="nickname" />
-    <result column="tel" property="tel" />
-  </resultMap>
-  
-  <resultMap type="Pet" id="PetMap">
-=======
+	<resultMap type="Member" id="MemberMap">
+		<id column="member_id" property="memberNo" />
+		<result column="post_no" property="postNo" />
+		<result column="base_address" property="baseAddress" />
+		<result column="detail_address" property="detailAddress" />
+		<result column="email" property="email" />
+		<result column="password" property="password" />
+		<result column="photo" property="photo" />
+		<result column="nickname" property="nickname" />
+		<result column="tel" property="tel" />
+	</resultMap>
+
 	<resultMap type="Pet" id="PetMap">
 		<id column="pet_id" property="petNo" />
 		<result column="member_id" property="memberNo" />
@@ -30,146 +27,93 @@
 		<result column="file_path" property="filePath" />
 	</resultMap>
 
-	<resultMap type="Breed" id="BreedMap">
-		<id column="breed_id" property="breedNo" />
-		<result column="breed" property="breed" />
-	</resultMap>
+	<!-- Pet and Member join -->
+	<resultMap type="Pet" id="PetMemberMap">
+		<id column="pet_id" property="petNo" />
+		<result column="member_id" property="memberNo" />
+		<result column="name" property="name" />
+		<result column="created_date" property="createdDate" />
+		<result column="register_no" property="registerNo" />
+		<result column="age" property="age" />
+		<result column="gender" property="gender" />
+		<result column="file_path" property="filePath" />
 
-  <resultMap type="Pet" id="PetMap">
-    <id column="pet_id" property="petNo"/>
-    <result column="member_id" property="memberNo"/>
-    <result column="name" property="name"/>
-    <result column="created_date" property="createdDate"/>
-    <result column="register_no" property="registerNo"/>
-    <result column="age" property="age"/>
-    <result column="gender" property="gender"/>
-    <result column="file_path" property="filePath"/>
-
-		<collection property="breeds" ofType="Breed">
-			<id column="breed_id" property="breedNo"/>
-			<result column="breed" property="breed"/>
+		<collection property="members" ofType="Member">
+			<id column="member_id" property="memberNo" />
+			<result column="post_no" property="postNo" />
+			<result column="base_address" property="baseAddress" />
+			<result column="detail_address" property="detailAddress" />
+			<result column="email" property="email" />
+			<result column="password" property="password" />
+			<result column="photo" property="photo" />
+			<result column="nickname" property="nickname" />
+			<result column="tel" property="tel" />
 		</collection>
 	</resultMap>
-	
-	<resultMap type="Pet" id="MemberPet">
->>>>>>> 9829dab50c8026703b9ab844e193447a455ea9b7
-    <id column="pet_id" property="petNo" />
-    <result column="member_id" property="memberNo" />
-    <result column="name" property="name" />
-    <result column="created_date" property="createdDate" />
-    <result column="register_no" property="registerNo" />
-    <result column="gender" property="gender" />
-    <result column="age" property="age" />
-    <result column="file_path" property="photo" />
-<!--     <collection resultMap="MemberMap" property="member"/> -->
-  </resultMap>
 
-  <resultMap type="Breed" id="BreedMap">
-    <id column="breed_id" property="breedNo" />
-    <result column="breed" property="breed" />
-  </resultMap>
-
-  <resultMap type="Pet" id="PetBreedMap">
-    <id column="pet_id" property="petNo" />
-    <result column="member_id" property="memberNo" /> 
-    <result column="name" property="name" /> 
-    <result column="created_date" property="createdDate" />
-    <result column="register_no" property="registerNo" />
-    <result column="gender" property="gender" />
-    <result column="age" property="age" />
-    <result column="file_path" property="photo" />
-
-    <collection property="breeds" ofType="Breed">
-      <id column="breed_id" property="breedNo" />
-      <result column="breed" property="breed" />
-    </collection>
-  </resultMap>
-  
-<!--   <resultMap type="Pet" id="MemberPet"> -->
-<!--     <id column="pet_id" property="petNo" /> -->
-<!--     <result column="member_id" property="memberNo" /> -->
-<!--     <result column="name" property="name" /> -->
-<!--     <result column="created_date" property="createdDate" /> -->
-<!--     <result column="register_no" property="registerNo" /> -->
-<!--     <result column="gender" property="gender" /> -->
-<!--     <result column="age" property="age" /> -->
-<!--     <result column="file_path" property="photo" /> -->
-<!--   </resultMap> -->
-
-	<insert id="insert" parameterType="Pet">
-		insert into pet
-		(
-		member_id,
-		name,
-		created_date,
-		register_no,
-		age,
-		gender,
-		file_path
-		)
-		values
-		(
-		#{memberNo},
-		#{name},
-		now(),
-		#{registerNo},
-		#{age},
-		#{gender},
-		#{filePath}
-		)
-	</insert>
+<insert id="insert" parameterType="Pet"> 
+  insert into pet
+  (
+    member_id, 
+    name, 
+    created_date,
+    register_no,
+    age, 
+    gender, 
+    file_path
+  )
+  values
+  (
+    #{memberNo},
+    #{name},
+    now(),
+    #{registerNo},
+    #{age},
+    #{gender},
+    #{filePath}
+  )
+</insert>
 
 	<select id="findAll" resultMap="PetMap">
 		select * from pet
 	</select>
 
-  <select id="findBy" parameterType="int" resultMap="PetBreedMap">
-    select
-    p.pet_id,
-    p.file_path,
-    p.name,
-    p.age,
-    p.gender,
-    p.register_no,
-    p.created_date,
-    p.breed_id,
-    b.breed_id,
-    b.breed
-    from pet p
-    left outer join
-    breed b on p.breed_id=b.breed_id
-    where p.pet_id=${petNo}
-  </select>
+	<select id="findBy" parameterType="int" resultMap="PetMap">
+		select * from pet
+		where p.pet_id=${petNo}
+	</select>
 
-  <update id="update" parameterType="Pet">
-    update pet
-    <set>
-      <if test="name != null">name=#{name},</if>
-      <if test="photo != null">photo=#{photo},</if>
-      <if test="register_no != null">register_no=#{register_no},</if>
-    </set>
-    where pet_id = #{petNo}
-  </update>
+	<update id="update" parameterType="Pet">
+		update pet
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="photo != null">photo=#{photo},</if>
+			<if test="register_no != null">register_no=#{register_no},</if>
+		</set>
+		where pet_id = #{petNo}
+	</update>
 
-  <delete id="delete" parameterType="int">
-    delete from pet
-    where pet_id =
-    #{pet.petNo}
-  </delete>
-  
-<!--   <select id="getPets" parameterType="int" resultMap="MemberPet"> -->
-<!--      SELECT  -->
-<!--         p.file_path  -->
-<!--         ,p.name  -->
-<!--         ,p.age -->
-<!--         ,p.gender -->
-<!--         ,p.pet_id -->
-<!--         ,m.member_id -->
-<!--         ,p.created_date -->
-<!--         ,p.register_no -->
-<!--       FROM member m  -->
-<!--       LEFT OUTER JOIN pet p ON m.member_id = p.member_id -->
-<!--       WHERE m.member_id= 1 -->
-<!--   </select> -->
-  
+	<delete id="delete" parameterType="int">
+		delete from pet
+		where pet_id = #{pet.petNo}
+	</delete>
+
+	<select id="getPets" parameterType="int"
+		resultMap="PetMemberMap">
+		SELECT
+		p.file_path
+		,p.name
+		,p.age
+		,p.gender
+		,p.pet_id
+		,m.member_id
+		,p.created_date
+		,p.register_no
+		FROM member m
+		LEFT OUTER JOIN
+		pet p ON m.member_id = p.member_id
+		WHERE m.member_id=
+		${member.memberNo}
+	</select>
+
 </mapper>

@@ -14,7 +14,7 @@
 
 <div id='content'>
 <h1>펫 목록</h1>
-<a href='form'>새 회원</a><br>
+<a href='/app/pet2/form?no=${member.memberNo}'>새 회원</a><br>
 <table class='table table-hover'>
 <tr>
 

@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/css/member/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<!-- Navbar -->
@@ -44,7 +42,7 @@
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 				<div class="info">
 					<!-- user name받기~ -->
-					<a href="/app/pet/list" class='nav-user'>${loginUser.nickname}</a>
+					<a href="detail?no=${loginUser.memberNo}" class='nav-user'>${loginUser.nickname}</a>
 				</div>
 			</div>
 
