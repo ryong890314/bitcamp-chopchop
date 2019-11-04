@@ -9,35 +9,71 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
   crossorigin="anonymous"></script>
-  <link rel='stylesheet' href='/css/product/style.css'>
+  <link rel='stylesheet' href='/css/common/bootstrap.min.css'>
+  
 <!--   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'> -->
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+  <style>
+  
+  #productBody {
+      width: 1100px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin: auto auto;
+    }
+
+    .btn-default {
+  color: #fff;
+  background-color: #b0c364;
+    border-color: #b0c364;
+    margin: 5px 0px 5px 0px;
+}
+.btn-default:hover,
+.btn-default:focus {
+  background-color: #000000;
+  border-color: #000000;
+  color: #fff;
+  margin: 5px 0px 5px 0px;
+}
+
+.input-number {
+    float: none;
+    width: 50px;
+    border: 1px solid #DBE5E7;
+    border-radius: 2px;
+    margin-bottom: 0px;
+    padding: 5px;
+}
+
+  </style>
 
 </head>
 
 <body onload="check_all()">
 
-  <div id='cart'>
-    <h1>장바구니</h1>
+    <jsp:include page="../header.jsp"/>
 
-    <input type='button' onclick='check_all();' value='모두 선택' />
-    <input type='button' onclick='uncheck_all();' value='모두 해제' />
+  <div id='productBody'>
+
+    <button type='button' class="btn btn-default btn-sm" onclick='check_all();'>모두 선택</button>
+    <button type='button' class="btn btn-default btn-sm" onclick='uncheck_all();'>모두 해제</button>
 
     <table class='table table-hover'>
-      <tr>
+      <tr style="text-align: center;">
         <th style="width: 80px">선택</th>
         <th style="width: 130px">상품사진</th>
         <th>상품/옵션정보</th>
         <th style="width: 80px">수량</th>
         <th>상품금액</th>
-        <th>할인율</th>
+        <th style="width: 80px">할인율</th>
         <th>할인적용금액</th>
-        <th style="width: 130px">배송비</th>
-        <th>주문</th>
+        <th style="width: 100px">배송비</th>
+        <th style="width: 50px">주문</th>
     
       </tr>
       <c:forEach items="${carts}" var="cart">
-        <tr>
+        <tr style="text-align: center;">
           <td>
             <form>
               <input class="myChkbox" type="checkbox" name="chkbox" value="${cart.cartNo}">
@@ -48,7 +84,7 @@
               <img src='/upload/product/${file.filePath}' style="width: 100px; height: 100px;">
             </c:forEach>
           </td>
-          <td>
+          <td style="text-align: left">
             <c:forEach items="${cart.products}" var="product">
               ${product.title}<br>
             </c:forEach>
@@ -62,24 +98,28 @@
             <div class="input-group input-number-group">
               <input class="input-number" name="quantity" type="number" style="text-align:center; width: 80px;" value="${cart.quantity}" min="0" max="1000">
               <input type="hidden" name="cartNo" value="${cart.cartNo}">
-              <button>변경</button>
+              <button class="btn btn-default btn-sm" style="width:80px">변경</button>
             </div>
             </form>
           </td>
           <c:forEach items="${cart.products}" var="product">
-            <td><fmt:formatNumber value="${product.price}" pattern="#,###"/>원</td>
+              <c:forEach items="${cart.options}" var="productOption">
+            <td><fmt:formatNumber value="${product.price + productOption.price}" pattern="#,###"/>원</td>
           </c:forEach>
-
+          </c:forEach>
+            
           <c:forEach items="${cart.products}" var="product">
               <td>${product.discount}%</td>
             </c:forEach>
 
             <c:forEach items="${cart.products}" var="product">
-                <td>
-                    <a style=" text-decoration:line-through"><fmt:formatNumber value="${product.price * cart.quantity}" pattern="#,###"/>원</a><br>
-                    <a style="color:red"><fmt:formatNumber value="${product.price * (100 - product.discount) / 100 * cart.quantity}" pattern="#,###"/>원</a><br>
-                    <input type="hidden" name="chkprice" value="${product.price * (100 - product.discount) / 100 * cart.quantity}">
+            <c:forEach items="${cart.options}" var="productOption">
+            <td>
+                    <a style=" text-decoration:line-through"><fmt:formatNumber value="${(product.price + productOption.price) * cart.quantity}" pattern="#,###"/>원</a><br>
+                    <a style="color:red"><fmt:formatNumber value="${(product.price + productOption.price) * (100 - product.discount) / 100 * cart.quantity}" pattern="#,###"/>원</a><br>
+                    <input type="hidden" name="chkprice" value="${(product.price + productOption.price) * (100 - product.discount) / 100 * cart.quantity}">
                   </td>
+              </c:forEach>
               </c:forEach>
 
               <td>
@@ -88,8 +128,8 @@
               </td>
 
           <td>
-            <button type="button">주문</button><br>
-            <button type="button" onclick="location.href='delete?no=${cart.cartNo}' ">삭제</button>
+            <button type="button" class="btn btn-default btn-sm">주문</button><br>
+            <button type="button" class="btn btn-default btn-sm" onclick="location.href='delete?no=${cart.cartNo}' ">삭제</button>
           </td>
         </tr>
       </c:forEach>
@@ -107,13 +147,15 @@
 
     <hr class="my-4">
 
-<div style="float: right">
+<div style="text-align: right">
 <button class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
-<a href='#' class="btn bueno-btn">선택구매</a>
-<a href='#' class="btn bueno-btn">전체구매</a>
+<button href='#' class="btn bueno-btn">선택구매</button>
+<button href='#' class="btn bueno-btn">전체구매</button>
 </div>
 
-  </div>
+</div>
+
+  <jsp:include page="../footer.jsp"/>
 
   <script>
       var myCheckBoxes = document.getElementsByClassName('myChkbox');
@@ -152,10 +194,6 @@
             checkPrice += parseInt(myCheckPrice[j].value);
           }
         }
-        // var tempShip = document.getElementsByClassName('tempShip');
-        // for (var i of tempShip) {
-        //   i.innerText = checkPrice >= 50000 || checkPrice == 0 ? "무료" : "2,500원";
-        // }
         sumCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en'); // 상품합계
         shipCheckPrice.innerHTML = Number(checkPrice >= 50000 || checkPrice == 0 ? 0 : 2500).toLocaleString('en'); // 배송비
         totalCheckPrice.innerHTML = Number(checkPrice + parseInt(checkPrice >= 50000 || checkPrice == 0 ? 0 : 2500)).toLocaleString('en'); // 합계

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.domain.ProductOption;
 import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.ProductService;
@@ -41,7 +42,7 @@ public class CartController {
   }
 
   @PostMapping("add")
-  public String add(Cart cart, Product product, int no, Model model, HttpSession session) throws Exception {
+  public String add(Cart cart, Product product, ProductOption productOption, int no, Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
     cart.setMemberNo(member.getMemberNo());
     cart.setProductNo(productService.get(no).getProductNo());
@@ -104,6 +105,7 @@ public String chkdelete(HttpSession session,
   @PostMapping("update")
   public String update(Cart cart, HttpServletRequest request) 
       throws Exception {
+        System.out.println("=======" + cart.getQuantity());
     cartService.update(cart);
     return "redirect:search";
   }

@@ -115,7 +115,10 @@
             </form>
           </div>
           <div id="tq">
-            <form id="qt">
+              <form action="../cart/add" method="post" id="qt">
+                <input type='hidden' name='no' value='${product.productNo}'>
+                <input type='text' name='optionNo' value='${productOption.optionNo}'>
+                <input class="input-number" name='quantity' type="number" value="1" min="0" max="1000">
               <button class="btn bueno-btn" style="margin-top:57px;">장바구니</button>
             </form>
           </div>
