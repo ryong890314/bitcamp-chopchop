@@ -130,8 +130,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=작은 동물" id="species" class="post-tag">작은 동물</a>
-                                <a href="category?species=작은 동물" class="post-title" style="color:#524845">작은 동물</a>
+                                <a href="category?species=작은" id="species" class="post-tag">작은 동물</a>
+                                <a href="category?species=작은" class="post-title" style="color:#524845">작은 동물</a>
                             </div>
                         </div>
                     </div>

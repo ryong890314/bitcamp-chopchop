@@ -6,11 +6,12 @@ public class OrderProduct {
   private int productNo;
   private int quantity;
   private int discountPrice;
+  private int optionNo;
 
   @Override
   public String toString() {
     return "OrderProduct [orderNo=" + orderNo + ", productNo=" + productNo + ", quantity="
-        + quantity + ", discountPrice=" + discountPrice + "]";
+        + quantity + ", discountPrice=" + discountPrice + ", optionNo=" + optionNo + "]";
   }
 
   public int getOrderNo() {
@@ -43,6 +44,14 @@ public class OrderProduct {
 
   public void setDiscountPrice(int discountPrice) {
     this.discountPrice = discountPrice;
+  }
+
+  public int getOptionNo() {
+    return optionNo;
+  }
+
+  public void setOptionNo(int optionNo) {
+    this.optionNo = optionNo;
   }
 
 

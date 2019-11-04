@@ -9,12 +9,13 @@
     <id column="order_id" property="orderNo"/>
     <id column="product_id" property="productNo"/>
     <result column="quantity" property="quantity"/>
+    <result column="option_id" property="optionNo"/>
     <result column="discount_price" property="discountPrice"/>
   </resultMap>
   
   <insert id="insert" parameterType="OrderProduct" useGeneratedKeys="true" keyColumn="order_id" keyProperty="orderNo">
-    insert into order_product(order_id, product_id, quantity, discount_price)
-    values(#{orderNo}, #{productNo},#{quantity},#{discountPrice}) 
+    insert into order_product(order_id, product_id, option_id, quantity, discount_price)
+    values(#{orderNo}, #{productNo}, #{optionNo}, #{quantity},#{discountPrice}) 
   </insert>
 
   <delete id="delete" parameterType="int">

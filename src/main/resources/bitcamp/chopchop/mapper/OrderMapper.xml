@@ -113,8 +113,8 @@
   </select>
 
   <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyColumn="order_id" keyProperty="orderNo">
-    insert into store_order(member_id, post_no, base_address, detail_address, payment_date, payment_method, ship_date, invoice)
-    values(#{memberNo}, #{postNo},#{baseAddress},#{detailAddress},#{paymentDate},#{paymentMethod},#{shipDate},#{invoice}) 
+    insert into store_order(member_id, post_no, base_address, detail_address, payment_method, ship_date, invoice)
+    values(#{memberNo}, #{postNo},#{baseAddress},#{detailAddress},#{paymentMethod},#{shipDate},#{invoice}) 
   </insert>
   
   <select id="findBy" parameterType="int" resultMap="OrderMap">

@@ -43,13 +43,14 @@ public class OrderController {
   }
   
   @PostMapping("add")
-  public String add(Order order, int no, HttpSession session) throws Exception {
+  public String add(Order order, int no, int optionNo, int quantity, int discountPrice, HttpSession session) throws Exception {
     OrderProduct orderProduct = new OrderProduct();
     orderProduct.setOrderNo(order.getOrderNo());
     orderProduct.setProductNo(productService.get(no).getProductNo());
-    orderProduct.setQuantity(11);
+    orderProduct.setOptionNo(optionNo);
+    orderProduct.setQuantity(quantity);
+    orderProduct.setDiscountPrice(discountPrice);
     orderService.insert(order, orderProduct);
-    System.out.println(order);
     session.setAttribute("order", order);
     session.setAttribute("orderProduct", orderProduct);
     return "redirect:result"; // -> 주문 완료 페이지로
