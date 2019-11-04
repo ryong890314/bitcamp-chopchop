@@ -12,10 +12,9 @@ public class Product {
   private int discount;
   private String category;
   private String species;
-  private String option;
   private int viewCount;
   private Member member;
-  
+
   private List<PhotoFile> files;
   private List<Comment> comments;
   private List<ProductOption> options;
@@ -24,7 +23,7 @@ public class Product {
   public String toString() {
     return "Product [productNo=" + productNo + ", title=" + title + ", price=" + price + ", detail="
         + detail + ", stock=" + stock + ", discount=" + discount + ", category=" + category
-        + ", species=" + species + ", option=" + option + ", viewCount=" + viewCount + ", files="
+        + ", species=" + species + ", viewCount=" + viewCount + ", member=" + member + ", files="
         + files + ", comments=" + comments + ", options=" + options + "]";
   }
 
@@ -92,20 +91,20 @@ public class Product {
     this.species = species;
   }
 
-  public String getOption() {
-    return option;
-  }
-
-  public void setOption(String option) {
-    this.option = option;
-  }
-
   public int getViewCount() {
     return viewCount;
   }
 
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
+  }
+
+  public Member getMember() {
+    return member;
+  }
+
+  public void setMember(Member member) {
+    this.member = member;
   }
 
   public List<PhotoFile> getFiles() {
@@ -132,12 +131,5 @@ public class Product {
     this.options = options;
   }
 
-  public Member getMember() {
-    return member;
-  }
-
-  public void setMember(Member member) {
-    this.member = member;
-  }
 
 }

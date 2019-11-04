@@ -4,10 +4,20 @@
 <html>
 <head>
   <title>상품 등록폼</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel='stylesheet' href='/css/common.css'>
-  <link rel="stylesheet" href="/css/style_contact.css">
-  <link rel="stylesheet" href="/css/style_footer.css">
+  <link rel='stylesheet' href='/css/product/style.css'>
+  <link rel='stylesheet' href='/css/member/style_footer.css'>
+  <link rel='stylesheet' href='/css/member/style-header.css'>
+  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
+  <link rel="icon" href="img/core-img/favicon.ico">
+  
+  <style>
+  
+    #content {
+      width: 1100px;
+      padding-top: 10px;
+      margin: auto auto;
+    }
+  </style>
   
 </head>
 <body>
@@ -34,6 +44,7 @@
         <option id='5' value='small animal'>작은 동물</option>
         <option id='6' value='reptile'>파충류</option>
       </select><br>
+      옵션: <div id="optionForm"><input type="text" name="options"></div>
       대표 사진: <input type='file' name='filePath'><br>
       사진: <input type='file' name='filePath'><br>
       사진: <input type='file' name='filePath'><br>
@@ -42,7 +53,19 @@
       사진: <input type='file' name='filePath'><br>
       <button>등록</button>
     </form>
+    <button id="addOption">추가</button><br><br>
   </div>
   <jsp:include page="../footer.jsp"/>
+  <script>
+    "use strict"
+    var str = '<input type="text" name="options">';
+    var html = str.html()
+    $('#addOption').on('click', function() {
+      $('#optionForm').append(str);
+    })
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
 </body>
 </html>
