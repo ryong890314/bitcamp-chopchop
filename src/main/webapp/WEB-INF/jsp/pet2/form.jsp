@@ -27,7 +27,6 @@
 					<!-- <label for="filePath">대표사진</label> <input type="file" id="file"
 						name="file" /><br>  -->
 
-
 					<section>
 						<img
 							src="http://www.randomlengthsnews.com/wp-content/themes/gonzo/images/no-image-blog-one.png"

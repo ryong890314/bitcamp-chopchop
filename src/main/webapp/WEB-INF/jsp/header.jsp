@@ -4,7 +4,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="">
@@ -18,7 +17,6 @@
 
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
-
 <!-- Stylesheet -->
 <link rel="stylesheet" href="/css/member/style-header.css">
 
@@ -51,11 +49,12 @@
 	
 	<!-- ##### Header Area Start ##### -->
 	<header class="header-area">
-		<!-- Logo Area -->
+	
+<!-- Logo Area -->
 		<div class="logo-area">
-			<a href="/app/member/list"> </a>
+		<img src="/img/core-img/choplogo.png"/>
 		</div>
-
+		
 		<!-- Top Header Area -->
 		<div class="top-header-area bg-img bg-overlay"
 			style="background-image: url(/img/bg-img/header.jpg);">
@@ -169,15 +168,4 @@
 <!-- ##### Footer Area End ##### -->
 
 <!-- ##### All Javascript Script ##### -->
-<!-- jQuery-2.2.4 js -->
-<script src="/js/jquery/jquery-2.2.4.min.js"></script>
-<!-- Popper js -->
-<script src="/js/bootstrap/popper.min.js"></script>
-<!-- Bootstrap js -->
-<script src="/js/bootstrap/bootstrap.min.js"></script>
-<!-- All Plugins js -->
-<script src="/js/plugins/plugins.js"></script>
-<!-- Active js -->
-<script src="/js/active.js"></script>
-
 </html>
