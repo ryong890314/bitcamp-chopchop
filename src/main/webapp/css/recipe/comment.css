@@ -5,11 +5,13 @@
 @import url(/node_modules/bootstrap/dis/css/bootstrap.min.css);
 @import url(/css/common/nice-select.css);
 /* :: 3.0 Base CSS */
-* {
-  margin: 0;
-  padding: 0; }
+/* * { */
+/*   margin: 0; */
+/*   padding: 0; } */
 
 body {
+	margin: 0;
+	padding: 0;
   font-family: "Montserrat", sans-serif;
   font-size: 14px; }
 

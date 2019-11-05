@@ -10,7 +10,7 @@
                         <ol class="commentList">
                             <c:forEach items="${recipeComments}" var="recipeComment">
                             <li class="single_comment_area">
-                                <div class="comment-content d-flex">
+                                <div class="comment-content d-flex my-comment">
                                     <div class="comment-author">
                                         <img src="/img/logo/choplogo.png" alt="author">
                                     </div>
@@ -19,9 +19,10 @@
                                             <a href="#" class="post-author">${recipeComment.memberNo}</a>
                                             <a href="#" class="post-date">${recipeComment.createdDate}</a>
                                             <a href="/app/recipecomment/delete?no=${recipeComment.commentNo}" class="post-date">삭제</a>
-                                            <a href="/app/recipecomment/updateform?no=${recipeComment.commentNo}" class="reply">수정</a>
+                                            <a href="#" class="reply update-btn">수정</a>
                                         </div>
-                                        <p>${recipeComment.content}</p>
+                                        <input type='hidden' class="comment-no" name='commentNo' value='${recipeComment.commentNo}' >
+                                        <p class='comment-content'>${recipeComment.content}</p>
                                     </div>
                                 </div>
                             </li>
@@ -95,5 +96,19 @@ $('#addCommentBtn').on('click', function() {
     }
   });
 });
+</script>
 
+<script>
+"use strict";
+$('a[href="#"]').click(function(e) { // 페이지 상단 이동 방지
+  e.preventDefault();
+});
+
+$('.update-btn').on('click', function() {
+  console.log('수정 누름');
+  var commentContent = $(this.parentNode.parentNode).find('.comment-content');
+  console.log(commentContent.text());
+  var tag = $(this.parentNode.parentNode).find('p');
+  tag.contents().unwrap().wrap('<input>');
+});
 </script>
