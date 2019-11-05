@@ -110,13 +110,13 @@
 							<div class="classynav">
 								<ul>
 									<li><a href="/app/member/list">Home</a></li>
-									<li><a href="#">ChopRecipe</a>
+									<li><a href="">ChopRecipe</a>
 										<div class="megamenu">
 											<ul class="single-mega cn-col-4">
 												<li><a href="/app/recipe/list">Dog</a></li>
-												<li><a href="#">Cat</a></li>
-												<li><a href="#">Small Animal</a>
-												<li><a href="#">Reptilien</a>
+												<li><a href="">Cat</a></li>
+												<li><a href="">Small Animal</a>
+												<li><a href="">Reptilien</a>
 											</ul>
 										</div></li>
 									<li><a href="">ChopStore</a></li>
