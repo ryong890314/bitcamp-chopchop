@@ -6,8 +6,12 @@
 }
 
 .form-group{
-	
-	margin-top: 30px;
+  margin-top: 30px;
+}
+
+input.form-contro{
+	width:100%;
+	height:40px;
 }
 
 input:focus {
@@ -20,15 +24,15 @@ label.mylabel {
     position: absolute;
     pointer-events: none;
     left: 5px;
-    top: 10px;
+    top: 5px;
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
 }
 input:focus ~ label,
 input:valid ~ label {
-    top: -20px;
-    font-size: 14px;
+    top: -30px;
+    font-size: 18px;
     color: #b0c364;
 }
 .bar {
@@ -141,7 +145,7 @@ input:focus ~ .highlight {
 section{width:300px;margin:0 auto;}
 #img{max-height:300px;max-width:300px;}
 .btn{
-	border: 2px solid #b0c364;
+  border: 2px solid #b0c364;
   background-color: white;
   color:#b0c364;
   padding:20px 30px;
