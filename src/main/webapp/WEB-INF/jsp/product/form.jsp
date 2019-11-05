@@ -44,7 +44,6 @@
         <option id='5' value='small animal'>작은 동물</option>
         <option id='6' value='reptile'>파충류</option>
       </select><br>
-      옵션: <div id="optionForm"><input type="text" name="options"></div>
       대표 사진: <input type='file' name='filePath'><br>
       사진: <input type='file' name='filePath'><br>
       사진: <input type='file' name='filePath'><br>

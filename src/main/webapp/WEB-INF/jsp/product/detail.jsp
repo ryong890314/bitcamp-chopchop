@@ -108,25 +108,6 @@
 
     <jsp:include page="../comment/productCommentList.jsp"/>
       
-      
-<!--         <div class="post-a-comment-area mb-30"> -->
-<!--           <h4 class="mb-50" style="margin-top:30px !important;">Leave a reply</h4> -->
-<!--           <form action="..comment/add" method="post"> -->
-<%--             <input type="hidden" name="productNo" id='productNo' value='${product.productNo}'> --%>
-<!--             <input type='hidden' name='memberNo' value=1> -->
-<!--             <div> -->
-<!--               <input type="text" name='title' class="form-control" id="title" placeholder="title"> -->
-<!--             </div> -->
-<!--             <div> -->
-<!--               <textarea name='content' class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea> -->
-<!--             </div> -->
-<!--             <div> -->
-<!--               <button class="btn bueno-btn mt-30" type="submit">Submit Comment</button> -->
-<!--             </div> -->
-<!--           </form> -->
-<!--         </div> -->
-
-        
       <div class="post-a-comment-area mb-30">
         <h4 class="mb-50">Leave a reply</h4>
         <div class="contact-form-area">

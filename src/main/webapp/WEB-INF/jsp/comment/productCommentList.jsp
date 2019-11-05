@@ -37,7 +37,7 @@
         <!-- Comment Area Start -->
         <div class="comment_area mb-100">
           <h4 class="mb-50">상품 문의</h4>
-          <c:forEach items="${comments2}" var = "comment">
+          <c:forEach items="${comments}" var = "comment">
             <ol>
               <!-- Single Comment Area -->
               <li class="single_comment_area" id="isComment">

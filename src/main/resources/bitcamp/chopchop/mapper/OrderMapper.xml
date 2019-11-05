@@ -21,7 +21,7 @@
     <id column="order_id" property="orderNo"/>
     <result column="member_id" property="memberNo"/>
     <result column="post_no" property="postNo"/>
-    <result column="base_address" property="address"/>
+    <result column="base_address" property="baseAddress"/>
     <result column="detail_address" property="detailAddress"/>
     <result column="payment_date" property="paymentDate"/>
     <result column="payment_method" property="paymentMethod"/>
@@ -124,8 +124,14 @@
     from
       store_order
     where
-      product_id=#{value}
+      order_id=#{value}
   </select>
+  
+  <delete id="delete" parameterType="int">
+    delete from store_order
+    where order_id=#{value}
+  </delete>
+  
   
 <!--   <update id="update" parameterType="Product"> -->
 <!--     update product set -->
@@ -139,8 +145,4 @@
 <!--     where product_id=#{productNo} -->
 <!--   </update> -->
   
-<!--   <delete id="delete" parameterType="int"> -->
-<!--     delete from product -->
-<!--     where product_id=#{value} -->
-<!--   </delete> -->
 </mapper>

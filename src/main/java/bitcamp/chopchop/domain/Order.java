@@ -13,6 +13,9 @@ public class Order {
   private String paymentMethod;
   private String shipDate; // (주문 상태)
   private String invoice;
+  private OrderProduct orderProduct;
+  private Member member;
+
   private List<OrderProduct> orderProducts;
   private List<Member> members;
 
@@ -21,7 +24,24 @@ public class Order {
     return "Order [orderNo=" + orderNo + ", memberNo=" + memberNo + ", postNo=" + postNo
         + ", baseAddress=" + baseAddress + ", detailAddress=" + detailAddress + ", paymentDate="
         + paymentDate + ", paymentMethod=" + paymentMethod + ", shipDate=" + shipDate + ", invoice="
-        + invoice + ", orderProducts=" + orderProducts + ", members=" + members + "]";
+        + invoice + ", orderProduct=" + orderProduct + ", member=" + member + ", orderProducts="
+        + orderProducts + ", members=" + members + "]";
+  }
+
+  public Member getMember() {
+    return member;
+  }
+
+  public void setMember(Member member) {
+    this.member = member;
+  }
+
+  public OrderProduct getOrderProduct() {
+    return orderProduct;
+  }
+
+  public void setOrderProduct(OrderProduct orderProduct) {
+    this.orderProduct = orderProduct;
   }
 
   public int getOrderNo() {

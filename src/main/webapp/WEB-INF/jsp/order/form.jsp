@@ -137,15 +137,12 @@
       관리자<br><br>
       <div class="row">
       <div class="col-md-6">
-<!--       <label for="exampleInput">입금일</label><input type="date" id="textbox" name="paymentDate"> -->
-      </div>
-      <div class="col-md-6">
       <label for="exampleInput">주문상태</label>
       <select id="selectBox" name="shipDate" class="form-control">
-        <option value="${order.shipDate}">입금 전</option>
-        <option value="${order.shipDate}">입금 확인</option>
-        <option value="${order.shipDate}">발송</option>
-        <option value="${order.shipDate}">배송완료</option>
+        <option value="입금 전">입금 전</option>
+        <option value="입금 확인">입금 확인</option>
+        <option value="발송">발송</option>
+        <option value="배송 완료">배송완료</option>
       </select>
       </div>
       </div>
@@ -157,7 +154,7 @@
       </div>
       <input type="hidden" name="optionNo" value=1>
       <input type="hidden" name="quantity" value="${quantity}">
-      <input type="text" id="discountPrice" name="discountPrice" value="${product.price * quantity * (100-product.discount)/100}">
+      <input type="hidden" id="discountPrice" name="discountPrice" value="${product.price * quantity * (100-product.discount)/100}">
 <!--     </div> -->
   </form>
   <jsp:include page="../footer.jsp"/>

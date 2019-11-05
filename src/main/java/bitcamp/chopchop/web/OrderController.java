@@ -1,5 +1,7 @@
 package bitcamp.chopchop.web;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -38,8 +40,20 @@ public class OrderController {
   @GetMapping("searchbymember")
   public void searchByMember(Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
-    model.addAttribute("orders", orderService.searchByMember(member.getMemberNo()));
-    model.addAttribute("loginMember", member);
+    List<Order> tempOrders = orderService.list();
+    List<Order> orders = new ArrayList<>();
+    List<OrderProduct> orderProducts = new ArrayList<>();
+    for (Order order : tempOrders) {
+      if(order.getMemberNo() == member.getMemberNo()) {
+        orders.add(order);
+        orderProducts.add(orderService.getOrderProduct(order.getOrderNo()));
+      }
+    }
+    for(OrderProduct op : orderProducts) {
+      op.setProduct(productService.get(op.getProductNo()));
+    }
+    model.addAttribute("orders", orders);
+    model.addAttribute("orderProducts", orderProducts);
   }
   
   @PostMapping("add")

@@ -7,11 +7,12 @@
 <html>
 <head>
   <title>주문 목록</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel='stylesheet' href='/css/style.css'>
+  <link rel='stylesheet' href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/member/style_contact.css">
+  <link rel="stylesheet" href="/css/member/style_footer.css">
   <style>
 
-  #content {
+  #orderBody {
     width: 1100px;
     padding-top: 10px;
     margin: auto auto;
@@ -40,21 +41,21 @@
       <table class='table table-hover'>
         <tr>
           <th>주문번호</th>
-          <th>결제일</th>
-          <th>결제수단</th>
-          <th>주문상태</th>
-          <th>운송장</th>
+          <th>상품이름</th>
+          <th>옵션번호</th>
+          <th>수량</th>
+          <th>최종가격</th>
+          <th>상태</th>
         </tr>
-        <c:forEach items="${orders}" var="order">
-          <c:if test="${loginUser.memberNo eq order.memberNo}">
+        <c:forEach items="${orderProducts}" var="orderProduct">
           <tr>
-            <td>${order.orderNo}</td>
-            <td>${order.paymentDate}</td>
-            <td>${order.paymentMethod}</td>
+            <td>${orderProduct.orderNo}</td>
+            <td>${orderProduct.product.title}</td>
+            <td>${orderProduct.optionNo}</td>
+            <td>${orderProduct.quantity}</td>
+            <td>${orderProduct.discountPrice}원</td>
             <td>${order.shipDate}</td>
-            <td>${order.invoice}</td>
           </tr>
-          </c:if>
         </c:forEach>
       </table>
     </div>
