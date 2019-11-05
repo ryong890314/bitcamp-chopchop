@@ -1403,6 +1403,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover
 .bg-transparent {
 	background-color: transparent !important
 }
+
 .w-25 {
 	width: 25% !important
 }
