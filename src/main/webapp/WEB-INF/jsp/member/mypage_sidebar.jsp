@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,8 +10,6 @@
 <title>ChopChop-MyPage</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Favicon -->
-<link rel="icon" href="/img/core-img/favicon.ico">
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="/js/plugins/fontawesome-free/css/all.min.css">
@@ -37,16 +34,23 @@
 	<!-- /.navbar -->
 
 	<!-- Main Sidebar Container -->
-	<aside class="main-sidebar navbar navbar-dark bg-successe levation-4">
+	<aside class="main-sidebar sidebar-dark-primary elevation-4">
 		<!-- Brand Logo -->
 		<a href="/app/member/myProfile" class="brand-link"> <span
-			class="brand-text font-weight-light">ChopChop-MyPage</span>
+			class="brand-text">ChopChop-MyPage</span>
 		</a>
 
 		<!-- Sidebar -->
 		<div class="sidebar">
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+				<div class="image">
+					<img src='/upload/member/${member.photo}' alt="userPhoto"
+						class="img-circle elevation-2"
+						style="width: 40px; height: 40px; margin-left:-5px;">
+				</div>
+
+
 				<div class="info">
 					<!-- user name받기~ -->
 					<a href="detail?no=${loginUser.memberNo}" class='nav-user'>${loginUser.nickname}</a>
@@ -91,7 +95,7 @@
 		<!-- /.sidebar -->
 	</aside>
 	<!-- jQuery -->
-	<script src="/js/jquery/jquery.min.js"></script>
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 	<!-- jQuery UI 1.11.4 -->
 	<script src="/js/jquery-ui/jquery-ui.min.js"></script>
 	<!-- Bootstrap 4 -->
