@@ -16,19 +16,20 @@
 	height: 200px !important;
 	object-fit: cover !important;
 }
+
 .tagA {
-  color: #ffffff;
-  background: #b0c364;
-  font-size: 1.2em;
-  padding: 0.3em 0.5em;
-  margin-right: 0.1em;
+	color: #ffffff;
+	background: #b0c364;
+	font-size: 1.2em;
+	padding: 0.3em 0.5em;
+	margin-right: 0.1em;
 }
 </style>
 </head>
+<jsp:include page="../member/mypage_sidebar.jsp" />
 <body onload="formLoad();">
 
 	<%-- <jsp:include page="../header.jsp"/> --%>
-	<jsp:include page="../member/mypage_sidebar.jsp" />
 	<div class="content-wrapper">
 		<div class="container">
 			<h1>내정보</h1>
@@ -84,7 +85,7 @@
 		</div>
 
 		<hr>
-<jsp:include page="../pet2/detail.jsp" />
+		<jsp:include page="../pet2/detail.jsp" />
 
 		<!--    이미지 상하정렬  -->
 		<!--     <div class="container"> -->
