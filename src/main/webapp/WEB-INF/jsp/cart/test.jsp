@@ -70,7 +70,7 @@
             <form>
                 <input class="input-number" name="quantity" type="number" style="text-align:center; width: 80px;" value="${cart.quantity}" min="0" max="1000">
                 <input type="hidden" name="cartNo" value="${cart.cartNo}">
-                <button class="btn btn-default btn-sm" id="requestBtzn" style="width:80px">변경</button>
+                <button class="btn btn-default btn-sm" id="requestBtn" style="width:80px">변경</button>
             </form>
 
 
@@ -128,10 +128,15 @@
 
   <jsp:include page="../footer.jsp"/>
 
-	<script>
+	<!-- <script>
       $(function() {
+        alert("엥1")
         $("#requestBtn").on("click", function() {
-          alert("ajax?") // 이까지 온다
+          var ajxCartNo = document.getElementsByName("cartNo")
+          var ajxQuantity = document.getElementsByName("quantity")
+          alert("엥2")
+          console.log(ajxCartNo + ", " + ajxQuantity) // 이까지 온다
+          
           $.ajax("update")
           .done(function() {
             alert("요청 성공");
@@ -144,7 +149,26 @@
           });
         });
       });
-    </script>
+    </script> -->
+
+<script>
+
+$("#requestBtn").click(function(){
+  $.ajax({
+      type:"POST",
+      url:"./book.jsp",
+      data : {name : "홍길동"},
+      dataType : "xml",
+      success: function(xml){
+          console.log(xml);
+      },
+      error: function(xhr, status, error) {
+          alert(error);
+      }  
+  });
+});
+
+</script>
 
   <script>
   function check_Quantity() {
