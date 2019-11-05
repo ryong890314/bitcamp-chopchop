@@ -45,6 +45,7 @@
           <th>옵션번호</th>
           <th>수량</th>
           <th>최종가격</th>
+          <th>주문일</th>
           <th>상태</th>
         </tr>
         <c:forEach items="${orderProducts}" var="orderProduct">
@@ -54,7 +55,8 @@
             <td>${orderProduct.optionNo}</td>
             <td>${orderProduct.quantity}</td>
             <td>${orderProduct.discountPrice}원</td>
-            <td>${order.shipDate}</td>
+            <td>${orderProduct.order.paymentDate}</td>
+            <td>${orderProduct.order.shipDate}</td>
           </tr>
         </c:forEach>
       </table>

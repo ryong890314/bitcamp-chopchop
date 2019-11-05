@@ -40,17 +40,20 @@ public class OrderController {
   @GetMapping("searchbymember")
   public void searchByMember(Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
-    List<Order> tempOrders = orderService.list();
     List<Order> orders = new ArrayList<>();
     List<OrderProduct> orderProducts = new ArrayList<>();
-    for (Order order : tempOrders) {
+    for (Order order : orderService.list()) {
       if(order.getMemberNo() == member.getMemberNo()) {
         orders.add(order);
         orderProducts.add(orderService.getOrderProduct(order.getOrderNo()));
       }
     }
+    
     for(OrderProduct op : orderProducts) {
-      op.setProduct(productService.get(op.getProductNo()));
+      op.setProduct(productService.get(op.getProductNo())); // 왜 얘는 되고
+      op.setOrder(orderService.get(op.getOrderNo())); // 왜 얘는 안되고
+      System.out.println(op.getOrderNo());
+      
     }
     model.addAttribute("orders", orders);
     model.addAttribute("orderProducts", orderProducts);

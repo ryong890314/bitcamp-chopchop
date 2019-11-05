@@ -23,21 +23,31 @@
       <result column="category" property="category"/>
       <result column="species" property="species"/>
     </association>
+    
+    <association property="order" javaType="Order">
+      <id column="order_id" property="orderNo"/>
+      <result column="member_id" property="memberNo"/>
+      <result column="post_no" property="postNo"/>
+      <result column="base_address" property="baseAddress"/>
+      <result column="detail_address" property="detailAddress"/>
+      <result column="payment_date" property="paymentDate"/>
+      <result column="payment_method" property="paymentMethod"/>
+      <result column="ship_date" property="shipDate"/>
+      <result column="invoice" property="invoice"/>
+    </association>
   </resultMap>
   
   <select id="findByOrderWith" parameterType="int" resultMap="OrderProductMap">
     select
-      op.order_id,
-      op.product_id,
-      op.quantity,
-      op.option_id,
-      op.discount_price,
-      o.order_id
+      order_id,
+      product_id,
+      quantity,
+      option_id,
+      discount_price
     from
-      order_product op 
-        left outer join store_order o on op.order_id=o.order_id
+      order_product
     where
-      op.order_id=#{value};
+      order_id=#{value};
   </select>
   
   

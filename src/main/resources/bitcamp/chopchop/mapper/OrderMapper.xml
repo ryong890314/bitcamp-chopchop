@@ -120,7 +120,13 @@
   <select id="findBy" parameterType="int" resultMap="OrderMap">
     select
       order_id,
-      member_id
+      post_no,
+      base_address,
+      detail_address,
+      payment_date,
+      payment_method,
+      ship_date,
+      invoice
     from
       store_order
     where

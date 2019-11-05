@@ -8,13 +8,14 @@ public class OrderProduct {
   private int discountPrice;
   private int optionNo;
   private Product product;
+  private Order order;
   private ProductOption productOption;
-  
+
   @Override
   public String toString() {
     return "OrderProduct [orderNo=" + orderNo + ", productNo=" + productNo + ", quantity="
         + quantity + ", discountPrice=" + discountPrice + ", optionNo=" + optionNo + ", product="
-        + product + ", productOption=" + productOption + "]";
+        + product + ", productOption=" + productOption + ", order=" + order + "]";
   }
 
   public ProductOption getProductOption() {
@@ -71,6 +72,14 @@ public class OrderProduct {
 
   public void setProduct(Product product) {
     this.product = product;
+  }
+
+  public Order getOrder() {
+    return order;
+  }
+
+  public void setOrder(Order order) {
+    this.order = order;
   }
 
 }
