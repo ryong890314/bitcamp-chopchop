@@ -75,7 +75,6 @@
 							for="female">Female</label>
 					</div>
 					<hr>
-
 					<button class="sub-btn" type="submit">Register</button>
 				</form>
 			</div>

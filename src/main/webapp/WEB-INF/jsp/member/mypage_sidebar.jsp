@@ -18,7 +18,8 @@
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="/css/member/adminlte.min.css">
-
+<!-- Favicon -->
+<link rel="icon" href="/img/core-img/favicon.ico">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<!-- Navbar -->
@@ -36,18 +37,20 @@
 	<!-- Main Sidebar Container -->
 	<aside class="main-sidebar sidebar-dark-primary elevation-4">
 		<!-- Brand Logo -->
-		<a href="/app/member/myProfile" class="brand-link"> <span
-			class="brand-text">ChopChop-MyPage</span>
-		</a>
-
+		<div class="d-flex">
+			<img src="/img/core-img/smallLogo.png" class="img-circle elevation-2"
+				alt="brandLogo" style="width: 40px; height: 40px; margin-left: 13px;">
+			<a href="/app/member/myProfile" class="brand-link brand-text"> ChopChop
+			</a>
+		</div>
 		<!-- Sidebar -->
 		<div class="sidebar">
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 				<div class="image">
 					<img src='/upload/member/${member.photo}' alt="userPhoto"
-						class="img-circle elevation-2"
-						style="width: 40px; height: 40px; margin-left:-5px;">
+						class="img-circle elevation-2 my-thumb"
+						style="width: 40px; height: 40px; margin-left: -5px;">
 				</div>
 
 
@@ -102,6 +105,10 @@
 	<script src="/node_modules/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="/js/dist/adminlte.js"></script>
+	
+	<script>
+
+	</script>
 </body>
 
 </html>

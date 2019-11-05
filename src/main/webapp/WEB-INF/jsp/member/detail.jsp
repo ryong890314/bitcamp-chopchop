@@ -146,8 +146,6 @@
 		</div>
 	</div>
 
-	<jsp:include page="../footer.jsp" />
-
 	<script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
@@ -425,7 +423,6 @@
 			reader.readAsDataURL(this.files[0]);
 		};
 	</script>
-
-
 </body>
+<jsp:include page="../footer.jsp" />
 </html>

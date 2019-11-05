@@ -1,0 +1,59 @@
+@charset "UTF-8";
+$avatar-dim: 250px;
+$avatar-overrun: 20px;
+$avatar-zoom: 0.8s;
+$avatar-popup: 0.4s;
+
+
+.avatar {
+  background: #ff0099;
+  width: $avatar-dim;
+  height: $avatar-dim;
+  margin-top: $avatar-overrun;
+  border-radius:$avatar-dim/2;
+  
+  animation: avatar__zoom $avatar-zoom ease 0 1 both;
+}
+
+.avatar__mask {
+  position: relative;
+  top: -$avatar-overrun;
+  overflow: hidden;
+  width: $avatar-dim;
+  height: $avatar-dim + $avatar-overrun;
+  border-radius: 0 0 $avatar-dim/2 $avatar-dim/2;
+}
+
+.avatar__image {
+  width: 100%;
+  position: absolute;
+  
+  animation: avatar__popup .5s ease $avatar-zoom 1 both;
+}
+
+@keyframes avatar__zoom {
+  0% {
+    transform: scale( 0 );
+  }
+  100% {
+    transform: scale( 1 );
+  }
+}
+
+//transforms break the circular mask :(
+@keyframes avatar__popup {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+//center it - why not?
+html, body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
