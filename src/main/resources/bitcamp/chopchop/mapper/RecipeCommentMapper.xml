@@ -12,20 +12,21 @@
     <result column="created_date" property="createdDate"/>
   </resultMap>
   
-  <select id="findAll" resultMap="RecipeCommentMap">
-    select
-      comment_id, recipe_id, member_id, content, created_date
-    from recipe_comment
-  </select>
-  
-  <select id="findBy" parameterType="int" resultMap="RecipeCommentMap">
+  <select id="findAll" parameterType="int" resultMap="RecipeCommentMap">
     select
       comment_id, recipe_id, member_id, content, created_date
     from recipe_comment
     where recipe_id=#{value}
   </select>
   
-  <insert id="insert" parameterType="RecipeComment">
+  <select id="findBy" parameterType="int" resultMap="RecipeCommentMap">
+    select
+      comment_id, recipe_id, member_id, content, created_date
+    from recipe_comment
+    where comment_id=#{value}
+  </select>
+  
+  <insert id="insert" parameterType="RecipeComment" useGeneratedKeys="true" keyColumn="comment_id" keyProperty="commentNo">
     insert into recipe_comment(recipe_id, member_id, content)
     values(#{recipeNo}, #{memberNo}, #{content})
   </insert>

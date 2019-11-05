@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/recipe/detail.css">
+  <link rel="stylesheet" href="/css/recipe/comment.css">
 <style>
  .cookingphoto {
-    height: 200px;
+    height: 300px;
  }
  .bueno-btn {
     background-color: #b0c364;
@@ -60,8 +61,7 @@
                           <a href="#" class="post-author">Views ${recipe.viewCount}</a>
                           
 <button style="border:none; background-color: #ffffff; " id="likeBtn" type="button" ><img id="likeimg" class="btn-img" style="margin-top:-2px; margin-left:10px; height:15px;" src="${isCheck ? '/img/recipe/like.png' : '/img/recipe/unlike.png'}"></button>
-                          <input type="hidden" name='no' value="${recipe.recipeNo}">
-                          <input type="hidden" name='' value="${recipe.recipeNo}">
+                          <input type="hidden" name='recipeNo' value="${recipe.recipeNo}">
                           <span id="scrap" style="margin-left:5px; margin-bottom:5px;font-size:15px;">${recipe.scrap}</span><br>
                           <button id="updateBtn" class="btn bueno-btn">수정하기</button>
                       </div>
@@ -105,26 +105,23 @@
                   </div>
                 </div>
             </div>
-
-    </div>
+        </div>
     </div>
 </section>
 
+<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<jsp:include page="../recipecomment/list.jsp"/>
 
 <script>
 loadData();
-
 function loadData() {
-  $.get("/app/json/recipe/detail?no=" + ${recipe.recipeNo}, function(data) {
-    console.log(data.result);
-    var viewerNo = data.result.viewer.memberNo;
-    var writerNo = data.result.member.memberNo;
-    if (viewerNo != writerNo) {
-      $('#updateBtn').css('display', 'none');
-    }
-  });
-}
+  var writerNo = ${member.memberNo};
+  var viewerNo = ${viewer.memberNo};
+  if (writerNo != viewerNo) {
+    $('#updateBtn').css('display', 'none');
+  }
+};
 
 </script>
 
@@ -140,7 +137,7 @@ $('#likeBtn').click(function() {
       $('span#scrap').html(data.result.scrap);
     }
   })
-})
+});
 </script>
 <script>
 "use strict";

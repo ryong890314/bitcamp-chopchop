@@ -12,12 +12,12 @@ public class DefaultRecipeCommentService implements RecipeCommentService {
   @Resource private RecipeCommentDao recipeCommentDao;
 
   @Override
-  public List<RecipeComment> list() throws Exception {
-    return recipeCommentDao.findAll();
+  public List<RecipeComment> list(int no) throws Exception {
+    return recipeCommentDao.findAll(no);
   }
 
   @Override
-  public List<RecipeComment> get(int no) throws Exception {
+  public RecipeComment get(int no) throws Exception {
     return recipeCommentDao.findBy(no);
   }
 

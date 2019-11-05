@@ -22,9 +22,10 @@ public class RecipeCommentController {
   }
   
   @PostMapping("add")
-  public String add(RecipeComment recipeComment, HttpSession session) throws Exception {
+  public String add(RecipeComment recipeComment, int no, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
     recipeComment.setMemberNo(member.getMemberNo());
+    recipeComment.setRecipeNo(no);
     
     recipeCommentService.insert(recipeComment);
     return "redirect:/app/recipe/list";
@@ -38,15 +39,14 @@ public class RecipeCommentController {
   
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
-    // 해당 레시피의 댓글 목록을 불러온다.
-    List<RecipeComment> recipeComments = recipeCommentService.get(no);
-    model.addAttribute("recipeComments", recipeComments);
+    RecipeComment recipeComment = recipeCommentService.get(no);
+    model.addAttribute("recipeComment", recipeComment);
   }
   
   @GetMapping("list")
-  public void list(Model model) throws Exception {
-    // 모든 댓글 불러온다.
-    List<RecipeComment> recipeComments = recipeCommentService.list();
+  public void list(Model model, int no) throws Exception {
+    // 해당 레시피의 댓글 목록을 불러온다.
+    List<RecipeComment> recipeComments = recipeCommentService.list(no);
     model.addAttribute("recipeComments", recipeComments);
   }
   

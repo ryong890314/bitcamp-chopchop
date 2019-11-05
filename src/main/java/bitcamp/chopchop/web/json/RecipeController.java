@@ -16,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Ingredient;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Recipe;
+import bitcamp.chopchop.domain.RecipeComment;
 import bitcamp.chopchop.domain.RecipeLike;
 import bitcamp.chopchop.service.MemberService;
+import bitcamp.chopchop.service.RecipeCommentService;
 import bitcamp.chopchop.service.RecipeService;
 import bitcamp.chopchop.web.CookingFileWriter;
 
@@ -27,6 +29,7 @@ public class RecipeController {
   @Resource private RecipeService recipeService;
   @Resource private CookingFileWriter cookingFileWriter;
   @Resource private MemberService memberService;
+  @Resource private RecipeCommentService recipeCommentService;
 
   String uploadDir;
 
@@ -78,6 +81,7 @@ public class RecipeController {
       Recipe recipe = recipeService.get(no);
       Member member = memberService.get(recipe.getMemberNo());
       Member viewer = (Member) session.getAttribute("loginUser");
+      List<RecipeComment> recipeComments = recipeCommentService.list(recipe.getRecipeNo());
       
       RecipeLike recipeLike = new RecipeLike();
       recipeLike.setMemberNo(viewer.getMemberNo());
@@ -96,6 +100,7 @@ public class RecipeController {
       hashMap.put("recipe", recipe);
       hashMap.put("isCheck", likeCheck);
       hashMap.put("viewer", viewer);
+      hashMap.put("recipeComments", recipeComments);
       jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
       return jsonResult;
     } catch (Exception e) {

@@ -164,12 +164,12 @@
 </script>
 
 <script> // 재료,용량 추가
- "use strict";
-  function addIngredient() {
-    console.log("추가버튼누름");
-    var html = $('#t1').html();
-    $('#ingredient-block').append(html);
-  };
+"use strict";
+function addIngredient() {
+  console.log("추가버튼누름");
+  var html = $('#t1').html();
+  $('#ingredient-block').append(html);
+};
 </script>
 
 <script> // 재료, 용량 삭제

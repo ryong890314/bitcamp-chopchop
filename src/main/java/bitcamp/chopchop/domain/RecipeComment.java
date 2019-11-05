@@ -16,6 +16,12 @@ public class RecipeComment implements Serializable {
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   
+  @Override
+  public String toString() {
+    return "RecipeComment [commentNo=" + commentNo + ", recipeNo=" + recipeNo + ", memberNo="
+        + memberNo + ", content=" + content + ", createdDate=" + createdDate + "]";
+  }
+  
   public int getCommentNo() {
     return commentNo;
   }

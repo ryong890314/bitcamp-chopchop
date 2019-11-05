@@ -18,8 +18,10 @@ import bitcamp.chopchop.domain.Cooking;
 import bitcamp.chopchop.domain.Ingredient;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Recipe;
+import bitcamp.chopchop.domain.RecipeComment;
 import bitcamp.chopchop.domain.RecipeLike;
 import bitcamp.chopchop.service.MemberService;
+import bitcamp.chopchop.service.RecipeCommentService;
 import bitcamp.chopchop.service.RecipeService;
 
 @Controller
@@ -28,6 +30,7 @@ public class RecipeController {
   @Resource private RecipeService recipeService;
   @Resource private CookingFileWriter cookingFileWriter;
   @Resource private MemberService memberService;
+  @Resource private RecipeCommentService recipeCommentService;
 
   String uploadDir;
 
@@ -76,20 +79,18 @@ public class RecipeController {
     Recipe recipe = recipeService.get(no);
     Member member = memberService.get(recipe.getMemberNo()); // 작성자멤버
     Member viewer = (Member) session.getAttribute("loginUser"); // 글을 보는사람
-    System.out.println("memberNo::::::::" + member.getMemberNo());
     RecipeLike recipeLike = new RecipeLike();
     recipeLike.setMemberNo(viewer.getMemberNo());
     recipeLike.setRecipeNo(recipe.getRecipeNo());
     int check = recipeService.findLike(recipeLike);
-    System.out.println("============================");
-    System.out.println("check좋아요했는지  1이면 했음" + check);
     boolean likeCheck = false;
     if (check == 1) { // 좋아요햇음
       likeCheck = true;
     } else if (check == 0){ // 좋아요 안했음
       likeCheck = false;
     }
-    
+    List<RecipeComment> recipeComments = recipeCommentService.list(recipe.getRecipeNo());
+    model.addAttribute("recipeComments", recipeComments);
     model.addAttribute("recipe", recipe);
     model.addAttribute("member", member);
     model.addAttribute("viewer", viewer);

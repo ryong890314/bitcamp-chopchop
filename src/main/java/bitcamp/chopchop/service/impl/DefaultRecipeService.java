@@ -47,6 +47,7 @@ public class DefaultRecipeService implements RecipeService {
     if (recipe == null) {
       throw new Exception("데이터가 없습니다!");
     }
+    System.out.println("조회수 증가???????????");
     recipeDao.increaseViewCount(no);
     return recipe;
   }
