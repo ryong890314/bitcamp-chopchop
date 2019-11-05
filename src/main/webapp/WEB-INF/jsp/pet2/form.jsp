@@ -19,50 +19,52 @@
 </head>
 <jsp:include page="../header.jsp" />
 <body>
-		<h1>Register My Pet</h1><hr>
+		<h1>Register My Pet (아직 구현중입니다~ 기능 테스트 금지엽 구준엽 정엽)</h1><hr>
 	<div class="add-form">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="form-area">
-				<form action='add' method='post' enctype='multipart/form-data'>
+				<form action='add' method='post' enctype='multipart/form-data' name="addform" onsubmit="return checkAll();">
 					<!-- <label for="filePath">대표사진</label> <input type="file" id="file"
 						name="file" /><br>  -->
 
-					<section>
+					<section class="photobtn">
 						<img
 							src="http://www.randomlengthsnews.com/wp-content/themes/gonzo/images/no-image-blog-one.png"
-							id="img"> <a id="addphoto" href="#" class="btn">+ Add
-							Photo</a> <a id="removephoto" href="#" class="btn">x Remove Photo</a>
+							id="img"> <a id="addphoto" href="" class="btn">+ Add</a> 
+							<a id="removephoto" href="" class="btn">- Remove</a>
 					</section>
 					
 					<input type="file" name="file" id="file"
 						accept="image/*;capture=camera"/> 
+							<div id="photo_chk" class="vali_check"></div>
 						
 						<input type="hidden" id="memberNo" name="memberNo" value="${memberNo}"
 						readonly /><br>
 
 					<div class="group form-group">
 						<input type="text" class="form-contro" id="registerNo"
-							name="registerNo" required> <span class="highlight"></span>
+							name="registerNo" onblur="registerNo_check();" required> <span class="highlight"></span>
 						<span class="bar"></span> <label class="mylabel">Register
 							Number</label>
 					</div>
 
 					<div class="group form-group">
-						<input type="text" class="form-contro" id="name" name="name"
-							required> <span class="highlight"></span> <span
+						<input type="text" class="form-contro" id="name" name="name" onblur="name_check();" required> 
+						<span class="highlight"></span> <span
 							class="bar"></span> <label class="mylabel">Pet's Name</label>
+					<div id="name_chk" class="vali_check"></div>
 					</div>
 
-
 					<div class="group form-group">
-						<input type="text" class="form-contro" id="age" name="age"
-							required> <span class="highlight"></span> <span
+						<input type="text" class="form-contro" id="age" name="age" onblur="age_check();" required> 
+						<span class="highlight"></span> <span
 							class="bar"></span> <label class="mylabel">Pet's Age</label>
+					<div id="age_chk" class="vali_check"></div>
 					</div>
 
 					<div class="group form-group">
-						<input type="text" class="form-contro" id="Breed" name="Breed"
-							required> <span class="highlight"></span> <span
+						<input type="text" class="form-contro" id="Breed" name="Breed" onblur="breed_check();" required> 
+							<span class="highlight"></span> <span
 							class="bar"></span> <label class="mylabel">Breed</label>
 					</div>
 
@@ -74,13 +76,14 @@
 					</div>
 					<hr>
 
-					<button class="sub-btn">Register</button>
+					<button class="sub-btn" type="submit">Register</button>
 				</form>
 			</div>
 		</div>
 	</div>
 
 	<script>
+	/* upload img script */
 	var img = document.getElementById('img');
 	var noimage = img.src;  
 	  
@@ -100,7 +103,8 @@
 	document.querySelector('#img').addEventListener('click',           function(e) {  
 	            performClick(document.getElementById('file'));
 	            e.preventDefault();
-	  });     document.querySelector('#addphoto').addEventListener('click',     function(e) {   
+	  });     
+	document.querySelector('#addphoto').addEventListener('click',     function(e) {   
 	            performClick(document.getElementById('file'));
 	            e.preventDefault();
 	  }); 
@@ -111,7 +115,57 @@
 	       node.dispatchEvent(evt);
 	}
 
+	/* check required */
+	/*     function photo_check() {
+      console.log("photo_check");
+      if (addform.name.value == "") { // 빈 값 검사
+        document.getElementById("photo_chk").innerHTML = "required";
+        $("#photo_chk").css('color', 'red');
+      } else {
+        document.getElementById("photo_chk").innerHTML = "";
+      }
+    }
+	
+    function name_check() {
+      var eCheckFlag = false;
+      console.log("name_check");
+      if (addform.name.value == "") { // 빈 값 검사
+        document.getElementById("name_chk").innerHTML = "required";
+        $("#name_chk").css('color', 'red');
+      } else {
+        document.getElementById("name_chk").innerHTML = "";
+        eCheckFlag = true;
+      }
+      return eCheckFlag;
+    }
 
+    function age_check() {
+      var pCheckFlag = false;
+      console.log("age_check");
+      if (addform.age.value == "") {
+        document.getElementById("age_chk").innerHTML = "required.";
+        $("#age_chk").css('color', 'red');
+      } else {
+        document.getElementById("age_chk").innerHTML = "";
+        pCheckFlag = true;
+      }
+
+      return pCheckFlag;
+    }
+     */
+    /* requied */
+/*         
+    function checkAll() {
+      var checkCnt = 0;
+      if (name_check()) {
+        checkCnt++;
+      }
+      if (age_check()) {
+        checkCnt++;
+      }
+
+      return checkCnt == 2 ? true : false;
+    } */
 	</script>
 </body>
 <jsp:include page="../footer.jsp" />

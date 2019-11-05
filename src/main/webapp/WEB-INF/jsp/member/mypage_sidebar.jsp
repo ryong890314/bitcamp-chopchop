@@ -37,7 +37,7 @@
 	<!-- /.navbar -->
 
 	<!-- Main Sidebar Container -->
-	<aside class="main-sidebar sidebar-dark-primary elevation-4">
+	<aside class="main-sidebar navbar navbar-dark bg-successe levation-4">
 		<!-- Brand Logo -->
 		<a href="/app/member/myProfile" class="brand-link"> <span
 			class="brand-text font-weight-light">ChopChop-MyPage</span>

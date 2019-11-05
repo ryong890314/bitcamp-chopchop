@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
+<jsp:include page="../member/mypage_sidebar.jsp"/>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-<jsp:include page="../member/mypage_sidebar.jsp"/>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
