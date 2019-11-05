@@ -3,6 +3,7 @@
 /* @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700"); */
 /* :: 2.0 Import All CSS */
 @import url(/css/member/classy-nav.css);
+@import url(/css/common/font-awesome.min.css);
 
 /* :: 3.0 Base CSS */
 * {
