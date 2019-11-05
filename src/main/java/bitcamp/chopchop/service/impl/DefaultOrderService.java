@@ -52,9 +52,8 @@ public class DefaultOrderService implements OrderService {
   }
 
   @Override
-  public void update(Order order, OrderProduct orderProduct) throws Exception {
+  public void update(Order order) throws Exception {
     orderDao.update(order);
-    orderProductDao.update(orderProduct);
   }
 
   @Override

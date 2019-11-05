@@ -76,7 +76,7 @@ public class OrderController {
   @GetMapping("delete")
   public String delete(int no) throws Exception {
     orderService.delete(no);
-    return "redirect:list";
+    return "redirect:searchbymember";
   }
   
   @GetMapping("detail")
@@ -86,19 +86,23 @@ public class OrderController {
   
   @PostMapping("update")
   public String update(Order order) throws Exception {
-    OrderProduct orderProduct = new OrderProduct();
-    orderProduct.setOrderNo(order.getOrderNo());
-    orderService.update(order, orderProduct);
-    return "redirect:../product/detail?no=" + orderProduct.getProductNo(); // -> 주문 완료 페이지로
+    orderService.update(order);
+    return "redirect:searchbymember"; // -> 주문 완료 페이지로
   }
   
   @GetMapping("result")
-  public void result(HttpSession session, Order order, OrderProduct orderProduct, Model model) throws Exception {
+  public void result(
+      HttpSession session, Order order, OrderProduct orderProduct, Model model) throws Exception {
     order = (Order) session.getAttribute("order");
     orderProduct = (OrderProduct) session.getAttribute("orderProduct");
     Product product = productService.get(orderProduct.getProductNo());
     model.addAttribute("order", order);
     model.addAttribute("orderProduct", orderProduct);
     model.addAttribute("product", product);
+  }
+  
+  @GetMapping("updateform")
+  public void updateform(int no, Model model) throws Exception {
+    model.addAttribute("order", orderService.get(no));
   }
 }

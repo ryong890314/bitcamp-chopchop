@@ -136,7 +136,6 @@
     var totalPrice = document.querySelector('#totalPrice');
     var resultPrice = parseInt(totalPrice.innerHTML);
     totalPrice.innerHTML = resultPrice;
-    console.log(${comment.title})
     
 //     var memberName = document.querySelector('#memberName');
 //     console.log(!${memberName})

@@ -71,17 +71,8 @@
       </div>
       <div class="col-md-6">
         <label for="exampleInput">수령인 이름</label>
-        <input type="text" id="recipientName" name="nickname" value="" placeholder="이름을 입력하세요.">
+        <input type="text" id="recipientName" name="name" value="" placeholder="이름을 입력하세요.">
       </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">      
-          <label for="exampleInput">주문자 이메일</label>
-          <input type="text" id="customerEmail" name="" value="${loginUser.email}">
-        </div>
-        <div class="col-md-6">      
-          <label for="exampleInput">수령인 이메일</label>
-          <input type="text" id="recipientEmail" name="email" value="" placeholder="이메일을 입력하세요."></div>
       </div>
       <div class="row">
         <div class="col-md-6">
@@ -90,7 +81,8 @@
         </div>
         <div class="col-md-6">      
           <label for="exampleInput">수령인 연락처</label>
-          <input type="text" id="recipientTel" name="tel" value="" placeholder="연락처를 입력하세요."></div>
+          <input type="text" id="recipientTel" name="tel" value="" placeholder="연락처를 입력하세요.">
+          </div>
       </div>
       <div class="row">
         <div class="col-md-6">
@@ -99,7 +91,8 @@
         </div>
         <div class="col-md-6">      
           <label for="exampleInput">수령인 우편번호</label>
-          <input type="text" id="recipientPostNo" name="postNo" value="" placeholder="우편번호를 입력하세요."></div>
+          <input type="text" id="recipientPostNo" name="postNo" value="" placeholder="우편번호를 입력하세요.">
+          </div>
       </div>
       <div class="row">
         <div class="col-md-6">
@@ -120,6 +113,17 @@
           <input type="text" id="recipientDetailAddress" name="detailAddress" value="" placeholder="상세주소를 입력하세요.">
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-6">      
+          <label for="exampleInput">주문자 이메일</label>
+          <input type="text" id="customerEmail" name="" value="${loginUser.email}">
+        </div>
+<!--         <div class="col-md-6">       -->
+<!--           <label for="exampleInput">수령인 이메일</label> -->
+<!--           <input type="text" id="recipientEmail" name="email" value="" placeholder="이메일을 입력하세요."> -->
+<!--         </div> -->
+      </div>
+      
       <div class="row">
         <div class="col-md-6">
           <label for="exampleInput">결제수단</label>
@@ -177,14 +181,12 @@
     checkBox.addEventListener('change', function(){
       if(checkBox.checked) {
         document.querySelector('#recipientName').value = document.querySelector('#customerName').value;
-        document.querySelector('#recipientEmail').value = document.querySelector('#customerEmail').value;
         document.querySelector('#recipientTel').value = document.querySelector('#customerTel').value;
         document.querySelector('#recipientPostNo').value = document.querySelector('#customerPostNo').value;
         document.querySelector('#recipientBaseAddress').value = document.querySelector('#customerBaseAddress').value;
         document.querySelector('#recipientDetailAddress').value = document.querySelector('#customerDetailAddress').value;
       } else {
         document.querySelector('#recipientName').value = "";
-        document.querySelector('#recipientEmail').value = "";
         document.querySelector('#recipientTel').value =  "";
         document.querySelector('#recipientPostNo').value =  "";
         document.querySelector('#recipientBaseAddress').value =  "";
