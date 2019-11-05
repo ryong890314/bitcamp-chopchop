@@ -8,9 +8,9 @@
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <link rel="stylesheet" href="/css/member/style_contact.css">
 </head>
+<jsp:include page="../header.jsp"/>
 <body>
 
-<jsp:include page="../header.jsp"/>
 
 <div id='content'>
 <h1>회원 목록</h1>

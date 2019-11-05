@@ -11,7 +11,6 @@
 <link rel='stylesheet' href='/css/member/signin.css'>
 </head>
 <body>
-	<jsp:include page="../header.jsp" />
 
 	<div class="bucket">
 		<div class="buffer">
