@@ -17,13 +17,13 @@
   <label for="filePath">대표사진</label>
   <input type="file" id="file" name="file"/><br>
   <label for="memberNo">회원 번호</label>
-  <input type="text" id="memberNo" name="memberNo" value="${memberNo}" readonly/><br>
+  <input type="text" id="memberNo" name="memberNo" value="${memberNo}" readonly/>
   <label for="name">펫 이름</label>
-  <input type="text" id="name" name="name"/><br>
+  <input type="text" id="name" name="name"/>
  
   <label for="registerNo">등록번호</label>
-  <input type="text" id="registerNo" name="registerNo"/><br>
-  <label for="age">펫 나이</label>
+  <input type="text" id="registerNo" name="registerNo"/>
+  <label for="age">펫 나이</label><br> 
   <input type="text" id="age" name="age"/><br>
   성별<br> <label for="gender"><input type='radio' id='gender' name='gender' value=0 />수컷</label>
   <label><input type='radio' name='gender' value=1 />암컷</label><br>
