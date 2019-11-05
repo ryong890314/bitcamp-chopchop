@@ -4,7 +4,6 @@ import java.util.List;
 import bitcamp.chopchop.domain.Question;
 
 public interface QuestionService {
-
   List<Question> list() throws Exception;
   void insert(Question question) throws Exception;
   Question get(int no) throws Exception;

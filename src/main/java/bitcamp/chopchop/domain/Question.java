@@ -8,8 +8,15 @@ public class Question {
   private String email;
   private String title;
   private String contents;
-  private Date enterDate;
+  private Date createdDate;
+  private int viewCount;
   
+  public int getViewCount() {
+    return viewCount;
+  }
+  public void setViewCount(int viewCount) {
+    this.viewCount = viewCount;
+  }
   public int getNo() {
     return no;
   }
@@ -22,11 +29,11 @@ public class Question {
   public void setTitle(String title) {
     this.title = title;
   }
-  public Date getEnterDate() {
-    return enterDate;
+  public Date getCreatedDate() {
+    return createdDate;
   }
-  public void setEnterDate(Date enterDate) {
-    this.enterDate = enterDate;
+  public void setCreatedDate(Date createdDate) {
+    this.createdDate = createdDate;
   }
   public String getName() {
     return name;

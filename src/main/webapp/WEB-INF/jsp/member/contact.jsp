@@ -16,7 +16,7 @@
 <!-- Stylesheet -->
 <link rel="stylesheet" href="/css/member/style_contact.css">
 <link rel="stylesheet" href="/css/member/style_footer.css">
-<%-- <jsp:include page="../header.jsp" /> --%>
+<jsp:include page="../header.jsp" />
 </head>
 <body>
 
@@ -34,6 +34,15 @@
 
           <h4 class="mb-50">CHOPCHOP INFOMATION</h4>
             <div class="row align-items-center mt-30 mb-50">
+            <div class="col-12 col-lg-8">
+                <!-- ##### Google Maps ##### -->
+                <div class="map-area">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.2056330231935!2d127.02209711564676!3d37.50306793551731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca15aee9ab0cb%3A0x31793fc63e0cf9d3!2z67mE7Yq47Lqg7ZSE!5e0!3m2!1sko!2skr!4v1571134406541!5m2!1sko!2skr"
+                    width="600" height="450" frameborder="0" style="border: 0;"
+                    allowfullscreen=""></iframe>
+                </div>
+              </div>
               <div class="col-12 col-lg-4">
                 <!-- Single Contact Info -->
                 <div class="single-contact-info d-flex align-items-center">
@@ -59,19 +68,8 @@
                   <p>chopchop@gmail.com</p>
                 </div>
               </div>
-              <div class="col-12 col-lg-8">
-                <!-- ##### Google Maps ##### -->
-                <div class="map-area">
-
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.2056330231935!2d127.02209711564676!3d37.50306793551731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca15aee9ab0cb%3A0x31793fc63e0cf9d3!2z67mE7Yq47Lqg7ZSE!5e0!3m2!1sko!2skr!4v1571134406541!5m2!1sko!2skr"
-                    width="600" height="450" frameborder="0" style="border: 0;"
-                    allowfullscreen=""></iframe>
-                </div>
-              </div>
             </div>
 
-            
           </div>
         </div>
       </div>

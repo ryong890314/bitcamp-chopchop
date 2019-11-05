@@ -29,6 +29,7 @@ public class DefaultQuestionService implements QuestionService {
     if (question == null) {
       throw new Exception("해당 번호의 데이터가 없습니다.");
     }
+    questionDao.increaseViewCount(no);
     return question;
   }
 

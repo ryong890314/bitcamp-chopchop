@@ -9,4 +9,5 @@ public interface QuestionDao {
   Question findBy(int no) throws Exception;
   int update(Question question) throws Exception;
   int delete(int no) throws Exception;
+  int increaseViewCount(int no) throws Exception;
 }

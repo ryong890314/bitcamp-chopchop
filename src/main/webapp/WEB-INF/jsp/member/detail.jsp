@@ -16,6 +16,13 @@
 	height: 200px !important;
 	object-fit: cover !important;
 }
+.tagA {
+  color: #ffffff;
+  background: #b0c364;
+  font-size: 1.2em;
+  padding: 0.3em 0.5em;
+  margin-right: 0.1em;
+}
 </style>
 </head>
 <body onload="formLoad();">
@@ -67,7 +74,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-12">
-								<a href="delete?no=${member.memberNo}"
+								<a href="delete?no=${member.memberNo}" class="tagA"
 									onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
 							</div>
 						</div>

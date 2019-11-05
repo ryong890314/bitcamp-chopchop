@@ -9,12 +9,21 @@
 	href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
 	integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
 	crossorigin='anonymous'>
+  <style type="text/css">
+    .tagA {
+      color: #ffffff;
+      background: #b0c364;
+      font-size: 1.2em;
+      padding: 0.3em 0.5em;
+      margin-right: 0.1em;
+    }
+  </style>
 </head>
 <body>
 
 	<div id='content' class="container">
 		<h1>My Pet Information</h1>
-		<a href='/app/pet2/form?no=${member.memberNo}'>펫 등록</a><br>
+		<a href='/app/pet2/form?no=${member.memberNo}' class="tagA">펫 등록</a><br>
 		<form action='/app/pet2/update' method='post'>
 			<c:forEach items="${pets}" var="pet">
 				<div class="card mb-3" style="max-width: 540px;">

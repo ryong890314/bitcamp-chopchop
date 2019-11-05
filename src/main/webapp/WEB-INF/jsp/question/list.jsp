@@ -20,13 +20,15 @@
   <th>제목</th>
   <th>작성자</th>
   <th>등록일</th>
+  <th>조회수</th>
 </tr>
 <c:forEach items="${questions}" var="question">
   <tr>
     <td>${question.no}</td>
     <td><a href='detail?no=${question.no}'>${question.title}</a></td>
     <td>${question.email}</td>
-    <td>${question.enterDate}</td>
+    <td>${question.createdDate}</td>
+    <td>${question.viewCount}</td>
   </tr>
 </c:forEach>
 </table>

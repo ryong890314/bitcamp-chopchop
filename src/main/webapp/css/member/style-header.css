@@ -23,7 +23,7 @@ body {
 
 h1,
 h2,
-h3,
+
 h4,
 h5,
 h6 {
@@ -190,20 +190,6 @@ img {
     left: 0;
     right: 0;
     z-index: 99999;
-}
-
-h3 {
-    position: relative;
-    margin: 0 auto;
-    top: 0;
-    text-transform: uppercase;
-    font-weight: 400;
-    width: 100vw;
-    text-align: center;
-    font-size: 3vh;
-    color: #ffffff;
-    opacity: 0.75;
-    animation: pulse 2.5s linear infinite;
 }
 
 #cooking {

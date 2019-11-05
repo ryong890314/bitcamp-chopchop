@@ -10,3 +10,15 @@
  margin-bottom: 10px;
 }
 
+a {
+color: #ffffff;
+background: #b0c364;
+font-size: 1.2em;
+padding: 0.3em 0.5em;
+margin-right: 0.1em;
+}
+
+/* a:hover {  */
+/*   color: #b0c364 !important;  */
+/*   text-decoration: underline ;  */
+/* } */
