@@ -1,6 +1,5 @@
 package bitcamp.chopchop.web.json;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;

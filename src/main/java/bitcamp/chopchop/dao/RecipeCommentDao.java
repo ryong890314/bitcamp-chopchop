@@ -9,4 +9,5 @@ public interface RecipeCommentDao {
   int insert(RecipeComment recipeComment) throws Exception;
   int update(RecipeComment recipeComment) throws Exception;
   int delete(int no) throws Exception;
+  int deleteAll(int no) throws Exception;
 }

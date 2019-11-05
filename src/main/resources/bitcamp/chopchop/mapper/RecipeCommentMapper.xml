@@ -36,12 +36,17 @@
     <set>
       <if test="content != null">content=#{content}</if>
     </set>
-      comment_id=#{commentNo}
+      where comment_id=#{commentNo}
   </update>
   
   <delete id="delete" parameterType="int">
     delete from recipe_comment
     where comment_id=#{value}
+  </delete>
+  
+  <delete id="deleteAll" parameterType="int">
+    delete from recipe_comment
+    where recipe_id=#{value}
   </delete>
 
 </mapper>

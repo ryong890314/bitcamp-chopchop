@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/recipe/detail.css">
-  <link rel="stylesheet" href="/css/recipe/comment.css">
+<link rel="stylesheet" href="/css/recipe/comment.css">
 <style>
  .cookingphoto {
     height: 300px;
@@ -109,8 +109,9 @@
     </div>
 </section>
 
-<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <jsp:include page="../recipecomment/list.jsp"/>
 
 <script>

@@ -12,13 +12,14 @@
                             <li class="single_comment_area">
                                 <div class="comment-content d-flex">
                                     <div class="comment-author">
-                                        <img src="img/bg-img/32.jpg" alt="author">
+                                        <img src="/img/logo/choplogo.png" alt="author">
                                     </div>
                                     <div class="comment-meta">
                                         <div class="d-flex">
                                             <a href="#" class="post-author">${recipeComment.memberNo}</a>
                                             <a href="#" class="post-date">${recipeComment.createdDate}</a>
-                                            <a href="#" class="reply">수정</a>
+                                            <a href="/app/recipecomment/delete?no=${recipeComment.commentNo}" class="post-date">삭제</a>
+                                            <a href="/app/recipecomment/updateform?no=${recipeComment.commentNo}" class="reply">수정</a>
                                         </div>
                                         <p>${recipeComment.content}</p>
                                     </div>
@@ -27,7 +28,7 @@
                             </c:forEach>
                         </ol>
                     </div>
-
+                    
                     <div class="post-a-comment-area mb-30">
                         <h4 class="mb-50">Leave a reply</h4>
                         <!-- Reply Form -->
@@ -52,12 +53,11 @@
             </div>
         </div>
         
-        
 <script id="t1" type="commentHtml">
 <li class='single_comment_area'>
 <div class='comment-content d-flex'>
     <div class='comment-author'>
-    <img src='img/bg-img/32.jpg' alt='author'>
+    <img src='/img/logo/choplogo.png' alt='author'>
     </div>
   <div class='comment-meta'>
     <div class='d-flex'>

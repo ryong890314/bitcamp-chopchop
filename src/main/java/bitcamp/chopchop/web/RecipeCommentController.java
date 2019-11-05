@@ -21,6 +21,12 @@ public class RecipeCommentController {
   public void form() {
   }
   
+  @GetMapping("updateform")
+  public void updateform(Model model, int no) throws Exception {
+    RecipeComment recipeComment = recipeCommentService.get(no);
+    model.addAttribute("recipeComment", recipeComment);
+  }
+  
   @PostMapping("add")
   public String add(RecipeComment recipeComment, int no, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
@@ -52,6 +58,8 @@ public class RecipeCommentController {
   
   @PostMapping("update")
   public String update(RecipeComment recipeComment) throws Exception {
+    System.out.println("=============================");
+    System.out.println(recipeComment);
     recipeCommentService.update(recipeComment);
     return "redirect:/app/recipe/list";
   }

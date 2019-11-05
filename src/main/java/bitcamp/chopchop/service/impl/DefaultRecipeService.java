@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import bitcamp.chopchop.dao.CookingDao;
 import bitcamp.chopchop.dao.IngredientDao;
+import bitcamp.chopchop.dao.RecipeCommentDao;
 import bitcamp.chopchop.dao.RecipeDao;
 import bitcamp.chopchop.dao.RecipeLikeDao;
 import bitcamp.chopchop.domain.Cooking;
@@ -21,6 +22,7 @@ public class DefaultRecipeService implements RecipeService {
   @Resource private IngredientDao ingredientDao;
   @Resource private CookingDao cookingDao;
   @Resource private RecipeLikeDao recipeLikeDao;
+  @Resource private RecipeCommentDao recipeCommentDao;
 
   @Transactional
   @Override
@@ -68,6 +70,7 @@ public class DefaultRecipeService implements RecipeService {
     if (recipeDao.findBy(no) == null) {
       throw new Exception("데이터가 없습니다.");
     }
+    recipeCommentDao.deleteAll(no);
     recipeLikeDao.deleteAll(no);
     cookingDao.deleteAll(no);
     ingredientDao.deleteAll(no);
