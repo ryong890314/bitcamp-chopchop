@@ -114,12 +114,12 @@
                     <div class="megamenu">
                       <ul class="single-mega cn-col-4">
                         <li><a href="/app/recipe/list">Dog</a></li>
-                        <li><a href="#">Cat</a></li>
-                        <li><a href="#">Small Animal</a>
-                        <li><a href="#">Reptilien</a>
+                        <li><a href="/app/recipe/list">Cat</a></li>
+                        <li><a href="/app/recipe/list">Small Animal</a>
+                        <li><a href="/app/recipe/list">Reptilien</a>
                       </ul>
                     </div></li>
-                  <li><a href="">ChopStore</a></li>
+                  <li><a href="/app/product/list">ChopStore</a></li>
                   <li><a href="">ChopTalk</a></li>
                   <li><a href="">ChopRank</a></li>
                   <c:if test="${not empty loginUser}">
