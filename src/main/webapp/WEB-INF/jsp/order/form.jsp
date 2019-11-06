@@ -6,8 +6,6 @@
 <head>
   <title>주문 폼</title>
   <link rel='stylesheet' href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/member/style_contact.css">
-  <link rel="stylesheet" href="/css/member/style_footer.css">
   <style>
   
     #textbox {
@@ -139,17 +137,17 @@
       <div class="col-md-6">
       <label for="exampleInput">주문상태</label>
       <select id="selectBox" name="shipDate" class="form-control">
-        <option value="입금 전">입금 전</option>
-        <option value="입금 확인">입금 확인</option>
-        <option value="발송">발송</option>
-        <option value="배송 완료">배송완료</option>
+        <option value="1">입금 전</option>
+        <option value="2">입금 확인</option>
+        <option value="3">발송</option>
+        <option value="4">배송완료</option>
       </select>
       </div>
       </div>
       <div>
         <input type="hidden" id="textbox" name="no" value="${product.productNo}">
         <input type="hidden" id="textbox" name="discount" value="${product.discount}">
-        <button class="btn btn-success">주문</button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#orderModal">주문</button>
         <a href="../product/detail?no=${product.productNo}" class="btn btn-danger" style="margin-left:30px;">취소</a>
       </div>
       <input type="hidden" name="optionNo" value=1>
@@ -157,6 +155,32 @@
       <input type="hidden" id="discountPrice" name="discountPrice" value="${product.price * quantity * (100-product.discount)/100}">
 <!--     </div> -->
   </form>
+  
+  <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">주문 확인</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        수령인: <span id="modalName"></span><br>
+        수령인 연락처: <span id="modalTel"></span><br>
+        수령인 우편번호: <span id="modalPostNo"></span><br>
+        수령인 기본주소: <span id="modalbaseAddress"></span><br>
+        수령인 상세주소: <span id="modalDetailAddress"></span><br>
+        주문자 이메일: <span id="modalEmail">${loginUser.email}</span><br>
+        결제 수단: <span id="modalPayment"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">결제</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
   <jsp:include page="../footer.jsp"/>
   <script>
     var totalPrice = document.querySelector('#totalPrice');
@@ -187,13 +211,40 @@
         document.querySelector('#recipientPostNo').value =  "";
         document.querySelector('#recipientBaseAddress').value =  "";
         document.querySelector('#recipientDetailAddress').value =  "";
-
       }
     })
-
   </script>
   
-  
+  <script>
+    var chooseRadio = $("[name=paymentMethod]");
+    var chooseCard = chooseRadio[0];
+    var chooseAccount = chooseRadio[1];
+    var chooseEasy = chooseRadio[2];
+
+    var name = $('#recipientName').val();
+    console.log(name);
+    
+    document.querySelector('#modalName').innerText = document.querySelector('#recipientName').value;
+    
+    $('#orderModal').on('show.bs.modal', function (e) {
+      $('#modalName').text($('#recipientName').val());
+      $('#modalTel').text($('#recipientTel').val());
+      $('#modalPostNo').text($('#recipientPostNo').val());
+      $('#modalbaseAddress').text($('#recipientBaseAddress').val());
+      $('#modalDetailAddress').text($('#recipientDetailAddress').val());
+      $('#modalEmail').text($('#customerEmail').val());
+      $('#modalPayment').text($('#selectBox option:selected').text());
+      if(chooseCard.checked) {
+        $('#modalPayment').text(chooseCard.value);
+      } else if(chooseAccount.checked) {
+        $('#modalPayment').text(chooseAccount.value);
+      } else if(chooseEasy.checked) {
+        $('#modalPayment').text(chooseEasy.value);
+      }
+    });
+    
+    
+  </script>
   
   
   
