@@ -180,7 +180,7 @@ function getCommentList() { // 댓글 목록 불러오는 함수
       var writerNo = b.member.memberNo;
       if (writerNo != viewerNo) {
         $('.my-btn').css('display', 'none');
-      }      
+      };      
     }
   });
 };
