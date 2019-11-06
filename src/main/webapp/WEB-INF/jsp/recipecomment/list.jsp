@@ -175,12 +175,6 @@ function getCommentList() { // 댓글 목록 불러오는 함수
     
     for (var b of data.result) {
       $(template2(b)).appendTo(dbody2);
-
-      var viewerNo = b.viewer.memberNo;
-      var writerNo = b.member.memberNo;
-      if (writerNo != viewerNo) {
-        $('.my-btn').css('display', 'none');
-      }      
     }
   });
 };
