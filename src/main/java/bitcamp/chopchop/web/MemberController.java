@@ -49,13 +49,6 @@ public class MemberController {
     model.addAttribute("member", member);
   }
 
-
-  @GetMapping("mypage_sidebar")
-  public void mypageSidebar(Model model, HttpSession session) {
-    Member member = (Member) session.getAttribute("loginUser");
-    model.addAttribute("member", member);
-  }
-
   @GetMapping("form")
   public void form() {}
 
