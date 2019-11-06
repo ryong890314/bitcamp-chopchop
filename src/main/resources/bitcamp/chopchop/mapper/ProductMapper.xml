@@ -59,6 +59,19 @@
       <result column="cc" property="content"/>
       <result column="created_date" property="createdDate"/>
     </collection>
+    <collection property="member" resultMap="memberMap"/>
+  </resultMap>
+  
+  <resultMap type="Member" id="memberMap">
+    <id column="member_id" property="memberNo"/>
+    <result column="post_no" property="postNo"/>
+    <result column="base_address" property="baseAddress"/>
+    <result column="detail_address" property="detailAddress"/>
+    <result column="email" property="email"/>
+    <result column="password" property="password"/>
+    <result column="photo" property="photo"/>
+    <result column="nickname" property="nickname"/>
+    <result column="tel" property="tel"/>
   </resultMap>
 
   <select id="findAll" resultMap="findWithFilesMap">
@@ -103,7 +116,6 @@
       p.title,
       p.price,
       p.detail,
-      p.stock,
       p.discount,
       p.category,
       p.species,
@@ -115,9 +127,9 @@
       c.content cc,
       c.created_date
     from
-      product p 
-        left outer join store_photo f on p.product_id=f.product_id
+      product p
         left outer join product_comment c on p.product_id=c.product_id
+        left outer join store_photo f on p.product_id=f.product_id
     where
       p.product_id=#{value}
   </select>
@@ -161,7 +173,7 @@
       f.photo_id,
       f.file_path
     from 
-      product p 
+      product p
         left outer join store_photo f on p.product_id=f.product_id
     where species like #{pattern}
     order by product_id asc

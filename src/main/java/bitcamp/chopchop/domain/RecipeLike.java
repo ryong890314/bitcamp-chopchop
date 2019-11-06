@@ -27,5 +27,4 @@ public class RecipeLike implements Serializable {
   public void setRecipeNo(int recipeNo) {
     this.recipeNo = recipeNo;
   }
-  
 }

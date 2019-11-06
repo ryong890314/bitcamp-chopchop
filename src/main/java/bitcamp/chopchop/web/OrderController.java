@@ -1,5 +1,7 @@
 package bitcamp.chopchop.web;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
+import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.service.OrderService;
+import bitcamp.chopchop.service.ProductService;
 
 @Controller
 @RequestMapping("/order")
@@ -18,9 +22,14 @@ public class OrderController {
   
   @Resource
   private OrderService orderService;
+  @Resource
+  private ProductService productService;
   
-  @GetMapping("form")
-  public void form() {
+  @PostMapping("form")
+  public void form(int no, Model model, int quantity) throws Exception {
+    Product product = productService.get(no);
+    model.addAttribute("product", product);
+    model.addAttribute("quantity", quantity);
   }
   
   @GetMapping("list")
@@ -29,22 +38,48 @@ public class OrderController {
   }
 
   @GetMapping("searchbymember")
-  public void searchByMember(Model model, HttpSession httpSession) throws Exception {
-    Member member = (Member) httpSession.getAttribute("loginUser");
-    model.addAttribute("orders", orderService.searchByMember(member.getMemberNo()));
-    model.addAttribute("loginMember", member);
+  public void searchByMember(Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
+    List<Order> orders = new ArrayList<>();
+    List<OrderProduct> orderProducts = new ArrayList<>();
+    
+    for (Order order : orderService.list()) {
+      if(order.getMemberNo() == member.getMemberNo()) {
+        orders.add(order);
+        orderProducts.add(orderService.getOrderProduct(order.getOrderNo()));
+      }
+    }
+    
+    for(OrderProduct op : orderProducts) {
+      op.setProduct(productService.get(op.getProductNo()));
+      op.setOrder(orderService.get(op.getOrderNo()));
+      System.out.println(op.getOrderNo());
+      
+    }
+    model.addAttribute("orders", orders);
+    model.addAttribute("orderProducts", orderProducts);
   }
   
   @PostMapping("add")
-  public String add(Order order, OrderProduct orderProduct) throws Exception {
-    orderService.insert(order);
-    return "redirect:../product/detail?no=" + orderProduct.getProductNo();
+  public String add(
+      HttpSession session, Order order, int no, int optionNo, int quantity, int discountPrice) 
+          throws Exception {
+    OrderProduct orderProduct = new OrderProduct();
+    orderProduct.setOrderNo(order.getOrderNo());
+    orderProduct.setProductNo(productService.get(no).getProductNo());
+    orderProduct.setOptionNo(optionNo);
+    orderProduct.setQuantity(quantity);
+    orderProduct.setDiscountPrice(discountPrice);
+    orderService.insert(order, orderProduct);
+    session.setAttribute("order", order);
+    session.setAttribute("orderProduct", orderProduct);
+    return "redirect:result"; // -> 주문 완료 페이지로
   }
   
   @GetMapping("delete")
   public String delete(int no) throws Exception {
     orderService.delete(no);
-    return "redirect:list";
+    return "redirect:searchbymember";
   }
   
   @GetMapping("detail")
@@ -53,8 +88,23 @@ public class OrderController {
   }
   
   @PostMapping("update")
-  public String update(Order order, OrderProduct orderProduct) throws Exception {
+  public String update(Order order) throws Exception {
     orderService.update(order);
-    return "redirect:../product/detail?no" + orderProduct.getProductNo();
+    return "redirect:searchbymember"; // -> 주문 완료 페이지로
+  }
+  
+  @GetMapping("result")
+  public void result(
+      HttpSession session, Order order, OrderProduct orderProduct, Model model) throws Exception {
+    order = (Order) session.getAttribute("order");
+    orderProduct = (OrderProduct) session.getAttribute("orderProduct");
+    model.addAttribute("order", order);
+    model.addAttribute("orderProduct", orderProduct);
+    model.addAttribute("product", productService.get(orderProduct.getProductNo()));
+  }
+  
+  @GetMapping("updateform")
+  public void updateform(int no, Model model) throws Exception {
+    model.addAttribute("order", orderService.get(no));
   }
 }

@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.service.CommentService;
+import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.ProductService;
 
 @Controller
@@ -20,6 +23,10 @@ public class ProductController {
   private ProductService productService;
   @Resource
   private PhotoFileWriter photoFileWriter;
+  @Resource
+  private CommentService commentService;
+  @Resource
+  private MemberService memberService;
 
 
   @GetMapping("form")
@@ -45,9 +52,11 @@ public class ProductController {
 
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
+    Product product = productService.get(no);
+    List<Comment> comments = commentService.findByProductWith(product.getProductNo());
     model.addAttribute("product", productService.get(no));
+    model.addAttribute("comments", comments);
   }
-
 
   @GetMapping("search")
   public void search(Model model, String keyword) throws Exception {
@@ -73,11 +82,6 @@ public class ProductController {
   @GetMapping("updateform")
   public void updateform(Model model, int no) throws Exception {
     model.addAttribute("product", productService.get(no));
-  }
-  
-  @GetMapping("addorder")
-  public void addOrder(int no, Model model) throws Exception {
-    model.addAttribute("product2", productService.get(no));
   }
 }
 

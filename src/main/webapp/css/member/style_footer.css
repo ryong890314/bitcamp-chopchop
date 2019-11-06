@@ -1,17 +1,5 @@
-/* Master Stylesheet - 1.0 */
-/* :: 1.0 Import Fonts */
-@import
-	url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700")
-	;
 /* :: 2.0 Import All CSS */
-@import url(bootstrap.min.css);
-@import url(classy-nav.css);
-@import url(owl.carousel.min.css);
-@import url(animate.css);
-@import url(magnific-popup.css);
-@import url(font-awesome.min.css);
-@import url(nice-select.css);
-/* :: 3.0 Base CSS */
+@import url(/css/common/bootstrap.min.css);
 
 /* :: 8.0 Footer Area CSS */
 .footer-area {
@@ -42,6 +30,10 @@
 	position: relative;
 	z-index: 1;
 	display: block;
+}
+
+ul li, ol li {
+  list-style: none;
 }
 
 .footer-area .footer-nav ul {

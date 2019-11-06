@@ -1,14 +1,6 @@
-/* Master Stylesheet - 1.0 */
-/* :: 1.0 Import Fonts */
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
 /* :: 2.0 Import All CSS */
-@import url(bootstrap.min.css);
-@import url(classy-nav.css);
-@import url(owl.carousel.min.css);
-@import url(animate.css);
-@import url(magnific-popup.css);
-@import url(font-awesome.min.css);
-@import url(nice-select.css);
+@import url(/css/common/magnific-popup.css);
+@import url(/css/common/font-awesome.min.css);
 /* :: 3.0 Base CSS */
 * {
   margin: 0;
@@ -57,19 +49,19 @@ img {
 
 /* :: 3.3.0 Section Padding */
 .section-padding-100 {
-  padding-top: 100px;
-  padding-bottom: 100px; }
+  padding-top: 10px;
+  padding-bottom: 50px; }
 
 .section-padding-100-0 {
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 0; }
 
 .section-padding-0-100 {
   padding-top: 0;
-  padding-bottom: 100px; }
+  padding-bottom: 50px; }
 
 .section-padding-100-70 {
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 70px; }
 
 

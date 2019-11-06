@@ -1,17 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>CHOPCHOP 회원가입</title>
 <link rel="stylesheet" href="/css/member/style_join.css">
 <link rel="stylesheet" href="/css/member/style_footer.css">
-<style type="text/css">
-  .vali_check {
-    color : red;
-  }
-
-</style>
 </head>
 <body>
   <div class="bucket">
@@ -22,9 +15,9 @@
       <form method="POST" action="add" name="form" onsubmit="return checkAll();">
         <input type="email" id="email" name="email" placeholder="이메일" onblur="email_check();"/>
           <div id="email_chk" class="vali_check"></div>
-        <input type="password" id="password" name="password" placeholder="비밀번호" onblur="password_check();" maxlength="20"/> 
+        <input type="password" id="password" name="password" placeholder="비밀번호" onblur="password_check();" maxlength="15"/> 
           <div id="password_chk" class="vali_check"></div>
-        <input type="password" id="password2" name="password2" placeholder="비밀번호 확인" onblur="password2_check();" maxlength="20"/> 
+        <input type="password" id="password2" name="password2" placeholder="비밀번호 확인" onblur="password2_check();" maxlength="15"/> 
           <div id="password2_chk" class="vali_check"></div>
         <input type="text" id="nickname" name="nickname" placeholder="닉네임" onblur="nickname_check();" maxlength="12"/>
           <div id="nickname_chk" class="vali_check"></div>
@@ -43,6 +36,7 @@
 	  console.log("email_check");
     if (form.email.value == "") { // 빈 값 검사
       document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
+      $("#email_chk").css('color', 'red');
     }
     // 이메일 값이 들어있다면 정규식 검사 
     var eRegPass = false;
@@ -50,11 +44,12 @@
       var emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
       if (!emailRegExp.test(form.email.value)) {
         document.getElementById("email_chk").innerHTML = "이메일 형식이 올바르지 않습니다!";
+        $("#email_chk").css('color', 'red');
       } else {
         eRegPass = true;
       }
     }
-      
+    
     // 이메일 중복체크
     if(eRegPass) {
       var xhr = new XMLHttpRequest();
@@ -63,9 +58,11 @@
         if (xhr.status == 200) {
           if (xhr.responseText == "1") { // 0이면 가입 가능, 아니면 중복!
             document.getElementById("email_chk").innerHTML = "중복된 이메일입니다.";
+            $("#email_chk").css('color', 'red');
           } else {
             document.getElementById("email_chk").innerHTML = "가입 가능한 이메일입니다. ";
-            eCheckFlag = true;
+            $("#email_chk").css('color', 'green');
+            eCheckFlag = true; 
           }
         } else {
           alert("시스템 오류 발생!");
@@ -82,15 +79,18 @@ function password_check() {
   var pCheckFlag = false;
   if (form.password.value == "") {
     document.getElementById("password_chk").innerHTML = "비밀번호를 입력하세요.";
+    $("#password_chk").css('color', 'red');
   } 
 
   // 비밀번호 정규식 검사 
   if (form.password.value != "") {
-    var passwordRegExp = /^[a-zA-z0-9]{4,20}$/; 
+    var passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
   if (!passwordRegExp.test(form.password.value)) {
-    document.getElementById("password_chk").innerHTML = "비밀번호는 영문 대소문자와 숫자 4~20자리로 입력해야합니다!";
+    document.getElementById("password_chk").innerHTML = "8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+    $("#password_chk").css('color', 'red');
   } else {
-    document.getElementById("password_chk").innerHTML = "";
+    document.getElementById("password_chk").innerHTML = "사용 가능한 비밀번호입니다.";
+    $("#password_chk").css('color', 'green');
     pCheckFlag = true;
   }
   } 
@@ -101,14 +101,17 @@ function password_check() {
 	  var p2CheckFlag = false;
 	  if (form.password2.value == "") {
        document.getElementById("password2_chk").innerHTML = "비밀번호 확인을 입력하세요.";
+       $("#password2_chk").css('color', 'red');
      } 
 	  
 	  // 비밀번호 & 비밀번호 확인이 같은 값인지 검사 
     if (form.password2.value != "") {
       if (form.password.value != form.password2.value) {
         document.getElementById("password2_chk").innerHTML = "두 비밀번호가 다릅니다.";
+        $("#password2_chk").css('color', 'red');
       } else {
-        document.getElementById("password2_chk").innerHTML = "";
+        document.getElementById("password2_chk").innerHTML = "두 비밀번호가 일치합니다.";
+        $("#password2_chk").css('color', 'green');
         p2CheckFlag = true;
       }
     } 
@@ -119,6 +122,7 @@ function password_check() {
 	  var nCheckFlag = false;
 	  if (form.nickname.value == "") {
        document.getElementById("nickname_chk").innerHTML = "닉네임을 입력하세요.";
+       $("#nickname_chk").css('color', 'red');
      } 
     // 닉네임 정규식 검사 
     var nRegPass = false;
@@ -126,6 +130,7 @@ function password_check() {
       var nicknameRegExp = /^[a-zA-z0-9가-힣]{2,12}$/;
       if (!nicknameRegExp.test(form.nickname.value)) {
           document.getElementById("nickname_chk").innerHTML = "닉네임 형식이 올바르지 않습니다!";
+          $("#nickname_chk").css('color', 'red');
       } else {
         nRegPass = true;
       }
@@ -140,8 +145,10 @@ function password_check() {
             // 0이면 가입 가능, 아니면 중복!
             if (xhr.responseText == "1") {
               document.getElementById("nickname_chk").innerHTML = "중복된 닉네임입니다.";
+              $("#nickname_chk").css('color', 'red');
             } else {
               document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
+              $("#nickname_chk").css('color', 'green');
               nCheckFlag = true;
             }
           } else {
@@ -160,15 +167,18 @@ function password_check() {
 	  var tCheckFlag = false;
 	  if (form.tel.value == "") {
       document.getElementById("tel_chk").innerHTML = "핸드폰 번호를 입력하세요.";
+      $("#tel_chk").css('color', 'red');
     } 
 	// 핸드폰 번호 정규식 검사 
     if (form.tel.value != "") {
       var telRegExp = /^[0-9]{3}[0-9]{3,4}[0-9]{4}$/;
       if (!telRegExp.test(form.tel.value)) {
        document.getElementById("tel_chk").innerHTML = "핸드폰 번호의 형식이 올바르지 않습니다.";
+       $("#tel_chk").css('color', 'red');
       } else {
         document.getElementById("tel_chk").innerHTML = "";
         tCheckFlag = true;
+
       }
     } 
    return tCheckFlag;
@@ -193,8 +203,10 @@ function password_check() {
     }
     
     return checkCnt == 5 ? true : false; 
-    }
+   }
 </script>
+<!-- <script src="//code.jquery.com/jquery-3.1.0.min.js"></script> -->
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <jsp:include page="../footer.jsp"/>
 </body>
 </html>

@@ -55,7 +55,7 @@ public class DefaultProductService implements ProductService {
     Product product = productDao.findWithFilesBy(no);
     if (product == null) {
       throw new Exception("해당 번호의 데이터가 없습니다!");
-    } 
+    }
     productDao.increaseViewCount(no);
     return product;
   }
@@ -68,15 +68,13 @@ public class DefaultProductService implements ProductService {
   @Transactional
   @Override
   public void update(Product product) throws Exception {
-    if(product.getFiles().size() == 0) {
-      throw new Exception("사진 파일이 없습니다.");
-    }
-
-    photoFileDao.deleteAll(product.getProductNo());
     productDao.update(product);
-    for (PhotoFile file : product.getFiles()) {
-      file.setProductNo(product.getProductNo());
-      photoFileDao.insert(file);
+    if(product.getFiles().size() > 0) {
+      photoFileDao.deleteAll(product.getProductNo());
+      for (PhotoFile file : product.getFiles()) {
+        file.setProductNo(product.getProductNo());
+        photoFileDao.insert(file);
+      }
     }
   }
   

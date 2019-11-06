@@ -3,13 +3,11 @@ package bitcamp.chopchop.service.impl;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.chopchop.dao.CommentDao;
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.service.CommentService;
 
 @Service
-@RequestMapping("/comment")
 public class DefaultCommentService implements CommentService {
 
   @Resource
@@ -44,6 +42,11 @@ public class DefaultCommentService implements CommentService {
   @Override
   public void update(Comment comment) throws Exception {
     commentDao.update(comment);
+  }
+
+  @Override
+  public List<Comment> findByProductWith(int no) throws Exception {
+    return commentDao.findByProductWith(no);
   }
 }
 

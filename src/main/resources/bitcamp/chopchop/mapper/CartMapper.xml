@@ -8,6 +8,7 @@
     <id column="cart_id" property="cartNo"/>
     <result column="member_id" property="memberNo"/>
     <result column="product_id" property="productNo"/>
+    <result column="option_id" property="optionNo"/>
     <result column="quantity" property="quantity"/>
     <result column="created_date" property="createdDate"/>
   </resultMap>
@@ -37,12 +38,19 @@
       <result column="product_id" property="productNo"/>
     </collection>
 
+    <collection property="options" ofType="ProductOption">
+      <id column="option_id" property="optionNo"/>
+      <result column="product_id" property="productNo"/>
+      <result column="optionTitle" property="title"/>
+      <result column="optionPrice" property="price"/>
+    </collection>
+
     <collection property="members" ofType="Member">
       <id column="member_id" property="memberNo"/>
       <result column="password" property="password"/>
       <result column="email" property="email"/>
       <result column="photo" property="photo"/>
-      <result column="nickname" property="nickName"/>
+      <result column="nickname" property="nickname"/>
       <result column="tel" property="tel"/>
       <result column="post_no" property="postNo"/>
       <result column="base_address" property="baseAddress"/>
@@ -57,6 +65,7 @@
       cart_id,
       member_id,
       product_id,
+      option_id,
       quantity,
       created_date
     from 
@@ -82,26 +91,31 @@
           resultMap="findWithCartMap">
     select
       c.cart_id,
-      c.created_date,
+      c.option_id,
       c.quantity,
+      c.created_date,
       c.member_id,
-      m.member_id,
+      p.product_id,
       p.title,
       p.price,
+      p.discount,
       f.photo_id,
-      f.file_path
+      f.file_path,
+      o.option_id,
+      o.title optionTitle,
+      o.price optionPrice
     from 
-      cart c 
-        left outer join member m on c.member_id=m.member_id
-        left outer join product p on c.product_id=p.product_id
-        left outer join store_photo f on p.product_id=f.product_id
-    where c.member_id like #{keyword}
-    order by created_date desc
+      cart c
+        left join product p on c.product_id=p.product_id
+	      left join store_photo f on p.product_id=f.product_id
+        left join product_option o on c.option_id=o.option_id
+    where c.member_id like #{memberNo}
+    order by cart_id desc
   </select>
   
   <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyColumn="cart_id" keyProperty="cartNo">
-    insert into product(member_id, product_id, quantity, created_date)
-    values(#{memberNo},#{productNo},#{quantity},#{createdDate}) 
+    insert into cart(member_id, product_id, option_id, quantity)
+    values(#{memberNo},#{productNo},#{optionNo},#{quantity}) 
   </insert>
   
   <update id="update" parameterType="Cart">
@@ -110,7 +124,7 @@
       cart_id=#{cartNo},
       member_id=#{memberNo},
       product_id=#{productNo},
-      created_date=#{createdDate}
+      created_date=#{createdDate},
       -->
       quantity=#{quantity}
     where cart_id=#{cartNo}
@@ -120,4 +134,5 @@
     delete from cart
     where cart_id=#{cartNo}
   </delete>
+
 </mapper>

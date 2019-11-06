@@ -58,15 +58,11 @@
 </style>
 </head>
 <div class="get-password-page">
-	<div class="get-password-header">My Password</div>
+	<div class="get-password-header">Find My Password</div>
 	<div class="get-password-content">
 		<div class="get-password-div">
-			<span>내 비밀 번호</span>
+			<span>메일을 발송했습니다.</span>
 		</div>
-		<!-- <c:if test="${empty loginUser}">
-			<a class='classy-btn login-area'>${password}</a>
-		</c:if>
-		-->
 	</div>
 	<div class="get-password-button">
 		<Input type=button onclick="self.close()" class="passwordRequest"

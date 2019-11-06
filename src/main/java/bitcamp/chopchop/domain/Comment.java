@@ -10,6 +10,14 @@ public class Comment {
   private String title;
   private String content;
   private Date createdDate;
+  private Member member;
+
+  @Override
+  public String toString() {
+    return "Comment [commentNo=" + commentNo + ", productNo=" + productNo + ", memberNo=" + memberNo
+        + ", title=" + title + ", content=" + content + ", createdDate=" + createdDate + ", member="
+        + member + "]";
+  }
 
   public int getCommentNo() {
     return commentNo;
@@ -59,6 +67,13 @@ public class Comment {
     this.createdDate = createdDate;
   }
 
+  public Member getMember() {
+    return member;
+  }
 
-
+  public void setMember(Member member) {
+    this.member = member;
+  }
+  
+  
 }

@@ -7,8 +7,8 @@
 <html>
 <head>
   <title>상품 목록</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel='stylesheet' href='/css/style.css'>
+  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='/css/product/style.css'>
   <style>
 
   #content {
@@ -72,8 +72,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=dog" class="post-tag">강아지</a>
-                                <a href="category?species=dog" class="post-title" style="color:#524845">강아지</a>
+                                <a href="category?species=강아지" class="post-tag">강아지</a>
+                                <a href="category?species=강아지" class="post-title" style="color:#524845">강아지</a>
                             </div>
                         </div>
                     </div>
@@ -85,8 +85,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=cat" id="species" class="post-tag">고양이</a>
-                                <a href="category?species=cat" class="post-title" style="color:#524845">고양이</a>
+                                <a href="category?species=고양이" id="species" class="post-tag">고양이</a>
+                                <a href="category?species=고양이" class="post-title" style="color:#524845">고양이</a>
                             </div>
                         </div>
                     </div>
@@ -98,8 +98,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=bird" id="species" class="post-tag">새</a>
-                                <a href="category?species=bird" class="post-title" style="color:#524845">새</a>
+                                <a href="category?species=새" id="species" class="post-tag">새</a>
+                                <a href="category?species=새" class="post-title" style="color:#524845">새</a>
                             </div>
                         </div>
                     </div>
@@ -117,8 +117,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=fish" id="species" class="post-tag">물고기</a>
-                                <a href="category?species=fish" class="post-title" style="color:#524845">물고기</a>
+                                <a href="category?species=물고기" id="species" class="post-tag">물고기</a>
+                                <a href="category?species=물고기" class="post-title" style="color:#524845">물고기</a>
                             </div>
                         </div>
                     </div>
@@ -130,8 +130,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=small animal" id="species" class="post-tag">작은 동물</a>
-                                <a href="category?species=small animal" class="post-title" style="color:#524845">작은 동물</a>
+                                <a href="category?species=작은" id="species" class="post-tag">작은 동물</a>
+                                <a href="category?species=작은" class="post-title" style="color:#524845">작은 동물</a>
                             </div>
                         </div>
                     </div>
@@ -143,8 +143,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=reptile" id="species" class="post-tag">파충류</a>
-                                <a href="category?species=reptile" class="post-title" style="color:#524845">파충류</a>
+                                <a href="category?species=파충류" id="species" class="post-tag">파충류</a>
+                                <a href="category?species=파충류" class="post-title" style="color:#524845">파충류</a>
                             </div>
                         </div>
                     </div>
@@ -156,17 +156,18 @@
   
 <div id="productBody">
   <div class="d-flex align-content-start flex-wrap">
-<c:forEach items="${products}" var="product">
+<c:forEach items="${products}" var="product" varStatus="status">
   <div id="productList">
 
 <div class="card" style="width: 18rem;">
   <c:forEach items="${product.files}" var="file" end="0">
-    <img src='/upload/product/${file.filePath}' style="width: 286px; height: 286px;"> 
+    <img src='/upload/product/${file.filePath}' style="width: 286px; height: 286px;" alt=""> 
   </c:forEach>
   
   <div class="card-body">
     <h5 class="card-title">${product.title}</h5>
-    <p class="card-text">${product.price}원</p>
+    <p class="card-text"><span style="text-decoration-line:line-through; color:gray;">${product.price}원</span><br>
+    <span class="totalPrice">${product.price * (100-product.discount)/100}</span>원</p>
     <a href='detail?no=${product.productNo}' class="btn bueno-btn">구매하기</a>
   </div>
 </div>
@@ -176,5 +177,11 @@
 </div>
 
 <jsp:include page="../footer.jsp"/>
-
-</body></html>
+  <script>
+    var totalPrice = document.getElementsByClassName('totalPrice');
+    for(var i of totalPrice) {
+      i.innerText = parseInt(i.innerText)
+    }
+  </script>
+</body>
+</html>

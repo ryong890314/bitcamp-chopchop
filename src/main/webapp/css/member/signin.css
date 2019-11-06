@@ -76,7 +76,7 @@ input.btnn {
     margin text-align: center;
     width: 200px;
     height: 200px;
-    background: url('/img/core-img/logo.png') no-repeat;
+    background: url('/img/core-img/choplogo.png') no-repeat;
     background-size: contain;
     background-position: center;
     margin-left: auto;
@@ -88,7 +88,7 @@ input.btnn {
 }
   
 .btn:hover {
-    background-color: #81914016318291;
+    background-color: #819140;
 }
   
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
