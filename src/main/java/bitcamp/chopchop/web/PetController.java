@@ -28,8 +28,8 @@ public class PetController {
   }
 
   @GetMapping("form")
-  public void form() {
-
+  public void form(Model model, int no) {
+    model.addAttribute("memberNo", no);
   }
 
   @PostMapping("add")
@@ -39,11 +39,11 @@ public class PetController {
     return "redirect:../member/detail?no=" + pet.getMemberNo();
   }
 
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    List<Pet> pet = petService.list();
-    model.addAttribute("pets", pet);
-  }
+//  @GetMapping("list")
+//  public void list(Model model) throws Exception {
+//    List<Pet> pet = petService.list();
+//    model.addAttribute("pets", pet);
+//  }
 
   @RequestMapping("detail")
   public void detail(Model model, int no) throws Exception {

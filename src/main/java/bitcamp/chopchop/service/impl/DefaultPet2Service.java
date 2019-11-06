@@ -13,10 +13,10 @@ public class DefaultPet2Service implements Pet2Service {
   @Resource
   private Pet2Dao pet2Dao;
 
-  @Override
-  public List<Pet2> list() throws Exception {
-    return pet2Dao.findAll();
-  }
+  // @Override
+  // public List<Pet2> list() throws Exception {
+  //   return pet2Dao.findAll();
+  // }
 
   @Override
   public void insert(Pet2 pet2) throws Exception {
@@ -26,6 +26,7 @@ public class DefaultPet2Service implements Pet2Service {
   @Override
   public List<Pet2> getPets(int no) throws Exception {
     List<Pet2> pets = pet2Dao.getPets(no);
+    System.out.println("들어왓음~~~~~~!");
     if (pets == null) {
       throw new Exception("해당번호의 데이터가 없음");
     }

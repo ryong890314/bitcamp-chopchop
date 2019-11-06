@@ -214,7 +214,7 @@ form > div > label {
     </div>
 
 		<hr>
-		<jsp:include page="../pet2/detail.jsp" />
+		<jsp:include page="../pet/detail.jsp" />
 
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"

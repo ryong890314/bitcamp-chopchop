@@ -23,8 +23,8 @@
 
 	<div id='content' class="container">
 		<h1>My Pet Information</h1>
-		<a href='/app/pet2/form?no=${member.memberNo}' class="tagA">펫 등록</a><br>
-		<form action='/app/pet2/update' method='post'>
+		<a href='/app/pet/form?no=${member.memberNo}' class="tagA">펫 등록</a><br>
+		<form action='/app/pet/update' method='post'>
 			<c:forEach items="${pets}" var="pet">
 				<div class="card mb-3" style="max-width: 540px;">
 					<div class="row">

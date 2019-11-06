@@ -78,19 +78,65 @@
 					</div>
 					<div class="col-7">
 						<input type='hidden' id='memberNo' name='memberNo' value='${member.memberNo}' readonly> 
-            <label for="email">이메일 <input type='text' id='email' name='email' value='${member.email}' readonly></label><br>
-            <label for="password">비밀번호 <input type="button" id="password" class="change_btn" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal" /></label><br> 
-            <label for="nickname">닉네임 <input type='text' name='nickname' value='${member.nickname}' maxlength="12" 	onblur="nickname_check();"></label><br>
-						<div id="nickname_chk" class="vali_check"></div>
-						<label for="tel">핸드폰 번호 <input type='tel' name='tel' value='${member.tel}' maxlength="11" onblur="tel_check();"></label><br>
-						<div id="tel_chk" class="vali_check"></div>
-						<label for="postNo">우편번호 <input type='text' id="postNo" name='postNo' 	value='${member.postNo}'> </label>
-            <input type="button" name="post_search" class="change_btn" value="우편번호 찾기" onclick="myPostcode();" /><br>
-						<label for="baseAddress">기본주소 <input type='text' id="baseAddress" name='baseAddress' 	value='${member.baseAddress}'></label><br> 
-            <label for="detailAddress">상세주소 <input 	type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'></label><br> 
-            <input type="hidden" id="nickname1" value="${member.nickname}" />
+						<div class="form-group row">
+							<label for="email" class="col-sm-2 col-form-label">이메일</label>
+							<div class="col-sm-10">
+								<input type="email" readonly class="form-control-plaintext" id="email" value="${member.email}">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="password" class="col-sm-2 col-form-label">패스워드</label>
+							<div class="col-sm-10">
+								<input type="button" class="form-control change_btn" id="password" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal" />
+							</div>
+              </div>
+						
+						<div class="form-group row">
+              <label for="nickname" class="col-sm-2 col-form-label">닉네임</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="nickname" name='nickname' value='${member.nickname}' maxlength="12"  onblur="nickname_check();">
+    						<div id="nickname_chk" class="vali_check"></div>
+              </div>
+            </div>
+						
+						
+						<div class="form-group row">
+              <label for="tel" class="col-sm-2 col-form-label">핸드폰번호</label>
+              <div class="col-sm-10">
+                <input type="tel" class="form-control" id="tel" name='tel' value='${member.tel}' maxlength="11"  onblur="tel_check();">
+    						<div id="tel_chk" class="vali_check"></div>
+              </div>
+            </div>
+
+              <div class="form-group row">
+              <label for="postNo" class="col-sm-2 col-form-label">우편번호</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="postNo" name='postNo' value='${member.postNo}'>
+              </div>
+              <div class="col-sm-5">
+                <input type="button" class="form-control change_btn" id="postNo" name='post_search' value="우편번호 찾기" onclick="myPostcode();">
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label for="baseAddress" class="col-sm-2 col-form-label">기본주소</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="baseAddress" name='baseAddress' value='${member.baseAddress}'>
+              </div>
+            </div>
+            
+            
+            <div class="form-group row">
+              <label for="detailAddress" class="col-sm-2 col-form-label">상세주소</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="detailAddress" name='detailAddress' value='${member.detailAddress}'>
+              </div>
+            </div>
 						<!-- 원래 닉네임값  -->
+            <input type="hidden" id="nickname1" value="${member.nickname}" />
+
 						<button class="change_btn">변경</button>
+
 					</div>
 					<div class="container">
 						<div class="row">
@@ -105,7 +151,7 @@
 		</div>
 
 		<hr>
-		<jsp:include page="../pet2/detail.jsp" />
+		<jsp:include page="../pet/detail.jsp" />
 
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"

@@ -39,11 +39,24 @@ public class Pet2Controller {
     return "redirect:../member/detail?no=" + pet2.getMemberNo();
   }
 
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    List<Pet2> pets = pet2Service.list();
-    model.addAttribute("pets", pets);
-  }
+  // @GetMapping("list")
+  // public void list(Model model) throws Exception {
+  //   List<Pet2> pets = pet2Service.list();
+  //   model.addAttribute("pets", pets);
+  // }
+
+//  @PostMapping("update")
+//  public String update(Pet2 pet2, MultipartFile file) throws Exception {
+//    pet2.setFilePath(writeFile(file));
+//    pet2Service.update(pet2);
+//    return "redirect:list";
+//  }
+//
+//  @GetMapping("delete")
+//  public String delete(int no) throws Exception {
+//    pet2Service.delete(no);
+//    return "redirect:list";
+//  }
   
   private String writeFile(MultipartFile file) throws Exception {
     if (file.isEmpty())
