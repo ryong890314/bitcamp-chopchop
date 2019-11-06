@@ -104,7 +104,7 @@
           </td>
           <c:forEach items="${cart.products}" var="product">
               <c:forEach items="${cart.options}" var="productOption">
-            <td><fmt:formatNumber value="${product.price + productOption.price}" pattern="#,###"/>원</td>
+            <td><fmt:formatNumber value="${(product.price + productOption.price) * cart.quantity}" pattern="#,###"/>원</td>
           </c:forEach>
           </c:forEach>
             

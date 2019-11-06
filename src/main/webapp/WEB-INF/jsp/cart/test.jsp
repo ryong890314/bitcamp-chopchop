@@ -6,14 +6,14 @@
 
 <head>
   <title>테스트</title>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+  <script type="text/JavaScript"
+   src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
   <link rel='stylesheet' href='/css/product/style.css'>
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+  
 
 </head>
-
+<body>
 <div id='productBody'>
 
     <button type='button' class="btn btn-default btn-sm" onclick='check_all();'>모두 선택</button>
@@ -56,9 +56,9 @@
             </td>
           <td>
 
-<!-- 
 
-            <form action="update" method="POST">
+
+            <!-- <form action="update" method="POST">
             <div class="input-group input-number-group">
               <input class="input-number" name="quantity" type="number" style="text-align:center; width: 80px;" value="${cart.quantity}" min="0" max="1000">
               <input type="hidden" name="cartNo" value="${cart.cartNo}">
@@ -70,10 +70,12 @@
             <form>
                 <input class="input-number" name="quantity" type="number" style="text-align:center; width: 80px;" value="${cart.quantity}" min="0" max="1000">
                 <input type="hidden" name="cartNo" value="${cart.cartNo}">
-                <button class="btn btn-default btn-sm" id="requestBtn" style="width:80px">변경</button>
-            </form>
+              </form>
+              <button class="btn btn-default btn-sm" id="requestBtn" style="width:80px">변경</button>
 
-
+              <c:forEach items="${cart.products}" var="product">
+                  <a style=" text-decoration:line-through"><fmt:formatNumber value="${product.price * cart.quantity}" pattern="#,###"/>원</a><br>
+                </c:forEach>
 
 
           </td>
@@ -128,71 +130,51 @@
 
   <jsp:include page="../footer.jsp"/>
 
-	<!-- <script>
-      $(function() {
-        alert("엥1")
-        $("#requestBtn").on("click", function() {
-          var ajxCartNo = document.getElementsByName("cartNo")
-          var ajxQuantity = document.getElementsByName("quantity")
-          alert("엥2")
-          console.log(ajxCartNo + ", " + ajxQuantity) // 이까지 온다
-          
-          $.ajax("update")
-          .done(function() {
-            alert("요청 성공");
-          })
-          .fail(function() {
-            alert("요청 실패");
-          })
-          .always(function() {
-            alert("요청 완료");
+  <!-- 한개만 -->
+  <!-- <script>
+      $("#requestBtn").click(function() {
+        var ajxCartNo = document.getElementsByName("cartNo");
+        var ajxQuantity = document.getElementsByName("quantity");
+    
+          $.ajax({
+    
+            url:"update",
+            type:"post",
+            data : "quantity=" + ajxQuantity[0].value + "&cartNo=" + ajxCartNo[0].value,
+            success: function(data){
+                alert("수량이 변경 되었습니다.");
+            },
+            error: function() {
+                alert("error");
+            }
           });
-        });
-      });
+    });
     </script> -->
 
+<!-- 반복문 실패 -->
 <script>
+  $("#requestBtn").click(function() {
+    var ajxCartNo = document.getElementsByName("cartNo");
+    var ajxQuantity = document.getElementsByName("quantity");
 
-$("#requestBtn").click(function(){
-  $.ajax({
-      type:"POST",
-      url:"./book.jsp",
-      data : {name : "홍길동"},
-      dataType : "xml",
-      success: function(xml){
-          console.log(xml);
-      },
-      error: function(xhr, status, error) {
-          alert(error);
-      }  
-  });
-});
+    for (var i = 0; i < ajxCartNo.length; i++) {
+      alert("cartNo:" + ajxCartNo[i].value + ", quantity:" + ajxQuantity[i].value );
+      $.ajax({
 
-</script>
-
-  <script>
-  function check_Quantity() {
-    var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-        if (xhr.status == 200) {
-          console.log('======' + document.getElementsByName('quantity') )
-        //   if (xhr.responseText == "1") { // 0이면 가입 가능, 아니면 중복!
-        //     document.getElementById("email_chk").innerHTML = "중복된 이메일입니다.";
-        //   } else {
-        //     document.getElementById("email_chk").innerHTML = "가입 가능한 이메일입니다. ";
-        //     eCheckFlag = true;
-        //   }
-        // } else {
-        //   alert("시스템 오류 발생!");
-        // }
+        url:"update",
+        type:"post",
+        data : "quantity=" + ajxQuantity[i].value + "&cartNo=" + ajxCartNo[i].value,
+        success: function(data){
+            alert("수량이 변경 되었습니다.");
+        },
+        error: function() {
+            alert("error");
         }
-      };
-      xhr.open("GET", "update", false);
-      xhr.send();
-  }
-}
-  </script>
+      });
+    }
+
+});
+</script>
 
   <script>
       var myCheckBoxes = document.getElementsByClassName('myChkbox');
