@@ -118,10 +118,6 @@
           <label for="exampleInput">주문자 이메일</label>
           <input type="text" id="customerEmail" name="" value="${loginUser.email}">
         </div>
-<!--         <div class="col-md-6">       -->
-<!--           <label for="exampleInput">수령인 이메일</label> -->
-<!--           <input type="text" id="recipientEmail" name="email" value="" placeholder="이메일을 입력하세요."> -->
-<!--         </div> -->
       </div>
       
       <div class="row">

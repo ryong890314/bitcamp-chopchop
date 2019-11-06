@@ -14,12 +14,12 @@
     제품<br>${product.title}<br>
     가격<br>${product.price}원<br>
     회원 번호<br>${loginUser.memberNo}<br>
-    이름<br>${loginUser.nickname}<br>
+    이름<br>${order.name}<br>
     이메일<br>${loginUser.email}<br>
-    연락처<br>${loginUser.tel}<br>
-    우편번호<br>${loginUser.postNo}<br>
-    기본주소<br>${loginUser.baseAddress}<br>
-    상세주소<br>${loginUser.detailAddress}<br>
+    연락처<br>${order.tel}<br>
+    우편번호<br>${order.postNo}<br>
+    기본주소<br>${order.baseAddress}<br>
+    상세주소<br>${order.detailAddress}<br>
     결제수단<br>${order.paymentMethod}<br><br><hr>
     관리자<br>
     입금일<br>${order.paymentDate}<br>

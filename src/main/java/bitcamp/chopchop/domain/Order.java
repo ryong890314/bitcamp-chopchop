@@ -34,122 +34,134 @@ public class Order {
     return orderNo;
   }
 
-  public void setOrderNo(int orderNo) {
+  public Order setOrderNo(int orderNo) {
     this.orderNo = orderNo;
+    return this;
   }
 
   public int getMemberNo() {
     return memberNo;
   }
 
-  public void setMemberNo(int memberNo) {
+  public Order setMemberNo(int memberNo) {
     this.memberNo = memberNo;
+    return this;
   }
 
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public Order setName(String name) {
     this.name = name;
+    return this;
   }
 
   public String getTel() {
     return tel;
   }
 
-  public void setTel(String tel) {
+  public Order setTel(String tel) {
     this.tel = tel;
+    return this;
   }
 
   public String getPostNo() {
     return postNo;
   }
 
-  public void setPostNo(String postNo) {
+  public Order setPostNo(String postNo) {
     this.postNo = postNo;
+    return this;
   }
 
   public String getBaseAddress() {
     return baseAddress;
   }
 
-  public void setBaseAddress(String baseAddress) {
+  public Order setBaseAddress(String baseAddress) {
     this.baseAddress = baseAddress;
+    return this;
   }
 
   public String getDetailAddress() {
     return detailAddress;
   }
 
-  public void setDetailAddress(String detailAddress) {
+  public Order setDetailAddress(String detailAddress) {
     this.detailAddress = detailAddress;
+    return this;
   }
 
   public Date getPaymentDate() {
     return paymentDate;
   }
 
-  public void setPaymentDate(Date paymentDate) {
+  public Order setPaymentDate(Date paymentDate) {
     this.paymentDate = paymentDate;
+    return this;
   }
 
   public String getPaymentMethod() {
     return paymentMethod;
   }
 
-  public void setPaymentMethod(String paymentMethod) {
+  public Order setPaymentMethod(String paymentMethod) {
     this.paymentMethod = paymentMethod;
+    return this;
   }
 
   public String getShipDate() {
     return shipDate;
   }
 
-  public void setShipDate(String shipDate) {
+  public Order setShipDate(String shipDate) {
     this.shipDate = shipDate;
+    return this;
   }
 
   public String getInvoice() {
     return invoice;
   }
 
-  public void setInvoice(String invoice) {
+  public Order setInvoice(String invoice) {
     this.invoice = invoice;
+    return this;
   }
 
   public OrderProduct getOrderProduct() {
     return orderProduct;
   }
 
-  public void setOrderProduct(OrderProduct orderProduct) {
+  public Order setOrderProduct(OrderProduct orderProduct) {
     this.orderProduct = orderProduct;
+    return this;
   }
 
   public Member getMember() {
     return member;
   }
 
-  public void setMember(Member member) {
+  public Order setMember(Member member) {
     this.member = member;
+    return this;
   }
 
   public List<OrderProduct> getOrderProducts() {
     return orderProducts;
   }
 
-  public void setOrderProducts(List<OrderProduct> orderProducts) {
+  public Order setOrderProducts(List<OrderProduct> orderProducts) {
     this.orderProducts = orderProducts;
+    return this;
   }
 
   public List<Member> getMembers() {
     return members;
   }
 
-  public void setMembers(List<Member> members) {
+  public Order setMembers(List<Member> members) {
     this.members = members;
+    return this;
   }
-
-
-
 }

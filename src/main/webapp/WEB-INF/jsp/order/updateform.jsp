@@ -38,43 +38,29 @@
   <jsp:include page="../header.jsp"/>
   <div id="orderBody">
     <div class="d-flex align-content-start flex-wrap">
+    <form action="update" method="post">
       <table class='table table-hover' style="text-align:center;">
         <tr>
-          <th>주문번호</th>
-          <th>상품이름</th>
-          <th>옵션번호</th>
-          <th>수량</th>
-          <th>최종가격</th>
-          <th>주문일</th>
-          <th>상태</th>
+          <th>우편번호</th>
+          <th>기본주소</th>
+          <th>상세주소</th>
+          <th>연락처</th>
           <th></th>
         </tr>
-        <c:forEach items="${orderProducts}" var="orderProduct">
           <tr>
-            <td>${orderProduct.orderNo}</td>
-            <td>${orderProduct.product.title}</td>
-            <td>${orderProduct.optionNo}</td>
-            <td>${orderProduct.quantity}</td>
-            <td>${orderProduct.discountPrice}원</td>
-            <td>${orderProduct.order.paymentDate}</td>
-            <td>${orderProduct.order.shipDate}</td>
-            <td>
-              <button id="cancelBtn" onclick="location.href='delete?no=${orderProduct.orderNo}'">취소</button>
-              <button id="updateBtn" onclick="location.href='updateform?no=${orderProduct.order.orderNo}'">변경</button>
-            </td>
+            <td><input type='text' name='postNo' value='${order.postNo}'></td>
+            <td><input type='text' name='baseAddress' value='${order.baseAddress}'></td>
+            <td><input type='text' name='detailAddress' value='${order.detailAddress}'></td>
+            <td><input type='text' name='tel' value='${order.tel}'></td>
+            <td></td>
           </tr>
-        </c:forEach>
       </table>
+      <input type="submit" value='수정'>
+      </form>
     </div>
   </div>
+  <button id="cancelBtn" onclick="location.href='searchbymember'">취소</button>
   <jsp:include page="../footer.jsp"/>
-  <script>
-    "use strict"
-    $('#updateBtn').on('click', function( {
-      
-      
-    }))
-  </script>
   
 </body>
 </html>
@@ -89,7 +75,7 @@
 
 
 
-
+s
 
 
 

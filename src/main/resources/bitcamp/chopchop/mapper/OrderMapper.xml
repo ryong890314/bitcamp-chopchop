@@ -120,6 +120,9 @@
   <select id="findBy" parameterType="int" resultMap="OrderMap">
     select
       order_id,
+      member_id,
+      name,
+      tel,
       post_no,
       base_address,
       detail_address,
@@ -145,11 +148,10 @@
     update 
       store_order 
     set
-      name=#{name},
       tel=#{tel},
-      postNo=#{postNo},
-      baseAddress=#{baseAddress}
-      detailAddress=#{detailAddress}
+      post_no=#{postNo},
+      base_address=#{baseAddress},
+      detail_address=#{detailAddress}
     where 
       order_id=#{orderNo}
   </update>

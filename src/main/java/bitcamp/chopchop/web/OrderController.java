@@ -42,6 +42,7 @@ public class OrderController {
     Member member = (Member) session.getAttribute("loginUser");
     List<Order> orders = new ArrayList<>();
     List<OrderProduct> orderProducts = new ArrayList<>();
+    
     for (Order order : orderService.list()) {
       if(order.getMemberNo() == member.getMemberNo()) {
         orders.add(order);
@@ -50,8 +51,8 @@ public class OrderController {
     }
     
     for(OrderProduct op : orderProducts) {
-      op.setProduct(productService.get(op.getProductNo())); // 왜 얘는 되고
-      op.setOrder(orderService.get(op.getOrderNo())); // 왜 얘는 안되고
+      op.setProduct(productService.get(op.getProductNo()));
+      op.setOrder(orderService.get(op.getOrderNo()));
       System.out.println(op.getOrderNo());
       
     }
@@ -60,7 +61,9 @@ public class OrderController {
   }
   
   @PostMapping("add")
-  public String add(Order order, int no, int optionNo, int quantity, int discountPrice, HttpSession session) throws Exception {
+  public String add(
+      HttpSession session, Order order, int no, int optionNo, int quantity, int discountPrice) 
+          throws Exception {
     OrderProduct orderProduct = new OrderProduct();
     orderProduct.setOrderNo(order.getOrderNo());
     orderProduct.setProductNo(productService.get(no).getProductNo());
@@ -95,10 +98,9 @@ public class OrderController {
       HttpSession session, Order order, OrderProduct orderProduct, Model model) throws Exception {
     order = (Order) session.getAttribute("order");
     orderProduct = (OrderProduct) session.getAttribute("orderProduct");
-    Product product = productService.get(orderProduct.getProductNo());
     model.addAttribute("order", order);
     model.addAttribute("orderProduct", orderProduct);
-    model.addAttribute("product", product);
+    model.addAttribute("product", productService.get(orderProduct.getProductNo()));
   }
   
   @GetMapping("updateform")
