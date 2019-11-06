@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
 import bitcamp.chopchop.domain.Pet2;
-import bitcamp.chopchop.service.MemberService;
+import bitcamp.chopchop.service.MemberService; 
 import bitcamp.chopchop.service.Pet2Service;
 import bitcamp.chopchop.service.PetService;
 
@@ -39,7 +39,10 @@ public class MemberController {
   }
 
   @GetMapping("myProfile")
-  public void myProfile() {}
+  public void myProfile() {
+    System.out.println("MyProfile 들어옴~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    
+  }
   
   @GetMapping("form")
   public void form() {
