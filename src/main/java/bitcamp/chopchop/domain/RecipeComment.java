@@ -2,47 +2,37 @@ package bitcamp.chopchop.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+//레시피 댓글
 public class RecipeComment implements Serializable {
   private static final long serialVersionUID = 1L;
   
   private int commentNo;
   private int recipeNo;
   private int memberNo;
-  private Date createdDate;
   private String content;
-  private Member member;
- 
-  public Member getMember() {
-    return member;
+  
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
+  private Date createdDate;
+  
+  @Override
+  public String toString() {
+    return "RecipeComment [commentNo=" + commentNo + ", recipeNo=" + recipeNo + ", memberNo="
+        + memberNo + ", content=" + content + ", createdDate=" + createdDate + "]";
   }
-  public void setMember(Member member) {
-    this.member = member;
-  }
+  
   public int getCommentNo() {
     return commentNo;
   }
   public void setCommentNo(int commentNo) {
     this.commentNo = commentNo;
   }
-  public Date getCreatedDate() {
-    return createdDate;
-  }
-  public void setCreatedDate(Date createdDate) {
-    this.createdDate = createdDate;
-  }
-  public String getContent() {
-    return content;
-  }
-  public void setContent(String content) {
-    this.content = content;
-  }
   public int getRecipeNo() {
     return recipeNo;
   }
   public void setRecipeNo(int recipeNo) {
     this.recipeNo = recipeNo;
-    
   }
   public int getMemberNo() {
     return memberNo;
@@ -50,5 +40,18 @@ public class RecipeComment implements Serializable {
   public void setMemberNo(int memberNo) {
     this.memberNo = memberNo;
   }
+  public String getContent() {
+    return content;
+  }
+  public void setContent(String content) {
+    this.content = content;
+  }
+  public Date getCreatedDate() {
+    return createdDate;
+  }
+  public void setCreatedDate(Date createdDate) {
+    this.createdDate = createdDate;
+  }
   
 }
+

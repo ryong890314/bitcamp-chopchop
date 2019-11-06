@@ -1,114 +1,96 @@
 package bitcamp.chopchop.web.json;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.RecipeComment;
+import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.RecipeCommentService;
 
-// @RestController
-// => request handler의 리턴 값이 응답 데이터임을 선언한다.
-// => 리턴 값은 내부에 설정된 HttpMessageConverter에 의해 JSON 문자열로 변환되어 보내진다.
-//
 @RestController("json.RecipeCommentController")
 @RequestMapping("/json/recipecomment")
 public class RecipeCommentController {
-
-  @Resource
-  private RecipeCommentService recipeCommentService;
+  @Resource private RecipeCommentService recipeCommentService;
+  @Resource private MemberService memberService;
 
   @PostMapping("add")
-  public JsonResult add(RecipeComment recipeComment) 
-      throws Exception {
-    System.out.println("json add1");
+  public JsonResult add(RecipeComment recipeComment, int no, HttpSession session) throws Exception {
     try {
+      Member member = (Member)session.getAttribute("loginUser");
+      recipeComment.setMemberNo(member.getMemberNo());
+      recipeComment.setRecipeNo(no);
       recipeCommentService.insert(recipeComment);
-      System.out.println("json add2");
-      return new JsonResult().setState(JsonResult.SUCCESS);
       
+      RecipeComment recipeComment2 = recipeCommentService.get(recipeComment.getCommentNo());
       
+      JsonResult jsonResult = new JsonResult();
+      HashMap<String,Object> hashMap = new HashMap<>();
+      hashMap.put("member", member);
+      hashMap.put("recipeComment", recipeComment2);
+      jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
+      return jsonResult;
     } catch (Exception e) {
-      System.out.println("json add3");
-      return new JsonResult()
-          .setState(JsonResult.FAILURE)
-          .setMessage(e.getMessage());
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
-    
   }
-  
+
   @GetMapping("delete")
-  public JsonResult delete(int no) 
-      throws Exception {
-    System.out.println("json delete1");
+  public JsonResult delete(int no) throws Exception {
     try {
       recipeCommentService.delete(no);
-      System.out.println("json delete2");
       return new JsonResult().setState(JsonResult.SUCCESS);
-      
     } catch (Exception e) {
-      System.out.println("json delete3");
-      return new JsonResult()
-          .setState(JsonResult.FAILURE)
-          .setMessage(e.getMessage());
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
   }
-  
+
   @GetMapping("detail")
-  public JsonResult detail(int no) 
-      throws Exception {
-    System.out.println("json detail1");
+  public JsonResult detail(int no) throws Exception {
+    // 해당 레시피의 댓글 목록을 불러온다.
     try {
       RecipeComment recipeComment = recipeCommentService.get(no);
-      System.out.println("json detail2");
-      return new JsonResult()
-          .setState(JsonResult.SUCCESS)
-          .setResult(recipeComment);
-      
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipeComment);
     } catch (Exception e) {
-      System.out.println("json detail3");
-      return new JsonResult()
-          .setState(JsonResult.FAILURE)
-          .setMessage(e.getMessage());
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
   }
-  
+
   @GetMapping("list")
-  public JsonResult list() 
-      throws Exception {
-    System.out.println("json list1");
+  public JsonResult list(int no, HttpSession session) throws Exception {
     try {
-      List<RecipeComment> recipeComments = recipeCommentService.list();
-      System.out.println("json list2");
-      return new JsonResult()
-          .setState(JsonResult.SUCCESS)
-          .setResult(recipeComments);
+      List<RecipeComment> originRecipeComments = recipeCommentService.list(no);// 모든 댓글리스트
+      List<HashMap<String,Object>> recipeComments = new ArrayList<>(); // 댓글 + 작성자를 담을 리스트
+      Member viewer = (Member) session.getAttribute("loginUser");
       
+      for (int i = 0; i < originRecipeComments.size(); i++) {
+        HashMap<String,Object> hashMap = new HashMap<>();
+        Member member = memberService.get(originRecipeComments.get(i).getMemberNo()); //작성자멤버
+        hashMap.put("member", member);
+        hashMap.put("recipeComment", originRecipeComments.get(i));
+        hashMap.put("viewer", viewer);
+        recipeComments.add(hashMap);
+      }
+      
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipeComments);
     } catch (Exception e) {
-      System.out.println("json list3");
-      return new JsonResult()
-          .setState(JsonResult.FAILURE)
-          .setMessage(e.getMessage());
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
   }
-  
+
   @PostMapping("update")
-  public JsonResult update(RecipeComment recipeComment) 
-      throws Exception {
-    System.out.println("json update1");
+  public JsonResult update(RecipeComment recipeComment) throws Exception {
     try {
       recipeCommentService.update(recipeComment);
-      System.out.println("json update2");
       return new JsonResult().setState(JsonResult.SUCCESS);
-      
-      
     } catch (Exception e) {
-      System.out.println("json update3");
-      return new JsonResult()
-          .setState(JsonResult.FAILURE)
-          .setMessage(e.getMessage());
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
   }
 

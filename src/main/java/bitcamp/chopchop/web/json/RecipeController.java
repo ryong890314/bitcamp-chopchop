@@ -16,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Ingredient;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Recipe;
+import bitcamp.chopchop.domain.RecipeComment;
 import bitcamp.chopchop.domain.RecipeLike;
 import bitcamp.chopchop.service.MemberService;
+import bitcamp.chopchop.service.RecipeCommentService;
 import bitcamp.chopchop.service.RecipeService;
 import bitcamp.chopchop.web.CookingFileWriter;
 
@@ -27,6 +29,7 @@ public class RecipeController {
   @Resource private RecipeService recipeService;
   @Resource private CookingFileWriter cookingFileWriter;
   @Resource private MemberService memberService;
+  @Resource private RecipeCommentService recipeCommentService;
 
   String uploadDir;
 
@@ -77,13 +80,28 @@ public class RecipeController {
     try {
       Recipe recipe = recipeService.get(no);
       Member member = memberService.get(recipe.getMemberNo());
+      Member viewer = (Member) session.getAttribute("loginUser");
+      List<RecipeComment> recipeComments = recipeCommentService.list(recipe.getRecipeNo());
+      
+      RecipeLike recipeLike = new RecipeLike();
+      recipeLike.setMemberNo(viewer.getMemberNo());
+      recipeLike.setRecipeNo(recipe.getRecipeNo());
+      int check = recipeService.findLike(recipeLike);
+      boolean likeCheck = false;
+      if (check == 1) { // 좋아요햇음
+        likeCheck = true;
+      } else if (check == 0){ // 좋아요 안했음
+        likeCheck = false;
+      }
 
       JsonResult jsonResult = new JsonResult();
       HashMap<String,Object> hashMap = new HashMap<>();
       hashMap.put("member", member);
       hashMap.put("recipe", recipe);
+      hashMap.put("isCheck", likeCheck);
+      hashMap.put("viewer", viewer);
+      hashMap.put("recipeComments", recipeComments);
       jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
-
       return jsonResult;
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
@@ -130,6 +148,22 @@ public class RecipeController {
   public JsonResult list() throws Exception {
     try {
       List<Recipe> recipes = recipeService.list();
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipes);
+    } catch (Exception e) {
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
+    }
+  }
+  
+  @GetMapping("listSort")
+  public JsonResult listSort(String column) throws Exception {
+    try {
+      System.out.println("들어온 컬럼????????" + column);
+      List<Recipe> recipes = recipeService.listSort(column);
+      for (int i =0; i <recipes.size(); i++) {
+        System.out.println("=========================");
+        System.out.println(recipes.get(0).getTitle());
+        
+      }
       return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipes);
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());

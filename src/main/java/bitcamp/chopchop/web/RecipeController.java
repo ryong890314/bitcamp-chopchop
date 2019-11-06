@@ -2,6 +2,7 @@ package bitcamp.chopchop.web;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import bitcamp.chopchop.domain.Cooking;
 import bitcamp.chopchop.domain.Ingredient;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Recipe;
@@ -29,7 +31,6 @@ public class RecipeController {
   @Resource private CookingFileWriter cookingFileWriter;
   @Resource private MemberService memberService;
   @Resource private RecipeCommentService recipeCommentService;
-  
 
   String uploadDir;
 
@@ -39,7 +40,7 @@ public class RecipeController {
 
   @GetMapping("form")
   public void form() {
-    
+
   }
 
   @PostMapping("add")
@@ -47,11 +48,11 @@ public class RecipeController {
       int[] processNo) throws Exception {
     Member member = (Member)session.getAttribute("loginUser");
     recipe.setMemberNo(member.getMemberNo());
-    
+
     String filename = UUID.randomUUID().toString();
     recipe.setThumbnail(filename);
     filePath.transferTo(new File(uploadDir + "/" + filename));
-                                 
+
     List<Ingredient> ingredients = new ArrayList<>();
     for (int i = 0; i < ingredientNames.length; i++) {
       Ingredient temp = new Ingredient();
@@ -76,28 +77,25 @@ public class RecipeController {
   @GetMapping("detail")
   public void detail(Model model, int no, HttpSession session) throws Exception {
     Recipe recipe = recipeService.get(no);
-    Member member = (Member) session.getAttribute("loginUser");
-    System.out.println("memberNo::::::::" + member.getMemberNo());
+    Member member = memberService.get(recipe.getMemberNo()); // 작성자멤버
+    Member viewer = (Member) session.getAttribute("loginUser"); // 글을 보는사람
+    System.out.println("내닉네임===>"+ viewer.getNickname());
     RecipeLike recipeLike = new RecipeLike();
-    recipeLike.setMemberNo(member.getMemberNo());
+    recipeLike.setMemberNo(viewer.getMemberNo());
     recipeLike.setRecipeNo(recipe.getRecipeNo());
     int check = recipeService.findLike(recipeLike);
-    System.out.println("============================");
-    System.out.println("check" + check);
     boolean likeCheck = false;
-    if (check == 1) {
+    if (check == 1) { // 좋아요햇음
       likeCheck = true;
-    } else if (check == 0){
+    } else if (check == 0){ // 좋아요 안했음
       likeCheck = false;
     }
-    //List<RecipeComment> comments = recipe.getComments();
-    //RecipeComment recipeComment = recipeCommentService.get(no);
-    //model.addAttribute("recipeComment", recipeComment);
-    
+    List<RecipeComment> recipeComments = recipeCommentService.list(recipe.getRecipeNo());
+    model.addAttribute("recipeComments", recipeComments);
     model.addAttribute("recipe", recipe);
     model.addAttribute("member", member);
+    model.addAttribute("viewer", viewer);
     model.addAttribute("isCheck", likeCheck);
-    
   }
 
   @GetMapping("updateform")
@@ -105,14 +103,21 @@ public class RecipeController {
     Recipe recipe = recipeService.get(no);
     model.addAttribute("recipe", recipe);
   }
-
+  
   @PostMapping("update")
-  public String update(HttpSession session, Recipe recipe, int memberNo, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
+  public String update(Recipe recipe, MultipartFile filePath, MultipartFile[] filePath2, int[] fileNo, String[] ingredientNames, String[] quantity, String[] cookingContent, 
       int[] processNo) throws Exception {
-    String filename = UUID.randomUUID().toString();
-    recipe.setThumbnail(filename);
+    
+    for (int no : fileNo) {
+      System.out.println("====================");
+      System.out.println(no);
+    }
 
-    filePath.transferTo(new File(uploadDir + "/" + filename));
+    if (filePath.getSize() > 0) {
+      String filename = UUID.randomUUID().toString();
+      recipe.setThumbnail(filename);
+      filePath.transferTo(new File(uploadDir + "/" + filename));
+    }
 
     List<Ingredient> ingredients = new ArrayList<>();
     for (int i = 0; i < ingredientNames.length; i++) {
@@ -120,10 +125,28 @@ public class RecipeController {
       temp.setName(ingredientNames[i]);
       temp.setQuantity(quantity[i]);
       ingredients.add(temp);
+      recipe.setIngredients(ingredients);
     }
-
-    recipe.setCookings(cookingFileWriter.getCookings(filePath2, processNo, cookingContent));
-    recipe.setIngredients(ingredients);
+    HashMap<String,Object> hashMap = new HashMap<>();
+    hashMap.put("fileNo", fileNo);
+    hashMap.put("recipeNo", recipe.getRecipeNo());
+    recipeService.deleteFile(hashMap);
+    
+    List<Cooking> cookings = new ArrayList<>();
+    for (int i = 0; i < processNo.length; i++) {
+      if (filePath2[i].isEmpty())
+        continue;
+      String filename = UUID.randomUUID().toString();
+      filePath2[i].transferTo(new File(uploadDir + "/" + filename));
+      
+      Cooking cooking = new Cooking();
+      cooking.setProcessNo(processNo[i]);
+      cooking.setFilePath(filename);
+      cooking.setContent(cookingContent[i]);
+      cookings.add(cooking);
+      recipe.setCookings(cookings);
+    }
+    
     recipeService.update(recipe);
     return "redirect:list";
   }

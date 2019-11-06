@@ -1,11 +1,13 @@
 package bitcamp.chopchop.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import bitcamp.chopchop.dao.CookingDao;
 import bitcamp.chopchop.dao.IngredientDao;
+import bitcamp.chopchop.dao.RecipeCommentDao;
 import bitcamp.chopchop.dao.RecipeDao;
 import bitcamp.chopchop.dao.RecipeLikeDao;
 import bitcamp.chopchop.domain.Cooking;
@@ -20,6 +22,7 @@ public class DefaultRecipeService implements RecipeService {
   @Resource private IngredientDao ingredientDao;
   @Resource private CookingDao cookingDao;
   @Resource private RecipeLikeDao recipeLikeDao;
+  @Resource private RecipeCommentDao recipeCommentDao;
 
   @Transactional
   @Override
@@ -29,17 +32,14 @@ public class DefaultRecipeService implements RecipeService {
     }
 
     int result = recipeDao.insert(recipe);
-    System.out.println("=============================");
-    System.out.println(result);
-    System.out.println("=============================");
-    for (Ingredient i : recipe.getIngredients()) {
-      i.setRecipeNo(recipe.getRecipeNo());
-      ingredientDao.insert(i);
+    for (Ingredient ingredient : recipe.getIngredients()) {
+      ingredient.setRecipeNo(recipe.getRecipeNo());
+      ingredientDao.insert(ingredient);
     }
 
-    for (Cooking c : recipe.getCookings()) {
-      c.setRecipeNo(recipe.getRecipeNo());
-      cookingDao.insert(c);
+    for (Cooking cooking : recipe.getCookings()) {
+      cooking.setRecipeNo(recipe.getRecipeNo());
+      cookingDao.insert(cooking);
     }
   }
 
@@ -49,6 +49,7 @@ public class DefaultRecipeService implements RecipeService {
     if (recipe == null) {
       throw new Exception("데이터가 없습니다!");
     }
+    System.out.println("조회수 증가???????????");
     recipeDao.increaseViewCount(no);
     return recipe;
   }
@@ -58,14 +59,21 @@ public class DefaultRecipeService implements RecipeService {
     return recipeDao.findAll();
   }
 
+  @Override
+  public List<Recipe> listSort(String column) throws Exception {
+    return recipeDao.findSort(column);
+  }
+
   @Transactional
   @Override
   public void delete(int no) throws Exception {
     if (recipeDao.findBy(no) == null) {
       throw new Exception("데이터가 없습니다.");
     }
-    cookingDao.delete(no);
-    ingredientDao.delete(no);
+    recipeCommentDao.deleteAll(no);
+    recipeLikeDao.deleteAll(no);
+    cookingDao.deleteAll(no);
+    ingredientDao.deleteAll(no);
     recipeDao.delete(no);
   }
 
@@ -78,26 +86,29 @@ public class DefaultRecipeService implements RecipeService {
   @Transactional
   @Override
   public void update(Recipe recipe) throws Exception {
-    if (recipe.getIngredients().size() == 0) {
-      throw new Exception("재료 입력해주세요");
+
+    recipeDao.update(recipe);
+
+    if (recipe.getIngredients().size() > 0) {
+      ingredientDao.deleteAll(recipe.getRecipeNo());
+      for (Ingredient i : recipe.getIngredients()) {
+        i.setRecipeNo(recipe.getRecipeNo());
+        ingredientDao.insert(i);
+      }
     }
 
-    cookingDao.delete(recipe.getRecipeNo());
-    ingredientDao.delete(recipe.getRecipeNo());
-    recipeDao.update(recipe);
-    for (Ingredient i : recipe.getIngredients()) {
-      System.out.println("==========================");
-      System.out.println(recipe.getRecipeNo());
-      System.out.println("==========================");
-      i.setRecipeNo(recipe.getRecipeNo());
-      ingredientDao.insert(i);
-    }
-    for (Cooking c : recipe.getCookings()) {
-      c.setRecipeNo(recipe.getRecipeNo());
-      cookingDao.insert(c);
+    if (recipe.getCookings() != null) {
+      for (Cooking cooking : recipe.getCookings()) {
+        cooking.setRecipeNo(recipe.getRecipeNo());
+        cookingDao.insert(cooking);
+      }
     }
   }
 
+  @Override
+  public void deleteFile(HashMap<String, Object> hashMap) throws Exception {
+    cookingDao.delete(hashMap);
+  }
 
   @Transactional
   @Override

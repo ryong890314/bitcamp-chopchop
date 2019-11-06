@@ -1,0 +1,124 @@
+/* Master Stylesheet - 1.0 */
+/* :: 1.0 Import Fonts */
+@import
+  url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700")
+  ;
+/* :: 2.0 Import All CSS */
+@import url(bootstrap.min.css);
+@import url(classy-nav.css);
+@import url(owl.carousel.min.css);
+@import url(animate.css);
+@import url(magnific-popup.css);
+@import url(font-awesome.min.css);
+@import url(nice-select.css);
+/* :: 3.0 Base CSS */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', 'PT Sans', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+}
+
+h1.title {
+  font-weight: 500;
+  margin: 0 0 30px;
+}
+
+.bucket {
+  background: #fff;
+  width: 450px;
+  margin: 50px auto;
+  box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgb(163, 182, 91);
+}
+
+.buffer {
+  padding: 40px;
+}
+
+.clearfix {
+  clear: both;
+  font-size: 1px;
+  height: 0px;
+}
+
+form {
+  width: auto;
+}
+
+input {
+  float: none;
+  width: 94%;
+  margin: 2px !important;
+  border: 1px solid #DBE5E7;
+  border-radius: 0;
+  padding: 12px 10px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+input.btn {
+  background: rgb(163, 182, 91);
+  color: #fff;
+  padding: 10px;
+  border-width: 1px;
+}
+
+input.btn:hover, input.btn:focus {
+  background: black;
+  color: #fff;
+  padding: 10px;
+  margin: 0px;
+  border-width: 1px;
+}
+
+
+
+.logo-area {
+  position: relative;
+  margin text-align: center;
+  width: 200px;
+  height: 200px;
+  background: url('/images/choplogo.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .logo-area {
+    padding: 30px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .logo-area {
+    padding: 30px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .logo-area {
+    padding: 30px 15px;
+  }
+}
+
+.logo-area a {
+  display: inline-block;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .logo-area a {
+    max-width: 50px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .logo-area a {
+    max-width: 50px;
+  }
+}

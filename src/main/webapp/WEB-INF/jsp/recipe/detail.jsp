@@ -5,13 +5,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/recipe/detail.css">
+<link rel="stylesheet" href="/css/recipe/comment.css">
 <style>
  .cookingphoto {
-    height: 200px;
+    height: 300px;
  }
-</style>
+ .bueno-btn {
+    background-color: #b0c364;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    min-width: 100px;
+    height: 50px;
+    color: #ffffff;
+    border-radius: 0;
+    padding: 0 30px;
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 50px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
 
-<link rel="stylesheet" href="/css/recipe/detail.css">
+.bueno-btn:hover,
+.bueno-btn:focus {
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #000000;
+    color: #ffffff;
+}
+</style>
 
 <title>레시피 보기</title>
 </head>
@@ -35,9 +61,9 @@
                           <a href="#" class="post-author">Views ${recipe.viewCount}</a>
                           
 <button style="border:none; background-color: #ffffff; " id="likeBtn" type="button" ><img id="likeimg" class="btn-img" style="margin-top:-2px; margin-left:10px; height:15px;" src="${isCheck ? '/img/recipe/like.png' : '/img/recipe/unlike.png'}"></button>
-                          <input type="hidden" name='no' value="${recipe.recipeNo}">
-                          <span id="scrap" style="margin-left:5px; margin-bottom:5px;font-size:15px;">${recipe.scrap}</span>
-<%--                           <input type="hidden" name='memberNo' value="${recipe.memberNo}"> --%>
+                          <input type="hidden" name='recipeNo' value="${recipe.recipeNo}">
+                          <span id="scrap" style="margin-left:5px; margin-bottom:5px;font-size:15px;">${recipe.scrap}</span><br>
+                          <button id="updateBtn" class="btn bueno-btn">수정하기</button>
                       </div>
                       
                       <c:forEach items="${recipe.cookings}" var="cooking">
@@ -46,8 +72,6 @@
                       <p class="mb-30">내용: ${cooking.content}</p>
                       </c:forEach>
                       
-                      <h5 class="mb-30">Step 2</h5>
-                      <p class="mb-30">Suspendisse nisl leo, gravida quis tortor at, ornare commodo neque. Donec tortor turpis, pharetra et pulvinar vitae, ullamcorper et mi. Sed eu magna aliquam, suscipit massa sit amet, mattis augue. Nam ut tortor ut ligula molestie feugiat vitae et nulla. Sed porta erat vitae leo pellentesque malesuada. In sollicitudin, massa euismod aliquet volutpat, enim metus varius dui, vestibulum efficitur ante velit non nisi. Cras varius bibendum sapien, id tincidunt velit placerat id. Nunc vitae facilisis nunc. Suspendisse ut felis sagittis mauris faucibus tincidunt vitae id tortor. Nullam tincidunt finibus turpis, a accumsan mauris laoreet cursus. Phasellus pharetra odio sapien, id suscipit nisi lobortis ut.</p>
                   </div>
               </div>
           </div>
@@ -81,22 +105,31 @@
                   </div>
                 </div>
             </div>
-
-    </div>
+        </div>
     </div>
 </section>
 
-
-<a href="updateform?no=${recipe.recipeNo}">수정하기</a>
-
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<jsp:include page="../recipecomment/list.jsp"/>
+
+<script>
+loadData();
+function loadData() {
+  var writerNo = ${member.memberNo};
+  var viewerNo = ${viewer.memberNo};
+  if (writerNo != viewerNo) {
+    $('#updateBtn').css('display', 'none');
+  }
+};
+
+</script>
 
 <script>
 "use strict";
 $('#likeBtn').click(function() {
-  
   $.get("/app/json/recipe/like?no=" + ${recipe.recipeNo}, function(data) {
-    console.log(data.result);
     if(data.result.isLike) { //좋아요를 눌름
       $('#likeimg').attr('src', '/img/recipe/like.png');
       $('span#scrap').html(data.result.scrap);
@@ -105,7 +138,13 @@ $('#likeBtn').click(function() {
       $('span#scrap').html(data.result.scrap);
     }
   })
-})
+});
+</script>
+<script>
+"use strict";
+$('#updateBtn').click(function() {
+  location.href='/app/recipe/updateform?no=' + ${recipe.recipeNo};
+});
 </script>
 
 </body>
