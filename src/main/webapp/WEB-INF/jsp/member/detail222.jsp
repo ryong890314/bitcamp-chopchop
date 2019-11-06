@@ -10,19 +10,70 @@
 <link rel="stylesheet"
 	href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 
-<style type="text/css">
-.card-img {
-	width: 200px !important;
-	height: 200px !important;
-	object-fit: cover !important;
+<style>
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
+body {
+  padding: 20px 15%;
+}
+
+form > div {
+  clear: both;
+  overflow: hidden;
+  padding: 1px;
+  margin: 0 0 10px 0;
+}
+
+.desc {
+  width: 25%;
+  float: left;
+  padding-right: 10px;
+}
+form > div > div{
+  width: 75%;
+  float: right;
+}
+form > div > label {
+  font-size: 100%;
+}
+
+
+/*
+
+@media (max-width: 600px) {
+  form > div {
+    margin: 0 0 15px 0; 
+  }
+  form > div > label{
+    width: 100%;
+    float: none;
+    margin: 0 0 5px 0;
+  }
+  form > div > div{
+    width: 100%;
+    float: none;
+  }
+
+}
+*/
+@media (min-width: 1200px) {
+  label {
+    text-align: right;
+  }
+}
+
+
+    
 .tagA {
-	color: #ffffff;
-	background: #b0c364;
-	font-size: 1.2em;
-	padding: 0.3em 0.5em;
-	margin-right: 0.1em;
+  color: #ffffff;
+  background: #b0c364;
+  font-size: 1.2em;
+  padding: 0.3em 0.5em;
+  margin-right: 0.1em;
 }
 
 .tagA:hover {
@@ -60,49 +111,107 @@
 	<%-- <jsp:include page="../header.jsp"/> --%>
 	<div class="content-wrapper">
 		<div class="container">
-			<h1>My Information</h1>
-			<form action='update' method='post' name="form"
-				enctype='multipart/form-data' onsubmit="return checkAll();">
-				<div class="row">
-					<div class="col-5">
-						<div id='content'>
-							<div>
-								<input type="hidden" id="photo2" value="${member.photo}" /> <img
-									id="imgThumb" class="imgThumb">
-							</div>
-							<div style="display: none;">
-								<input type='file' id="file" name='file' />
-							</div>
-							<label class="photoChange" id="label" for="file">사진 변경</label>
-						</div>
-					</div>
-					<div class="col-7">
-						<input type='hidden' id='memberNo' name='memberNo' value='${member.memberNo}' readonly> 
-            <label for="email">이메일 <input type='text' id='email' name='email' value='${member.email}' readonly></label><br>
-            <label for="password">비밀번호 <input type="button" id="password" class="change_btn" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal" /></label><br> 
-            <label for="nickname">닉네임 <input type='text' name='nickname' value='${member.nickname}' maxlength="12" 	onblur="nickname_check();"></label><br>
-						<div id="nickname_chk" class="vali_check"></div>
-						<label for="tel">핸드폰 번호 <input type='tel' name='tel' value='${member.tel}' maxlength="11" onblur="tel_check();"></label><br>
-						<div id="tel_chk" class="vali_check"></div>
-						<label for="postNo">우편번호 <input type='text' id="postNo" name='postNo' 	value='${member.postNo}'> </label>
-            <input type="button" name="post_search" class="change_btn" value="우편번호 찾기" onclick="myPostcode();" /><br>
-						<label for="baseAddress">기본주소 <input type='text' id="baseAddress" name='baseAddress' 	value='${member.baseAddress}'></label><br> 
-            <label for="detailAddress">상세주소 <input 	type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'></label><br> 
-            <input type="hidden" id="nickname1" value="${member.nickname}" />
-						<!-- 원래 닉네임값  -->
-						<button class="change_btn">변경</button>
-					</div>
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<a href="delete?no=${member.memberNo}" class="tagA"
-									onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
+      <h1>My Information</h1>
+      <form action='update' method='post' name="form"
+        enctype='multipart/form-data' onsubmit="return checkAll();">
+        <div class="row">
+          <div class="col-5">
+            <div id='content'>
+              <div>
+                <input type="hidden" id="photo2" value="${member.photo}" /> <img
+                  id="imgThumb" class="imgThumb">
+              </div>
+              <div style="display: none;">
+                <input type='file' id="file" name='file' />
+              </div>
+              <label class="photoChange" id="label" for="file">사진 변경</label>
+            </div>
+          </div>
+          <div class="col-7">
+            
+                        <input type='hidden' id='memberNo' name='memberNo' value='${member.memberNo}' readonly> 
+
+          
+        <div>
+            <label class="desc" id="email" for="email">이메일</label>
+            <div>
+              <input id="email" name="email" type="email" class="field text fn" value='${member.email}' readonly>
+            </div>
+          </div>
+          
+          
+          <div>
+            <label class="desc" id="password" for="password">비밀번호</label>
+            <div>
+              <input id="password" name="pwUpdate" type="button" class="field text fn change_btn" style="display: inline;" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal" >
+            </div>
+          </div>
+          
+         <div>
+            <label class="desc" id="nickname" for="nickname">닉네임</label>
+            <div>
+              <input id="nickname" name="nickname" type="text" class="field text fn" value='${member.nickname}' maxlength="12"  onblur="nickname_check();">
+            </div>
+          </div>
+        <div id="nickname_chk" class="vali_check"></div>
+        
+            <div>
+            <label class="desc" id="tel" for="tel">핸드폰 번호</label>
+            <div>
+              <input id="tel" name="tel" type="tel" class="field text fn" value='${member.tel}' maxlength="11" onblur="tel_check();">
+            </div>
+          </div>
+         <div id="tel_chk" class="vali_check"></div>
+    
+    
+    
+    
+    
+    
+            <div>
+            <label class="desc" id="postNo" for="postNo">우편번호</label>
+            <div>
+              <input id="postNo" name="postNo" type="text" class="field text fn" value='${member.postNo}'>
+              <input type="button" name="post_search" class="change_btn" value="우편번호 찾기" onclick="myPostcode();" style="display: inline;"  />
+            </div>
+          </div>
+               
+    
+    
+        
+            <div>
+            <label class="desc" id="baseAddress" for="baseAddress">기본주소</label>
+            <div>
+              <input id="baseAddress" name="baseAddress" type="text" class="field text fn" value='${member.baseAddress}'>
+            </div>
+          </div>
+    
+        <div>
+            <label class="desc" id="detailAddress" for="detailAddress">상세주소</label>
+            <div>
+              <input id="detailAddress" name="detailAddress" type="text" class="field text fn" value='${member.detailAddress}'>
+            </div>
+          </div>
+    <input type="hidden" id="nickname1" value="${member.nickname}" />
+
+            
+            <!-- 원래 닉네임값  -->
+            <button class="change_btn">변경</button>
+        
+     
+                        
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <a href="delete?no=${member.memberNo}" class="tagA"
+                  onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
 
 		<hr>
 		<jsp:include page="../pet2/detail.jsp" />
