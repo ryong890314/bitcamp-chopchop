@@ -19,7 +19,7 @@
 </head>
 <jsp:include page="../header.jsp" />
 <body>
-		<h1>Register My Pet (아직 구현중입니다~ 기능 테스트 금지 모두 입력해)</h1><hr>
+		<h1>Register My Pet</h1><hr>
 	<div class="add-form">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="form-area">

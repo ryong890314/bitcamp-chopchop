@@ -29,7 +29,6 @@ public class PetController {
 
   @GetMapping("form")
   public void form() {
-
   }
 
   @PostMapping("add")
@@ -37,12 +36,6 @@ public class PetController {
     pet.setFilePath(writeFile(file));
     petService.insert(pet);
     return "redirect:../member/detail?no=" + pet.getMemberNo();
-  }
-
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    List<Pet> pet = petService.list();
-    model.addAttribute("pets", pet);
   }
 
   @RequestMapping("detail")
