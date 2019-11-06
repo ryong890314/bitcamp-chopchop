@@ -71,7 +71,8 @@
                 <input class="input-number" name="quantity" type="number" style="text-align:center; width: 80px;" value="${cart.quantity}" min="0" max="1000">
                 <input type="hidden" name="cartNo" value="${cart.cartNo}">
               </form>
-              <button class="btn btn-default btn-sm" id="requestBtn" style="width:80px">변경</button>
+              <input type="button" id="button_${var.index }" name="button_${var.index }" value="Button">
+              <!-- <button class="btn btn-default btn-sm" id="requestBtn" style="width:80px">변경</button> -->
 
 
           </td>
@@ -146,28 +147,35 @@
           });
     });
     </script> -->
+<!--
+    $("input[name^='button']").on("click", function(e) {
+      // 동작할 기능
+      function($(this));
+    });
+-->
 
 <!-- 반복문 실패 -->
 <script>
-  $("#requestBtn").click(function() {
-    var ajxCartNo = document.getElementsByName("cartNo");
-    var ajxQuantity = document.getElementsByName("quantity");
+   $("input[name^='button']").on("click", function(e) {
+    var ajxCartNo = document.getElementsByName("cartNo")[$(this.Number)].value;
+    var ajxQuantity = document.getElementsByName("quantity")[$(this.Number)].value;
+    
+    alert(ajxCartNo + ", " + ajxQuantity)
+    
+    // for (var i = 0; i < ajxCartNo.length; i++) {
+    //   $.ajax({
 
-    for (var i = 0; i < ajxCartNo.length; i++) {
-      alert("cartNo:" + ajxCartNo[i].value + ", quantity:" + ajxQuantity[i].value );
-      $.ajax({
-
-        url:"update",
-        type:"post",
-        data : "quantity=" + ajxQuantity[i].value + "&cartNo=" + ajxCartNo[i].value,
-        success: function(data){
-            alert("수량이 변경 되었습니다.");
-        },
-        error: function() {
-            alert("error");
-        }
-      });
-    }
+    //     url:"update",
+    //     type:"post",
+    //     data : "quantity=" + ajxQuantity[i].value + "&cartNo=" + ajxCartNo[i].value,
+    //     success: function(data){
+    //         // alert("수량이 변경 되었습니다.");
+    //     },
+    //     error: function() {
+    //         alert("error");
+    //     }
+    //   });
+    // }
 
 });
 </script>
