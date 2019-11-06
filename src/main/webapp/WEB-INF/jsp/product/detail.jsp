@@ -6,13 +6,11 @@
 <html>
 <head>
   <title>상품 상세</title>
-  <link rel='stylesheet' href='/css/product/style.css'>
-  <link rel='stylesheet' href='/css/member/style_footer.css'>
-  <link rel='stylesheet' href='/css/member/style-header.css'>
-  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-  <link rel="icon" href="img/core-img/favicon.ico">
+  <link rel='stylesheet' href='/css/common/bootstrap.min.css'>
+<!--   <link rel='stylesheet' href='/css/product/style.css'> -->
   
   <style>
+  
     #jumbotron.jumbotron-fluid {
       background-color:white;
       
@@ -80,17 +78,17 @@
           <div id="tq">
             <form action="../order/form" method="post" id="qt">
               <input type='hidden' name='no' value='${product.productNo}'>
-              <input type='text' name='optionNo' value='${productOption.optionNo}'>
+              <input type='hidden' name='optionNo' value='${productOption.optionNo}'>
               <input class="input-number" name='quantity' type="number" value="1" min="0" max="1000">
-              <button class="btn bueno-btn">구매하기</button>
+              <button class="btn bueno-btn" style="margin-top:10px; background-color: #b0c364; color: #fff;">구매하기</button>
             </form>
           </div>
             <div id="tq">
               <form action="../cart/add" method="post" id="qt">
                 <input type='hidden' name='no' value='${product.productNo}'>
-                <input type='text' name='optionNo' value='${productOption.optionNo}'>
+                <input type='hidden' name='optionNo' value='${productOption.optionNo}'>
                 <input class="input-number" name='quantity' type="number" value="1" min="0" max="1000">
-                <button class="btn bueno-btn" style="margin-top:57px;">장바구니</button>
+                <button class="btn bueno-btn" style="margin-top:10px; background-color: #b0c364; color: #fff;">장바구니</button>
               </form>
             </div>
         </div>
@@ -129,8 +127,7 @@
         </div>
       </div>
     </div>
-      </div>
-
+  </div>
   <jsp:include page="../footer.jsp"/>
   <script>
     var totalPrice = document.querySelector('#totalPrice');
