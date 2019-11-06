@@ -23,7 +23,7 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.service.MemberService;
 
 @Controller
-@RequestMapping("/auth")
+@RequestMapping("/auth") 
 public class AuthController {
 
   @Resource
