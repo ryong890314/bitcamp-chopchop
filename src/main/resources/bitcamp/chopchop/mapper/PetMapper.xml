@@ -38,17 +38,17 @@
 		<result column="gender" property="gender" />
 		<result column="file_path" property="filePath" />
 
-		<collection property="members" ofType="Member">
-			<id column="member_id" property="memberNo" />
-			<result column="post_no" property="postNo" />
-			<result column="base_address" property="baseAddress" />
-			<result column="detail_address" property="detailAddress" />
-			<result column="email" property="email" />
-			<result column="password" property="password" />
-			<result column="photo" property="photo" />
-			<result column="nickname" property="nickname" />
-			<result column="tel" property="tel" />
-		</collection>
+<!-- 		<collection property="members" ofType="Member"> -->
+<!-- 			<id column="member_id" property="memberNo" /> -->
+<!-- 			<result column="post_no" property="postNo" /> -->
+<!-- 			<result column="base_address" property="baseAddress" /> -->
+<!-- 			<result column="detail_address" property="detailAddress" /> -->
+<!-- 			<result column="email" property="email" /> -->
+<!-- 			<result column="password" property="password" /> -->
+<!-- 			<result column="photo" property="photo" /> -->
+<!-- 			<result column="nickname" property="nickname" /> -->
+<!-- 			<result column="tel" property="tel" /> -->
+<!-- 		</collection> -->
 	</resultMap>
 
 <insert id="insert" parameterType="Pet"> 

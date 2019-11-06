@@ -23,20 +23,6 @@
       margin: auto auto;
     }
 
-    .btn-default {
-  color: #fff;
-  background-color: #b0c364;
-    border-color: #b0c364;
-    margin: 5px 0px 5px 0px;
-}
-.btn-default:hover,
-.btn-default:focus {
-  background-color: #000000;
-  border-color: #000000;
-  color: #fff;
-  margin: 5px 0px 5px 0px;
-}
-
 .input-number {
     float: none;
     width: 50px;
@@ -56,8 +42,10 @@
 
   <div id='productBody'>
 
-    <button type='button' class="btn btn-default btn-sm" onclick='check_all();'>모두 선택</button>
-    <button type='button' class="btn btn-default btn-sm" onclick='uncheck_all();'>모두 해제</button>
+    <div style="margin-bottom: 5px;">
+    <button type='button' class="btn btn-secondary btn-sm" onclick='check_all();'>모두 선택</button>
+    <button type='button' class="btn btn-secondary btn-sm" onclick='uncheck_all();'>모두 해제</button>
+  </div>
 
     <table class='table table-hover'>
       <tr style="text-align: center;">
@@ -96,9 +84,9 @@
           <td>
             <form action="update" method="POST">
             <div class="input-group input-number-group">
-              <input class="input-number" name="quantity" type="number" style="text-align:center; width: 80px;" value="${cart.quantity}" min="0" max="1000">
+              <input class="input-number" name="quantity" type="number" style="text-align:center; width: 80px; margin-bottom: 5px;" value="${cart.quantity}" min="0" max="1000">
               <input type="hidden" name="cartNo" value="${cart.cartNo}">
-              <button class="btn btn-default btn-sm" style="width:80px">변경</button>
+              <button class="btn btn-secondary btn-sm" style="width:80px">변경</button>
             </div>
             </form>
           </td>
@@ -128,14 +116,14 @@
               </td>
 
           <td>
-            <button type="button" class="btn btn-default btn-sm">주문</button><br>
-            <button type="button" class="btn btn-default btn-sm" onclick="location.href='delete?no=${cart.cartNo}' ">삭제</button>
+            <button type="button" class="btn btn-secondary btn-sm" style="margin-bottom: 5px;">주문</button><br>
+            <button type="button" class="btn btn-danger btn-sm" onclick="location.href='delete?no=${cart.cartNo}' ">삭제</button>
           </td>
         </tr>
       </c:forEach>
     </table>
 
-    <hr class="my-4">
+    <hr class="my-4" style="margin-top: 0px;">
     
     <div style="text-align: right;">
         <a1>상품금액 </a1><a id="sumCheckPrice">0</a>

@@ -110,7 +110,7 @@
 	      left join store_photo f on p.product_id=f.product_id
         left join product_option o on c.option_id=o.option_id
     where c.member_id like #{memberNo}
-    order by cart_id desc
+    order by cart_id desc, photo_id
   </select>
   
   <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyColumn="cart_id" keyProperty="cartNo">

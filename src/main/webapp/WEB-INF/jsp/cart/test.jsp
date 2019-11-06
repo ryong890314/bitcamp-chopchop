@@ -73,10 +73,6 @@
               </form>
               <button class="btn btn-default btn-sm" id="requestBtn" style="width:80px">변경</button>
 
-              <c:forEach items="${cart.products}" var="product">
-                  <a style=" text-decoration:line-through"><fmt:formatNumber value="${product.price * cart.quantity}" pattern="#,###"/>원</a><br>
-                </c:forEach>
-
 
           </td>
           <c:forEach items="${cart.products}" var="product">
