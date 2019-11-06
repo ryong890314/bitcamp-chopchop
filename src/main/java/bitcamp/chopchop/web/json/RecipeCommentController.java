@@ -1,5 +1,6 @@
 package bitcamp.chopchop.web.json;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
@@ -10,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.RecipeComment;
+import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.RecipeCommentService;
 
 @RestController("json.RecipeCommentController")
 @RequestMapping("/json/recipecomment")
 public class RecipeCommentController {
   @Resource private RecipeCommentService recipeCommentService;
+  @Resource private MemberService memberService;
 
   @PostMapping("add")
   public JsonResult add(RecipeComment recipeComment, int no, HttpSession session) throws Exception {
@@ -61,9 +64,18 @@ public class RecipeCommentController {
 
   @GetMapping("list")
   public JsonResult list(int no) throws Exception {
-    // 모든 댓글 불러온다.
     try {
-      List<RecipeComment> recipeComments = recipeCommentService.list(no);
+      List<RecipeComment> originRecipeComments = recipeCommentService.list(no);// 모든 댓글리스트
+      List<HashMap<String,Object>> recipeComments = new ArrayList<>(); // 댓글 + 작성자를 담을 리스트
+      for (int i = 0; i < originRecipeComments.size(); i++) {
+        HashMap<String,Object> hashMap = new HashMap<>();
+        Member member = memberService.get(originRecipeComments.get(i).getMemberNo());
+        hashMap.put("nickname", member.getNickname());
+        hashMap.put("recipeComment", originRecipeComments.get(i));
+        
+        recipeComments.add(hashMap);
+      }
+      
       return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipeComments);
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());

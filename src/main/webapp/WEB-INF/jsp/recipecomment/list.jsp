@@ -60,7 +60,7 @@
                             <form id='commentForm' name='commentForm'>
                                 <div class="row">
                                     <div class="col-12 col-lg-12">
-                                        <input type="text" class="form-control" name="no" value="${recipe.recipeNo}">
+                                        <input type="hidden" class="form-control" name="no" value="${recipe.recipeNo}">
                                         <input type="text" class="form-control" value="${viewer.nickname}" readonly>
                                     </div>
                                     <div class="col-12">
@@ -94,6 +94,7 @@
     <p class='comment-content'>{{recipeComment.content}}</p>
   </div>
 </div>
+<hr>
 </li>
 </script>
 
@@ -105,14 +106,15 @@
     </div>
   <div class='comment-meta'>
     <div class='d-flex'>
-      <a href='#' class='post-author'>멤버닉네임넣기</a>
-      <a href='#' class='post-date'>{{createdDate}}</a>
+      <a href='#' class='post-author'>{{nickname}}</a>
+      <a href='#' class='post-date'>{{recipeComment.createdDate}}</a>
       <a href='#' class='reply my-btn'>수정</a>
     </div>
-    <input type='hidden' class='comment-no' name='commentNo' value={{commentNo}}>
-    <p class='comment-content'>{{content}}</p>
+    <input type='hidden' class='comment-no' name='commentNo' value={{recipeComment.commentNo}}>
+    <p class='comment-content'>{{recipeComment.content}}</p>
   </div>
 </div>
+<hr>
 </li>
 </script>
 
@@ -197,10 +199,21 @@ function getCommentList() { // 댓글 목록 불러오는 함수
       success: function(result){
         // 이곳에 댓글 리스트 불러오는 메소드 추가하기
         //
-        getCommentList();
+        //getCommentList();
+        location.reload();
         $('#exampleModal').modal('hide'); 
       }
     });
   });
   
+  $('.modal-delBtn').on('click', function() { // 모달창에서 delete 클릭 이벤트
+    var commentNo = $('.modal-commentNo').val();
+    $.get('/app/json/recipecomment/delete?no='+ commentNo, function(data) {
+      if (data.state == 'success') {
+        console.log("성공");
+        location.reload();
+        $('#exampleModal').modal('hide'); 
+      };
+    });
+  }); 
 </script>
