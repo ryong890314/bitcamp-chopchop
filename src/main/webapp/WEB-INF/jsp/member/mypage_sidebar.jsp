@@ -36,13 +36,13 @@
 
 	<!-- Main Sidebar Container -->
 	<aside class="main-sidebar sidebar-dark-primary elevation-4">
-		<!-- Brand Logo -->
-		<div class="d-flex">
-			<img src="/img/core-img/smallLogo.png" class="img-circle elevation-2"
-				alt="brandLogo" style="width: 40px; height: 40px; margin-left: 13px;">
-			<a href="/app/member/myProfile" class="brand-link brand-text"> ChopChop
-			</a>
-		</div>
+		    <!-- Brand Logo -->
+    <a href="/app/member/myProfile" class="brand-link">
+      <img src="/img/core-img/smallLogo.png" alt="ChopChop Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text">ChopChop</span>
+    </a>
+		
 		<!-- Sidebar -->
 		<div class="sidebar">
 			<!-- Sidebar user panel (optional) -->

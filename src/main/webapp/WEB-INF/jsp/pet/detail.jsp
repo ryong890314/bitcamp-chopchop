@@ -9,15 +9,15 @@
 	href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
 	integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
 	crossorigin='anonymous'>
-  <style type="text/css">
-    .tagA {
-      color: #ffffff;
-      background: #b0c364;
-      font-size: 1.2em;
-      padding: 0.3em 0.5em;
-      margin-right: 0.1em;
-    }
-  </style>
+<style type="text/css">
+.tagA {
+	color: #ffffff;
+	background: #b0c364;
+	font-size: 1.2em;
+	padding: 0.3em 0.5em;
+	margin-right: 0.1em;
+}
+</style>
 </head>
 <body>
 
@@ -29,7 +29,7 @@
 				<div class="card mb-3" style="max-width: 540px;">
 					<div class="row">
 						<div class="col-md-4">
-						  <%-- <input class='pet-filePath' type='text' value='${pet.filePath}'> --%>
+							<%-- <input class='pet-filePath' type='text' value='${pet.filePath}'> --%>
 							<img src="/upload/pet/${pet.filePath}" class="card-img" alt="...">
 						</div>
 						<div class="col-md-8">
@@ -72,18 +72,71 @@
 					</button>
 				</div>
 				<div class="modal-body">
-
-					<%--          <div class="col-md-4">
-            <img src="/upload/pet/${pet.filePath}" class="card-img" alt="...">
-          </div> --%>
-
 					<div class="col-5">
 						<div id='content'>
-							<div>
-								<input type="hidden" id="photo2" value="${pet.filePath}" /> 
-								<img
-									id="petimgThumb" class="imgThumb my-pet-thumb">
-							</div>
+
+							<form action='update' method='post' name="form"
+								enctype='multipart/form-data'">
+								<div class="row">
+									<div class="col-5">
+										<div id='content'>
+											<div>
+												<input type="hidden" id="photo2" value="${pet.filePath}" />
+												<img id="petimgThumb" class="imgThumb my-pet-thumb">
+											</div>
+											<div style="display: none;">
+												<input type='file' id="file" name='file' />
+											</div>
+											<label class="photoChange" id="label" for="file">사진
+												변경</label>
+										</div>
+									</div>
+									<div class="col-7">
+										<input type='hidden' id='memberNo' name='memberNo'
+											value='${pet.petNo}' readonly> <label for="name">My
+											pet's name <input type='text' name='name' value='${pet.name}'
+											onblur="nickname_check();">
+										</label><br>
+										<div id="nickname_chk" class="vali_check"></div>
+										<label for="registerNo">Register Number <input
+											type='text' name='age' value='${pet.registerNo}'></label><br>
+										<div id="tel_chk" class="vali_check"></div>
+										<label for="age">Age <input type='text' name='age'
+											value='${pet.age}' onblur="tel_check();"></label><br>
+										<div id="tel_chk" class="vali_check"></div>
+										<div>
+											<c:if test="${pet.gender eq 0}">수컷</c:if>
+											<c:if test="${pet.gender eq 1}">암컷</c:if>
+											)
+										</div>
+									</div>
+								</div>
+							</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 							<div style="display: none;">
 								<input type='file' id="petFile" name='petFile' />
 							</div>
@@ -101,23 +154,13 @@
 		</div>
 	</div>
 
+
 	<script>
-		// 사진 미리보기 
-		document.getElementById("petFile").onchange = function() {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				document.getElementById("petimgThumb").src = e.target.result;
-			};
-			reader.readAsDataURL(this.files[0]);
+		test();
+		function test() {
+			var petfilePath = $('.pet-filePath').val();
+			$('.my-pet-thumb').attr('src', '/upload/pet/' + petfilePath);
 		};
-	</script>
-	
-	<script>
-	test();
-	function test(){
-	var petfilePath =  $('.pet-filePath').val();
-	$('.my-pet-thumb').attr('src', '/upload/pet/' + petfilePath);
-	};
 	</script>
 </body>
 </html>
