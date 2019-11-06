@@ -5,14 +5,6 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-  <title>상품문의</title>
-  <link rel='stylesheet' href='/css/product/style.css'>
-  <link rel='stylesheet' href='/css/member/style_footer.css'>
-  <link rel='stylesheet' href='/css/member/style-header.css'>
-  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-  <link rel="icon" href="img/core-img/favicon.ico">
-</head>
 <body>
 <!--   <div id='comment'> -->
 <!--     <table class='table table-hover'> -->
