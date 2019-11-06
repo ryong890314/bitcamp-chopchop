@@ -77,7 +77,6 @@
             </div>
         </div>
         
-        
 <script id="t1" type="commentHtml">
 <li class='single_comment_area'>
 <div class='comment-content d-flex my-comment'>
@@ -106,7 +105,7 @@
     </div>
   <div class='comment-meta'>
     <div class='d-flex'>
-      <a href='#' class='post-author'>{{nickname}}</a>
+      <a href='#' class='post-author'>{{member.nickname}}</a>
       <a href='#' class='post-date'>{{recipeComment.createdDate}}</a>
       <a href='#' class='reply my-btn'>수정</a>
     </div>
@@ -173,13 +172,19 @@ getCommentList();
 function getCommentList() { // 댓글 목록 불러오는 함수
   $.get("/app/json/recipecomment/list?no=" + ${recipe.recipeNo}, function(data) {
     console.log(data.result);
+    
     for (var b of data.result) {
       $(template2(b)).appendTo(dbody2);
+
+      var viewerNo = b.viewer.memberNo;
+      var writerNo = b.member.memberNo;
+      if (writerNo != viewerNo) {
+        $('.my-btn').css('display', 'none');
+      }      
     }
   });
 };
 
-// $('.my-btn').click(function() { // 수정 누르면 모달창 띄우는 함수
   $(document).on('click', '.my-btn', function(e) {
     window.commentContent = $(e.target.parentNode.parentNode.parentNode).find('.comment-content').text();
     window.commentNo = $(e.target.parentNode.parentNode.parentNode).find('.comment-no').val();

@@ -79,6 +79,7 @@ public class RecipeController {
     Recipe recipe = recipeService.get(no);
     Member member = memberService.get(recipe.getMemberNo()); // 작성자멤버
     Member viewer = (Member) session.getAttribute("loginUser"); // 글을 보는사람
+    System.out.println("내닉네임===>"+ viewer.getNickname());
     RecipeLike recipeLike = new RecipeLike();
     recipeLike.setMemberNo(viewer.getMemberNo());
     recipeLike.setRecipeNo(recipe.getRecipeNo());

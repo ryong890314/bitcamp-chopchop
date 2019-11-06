@@ -63,16 +63,18 @@ public class RecipeCommentController {
   }
 
   @GetMapping("list")
-  public JsonResult list(int no) throws Exception {
+  public JsonResult list(int no, HttpSession session) throws Exception {
     try {
       List<RecipeComment> originRecipeComments = recipeCommentService.list(no);// 모든 댓글리스트
       List<HashMap<String,Object>> recipeComments = new ArrayList<>(); // 댓글 + 작성자를 담을 리스트
+      Member viewer = (Member) session.getAttribute("loginUser");
+      
       for (int i = 0; i < originRecipeComments.size(); i++) {
         HashMap<String,Object> hashMap = new HashMap<>();
-        Member member = memberService.get(originRecipeComments.get(i).getMemberNo());
-        hashMap.put("nickname", member.getNickname());
+        Member member = memberService.get(originRecipeComments.get(i).getMemberNo()); //작성자멤버
+        hashMap.put("member", member);
         hashMap.put("recipeComment", originRecipeComments.get(i));
-        
+        hashMap.put("viewer", viewer);
         recipeComments.add(hashMap);
       }
       
