@@ -76,9 +76,6 @@
             margin text-align: center;
             width: 200px;
             height: 200px;
-            background: url('/img/core-img/choplogo.png') no-repeat;
-            background-size: contain;
-            background-position: center;
             margin-left: auto;
             margin-right: auto;
         }

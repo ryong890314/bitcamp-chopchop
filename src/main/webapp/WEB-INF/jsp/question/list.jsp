@@ -4,40 +4,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>펫 목록</title>
+  <title>Insert title here</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel="stylesheet" href="/css/member/style_contact.css">
+  <link rel='stylesheet' href='/css/common.css'>
 </head>
 <body>
-
 <jsp:include page="../header.jsp"/>
 
 <div id='content'>
-<h1>펫 목록</h1>
-<a href='/app/pet2/form?no=${member.memberNo}'>새 회원</a><br>
+<h1>CHOPCHOP 문의게시판</h1>
+<a href='form'>문의하기</a><br>
 <table class='table table-hover'>
 <tr>
-
-  <th>회원번호</th>
-  <th>번호</th>
-  <th>이름</th>
-  <th>나이</th>
-  <th>성별</th>
+  <th>NO</th>
+  <th>제목</th>
+  <th>작성자</th>
+  <th>등록일</th>
+  <th>조회수</th>
 </tr>
-
-<c:forEach items="${pets}" var="pet">
+<c:forEach items="${questions}" var="question">
   <tr>
-    <td>${pet.members.memberNo}</td>
-    <td><a href='detail?no=${pet.petNo}'>${pet.petNo}</a></td>
-    <td>${pet.name}</td>
-    <td>${pet.age}</td>
-    <td>${pet.gender}</td>
-    <c:forEach items="${pet.breeds.breed}" var="breed">
-    </c:forEach>
+    <td>${question.no}</td>
+    <td><a href='detail?no=${question.no}'>${question.title}</a></td>
+    <td>${question.email}</td>
+    <td>${question.createdDate}</td>
+    <td>${question.viewCount}</td>
   </tr>
 </c:forEach>
 </table>
 </div>
+
 <jsp:include page="../footer.jsp"/>
 
 </body>
