@@ -19,15 +19,15 @@
 <tr>
   <th>번호</th>
   <th>이메일</th>
-  <th>전화번호</th>
   <th>닉네임</th>
+  <th>전화번호</th>
 </tr>
 <c:forEach items="${members}" var="member">
   <tr>
     <td><a href='detail?no=${member.memberNo}'>${member.memberNo}</a></td>
     <td>${member.email}</td>
-    <td>${member.tel}</td>
     <td>${member.nickname}</td>
+    <td>${member.tel}</td>
   </tr>
 </c:forEach>
 </table>

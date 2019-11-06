@@ -29,13 +29,14 @@ public class PetController {
 
   @GetMapping("form")
   public void form() {
-    
+
   }
 
   @PostMapping("add")
-  public String add(Pet pet) throws Exception {
+  public String add(Pet pet, MultipartFile file) throws Exception {
+    pet.setFilePath(writeFile(file));
     petService.insert(pet);
-    return "redirect:list";
+    return "redirect:../member/detail?no=" + pet.getMemberNo();
   }
 
   @GetMapping("list")
@@ -52,8 +53,14 @@ public class PetController {
 
   @PostMapping("update")
   public String update(Pet pet, MultipartFile file) throws Exception {
-    pet.setPhoto(writeFile(file));
+    pet.setFilePath(writeFile(file));
     petService.update(pet);
+    return "redirect:list";
+  }
+
+  @GetMapping("delete")
+  public String delete(int no) throws Exception {
+    petService.delete(no);
     return "redirect:list";
   }
 

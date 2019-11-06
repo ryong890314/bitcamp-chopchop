@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.service.CommentService;
 import bitcamp.chopchop.service.MemberService;
+import bitcamp.chopchop.service.ProductService;
 
 @Controller
 @RequestMapping("/comment")
@@ -19,6 +20,8 @@ public class CommentController {
   private CommentService commentService;
   @Resource
   private MemberService memberService;
+  @Resource
+  private ProductService productService;
 
   @GetMapping("form")
   public void form() {
@@ -52,6 +55,10 @@ public class CommentController {
   @GetMapping("updateform")
   public void updateform(Model model, int no) throws Exception {
     model.addAttribute("comment", commentService.get(no));
+  }
+  
+  @GetMapping("productCommentList")
+  public void productCommentList(Model model, int no) throws Exception {
   }
 }
 

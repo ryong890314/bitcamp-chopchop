@@ -130,8 +130,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=작은 동물" id="species" class="post-tag">작은 동물</a>
-                                <a href="category?species=작은 동물" class="post-title" style="color:#524845">작은 동물</a>
+                                <a href="category?species=작은" id="species" class="post-tag">작은 동물</a>
+                                <a href="category?species=작은" class="post-title" style="color:#524845">작은 동물</a>
                             </div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
 
 <div class="card" style="width: 18rem;">
   <c:forEach items="${product.files}" var="file" end="0">
-    <img src='/upload/product/${file.filePath}' style="width: 286px; height: 286px;"> 
+    <img src='/upload/product/${file.filePath}' style="width: 286px; height: 286px;" alt=""> 
   </c:forEach>
   
   <div class="card-body">
@@ -183,4 +183,5 @@
       i.innerText = parseInt(i.innerText)
     }
   </script>
-</body></html>
+</body>
+</html>

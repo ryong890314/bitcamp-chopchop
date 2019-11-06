@@ -21,7 +21,7 @@
     <id column="order_id" property="orderNo"/>
     <result column="member_id" property="memberNo"/>
     <result column="post_no" property="postNo"/>
-    <result column="base_address" property="address"/>
+    <result column="base_address" property="baseAddress"/>
     <result column="detail_address" property="detailAddress"/>
     <result column="payment_date" property="paymentDate"/>
     <result column="payment_method" property="paymentMethod"/>
@@ -113,34 +113,45 @@
   </select>
 
   <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyColumn="order_id" keyProperty="orderNo">
-    insert into store_order(member_id, post_no, base_address, detail_address, payment_date, payment_method, ship_date, invoice)
-    values(#{memberNo}, #{postNo},#{baseAddress},#{detailAddress},#{paymentDate},#{paymentMethod},#{shipDate},#{invoice}) 
+    insert into store_order(member_id, name, tel, post_no, base_address, detail_address, payment_method, ship_date, invoice)
+    values(#{memberNo}, #{name}, #{tel}, #{postNo}, #{baseAddress}, #{detailAddress}, #{paymentMethod}, #{shipDate}, #{invoice}) 
   </insert>
   
   <select id="findBy" parameterType="int" resultMap="OrderMap">
     select
       order_id,
-      member_id
+      post_no,
+      base_address,
+      detail_address,
+      payment_date,
+      payment_method,
+      ship_date,
+      invoice
     from
       store_order
     where
-      product_id=#{value}
+      order_id=#{value}
   </select>
   
-<!--   <update id="update" parameterType="Product"> -->
-<!--     update product set -->
-<!--       title=#{title}, -->
-<!--       price=#{price}, -->
-<!--       detail=#{detail}, -->
-<!--       stock=#{stock}, -->
-<!--       discount=#{discount}, -->
-<!--       category=#{category}, -->
-<!--       species=#{species} -->
-<!--     where product_id=#{productNo} -->
-<!--   </update> -->
+  <delete id="delete" parameterType="int">
+    delete from 
+      store_order
+    where 
+      order_id=#{value}
+  </delete>
   
-<!--   <delete id="delete" parameterType="int"> -->
-<!--     delete from product -->
-<!--     where product_id=#{value} -->
-<!--   </delete> -->
+  
+  <update id="update" parameterType="Order">
+    update 
+      store_order 
+    set
+      name=#{name},
+      tel=#{tel},
+      postNo=#{postNo},
+      baseAddress=#{baseAddress}
+      detailAddress=#{detailAddress}
+    where 
+      order_id=#{orderNo}
+  </update>
+  
 </mapper>

@@ -9,18 +9,59 @@
     <id column="order_id" property="orderNo"/>
     <id column="product_id" property="productNo"/>
     <result column="quantity" property="quantity"/>
+    <result column="option_id" property="optionNo"/>
     <result column="discount_price" property="discountPrice"/>
+    
+    <association property="product" javaType="Product">
+      <id column="product_id" property="productNo"/>
+      <result column="title" property="title"/>
+      <result column="price" property="price"/>
+      <result column="detail" property="detail"/>
+      <result column="stock" property="stock"/>
+      <result column="discount" property="discount"/>
+      <result column="view_count" property="viewCount"/>
+      <result column="category" property="category"/>
+      <result column="species" property="species"/>
+    </association>
+    
+    <association property="order" javaType="Order">
+      <id column="order_id" property="orderNo"/>
+      <result column="member_id" property="memberNo"/>
+      <result column="post_no" property="postNo"/>
+      <result column="base_address" property="baseAddress"/>
+      <result column="detail_address" property="detailAddress"/>
+      <result column="payment_date" property="paymentDate"/>
+      <result column="payment_method" property="paymentMethod"/>
+      <result column="ship_date" property="shipDate"/>
+      <result column="invoice" property="invoice"/>
+    </association>
   </resultMap>
   
+  <select id="findByOrderWith" parameterType="int" resultMap="OrderProductMap">
+    select
+      order_id,
+      product_id,
+      quantity,
+      option_id,
+      discount_price
+    from
+      order_product
+    where
+      order_id=#{value};
+  </select>
+  
+  
   <insert id="insert" parameterType="OrderProduct" useGeneratedKeys="true" keyColumn="order_id" keyProperty="orderNo">
-    insert into order_product(order_id, product_id, quantity, discount_price)
-    values(#{orderNo}, #{productNo},#{quantity},#{discountPrice}) 
+    insert into order_product(order_id, product_id, option_id, quantity, discount_price)
+    values(#{orderNo}, #{productNo}, #{optionNo}, #{quantity},#{discountPrice}) 
   </insert>
 
   <delete id="delete" parameterType="int">
     delete from order_product
     where order_id=#{value}
   </delete>
+  
+  
   
 <!--   <select id="findBy" parameterType="int" resultMap="OrderProductMap"> -->
 <!--     select  -->

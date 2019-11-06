@@ -137,4 +137,5 @@
    <update  id="findPw" parameterType="member">
    select password from member where email= #{email}
   </update>
+  
 </mapper>

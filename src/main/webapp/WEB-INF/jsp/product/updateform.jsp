@@ -13,6 +13,14 @@
 <link rel='stylesheet' href='/css/common.css'>
 <link rel="stylesheet" href="/css/style_contact.css">
 <link rel="stylesheet" href="/css/style_footer.css">
+
+
+<style>
+  #content {
+    width:1100px;
+    margin: auto;
+  }
+</style>
 </head>
 <body>
   <jsp:include page="../header.jsp" />

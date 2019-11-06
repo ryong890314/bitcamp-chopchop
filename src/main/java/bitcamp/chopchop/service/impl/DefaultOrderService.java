@@ -23,10 +23,10 @@ public class DefaultOrderService implements OrderService {
     return orderDao.findAll();
   }
 
-  @Override
-  public List<Order> searchByMember(int no) throws Exception {
-    return orderDao.findByMember(no);
-  }
+//  @Override
+//  public List<Order> searchByMember(int no) throws Exception {
+//    return orderDao.findByMember(no);
+//  }
 
   @Override
   public Order get(int no) throws Exception {
@@ -35,6 +35,11 @@ public class DefaultOrderService implements OrderService {
       throw new Exception("해당 주문 데이터가 없습니다.");
     }
     return order;
+  }
+  
+  @Override
+  public OrderProduct getOrderProduct(int no) throws Exception {
+    return orderProductDao.findByOrderWith(no);
   }
   
   @Transactional
@@ -47,9 +52,8 @@ public class DefaultOrderService implements OrderService {
   }
 
   @Override
-  public void update(Order order, OrderProduct orderProduct) throws Exception {
+  public void update(Order order) throws Exception {
     orderDao.update(order);
-    orderProductDao.update(orderProduct);
   }
 
   @Override

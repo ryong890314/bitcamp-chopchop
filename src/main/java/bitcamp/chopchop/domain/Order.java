@@ -6,6 +6,8 @@ import java.util.List;
 public class Order {
   private int orderNo;
   private int memberNo;
+  private String name;
+  private String tel;
   private String postNo;
   private String baseAddress;
   private String detailAddress;
@@ -13,15 +15,19 @@ public class Order {
   private String paymentMethod;
   private String shipDate; // (주문 상태)
   private String invoice;
+  private OrderProduct orderProduct;
+  private Member member;
+
   private List<OrderProduct> orderProducts;
   private List<Member> members;
 
   @Override
   public String toString() {
-    return "Order [orderNo=" + orderNo + ", memberNo=" + memberNo + ", postNo=" + postNo
-        + ", baseAddress=" + baseAddress + ", detailAddress=" + detailAddress + ", paymentDate="
-        + paymentDate + ", paymentMethod=" + paymentMethod + ", shipDate=" + shipDate + ", invoice="
-        + invoice + ", orderProducts=" + orderProducts + ", members=" + members + "]";
+    return "Order [orderNo=" + orderNo + ", memberNo=" + memberNo + ", name=" + name + ", tel="
+        + tel + ", postNo=" + postNo + ", baseAddress=" + baseAddress + ", detailAddress="
+        + detailAddress + ", paymentDate=" + paymentDate + ", paymentMethod=" + paymentMethod
+        + ", shipDate=" + shipDate + ", invoice=" + invoice + ", orderProduct=" + orderProduct
+        + ", member=" + member + ", orderProducts=" + orderProducts + ", members=" + members + "]";
   }
 
   public int getOrderNo() {
@@ -38,6 +44,22 @@ public class Order {
 
   public void setMemberNo(int memberNo) {
     this.memberNo = memberNo;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getTel() {
+    return tel;
+  }
+
+  public void setTel(String tel) {
+    this.tel = tel;
   }
 
   public String getPostNo() {
@@ -96,6 +118,22 @@ public class Order {
     this.invoice = invoice;
   }
 
+  public OrderProduct getOrderProduct() {
+    return orderProduct;
+  }
+
+  public void setOrderProduct(OrderProduct orderProduct) {
+    this.orderProduct = orderProduct;
+  }
+
+  public Member getMember() {
+    return member;
+  }
+
+  public void setMember(Member member) {
+    this.member = member;
+  }
+
   public List<OrderProduct> getOrderProducts() {
     return orderProducts;
   }
@@ -111,4 +149,7 @@ public class Order {
   public void setMembers(List<Member> members) {
     this.members = members;
   }
+
+
+
 }

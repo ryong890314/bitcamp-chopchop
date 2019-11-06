@@ -1,5 +1,7 @@
 package bitcamp.chopchop.web;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -38,18 +40,34 @@ public class OrderController {
   @GetMapping("searchbymember")
   public void searchByMember(Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
-    model.addAttribute("orders", orderService.searchByMember(member.getMemberNo()));
-    model.addAttribute("loginMember", member);
+    List<Order> orders = new ArrayList<>();
+    List<OrderProduct> orderProducts = new ArrayList<>();
+    for (Order order : orderService.list()) {
+      if(order.getMemberNo() == member.getMemberNo()) {
+        orders.add(order);
+        orderProducts.add(orderService.getOrderProduct(order.getOrderNo()));
+      }
+    }
+    
+    for(OrderProduct op : orderProducts) {
+      op.setProduct(productService.get(op.getProductNo())); // 왜 얘는 되고
+      op.setOrder(orderService.get(op.getOrderNo())); // 왜 얘는 안되고
+      System.out.println(op.getOrderNo());
+      
+    }
+    model.addAttribute("orders", orders);
+    model.addAttribute("orderProducts", orderProducts);
   }
   
   @PostMapping("add")
-  public String add(Order order, int no, HttpSession session) throws Exception {
+  public String add(Order order, int no, int optionNo, int quantity, int discountPrice, HttpSession session) throws Exception {
     OrderProduct orderProduct = new OrderProduct();
     orderProduct.setOrderNo(order.getOrderNo());
     orderProduct.setProductNo(productService.get(no).getProductNo());
-    orderProduct.setQuantity(11);
+    orderProduct.setOptionNo(optionNo);
+    orderProduct.setQuantity(quantity);
+    orderProduct.setDiscountPrice(discountPrice);
     orderService.insert(order, orderProduct);
-    System.out.println(order);
     session.setAttribute("order", order);
     session.setAttribute("orderProduct", orderProduct);
     return "redirect:result"; // -> 주문 완료 페이지로
@@ -58,7 +76,7 @@ public class OrderController {
   @GetMapping("delete")
   public String delete(int no) throws Exception {
     orderService.delete(no);
-    return "redirect:list";
+    return "redirect:searchbymember";
   }
   
   @GetMapping("detail")
@@ -68,19 +86,23 @@ public class OrderController {
   
   @PostMapping("update")
   public String update(Order order) throws Exception {
-    OrderProduct orderProduct = new OrderProduct();
-    orderProduct.setOrderNo(order.getOrderNo());
-    orderService.update(order, orderProduct);
-    return "redirect:../product/detail?no=" + orderProduct.getProductNo(); // -> 주문 완료 페이지로
+    orderService.update(order);
+    return "redirect:searchbymember"; // -> 주문 완료 페이지로
   }
   
   @GetMapping("result")
-  public void result(HttpSession session, Order order, OrderProduct orderProduct, Model model) throws Exception {
+  public void result(
+      HttpSession session, Order order, OrderProduct orderProduct, Model model) throws Exception {
     order = (Order) session.getAttribute("order");
     orderProduct = (OrderProduct) session.getAttribute("orderProduct");
     Product product = productService.get(orderProduct.getProductNo());
     model.addAttribute("order", order);
     model.addAttribute("orderProduct", orderProduct);
     model.addAttribute("product", product);
+  }
+  
+  @GetMapping("updateform")
+  public void updateform(int no, Model model) throws Exception {
+    model.addAttribute("order", orderService.get(no));
   }
 }

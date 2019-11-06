@@ -1,6 +1,5 @@
 package bitcamp.chopchop.web;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Comment;
-import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.service.CommentService;
 import bitcamp.chopchop.service.MemberService;
@@ -55,14 +53,9 @@ public class ProductController {
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Product product = productService.get(no);
-    List<Comment> comments2 = commentService.findByProductWith(product.getProductNo());
-    ArrayList<Member> members2 = new ArrayList<>();
-    for(Comment c : comments2) {
-      members2.add(memberService.get(c.getMemberNo()));
-    }
+    List<Comment> comments = commentService.findByProductWith(product.getProductNo());
     model.addAttribute("product", productService.get(no));
-    model.addAttribute("members2", members2);
-    model.addAttribute("comments2", comments2);
+    model.addAttribute("comments", comments);
   }
 
   @GetMapping("search")
