@@ -50,7 +50,7 @@ public class DefaultCartService implements CartService {
   }
 
    @Override
-  public List<Cart> search(String keyword) throws Exception {
+  public List<Cart> search(int keyword) throws Exception {
     return cartDao.findByKeyword(keyword);
   }
 

@@ -80,7 +80,7 @@ public String chkdelete(HttpSession session,
   @GetMapping("search")
   public void search(Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
-    List<Cart> carts = cartService.search(Integer.toString(member.getMemberNo()));
+    List<Cart> carts = cartService.search(member.getMemberNo());
     model.addAttribute("carts", carts);
   }
 
