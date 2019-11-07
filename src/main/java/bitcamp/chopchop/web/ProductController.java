@@ -54,6 +54,7 @@ public class ProductController {
   public void detail(Model model, int no) throws Exception {
     Product product = productService.get(no);
     List<Comment> comments = commentService.findByProductWith(product.getProductNo());
+    System.out.println(model);
     model.addAttribute("product", productService.get(no));
     model.addAttribute("comments", comments);
   }

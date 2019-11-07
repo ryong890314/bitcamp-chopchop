@@ -87,7 +87,7 @@
   </select>
   
   <select id="findByKeyword"
-          parameterType="string"
+          parameterType="int"
           resultMap="findWithCartMap">
     select
       c.cart_id,

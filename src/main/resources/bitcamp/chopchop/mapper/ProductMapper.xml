@@ -32,6 +32,7 @@
       <result column="file_path" property="filePath"/>
       <result column="product_id" property="productNo"/>
     </collection>
+
   </resultMap>
   
    <resultMap type="Product" id="findWithFilesCommentMap">
@@ -49,6 +50,13 @@
       <id column="photo_id" property="photoFileNo"/>
       <result column="file_path" property="filePath"/>
       <result column="product_id" property="productNo"/>
+    </collection>
+
+    <collection property="options" ofType="ProductOption">
+      <id column="option_id" property="optionNo"/>
+      <result column="product_id" property="productNo"/>
+      <result column="optionTitle" property="title"/>
+      <result column="optionPrice" property="price"/>
     </collection>
     
     <collection property="comments" ofType="Comment">
@@ -125,11 +133,15 @@
       c.comment_id,
       c.title ct,
       c.content cc,
-      c.created_date
+      c.created_date,
+      o.option_id,
+      o.title optionTitle,
+      o.price optionPrice
     from
       product p
         left outer join product_comment c on p.product_id=c.product_id
         left outer join store_photo f on p.product_id=f.product_id
+        left outer join product_option o on p.product_id=o.product_id
     where
       p.product_id=#{value}
   </select>

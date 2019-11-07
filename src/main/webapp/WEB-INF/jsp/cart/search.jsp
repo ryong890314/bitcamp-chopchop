@@ -69,7 +69,7 @@
           </td>
           <td>
             <c:forEach items="${cart.files}" var="file" end="0">
-              <img src='/upload/product/${file.filePath}' style="width: 100px; height: 100px;">
+              <img src='/upload/product/${file.filePath}' style="width: 100px; height: 100px; object-fit: cover">
             </c:forEach>
           </td>
           <td style="text-align: left">

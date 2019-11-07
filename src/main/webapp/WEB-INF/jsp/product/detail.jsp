@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>상품 상세</title>
   <link rel='stylesheet' href='/css/product/style.css'>
@@ -11,12 +12,12 @@
   <link rel='stylesheet' href='/css/member/style-header.css'>
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <link rel="icon" href="img/core-img/favicon.ico">
-  
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
   <style>
-  
     #jumbotron.jumbotron-fluid {
-      background-color:white;
-      
+      background-color: white;
+
     }
 
     #header {
@@ -31,7 +32,7 @@
       /*
       text-align: center;
       vertical-align: middle;
-      */ 
+      */
     }
 
     #footer {
@@ -43,72 +44,162 @@
       vertical-align: middle;
       padding-top: 10px;
       margin: auto auto;
-      clear: left; 
+      clear: left;
     }
-      
+
     #qt {
       width: 162px;
       float: left;
       margin-right: 10px;
     }
-      
   </style>
 </head>
+
 <body>
-  
-  <jsp:include page="../header.jsp"/>
-  
+
+  <jsp:include page="../header.jsp" />
+
   <div>
-  <div id="productBody"> 
-  <a href="updateform?no=${product.productNo}">수정</a>
-    <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
-      <!-- Blog Thumbnail -->
-      <div class="blog-thumbnail">
-        <c:forEach items="${product.files}" var="file" end="0">
-          <img src="/upload/product/${file.filePath}"> 
-        </c:forEach>
-      </div>
+    <div id="productBody">
+      <a href="updateform?no=${product.productNo}">수정</a>
+
+
+      <div class="row">
+        <div class="col-md-7">
+        <!-- Blog Thumbnail -->
+        <div class="blog-thumbnail">
+          <c:forEach items="${product.files}" var="file" end="0">
+            <img src="/upload/product/${file.filePath}" style="width: 600px; height: 600px; object-fit: cover;">
+          </c:forEach>
+        </div>
+        </div>
+        <div class="col-md-5">
         <!-- Blog Content -->
         <div class="blog-content">
-          <a class="post-tag">${product.category}</a>
-          <a class="post-title">${product.title}</a>
-          <a>조회수 ${product.viewCount} 회</a>
-          <hr class="my-4">
-          <a class="post-title"><span style="text-decoration-line:line-through; color:gray; margin-right:50px;">${product.price}원</span><span id="totalPrice">${product.price * (100-product.discount)/100}</span>원</a>
-          
-          <div class="input-group input-number-group">수량
+          <!-- <a class="post-tag">${product.category}</a> -->
+          <a style="font-size: 30px;">${product.title}</a>
+          <hr>
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="exampleInput">상품금액</label>
+            </div>
+            <div class="col-md-8">
+              <span style=" text-decoration:line-through">
+                <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="exampleInput">할인율</label>
+            </div>
+            <div class="col-md-8">
+              <span>${product.discount} %</span>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="exampleInput">할인적용금액</label>
+            </div>
+            <div class="col-md-8">
+              <span>
+                <fmt:formatNumber value="${product.price * (100 - product.discount) / 100}" pattern="#,###" /> 원</span>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="exampleInput">조회수</label>
+            </div>
+            <div class="col-md-8">
+              <span>${product.viewCount} 회</span>
+            </div>
+          </div>
+
+          <form action="../order/form" method="post">
+            <input type='hidden' name='no' value='${product.productNo}'>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="exampleInput">옵션</label>
+              </div>
+              <div class="col-md-8">
+
+                  <div class="form-group">
+                      <select class="form-control" id="optionNo" name='optionNo'>
+                          <c:forEach items="${product.options}" var="productOption">
+                            <option value="${productOption.optionNo}">${productOption.title}</option>
+                          </c:forEach>
+                      </select>
+                    </div>
+
+                    
+                <!-- <input type='text' name='optionNo' value='${productOption.optionNo}'> -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="exampleInput">수량</label>
+              </div>
+              <div class="col-md-8">
+                <input class="input-number" name='quantity' type="number" style="text-align:center;" value="1" min="0" max="1000">
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-4">
+                  <label for="exampleInput">주문금액</label>
+                </div>
+                <div class="col-md-8">
+                  <span style="font-size: 20px; font-weight: 700; color:red">
+                    <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span>
+                </div>
+              </div>
+    
+              <hr>
+
+            <button class="btn bueno-btn" style="margin-top:10px; width:215px;" formaction="../cart/add">장바구니</button>
+            <button class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
+          </form>
+
+          <!-- <div class="input-group input-number-group">수량
           </div>
           <div id="tq">
             <form action="../order/form" method="post" id="qt">
               <input type='hidden' name='no' value='${product.productNo}'>
-              <input type='hidden' name='optionNo' value='${productOption.optionNo}'>
+              <input type='text' name='optionNo' value='${productOption.optionNo}'>
               <input class="input-number" name='quantity' type="number" value="1" min="0" max="1000">
               <button class="btn bueno-btn" style="margin-top:10px;">구매하기</button>
+              <button class="btn bueno-btn" style="margin-top:10px;" formaction="../cart/add">장바구니</button>
             </form>
-          </div>
-            <div id="tq">
-              <form action="../cart/add" method="post" id="qt">
-                <input type='hidden' name='no' value='${product.productNo}'>
-                <input type='hidden' name='optionNo' value='1'>
-                <input class="input-number" name='quantity' type="number" value="1" min="0" max="1000">
-                <button class="btn bueno-btn" style="margin-top:10px;">장바구니</button>
-              </form>
-            </div>
+          </div> -->
         </div>
-    </div>
-    <hr class="my-4">
-    <h1 class="display-4">${product.title}</h1>
-    <p class="lead">${product.detail}</p>
-    <hr class="my-4">
-    <p>
-      <c:forEach items="${product.files}" var="file" begin="1">
-        <img src="/upload/product/${file.filePath}" class="rounded mx-auto d-block" alt="...">
-      </c:forEach>
-    </p>
-    <hr class="my-4">
+        </div>
+      </div>
 
-    <jsp:include page="../comment/productCommentList.jsp"/>
-      
+
+      <hr class="my-4">
+      <h1 class="display-4">${product.title}</h1>
+      <p class="lead">${product.detail}</p>
+      <hr class="my-4">
+      <p>
+        <c:forEach items="${product.files}" var="file" begin="1">
+          <img src="/upload/product/${file.filePath}" class="rounded mx-auto d-block" alt="...">
+        </c:forEach>
+      </p>
+      <hr class="my-4">
+
+      <jsp:include page="../comment/productCommentList.jsp" />
+
       <div class="post-a-comment-area mb-30">
         <h4 class="mb-50">Leave a reply</h4>
         <div class="contact-form-area">
@@ -120,7 +211,8 @@
                 <input type="text" name='title' class="form-control" id="title" placeholder="title">
               </div>
               <div class="col-12">
-                <textarea name='content' class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                <textarea name='content' class="form-control" id="message" cols="30" rows="10"
+                  placeholder="Message"></textarea>
               </div>
               <div class="col-12">
                 <button class="btn bueno-btn mt-30" type="submit">Submit Comment</button>
@@ -131,12 +223,12 @@
       </div>
     </div>
   </div>
-  <jsp:include page="../footer.jsp"/>
+  <jsp:include page="../footer.jsp" />
   <script>
     var totalPrice = document.querySelector('#totalPrice');
     var resultPrice = parseInt(totalPrice.innerHTML);
     totalPrice.innerHTML = resultPrice;
-    
+
 //     var memberName = document.querySelector('#memberName');
 //     console.log(!${memberName})
 //     if(!${member}) {
@@ -146,4 +238,5 @@
 //     }
   </script>
 </body>
+
 </html>
