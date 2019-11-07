@@ -36,20 +36,21 @@
 
 	<!-- Main Sidebar Container -->
 	<aside class="main-sidebar sidebar-dark-primary elevation-4">
-		    <!-- Brand Logo -->
-    <a href="/app/member/myProfile" class="brand-link">
-      <img src="/img/core-img/smallLogo.png" alt="ChopChop Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text">ChopChop</span>
-    </a>
-		
+		<!-- Brand Logo -->
+		<a href="/app/member/myProfile" class="brand-link"> <img
+			src="/img/core-img/smallLogo.png" alt="ChopChop Logo"
+			class="brand-image img-circle elevation-3" style="opacity: .8">
+			<span class="brand-text">ChopChop</span>
+		</a>
+
 		<!-- Sidebar -->
 		<div class="sidebar">
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
 				<div class="image">
-					<img src='/upload/member/${member.photo}' alt="userPhoto"
-						class="img-circle elevation-2 my-thumb"
+					<input type="hidden" id="photo2" value="${member.photo}" /> <img src='/upload/member/${member.photo}'
+						id="imgThumb" class="img-circle elevation-2 my-thumb"
 						style="width: 40px; height: 40px; margin-left: -5px;">
 				</div>
 
@@ -105,9 +106,18 @@
 	<script src="/node_modules/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="/js/dist/adminlte.js"></script>
-	
-	<script>
 
+	<script>
+		function formLoad() {
+			// hidden값을 이용해서 자바스크립트를 이용한 경우
+			if (document.getElementById("photo2").value == null
+					|| document.getElementById("photo2").value == "") {
+				document.getElementById("imgThumb").src = "/upload/member/info_photo.jpg";
+			} else {
+				document.getElementById("imgThumb").src = "/upload/member/"
+						+ document.getElementById("photo2").value;
+			}
+		}
 	</script>
 </body>
 
