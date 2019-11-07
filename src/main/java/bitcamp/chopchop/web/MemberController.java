@@ -30,8 +30,8 @@ public class MemberController {
   @Resource
   private MemberService memberService;
 
-  @Resource
-  private Pet2Service pet2Service;
+//  @Resource
+//  private Pet2Service pet2Service;
 
   @Resource
   private PetService petService;
@@ -104,7 +104,7 @@ public class MemberController {
   public void detail(Model model, int no) throws Exception {
     Member member = memberService.get(no);
     System.out.println("멤버사진==>" + member.getPhoto());
-    List<Pet2> pets = pet2Service.getPets(no);
+    List<Pet> pets = petService.getPets(no);
     model.addAttribute("member", member);
     model.addAttribute("pets", pets);
   }
