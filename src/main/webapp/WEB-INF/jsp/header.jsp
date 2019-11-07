@@ -49,6 +49,7 @@
 								class="fa fa-behance" aria-hidden="true"></i></a> <a href="#"
 								data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i
 								class="fa fa-linkedin" aria-hidden="true"></i></a>
+								<a class='' style="font-size:60px; margin-left: 60%; margin-bottom:20px; opacity:0.7;">ChopChop</a>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-5 col-xl-4">
@@ -74,12 +75,11 @@
 				<div class="container">
 					<!-- Menu -->
 					<nav class="classy-navbar justify-content-between" id="buenoNav">
-						<!-- Navbar Toggler -->
-<!-- 						<a style="padding-top: 30px;" href="/app/member/list"><img
+						<!-- Logo Area -->
+						<!-- 						<a style="padding-top: 30px;" href="/app/member/list"><img
 							src="/img/core-img/choplogo.png" style="width: 80px;" alt=""></a> -->
 						<!-- Menu -->
 						<div class="classy-menu" style="padding-top: 37px;">
-							<!-- Logo Area -->
 							<!-- Nav Start -->
 							<div class="classynav">
 								<ul>
