@@ -13,6 +13,7 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
 import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.OrderService;
 import bitcamp.chopchop.service.ProductService;
 
@@ -24,6 +25,8 @@ public class OrderController {
   private OrderService orderService;
   @Resource
   private ProductService productService;
+  @Resource
+  private CartService cartService;
   
   @PostMapping("form")
   public void form(int no, Model model, int quantity) throws Exception {
