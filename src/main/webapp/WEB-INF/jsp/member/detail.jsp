@@ -7,9 +7,8 @@
 <title>My Page</title>
 <link rel="stylesheet" href="/css/member/style_detail.css">
 <link rel="stylesheet" href="/node_modules/jquery-ui-dist/jquery-ui.css">
-<link rel="stylesheet"
-	href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-
+<link rel="stylesheet"	href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <style type="text/css">
 .card-img {
 	width: 200px !important;
@@ -28,10 +27,6 @@
 .tagA:hover {
   background-color: #b0c364;
   color: white;
-}
-
-.photoChange {
-  margin: 10px;
 }
 
 .change_btn {
@@ -67,13 +62,21 @@
 					<div class="col-5">
 						<div id='content'>
 							<div>
-								<input type="hidden" id="photo2" value="${member.photo}" /> <img
-									id="imgThumb" class="imgThumb">
+								<input type="hidden" id="photo2" value="${member.photo}" /> 
+                <img id="imgThumb" class="imgThumb">
 							</div>
-							<div style="display: none;">
-								<input type='file' id="file" name='file' />
-							</div>
-							<label class="photoChange" id="label" for="file">사진 변경</label>
+<!-- 							<div style="display: none;"> -->
+<!-- 								<input type='file' id="file" name='file' /> -->
+<!-- 							</div> -->
+<!-- 							<label class="photoChange" id="label" for="file">사진 변경</label> -->
+
+<span class="btn btn-primary fileinput-button" style="background-color: #b0c364;border-color: #b0c364;">
+    <span>사진 변경</span>
+    <input id="fileupload" type="file" name="file" >
+</span>
+
+
+
 						</div>
 					</div>
 					<div class="col-7">
@@ -90,7 +93,6 @@
 								<input type="button" class="form-control change_btn" id="password" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal" />
 							</div>
               </div>
-						
 						<div class="form-group row">
               <label for="nickname" class="col-sm-2 col-form-label">닉네임</label>
               <div class="col-sm-10">
@@ -98,8 +100,6 @@
     						<div id="nickname_chk" class="vali_check"></div>
               </div>
             </div>
-						
-						
 						<div class="form-group row">
               <label for="tel" class="col-sm-2 col-form-label">핸드폰번호</label>
               <div class="col-sm-10">
@@ -107,7 +107,6 @@
     						<div id="tel_chk" class="vali_check"></div>
               </div>
             </div>
-
               <div class="form-group row">
               <label for="postNo" class="col-sm-2 col-form-label">우편번호</label>
               <div class="col-sm-5">
@@ -117,15 +116,12 @@
                 <input type="button" class="form-control change_btn" id="postNo" name='post_search' value="우편번호 찾기" onclick="myPostcode();">
               </div>
             </div>
-            
             <div class="form-group row">
               <label for="baseAddress" class="col-sm-2 col-form-label">기본주소</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" id="baseAddress" name='baseAddress' value='${member.baseAddress}'>
               </div>
             </div>
-            
-            
             <div class="form-group row">
               <label for="detailAddress" class="col-sm-2 col-form-label">상세주소</label>
               <div class="col-sm-10">
@@ -135,17 +131,24 @@
 						<!-- 원래 닉네임값  -->
             <input type="hidden" id="nickname1" value="${member.nickname}" />
 
-						<button class="change_btn">변경</button>
+            <button type="button" class="btn btn-primary" style="background-color: #b0c364;border-color: #b0c364;">변경</button>
+            
+            
+            
+            <a href="delete?no=${member.memberNo}" class="tagA"
+                  onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
 
 					</div>
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<a href="delete?no=${member.memberNo}" class="tagA"
-									onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
-							</div>
-						</div>
-					</div>
+          
+          
+<!-- 					<div class="container"> -->
+<!-- 						<div class="row"> -->
+<!-- 							<div class="col-12"> -->
+<%-- 								<a href="delete?no=${member.memberNo}" class="tagA" --%>
+<!-- 									onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 				</div>
 			</form>
 		</div>
@@ -166,12 +169,27 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword" onblur="nowpw_check();" maxlength="15" />
-						<div id="password1_chk" class="vali_check"></div>
-						새 비밀번호 <input type="password" id="newPassword" name="newPassword" onblur="newpw_check();" maxlength="15" />
-						<div id="password2_chk" class="vali_check"></div>
-						새 비밀번호 확인<input type="password" id="newPassword2" name="newPassword2" onblur="newpw2_check();" maxlength="15" />
-						<div id="password3_chk" class="vali_check"></div>
+          <div class="form-group row">
+            <label for="nowPassword" class="col-sm-4 col-form-label">현재 비밀번호</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" id="nowPassword" name='nowPassword' onblur="nowpw_check();" maxlength="15" >
+  						<div id="password1_chk" class="vali_check"></div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="newPassword" class="col-sm-4 col-form-label">새 비밀번호</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" id="newPassword" name='newPassword' onblur="newpw_check();" maxlength="15" >
+              <div id="password2_chk" class="vali_check"></div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="newPassword" class="col-sm-4 col-form-label">새 비밀번호 확인</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" id="newPassword2" name='newPassword2' onblur="newpw2_check();" maxlength="15" >
+              <div id="password3_chk" class="vali_check"></div>
+            </div>
+          </div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -451,7 +469,7 @@
 		}
 
 		// 사진 미리보기 
-		document.getElementById("file").onchange = function() {
+		document.getElementById("fileupload").onchange = function() {
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				document.getElementById("imgThumb").src = e.target.result;
