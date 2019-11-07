@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
 import bitcamp.chopchop.domain.Pet2;
-import bitcamp.chopchop.service.MemberService; 
+import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.Pet2Service;
 import bitcamp.chopchop.service.PetService;
 
@@ -30,8 +30,8 @@ public class MemberController {
   @Resource
   private MemberService memberService;
 
-//  @Resource
-//  private Pet2Service pet2Service;
+  // @Resource
+  // private Pet2Service pet2Service;
 
   @Resource
   private PetService petService;
@@ -47,11 +47,12 @@ public class MemberController {
   public void myProfile(Model model, HttpSession session) {
     Member member = (Member) session.getAttribute("loginUser");
     model.addAttribute("member", member);
+    System.out.println(member.getPhoto());
   }
 
   @GetMapping("form")
   public void form() {
-    
+
   }
 
   @PostMapping("add")
