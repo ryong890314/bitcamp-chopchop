@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
-import bitcamp.chopchop.domain.Pet2;
 import bitcamp.chopchop.service.MemberService;
-import bitcamp.chopchop.service.Pet2Service;
 import bitcamp.chopchop.service.PetService;
 
 @Controller
@@ -44,10 +42,10 @@ public class MemberController {
 
 
   @GetMapping("myProfile")
-  public void myProfile(Model model, HttpSession session) {
+  public void myProfile(Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
+    System.out.println(member.getPhoto()+ "");
     model.addAttribute("member", member);
-    System.out.println(member.getPhoto());
   }
 
   @GetMapping("form")
@@ -104,6 +102,7 @@ public class MemberController {
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Member member = memberService.get(no);
+    System.out.println(member.getMemberNo());
     System.out.println("멤버사진==>" + member.getPhoto());
     List<Pet> pets = petService.getPets(no);
     model.addAttribute("member", member);

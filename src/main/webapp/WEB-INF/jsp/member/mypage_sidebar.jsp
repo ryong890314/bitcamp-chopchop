@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" --%>
+<%-- 	pageEncoding="UTF-8"%> --%>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> --%>
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
 
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ChopChop-MyPage</title>
+<!-- <head> -->
+<!-- <meta charset="utf-8"> -->
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<!-- <title>ChopChop-MyPage</title> -->
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="/css/member/adminlte.min.css">
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
-</head>
+<!-- </head> -->
 <body class="hold-transition sidebar-mini layout-fixed">
 	<!-- Navbar -->
 	<nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -49,8 +49,8 @@
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
 				<div class="image">
-					<input type="hidden" id="photo2" value="${member.photo}" /> <img src='/upload/member/${member.photo}'
-						id="imgThumb" class="img-circle elevation-2 my-thumb"
+					<input type="hidden" id="userphoto" value="${member.photo}" /> <img src='/upload/member/${member.photo}'
+						id="userThumb" class="img-circle elevation-2 my-thumb"
 						style="width: 40px; height: 40px; margin-left: -5px;">
 				</div>
 
@@ -110,15 +110,12 @@
 	<script>
 		function formLoad() {
 			// hidden값을 이용해서 자바스크립트를 이용한 경우
-			if (document.getElementById("photo2").value == null
-					|| document.getElementById("photo2").value == "") {
-				document.getElementById("imgThumb").src = "/upload/member/info_photo.jpg";
+			if (document.getElementById("userphoto").value == null
+					|| document.getElementById("userphoto").value == "") {
+				document.getElementById("userThumb").src = "/upload/member/info_photo.jpg";
 			} else {
-				document.getElementById("imgThumb").src = "/upload/member/"
-						+ document.getElementById("photo2").value;
+				document.getElementById("userThumb").src = "/upload/member/"
+						+ document.getElementById("userphoto").value;
 			}
 		}
 	</script>
-</body>
-
-</html>
