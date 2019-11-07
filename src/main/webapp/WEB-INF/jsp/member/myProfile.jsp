@@ -94,7 +94,7 @@
 								<div class="icon">
 									<i class="ion ion-ios-list"></i>
 								</div>
-								<a href="#" class="small-box-footer">More info <i
+								<a href="/app/order/searchbymember" class="small-box-footer">More info <i
 									class="fas fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
