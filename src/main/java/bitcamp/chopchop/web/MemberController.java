@@ -38,7 +38,7 @@ public class MemberController {
   }
 
 
-  @GetMapping("myProfile")
+  @GetMapping("myprofile")
   public void myProfile(Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
     System.out.println(member.getPhoto()+ "");

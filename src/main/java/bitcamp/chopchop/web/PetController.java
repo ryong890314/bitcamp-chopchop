@@ -52,7 +52,6 @@ public class PetController {
   @RequestMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Pet pet = petService.get(no);
-    System.out.println("펫파일" + pet.getFilePath());
     model.addAttribute("pet", pet);
   }
 
@@ -60,13 +59,13 @@ public class PetController {
   public String update(Pet pet, MultipartFile file) throws Exception {
     pet.setFilePath(writeFile(file));
     petService.update(pet);
-    return "redirect:list";
+    return "redirect:/app/member/list";
   }
 
   @GetMapping("delete")
   public String delete(int no) throws Exception {
     petService.delete(no);
-    return "redirect:list";
+    return "redirect:/app/member/myProfile";
   }
 
   private String writeFile(MultipartFile file) throws Exception {

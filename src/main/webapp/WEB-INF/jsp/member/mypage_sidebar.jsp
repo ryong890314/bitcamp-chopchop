@@ -16,18 +16,16 @@
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="/css/member/adminlte.min.css">
-<!-- Favicon -->
+<!-- Favicon -->       
 <link rel="icon" href="/img/core-img/favicon.ico">
 <!-- </head> -->
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" onload="formLoad();">
 	<!-- Navbar -->
 	<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 		<!-- Left navbar links -->
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 				href="#"><i class="fas fa-bars"></i></a></li>
-			<li class="nav-item d-none d-sm-inline-block"><a
-				href="../member/list" class="nav-link">Home</a></li>
 		</ul>
 	</nav>
 	<!-- /.navbar -->
@@ -35,7 +33,7 @@
 	<!-- Main Sidebar Container -->
 	<aside class="main-sidebar sidebar-dark-primary elevation-4">
 		<!-- Brand Logo -->
-		<a href="/app/member/myProfile" class="brand-link"> <img
+		<a href="/app/member/list" class="brand-link"> <img
 			src="/img/core-img/smallLogo.png" alt="ChopChop Logo"
 			class="brand-image img-circle elevation-3" style="opacity: .8">
 			<span class="brand-text">ChopChop</span>
@@ -47,15 +45,15 @@
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
 				<div class="image">
-					<input type="hidden" id="userphoto" value="${member.photo}" /> <img src='/upload/member/${member.photo}'
-						id="userThumb" class="img-circle elevation-2 my-thumb"
+					<input type="hidden" id="userphoto" value="${member.photo}" /> 
+					<img src='/upload/member/${member.photo}' id="userThumb" class="img-circle elevation-2 my-thumb"
 						style="width: 40px; height: 40px; margin-left: -5px;">
 				</div>
 
 
 				<div class="info">
 					<!-- user name받기~ -->
-					<a href="detail?no=${loginUser.memberNo}" class='nav-user'>${loginUser.nickname}</a>
+					<a href="/app/member/myprofile" class='nav-user'>${loginUser.nickname}</a>
 				</div>
 			</div>
 
@@ -106,14 +104,14 @@
 	<script src="/js/dist/adminlte.js"></script>
 
 	<script>
-		function formLoad() {
-			// hidden값을 이용해서 자바스크립트를 이용한 경우
-			if (document.getElementById("userphoto").value == null
-					|| document.getElementById("userphoto").value == "") {
-				document.getElementById("userThumb").src = "/upload/member/info_photo.jpg";
-			} else {
-				document.getElementById("userThumb").src = "/upload/member/"
-						+ document.getElementById("userphoto").value;
-			}
-		}
+    function formLoad() {
+        // hidden값을 이용해서 자바스크립트를 이용한 경우
+        if (document.getElementById("userphoto").value == null
+            || document.getElementById("userphoto").value == "") {
+          document.getElementById("userThumb").src = "/upload/member/info_photo.jpg";
+        } else {
+          document.getElementById("userThumb").src = "/upload/member/"
+              + document.getElementById("userphoto").value;
+        }
+      }
 	</script>
