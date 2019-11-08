@@ -133,12 +133,14 @@
                 <div class="col-md-8">
 
                   <div class="form-group">
-                    <select class="form-control" id="optionNo" name='optionNo' onchange="addOption()">
-                      <option>옵션을 선택해주세요</option>
+                    <select class="form-control optionselect" id="optionNo" name='optionNo' >
+                      <option selected disabled>옵션을 선택해주세요</option>
+
                       <c:forEach items="${product.options}" var="productOption">
-                        <option value="${productOption.optionNo}">${productOption.title}</option>
+                        <option value="${productOption.optionNo}" id="${productOption.title}">${productOption.title}</option>
                       </c:forEach>
                     </select>
+
                   </div>
 
                   
@@ -148,7 +150,7 @@
                       <!-- 재료 용량 들어가는 Div -->
                         </div>
               </div>
-
+<!-- 
               <div class="row">
                 <div class="col-md-4">
                   <label for="exampleInput">수량</label>
@@ -157,7 +159,7 @@
                   <input class="input-number" name='quantity' type="number" style="text-align:center;" value="1" min="0"
                     max="1000">
                 </div>
-              </div>
+              </div> -->
 
               <hr>
 
@@ -180,8 +182,6 @@
           </div>
         </div>
       </div>
-      
-
 
       <hr class="my-4">
       <h1 class="display-4">${product.title}</h1>
@@ -230,17 +230,40 @@
   }
   </script> -->
 
-<script id="t1" type="ingredientHtml">
+<!-- <script id="t1" type="ingredientHtml">
   <div class='group-flex' style='width: 470px; padding: 0px 15px;' >
-  <div class='form-group'><a value="${productOption.optionNo}">${productOption.title}</a></div>
-  <div class="col-md-8">
+  <div class='form-group'>
+      
+    <p value=$(this).val()>$(this).text())</p>
+  
+</div>
+  <div class='form-group'>
       <input class="input-number" name='quantity' type="number" style="text-align:center;" value="1" min="0"
-        max="1000"><a>${product.price}</a>
+        max="1000"><a>${product.price} 원</a>
     </div>
   <div class='form-group'><button class='btn btn-secondary btn-sm' type='button' name='delIngredientBtn' onclick='delOption(event)'>삭제</button></div>
   </div>
-  </script>
+  </script> -->
+  <script>
+  $(document).on("change",".optionselect",function(){
+    console.log($(this).text);
+    console.log($(this).html);
+    console.log($(this).innerText);
+    console.log($(this).innerHtml);
+
+    var html ="";
+    html+= "<div class='group-flex' style='width: 470px; border-style: solid; border-width: 1px; margin-bottom: 4px; padding: 0px 15px;' >";
+    html+="<div class='form-group'>";
+    html+="<p value=" + $(this).val() + ">" + $(this).find(":selected").attr("id") + "</p>";
+    html+="</div><div class='form-group'>"
+    html+='<input class="input-number" name="quantity" type="number" style="text-align:center;" value="1" min="0" max="1000"><a>${product.price} 원</a>'
+    html+="</div><div class='form-group'><button class='btn btn-secondary btn-sm' type='button' name='delIngredientBtn' onclick='delOption(event)'>삭제</button></div>"
+    html+="</div>"
+
+    $('#ingredient-block').append(html);
+  })
   
+  </script>
   <script> // 재료,용량 추가
    "use strict";
     function addOption() {
@@ -271,8 +294,6 @@
         });
       }
     </script> -->
-
-
 
   <script>
     // var totalPrice = document.querySelector('#totalPrice');
