@@ -42,7 +42,7 @@
 <title>레시피 보기</title>
 </head>
 <body>
-
+<jsp:include page="../header.jsp" />
 <section class="post-news-area section-padding-100-0 mb-70">
       <div class="container">
           <div class="row justify-content-center">

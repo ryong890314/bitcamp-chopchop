@@ -62,7 +62,7 @@
       <div class="container h-100">
         <div class="row h-100 align-items-center justify-content-between">
           <div class="col-12 col-sm-6">
-            <!-- Top Social Info -->
+<!--             Top Social Info -->
             <div class="top-social-info">
               <a href="#" data-toggle="tooltip" data-placement="bottom"
                 title="Pinterest"><i class="fa fa-pinterest"
@@ -80,7 +80,7 @@
             </div>
           </div>
           <div class="col-12 col-sm-6 col-lg-5 col-xl-4">
-            <!-- Top Search Area -->
+<!--             Top Search Area -->
             <div class="top-search-area">
               <form action="#" method="post">
                 <input type="search" name="top-search" id="topSearch"

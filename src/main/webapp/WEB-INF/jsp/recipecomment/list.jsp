@@ -24,6 +24,7 @@
     </div>
   </div>
 </div>
+<!-- Modal -->
 
 
 <div class="container">
@@ -32,24 +33,7 @@
                     <div class="comment_area mb-100 my-commentList">
                         <h4 class="mb-50">Comments</h4>
                         <ol class="commentList">
-<%--                             <c:forEach items="${recipeComments}" var="recipeComment"> --%>
-<!--                             <li class="single_comment_area"> -->
-<!--                                 <div class="comment-content d-flex my-comment"> -->
-<!--                                     <div class="comment-author"> -->
-<!--                                         <img src="/img/logo/choplogo.png" alt="author"> -->
-<!--                                     </div> -->
-<!--                                     <div class="comment-meta"> -->
-<!--                                         <div class="d-flex"> -->
-<%--                                             <a href="#" class="post-author">${recipeComment.memberNo}</a> --%>
-<%--                                             <a href="#" class="post-date">${recipeComment.createdDate}</a> --%>
-<!--                                             <a href="#" class="reply my-btn">수정</a> -->
-<!--                                         </div> -->
-<%--                                         <input type='hidden' class="comment-no" name='commentNo' value='${recipeComment.commentNo}' > --%>
-<%--                                         <p class='comment-content'>${recipeComment.content}</p> --%>
-<!--                                     </div> -->
-<!--                                 </div> -->
-<!--                             </li> -->
-<%--                             </c:forEach> --%>
+                        <!-- commentList 가 들어가는 자리 -->
                         </ol>
                     </div>
                     
@@ -81,32 +65,12 @@
 <li class='single_comment_area'>
 <div class='comment-content d-flex my-comment'>
     <div class='comment-author'>
-    <img src='/img/logo/choplogo.png' alt='author'>
+    <img src='/img/core-img/choplogo.png' alt='author'>
     </div>
   <div class='comment-meta'>
     <div class='d-flex'>
-      <a href='#' class='post-author'>{{member.nickname}}</a>
-      <a href='#' class='post-date'>{{recipeComment.createdDate}}</a>
-      <a href='#' class='reply my-btn'>수정</a>
-    </div>
-    <input type='hidden' class='comment-no' name='commentNo' value={{recipeComment.commentNo}}>
-    <p class='comment-content'>{{recipeComment.content}}</p>
-  </div>
-</div>
-<hr>
-</li>
-</script>
-
-<script id="t2" type="commentHtml">
-<li class='single_comment_area'>
-<div class='comment-content d-flex my-comment'>
-    <div class='comment-author'>
-    <img src='/img/logo/choplogo.png' alt='author'>
-    </div>
-  <div class='comment-meta'>
-    <div class='d-flex'>
-      <a href='#' class='post-author'>{{member.nickname}}</a>
-      <a href='#' class='post-date'>{{recipeComment.createdDate}}</a>
+      <a class='post-author'>{{member.nickname}}</a>
+      <a class='post-date'>{{recipeComment.createdDate}}</a>
       <a href='#' class='reply my-btn'>수정</a>
     </div>
     <input type='hidden' class='comment-no' name='commentNo' value={{recipeComment.commentNo}}>
@@ -136,14 +100,9 @@ $('#addCommentBtn').on('click', function() { // 댓글 입력 함수
     if(data.state == 'success') {
       console.log(data.result); // member.memberNo, member.nickname
       // recipeComment.content, recipeComment.createdDate
-      
       addComment(data.result);
     }
   });
-});
-
-$('a[href="#"]').click(function(e) { // 페이지 상단 이동 방지
-  e.preventDefault();
 });
 </script>
 
@@ -165,22 +124,25 @@ $('#exampleModal').modal({ // modal 속성 설정
 <script>
 "use strict";
 var dbody2 = $('.commentList');
-var templateSrc2 = $('#t2').html();
+var templateSrc2 = $('#t1').html();
 var template2 = Handlebars.compile(templateSrc2);
 
 getCommentList();
 function getCommentList() { // 댓글 목록 불러오는 함수
   $.get("/app/json/recipecomment/list?no=" + ${recipe.recipeNo}, function(data) {
-    console.log(data.result);
+    console.log(data.result); 
     
     for (var b of data.result) {
-      $(template2(b)).appendTo(dbody2);
-
-      var viewerNo = b.viewer.memberNo;
-      var writerNo = b.member.memberNo;
-      if (writerNo != viewerNo) {
-        $('.my-btn').css('display', 'none');
-      };      
+      var html = template2(b); // 원래 html
+      var after = html.replace("class='reply my-btn'", "class='reply my btn' style='display:none;'");
+      var viewerNo = b.viewer.memberNo; // 댓글보는사람
+      var writerNo = b.member.memberNo; // 작성자
+      
+      if (viewerNo != writerNo) { // memberNo이 다르면
+        $(after).appendTo(dbody2); 
+      } else {
+        $(template2(b)).appendTo(dbody2);
+      }
     }
   });
 };
@@ -202,10 +164,8 @@ function getCommentList() { // 댓글 목록 불러오는 함수
       type: 'POST',
       data: {commentNo: commentNo, content: content},
       success: function(result){
-        // 이곳에 댓글 리스트 불러오는 메소드 추가하기
-        //
-        //getCommentList();
-        location.reload();
+        $('.commentList').empty();
+        getCommentList();
         $('#exampleModal').modal('hide'); 
       }
     });
@@ -216,7 +176,8 @@ function getCommentList() { // 댓글 목록 불러오는 함수
     $.get('/app/json/recipecomment/delete?no='+ commentNo, function(data) {
       if (data.state == 'success') {
         console.log("성공");
-        location.reload();
+        $('.commentList').empty();
+        getCommentList();
         $('#exampleModal').modal('hide'); 
       };
     });

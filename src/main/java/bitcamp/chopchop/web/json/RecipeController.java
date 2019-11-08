@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Ingredient;
@@ -155,15 +156,10 @@ public class RecipeController {
   }
   
   @GetMapping("listSort")
-  public JsonResult listSort(String column) throws Exception {
+  public JsonResult listSort(@RequestParam(defaultValue = "recipe_id") String column) throws Exception {
     try {
       System.out.println("들어온 컬럼????????" + column);
       List<Recipe> recipes = recipeService.listSort(column);
-      for (int i =0; i <recipes.size(); i++) {
-        System.out.println("=========================");
-        System.out.println(recipes.get(0).getTitle());
-        
-      }
       return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipes);
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());

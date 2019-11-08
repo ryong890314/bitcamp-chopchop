@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/recipe/form.css">
+<link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <style>
- #my-label {
+ .my-label {
   display: inline-block;
   padding: .5em .75em;
   margin-left: 32px;
@@ -96,14 +97,20 @@
                                           <!-- 순서 박스 들어갈 Div -->
                                           <div class='row form-group my-cooking'>
                                           <div class='row form-group'>
-                                                                                             순서: <input type='text' name='processNo' value='${cooking.processNo}'></div>
+                                            <input type='text' class='form-control' name='processNo' style='width:50px; margin-left:15px; font-size:12px;' value='${cooking.processNo}'>
+                                          </div>
                                           <div class='box-photo'>
                                             <div class='photo'>
                                               <div class='img'>
-                                               <img class='preview-cooking-image' src='/upload/recipe/${cooking.filePath}'></div>
-                                              <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value='${cooking.filePath}'>
-                                              <input class='cooking-check' type='hidden' name='fileNo' value='${cooking.cookingNo}'>
-                                          <button class='btn btn-outline btn-block btn-sm' name='delCookingBtn' type='button' onclick='delCooking(event)'>순서 삭제</button>
+                                               <img class='preview-cooking-image' src='/upload/recipe/${cooking.filePath}'>
+                                              </div>
+                                              <span class="fileinput-button my-label">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                                <span>파일 선택</span>
+                                                <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value='${cooking.filePath}'>
+                                                <input class='cooking-check' type='hidden' name='fileNo' value='${cooking.cookingNo}'>
+                                              </span>
+                                          <button class='btn btn-outline btn-block btn-sm' style='margin:2px;' name='delCookingBtn' type='button' onclick='delCooking(event)'>순서 삭제</button>
                                             </div>
                                           <div class='des'><textarea class='form-control' name='cookingContent'>${cooking.content}</textarea></div>
                                           </div>
@@ -124,14 +131,14 @@
                                   <div class="block-title _gray"><span class="title">요리 완성</span></div>
                                   <div class="block-content">
                                       <div>
-                                          <!-- 썸네일사진추가아아아아아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ -->
+                                          <!-- 썸네일사진-->
                                           <div class="box-photo">
                                                   <div class="photo">
                                                       <div class="img">
                                                       <img id="image" src='/upload/recipe/${recipe.thumbnail}'></div>
                                                       <div style='display: none;'>
                                                       <input class="btn btn-outline btn-images my-thumbnail" id="my-thumbnail" type="file" name='filePath'></div>
-                                                      <label id='my-label' for="my-thumbnail">+ 사진 수정</label>
+                                                      <label id='my-label' class='my-label' for="my-thumbnail">+ 사진 수정</label>
                                                       
                                                   </div>
                                                   <div class="des"><textarea class="form-control" name="content">${recipe.content}</textarea></div>
@@ -192,16 +199,20 @@ function addIngredient() {
 <script id="t2" type="cookingHtml">
 <div class='row form-group my-cooking'>
   <div class='row form-group'>
-         순서: <input type='text' name='processNo' value=''>
+    <input type='text' class='form-control' name='processNo' style='width:50px; margin-left:15px; font-size:12px;' value='' placeholder='순서를입력해주세요'>
   </div>
   <div class='box-photo'>
     <div class='photo'>
       <div class='img'>
        <img class='preview-cooking-image'>
       </div>
-      <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value=''>
-      <input class='cooking-check' type='hidden' name='fileNo' value='${cooking.cookingNo}'>
-      <button class='btn btn-outline btn-block btn-sm' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
+      <span class="fileinput-button my-label">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>파일 선택</span>
+        <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value=''>
+        <input class='cooking-check' type='hidden' name='fileNo' value='${cooking.cookingNo}'>
+      </span>
+      <button class='btn btn-outline btn-block btn-sm' style='margin:2px;' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
     </div>
     <div class='des'><textarea class='form-control' name='cookingContent'></textarea></div>
   </div>
@@ -242,7 +253,7 @@ $('.my-thumbnail').change(function() {
 function readURL2(input) {
   var reader2 = new FileReader();
   reader2.onload = function(e) {
-    $(input.parentNode).find('.preview-cooking-image').attr('src', e.target.result);
+    $(input.parentNode.parentNode).find('.preview-cooking-image').attr('src', e.target.result);
   }
   reader2.readAsDataURL(input.files[0]);
 };

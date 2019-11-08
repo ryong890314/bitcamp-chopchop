@@ -90,8 +90,8 @@ public class RecipeController {
     } else if (check == 0){ // 좋아요 안했음
       likeCheck = false;
     }
-    List<RecipeComment> recipeComments = recipeCommentService.list(recipe.getRecipeNo());
-    model.addAttribute("recipeComments", recipeComments);
+//    List<RecipeComment> recipeComments = recipeCommentService.list(recipe.getRecipeNo());
+//    model.addAttribute("recipeComments", recipeComments);
     model.addAttribute("recipe", recipe);
     model.addAttribute("member", member);
     model.addAttribute("viewer", viewer);

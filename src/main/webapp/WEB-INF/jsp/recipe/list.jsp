@@ -40,14 +40,12 @@
     </style>
     <title>Recipe List</title>
 </head>
-<body onload="loadList();">
-
-<%-- findRecipe --%>
+<body>
 <jsp:include page="findRecipe.jsp"/>
 
 
 <!-- ##### Search Area Start ##### -->
-    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="height: 50px; background-image: url(/img/core-img/pattern.png);">
+    <div class="bueno-search-area pb-70 bg-img" style="height: 40px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -61,21 +59,19 @@
 <!--                                 <div class="form-group mb-30"  style="display: none"> -->
 <!--                                 </div> -->
 <!--                             </div> -->
-
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-3" style="visibility: hidden">
                                 <div class="form-group mb-30">
-                                    <select id="select" name='column' class="form-control my-sort">
-                                      <option value="recipe_id" selected="selected">Recipe List</option>
-                                      <option value="view_count">Order by Views</option>
-                                      <option value="scrap">Order by Scraps</option>
-                                      <option value="created_date">Order by latest</option>
-                                      <option value="">Ingredients 4</option>
-                                    </select>
+                                    <button id="sortBtn" class="btn bueno-btn w-100" type="button"></button>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="form-group mb-30">
-                                    <button id="sortBtn" class="btn bueno-btn w-100" type="button">Search</button>
+                                    <select id="selectColumn" name='column' class="form-control my-sort">
+                                      <option value="recipe_id" selected="selected">리스트 보기</option>
+                                      <option value="view_count">Order by Views 조회순</option>
+                                      <option value="scrap">Order by Scraps 좋아요순</option>
+                                      <option value="created_date">Order by latest 최신순</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
@@ -88,10 +84,6 @@
         </div>
     </div>
 
-        
-<!-- <form action='form'> -->
-<!--   <button class="btn bueno-btn mt-30">레시피 등록</button> -->
-<!-- </form> -->
 
 <%--리스트 출력    --%>
 
@@ -108,8 +100,6 @@
 <%--         </c:forEach> --%>
         </div>
  </div>
- 
- <%--리스트 출력    --%>
  
 <script src="/js/jquery/jquery-2.2.4.min.js"></script>
 <script src="/js/plugins/plugins.js"></script>
@@ -130,8 +120,9 @@ var dbody = $('#food');
 var templateSrc = $('#t1').html();
 var template = Handlebars.compile(templateSrc);
 
+loadList();
 function loadList() {
-  $.get("/app/json/recipe/list", function(data) {
+  $.get("/app/json/recipe/listSort", function(data) {
     for (var b of data.result) {
       $(template(b)).appendTo(dbody);
     }
@@ -146,19 +137,17 @@ var dbody = $('#food');
 var templateSrc = $('#t1').html();
 var template = Handlebars.compile(templateSrc);
 
-$('#sortBtn').click(function() {
-  $('.my-list').remove();
-  
-  var selectOption = $('#select option:selected').val();// var selectOption : 프로퍼티명
-  console.log(selectOption);
-  
-  $.get("/app/json/recipe/listSort?column=" + selectOption, function(data) {
-    for (var b of data.result) {
-      $(template(b)).appendTo(dbody);
-    }
-  });
-  
-});
+  $('.my-sort').on('change', function() {
+    console.log("바꼇다");
+    var selectOption = $('.my-sort').val();// var selectOption : 컬럼명
+//     dbody.empty();
+    $.get("/app/json/recipe/listSort?column=" + selectOption, function(data) {
+    $('.my-list').remove();
+      for (var b of data.result) {
+        $(template(b)).appendTo(dbody);
+      }
+    });
+  });  
 </script>
 
 </body>
