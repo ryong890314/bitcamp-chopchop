@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
 import bitcamp.chopchop.service.PetService;
 
@@ -53,7 +52,6 @@ public class PetController {
   @RequestMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Pet pet = petService.get(no);
-    System.out.println("펫파일" + pet.getFilePath());
     model.addAttribute("pet", pet);
   }
 
@@ -61,7 +59,7 @@ public class PetController {
   public String update(Pet pet, MultipartFile file) throws Exception {
     pet.setFilePath(writeFile(file));
     petService.update(pet);
-    return "redirect:list";
+    return "redirect:/app/member/list";
   }
 
   @GetMapping("delete")

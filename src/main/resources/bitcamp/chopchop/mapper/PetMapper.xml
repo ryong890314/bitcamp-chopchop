@@ -91,13 +91,16 @@
 	<update id="update" parameterType="Pet">
 		update pet
 		<set>
-			<if test="name != null">name=#{name},</if>
-			<if test="photo != null">photo=#{photo},</if>
 			<if test="register_no != null">register_no=#{register_no},</if>
+			<if test="name != null">name=#{name},</if>
+			<if test="file_path != null">filePath=#{file_path},</if>
+			<if test="pet_id != null">age=#{age},</if>
+			<if test="breed != null">breed=#{breed}</if>
 		</set>
 		where pet_id = #{petNo}
 	</update>
 
+  
 	<delete id="delete" parameterType="int">
 		delete from pet
 		where pet_id = #{pet.petNo}

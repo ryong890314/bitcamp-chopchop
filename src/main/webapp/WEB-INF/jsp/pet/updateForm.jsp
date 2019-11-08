@@ -22,7 +22,7 @@
 		<div class="col-md-6 col-md-offset-3">
 			<div class="form-area">
 				<form action='update' method='post' enctype='multipart/form-data'
-					name="addform" onsubmit="return checkAll();">
+					name="addform">
 					<!-- <label for="filePath">대표사진</label> <input type="file" id="file"
             name="file" /><br>  -->
 
@@ -42,7 +42,7 @@
 
 					<div class="group form-group">
 						<input type="text" class="form-contro" id="registerNo"
-							name="registerNo" onblur="registerNo_check();"
+							name="registerNo" 
 							value="${pet.registerNo}" required> <span
 							class="highlight"></span> <span class="bar"></span> <label
 							class="mylabel">Register Number</label>
@@ -58,14 +58,14 @@
 
 					<div class="group form-group">
 						<input type="text" class="form-contro" id="age" name="age"
-							onblur="age_check();" value="${pet.age}" required> <span class="highlight"></span>
+							 value="${pet.age}" required> <span class="highlight"></span>
 						<span class="bar"></span> <label class="mylabel">Pet's Age</label>
 						<div id="age_chk" class="vali_check"></div>
 					</div>
 
 					<div class="group form-group">
 						<input type="text" class="form-contro" id="Breed" name="Breed"
-							onblur="breed_check();" value="${pet.breed}" required> <span class="highlight"></span>
+						  value="${pet.breed}" required> <span class="highlight"></span>
 						<span class="bar"></span> <label class="mylabel">Breed</label>
 					</div>
 
@@ -76,7 +76,8 @@
 							for="female">Female</label>
 					</div>
 					<hr>
-					<button class="sub-btn" type="submit">Register</button>
+					<button class="sub-btn" type="submit">Update</button>
+					<button class="sub-btn" style="margin-top:-10px;" onclick="history.back(-1);">Back</button>
 				</form>
 			</div>
 		</div>

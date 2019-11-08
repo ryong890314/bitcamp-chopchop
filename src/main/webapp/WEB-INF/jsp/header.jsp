@@ -49,7 +49,7 @@
 								class="fa fa-behance" aria-hidden="true"></i></a> <a href="#"
 								data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i
 								class="fa fa-linkedin" aria-hidden="true"></i></a>
-								<a class='' style="font-size:60px; margin-left: 60%; margin-bottom:20px; opacity:0.7;">ChopChop</a>
+								<a href="/app/member/list" style="text-decoration:none; font-size:60px; margin-left: 60%; margin-bottom:20px; opacity:0.7;">ChopChop</a>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-5 col-xl-4">
