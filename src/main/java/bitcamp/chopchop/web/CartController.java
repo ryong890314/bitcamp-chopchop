@@ -1,5 +1,6 @@
 package bitcamp.chopchop.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -66,6 +67,21 @@ public String chkdelete(HttpSession session,
           cartService.delete(Integer.parseInt(arrIdx[i]));
       }
       return "redirect:search";
+}
+
+@PostMapping("chkoption")
+public String chkoption(HttpSession session,
+     @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
+ System.out.println("들어왔나");
+      String[] arrIdx = paramMap.get("chkbox").toString().split(",");
+      List<Cart> selected = new ArrayList<>();
+      for (int i = 0; i < arrIdx.length; i++) {
+          System.out.println(Integer.parseInt(arrIdx[i]));
+          selected.add(cartService.get(Integer.parseInt(arrIdx[i])));
+          session.setAttribute("selected", selected);
+          // cartService.delete(Integer.parseInt(arrIdx[i]));
+      }
+      return "redirect:../order/form";
 }
 
   @GetMapping("detail")

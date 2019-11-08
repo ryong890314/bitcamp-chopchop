@@ -192,6 +192,7 @@
 
 
 <script>
+  // 선택 상품삭제
     function check_Del() {
       var chkbox = "";
       $("input[name='chkbox']:checked").each(function () {
@@ -208,6 +209,29 @@
       if (confirm("삭제 하시겠습니까?")) {
   
         location.href = "chkdelete?chkbox=" + chkbox;
+      }
+    }
+  </script>
+
+<script>
+  // 선택 상품구매
+    function check_Order() {
+      var chkbox = "";
+      $("input[name='chkbox']:checked").each(function () {
+        chkbox = chkbox + $(this).val() + ",";
+      });
+      chkbox = chkbox.substring(0, chkbox.lastIndexOf(",")); //맨끝 콤마 지우기
+  
+      if (chkbox == '') {
+        alert("구매할 상품을 선택하세요.");
+        return false;
+      }
+      console.log("### chkbox => {}" + chkbox);
+  
+      if (confirm("구매 하시겠습니까?")) {
+  
+        // 상품구매 href?
+        location.href = "chkoption?chkbox=" + chkbox;
       }
     }
   </script>

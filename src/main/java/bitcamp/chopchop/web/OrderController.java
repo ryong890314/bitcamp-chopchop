@@ -2,6 +2,8 @@ package bitcamp.chopchop.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -56,8 +58,6 @@ public class OrderController {
     }
     model.addAttribute("products", products); // 장바구니에서 넘어온 상품
   }
-  
-  
   
   @GetMapping("list")
   public void list(Model model) throws Exception {
