@@ -11,7 +11,7 @@
 <body>
 <jsp:include page="../header.jsp"/>
 
-<div id='content'>
+<div id="content" style="width: 1100px;margin: 0 auto;">
 <h1>CHOPCHOP 문의게시판</h1>
 <a href='form'>문의하기</a><br>
 <table class='table table-hover'>

@@ -13,7 +13,7 @@
 <body>
 
 
-	<div id='content'>
+	<div id="content" style="width: 1100px;margin: 0 auto;">
 		<h1>회원 목록</h1>
 		<a href='form'>새 회원</a><br>
 		<table class='table table-hover'>

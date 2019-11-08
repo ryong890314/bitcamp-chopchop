@@ -48,13 +48,6 @@
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
-				<div class="image">
-					<input type="hidden" id="photo2" value="${member.photo}" /> <img src='/upload/member/${member.photo}'
-						id="imgThumb" class="img-circle elevation-2 my-thumb"
-						style="width: 40px; height: 40px; margin-left: -5px;">
-				</div>
-
-
 				<div class="info">
 					<!-- user name받기~ -->
 					<a href="detail?no=${loginUser.memberNo}" class='nav-user'>${loginUser.nickname}</a>
@@ -107,18 +100,6 @@
 	<!-- AdminLTE App -->
 	<script src="/js/dist/adminlte.js"></script>
 
-	<script>
-		function formLoad() {
-			// hidden값을 이용해서 자바스크립트를 이용한 경우
-			if (document.getElementById("photo2").value == null
-					|| document.getElementById("photo2").value == "") {
-				document.getElementById("imgThumb").src = "/upload/member/info_photo.jpg";
-			} else {
-				document.getElementById("imgThumb").src = "/upload/member/"
-						+ document.getElementById("photo2").value;
-			}
-		}
-	</script>
 </body>
 
 </html>
