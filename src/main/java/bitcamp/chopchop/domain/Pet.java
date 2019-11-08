@@ -16,9 +16,6 @@ public class Pet implements Serializable {
   private String filePath;
   private String breed;
   
-  private Member members;
-  
-  
   public int getPetNo() {
     return petNo;
   }
@@ -81,14 +78,6 @@ public class Pet implements Serializable {
 
   public void setMemberNo(int memberNo) {
     this.memberNo = memberNo;
-  }
-
-  public Member getMembers() {
-    return members;
-  }
-
-  public void setMembers(Member members) {
-    this.members = members;
   }
 
   public String getFilePath() {

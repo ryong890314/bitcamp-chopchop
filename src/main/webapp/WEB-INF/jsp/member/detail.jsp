@@ -133,11 +133,12 @@
 
             <button type="submit" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;">변경</button>
             
-                  <button type="button" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;"
-                  onclick="location.href='delete?no=${member.memberNo}'">
-<!--                   onclick="aaa();"> -->
-                    회원탈퇴
-                  </button>
+<!--              <button type="button" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;" -->
+<%--                   onclick="location.href='delete?no=${member.memberNo}'">회원탈퇴</button> --%>
+                  
+                  <button type="button" id="memberdelete" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;"
+                  >회원탈퇴</button>
+             
                   
                   
 <%--             <a href="delete?no=${member.memberNo}" class="tagA" --%>
@@ -176,7 +177,7 @@
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">비밀번호 변경</h5>
 						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+							aria-label="Close" >
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -205,7 +206,8 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary" onclick="changePw();">변경</button>
+						<button type="button" class="btn btn-primary" 
+            style="background-color: #b0c364; border-color: #b0c364;" onclick="changePw();">변경</button>
 					</div>
 				</div>
 			</div>
@@ -221,15 +223,28 @@
 	<script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
 	<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script>
-	
-// 	function aaa() {
-	  
-// 	  $(location).attr('href', 'delete?no=${member.memberNo}');
-	  
-// 	}
-	
-	
-	
+
+ 	$('#memberdelete').click(function(){
+	Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.value) {
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+      )
+        location.href='delete?no=${member.memberNo}'
+    }
+  })
+})
+
 // 	$('#deleteBtn').click(function(){
 // 	  console.log("눌리냐");
 // 	  Swal.fire({

@@ -28,9 +28,6 @@ public class MemberController {
   @Resource
   private MemberService memberService;
 
-  // @Resource
-  // private Pet2Service pet2Service;
-
   @Resource
   private PetService petService;
 
