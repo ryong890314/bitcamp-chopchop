@@ -125,6 +125,7 @@
           <input type="radio" id="radio-button" name="paymentMethod" value="신용카드">신용카드
           <input type="radio" id="radio-button" name="paymentMethod" value="무통장 입금">무통장 입금
           <input type="radio" id="radio-button" name="paymentMethod" value="간편결제">간편결제
+          <div id="paymentMethodCheck" style="color:red;"></div>
         </div>
         <div class="col-md-6">      
           <label for="exampleInput">주문자 정보와 동일<input type="checkbox" id="checkBox" style="width:30px;" disabled></label>
@@ -192,6 +193,12 @@
   </form>
   
   <jsp:include page="../footer.jsp"/>
+  
+  <script>
+    
+  </script>
+  
+  
   <script>
     var totalPrice = document.querySelector('#totalPrice');
     var resultPrice = parseInt(totalPrice.innerText);
@@ -280,6 +287,16 @@
       
       if($('#recipientDetailAddress').val() == "") {
         $('#detailAddressCheck').text('상세주소를 입력해주세요.');
+        isChecked = false;
+      } else {
+        $('#detailAddressCheck').text('');
+        isChecked = true;
+      }
+      
+      var radioCheck = $('input[type="radio"]');
+      console.log(radioCheck);
+      if(!radioCheck[0].checked && !radioCheck[1].checked && !radioCheck[2].checked) {
+        $('#paymentMethodCheck').text('결제 수단을 선택해주세요.')
         isChecked = false;
       } else {
         $('#detailAddressCheck').text('');

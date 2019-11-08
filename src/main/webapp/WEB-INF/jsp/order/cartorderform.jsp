@@ -119,6 +119,7 @@
           <input type="radio" id="radio-button" name="paymentMethod" value="신용카드">신용카드
           <input type="radio" id="radio-button" name="paymentMethod" value="무통장 입금">무통장 입금
           <input type="radio" id="radio-button" name="paymentMethod" value="간편결제">간편결제
+          <div id="paymentMethodCheck" style="color:red;"></div>
         </div>
         <div class="col-md-6">      
           <label for="exampleInput">주문자 정보와 동일<input type="checkbox" id="checkBox" style="width:30px;" disabled></label>
@@ -164,9 +165,21 @@
           <div class="col-md-6">가격</div>
         </div>
         <div class="row">
-          <div class="col-md-6"><span id="modalProduct"></span></div>
-          <div class="col-md-6" id="modalPrice" style="display:inline"></div>
-        </div><hr>
+          <c:forEach items="${selected}" var="products">
+            <div class="col-md-6">
+              <div id="modalProduct">${products.product.title}</div>
+            </div>
+            <div class="col-md-6" id="modalPrice" style="display:inline">
+              <div id="modalProduct">${products.product.price}</div>
+            </div>
+          </c:forEach>
+        </div>
+        <div class="row">
+          <div class="col-md-4" id="finalPrice">
+          </div>
+        </div>
+        
+        <hr>
         수령인: <span id="modalName"></span><br>
         수령인 연락처: <span id="modalTel"></span><br>
         수령인 우편번호: <span id="modalPostNo"></span><br>
@@ -292,10 +305,20 @@
         isChecked = true;
       }
       
+      var radioCheck = $('input[type="radio"]');
+      console.log(radioCheck);
+      if(!radioCheck[0].checked && !radioCheck[1].checked && !radioCheck[2].checked) {
+        $('#paymentMethodCheck').text('결제 수단을 선택해주세요.')
+        isChecked = false;
+      } else {
+        $('#paymentMethodCheck').text('');
+//         isChecked = true;
+      }
+      
       if(isChecked) {
         $('#orderModal').on('show.bs.modal', function (e) {
           $('#modalProduct').text('${product.title}');
-          $('#modalPrice').text($('#totalPrice').text() + " 원");
+          $('#modalPrice').text($('#totalPrice').text());
           $('#modalName').text($('#recipientName').val());
           $('#modalTel').text($('#recipientTel').val());
           $('#modalPostNo').text($('#recipientPostNo').val());
@@ -309,6 +332,7 @@
           } else if(chooseEasy.checked) {
             $('#modalPayment').text(chooseEasy.value);
           }
+          $('#finalPrice').text(temp);
         })
       } else {
         return false;

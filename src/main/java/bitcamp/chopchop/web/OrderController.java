@@ -37,15 +37,16 @@ public class OrderController {
     model.addAttribute("quantity", quantity);
   }
 
-  @SuppressWarnings("unchecked")
   @GetMapping("cartorderform")
   public void cartorderform(HttpSession session, Model model) throws Exception {
+    @SuppressWarnings("unchecked")
     List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selected");
 
     for(Cart cart : selectedProduct) {
       cart.setProduct(productService.get(cart.getProductNo()));
     }
     model.addAttribute("selected", selectedProduct);
+    session.setAttribute("selectedProduct", selectedProduct);
   }
 
   @GetMapping("list")
@@ -81,15 +82,33 @@ public class OrderController {
       HttpSession session, Order order, int no, int optionNo, int quantity, int discountPrice) 
           throws Exception {
     OrderProduct orderProduct = new OrderProduct();
-    orderProduct.setOrderNo(order.getOrderNo());
-    orderProduct.setProductNo(productService.get(no).getProductNo());
-    orderProduct.setOptionNo(optionNo);
-    orderProduct.setQuantity(quantity);
-    orderProduct.setDiscountPrice(discountPrice);
-    orderService.insert(order, orderProduct);
-    session.setAttribute("order", order);
-    session.setAttribute("orderProduct", orderProduct);
-    return "redirect:result"; // -> 주문 완료 페이지로
+    
+    @SuppressWarnings("unchecked")
+    List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selectedProduct");
+    if (selectedProduct != null) {
+      for (Cart cart : selectedProduct) {
+        orderProduct.setProductNo(cart.getProductNo());
+        orderProduct.setOrderNo(order.getOrderNo());
+        orderProduct.setQuantity(cart.getQuantity());
+        orderProduct.setDiscountPrice(
+            cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount())/100) * cart.getQuantity());
+      }
+      orderService.insert(order, orderProduct);
+      session.setAttribute("order", order);
+      session.setAttribute("orderProduct", orderProduct);
+      return "redirect:result";
+      
+    } else {
+      orderProduct.setOrderNo(order.getOrderNo());
+      orderProduct.setProductNo(productService.get(no).getProductNo());
+      orderProduct.setOptionNo(optionNo);
+      orderProduct.setQuantity(quantity);
+      orderProduct.setDiscountPrice(discountPrice);
+      orderService.insert(order, orderProduct);
+      session.setAttribute("order", order);
+      session.setAttribute("orderProduct", orderProduct);
+      return "redirect:result";
+    }
   }
 
   @GetMapping("delete")
