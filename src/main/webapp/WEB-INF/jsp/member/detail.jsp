@@ -12,7 +12,7 @@
 <style type="text/css">
 .card-img {
 	width: 200px !important;
-	height: 200px !important;
+	height: 215px !important;
 	object-fit: cover !important;
 }
 
@@ -133,21 +133,21 @@
 
             <button type="submit" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;">변경</button>
             
-            <a href="delete?no=${member.memberNo}" class="tagA"
-                  onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
-                  
-                  
-<!--                   <button type="button" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;" -->
-<%--                   onclick="location.href='delete?no=${member.memberNo}'"> --%>
-<!--                     회원탈퇴 -->
-<!--                   </button> -->
+                  <button type="button" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;"
+                  onclick="location.href='delete?no=${member.memberNo}'">
 <!--                   onclick="aaa();"> -->
+                    회원탈퇴
+                  </button>
+                  
+                  
+<%--             <a href="delete?no=${member.memberNo}" class="tagA" --%>
+<!--                   onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a> -->
                   
 <!--               <div class="text-center"> -->
 <!--               <p>Click on Delete Button</p> -->
 <!--               <button id="deleteBtn" type="button" class="btn btn-danger" > -->
-<%-- <%--               onclick="location.href='delete?no=${member.memberNo}'" --%> --%>
-<!-- <!--                 <i class="glyphicon glyphicon-trash"></i>  --> -->
+<%--               onclick="location.href='delete?no=${member.memberNo}'"> --%>
+<!--                 <i class="glyphicon glyphicon-trash"></i> -->
 <!--                 회원탈퇴</button> -->
 <!--               </div> -->
                   

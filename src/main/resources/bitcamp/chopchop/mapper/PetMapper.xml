@@ -25,6 +25,7 @@
 		<result column="age" property="age" />
 		<result column="gender" property="gender" />
 		<result column="file_path" property="filePath" />
+		<result column="breed" property="breed" />
 	</resultMap>
 
 	<!-- Pet and Member join -->
@@ -62,7 +63,8 @@
     register_no,
     age, 
     gender, 
-    file_path
+    file_path,
+    breed
   )
   values
   (
@@ -72,7 +74,8 @@
     #{registerNo},
     #{age},
     #{gender},
-    #{filePath}
+    #{filePath},
+    #{breed}
   )
 </insert>
 
