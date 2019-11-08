@@ -1,7 +1,6 @@
 package bitcamp.chopchop.web;
 
 import java.io.File;
-import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -31,6 +30,11 @@ public class PetController {
   public void form(Model model, int no) {
     model.addAttribute("memberNo", no);
   }
+  
+  @GetMapping("updateForm")
+  public void updateForm() {
+  }
+  
 
   @PostMapping("add")
   public String add(Pet pet, MultipartFile file) throws Exception {
@@ -48,6 +52,7 @@ public class PetController {
   @RequestMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Pet pet = petService.get(no);
+    System.out.println("펫파일" + pet.getFilePath());
     model.addAttribute("pet", pet);
   }
 

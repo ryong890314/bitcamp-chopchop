@@ -136,12 +136,20 @@
             <a href="delete?no=${member.memberNo}" class="tagA"
                   onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
                   
-              <div class="text-center">
-              <p>Click on Delete Button</p>
-              <button type="button" class="btn btn-danger" onclick="location.href='delete?no=${member.memberNo}'">
-<!--                 <i class="glyphicon glyphicon-trash"></i>  -->
-                회원탈퇴</button>
-              </div>
+                  
+<!--                   <button type="button" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;" -->
+<%--                   onclick="location.href='delete?no=${member.memberNo}'"> --%>
+<!--                     회원탈퇴 -->
+<!--                   </button> -->
+<!--                   onclick="aaa();"> -->
+                  
+<!--               <div class="text-center"> -->
+<!--               <p>Click on Delete Button</p> -->
+<!--               <button id="deleteBtn" type="button" class="btn btn-danger" > -->
+<%-- <%--               onclick="location.href='delete?no=${member.memberNo}'" --%> --%>
+<!-- <!--                 <i class="glyphicon glyphicon-trash"></i>  --> -->
+<!--                 회원탈퇴</button> -->
+<!--               </div> -->
                   
                   
 					</div>
@@ -214,27 +222,37 @@
 	<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script>
 	
-	$('button').click(function(){
+// 	function aaa() {
 	  
-	  Swal.fire({
-	    title: 'Are you sure?',
-	    text: "You won't be able to revert this!",
-	    icon: 'warning',
-	    showCancelButton: true,
-	    confirmButtonColor: '#3085d6',
-	    cancelButtonColor: '#d33',
-	    confirmButtonText: 'Yes, delete it!'
-	  }).then((result) => {
-	    if (result.value) {
-	      Swal.fire(
-	        'Deleted!',
-	        'Your file has been deleted.',
-	        'success'
-	      )
-	    }
-	  })
+// 	  $(location).attr('href', 'delete?no=${member.memberNo}');
 	  
-	})
+// 	}
+	
+	
+	
+// 	$('#deleteBtn').click(function(){
+// 	  console.log("눌리냐");
+// 	  Swal.fire({
+// 	    title: 'Are you sure?',
+// 	    text: "You won't be able to revert this!",
+// 	    icon: 'warning',
+// 	    showCancelButton: true,
+// 	    confirmButtonColor: '#3085d6',
+// 	    cancelButtonColor: '#d33',
+// 	    confirmButtonText: 'Yes, delete it!'
+// 	  }).then((result) => {
+// 	    if (result.value) {
+// 	      Swal.fire(
+// 	        'Deleted!',
+// 	        'Your file has been deleted.',
+// 	        'success'
+// 	        $(location).attr('href', 'delete?no=${member.memberNo}'); 
+// 	        console.log(location.href='delete?no=${member.memberNo}');
+// 	      )
+// 	    }
+// 	  })
+	  
+// 	})
 	
 		function changePw() {
 			var cnt = 0;

@@ -34,18 +34,19 @@
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
-								<h5 class="card-title">${pet.name}(${pet.age}세,
+								<h5 class="card-title age">
+								${pet.name}
+									(${pet.age}세,
 									<c:if test="${pet.gender eq 0}">수컷</c:if>
 									<c:if test="${pet.gender eq 1}">암컷</c:if>
 									)
 								</h5>
-								<p class="card-text">
-									등록일 : ${pet.createdDate}<br>등록번호 : ${pet.registerNo}<br>
-								</p>
+								<p class="card-text">등록일 : ${pet.createdDate}</p>
+								등록번호 :
+								<p class="card-text registerNo">${pet.registerNo}</p>
 								<p class="card-text">
 									<!-- Button trigger modal -->
-									<button type="button" class="btn btn-primary"
-										data-toggle="modal" data-target=".my-modal">수정</button>
+									<button type="button" class="btn btn-primary my-btn" onclick="window.location.href = '/app/pet/updateForm';">수정</button>
 
 									<a href="/app/pet/delete?no=${pet.petNo}"> 삭제</a>
 								</p>
@@ -60,8 +61,8 @@
 
 	<!-- Pet Modal -->
 	<!-- Modal -->
-	<div class="modal fade my-modal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+<%-- 	<div class="modal fade my-modal" id="myModal" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -81,8 +82,8 @@
 									<div class="col-5">
 										<div id='content'>
 											<div>
-												<input type="hidden" id="photo2" value="${pet.filePath}" />
-												<img id="petimgThumb" class="imgThumb my-pet-thumb">
+												<input type="text" id="photo2" value="${pet.filePath}" /> <img
+													id="petimgThumb" class="imgThumb my-pet-thumb">
 											</div>
 											<div style="display: none;">
 												<input type='file' id="file" name='file' />
@@ -94,15 +95,16 @@
 									<div class="col-7">
 										<input type='hidden' id='memberNo' name='memberNo'
 											value='${pet.petNo}' readonly> <label for="name">My
-											pet's name <input type='text' name='name' value='${pet.name}'
-											onblur="nickname_check();">
+											pet's name <input type='text' class='modal-petName'
+											name='name' value='${pet.name}' onblur="nickname_check();">
 										</label><br>
 										<div id="nickname_chk" class="vali_check"></div>
 										<label for="registerNo">Register Number <input
-											type='text' name='age' value='${pet.registerNo}'></label><br>
+											class='modal-registerNo' type='text' name='age'
+											value='${pet.registerNo}'></label><br>
 										<div id="tel_chk" class="vali_check"></div>
 										<label for="age">Age <input type='text' name='age'
-											value='${pet.age}' onblur="tel_check();"></label><br>
+											class="modal-age" value='${pet.age}' onblur="tel_check();"></label><br>
 										<div id="tel_chk" class="vali_check"></div>
 										<div>
 											<c:if test="${pet.gender eq 0}">수컷</c:if>
@@ -113,34 +115,10 @@
 								</div>
 							</form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<div style="display: none;">
+							<!-- 							<div style="display: none;">
 								<input type='file' id="petFile" name='petFile' />
 							</div>
-							<label id="label" for="petFile">사진 변경</label>
+							<label id="label" for="petFile">사진 변경</label> -->
 						</div>
 					</div>
 
@@ -152,15 +130,45 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 
 
 	<script>
-		test();
+/* 		test();
 		function test() {
 			var petfilePath = $('.pet-filePath').val();
 			$('.my-pet-thumb').attr('src', '/upload/pet/' + petfilePath);
 		};
+
+		$(document).on('click', '.my-btn', function(e) {
+			console.log("수정버튼누름");
+			var petName = $('.card-title').text();
+			var registerNo = $('.registerNo').html();
+			var age = $('.age').text();
+			var test = $
+			{
+				pet.age
+			}
+			;
+
+			console.log(test);
+			// 모달에 넣고 싶은 데이터를 찾아서 변수에 담는다.
+			// 					window.commentContent = $(
+			// 							e.target.parentNode.parentNode.parentNode).find(
+			// 							'.comment-content').text();
+			// 					window.commentNo = $(
+			// 							e.target.parentNode.parentNode.parentNode).find(
+			// 							'.comment-no').val();
+
+			// 모달 태그 안에  그 값을 넣는다.
+			$('.modal-petName').val(petName); // modal 창에 값을 셋팅
+			$('.modal-registerNo').val(registerNo);
+			$('.modal-age').val(age);
+
+			// 모달을  띄운다.
+			$('#myModal').modal('show');
+			return false;
+		}); */
 	</script>
 </body>
 </html>
