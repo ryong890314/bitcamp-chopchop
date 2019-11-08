@@ -66,96 +66,102 @@
 
       <div class="row">
         <div class="col-md-7">
-        <!-- Blog Thumbnail -->
-        <div class="blog-thumbnail">
-          <c:forEach items="${product.files}" var="file" end="0">
-            <img src="/upload/product/${file.filePath}" style="width: 600px; height: 600px; object-fit: cover;">
-          </c:forEach>
-        </div>
+          <!-- Blog Thumbnail -->
+          <div class="blog-thumbnail">
+            <c:forEach items="${product.files}" var="file" end="0">
+              <img src="/upload/product/${file.filePath}" style="width: 600px; height: 600px; object-fit: cover;">
+            </c:forEach>
+          </div>
         </div>
         <div class="col-md-5">
-        <!-- Blog Content -->
-        <div class="blog-content">
-          <!-- <a class="post-tag">${product.category}</a> -->
-          <a style="font-size: 30px;">${product.title}</a>
-          <hr>
-
-          <div class="row">
-            <div class="col-md-4">
-              <label for="exampleInput">상품금액</label>
-            </div>
-            <div class="col-md-8">
-              <span style=" text-decoration:line-through">
-                <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span>
-            </div>
-          </div>
-
-
-          <div class="row">
-            <div class="col-md-4">
-              <label for="exampleInput">할인율</label>
-            </div>
-            <div class="col-md-8">
-              <span>${product.discount} %</span>
-            </div>
-          </div>
-
-
-          <div class="row">
-            <div class="col-md-4">
-              <label for="exampleInput">할인적용금액</label>
-            </div>
-            <div class="col-md-8">
-              <span>
-                <fmt:formatNumber value="${product.price * (100 - product.discount) / 100}" pattern="#,###" /> 원</span>
-            </div>
-          </div>
-
-          <hr>
-
-          <div class="row">
-            <div class="col-md-4">
-              <label for="exampleInput">조회수</label>
-            </div>
-            <div class="col-md-8">
-              <span>${product.viewCount} 회</span>
-            </div>
-          </div>
-
-          <form action="../order/form" method="post">
-            <input type='hidden' name='no' value='${product.productNo}'>
+          <!-- Blog Content -->
+          <div class="blog-content">
+            <!-- <a class="post-tag">${product.category}</a> -->
+            <a style="font-size: 30px;">${product.title}</a>
+            <hr>
 
             <div class="row">
               <div class="col-md-4">
-                <label for="exampleInput">옵션</label>
+                <label for="exampleInput">상품금액</label>
               </div>
               <div class="col-md-8">
-
-                  <div class="form-group">
-                      <select class="form-control" id="optionNo" name='optionNo'>
-                          <c:forEach items="${product.options}" var="productOption">
-                            <option value="${productOption.optionNo}">${productOption.title}</option>
-                          </c:forEach>
-                      </select>
-                    </div>
-
-                    
-                <!-- <input type='text' name='optionNo' value='${productOption.optionNo}'> -->
+                <span style=" text-decoration:line-through">
+                  <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span>
               </div>
             </div>
 
+
             <div class="row">
               <div class="col-md-4">
-                <label for="exampleInput">수량</label>
+                <label for="exampleInput">할인율</label>
               </div>
               <div class="col-md-8">
-                <input class="input-number" name='quantity' type="number" style="text-align:center;" value="1" min="0" max="1000">
+                <span>${product.discount} %</span>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="exampleInput">할인적용금액</label>
+              </div>
+              <div class="col-md-8">
+                <span>
+                  <fmt:formatNumber value="${product.price * (100 - product.discount) / 100}" pattern="#,###" />
+                  원</span>
               </div>
             </div>
 
             <hr>
 
             <div class="row">
+              <div class="col-md-4">
+                <label for="exampleInput">조회수</label>
+              </div>
+              <div class="col-md-8">
+                <span>${product.viewCount} 회</span>
+              </div>
+            </div>
+
+            <form action="../order/form" method="post">
+              <input type='hidden' name='no' value='${product.productNo}'>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="exampleInput">옵션</label>
+                </div>
+                <div class="col-md-8">
+
+                  <div class="form-group">
+                    <select class="form-control" id="optionNo" name='optionNo' onchange="addOption()">
+                      <option>옵션을 선택해주세요</option>
+                      <c:forEach items="${product.options}" var="productOption">
+                        <option value="${productOption.optionNo}">${productOption.title}</option>
+                      </c:forEach>
+                    </select>
+                  </div>
+
+                  
+                  <!-- <input type='text' name='optionNo' value='${productOption.optionNo}'> -->
+                </div>
+                      <div id="ingredient-block" class="block-content">
+                      <!-- 재료 용량 들어가는 Div -->
+                        </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="exampleInput">수량</label>
+                </div>
+                <div class="col-md-8">
+                  <input class="input-number" name='quantity' type="number" style="text-align:center;" value="1" min="0"
+                    max="1000">
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="row">
                 <div class="col-md-4">
                   <label for="exampleInput">주문금액</label>
                 </div>
@@ -164,27 +170,17 @@
                     <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span>
                 </div>
               </div>
-    
+
               <hr>
 
-            <button class="btn bueno-btn" style="margin-top:10px; width:215px;" formaction="../cart/add">장바구니</button>
-            <button class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
-          </form>
-
-          <!-- <div class="input-group input-number-group">수량
-          </div>
-          <div id="tq">
-            <form action="../order/form" method="post" id="qt">
-              <input type='hidden' name='no' value='${product.productNo}'>
-              <input type='text' name='optionNo' value='${productOption.optionNo}'>
-              <input class="input-number" name='quantity' type="number" value="1" min="0" max="1000">
-              <button class="btn bueno-btn" style="margin-top:10px;">구매하기</button>
-              <button class="btn bueno-btn" style="margin-top:10px;" formaction="../cart/add">장바구니</button>
+              <button class="btn bueno-btn" style="margin-top:10px; width:215px;" formaction="../cart/add">장바구니</button>
+              <button class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
             </form>
-          </div> -->
-        </div>
+
+          </div>
         </div>
       </div>
+      
 
 
       <hr class="my-4">
@@ -223,11 +219,65 @@
       </div>
     </div>
   </div>
+
   <jsp:include page="../footer.jsp" />
+
+
+  <!-- <script>
+  
+  function checkOption(){
+    alert("나온나쫌");
+  }
+  </script> -->
+
+<script id="t1" type="ingredientHtml">
+  <div class='group-flex' style='width: 470px; padding: 0px 15px;' >
+  <div class='form-group'><a value="${productOption.optionNo}">${productOption.title}</a></div>
+  <div class="col-md-8">
+      <input class="input-number" name='quantity' type="number" style="text-align:center;" value="1" min="0"
+        max="1000"><a>${product.price}</a>
+    </div>
+  <div class='form-group'><button class='btn btn-secondary btn-sm' type='button' name='delIngredientBtn' onclick='delOption(event)'>삭제</button></div>
+  </div>
+  </script>
+  
+  <script> // 재료,용량 추가
+   "use strict";
+    function addOption() {
+      console.log("추가버튼누름");
+      var html = $('#t1').html();
+      $('#ingredient-block').append(html);
+    };
+  </script>
+  
+  <script> // 재료, 용량 삭제
+   "use strict";
+    function delOption(event) {
+      $(event.target.parentNode.parentNode).remove();
+    };
+  </script>
+
+  <!-- 
   <script>
-    var totalPrice = document.querySelector('#totalPrice');
-    var resultPrice = parseInt(totalPrice.innerHTML);
-    totalPrice.innerHTML = resultPrice;
+      var chkOptions = document.getElementsByClassName('chkOption');
+      
+      for (var i = 0; i < chkOptions.length; i++) {
+        
+        chkOptions[i].addEventListener('click', function () {
+          var criteriaNode = document.getElementByClassName('chkOption');	// 기준이 되는 요소로 아이디가 "text"인 요소를 선택함.
+          var newNode = document.createElement("p");			// 새로운 <p> 요소를 생성함.
+          newNode.innerHTML = "새로운 단락입니다.";
+          document.body.insertBefore(newNode, criteriaNode);	// 새로운 요소를 기준이 되는 요소 바로 앞에 추가함.
+        });
+      }
+    </script> -->
+
+
+
+  <script>
+    // var totalPrice = document.querySelector('#totalPrice');
+    // var resultPrice = parseInt(totalPrice.innerHTML);
+    // totalPrice.innerHTML = resultPrice;
 
 //     var memberName = document.querySelector('#memberName');
 //     console.log(!${memberName})

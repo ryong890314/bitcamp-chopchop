@@ -2,6 +2,8 @@ package bitcamp.chopchop.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -9,10 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
 import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.OrderService;
 import bitcamp.chopchop.service.ProductService;
 
@@ -24,6 +30,8 @@ public class OrderController {
   private OrderService orderService;
   @Resource
   private ProductService productService;
+  @Resource
+  private CartService cartService;
   
   @PostMapping("form")
   public void form(int no, Model model, int quantity) throws Exception {
@@ -32,6 +40,22 @@ public class OrderController {
     model.addAttribute("quantity", quantity);
   }
   
+  // checkbox delete controller
+  @GetMapping("chkoption")
+  public String chkoption(HttpSession session,
+       @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
+   System.out.println("들어왔나");
+        String[] arrIdx = paramMap.get("chkbox").toString().split(",");
+        List<Cart> selected = new ArrayList<>();
+        for (int i = 0; i < arrIdx.length; i++) {
+            System.out.println(Integer.parseInt(arrIdx[i]));
+            selected.add(cartService.get(Integer.parseInt(arrIdx[i])));
+            session.setAttribute("selected", selected);
+            // cartService.delete(Integer.parseInt(arrIdx[i]));
+        }
+        return "redirect:form";
+  }
+
   @GetMapping("list")
   public void list(Model model) throws Exception {
     model.addAttribute("orders", orderService.list());

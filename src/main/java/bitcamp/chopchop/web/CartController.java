@@ -1,5 +1,6 @@
 package bitcamp.chopchop.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -72,6 +73,21 @@ public String chkdelete(HttpSession session,
       return "redirect:search";
 }
 
+@PostMapping("chkoption")
+public String chkoption(HttpSession session,
+     @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
+ System.out.println("들어왔나");
+      String[] arrIdx = paramMap.get("chkbox").toString().split(",");
+      List<Cart> selected = new ArrayList<>();
+      for (int i = 0; i < arrIdx.length; i++) {
+          System.out.println(Integer.parseInt(arrIdx[i]));
+          selected.add(cartService.get(Integer.parseInt(arrIdx[i])));
+          session.setAttribute("selected", selected);
+          // cartService.delete(Integer.parseInt(arrIdx[i]));
+      }
+      return "redirect:../order/form";
+}
+
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
     model.addAttribute("cart", cartService.get(no));
@@ -107,7 +123,7 @@ public String chkdelete(HttpSession session,
   public void test(Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
     System.out.println("test" + member.getMemberNo());
-    List<Cart> carts = cartService.search(Integer.toString(member.getMemberNo()));
+    List<Cart> carts = cartService.search(member.getMemberNo());
 
     // Member member = memberService.get(no);
     model.addAttribute("carts", carts);
