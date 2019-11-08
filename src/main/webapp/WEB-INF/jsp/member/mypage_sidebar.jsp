@@ -7,7 +7,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>ChopChop-MyPage</title>
-Tell the browser to be responsive to screen width
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -36,7 +35,7 @@ Tell the browser to be responsive to screen width
 	<!-- Main Sidebar Container -->
 	<aside class="main-sidebar sidebar-dark-primary elevation-4">
 		<!-- Brand Logo -->
-		<a href="/app/member/myProfile" class="brand-link"> <img
+		<a href="/app/member/detail?no=${loginUser.memberNo}" class="brand-link"> <img
 			src="/img/core-img/smallLogo.png" alt="ChopChop Logo"
 			class="brand-image img-circle elevation-3" style="opacity: .8">
 			<span class="brand-text">ChopChop</span>

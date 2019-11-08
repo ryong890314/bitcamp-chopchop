@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
 import bitcamp.chopchop.service.PetService;
 
@@ -66,7 +67,7 @@ public class PetController {
   @GetMapping("delete")
   public String delete(int no) throws Exception {
     petService.delete(no);
-    return "redirect:list";
+    return "redirect:/app/member/myProfile";
   }
 
   private String writeFile(MultipartFile file) throws Exception {
