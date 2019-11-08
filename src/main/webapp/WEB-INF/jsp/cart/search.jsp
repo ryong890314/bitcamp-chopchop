@@ -136,9 +136,11 @@
     <hr class="my-4">
 
 <div style="text-align: right">
-<button class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
-<button href='#' class="btn bueno-btn">선택구매</button>
-<button href='#' class="btn bueno-btn">전체구매</button>
+<form action='../order/cartorderform' method='post'>
+<button type="button" class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
+<button id="selectOrderBtn" class="btn bueno-btn">선택구매</button>
+<button id="allOrderBtn" class="btn bueno-btn">전체구매</button>
+</form>
 </div>
 
 </div>

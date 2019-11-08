@@ -2,19 +2,15 @@ package bitcamp.chopchop.web;
 
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Product;
@@ -107,7 +103,7 @@ public String chkdelete(HttpSession session,
   public void test(Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
     System.out.println("test" + member.getMemberNo());
-    List<Cart> carts = cartService.search(Integer.toString(member.getMemberNo()));
+    List<Cart> carts = cartService.search(member.getMemberNo());
 
     // Member member = memberService.get(no);
     model.addAttribute("carts", carts);

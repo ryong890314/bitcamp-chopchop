@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
@@ -29,11 +30,34 @@ public class OrderController {
   private CartService cartService;
   
   @PostMapping("form")
-  public void form(int no, Model model, int quantity) throws Exception {
+  public void form(int no, Model model, int quantity, HttpSession session) throws Exception {
     Product product = productService.get(no);
-    model.addAttribute("product", product);
+    
+    model.addAttribute("product", product); // 주문에서 선택한 상품
     model.addAttribute("quantity", quantity);
   }
+  
+  @SuppressWarnings("unchecked")
+  @PostMapping("cartorderform")
+  public void cartorderform(HttpSession session, Model model) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
+    List<Cart> carts = cartService.search(member.getMemberNo());
+    List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selected");
+    List<Product> products = new ArrayList<>();
+    
+    for(Cart cart : carts) {
+      products.add(productService.get(cart.getProductNo()));
+    }
+    
+    if(selectedProduct == null) {
+      model.addAttribute("carts", carts);
+    } else {
+      model.addAttribute("selected", selectedProduct);
+    }
+    model.addAttribute("products", products); // 장바구니에서 넘어온 상품
+  }
+  
+  
   
   @GetMapping("list")
   public void list(Model model) throws Exception {
