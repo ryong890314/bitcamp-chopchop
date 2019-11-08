@@ -63,7 +63,7 @@
       <c:forEach items="${carts}" var="cart">
         <tr style="text-align: center;">
           <td>
-            <form>
+            <form method="post" action="cheoption">
               <input class="myChkbox" type="checkbox" name="chkbox" value="${cart.cartNo}">
             </form>
           </td>
@@ -136,11 +136,9 @@
     <hr class="my-4">
 
 <div style="text-align: right">
-<form action='../order/cartorderform' method='post'>
 <button type="button" class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
-<button id="selectOrderBtn" class="btn bueno-btn">선택구매</button>
-<button id="allOrderBtn" class="btn bueno-btn">전체구매</button>
-</form>
+<button type="button" id="selectOrderBtn" class="btn bueno-btn" onclick="check_Order()">선택구매</button>
+<button type="button" id="allOrderBtn" class="btn bueno-btn" onclick="all_Order()">전체구매</button>
 </div>
 
 </div>
@@ -190,7 +188,20 @@
       }
     </script>
 
-
+  <script>
+  // 상품 전체구매
+    function all_Order() {
+      var allOrderBtn = $('.myChkbox');
+        for (i = 0; i < allOrderBtn.length; i++) {
+          myCheckBoxes[i].checked = true;
+        }
+      check_Order();
+    }
+  </script> 
+  
+  
+  
+  
 <script>
   // 선택 상품삭제
     function check_Del() {
@@ -248,6 +259,23 @@
       }
     }
   </script>
+
+  <script>
+    if($('#chkbox').checked) {
+      $('#chkbox').val('true');
+    } else {
+      $('#chkbox').val()
+    }
+  </script>
+
+
+
+
+
+
+
+
+
 
 </body>
 

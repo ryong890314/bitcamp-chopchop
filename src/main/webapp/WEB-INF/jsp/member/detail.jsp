@@ -7,13 +7,12 @@
 <title>My Page</title>
 <link rel="stylesheet" href="/css/member/style_detail.css">
 <link rel="stylesheet" href="/node_modules/jquery-ui-dist/jquery-ui.css">
-<link rel="stylesheet"
-	href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <style type="text/css">
 .card-img {
 	width: 200px !important;
-	height: 200px !important;
+	height: 215px !important;
 	object-fit: cover !important;
 }
 
@@ -28,10 +27,6 @@
 .tagA:hover {
   background-color: #b0c364;
   color: white;
-}
-
-.photoChange {
-  margin: 10px;
 }
 
 .change_btn {
@@ -52,6 +47,10 @@
   background-color: #b0c364;
   color: white;
 }
+
+.text-center{
+  margin-top: 140px;
+}
 </style>
 </head>
 <jsp:include page="../member/mypage_sidebar.jsp" />
@@ -59,7 +58,7 @@
 
 	<%-- <jsp:include page="../header.jsp"/> --%>
 	<div class="content-wrapper">
-		<div class="container">
+		<div class="container" style="width: 1100px;margin: 0 auto;">
 			<h1>My Information</h1>
 			<form action='update' method='post' name="form"
 				enctype='multipart/form-data' onsubmit="return checkAll();">
@@ -67,45 +66,107 @@
 					<div class="col-5">
 						<div id='content'>
 							<div>
-								<input type="hidden" id="photo2" value="${member.photo}" /> <img
-									id="imgThumb" class="imgThumb">
+								<input type="hidden" id="photo2" value="${member.photo}" /> 
+                <img id="imgThumb" class="imgThumb">
 							</div>
-							<div style="display: none;">
-								<input type='file' id="file" name='file' />
-							</div>
-							<label class="photoChange" id="label" for="file">사진 변경</label>
+
+              <span class="btn btn-primary fileinput-button" style="background-color: #b0c364;border-color: #b0c364;">
+                  <span>사진 변경</span>
+                  <input id="fileupload" type="file" name="file" >
+              </span>
+
+
+
 						</div>
 					</div>
 					<div class="col-7">
 						<input type='hidden' id='memberNo' name='memberNo' value='${member.memberNo}' readonly> 
-            <label for="email">이메일 <input type='text' id='email' name='email' value='${member.email}' readonly></label><br>
-            <label for="password">비밀번호 <input type="button" id="password" class="change_btn" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal" /></label><br> 
-            <label for="nickname">닉네임 <input type='text' name='nickname' value='${member.nickname}' maxlength="12" 	onblur="nickname_check();"></label><br>
-						<div id="nickname_chk" class="vali_check"></div>
-						<label for="tel">핸드폰 번호 <input type='tel' name='tel' value='${member.tel}' maxlength="11" onblur="tel_check();"></label><br>
-						<div id="tel_chk" class="vali_check"></div>
-						<label for="postNo">우편번호 <input type='text' id="postNo" name='postNo' 	value='${member.postNo}'> </label>
-            <input type="button" name="post_search" class="change_btn" value="우편번호 찾기" onclick="myPostcode();" /><br>
-						<label for="baseAddress">기본주소 <input type='text' id="baseAddress" name='baseAddress' 	value='${member.baseAddress}'></label><br> 
-            <label for="detailAddress">상세주소 <input 	type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'></label><br> 
-            <input type="hidden" id="nickname1" value="${member.nickname}" />
-						<!-- 원래 닉네임값  -->
-						<button class="change_btn">변경</button>
-					</div>
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<a href="delete?no=${member.memberNo}" class="tagA"
-									onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
+						<div class="form-group row">
+							<label for="email" class="col-sm-3 col-form-label">이메일</label>
+							<div class="col-sm-6">
+								<input type="email" readonly class="form-control-plaintext" id="email" value="${member.email}">
 							</div>
 						</div>
+						<div class="form-group row">
+							<label for="password" class="col-sm-3 col-form-label">패스워드</label>
+							<div class="col-sm-6">
+								<input type="button" class="form-control change_btn" id="password" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal" />
+							</div>
+              </div>
+						<div class="form-group row">
+              <label for="nickname" class="col-sm-3 col-form-label">닉네임</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="nickname" name='nickname' value='${member.nickname}' maxlength="12"  onblur="nickname_check();">
+    						<div id="nickname_chk" class="vali_check"></div>
+              </div>
+            </div>
+						<div class="form-group row">
+              <label for="tel" class="col-sm-3 col-form-label">핸드폰번호</label>
+              <div class="col-sm-6">
+                <input type="tel" class="form-control" id="tel" name='tel' value='${member.tel}' maxlength="11"  onblur="tel_check();">
+    						<div id="tel_chk" class="vali_check"></div>
+              </div>
+            </div>
+              <div class="form-group row">
+              <label for="postNo" class="col-sm-3 col-form-label">우편번호</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="postNo" name='postNo' value='${member.postNo}'>
+              </div>
+              <div class="col-sm-3">
+                <input type="button" class="form-control change_btn" id="postNo" name='post_search' value="우편번호 찾기" onclick="myPostcode();">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="baseAddress" class="col-sm-3 col-form-label">기본주소</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="baseAddress" name='baseAddress' value='${member.baseAddress}'>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="detailAddress" class="col-sm-3 col-form-label">상세주소</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" id="detailAddress" name='detailAddress' value='${member.detailAddress}'>
+              </div>
+            </div>
+						<!-- 원래 닉네임값  -->
+            <input type="hidden" id="nickname1" value="${member.nickname}" />
+
+            <button type="submit" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;">변경</button>
+            
+                  <button type="button" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;"
+                  onclick="location.href='delete?no=${member.memberNo}'">
+<!--                   onclick="aaa();"> -->
+                    회원탈퇴
+                  </button>
+                  
+                  
+<%--             <a href="delete?no=${member.memberNo}" class="tagA" --%>
+<!--                   onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a> -->
+                  
+<!--               <div class="text-center"> -->
+<!--               <p>Click on Delete Button</p> -->
+<!--               <button id="deleteBtn" type="button" class="btn btn-danger" > -->
+<%--               onclick="location.href='delete?no=${member.memberNo}'"> --%>
+<!--                 <i class="glyphicon glyphicon-trash"></i> -->
+<!--                 회원탈퇴</button> -->
+<!--               </div> -->
+                  
+                  
 					</div>
+<!-- 					<div class="container"> -->
+<!-- 						<div class="row"> -->
+<!-- 							<div class="col-12"> -->
+<%-- 								<a href="delete?no=${member.memberNo}" class="tagA" --%>
+<!-- 									onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 				</div>
 			</form>
 		</div>
 
 		<hr>
-		<jsp:include page="../pet2/detail.jsp" />
+		<jsp:include page="../pet/detail.jsp" />
 
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -120,12 +181,27 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword" onblur="nowpw_check();" maxlength="15" />
-						<div id="password1_chk" class="vali_check"></div>
-						새 비밀번호 <input type="password" id="newPassword" name="newPassword" onblur="newpw_check();" maxlength="15" />
-						<div id="password2_chk" class="vali_check"></div>
-						새 비밀번호 확인<input type="password" id="newPassword2" name="newPassword2" onblur="newpw2_check();" maxlength="15" />
-						<div id="password3_chk" class="vali_check"></div>
+          <div class="form-group row">
+            <label for="nowPassword" class="col-sm-4 col-form-label">현재 비밀번호</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control" id="nowPassword" name='nowPassword' onblur="nowpw_check();" maxlength="15" >
+  						<div id="password1_chk" class="vali_check"></div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="newPassword" class="col-sm-4 col-form-label">새 비밀번호</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control" id="newPassword" name='newPassword' onblur="newpw_check();" maxlength="15" >
+              <div id="password2_chk" class="vali_check"></div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="newPassword" class="col-sm-4 col-form-label">새 비밀번호 확인</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control" id="newPassword2" name='newPassword2' onblur="newpw2_check();" maxlength="15" >
+              <div id="password3_chk" class="vali_check"></div>
+            </div>
+          </div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -138,11 +214,46 @@
 
 	<script
 		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!--   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
 	<script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
 	<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script>
+	
+// 	function aaa() {
+	  
+// 	  $(location).attr('href', 'delete?no=${member.memberNo}');
+	  
+// 	}
+	
+	
+	
+// 	$('#deleteBtn').click(function(){
+// 	  console.log("눌리냐");
+// 	  Swal.fire({
+// 	    title: 'Are you sure?',
+// 	    text: "You won't be able to revert this!",
+// 	    icon: 'warning',
+// 	    showCancelButton: true,
+// 	    confirmButtonColor: '#3085d6',
+// 	    cancelButtonColor: '#d33',
+// 	    confirmButtonText: 'Yes, delete it!'
+// 	  }).then((result) => {
+// 	    if (result.value) {
+// 	      Swal.fire(
+// 	        'Deleted!',
+// 	        'Your file has been deleted.',
+// 	        'success'
+// 	        $(location).attr('href', 'delete?no=${member.memberNo}'); 
+// 	        console.log(location.href='delete?no=${member.memberNo}');
+// 	      )
+// 	    }
+// 	  })
+	  
+// 	})
+	
 		function changePw() {
 			var cnt = 0;
 
@@ -405,7 +516,7 @@
 		}
 
 		// 사진 미리보기 
-		document.getElementById("file").onchange = function() {
+		document.getElementById("fileupload").onchange = function() {
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				document.getElementById("imgThumb").src = e.target.result;

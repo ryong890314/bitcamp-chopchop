@@ -45,7 +45,7 @@ public class CartController {
     cart.setMemberNo(member.getMemberNo());
     cart.setProductNo(productService.get(no).getProductNo());
     cartService.insert(cart);
-    
+
     return "redirect:search";
   }
 
@@ -58,31 +58,30 @@ public class CartController {
   }
 
   // checkbox delete controller
-@GetMapping("chkdelete")
-public String chkdelete(HttpSession session,
-     @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
- 
-      String[] arrIdx = paramMap.get("chkbox").toString().split(",");
-      for (int i = 0; i < arrIdx.length; i++) {
-          cartService.delete(Integer.parseInt(arrIdx[i]));
-      }
-      return "redirect:search";
-}
+  @GetMapping("chkdelete")
+  public String chkdelete(HttpSession session,
+      @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
 
-@PostMapping("chkoption")
-public String chkoption(HttpSession session,
-     @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
- System.out.println("들어왔나");
-      String[] arrIdx = paramMap.get("chkbox").toString().split(",");
-      List<Cart> selected = new ArrayList<>();
-      for (int i = 0; i < arrIdx.length; i++) {
-          System.out.println(Integer.parseInt(arrIdx[i]));
-          selected.add(cartService.get(Integer.parseInt(arrIdx[i])));
-          session.setAttribute("selected", selected);
-          // cartService.delete(Integer.parseInt(arrIdx[i]));
-      }
-      return "redirect:../order/form";
-}
+    String[] arrIdx = paramMap.get("chkbox").toString().split(",");
+    for (int i = 0; i < arrIdx.length; i++) {
+      cartService.delete(Integer.parseInt(arrIdx[i]));
+    }
+    return "redirect:search";
+  }
+
+  @GetMapping("chkoption")
+  public String chkoption(
+      HttpSession session, @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
+    System.out.println("들어왔나");
+    String[] arrIdx = paramMap.get("chkbox").toString().split(",");
+    List<Cart> selected = new ArrayList<>();
+    for (int i = 0; i < arrIdx.length; i++) {
+      selected.add(cartService.get(Integer.parseInt(arrIdx[i])));
+      cartService.get(Integer.parseInt(arrIdx[i])).setCheck(true);
+    }
+    session.setAttribute("selected", selected);
+    return "redirect:../order/cartorderform";
+  }
 
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
@@ -99,7 +98,7 @@ public String chkoption(HttpSession session,
   @PostMapping("update")
   public String update(Cart cart, HttpServletRequest request) 
       throws Exception {
-        System.out.println("나와라~");
+    System.out.println("나와라~");
     cartService.update(cart);
     return "redirect:search";
   }

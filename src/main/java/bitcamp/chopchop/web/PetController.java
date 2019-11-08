@@ -1,7 +1,6 @@
 package bitcamp.chopchop.web;
 
 import java.io.File;
-import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -28,9 +27,14 @@ public class PetController {
   }
 
   @GetMapping("form")
-  public void form() {
-
+  public void form(Model model, int no) {
+    model.addAttribute("memberNo", no);
   }
+  
+  @GetMapping("updateForm")
+  public void updateForm() {
+  }
+  
 
   @PostMapping("add")
   public String add(Pet pet, MultipartFile file) throws Exception {
@@ -39,11 +43,11 @@ public class PetController {
     return "redirect:../member/detail?no=" + pet.getMemberNo();
   }
 
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    List<Pet> pet = petService.list();
-    model.addAttribute("pets", pet);
-  }
+//  @GetMapping("list")
+//  public void list(Model model) throws Exception {
+//    List<Pet> pet = petService.list();
+//    model.addAttribute("pets", pet);
+//  }
 
   @RequestMapping("detail")
   public void detail(Model model, int no) throws Exception {
@@ -55,13 +59,13 @@ public class PetController {
   public String update(Pet pet, MultipartFile file) throws Exception {
     pet.setFilePath(writeFile(file));
     petService.update(pet);
-    return "redirect:list";
+    return "redirect:/app/member/list";
   }
 
   @GetMapping("delete")
   public String delete(int no) throws Exception {
     petService.delete(no);
-    return "redirect:list";
+    return "redirect:/app/member/myProfile";
   }
 
   private String writeFile(MultipartFile file) throws Exception {

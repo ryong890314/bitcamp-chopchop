@@ -1,3 +1,4 @@
+
 package bitcamp.chopchop.web;
 
 import java.io.File;
@@ -16,19 +17,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
-import bitcamp.chopchop.domain.Pet2;
 import bitcamp.chopchop.service.MemberService;
-import bitcamp.chopchop.service.Pet2Service;
 import bitcamp.chopchop.service.PetService;
 
 @Controller
+
 @RequestMapping("/member")
 public class MemberController {
 
   @Resource
   private MemberService memberService;
-  @Resource
-  private Pet2Service pet2Service;
+
+  // @Resource
+  // private Pet2Service pet2Service;
+
   @Resource
   private PetService petService;
 
@@ -38,11 +40,17 @@ public class MemberController {
     uploadDir = sc.getRealPath("/upload/member");
   }
 
-  @GetMapping("myProfile")
-  public void myProfile() {}
-  
+
+  @GetMapping("myprofile")
+  public void myProfile(Model model, HttpSession session) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
+    System.out.println(member.getPhoto()+ "");
+    model.addAttribute("member", member);
+  }
+
   @GetMapping("form")
   public void form() {
+
   }
 
   @PostMapping("add")
@@ -56,7 +64,7 @@ public class MemberController {
     List<Member> members = memberService.list();
     model.addAttribute("members", members);
     List<Pet> pets = petService.list();
-    model.addAttribute("pets", pets); 
+    model.addAttribute("pets", pets);
   }
 
   @GetMapping("contact")
@@ -64,9 +72,8 @@ public class MemberController {
     Member member = (Member) session.getAttribute("loginUser");
     model.addAttribute("member", member);
   }
-  
-  @RequestMapping(path = "sendMail",
-  method = RequestMethod.POST)
+
+  @RequestMapping(path = "sendMail", method = RequestMethod.POST)
   public void sendMail(Model model) throws Exception {
     memberService.sendMail();
   }
@@ -91,10 +98,13 @@ public class MemberController {
     return memberService.signPasswordCheck(password);
   }
 
-  @RequestMapping("detail")
+
+  @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
     Member member = memberService.get(no);
-    List<Pet2> pets = pet2Service.getPets(no);
+    System.out.println(member.getMemberNo());
+    System.out.println("멤버사진==>" + member.getPhoto());
+    List<Pet> pets = petService.getPets(no);
     model.addAttribute("member", member);
     model.addAttribute("pets", pets);
   }
@@ -131,5 +141,5 @@ public class MemberController {
     return memberService.uptPw(password, memberNo);
   }
 
-  
+
 }

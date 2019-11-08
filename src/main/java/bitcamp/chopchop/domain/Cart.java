@@ -10,7 +10,9 @@ public class Cart {
   private int optionNo;
   private int quantity;
   private Date createdDate;
-
+  private boolean check;
+  private Product product;
+  
   private List<Product> products;
   private List<PhotoFile> files;
   private List<Member> members;
@@ -94,6 +96,22 @@ public class Cart {
   
   public void setMembers(List<Member> members) {
     this.members = members;
+  }
+  
+  public boolean isCheck() {
+    return check;
+  }
+
+  public void setCheck(boolean check) {
+    this.check = check;
+  }
+  
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
   }
 
   @Override

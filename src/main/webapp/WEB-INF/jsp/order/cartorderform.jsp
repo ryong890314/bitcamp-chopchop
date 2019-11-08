@@ -28,36 +28,27 @@
   <jsp:include page="../header.jsp"/>
   
   <form action="add" method="post" id="orderForm">
-<%--       <input type="hidden" name="quantity" value="${quantity}"> --%>
       <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
       <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto;">
     <tr>
       <td>상품</td>
       <td>상품 가격</td>
       <td>수량</td>
-      <td>할인률</td>
+<!--       <td>할인률</td> -->
       <td>결제 금액</td>
     </tr>
-<!--     <tr> -->
-<%--       <td>${product.title}</td> --%>
-<%--       <td>${product.price}원</td> --%>
-<%--       <td>${quantity}</td> --%>
-<%--       <td>${product.discount}%</td> --%>
-<%--       <td><span style="text-decoration-line:line-through; color:gray;">${product.price * quantity}원</span><br> --%>
-<%--       <span id="totalPrice">${product.price * quantity * (100-product.discount)/100}</span>원</td> --%>
-<!--     </tr> -->
-    <c:forEach items="${carts}" var="carts">
-    <c:forEach items="${products}" var="products">
+    <c:forEach items="${selected}" var="cart">
       <tr>
-        <td>${products.title}</td>
-        <td>${products.price}</td>
-        <td>${carts.quantity}</td>
-        <td>${products.discount}</td>
-        <td>${products.price * carts.quantity * (100-products.discount)/100}</td>
-<%--         <td>${products.}</td> --%>
+        <td>${cart.product.title}</td>
+        <td>${cart.product.price}원</td>
+        <td>${cart.quantity}개</td>
+        <td><span class="totalPrice">${cart.product.price * cart.quantity * (100-cart.product.discount)/100}</span>원</td>
       </tr>
     </c:forEach>
-    </c:forEach>
+    <tr>
+      <td>총 주문금액</td>
+      <td><span id="resultPrice"></span>원</td>
+    </tr>
   </table>
 <!--     <div style="display: table; margin-left: auto; margin-right:auto;"> -->
       <div class="row">
@@ -191,17 +182,29 @@
     </div>
   </div>
 </div>
-
-  </form>
-  
+</form>
   <jsp:include page="../footer.jsp"/>
+
   <script>
-    var totalPrice = document.querySelector('#totalPrice');
-    var resultPrice = parseInt(totalPrice.innerText);
-    totalPrice.innerText = resultPrice;
+    var totalPrice = $('.totalPrice');
+    var temp = 0;
+    for(var i of totalPrice){
+      i.innerText = parseInt(i.innerText);
+      temp += parseInt(i.innerText);
+      console.log(temp);
+    }
     
-    var discountPrice = document.querySelector('#discountPrice');
-    discountPrice.value = parseInt(discountPrice.value);
+    var result = document.querySelector('#resultPrice');
+    
+    if(temp < 50000) {
+      temp += 2500;
+      console.log('배송비 더해서 ' + temp);
+    }
+    
+    result.innerText = temp;
+    
+    
+//     document.querySelector('#resultPrice').innerText = temp;
     
   </script>
   
@@ -324,10 +327,6 @@
     });
     
   </script>
-  
-  
-  
-  
   
   <script> // 빈 입력값 체크
     $('#recipientName').on('blur', function(event){
