@@ -11,10 +11,28 @@
   <link rel='stylesheet' href='/css/product/style.css'>
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
   
+  <style>
+  
+  #closeIcon {
+     float: right;
+      display:inline-block;
+       padding:4px 10px;
+        font-weight: 700;
+         text-shadow: 0 1px 0 #fff; font-size: 1.3rem;
+          }
+   #closeIcon:hover { 
+     border: 0; 
+     cursor: pointer;
+      opacity: .75; 
+      }
+
+  </style>
 
 </head>
 <body>
 <div id='productBody'>
+    <span id='closeIcon'>&times;</span>
+
 
     <button type='button' class="btn btn-default btn-sm" onclick='check_all();'>모두 선택</button>
     <button type='button' class="btn btn-default btn-sm" onclick='uncheck_all();'>모두 해제</button>
