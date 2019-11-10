@@ -12,7 +12,6 @@ import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.service.CartService;
 
 @Service
-@RequestMapping("/cart")
 public class DefaultCartService implements CartService {
 
   @Resource

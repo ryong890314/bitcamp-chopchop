@@ -19,7 +19,7 @@
                   onclick="location.href='/app/pet/form?no=${member.memberNo}'">펫 등록</button>
 		<form action='/app/pet/update' method='post'>
 			<c:forEach items="${pets}" var="pet">
-				<div class="card mb-3" style="max-width: 540px;margin: 10px 0;">
+				<div class="card mb-3" style="max-width: 540px;margin: 10px 0;" id="row_div_${pet.petNo}">
 					<div class="row">
 						<div class="col-md-4">
 							<%-- <input class='pet-filePath' type='text' value='${pet.filePath}'> --%>
@@ -64,8 +64,11 @@
 	<script>
 	
 	 $(document).on('click','.buttonfordeletepet',function() {
-	   var allData = {"no" : $(this).attr("id")}
-	   $(this).parent().parent().parent().parent().parent().remove();
+		 
+	   var allData = {"no" : $(this).attr("id")};
+	   $("#row_div_"+$(this).attr("id")).remove();
+	   // $("#row_div_"+allData.no).remove();
+	   // $(this).parent().parent().parent().parent().parent().remove();
 	  $.ajax({
 	    url:"/app/json/pet/delete",
 	    type:"GET",

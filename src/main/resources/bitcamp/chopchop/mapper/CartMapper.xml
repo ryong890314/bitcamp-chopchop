@@ -120,12 +120,6 @@
   
   <update id="update" parameterType="Cart">
     update cart set
-    <!--
-      cart_id=#{cartNo},
-      member_id=#{memberNo},
-      product_id=#{productNo},
-      created_date=#{createdDate},
-      -->
       quantity=#{quantity}
     where cart_id=#{cartNo}
   </update>
