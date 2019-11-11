@@ -23,27 +23,21 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.service.MemberService;
 
 @Controller
-@RequestMapping("/auth") 
+@RequestMapping("/auth")
 public class AuthController {
 
   @Resource
   private MemberService memberService;
 
   @GetMapping("signin")
-  public void signin() {
-  }
-  
+  public void signin() {}
+
   @GetMapping("findPassword")
-  public void findPassword() {
-  }
-  
+  public void findPassword() {}
+
   @PostMapping("login")
-  public String login(
-      HttpServletResponse response,
-      HttpSession session,
-      String email,
-      String password) 
-      throws Exception {
+  public String login(HttpServletResponse response, HttpSession session, String email,
+      String password) throws Exception {
 
     // 응답할 때 클라이언트가 입력한 이메일을 쿠키로 보낸다.
     Cookie cookie = new Cookie("email", email);
@@ -55,79 +49,71 @@ public class AuthController {
     session.setAttribute("loginUser", member);
     return "redirect:../member/list";
   }
-  
+
   @GetMapping("logout")
-  public String logout(HttpSession session) 
-      throws Exception {
+  public String logout(HttpSession session) throws Exception {
     session.invalidate();
     return "redirect:signin";
   }
-  
-@RequestMapping(path = "getPassword",
-    method = RequestMethod.POST)
-public void gGmailSend(String email) throws Exception {
-  String user = "bitcamp1234@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
-  String password = "kim1016!"; // 패스워드
-  
-    Member member = memberService.signEmailCheck(email);
-  
-  // SMTP 서버 정보를 설정한다.
-  Properties prop = new Properties();
-  prop.put("mail.smtp.host", "smtp.gmail.com");
-  prop.put("mail.smtp.port", 465);
-  prop.put("mail.smtp.auth", "true");
-  prop.put("mail.smtp.ssl.enable", "true");
-  prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
-  Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
-    protected PasswordAuthentication getPasswordAuthentication() {
-      return new PasswordAuthentication(user, password);
+  @RequestMapping(path = "getPassword", method = RequestMethod.POST)
+  public void gGmailSend(String email) throws Exception {
+    try {
+      String user = "bitcamp1234@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
+      String password = "kim1016!"; // 패스워드
+
+      Member member = memberService.signEmailCheck(email);
+
+      if (member != null) {
+
+        // SMTP 서버 정보를 설정한다.
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", 465);
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.ssl.enable", "true");
+        prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+        Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
+          protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(user, password);
+          }
+        });
+
+        String uuid = UUID.randomUUID().toString(); // -를 제거해 주었다.
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(user));
+
+        // 수신자메일주소
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+
+        for (int i = 0; i < 1; i++) {
+          uuid = uuid.substring(0, 10); // uuid를 앞에서부터 10자리 잘라줌.
+        }
+
+        // Subject
+        message.setSubject("[ChopChop] - Temporary Password"); // 메일 제목을 입력
+
+        // Text
+        message.setText("비밀번호 찾기 임시 비밀번호: " + uuid + "변경  하시려면 링크를 클릭해 주세요."); // 메일 내용을 입력
+
+
+        // email로 member를 찾는다.
+        // 그 멤버 update (password=uuid)
+        member.setPassword(uuid);
+        memberService.update(member);
+
+        // send the message
+        Transport.send(message); //// 전송
+        System.out.println("message sent successfully...");
+      } else {
+        
+      }
+    } catch (AddressException e) {
+      e.printStackTrace();
+    } catch (MessagingException e) {
+      e.printStackTrace();
     }
-  });
-
-  try {
-    String uuid = UUID.randomUUID().toString(); // -를 제거해 주었다.
-    MimeMessage message = new MimeMessage(session);
-    message.setFrom(new InternetAddress(user));
-    
-    // 수신자메일주소
-    message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-
-    for (int i = 0; i < 1; i++) {
-      uuid = uuid.substring(0, 10); //uuid를 앞에서부터 10자리 잘라줌.
-    }
-
-    // Subject
-    message.setSubject("[ChopChop] - Temporary Password"); // 메일 제목을 입력
-
-    // Text
-    message.setText("비밀번호 찾기 임시 비밀번호: " + uuid + "변경  하시려면 링크를 클릭해 주세요."); // 메일 내용을 입력
-
-    
-    //email로 member를 찾는다.
-    // 그 멤버 update (password=uuid)
-    
-    member.setPassword(uuid);
-    memberService.update(member);
-    
-    
-    // 참고
-//    String htmlStr = "<h2>안녕하세요 엄과외입니다!</h2><br><br>" 
-//        + "<h3>" + email + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
-//        + "<a href='http://localhost:8888/app/emailConfirm?key="+key+"'>인증하기</a></p>"
-//        + "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
-//      message.setText(htmlStr, "utf-8", "html");
-    
-    
-    
-    // send the message
-    Transport.send(message); //// 전송
-    System.out.println("message sent successfully...");
-  } catch (AddressException e) {
-    e.printStackTrace();
-  } catch (MessagingException e) {
-    e.printStackTrace();
   }
-}
 
 }

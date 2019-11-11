@@ -87,11 +87,11 @@
 				<div id="email_chk" class="vali_check"></div>
 			</div>
 			<div class="find-password-button">
-				<button id="passwordRequest">Send</button>
+				<button type="" onclick="find_email();" id="passwordRequest">Send</button>
 			</div>
 		</form>
 	</div>
-	
+
 	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript">
 		function email_check() {
@@ -107,16 +107,30 @@
 			return eCheckFlag;
 		}
 
-		function checkAll() {
-			var checkCnt = 0;
-			if (email_check()) {
-				checkCnt++;
-			}
-			console.log(checkCnt);
-			return checkCnt == 1 ? true : false;
+		function find_email() {
+			var userEmail = $("input[name=email]").val();
+			$.get("/app/json/auth/getMember?email=" + userEmail, function(data) {
+				
+				if (data.state == "success"){
+				console.log("성공함~");
+				} else {
+					alert("없는 이메일 입니다. 다시 입력해 주세요")
+					location.reload();
+				}
+			});
 		}
 		
-		
+
+	    function checkAll() {
+	      var checkCnt = 0;
+	      if (email_check()) {
+	        checkCnt++;
+	      }
+	      
+	      console.log(checkCnt);
+	      return checkCnt == 2 ? true : false;
+	    }
+	    
 	</script>
 
 </body>
