@@ -128,4 +128,10 @@ public class DefaultRecipeService implements RecipeService {
     return recipeLikeDao.findLike(recipeLike);
   }
 
+  @Override
+  public List<Recipe> mainTop() throws Exception {
+    return recipeDao.mainTop();
+    
+  }
+
 }
