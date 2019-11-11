@@ -28,10 +28,10 @@
 					<div class="footer-nav">
 						<ul>
 							<li><a href="/app/member/contact">회사소개</a></li>
-							<li><a href="#">이용약관</a></li>
-							<li><a href="#">개인정보처리방침</a></li>
-							<li><a href="#">광고문의</a></li>
-							<li><a href="/app/question/list">문의사항</a></li>
+							<li><a href="">이용약관</a></li>
+							<li><a href="">개인정보처리방침</a></li>
+							<li><a href="">광고문의</a></li>
+							<li><a href="">문의사항</a></li>
 						</ul>
 					</div>
 				</div>

@@ -42,14 +42,8 @@
 									<button type="button" class="btn btn-primary my-btn" onclick="window.location.href = '/app/pet/updateForm?no=' + ${pet.petNo}"
                   style="background-color: #b0c364; border-color: #b0c364;">수정</button>
 
-<%--                   <button type="button" class="btn btn-primary my-btn" onclick="window.location.href = '/app/pet/delete?no=${pet.petNo}'" --%>
-<!--                   style="background-color: #b0c364; border-color: #b0c364;">삭제</button> -->
-                  
-<!--                   <button type="button" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;" -->
-<%--                   onclick="location.href='/app/pet/delete?no=${pet.petNo}'">동물삭제</button> --%>
-
-                  <button type="button" id="${pet.petNo}" class="btn btn-primary buttonfordeletepet" style="background-color: #b0c364; border-color: #b0c364;"
-                   >동물삭제</button>
+                  <button type="button" id="${pet.petNo}" class="btn btn-primary deletePet" 
+                  style="background-color: #b0c364; border-color: #b0c364;">동물삭제</button>
 								</p>
 
 							</div>
@@ -62,19 +56,17 @@
 
 	<script>
 	
-	 $(document).on('click','.buttonfordeletepet',function() {
+	 $(document).on('click','.deletePet',function() {
 		 
 	   var allData = {"no" : $(this).attr("id")};
 	   $("#row_div_"+$(this).attr("id")).remove();
 	   // $("#row_div_"+allData.no).remove();
-	   // $(this).parent().parent().parent().parent().parent().remove();
 	  $.ajax({
 	    url:"/app/json/pet/delete",
 	    type:"GET",
 	    dataType: "json",
 	    data: allData,
 	    success: function(result){
-            alert("삭제되었습니다.");
         }
 	  });
 	}); 
