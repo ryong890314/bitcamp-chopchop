@@ -65,11 +65,12 @@ public class AuthController {
   
 @RequestMapping(path = "getPassword",
     method = RequestMethod.POST)
-public static void gGmailSend(String email) {
+public void gGmailSend(String email) throws Exception {
   String user = "bitcamp1234@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
   String password = "kim1016!"; // 패스워드
   
-
+    Member member = memberService.signEmailCheck(email);
+  
   // SMTP 서버 정보를 설정한다.
   Properties prop = new Properties();
   prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -100,8 +101,15 @@ public static void gGmailSend(String email) {
     message.setSubject("[ChopChop] - Temporary Password"); // 메일 제목을 입력
 
     // Text
-    message.setText("비밀번호 찾기 임시 비밀번호: " + uuid + "변경  하시려면 링크를 클릭해 주세요." + "<a href=/'" + "/'"); // 메일 내용을 입력
+    message.setText("비밀번호 찾기 임시 비밀번호: " + uuid + "변경  하시려면 링크를 클릭해 주세요."); // 메일 내용을 입력
 
+    
+    //email로 member를 찾는다.
+    // 그 멤버 update (password=uuid)
+    
+    member.setPassword(uuid);
+    memberService.update(member);
+    
     
     // 참고
 //    String htmlStr = "<h2>안녕하세요 엄과외입니다!</h2><br><br>" 

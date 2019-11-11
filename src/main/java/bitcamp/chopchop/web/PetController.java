@@ -32,7 +32,9 @@ public class PetController {
   }
   
   @GetMapping("updateForm")
-  public void updateForm() {
+  public void updateForm(Model model, int no) throws Exception {
+    Pet pet  =  petService.get(no);
+    model.addAttribute("pet", pet);
   }
   
 

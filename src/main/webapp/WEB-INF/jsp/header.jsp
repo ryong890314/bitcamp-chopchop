@@ -103,7 +103,7 @@
 											href='/app/auth/signin'>Sign in</a></li>
 									</c:if>
 									<c:if test="${not empty loginUser}">
-										<li><a href="/app/member/detail?no=${loginUser.memberNo}" class='nav-user'>Hello!
+										<li><a href="/app/member/myprofile" class='nav-user'>Hello!
 												${loginUser.nickname}</a></li>
 									</c:if>
 									<c:if test="${not empty loginUser}">

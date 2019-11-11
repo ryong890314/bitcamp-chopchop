@@ -65,8 +65,8 @@
 	</select>
 
 	<select id="signEmailCheck" parameterType="String"
-		resultType="int">
-		select count(*)
+		resultMap="MemberMap">
+		select *
 		from member
 		where email = #{email}
 	</select>
