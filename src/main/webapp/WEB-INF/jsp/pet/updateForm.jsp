@@ -21,51 +21,48 @@
 	<div class="update-form">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="form-area">
-				<form action='update' method='post' enctype='multipart/form-data'
-					name="addform">
+				<form action='/app/pet/update' method='post'
+					enctype='multipart/form-data' name="addform">
 					<!-- <label for="filePath">대표사진</label> <input type="file" id="file"
             name="file" /><br>  -->
 
+					<input type='hidden' id='petNo' name='petNo' value='${pet.petNo}'
+						readonly>
 					<section class="photobtn">
-						<img
-							src="http://www.randomlengthsnews.com/wp-content/themes/gonzo/images/no-image-blog-one.png"
-							id="img"> <a id="addphoto" href="" class="btn">+ Add</a> <a
-							id="removephoto" href="" class="btn">- Remove</a>
+						<img src="/upload/pet/${pet.filePath}" id="img"> <a
+							id="addphoto" href="" class="btn">+ Add</a> <a id="removephoto"
+							href="" class="btn">- Remove</a>
 					</section>
 
 					<input type="file" name="file" id="file"
 						accept="image/*;capture=camera" />
 					<div id="photo_chk" class="vali_check"></div>
 
-					<input type="text" id="memberNo" name="memberNo"
-						value="${memberNo}" readonly /><br>
-
 					<div class="group form-group">
 						<input type="text" class="form-contro" id="registerNo"
-							name="registerNo" 
-							value="${pet.registerNo}" required> <span
+							name="registerNo" value="${pet.registerNo}" required> <span
 							class="highlight"></span> <span class="bar"></span> <label
 							class="mylabel">Register Number</label>
 					</div>
 
 					<div class="group form-group">
 						<input type="text" class="form-contro" id="name" name="name"
-							onblur="name_check();" value="${pet.name}" required> <span class="highlight"></span>
-						<span class="bar"></span> <label class="mylabel">Pet's
-							Name</label>
+							onblur="name_check();" value="${pet.name}" required> <span
+							class="highlight"></span> <span class="bar"></span> <label
+							class="mylabel">Pet's Name</label>
 						<div id="name_chk" class="vali_check"></div>
 					</div>
 
 					<div class="group form-group">
 						<input type="text" class="form-contro" id="age" name="age"
-							 value="${pet.age}" required> <span class="highlight"></span>
+							value="${pet.age}" required> <span class="highlight"></span>
 						<span class="bar"></span> <label class="mylabel">Pet's Age</label>
 						<div id="age_chk" class="vali_check"></div>
 					</div>
 
 					<div class="group form-group">
 						<input type="text" class="form-contro" id="Breed" name="Breed"
-						  value="${pet.breed}" required> <span class="highlight"></span>
+							value="${pet.breed}" required> <span class="highlight"></span>
 						<span class="bar"></span> <label class="mylabel">Breed</label>
 					</div>
 
@@ -77,7 +74,8 @@
 					</div>
 					<hr>
 					<button class="sub-btn" type="submit">Update</button>
-					<button class="sub-btn" style="margin-top:-10px;" onclick="history.back(-1);">Back</button>
+					<button class="sub-btn" style="margin-top: -10px;"
+						onclick="history.back(-1);">Back</button>
 				</form>
 			</div>
 		</div>

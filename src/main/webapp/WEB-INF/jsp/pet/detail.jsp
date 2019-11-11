@@ -17,12 +17,11 @@
 		<h1>My Pet Information</h1>
     <button type="button" class="btn btn-primary" style="background-color: #b0c364; border-color: #b0c364;"
                   onclick="location.href='/app/pet/form?no=${member.memberNo}'">펫 등록</button>
-		<form action='/app/pet/update' method='post'>
+		<form action='/app/pet/updateForm' method='post'>
 			<c:forEach items="${pets}" var="pet">
 				<div class="card mb-3" style="max-width: 540px;margin: 10px 0;" id="row_div_${pet.petNo}">
 					<div class="row">
 						<div class="col-md-4">
-							<%-- <input class='pet-filePath' type='text' value='${pet.filePath}'> --%>
 							<img src="/upload/pet/${pet.filePath}" class="card-img" alt="...">
 						</div>
 						<div class="col-md-8">
@@ -40,7 +39,7 @@
                 등록일 : ${pet.createdDate}</p>
 								<p class="card-text">
 									<!-- Button trigger modal -->
-									<button type="button" class="btn btn-primary my-btn" onclick="window.location.href = '/app/pet/updateForm'"
+									<button type="button" class="btn btn-primary my-btn" onclick="window.location.href = '/app/pet/updateForm?no=' + ${pet.petNo}"
                   style="background-color: #b0c364; border-color: #b0c364;">수정</button>
 
 <%--                   <button type="button" class="btn btn-primary my-btn" onclick="window.location.href = '/app/pet/delete?no=${pet.petNo}'" --%>

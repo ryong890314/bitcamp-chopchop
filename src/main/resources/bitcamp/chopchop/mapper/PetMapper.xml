@@ -85,16 +85,16 @@
 
 	<select id="findBy" parameterType="int" resultMap="PetMap">
 		select * from pet
-		where p.pet_id=${petNo}
+		where pet_id=${petNo}
 	</select>
 
 	<update id="update" parameterType="Pet">
 		update pet
 		<set>
-			<if test="register_no != null">register_no=#{register_no},</if>
+			<if test="registerNo != null">register_no=#{registerNo},</if>
 			<if test="name != null">name=#{name},</if>
-			<if test="file_path != null">filePath=#{file_path},</if>
-			<if test="pet_id != null">age=#{age},</if>
+			<if test="filePath != null">file_path=#{filePath},</if>
+			<if test="age != null">age=#{age},</if>
 			<if test="breed != null">breed=#{breed}</if>
 		</set>
 		where pet_id = #{petNo}
