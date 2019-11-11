@@ -88,7 +88,7 @@ public class MemberController {
   }
 
   @RequestMapping(value = "signE", method = RequestMethod.GET)
-  public @ResponseBody int signEmailCheck(String email) throws Exception {
+  public @ResponseBody Member signEmailCheck(String email) throws Exception {
     return memberService.signEmailCheck(email);
   }
 

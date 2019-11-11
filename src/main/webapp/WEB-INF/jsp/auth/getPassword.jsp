@@ -70,8 +70,10 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-	
+<script>
+// /app/json/auth/getPassword ajax 데이터 가져오기
+// state 가 successㅇ이면 
+// state 가 failure 이면 안내창 등등 띄우기
 </script>
 
 </html>

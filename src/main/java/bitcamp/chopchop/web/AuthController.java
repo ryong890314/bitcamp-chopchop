@@ -86,7 +86,7 @@ public void gGmailSend(String email) throws Exception {
   });
 
   try {
-    String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // -를 제거해 주었다.
+    String uuid = UUID.randomUUID().toString(); // -를 제거해 주었다.
     MimeMessage message = new MimeMessage(session);
     message.setFrom(new InternetAddress(user));
     

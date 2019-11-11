@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-  
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -62,91 +62,62 @@
 	display: inline-block;
 	cursor: pointer;
 }
+
 .emailBox {
- width: 360px;
- height:  28px;
- position: center;
+	width: 360px;
+	height: 28px;
+	position: center;
 }
 </style>
 </head>
-<div class="find-password-page" ng-controller="FindIdCtrl as findIdCtrl">
-	<div class="find-password-header">Find My Password</div>
-	<form method='POST' action='getPassword' name="signinform" onsubmit="return checkAll();">
-		<div class="find-password-content">
-			<div class="find-password-div">
-				등록하신 <span>E-Mail</span> 주소를 입력하세요.
+<body>
+	<div class="find-password-page"
+		ng-controller="FindIdCtrl as findIdCtrl">
+		<div class="find-password-header">Find My Password</div>
+		<form method='POST' action='/app/auth/getPassword' name="signinform"
+			onsubmit="return checkAll();">
+			<div class="find-password-content">
+				<div class="find-password-div">
+					등록하신 <span>E-Mail</span> 주소를 입력하세요.
+				</div>
+				<div>
+					<input class="emailBox" type="email" name="email"
+						placeholder="E-Mail" onblur="email_check();">
+				</div>
+				<div id="email_chk" class="vali_check"></div>
 			</div>
-			<div>
-				<input class="emailBox" type="email" name="email" placeholder="E-Mail"
-					onblur="email_check();">
+			<div class="find-password-button">
+				<button id="passwordRequest">Send</button>
 			</div>
-			<div id="email_chk" class="vali_check"></div>
-		</div>
-		<div class="find-password-button">
-			<a href="../auth/getPassword"><button id="passwordRequest">확인</button></a>
-		</div>
-	</form>
-</div>
-
-<script type="text/javascript">
-
-/* function email_check() {
-    var eCheckFlag = false;
-    console.log("email_check");
-    if (signinform.email.value == "") { // 빈 값 검사
-      document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
-      $("#email_chk").css('color', 'red');
-    } else {
-      document.getElementById("email_chk").innerHTML = "";
-      eCheckFlag = true;
-    }
-    return eCheckFlag;
-  } */
-  
-  function email_check() {
-    var eCheckFlag = false;
-    console.log("email_check");
-    if (signinform.email.value == "") { // 빈 값 검사
-      document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
-      $("#email_chk").css('color', 'red');
-    } else {
-      document.getElementById("email_chk").innerHTML = "";
-      eCheckFlag = true;
-    }
-    
-  // 이메일 중복체크
-  if(eCheckFlag) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4) {
-      if (xhr.status == 200) {
-        if (xhr.responseText == "1") { // 0이면 가입 가능, 아니면 중복!
-          document.getElementById("email_chk").innerHTML = "메일이 확인 되었습니다.";
-          $("#email_chk").css('color', 'green');
-          eCheckFlag = true; 
-        } else {
-          document.getElementById("email_chk").innerHTML = "없는 회원 이메일 입니다.";
-          $("#email_chk").css('color', 'red');
-        }
-      } else {
-        alert("시스템 오류 발생!");
-      }
-      }
-    };
-    xhr.open("GET", "signE?email=" + signform.email.value, false);
-    xhr.send();
-  }
-  return eCheckFlag;
-}
-  
-
-	function checkAll() {
-		var checkCnt = 0;
-		if (email_check()) {
-			checkCnt++;
+		</form>
+	</div>
+	
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript">
+		function email_check() {
+			var eCheckFlag = false;
+			console.log("email_check");
+			if (signinform.email.value == "") { // 빈 값 검사
+				document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
+				$("#email_chk").css('color', 'red');
+			} else {
+				document.getElementById("email_chk").innerHTML = "";
+				eCheckFlag = true;
+			}
+			return eCheckFlag;
 		}
-		return checkCnt == 1 ? true : false;
-	}
-</script>
 
+		function checkAll() {
+			var checkCnt = 0;
+			if (email_check()) {
+				checkCnt++;
+			}
+			console.log(checkCnt);
+			return checkCnt == 1 ? true : false;
+		}
+		
+		
+	</script>
+
+</body>
 </html>
