@@ -6,7 +6,6 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-import org.apache.http.impl.bootstrap.HttpServer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
