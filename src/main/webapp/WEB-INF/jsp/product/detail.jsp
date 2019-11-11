@@ -269,24 +269,35 @@
       html += "<div style='padding: 10px 22px 10px 0;'>";
       html += "<input type='hidden' class='addOptionNo' id='addOptionNo" + count + "' value=" + tempAddOptionNo + ">" + tempAddOptionTitle;
       html += "</div>"
-      html += "<input class='input-number' name='quantity' id='addQuantityNo" + count + "' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='0' max='1000'>";
-      html += "<input class='input' type='hidden' id='addOptionPriceNo" + count + "' value='1234'>"
-      
+      html += "<input class='input-quantity' name='quantity' id='addQuantityNo" + count + "' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='0' max='1000'>";
       var tempAddQuantityNo = "addQuantityNo" + count;
-      var tempAddOptionPriceNo = "addOptionPriceNo" + count;
-      var tempRequantity = 1;
-      var tempQuantity = tempRequantity;
+      
+      
+      var tempRequantity = 1; // 변경될 수량
+      var tempReAddOptionPrice = 0;
       html += "<c:forEach items='${product.options}' var='productOption'>"
       
       if ('${productOption.optionNo}' == tempAddOptionNo) {
         
         var tempAddOptionPriceUnit = parseInt("${((product.price) * (100 - product.discount) / 100 + productOption.price)}");
-        var tempAddOptionPrice = tempAddOptionPriceUnit * tempQuantity;
+        var tempReAddOptionPrice = tempAddOptionPriceUnit * tempRequantity;
+        var tempReAddOptionPriceA = Number(tempAddOptionPriceUnit * tempRequantity).toLocaleString('en'); // 출력용
       }
-
       html += "</c:forEach>"
-      html += "<a style='float: right; padding-top: 5px;' class='optionReprice' value=" + tempAddOptionPrice+ "> " + Number(tempAddOptionPrice).toLocaleString('en') + " 원</a>"
-      html += "<input type='hidden' name='chkprice' value=" + tempAddOptionPrice + ">"
+      
+      var tempReAddOptionPriceS = tempAddOptionPriceUnit;
+      html += "<input class='input-price" + count + "' type='hidden' type='number' id='addOptionPriceNo" + count + "' value=" + tempReAddOptionPriceS + ">"
+      var tempAddOptionPriceNo = "addOptionPriceNo" + count;
+
+      html += "<a style='float: right; padding-top: 5px;' class='optionRepriceNoA" + count + "' value=" + tempReAddOptionPriceA + ' 원' + "> " + tempReAddOptionPriceA + " 원</a>";
+      html += "<input type='hidden' name='chkprice' class='optionRepriceNoH" + count + "' value=" + tempReAddOptionPrice + ">"
+      html += "<input type='hidden' name='chkpriceS' class='optionRepriceNoS" + count + "' value=" + tempReAddOptionPriceS + ">";
+      var tempOptionRepriceNoA = "optionRepriceNoA" + count; // (상품금액 + 옵션금액) * 수량
+      var tempOptionRepriceNoH = "optionRepriceNoH" + count; // 상품금액 + 옵션금액
+      var tempOptionRepriceNoS = "optionRepriceNoS" + count; // 전체 주문금액 합계
+      console.log(tempOptionRepriceNoA);
+      console.log(tempOptionRepriceNoH);
+      console.log(tempOptionRepriceNoS);
       html += "</div>"
       count++;
       $('#ingredient-block').append(html);
@@ -304,27 +315,41 @@
 
   <script>
     // 옵션 변경
-    $(document).on("change", ".input-number", function (tempAddQuantityNo) {
+    $(document).on("change", ".input-quantity", function (tempAddQuantityNo, tempOptionRepriceNoH, tempOptionRepriceNoS) {
       console.log(tempAddQuantityNo)
       console.log(tempAddQuantityNo.target.value)
-      
       tempRequantity = tempAddQuantityNo.target.value;  
-      var e= $(this).parent().children(".optionReprice").value()
-      console.log(e);
+
+      var tempOptionRepriceH = $(this).parent().children(".optionRepriceNoH1").val();
+      console.log(tempOptionRepriceH);
+
+      tempReAddOptionPrice = tempOptionRepriceH * tempRequantity;
+      tempAddOptionPrice = tempReAddOptionPrice;
+      console.log(tempReAddOptionPrice);
+
+      $(".optionRepriceNoA1").html(Number(tempAddOptionPrice).toLocaleString('en') + ' 원');
+      $(document).ready(function() {
+        $('.optionRepriceNoS1').val(tempAddOptionPrice);
+        console.log(tempAddOptionPrice.value)
+    });
+
       reprice();
-      $(".optionReprice").html();
     });
   </script>
 
   <script>
     function reprice() {
-      var myCheckPrice = document.getElementsByName('chkprice');
+      var myCheckPrice = document.getElementsByName('chkpriceS');
       var checkPrice = 0;
       for (j = 0; j < myCheckPrice.length; j++) {
         checkPrice += parseInt(myCheckPrice[j].value);
       }
-      totalCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en');
+      // totalCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en');
       //연습
+      
+      totalCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en');
+      // totalCheckPrice.innerHTML = document.getElementById("checkPrice").value;
+      
       quantityCheckTest.innerHTML = document.getElementById("addQuantityNo1").value;
     }
   </script>
