@@ -41,7 +41,7 @@
       <tr>
         <td>${cart.product.title}</td>
         <td>${cart.product.price}원</td>
-        <td>${cart.quantity}개</td>
+        <td class="cartQuantity">${cart.quantity}개</td>
         <td><span class="totalPrice">${cart.product.price * cart.quantity * (100-cart.product.discount)/100}</span>원</td>
       </tr>
     </c:forEach>
@@ -169,14 +169,13 @@
             <div class="col-md-6">
               <div id="modalProduct">${products.product.title}</div>
             </div>
-            <div class="col-md-6" id="modalPrice" style="display:inline">
-              <div id="modalProduct">${products.product.price}</div>
+            <div class="col-md-6">
+              <div id="modalPrice">${products.product.price}원</div>
             </div>
           </c:forEach>
         </div>
         <div class="row">
-          <div class="col-md-4" id="finalPrice">
-          </div>
+          <div class="col-md-4" id="finalPrice"></div>
         </div>
         
         <hr>
@@ -215,9 +214,6 @@
     }
     
     result.innerText = temp;
-    
-    
-//     document.querySelector('#resultPrice').innerText = temp;
     
   </script>
   
@@ -332,7 +328,7 @@
           } else if(chooseEasy.checked) {
             $('#modalPayment').text(chooseEasy.value);
           }
-          $('#finalPrice').text(temp);
+          $('#finalPrice').text(temp + "원");
         })
       } else {
         return false;
@@ -393,12 +389,6 @@
       }
     });
   </script>
-  
-  
-  
-  
-  
-  
   
   
   

@@ -87,16 +87,16 @@ public class OrderController {
     List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selectedProduct");
     if (selectedProduct != null) {
       for (Cart cart : selectedProduct) {
-        orderProduct.setProductNo(cart.getProductNo());
         orderProduct.setOrderNo(order.getOrderNo());
+        orderProduct.setProductNo(cart.getProductNo());
         orderProduct.setQuantity(cart.getQuantity());
         orderProduct.setDiscountPrice(
             cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount())/100) * cart.getQuantity());
+        orderService.insert(orderProduct, order);
       }
-      orderService.insert(order, orderProduct);
       session.setAttribute("order", order);
-      session.setAttribute("orderProduct", orderProduct);
-      return "redirect:result";
+      orderService.insert(order);
+      return "redirect:../product/detail?no=" + no;
       
     } else {
       orderProduct.setOrderNo(order.getOrderNo());
@@ -104,7 +104,8 @@ public class OrderController {
       orderProduct.setOptionNo(optionNo);
       orderProduct.setQuantity(quantity);
       orderProduct.setDiscountPrice(discountPrice);
-      orderService.insert(order, orderProduct);
+      orderService.insert(order);
+      orderService.insert(orderProduct, order);
       session.setAttribute("order", order);
       session.setAttribute("orderProduct", orderProduct);
       return "redirect:result";

@@ -326,7 +326,6 @@
       }
       
     });
-  
   </script>
   
   <script>
@@ -338,10 +337,6 @@
     });
     
   </script>
-  
-  
-  
-  
   
   <script> // 빈 입력값 체크
     $('#recipientName').on('blur', function(event){

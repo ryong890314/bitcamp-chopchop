@@ -44,13 +44,19 @@ public class DefaultOrderService implements OrderService {
   
   @Transactional
   @Override
-  public void insert(Order order, OrderProduct orderProduct) throws Exception {
+  public void insert(Order order) throws Exception {
     // 주문 정보는 서버에서 처리하고, 회원정보는 로그인 정보 세션에서 가져옴
     orderDao.insert(order);
+    
+  }
+
+  @Transactional
+  @Override
+  public void insert(OrderProduct orderProduct, Order order) throws Exception {
     orderProduct.setOrderNo(order.getOrderNo());
     orderProductDao.insert(orderProduct);
   }
-
+  
   @Override
   public void update(Order order) throws Exception {
     orderDao.update(order);
