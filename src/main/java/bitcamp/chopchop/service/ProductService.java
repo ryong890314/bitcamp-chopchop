@@ -16,6 +16,8 @@ public interface ProductService {
   void insert(Product product) throws Exception;
   void update(Product product) throws Exception;
   void delete(int no) throws Exception;
+  
+  List<Product> mainTop() throws Exception;
 }
 
 

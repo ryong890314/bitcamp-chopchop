@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/css/main/b_style.css">
 </head>
 <body>
+<jsp:include page="header.jsp"/>
     <!-- ##### Hero Area Start ##### -->
     <div class="hero-area">
         <!-- Hero Post Slides -->
@@ -20,22 +21,23 @@
                 <!-- Blog Thumbnail -->
                 <div class="blog-thumbnail">
 <!--                     <a href="#"><img src="../img/bg-img/2.jpg" alt=""></a> -->
-                    <a href="#"><img src="/upload/pet/${recipe.thumbnail}" alt=""></a>
+                    <a href="#"><img src="/upload/recipe/${recipe.thumbnail}" style="width:595px;height:525px;object-fit:cover;"></a>
                 </div>
-	            <!-- Blog Content -->
-	            <div class="blog-content-bg" onclick="aaa(${recipe.recipeNo});">
-              <input type="input" name="recipeNo" id="recipeNo" value="${recipe.recipeNo}">
-	            <div class="blog-content-bg" onclick="aaa(${recipe.recipeNo});">
-	                <div class="blog-content">
+  	            <!-- Blog Content -->
+  	            <div class="blog-content-bg" onclick="aaa(${recipe.recipeNo});">
+                  <input type="text" name="recipeNo" id="recipeNo" value="${recipe.recipeNo}">
+    	            <div class="blog-content-bg" onclick="aaa(${recipe.recipeNo});">
+  	                <div class="blog-content">
 	                    <a href="#" class="post-tag">${recipe.category}</a>
-	                    <a href="#" class="post-title">${recipe.title}</a>
-	                    <div class="post-meta">
-	                        <a href="#" class="post-date">${recipe.createdDate}</a>
-	                        <a href="#" class="post-author">${recipe.memberNo}</a>
-	                    </div>
-	                </div>
-	            </div>
-	            </div>
+	                    <a href="#" class="post-title titlaa">${recipe.title}</a>
+                      <div class="post-meta">
+                        <a href="#" class="post-date">${recipe.createdDate}</a>
+                        <a href="#" class="post-author">by ${recipe.memberNo}</a>
+                      </div>
+  	                </div>
+    	            </div>
+  	            </div>
+              </div>
             </c:forEach>
         </div>
     </div>
@@ -48,12 +50,12 @@
                 <!-- Single Post Catagory -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-post-catagory mb-30">
-                        <img src="../img/bg-img/4.jpg" alt="">
+                        <img src="../img/main/photo1.png" alt="">
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="#" class="post-tag">The Best</a>
-                                <a href="#" class="post-title">Healthy Food</a>
+                                <a href="/app/product/category?species=강아지" class="post-tag">The Best</a>
+                                <a href="/app/product/category?species=강아지" class="post-title">강아지</a>
                             </div>
                         </div>
                     </div>
@@ -62,12 +64,12 @@
                 <!-- Single Post Catagory -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-post-catagory mb-30">
-                        <img src="../img/bg-img/5.jpg" alt="">
+                        <img src="../img/main/photo1.png" alt="">
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="#" class="post-tag">The Best</a>
-                                <a href="#" class="post-title">Organic Cuisine</a>
+                                <a href="/app/product/category?species=고양이" class="post-tag">The Best</a>
+                                <a href="/app/product/category?species=고양이" class="post-title">고양이</a>
                             </div>
                         </div>
                     </div>
@@ -76,12 +78,54 @@
                 <!-- Single Post Catagory -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-post-catagory mb-30">
-                        <img src="../img/bg-img/6.jpg" alt="">
+                        <img src="../img/main/photo1.png" alt="">
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
                                 <a href="#" class="post-tag">The Best</a>
-                                <a href="#" class="post-title">Vegetarian Food</a>
+                                <a href="#" class="post-title">작은친구들</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Single Post Catagory -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-post-catagory mb-30">
+                        <img src="../img/main/pet4.jpg" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="#" class="post-tag">The Best</a>
+                                <a href="#" class="post-title">반려동물 식품</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Single Post Catagory -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-post-catagory mb-30">
+                        <img src="../img/main/pet5.jpg" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="#" class="post-tag">The Best</a>
+                                <a href="#" class="post-title">반려동물 용품</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Single Post Catagory -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-post-catagory mb-30">
+                        <img src="../img/main/pet6.jpg" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="#" class="post-tag">The Best</a>
+                                <a href="#" class="post-title">기타 용품</a>
                             </div>
                         </div>
                     </div>
@@ -91,53 +135,6 @@
     </div>
     <!-- ##### Catagory Area End ##### -->
 
-    <!-- ##### Big Posts Area Start ##### -->
-    <div class="big-posts-area mb-50">
-        <div class="container">
-            <!-- Single Big Post Area -->
-            <div class="row align-items-center">
-                <div class="col-12 col-md-6">
-                    <div class="big-post-thumbnail mb-50">
-                        <img src="../img/bg-img/7.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="big-post-content text-center mb-50">
-                        <a href="#" class="post-tag">Healthy</a>
-                        <a href="#" class="post-title">Friend eggs with ham</a>
-                        <div class="post-meta">
-                            <a href="#" class="post-date">July 11, 2018</a>
-                            <a href="#" class="post-author">By Julia Stiles</a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique justo id elit bibendum pharetra non vitae lectus. Mauris libero felis, dapibus a ultrices sed, commodo vitae odio. Sed auctor tellus quis arcu tempus, egestas tincidunt augue pellentesque. Suspendisse vestibulum sem in eros maximus, pretium commodo turpis convallis. Aenean scelerisque orci quis urna tempus, vitae interdum velit aliquet.</p>
-                        <a href="#" class="btn bueno-btn">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Big Post Area -->
-            <div class="row align-items-center">
-                <div class="col-12 col-md-6">
-                    <div class="big-post-content text-center mb-50">
-                        <a href="#" class="post-tag">The Best</a>
-                        <a href="#" class="post-title">Steak with boiled vegetables</a>
-                        <div class="post-meta">
-                            <a href="#" class="post-date">July 11, 2018</a>
-                            <a href="#" class="post-author">By Julia Stiles</a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique justo id elit bibendum pharetra non vitae lectus. Mauris libero felis, dapibus a ultrices sed, commodo vitae odio. Sed auctor tellus quis arcu tempus, egestas tincidunt augue pellentesque. Suspendisse vestibulum sem in eros maximus, pretium commodo turpis convallis. Aenean scelerisque orci quis urna tempus, vitae interdum velit aliquet.</p>
-                        <a href="#" class="btn bueno-btn">Read More</a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="big-post-thumbnail mb-50">
-                        <img src="../img/bg-img/8.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Big Posts Area End ##### -->
 
     <!-- ##### Posts Area End ##### -->
     <div class="bueno-post-area mb-70">
@@ -205,92 +202,99 @@
                     <div class="sidebar-area">
 
                         <!-- Single Widget Area -->
-                        <div class="single-widget-area add-widget mb-30">
-                            <img src="../img/bg-img/add.png" alt="">
-                        </div>
+<!--                         <div class="single-widget-area add-widget mb-30"> -->
+<!--                             <img src="../img/bg-img/add.png" alt=""> -->
+<!--                         </div> -->
 
                         <!-- Single Widget Area -->
                         <div class="single-widget-area post-widget">
 
                             <!-- Single Post Area -->
+                             <c:forEach items="${productList}" var="product">
                             <div class="single-post-area d-flex">
                                 <!-- Blog Thumbnail -->
                                 <div class="blog-thumbnail">
-                                    <img src="../img/bg-img/12.jpg" alt="">
+                                  <img src="/upload/product/${product.files[0].filePath}" alt="">
+<!--                                     <img src="../img/bg-img/12.jpg" alt=""> -->
                                 </div>
                                 <!-- Blog Content -->
                                 <div class="blog-content">
-                                    <a href="#" class="post-title">Friend eggs with ham</a>
+                                    <a href="#" class="post-title">${product.title}</a>
                                     <div class="post-meta">
-                                        <a href="#" class="post-date">July 11, 2018</a>
-                                        <a href="#" class="post-author">By Julia Stiles</a>
+                                        ${product.detail}
+                                        / ${product.price}
                                     </div>
                                 </div>
                             </div>
+                                </c:forEach>
 
-                            <!-- Single Post Area -->
-                            <div class="single-post-area d-flex mb-30">
-                                <!-- Blog Thumbnail -->
-                                <div class="blog-thumbnail">
-                                    <img src="../img/bg-img/13.jpg" alt="">
-                                </div>
-                                <!-- Blog Content -->
-                                <div class="blog-content">
-                                    <a href="#" class="post-title">Burger with fries</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-date">July 11, 2018</a>
-                                        <a href="#" class="post-author">By Julia Stiles</a>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Single Post Area -->
-                            <div class="single-post-area d-flex">
-                                <!-- Blog Thumbnail -->
-                                <div class="blog-thumbnail">
-                                    <img src="../img/bg-img/14.jpg" alt="">
-                                </div>
-                                <!-- Blog Content -->
-                                <div class="blog-content">
-                                    <a href="#" class="post-title">Avocado &amp; Oisters</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-date">July 11, 2018</a>
-                                        <a href="#" class="post-author">By Julia Stiles</a>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Single Post Area -->
-                            <div class="single-post-area d-flex">
-                                <!-- Blog Thumbnail -->
-                                <div class="blog-thumbnail">
-                                    <img src="../img/bg-img/15.jpg" alt="">
-                                </div>
-                                <!-- Blog Content -->
-                                <div class="blog-content">
-                                    <a href="#" class="post-title">Tortilla prawns</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-date">July 11, 2018</a>
-                                        <a href="#" class="post-author">By Julia Stiles</a>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Single Post Area -->
-                            <div class="single-post-area d-flex">
-                                <!-- Blog Thumbnail -->
-                                <div class="blog-thumbnail">
-                                    <img src="../img/bg-img/16.jpg" alt="">
-                                </div>
-                                <!-- Blog Content -->
-                                <div class="blog-content">
-                                    <a href="#" class="post-title">Burger with fries</a>
-                                    <div class="post-meta">
-                                        <a href="#" class="post-date">July 11, 2018</a>
-                                        <a href="#" class="post-author">By Julia Stiles</a>
-                                    </div>
-                                </div>
-                            </div>
+
+<!--                             Single Post Area -->
+<!--                             <div class="single-post-area d-flex mb-30"> -->
+<!--                                 Blog Thumbnail -->
+<!--                                 <div class="blog-thumbnail"> -->
+<!--                                     <img src="../img/bg-img/13.jpg" alt=""> -->
+<!--                                 </div> -->
+<!--                                 Blog Content -->
+<!--                                 <div class="blog-content"> -->
+<!--                                     <a href="#" class="post-title">Burger with fries</a> -->
+<!--                                     <div class="post-meta"> -->
+<!--                                         <a href="#" class="post-date">July 11, 2018</a> -->
+<!--                                         <a href="#" class="post-author">By Julia Stiles</a> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+
+<!--                             Single Post Area -->
+<!--                             <div class="single-post-area d-flex"> -->
+<!--                                 Blog Thumbnail -->
+<!--                                 <div class="blog-thumbnail"> -->
+<!--                                     <img src="../img/bg-img/14.jpg" alt=""> -->
+<!--                                 </div> -->
+<!--                                 Blog Content -->
+<!--                                 <div class="blog-content"> -->
+<!--                                     <a href="#" class="post-title">Avocado &amp; Oisters</a> -->
+<!--                                     <div class="post-meta"> -->
+<!--                                         <a href="#" class="post-date">July 11, 2018</a> -->
+<!--                                         <a href="#" class="post-author">By Julia Stiles</a> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+
+<!--                             Single Post Area -->
+<!--                             <div class="single-post-area d-flex"> -->
+<!--                                 Blog Thumbnail -->
+<!--                                 <div class="blog-thumbnail"> -->
+<!--                                     <img src="../img/bg-img/15.jpg" alt=""> -->
+<!--                                 </div> -->
+<!--                                 Blog Content -->
+<!--                                 <div class="blog-content"> -->
+<!--                                     <a href="#" class="post-title">Tortilla prawns</a> -->
+<!--                                     <div class="post-meta"> -->
+<!--                                         <a href="#" class="post-date">July 11, 2018</a> -->
+<!--                                         <a href="#" class="post-author">By Julia Stiles</a> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+
+<!--                             Single Post Area -->
+<!--                             <div class="single-post-area d-flex"> -->
+<!--                                 Blog Thumbnail -->
+<!--                                 <div class="blog-thumbnail"> -->
+<!--                                     <img src="../img/bg-img/16.jpg" alt=""> -->
+<!--                                 </div> -->
+<!--                                 Blog Content -->
+<!--                                 <div class="blog-content"> -->
+<!--                                     <a href="#" class="post-title">Burger with fries</a> -->
+<!--                                     <div class="post-meta"> -->
+<!--                                         <a href="#" class="post-date">July 11, 2018</a> -->
+<!--                                         <a href="#" class="post-author">By Julia Stiles</a> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
 
                         </div>
                     </div>
@@ -375,30 +379,7 @@
     <!-- ##### Instagram Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-5">
-                    <!-- Copywrite Text -->
-                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                </div>
-                <div class="col-12 col-sm-7">
-                    <!-- Footer Nav -->
-                    <div class="footer-nav">
-                        <ul>
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Recipes</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <jsp:include page="footer.jsp"/>
     <!-- ##### Footer Area Start ##### -->
 
     <!-- ##### All Javascript Script ##### -->
@@ -412,12 +393,26 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="../js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="../js/active.js"></script>
+    
     <script type="text/javascript">
     function aaa(rNo) {
     	alert(rNo);
     	alert($("#recipeNo").val());
     	frm.submit();
     }
+    
+    function textLengthOverCut(txt, len, lastTxt) {
+      if (len == "" || len == null) { // 기본값
+          len = 10;
+      }
+      if (lastTxt == "" || lastTxt == null) { // 기본값
+          lastTxt = "...";
+      }
+      if (txt.length > len) {
+          txt = txt.substr(0, len) + lastTxt;
+      }
+      return txt;
+  }
     </script>
 </body>
 </html>

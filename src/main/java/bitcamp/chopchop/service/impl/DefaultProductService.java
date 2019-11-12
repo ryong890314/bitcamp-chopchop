@@ -87,5 +87,10 @@ public class DefaultProductService implements ProductService {
   public List<Product> search(String keyword) throws Exception {
     return productDao.findByKeyword(keyword);
   }
+
+  @Override
+  public List<Product> mainTop() throws Exception {
+    return productDao.mainTop();
+  }
   
 }
