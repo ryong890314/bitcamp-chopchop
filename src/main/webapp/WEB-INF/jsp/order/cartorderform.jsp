@@ -27,7 +27,7 @@
 <body>
   <jsp:include page="../header.jsp"/>
   
-  <form action="add" method="post" id="orderForm">
+  <form action="addfromcart" method="post" id="orderForm">
       <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
       <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto;">
     <tr>
@@ -144,11 +144,11 @@
         <input type="hidden" id="textbox" name="no" value="${product.productNo}">
         <input type="hidden" id="textbox" name="discount" value="${product.discount}">
         <button type="button" id="orderButton" class="btn btn-success" data-toggle="modal" data-target="#orderModal">주문</button>
-        <a href="../product/detail?no=${product.productNo}" class="btn btn-danger" style="margin-left:30px;">취소</a>
+        <a href="../product/list" class="btn btn-danger" style="margin-left:30px;">취소</a>
       </div>
       <input type="hidden" name="optionNo" value=1>
       <input type="hidden" name="quantity" value="${quantity}">
-      <input type="hidden" id="discountPrice" name="discountPrice" value="${product.price * quantity * (100-product.discount)/100}">
+      <input type="hidden" id="discountPrice" name="discountPrice" value="${cart.product.price * cart.quantity * (100-cart.product.discount)/100}">
 <!--     </div> -->
   <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

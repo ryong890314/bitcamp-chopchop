@@ -5,21 +5,26 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
 import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.service.CartService;
+import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
 import bitcamp.chopchop.service.ProductService;
 
 @Controller
 @RequestMapping("/order")
+@SessionAttributes("loginUser")
 public class OrderController {
 
   @Resource
@@ -28,11 +33,20 @@ public class OrderController {
   private ProductService productService;
   @Resource
   private CartService cartService;
-
+  @Resource
+  private MemberService memberService;
+  
+  
   @PostMapping("form")
-  public void form(int no, Model model, int quantity, HttpSession session) throws Exception {
+  public void form(
+      int no, Model model, int quantity, HttpSession session, @
+      ModelAttribute("loginUser") Member loginUser) 
+          throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
     Product product = productService.get(no);
 
+    
+    model.addAttribute("loginUser", member);
     model.addAttribute("product", product); // 주문에서 선택한 상품
     model.addAttribute("quantity", quantity);
   }
@@ -55,8 +69,9 @@ public class OrderController {
   }
 
   @GetMapping("searchbymember")
-  public void searchByMember(Model model, HttpSession session) throws Exception {
-    Member member = (Member) session.getAttribute("loginUser");
+  public void searchByMember(
+      Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
     List<Order> orders = new ArrayList<>();
     List<OrderProduct> orderProducts = new ArrayList<>();
 
@@ -73,44 +88,54 @@ public class OrderController {
       System.out.println(op.getOrderNo());
 
     }
+    model.addAttribute("loginUser", member);
     model.addAttribute("orders", orders);
     model.addAttribute("orderProducts", orderProducts);
   }
 
   @PostMapping("add")
+  @Transactional
   public String add(
       HttpSession session, Order order, int no, int optionNo, int quantity, int discountPrice) 
           throws Exception {
+    System.out.println(order);
     OrderProduct orderProduct = new OrderProduct();
-    
+
+    orderProduct.setProductNo(productService.get(no).getProductNo());
+    orderProduct.setOptionNo(optionNo);
+    orderProduct.setQuantity(quantity);
+    orderProduct.setDiscountPrice(discountPrice);
+    orderService.insert(order);
+    orderService.insert(orderProduct, order);
+    session.setAttribute("order", order);
+    session.setAttribute("orderProduct", orderProduct);
+
+    return "redirect:result";
+  }
+
+  @PostMapping("addfromcart")
+  @Transactional
+  public String addFromCart(HttpSession session, Order order, int optionNo) throws Exception {
+    OrderProduct orderProduct = new OrderProduct();
+
     @SuppressWarnings("unchecked")
     List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selectedProduct");
+    orderService.insert(order);
     if (selectedProduct != null) {
       for (Cart cart : selectedProduct) {
-        orderProduct.setOrderNo(order.getOrderNo());
         orderProduct.setProductNo(cart.getProductNo());
+        orderProduct.setOptionNo(optionNo);
         orderProduct.setQuantity(cart.getQuantity());
         orderProduct.setDiscountPrice(
             cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount())/100) * cart.getQuantity());
         orderService.insert(orderProduct, order);
       }
-      session.setAttribute("order", order);
-      orderService.insert(order);
-      return "redirect:../product/detail?no=" + no;
-      
-    } else {
-      orderProduct.setOrderNo(order.getOrderNo());
-      orderProduct.setProductNo(productService.get(no).getProductNo());
-      orderProduct.setOptionNo(optionNo);
-      orderProduct.setQuantity(quantity);
-      orderProduct.setDiscountPrice(discountPrice);
-      orderService.insert(order);
-      orderService.insert(orderProduct, order);
-      session.setAttribute("order", order);
-      session.setAttribute("orderProduct", orderProduct);
-      return "redirect:result";
     }
+    session.setAttribute("order", order);
+    return "redirect:../product/list";
+
   }
+
 
   @GetMapping("delete")
   public String delete(int no) throws Exception {

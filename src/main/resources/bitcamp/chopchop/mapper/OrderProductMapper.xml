@@ -6,8 +6,9 @@
 
   <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
   <resultMap type="OrderProduct" id="OrderProductMap">
-    <id column="order_id" property="orderNo"/>
-    <id column="product_id" property="productNo"/>
+    <id column="order_product_id" property="orderProductNo"/>
+    <result column="order_id" property="orderNo"/>
+    <result column="product_id" property="productNo"/>
     <result column="quantity" property="quantity"/>
     <result column="option_id" property="optionNo"/>
     <result column="discount_price" property="discountPrice"/>
@@ -50,8 +51,7 @@
       order_id=#{value};
   </select>
   
-  
-  <insert id="insert" parameterType="OrderProduct" useGeneratedKeys="true" keyColumn="order_id" keyProperty="orderNo">
+  <insert id="insert" parameterType="OrderProduct" useGeneratedKeys="true" keyColumn="order_product_id" keyProperty="orderProductNo">
     insert into order_product(order_id, product_id, option_id, quantity, discount_price)
     values(#{orderNo}, #{productNo}, #{optionNo}, #{quantity},#{discountPrice}) 
   </insert>

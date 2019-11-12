@@ -23,11 +23,6 @@ public class DefaultOrderService implements OrderService {
     return orderDao.findAll();
   }
 
-//  @Override
-//  public List<Order> searchByMember(int no) throws Exception {
-//    return orderDao.findByMember(no);
-//  }
-
   @Override
   public Order get(int no) throws Exception {
     Order order = orderDao.findBy(no);
