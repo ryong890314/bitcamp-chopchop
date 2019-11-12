@@ -47,6 +47,21 @@
       clear: left;
     }
 
+    .closeIcon {
+      float: right;
+      /* display: inline-block; */
+      font-weight: 500;
+      text-shadow: 0 1px 0 #fff;
+      font-size: 25px;
+      /* vertical-align: top; */
+    }
+
+    .closeIcon:hover {
+      border: 0;
+      cursor: pointer;
+      opacity: .75;
+    }
+
     #qt {
       width: 162px;
       float: left;
@@ -62,7 +77,6 @@
   <div>
     <div id="productBody">
       <a href="updateform?no=${product.productNo}">수정</a>
-
 
       <div class="row">
         <div class="col-md-7">
@@ -90,7 +104,6 @@
               </div>
             </div>
 
-
             <div class="row">
               <div class="col-md-4">
                 <label for="exampleInput">할인율</label>
@@ -99,7 +112,6 @@
                 <span>${product.discount} %</span>
               </div>
             </div>
-
 
             <div class="row">
               <div class="col-md-4">
@@ -133,33 +145,24 @@
                 <div class="col-md-8">
 
                   <div class="form-group">
-                    <select class="form-control optionselect" id="optionNo" name='optionNo' >
+                    <select class="form-control optionselect" id="optionNo" name='optionNo'>
                       <option selected disabled>옵션을 선택해주세요</option>
 
                       <c:forEach items="${product.options}" var="productOption">
-                        <option value="${productOption.optionNo}" id="${productOption.title}">${productOption.title}</option>
+                        <option value="${productOption.optionNo}" name="${productOption.price}"
+                          id="${productOption.title}">${productOption.title}
+                          (+${productOption.price}원)
+                        </option>
                       </c:forEach>
                     </select>
 
                   </div>
 
-                  
-                  <!-- <input type='text' name='optionNo' value='${productOption.optionNo}'> -->
                 </div>
-                      <div id="ingredient-block" class="block-content">
-                      <!-- 재료 용량 들어가는 Div -->
-                        </div>
+                <div id="ingredient-block" class="block-content">
+                  <!-- 상품옵션 들어가는 Div -->
+                </div>
               </div>
-<!-- 
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="exampleInput">수량</label>
-                </div>
-                <div class="col-md-8">
-                  <input class="input-number" name='quantity' type="number" style="text-align:center;" value="1" min="0"
-                    max="1000">
-                </div>
-              </div> -->
 
               <hr>
 
@@ -167,9 +170,9 @@
                 <div class="col-md-4">
                   <label for="exampleInput">주문금액</label>
                 </div>
-                <div class="col-md-8">
-                  <span style="font-size: 20px; font-weight: 700; color:red">
-                    <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span>
+                <div class="col-md-8" style="text-align: right;">
+                  <a id="totalCheckPrice" style="color: red; margin: 10px; font-size: 20px;">0</a><a
+                    style="font-size: 20px;">원</a>
                 </div>
               </div>
 
@@ -182,6 +185,8 @@
           </div>
         </div>
       </div>
+
+
 
       <hr class="my-4">
       <h1 class="display-4">${product.title}</h1>
@@ -222,92 +227,98 @@
 
   <jsp:include page="../footer.jsp" />
 
-
-  <!-- <script>
-  
-  function checkOption(){
-    alert("나온나쫌");
-  }
-  </script> -->
-
-<!-- <script id="t1" type="ingredientHtml">
-  <div class='group-flex' style='width: 470px; padding: 0px 15px;' >
-  <div class='form-group'>
-      
-    <p value=$(this).val()>$(this).text())</p>
-  
-</div>
-  <div class='form-group'>
-      <input class="input-number" name='quantity' type="number" style="text-align:center;" value="1" min="0"
-        max="1000"><a>${product.price} 원</a>
-    </div>
-  <div class='form-group'><button class='btn btn-secondary btn-sm' type='button' name='delIngredientBtn' onclick='delOption(event)'>삭제</button></div>
-  </div>
-  </script> -->
   <script>
-  $(document).on("change",".optionselect",function(){
-    console.log($(this).text);
-    console.log($(this).html);
-    console.log($(this).innerText);
-    console.log($(this).innerHtml);
-
-    var html ="";
-    html+= "<div class='group-flex' style='width: 470px; border-style: solid; border-width: 1px; margin-bottom: 4px; padding: 0px 15px;' >";
-    html+="<div class='form-group'>";
-    html+="<p value=" + $(this).val() + ">" + $(this).find(":selected").attr("id") + "</p>";
-    html+="</div><div class='form-group'>"
-    html+='<input class="input-number" name="quantity" type="number" style="text-align:center;" value="1" min="0" max="1000"><a>${product.price} 원</a>'
-    html+="</div><div class='form-group'><button class='btn btn-secondary btn-sm' type='button' name='delIngredientBtn' onclick='delOption(event)'>삭제</button></div>"
-    html+="</div>"
-
-    $('#ingredient-block').append(html);
-  })
-  
+    // 선택한 옵션 등록하기
+    var count = 1;
+    $(document).on("change", ".optionselect", function () {
+      var addOptionCheck = document.querySelector('[id^="addOptionNo"]') !== null;
+      var tempAddOptionNo = $(this).val();
+      var tempAddOptionTitle = $(this).find(":selected").attr("id");
+      if (addOptionCheck == false) {
+        addOption(tempAddOptionNo, tempAddOptionTitle);
+      } else {
+        var addOptionCheckNum = document.getElementsByClassName('addOptionNo');
+        for (var i = 0; i < addOptionCheckNum.length; i++) {
+          if (addOptionCheckNum[i].value == $(this).val()) {
+            alert("이미 등록된 옵션입니다.");
+            return false;
+            break;
+          }
+        }
+        addOption(tempAddOptionNo, tempAddOptionTitle);
+      }
+      reprice();
+    })
   </script>
-  <script> // 재료,용량 추가
-   "use strict";
-    function addOption() {
-      console.log("추가버튼누름");
-      var html = $('#t1').html();
+
+  <script>
+    // 중복코드 제거
+    function addOption(tempAddOptionNo, tempAddOptionTitle) {
+      var html = "";
+      html += "<div style='width: 440px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-width: 1px; margin: 5px 15px; padding: 0px 15px 10px 15px;'>";
+      html += "<div><span class='closeIcon' name='delIngredientBtn' onclick='delOption(event)'>&times;</span></div>"
+      html += "<div style='padding: 10px 22px 10px 0;'>";
+      html += "<input type='hidden' class='addOptionNo' id='addOptionNo" + count + "' value=" + tempAddOptionNo + ">" + tempAddOptionTitle;
+      html += "</div>"
+      html += "<input class='input-quantity' name='quantity' id='addQuantityNo" + count + "' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='0' max='1000'>";
+      var tempAddQuantityNo = "addQuantityNo" + count;
+      var tempRequantity = 1; // 변경될 수량
+      var tempReAddOptionPrice = 0;
+      html += "<c:forEach items='${product.options}' var='productOption'>"
+      if ('${productOption.optionNo}' == tempAddOptionNo) {
+        var tempAddOptionPriceUnit = parseInt("${((product.price) * (100 - product.discount) / 100 + productOption.price)}");
+        var tempReAddOptionPrice = tempAddOptionPriceUnit * tempRequantity;
+        var tempReAddOptionPriceA = Number(tempAddOptionPriceUnit * tempRequantity).toLocaleString('en'); // 출력용
+      }
+      html += "</c:forEach>"
+      var tempReAddOptionPriceS = tempAddOptionPriceUnit;
+      var tempAddOptionPriceNo = "addOptionPriceNo" + count;
+      html += "<input class='input-price" + count + "' type='hidden' type='number' id='addOptionPriceNo" + count + "' value=" + tempReAddOptionPriceS + ">"
+      html += "<a style='float: right; padding-top: 5px;' class='optionRepriceNoA" + count + "' value=" + tempReAddOptionPriceA + ' 원' + "> " + tempReAddOptionPriceA + " 원</a>";
+      html += "<input type='hidden' name='chkprice' class='optionRepriceNoH" + count + "' value=" + tempReAddOptionPrice + ">"
+      html += "<input type='hidden' name='chkpriceS' id='optionRepriceNoS" + count + "' value=" + tempReAddOptionPriceS + ">";
+      var tempOptionRepriceNoA = "optionRepriceNoA" + count; // (상품금액 + 옵션금액) * 수량
+      var tempOptionRepriceNoH = "optionRepriceNoH" + count; // 상품금액 + 옵션금액
+      var tempOptionRepriceNoS = "optionRepriceNoS" + count; // 전체 주문금액 합계
+      html += "</div>"
+      count++;
       $('#ingredient-block').append(html);
-    };
+    }
   </script>
-  
-  <script> // 재료, 용량 삭제
-   "use strict";
+
+  <script>
+    // 옵션 삭제
+    "use strict";
     function delOption(event) {
       $(event.target.parentNode.parentNode).remove();
+      reprice();
     };
   </script>
 
-  <!-- 
   <script>
-      var chkOptions = document.getElementsByClassName('chkOption');
-      
-      for (var i = 0; i < chkOptions.length; i++) {
-        
-        chkOptions[i].addEventListener('click', function () {
-          var criteriaNode = document.getElementByClassName('chkOption');	// 기준이 되는 요소로 아이디가 "text"인 요소를 선택함.
-          var newNode = document.createElement("p");			// 새로운 <p> 요소를 생성함.
-          newNode.innerHTML = "새로운 단락입니다.";
-          document.body.insertBefore(newNode, criteriaNode);	// 새로운 요소를 기준이 되는 요소 바로 앞에 추가함.
-        });
-      }
-    </script> -->
-
-  <script>
-    // var totalPrice = document.querySelector('#totalPrice');
-    // var resultPrice = parseInt(totalPrice.innerHTML);
-    // totalPrice.innerHTML = resultPrice;
-
-//     var memberName = document.querySelector('#memberName');
-//     console.log(!${memberName})
-//     if(!${member}) {
-//       memberName.innerText = "";
-//     } else {
-//       memberName.innerText = ${member.nickname}
-//     }
+    // 옵션 변경
+    $(document).on("change", ".input-quantity", function (tempAddQuantityNo, tempOptionRepriceNoH, tempOptionRepriceNoS, tempOptionRepriceNoA) {
+      tempRequantity = tempAddQuantityNo.target.value;
+      var tempOptionRepriceH = $(this).parent().children("[class^=optionRepriceNoH]").val();
+      tempReAddOptionPrice = tempOptionRepriceH * tempRequantity;
+      tempAddOptionPrice = tempReAddOptionPrice;
+      $(this).parent().children("[class^=optionRepriceNoA]").html(Number(tempReAddOptionPrice).toLocaleString('en') + ' 원');
+      $(this).parent().children("[id^=optionRepriceNoS]").val(tempAddOptionPrice);
+      reprice();
+    });
   </script>
+
+  <script>
+    function reprice() {
+      var myCheckPrice = document.getElementsByName('chkpriceS');
+      var checkPrice = 0;
+      for (j = 0; j < myCheckPrice.length; j++) {
+        checkPrice += parseInt(myCheckPrice[j].value);
+      }
+      totalCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en');
+    }
+  </script>
+
 </body>
 
 </html>
