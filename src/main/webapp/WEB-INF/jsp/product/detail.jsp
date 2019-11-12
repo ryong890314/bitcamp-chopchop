@@ -78,7 +78,6 @@
     <div id="productBody">
       <a href="updateform?no=${product.productNo}">수정</a>
 
-
       <div class="row">
         <div class="col-md-7">
           <!-- Blog Thumbnail -->
@@ -105,7 +104,6 @@
               </div>
             </div>
 
-
             <div class="row">
               <div class="col-md-4">
                 <label for="exampleInput">할인율</label>
@@ -114,7 +112,6 @@
                 <span>${product.discount} %</span>
               </div>
             </div>
-
 
             <div class="row">
               <div class="col-md-4">
@@ -150,11 +147,12 @@
                   <div class="form-group">
                     <select class="form-control optionselect" id="optionNo" name='optionNo'>
                       <option selected disabled>옵션을 선택해주세요</option>
-                      
+
                       <c:forEach items="${product.options}" var="productOption">
-                      <option value="${productOption.optionNo}" name="${productOption.price}" id="${productOption.title}">${productOption.title}
-                        (+${productOption.price}원)
-                      </option>
+                        <option value="${productOption.optionNo}" name="${productOption.price}"
+                          id="${productOption.title}">${productOption.title}
+                          (+${productOption.price}원)
+                        </option>
                       </c:forEach>
                     </select>
 
@@ -179,13 +177,6 @@
               </div>
 
               <hr>
-
-              <div>
-                  <a id="quantityCheckTest" style="color: red; margin: 10px; font-size: 20px;">0</a><a
-                    style="font-size: 20px;">수량</a>
-                </div>
-
-                <hr>
 
               <button class="btn bueno-btn" style="margin-top:10px; width:215px;" formaction="../cart/add">장바구니</button>
               <button class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
@@ -249,7 +240,7 @@
         var addOptionCheckNum = document.getElementsByClassName('addOptionNo');
         for (var i = 0; i < addOptionCheckNum.length; i++) {
           if (addOptionCheckNum[i].value == $(this).val()) {
-            alert("이미 등록된 옵션인디");
+            alert("이미 등록된 옵션입니다.");
             return false;
             break;
           }
@@ -271,33 +262,24 @@
       html += "</div>"
       html += "<input class='input-quantity' name='quantity' id='addQuantityNo" + count + "' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='0' max='1000'>";
       var tempAddQuantityNo = "addQuantityNo" + count;
-      
-      
       var tempRequantity = 1; // 변경될 수량
       var tempReAddOptionPrice = 0;
       html += "<c:forEach items='${product.options}' var='productOption'>"
-      
       if ('${productOption.optionNo}' == tempAddOptionNo) {
-        
         var tempAddOptionPriceUnit = parseInt("${((product.price) * (100 - product.discount) / 100 + productOption.price)}");
         var tempReAddOptionPrice = tempAddOptionPriceUnit * tempRequantity;
         var tempReAddOptionPriceA = Number(tempAddOptionPriceUnit * tempRequantity).toLocaleString('en'); // 출력용
       }
       html += "</c:forEach>"
-      
       var tempReAddOptionPriceS = tempAddOptionPriceUnit;
-      html += "<input class='input-price" + count + "' type='hidden' type='number' id='addOptionPriceNo" + count + "' value=" + tempReAddOptionPriceS + ">"
       var tempAddOptionPriceNo = "addOptionPriceNo" + count;
-
+      html += "<input class='input-price" + count + "' type='hidden' type='number' id='addOptionPriceNo" + count + "' value=" + tempReAddOptionPriceS + ">"
       html += "<a style='float: right; padding-top: 5px;' class='optionRepriceNoA" + count + "' value=" + tempReAddOptionPriceA + ' 원' + "> " + tempReAddOptionPriceA + " 원</a>";
       html += "<input type='hidden' name='chkprice' class='optionRepriceNoH" + count + "' value=" + tempReAddOptionPrice + ">"
-      html += "<input type='hidden' name='chkpriceS' class='optionRepriceNoS" + count + "' value=" + tempReAddOptionPriceS + ">";
+      html += "<input type='hidden' name='chkpriceS' id='optionRepriceNoS" + count + "' value=" + tempReAddOptionPriceS + ">";
       var tempOptionRepriceNoA = "optionRepriceNoA" + count; // (상품금액 + 옵션금액) * 수량
       var tempOptionRepriceNoH = "optionRepriceNoH" + count; // 상품금액 + 옵션금액
       var tempOptionRepriceNoS = "optionRepriceNoS" + count; // 전체 주문금액 합계
-      console.log(tempOptionRepriceNoA);
-      console.log(tempOptionRepriceNoH);
-      console.log(tempOptionRepriceNoS);
       html += "</div>"
       count++;
       $('#ingredient-block').append(html);
@@ -315,24 +297,13 @@
 
   <script>
     // 옵션 변경
-    $(document).on("change", ".input-quantity", function (tempAddQuantityNo, tempOptionRepriceNoH, tempOptionRepriceNoS) {
-      console.log(tempAddQuantityNo)
-      console.log(tempAddQuantityNo.target.value)
-      tempRequantity = tempAddQuantityNo.target.value;  
-
-      var tempOptionRepriceH = $(this).parent().children(".optionRepriceNoH1").val();
-      console.log(tempOptionRepriceH);
-
+    $(document).on("change", ".input-quantity", function (tempAddQuantityNo, tempOptionRepriceNoH, tempOptionRepriceNoS, tempOptionRepriceNoA) {
+      tempRequantity = tempAddQuantityNo.target.value;
+      var tempOptionRepriceH = $(this).parent().children("[class^=optionRepriceNoH]").val();
       tempReAddOptionPrice = tempOptionRepriceH * tempRequantity;
       tempAddOptionPrice = tempReAddOptionPrice;
-      console.log(tempReAddOptionPrice);
-
-      $(".optionRepriceNoA1").html(Number(tempAddOptionPrice).toLocaleString('en') + ' 원');
-      $(document).ready(function() {
-        $('.optionRepriceNoS1').val(tempAddOptionPrice);
-        console.log(tempAddOptionPrice.value)
-    });
-
+      $(this).parent().children("[class^=optionRepriceNoA]").html(Number(tempReAddOptionPrice).toLocaleString('en') + ' 원');
+      $(this).parent().children("[id^=optionRepriceNoS]").val(tempAddOptionPrice);
       reprice();
     });
   </script>
@@ -344,13 +315,7 @@
       for (j = 0; j < myCheckPrice.length; j++) {
         checkPrice += parseInt(myCheckPrice[j].value);
       }
-      // totalCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en');
-      //연습
-      
       totalCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en');
-      // totalCheckPrice.innerHTML = document.getElementById("checkPrice").value;
-      
-      quantityCheckTest.innerHTML = document.getElementById("addQuantityNo1").value;
     }
   </script>
 
