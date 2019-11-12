@@ -12,7 +12,7 @@
 <body>
 <jsp:include page="header.jsp"/>
     <!-- ##### Hero Area Start ##### -->
-    <div class="hero-area">
+    <div class="hero-area" style="width:1100px; margin: 0 auto;">
         <!-- Hero Post Slides -->
         <div class="hero-post-slides owl-carousel">
             <!-- Single Slide -->
@@ -21,7 +21,7 @@
                 <!-- Blog Thumbnail -->
                 <div class="blog-thumbnail">
 <!--                     <a href="#"><img src="../img/bg-img/2.jpg" alt=""></a> -->
-                    <a href="#"><img src="/upload/recipe/${recipe.thumbnail}" style="width:595px;height:525px;object-fit:cover;"></a>
+                    <a href="#"><img class="recipe_thumb" src="/upload/recipe/${recipe.thumbnail}" style="width:595px;height:400px;object-fit:cover;"></a>
                 </div>
   	            <!-- Blog Content -->
   	            <div class="blog-content-bg" onclick="aaa(${recipe.recipeNo});">
@@ -395,6 +395,15 @@
     <script src="../js/active.js"></script>
     
     <script type="text/javascript">
+    $(document).ready(function() {
+        $('.rolling_wrap').rolling({
+        arrowBtn:true,
+        rollingBtn:true,
+        main:true,
+        timer:6000
+      });
+    });
+    
     function aaa(rNo) {
     	alert(rNo);
     	alert($("#recipeNo").val());
