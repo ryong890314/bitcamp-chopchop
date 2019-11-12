@@ -110,7 +110,6 @@
 			var userEmail = $("input[name=email]").val();
 			$.get("/app/json/auth/getMember?email=" + userEmail,
 					function(data) {
-
 						if (data.state == "success") {
 							window.location.href = '/app/auth/getPassword?email=' + userEmail;
 						} else {
