@@ -23,6 +23,19 @@
       option_id asc
   </select>
   
+  <select id="findBy" parameterType="int" resultMap="ProductOptionMap">
+    select
+      option_id,
+      product_id,
+      title,
+      price
+    from
+      product_option
+    where
+      option_id=#{value}
+  </select>
+  
+  
   <insert id="insert" parameterType="ProductOption">
     insert into product_option(option_id,product_id,title,price)
     values(#{optionNo},#{productNo},#{title},#{price})

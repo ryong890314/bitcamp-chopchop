@@ -7,4 +7,5 @@ public interface ProductOptionDao {
   int insert(ProductOption productOption) throws Exception;
   List<ProductOption> findAll(ProductOption productOption) throws Exception;
   int deleteAll(int optionNo) throws Exception;
+  ProductOption findBy(int no) throws Exception;
 }

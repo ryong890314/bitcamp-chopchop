@@ -12,6 +12,8 @@ public class Cart {
   private Date createdDate;
   private boolean check;
   private Product product;
+  private ProductOption productOption;
+  
   
   private List<Product> products;
   private List<PhotoFile> files;
@@ -112,6 +114,14 @@ public class Cart {
 
   public void setProduct(Product product) {
     this.product = product;
+  }
+  
+  public ProductOption getProductOption() {
+    return productOption;
+  }
+
+  public void setProductOption(ProductOption productOption) {
+    this.productOption = productOption;
   }
 
   @Override

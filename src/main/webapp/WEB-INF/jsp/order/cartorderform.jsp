@@ -40,9 +40,9 @@
     <c:forEach items="${selected}" var="cart">
       <tr>
         <td>${cart.product.title}</td>
-        <td><fmt:formatNumber value="${cart.product.price}" pattern="#,###"/>원</td>
+        <td><fmt:formatNumber value="${cart.product.price}" pattern="#,###"/>원<br>옵션가는 ${cart.productOption.price}원</td>
         <td class="cartQuantity">${cart.quantity}개</td>
-        <td><fmt:formatNumber value="${((cart.product.price * (100-cart.product.discount)/100) + cart.options.price) * cart.quantity}" pattern="#,###"/>원</td>
+        <td><fmt:formatNumber value="${((cart.product.price * (100-cart.product.discount)/100) + cart.productOption.price) * cart.quantity}" pattern="#,###"/>원</td>
       </tr>
     </c:forEach>
     <tr>
@@ -197,22 +197,22 @@
   <jsp:include page="../footer.jsp"/>
 
   <script>
-    var totalPrice = $('.totalPrice');
-    var temp = 0;
-    for(var i of totalPrice){
-      i.innerText = parseInt(i.innerText);
-      temp += parseInt(i.innerText);
-      console.log(temp);
-    }
+//     var totalPrice = $('.totalPrice');
+//     var temp = 0;
+//     for(var i of totalPrice){
+//       i.innerText = parseInt(i.innerText);
+//       temp += parseInt(i.innerText);
+//       console.log(temp);
+//     }
     
-    var result = document.querySelector('#resultPrice');
+//     var result = document.querySelector('#resultPrice');
     
-    if(temp < 50000) {
-      temp += 2500;
-      console.log('배송비 더해서 ' + temp);
-    }
+//     if(temp < 50000) {
+//       temp += 2500;
+//       console.log('배송비 더해서 ' + temp);
+//     }
     
-    result.innerText = temp;
+//     result.innerText = temp;
     
   </script>
   

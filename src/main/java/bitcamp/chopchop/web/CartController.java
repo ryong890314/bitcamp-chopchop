@@ -77,8 +77,12 @@ public class CartController {
     List<Cart> selected = new ArrayList<>();
     for (int i = 0; i < arrIdx.length; i++) {
       selected.add(cartService.get(Integer.parseInt(arrIdx[i])));
-      cartService.get(Integer.parseInt(arrIdx[i])).setCheck(true);
     }
+    for (Cart tempCart : selected) {
+      System.out.println(tempCart.getOptionNo());
+      tempCart.setProductOption(cartService.getOption(tempCart.getOptionNo()));
+    }
+    
     session.setAttribute("selected", selected);
     return "redirect:../order/cartorderform";
   }

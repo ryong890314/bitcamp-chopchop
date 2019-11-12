@@ -15,6 +15,7 @@
 
    <resultMap type="Cart" id="findWithCartMap">
     <id column="cart_id" property="cartNo"/>
+    <result column="option_id" property="optionNo"/>
     <result column="member_id" property="memberNo"/>
     <result column="product_id" property="productNo"/>
     <result column="quantity" property="quantity"/>
@@ -44,7 +45,7 @@
       <result column="optionTitle" property="title"/>
       <result column="optionPrice" property="price"/>
     </collection>
-
+    
     <collection property="members" ofType="Member">
       <id column="member_id" property="memberNo"/>
       <result column="password" property="password"/>
@@ -57,8 +58,8 @@
       <result column="detail_address" property="detailAddress"/>
       <result column="grade" property="grade"/>
     </collection>
-  
   </resultMap>
+
 
   <select id="findAll" resultMap="CartMap">
     select
