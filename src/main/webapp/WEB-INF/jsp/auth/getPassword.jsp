@@ -65,7 +65,7 @@
 		</div>
 	</div>
 	<div class="get-password-button">
-		<Input type=button onclick="self.close()" class="passwordRequest"
+		<Input type="button" onclick="self.close()" class="passwordRequest"
 			value="창닫기">
 	</div>
 </div>

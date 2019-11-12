@@ -56,14 +56,18 @@ public class AuthController {
     return "redirect:signin";
   }
 
-  @RequestMapping(path = "getPassword", method = RequestMethod.POST)
+  @RequestMapping(path = "getPassword", method = RequestMethod.GET)
   public void gGmailSend(String email) throws Exception {
     try {
+      
       String user = "bitcamp1234@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
       String password = "kim1016!"; // 패스워드
 
       Member member = memberService.signEmailCheck(email);
 
+      System.out.println("들어옴  email" + email);
+      
+      System.out.println("맴버임:" + member ); 
       if (member != null) {
 
         // SMTP 서버 정보를 설정한다.
@@ -91,11 +95,13 @@ public class AuthController {
           uuid = uuid.substring(0, 10); // uuid를 앞에서부터 10자리 잘라줌.
         }
 
+        String userMessage = "<html><body>비밀번호 찾기 임시 비밀번호: " + uuid + " 변경된 비밀번호로 로그인 해주세요."
+            + "<a href='http://localhost:8888/app/auth/signin'>" + "login 하기"+ "</a></html></body>";
         // Subject
         message.setSubject("[ChopChop] - Temporary Password"); // 메일 제목을 입력
 
         // Text
-        message.setText("비밀번호 찾기 임시 비밀번호: " + uuid + "변경  하시려면 링크를 클릭해 주세요."); // 메일 내용을 입력
+        message.setText(userMessage, "utf-8", "html");
 
 
         // email로 member를 찾는다.

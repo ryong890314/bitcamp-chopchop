@@ -67,11 +67,34 @@
 					</div>
 
 					<div class="radio-box">
-						<input id="male" type="radio" name="gender" value="0"
-							checked="checked" /> <label for="male">Male</label> <input
-							id="female" type="radio" name="gender" value="1" /> <label
-							for="female">Female</label>
+
+						<c:if test="${pet.gender eq 0}">
+							<input id="male" type="radio" name="gender" value=0
+								checked="checked" />
+							<label for="male">Male</label>
+							<input id="female" type="radio" name="gender" value=1 />
+							<label for="female">Female</label>
+						</c:if>
+						
+						<c:if test="${pet.gender eq 1}">
+						<input id="male" type="radio" name="gender" value=0 checked="checked"/> <label
+              for="male">Male</label> <input id="female" type="radio"
+              name="gender" value=1 checked="checked"/> <label for="female">Female</label>
+						</c:if>
+
 					</div>
+					
+					
+					<%-- 
+					 						<input id="male" type="radio" name="gender" value="0"/> 
+						<label for="male">Male</label>
+						<c:if test="${pet.gender eq 0}">
+						</c:if>
+						<input id="female" type="radio" name="gender" value="1"/> <label
+							for="female">Female</label>
+						<c:if test="${pet.gender eq 1}">
+						</c:if>  --%>
+
 					<hr>
 					<button class="sub-btn" type="submit">Update</button>
 					<button class="sub-btn" style="margin-top: -10px;"
