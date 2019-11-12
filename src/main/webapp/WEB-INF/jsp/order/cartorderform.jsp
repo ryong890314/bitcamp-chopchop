@@ -40,9 +40,9 @@
     <c:forEach items="${selected}" var="cart">
       <tr>
         <td>${cart.product.title}</td>
-        <td>${cart.product.price}원</td>
+        <td><fmt:formatNumber value="${cart.product.price}" pattern="#,###"/>원</td>
         <td class="cartQuantity">${cart.quantity}개</td>
-        <td><span class="totalPrice">${cart.product.price * cart.quantity * (100-cart.product.discount)/100}</span>원</td>
+        <td><fmt:formatNumber value="${((cart.product.price * (100-cart.product.discount)/100) + cart.options.price) * cart.quantity}" pattern="#,###"/>원</td>
       </tr>
     </c:forEach>
     <tr>
@@ -148,7 +148,6 @@
       </div>
       <input type="hidden" name="optionNo" value=1>
       <input type="hidden" name="quantity" value="${quantity}">
-      <input type="hidden" id="discountPrice" name="discountPrice" value="${cart.product.price * cart.quantity * (100-cart.product.discount)/100}">
 <!--     </div> -->
   <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

@@ -62,4 +62,9 @@ public class DefaultOrderService implements OrderService {
     orderProductDao.delete(no);
     orderDao.delete(no);
   }
+  
+  @Override
+  public List<OrderProduct> searchByMember(int no) throws Exception {
+    return orderProductDao.findByMemberWith(no);
+  }
 }
