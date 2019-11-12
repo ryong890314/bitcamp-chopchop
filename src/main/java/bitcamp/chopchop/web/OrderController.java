@@ -1,6 +1,5 @@
 package bitcamp.chopchop.web;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -72,25 +71,14 @@ public class OrderController {
   public void searchByMember(
       Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
-    List<Order> orders = new ArrayList<>();
-    List<OrderProduct> orderProducts = new ArrayList<>();
+    List<OrderProduct> orderProducts2 = orderService.searchByMember(member.getMemberNo());
 
-    for (Order order : orderService.list()) {
-      if(order.getMemberNo() == member.getMemberNo()) {
-        orders.add(order);
-        orderProducts.add(orderService.getOrderProduct(order.getOrderNo()));
-      }
-    }
-
-    for(OrderProduct op : orderProducts) {
+    for(OrderProduct op : orderProducts2) {
       op.setProduct(productService.get(op.getProductNo()));
       op.setOrder(orderService.get(op.getOrderNo()));
-      System.out.println(op.getOrderNo());
-
     }
     model.addAttribute("loginUser", member);
-    model.addAttribute("orders", orders);
-    model.addAttribute("orderProducts", orderProducts);
+    model.addAttribute("orderProducts2", orderProducts2);
   }
 
   @PostMapping("add")
@@ -123,19 +111,19 @@ public class OrderController {
     orderService.insert(order);
     if (selectedProduct != null) {
       for (Cart cart : selectedProduct) {
+        
         orderProduct.setProductNo(cart.getProductNo());
         orderProduct.setOptionNo(optionNo);
         orderProduct.setQuantity(cart.getQuantity());
-        orderProduct.setDiscountPrice(
-            cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount())/100) * cart.getQuantity());
+        orderProduct.setDiscountPrice((cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount()) * cart.getQuantity()) / 100));
+//        System.out.println("총액은2 " + (cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount()) * cart.getQuantity()) / 100));
         orderService.insert(orderProduct, order);
+        cartService.delete(cart.getCartNo());
       }
     }
     session.setAttribute("order", order);
     return "redirect:../product/list";
-
   }
-
 
   @GetMapping("delete")
   public String delete(int no) throws Exception {

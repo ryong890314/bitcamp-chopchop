@@ -54,8 +54,8 @@
         <th>상품/옵션정보</th>
         <th style="width: 80px">수량</th>
         <th>상품금액</th>
-        <th style="width: 80px">할인율</th>
-        <th>할인적용금액</th>
+        <th style="width: 80px">옵션가</th>
+        <th>총액</th>
         <th style="width: 100px">배송비</th>
         <th style="width: 50px">주문</th>
     
@@ -77,9 +77,9 @@
               ${product.title}<br>
             </c:forEach>
               <hr>
-              <c:forEach items="${cart.options}" var="productOption">
-              ${productOption.title}
-            </c:forEach>
+                <c:forEach items="${cart.options}" var="productOption">
+                  ${productOption.title}  가격: <fmt:formatNumber value="${productOption.price}" pattern="#,###"/>원<br>
+                </c:forEach>
             </td>
           <td>
             <form action="update" method="POST">
@@ -92,19 +92,22 @@
           </td>
           <c:forEach items="${cart.products}" var="product">
               <c:forEach items="${cart.options}" var="productOption">
-            <td><fmt:formatNumber value="${(product.price + productOption.price) * cart.quantity}" pattern="#,###"/>원</td>
+            <td>
+              <span style="text-decoration:line-through"><fmt:formatNumber value="${(product.price + productOption.price) * cart.quantity}" pattern="#,###"/>원<br></span>
+              <fmt:formatNumber value="${product.price * ((100-product.discount)/100) * cart.quantity}" pattern="#,###"/>원
+            </td>
           </c:forEach>
           </c:forEach>
-            
-          <c:forEach items="${cart.products}" var="product">
-              <td>${product.discount}%</td>
+          <td>
+            <c:forEach items="${cart.options}" var="option">
+              <fmt:formatNumber value="${option.price * cart.quantity}" pattern="#,###"/>원
             </c:forEach>
-
+          </td>
             <c:forEach items="${cart.products}" var="product">
             <c:forEach items="${cart.options}" var="productOption">
             <td>
-                    <a style=" text-decoration:line-through"><fmt:formatNumber value="${(product.price + productOption.price) * cart.quantity}" pattern="#,###"/>원</a><br>
-                    <a style="color:red"><fmt:formatNumber value="${(product.price + productOption.price) * (100 - product.discount) / 100 * cart.quantity}" pattern="#,###"/>원</a><br>
+<%--                     <a style="text-decoration:line-through"><fmt:formatNumber value="${(product.price + productOption.price) * cart.quantity}" pattern="#,###"/>원</a><br> --%>
+                    <a style="color:red"><fmt:formatNumber value="${((product.price * (100 - product.discount) / 100) + productOption.price) * cart.quantity}" pattern="#,###"/>원</a><br>
                     <input type="hidden" name="chkprice" value="${(product.price + productOption.price) * (100 - product.discount) / 100 * cart.quantity}">
                   </td>
               </c:forEach>
@@ -268,7 +271,9 @@
     }
   </script>
 
-
+  <script>
+  
+  </script>
 
 
 

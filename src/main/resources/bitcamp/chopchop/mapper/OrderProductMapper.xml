@@ -51,6 +51,21 @@
       order_id=#{value};
   </select>
   
+    <select id="findByMemberWith" parameterType="int" resultMap="OrderProductMap">
+    select
+      op.order_id,
+      op.product_id,
+      op.quantity,
+      op.option_id,
+      op.discount_price,
+      o.member_id
+    from
+      order_product op
+        left outer join store_order o on op.order_id=o.order_id
+    where
+      member_id=#{value};
+  </select>
+  
   <insert id="insert" parameterType="OrderProduct" useGeneratedKeys="true" keyColumn="order_product_id" keyProperty="orderProductNo">
     insert into order_product(order_id, product_id, option_id, quantity, discount_price)
     values(#{orderNo}, #{productNo}, #{optionNo}, #{quantity},#{discountPrice}) 
@@ -60,8 +75,6 @@
     delete from order_product
     where order_id=#{value}
   </delete>
-  
-  
   
 <!--   <select id="findBy" parameterType="int" resultMap="OrderProductMap"> -->
 <!--     select  -->

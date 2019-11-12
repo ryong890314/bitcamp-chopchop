@@ -49,7 +49,7 @@
           <th>상태</th>
           <th></th>
         </tr>
-        <c:forEach items="${orderProducts}" var="orderProduct">
+        <c:forEach items="${orderProducts2}" var="orderProduct">
           <tr>
             <td>${orderProduct.orderNo}</td>
             <td>${orderProduct.product.title}</td>
@@ -68,14 +68,6 @@
     </div>
   </div>
   <jsp:include page="../footer.jsp"/>
-  <script>
-    "use strict"
-    $('#updateBtn').on('click', function( {
-      
-      
-    }))
-  </script>
-  
 </body>
 </html>
 
