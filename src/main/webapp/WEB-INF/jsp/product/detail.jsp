@@ -186,8 +186,6 @@
         </div>
       </div>
 
-
-
       <hr class="my-4">
       <h1 class="display-4">${product.title}</h1>
       <p class="lead">${product.detail}</p>
@@ -320,6 +318,15 @@
       totalCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en');
     }
   </script>
+
+<script>
+// 장바구니 담기
+function add_cart() {
+
+
+
+}
+</script>
 
 </body>
 
