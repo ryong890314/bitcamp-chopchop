@@ -241,6 +241,7 @@
         for (var i = 0; i < addOptionCheckNum.length; i++) {
           if (addOptionCheckNum[i].value == $(this).val()) {
             alert("이미 등록된 옵션입니다.");
+            $(".optionselect").find("option:eq(0)").prop("selected", true);
             return false;
             break;
           }
@@ -283,6 +284,7 @@
       html += "</div>"
       count++;
       $('#ingredient-block').append(html);
+      $(".optionselect").find("option:eq(0)").prop("selected", true);
     }
   </script>
 
