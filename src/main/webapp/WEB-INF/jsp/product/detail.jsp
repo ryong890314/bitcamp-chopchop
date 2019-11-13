@@ -136,55 +136,51 @@
             </div>
 
             <!-- <form action="../order/form" method="post"> -->
-
-
-            <div class="row">
-              <div class="col-md-4">
-                <label for="exampleInput">옵션</label>
-              </div>
-              <div class="col-md-8">
-
-                <div class="form-group">
-                  <select class="form-control optionselect" id="optionNo" name='optionNo'>
-                    <option selected disabled>옵션을 선택해주세요</option>
-
-                    <c:forEach items="${product.options}" var="productOption">
-                      <option value="${productOption.optionNo}" name="${productOption.price}"
-                        id="${productOption.title}">${productOption.title}
-                        (+${productOption.price}원)
-                      </option>
-                    </c:forEach>
-                  </select>
-
-                </div>
-
-              </div>
-              <div id="ingredient-block" class="block-content">
-                <!-- 상품옵션 들어가는 Div -->
-              </div>
-            </div>
-
-            <hr>
-
-            <div class="row">
-              <div class="col-md-4">
-                <label for="exampleInput">주문금액</label>
-              </div>
-              <div class="col-md-8" style="text-align: right;">
-                <a id="totalCheckPrice" style="color: red; margin: 10px; font-size: 20px;">0</a><a
-                  style="font-size: 20px;">원</a>
-              </div>
-            </div>
-
-            <hr>
             <form>
               <input type='hidden' name='no' value='${product.productNo}'>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="exampleInput">옵션</label>
+                </div>
+                <div class="col-md-8">
+
+                  <div class="form-group">
+                    <select class="form-control optionselect" id="optionNo" name='optionNo'>
+                      <option selected disabled>옵션을 선택해주세요</option>
+
+                      <c:forEach items="${product.options}" var="productOption">
+                        <option value="${productOption.optionNo}" name="${productOption.price}"
+                          id="${productOption.title}">${productOption.title}
+                          (+${productOption.price}원)
+                        </option>
+                      </c:forEach>
+                    </select>
+
+                  </div>
+
+                </div>
+                <div id="ingredient-block" class="block-content">
+                  <!-- 상품옵션 들어가는 Div -->
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="exampleInput">주문금액</label>
+                </div>
+                <div class="col-md-8" style="text-align: right;">
+                  <a id="totalCheckPrice" style="color: red; margin: 10px; font-size: 20px;">0</a><a
+                    style="font-size: 20px;">원</a>
+                </div>
+              </div>
+
+              <hr>
+
               <button class="btn bueno-btn" style="margin-top:10px; width:215px;" onclick="add_cart()">장바구니</button>
               <button class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
-<!--               <button class="btn bueno-btn" style="margin-top:10px; width:215px;" formaction="../cart/add">장바구니</button> -->
-<!--               <button class="btn bueno-btn" style="margin-top:10px; width:215px;" formaction="../cart/add">구매하기</button> -->
             </form>
-            <!-- </form> -->
 
           </div>
         </div>

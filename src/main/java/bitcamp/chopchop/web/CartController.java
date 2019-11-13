@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.domain.ProductOption;
 import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.MemberService;
+import bitcamp.chopchop.service.ProductOptionService;
 import bitcamp.chopchop.service.ProductService;
 
 @Controller
@@ -29,6 +31,8 @@ public class CartController {
   private MemberService memberService;
   @Resource
   private ProductService productService;
+  @Resource
+  private ProductOptionService productOptionService;
 
   @GetMapping("list")
   public void list(Model model) throws Exception {
@@ -38,9 +42,10 @@ public class CartController {
   @GetMapping("add")
   public void add(Cart cart, Product product, int no, Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
+    System.out.println("들어가나");
     cart.setMemberNo(member.getMemberNo());
     cart.setProductNo(productService.get(no).getProductNo());
-    System.out.println(cart);
+    // cart.setOptionNo(productOptionService.get(no).getOptionNo());
     cartService.insert(cart);
   }
 
@@ -67,6 +72,7 @@ public class CartController {
   @GetMapping("chkoption")
   public String chkoption(
       HttpSession session, @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
+    System.out.println("들어왔나");
     String[] arrIdx = paramMap.get("chkbox").toString().split(",");
     List<Cart> selected = new ArrayList<>();
     for (int i = 0; i < arrIdx.length; i++) {
