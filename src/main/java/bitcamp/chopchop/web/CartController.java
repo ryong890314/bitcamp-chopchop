@@ -70,7 +70,6 @@ public class CartController {
   @GetMapping("chkoption")
   public String chkoption(
       HttpSession session, @RequestParam Map<String, String> paramMap, Cart cart) throws Exception {
-    System.out.println("들어왔나");
     String[] arrIdx = paramMap.get("chkbox").toString().split(",");
     List<Cart> selected = new ArrayList<>();
     for (int i = 0; i < arrIdx.length; i++) {
