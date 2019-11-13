@@ -39,15 +39,12 @@ public class CartController {
     model.addAttribute("carts", cartService.list());
   }
 
-  @PostMapping("add")
-  public String add(Cart cart, Product product, int no, Model model, HttpSession session) throws Exception {
+  @GetMapping("add")
+  public void add(Cart cart, Product product, int no, Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
     cart.setMemberNo(member.getMemberNo());
     cart.setProductNo(productService.get(no).getProductNo());
-    
     cartService.insert(cart);
-
-    return "redirect:search";
   }
 
   // button delete
