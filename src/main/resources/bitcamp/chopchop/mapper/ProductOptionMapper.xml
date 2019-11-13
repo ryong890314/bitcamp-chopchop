@@ -11,6 +11,11 @@
     <result column="price" property="price"/>
   </resultMap>
   
+  <insert id="insert" parameterType="ProductOption" useGeneratedKeys="true" keyColumn="product_option_id" keyProperty="optionNo">
+    insert into product_option(product_id, title, price)
+    values(#{productNo}, #{title}, #{price})
+  </insert>
+  
   <select id="findAll" resultMap="ProductOptionMap">
     select 
       option_id,
@@ -21,6 +26,18 @@
       product_option
     order by
       option_id asc
+  </select>
+  
+  <select id="findWithProduct" parameterType="int" resultMap="ProductOptionMap">
+    select
+      option_id,
+      product_id,
+      title,
+      price
+    from
+      product_option
+    where
+      product_id=#{value}
   </select>
   
   <select id="findBy" parameterType="int" resultMap="ProductOptionMap">
@@ -35,14 +52,24 @@
       option_id=#{value}
   </select>
   
+  <update id="update" parameterType="ProductOption">
+    update
+      product_option
+    set
+      title=#{title},
+      price=#{price}
+    where
+      option_id=#{optionNo}
+  </update>
   
-  <insert id="insert" parameterType="ProductOption">
-    insert into product_option(option_id,product_id,title,price)
-    values(#{optionNo},#{productNo},#{title},#{price})
-  </insert>
   
+  <delete id="delete" parameterType="int">
+    delete from product_option
+    where option_id=#{value}
+  </delete>
+
   <delete id="deleteAll" parameterType="int">
-    delete from store_photo
+    delete from product_option
     where product_id=#{value}
   </delete>
 
