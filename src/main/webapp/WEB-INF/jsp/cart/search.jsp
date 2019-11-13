@@ -78,7 +78,7 @@
             </c:forEach>
               <hr>
                 <c:forEach items="${cart.options}" var="productOption">
-                  ${productOption.title}  가격: <fmt:formatNumber value="${productOption.price}" pattern="#,###"/>원<br>
+                  ${productOption.title} ( +<fmt:formatNumber value="${productOption.price}" pattern="#,###"/>원 )<br>
                 </c:forEach>
             </td>
           <td>
@@ -93,7 +93,7 @@
           <c:forEach items="${cart.products}" var="product">
               <c:forEach items="${cart.options}" var="productOption">
             <td>
-              <span style="text-decoration:line-through"><fmt:formatNumber value="${(product.price + productOption.price) * cart.quantity}" pattern="#,###"/>원<br></span>
+              <span style="text-decoration:line-through"><fmt:formatNumber value="${product.price * cart.quantity}" pattern="#,###"/>원<br></span>
               <fmt:formatNumber value="${product.price * ((100-product.discount)/100) * cart.quantity}" pattern="#,###"/>원
             </td>
           </c:forEach>

@@ -146,7 +146,7 @@
         <button type="button" id="orderButton" class="btn btn-success" data-toggle="modal" data-target="#orderModal">주문</button>
         <a href="../product/list" class="btn btn-danger" style="margin-left:30px;">취소</a>
       </div>
-      <input type="hidden" name="optionNo" value=1>
+      <input type="hidden" name="optionNo" value="${optionNo}">
       <input type="hidden" name="quantity" value="${quantity}">
 <!--     </div> -->
   <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
