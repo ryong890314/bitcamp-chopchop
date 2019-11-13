@@ -22,15 +22,15 @@
     <result column="created_date" property="createdDate"/>
 
     <collection property="products" ofType="Product">
-    <id column="product_id" property="productNo"/>
-    <result column="title" property="title"/>
-    <result column="price" property="price"/>
-    <result column="detail" property="detail"/>
-    <result column="stock" property="stock"/>
-    <result column="discount" property="discount"/>
-    <result column="category" property="category"/>
-    <result column="species" property="species"/>
-    <result column="view_count" property="viewCount"/>
+      <id column="product_id" property="productNo"/>
+      <result column="title" property="title"/>
+      <result column="price" property="price"/>
+      <result column="detail" property="detail"/>
+      <result column="stock" property="stock"/>
+      <result column="discount" property="discount"/>
+      <result column="category" property="category"/>
+      <result column="species" property="species"/>
+      <result column="view_count" property="viewCount"/>
     </collection>
 
     <collection property="files" ofType="PhotoFile">
@@ -60,6 +60,23 @@
     </collection>
   </resultMap>
 
+
+<!--   <resultMap type="Cart" id="findWithOptionMap"> -->
+<!--     <id column="cart_id" property="CartNo"/> -->
+<!--     <result column="option_id" property="optionNo"/> -->
+<!--     <result column="member_id" property="memberNo"/> -->
+<!--     <result column="product_id" property="productNo"/> -->
+<!--     <result column="quantity" property="quantity"/> -->
+<!--     <result column="created_date" property="createdDate"/> -->
+    
+<!--     <association property="productOption" javaType="ProductOption"> -->
+<!--       <id column="option_id" property="optionNo"/> -->
+<!--       <result column="product_id" property="productNo"/> -->
+<!--       <result column="optionTitle" property="title"/> -->
+<!--       <result column="optionPrice" property="price"/> -->
+<!--     </association> -->
+<!--   </resultMap> -->
+  
 
   <select id="findAll" resultMap="CartMap">
     select
