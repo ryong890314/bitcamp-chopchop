@@ -44,7 +44,6 @@ public class OrderController {
     Member member = memberService.get(loginUser.getMemberNo());
     Product product = productService.get(no);
 
-    
     model.addAttribute("loginUser", member);
     model.addAttribute("product", product); // 주문에서 선택한 상품
     model.addAttribute("quantity", quantity);

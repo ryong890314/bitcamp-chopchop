@@ -44,6 +44,7 @@ public class CartController {
     Member member = (Member) session.getAttribute("loginUser");
     cart.setMemberNo(member.getMemberNo());
     cart.setProductNo(productService.get(no).getProductNo());
+    
     cartService.insert(cart);
 
     return "redirect:search";
