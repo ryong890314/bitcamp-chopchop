@@ -135,8 +135,8 @@
               </div>
             </div>
 
-            <form action="../order/form" method="post">
-
+            <!-- <form action="../order/form" method="post"> -->
+            <form>
               <input type='hidden' name='no' value='${product.productNo}'>
               <div class="row">
                 <div class="col-md-4">
@@ -178,7 +178,7 @@
 
               <hr>
 
-              <button class="btn bueno-btn" style="margin-top:10px; width:215px;" formaction="../cart/add">장바구니</button>
+              <button class="btn bueno-btn" style="margin-top:10px; width:215px;" onclick="add_cart()">장바구니</button>
               <button class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
             </form>
 
