@@ -132,8 +132,8 @@
   </select>
   
   <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyColumn="cart_id" keyProperty="cartNo">
-    insert into cart(member_id, product_id, option_id, quantity)
-    values(#{memberNo},#{productNo},#{optionNo},#{quantity}) 
+    insert into cart(member_id, product_id, quantity)
+    values(#{memberNo},#{productNo},#{quantity}) 
   </insert>
   
   <update id="update" parameterType="Cart">

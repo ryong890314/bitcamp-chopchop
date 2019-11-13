@@ -30,10 +30,6 @@ public class CartController {
   @Resource
   private ProductService productService;
 
-  @GetMapping("form")
-  public void form() {
-  }
-
   @GetMapping("list")
   public void list(Model model) throws Exception {
     model.addAttribute("carts", cartService.list());
@@ -44,6 +40,7 @@ public class CartController {
     Member member = (Member) session.getAttribute("loginUser");
     cart.setMemberNo(member.getMemberNo());
     cart.setProductNo(productService.get(no).getProductNo());
+    System.out.println(cart);
     cartService.insert(cart);
   }
 
@@ -84,10 +81,10 @@ public class CartController {
     return "redirect:../order/cartorderform";
   }
 
-  @GetMapping("detail")
-  public void detail(Model model, int no) throws Exception {
-    model.addAttribute("cart", cartService.get(no));
-  }
+//  @GetMapping("detail")
+//  public void detail(Model model, int no) throws Exception {
+//    model.addAttribute("cart", cartService.get(no));
+//  }
 
   @GetMapping("search")
   public void search(Model model, HttpSession session) throws Exception {
@@ -102,27 +99,6 @@ public class CartController {
     System.out.println("나와라~");
     cartService.update(cart);
     return "redirect:search";
-  }
-
-  // 테스트용
-  // @PostMapping("update")
-  // @ResponseBody
-  // public String update(Cart cart, HttpServletRequest request) 
-  //     throws Exception {
-  //       System.out.println("나와라~");
-  //   cartService.update(cart);
-  //   return "redirect:search";
-  // }
-
-  // 테스트용
-  @GetMapping("test")
-  public void test(Model model, HttpSession session) throws Exception {
-    Member member = (Member) session.getAttribute("loginUser");
-    System.out.println("test" + member.getMemberNo());
-    List<Cart> carts = cartService.search(member.getMemberNo());
-
-    // Member member = memberService.get(no);
-    model.addAttribute("carts", carts);
   }
 }
 

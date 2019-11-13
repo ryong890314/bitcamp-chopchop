@@ -36,17 +36,15 @@ public class OrderController {
   private MemberService memberService;
   
   
-  @PostMapping("form")
+  @GetMapping("form")
   public void form(
-      int no, Model model, int quantity, HttpSession session, @
+      int no, Model model, HttpSession session, @
       ModelAttribute("loginUser") Member loginUser) 
           throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
     Product product = productService.get(no);
-
     model.addAttribute("loginUser", member);
     model.addAttribute("product", product); // 주문에서 선택한 상품
-    model.addAttribute("quantity", quantity);
   }
 
   @GetMapping("cartorderform")

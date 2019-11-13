@@ -181,8 +181,8 @@
               <input type='hidden' name='no' value='${product.productNo}'>
               <button class="btn bueno-btn" style="margin-top:10px; width:215px;" onclick="add_cart()">장바구니</button>
               <button class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
-              <!-- <button class="btn bueno-btn" style="margin-top:10px; width:215px;" formaction="../cart/add">장바구니</button>
-              <button class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button> -->
+<!--               <button class="btn bueno-btn" style="margin-top:10px; width:215px;" formaction="../cart/add">장바구니</button> -->
+<!--               <button class="btn bueno-btn" style="margin-top:10px; width:215px;" formaction="../cart/add">구매하기</button> -->
             </form>
             <!-- </form> -->
 
@@ -226,7 +226,6 @@
       </div>
     </div>
   </div>
-
   <jsp:include page="../footer.jsp" />
 
   <script>
