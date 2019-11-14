@@ -28,7 +28,7 @@
 								class="fa fa-behance" aria-hidden="true"></i></a> <a href="#"
 								data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i
 								class="fa fa-linkedin" aria-hidden="true"></i></a>
-								<a href="/app/member/list" style="text-decoration:none; font-size:60px; margin-left: 60%; margin-bottom:20px; opacity:0.7;">ChopChop</a>
+								<a href="/app/index" style="text-decoration:none; font-size:60px; margin-left: 60%; margin-bottom:20px; opacity:0.7;">ChopChop</a>
 						</div>
 					</div>
 					<div class="col-12 col-sm-6 col-lg-5 col-xl-4">
@@ -62,7 +62,7 @@
 							<!-- Nav Start -->
 							<div class="classynav">
 								<ul>
-									<li><a class="nav-items" href="/app/member/list">Home</a></li>
+									<li><a class="nav-items" href="/app/index">Home</a></li>
 									<li><a class="nav-items" href="#">ChopRecipe</a>
 									<li><a class="nav-items" href="">ChopStore</a></li>
 									<li><a class="nav-items" href="">ChopTalk</a></li>

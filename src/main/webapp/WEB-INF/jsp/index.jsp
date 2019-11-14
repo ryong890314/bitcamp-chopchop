@@ -28,7 +28,7 @@
     
 #prod_columns figure:hover {
     box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    cursor: pointer;
+    
 }
 
 #prod_columns figure img {
@@ -47,6 +47,7 @@
 <body>
 <jsp:include page="header.jsp"/>
     <!-- ##### Hero Area Start ##### -->
+    <h3>popular recipe</h3>
     <div class="hero-area" style="width:1100px; margin: 0 auto;">
         <!-- Hero Post Slides -->
         <div class="hero-post-slides owl-carousel">
@@ -55,19 +56,19 @@
             <div class="single-slide">
                 <!-- Blog Thumbnail -->
                 <div class="blog-thumbnail">
-                    <a href="#"><img class="recipe_thumb" src="/upload/recipe/${recipe.thumbnail}" 
+                    <a href="/app/recipe/detail?no=${recipe.recipeNo}"><img class="recipe_thumb" src="/upload/recipe/${recipe.thumbnail}" 
                     style="width:595px;height:400px;object-fit:cover;"></a>
                 </div>
   	            <!-- Blog Content -->
   	            <div class="blog-content-bg" >
-                  <input type="text" name="recipeNo" id="recipeNo" value="${recipe.recipeNo}">
+                  <input type="hidden" name="recipeNo" id="recipeNo" value="${recipe.recipeNo}">
     	            <div class="blog-content-bg">
   	                <div class="blog-content">
-	                    <a href="#" class="post-tag">${recipe.category}</a>
-	                    <a href="#" class="post-title titlaa">${recipe.title}</a>
+	                    <span class="post-tag">${recipe.category}</span>
+	                    <a href="/app/recipe/detail?no=${recipe.recipeNo}" class="post-title titlaa">${recipe.title}</a>
                       <div class="post-meta">
-                        <a href="#" class="post-date">${recipe.createdDate}</a>
-                        <a href="#" class="post-author">by ${recipe.memberNo}</a>
+                        <span class="post-author">by ${recipe.memberNo}</span><br>
+                        <span class="post-date">${recipe.createdDate}</span>
                       </div>
   	                </div>
     	            </div>
@@ -82,6 +83,7 @@
     <div class="post-catagory section-padding-100-0 mb-70">
         <div class="container">
             <div class="row justify-content-center">
+            <h3>chop Store</h3>
                 <!-- Single Post Catagory -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-post-catagory mb-30">
@@ -89,7 +91,7 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="/app/product/category?species=강아지" class="post-tag">chop store</a>
+                                <span class="post-tag">chop store</span>
                                 <a href="/app/product/category?species=강아지" class="post-title">강아지</a>
                             </div>
                         </div>
@@ -102,7 +104,7 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="/app/product/category?species=고양이" class="post-tag">chop store</a>
+                                <span class="post-tag">chop store</span>
                                 <a href="/app/product/category?species=고양이" class="post-title">고양이</a>
                             </div>
                         </div>
@@ -115,7 +117,7 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="/app/product/category?species=작은" class="post-tag">chop store</a>
+                                <span class="post-tag">chop store</span>
                                 <a href="/app/product/category?species=작은" class="post-title">작은친구들</a>
                             </div>
                         </div>
@@ -129,14 +131,15 @@
 <div class="bueno-post-area mb-70">
   <div class="container">
     <div class="row ">
-      <h3>chopStore best product</h3>
+      <h3>popular product</h3>
         <div id="prod_columns">
-          <c:forEach items="${productList}" var="product">
+          <c:forEach items="${productList}" var="product" begin='0' end="7" >
             <figure>
-              <img src="/upload/product/${product.files[0].filePath}" >
+              <a href="/app/product/detail?no=${product.productNo}"><img src="/upload/product/${product.files[0].filePath}"></a>
               <figcaption>
                 <div class="product-info">
-                  <div class="product-title"><b>${product.title}</b></div>
+                <a href="/app/product/detail?no=${product.productNo}">
+                <div class="product-title"><b>${product.title}</b></div></a>
                   <div class="product-detail"><span>${product.detail}</span></div>
                   <div class="product-price"><span>${product.price}원</span></div>
                 </div>
@@ -241,8 +244,8 @@
     <script type="text/javascript">
     
     function aaa(rNo) {
-    	alert("rNo ===>", rNo);
-    	alert("recipeNo ===>", $("#recipeNo").val());
+    	alert('rNo ===>', rNo);
+    	alert('recipeNo ===>', $('#recipeNo').val());
     	frm.submit();
     }
     </script>
