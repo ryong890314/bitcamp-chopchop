@@ -51,16 +51,16 @@ public class CartController {
   @PostMapping("add")
   @ResponseBody
   public JsonResult add(@RequestBody CartProduct product, Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) throws Exception {
-//    Member member = memberService.get(loginUser.getMemberNo());
     for(int i=0; i<product.getOptions().size(); i++) {
       Cart cart = new Cart();
       cart.setMemberNo(memberService.get(loginUser.getMemberNo()).getMemberNo());
       cart.setProductNo(product.getNo());
       cart.setOptionNo(product.getOptions().get(i).getNo());
       cart.setQuantity(product.getOptions().get(i).getQuantity());
+      cart.setProduct(productService.get(product.getNo()));
       cartService.insert(cart);
     }
-    
+    session.setAttribute("cartProduct", product);
     return new JsonResult().setState(JsonResult.SUCCESS);
   }
 
@@ -94,8 +94,6 @@ public class CartController {
       selected.add(cartService.get(Integer.parseInt(arrIdx[i])));
     }
     for (Cart tempCart : selected) {
-      System.out.println(tempCart.getOptionNo());
-      tempCart.setProductOption(cartService.getOption(tempCart.getOptionNo()));
     }
     
     session.setAttribute("selected", selected);
@@ -108,9 +106,8 @@ public class CartController {
   }
 
   @GetMapping("search")
-  public void search(Model model, HttpSession session) throws Exception {
-    Member member = (Member) session.getAttribute("loginUser");
-    List<Cart> carts = cartService.search(member.getMemberNo());
+  public void search(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    List<Cart> carts = cartService.search(loginUser.getMemberNo());
     model.addAttribute("carts", carts);
   }
 

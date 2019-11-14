@@ -52,11 +52,7 @@ public class OrderController {
     @SuppressWarnings("unchecked")
     List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selected");
     for(Cart cart : selectedProduct) {
-      cart.setProduct(productService.get(cart.getProductNo()));
-      cart.setProductOption(cartService.getOption(cart.getOptionNo()));
-      System.out.println("카트번호는 " + cart.getCartNo());
-      System.out.println("옵션번호는 " + cart.getOptionNo());
-      System.out.println("옵션은" + cart.getProductOption());
+      System.out.println(cart.getCartProducts());
     }
     model.addAttribute("selected", selectedProduct);
     session.setAttribute("selectedProduct", selectedProduct);
@@ -115,7 +111,7 @@ public class OrderController {
         orderProduct.setProductNo(cart.getProductNo());
         orderProduct.setOptionNo(optionNo);
         orderProduct.setQuantity(cart.getQuantity());
-        orderProduct.setDiscountPrice((cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount()) * cart.getQuantity()) / 100));
+//        orderProduct.setDiscountPrice((cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount()) * cart.getQuantity()) / 100));
 //        System.out.println("총액은2 " + (cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount()) * cart.getQuantity()) / 100));
         orderService.insert(orderProduct, order);
         cartService.delete(cart.getCartNo());

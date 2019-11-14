@@ -10,14 +10,9 @@ public class Cart {
   private int optionNo;
   private int quantity;
   private Date createdDate;
-  private Product product;
-  private ProductOption productOption;
   
-  
-  private List<Product> products;
   private List<PhotoFile> files;
-  private List<Member> members;
-  private List<ProductOption> options;
+  private List<CartProduct> cartProducts;
 
   public int getCartNo() {
     return cartNo;
@@ -29,14 +24,6 @@ public class Cart {
 
   public void setOptionNo(int optionNo) {
     this.optionNo = optionNo;
-  }
-
-  public List<ProductOption> getOptions() {
-    return options;
-  }
-
-  public void setOptions(List<ProductOption> options) {
-    this.options = options;
   }
 
   public void setCartNo(int cartNo) {
@@ -75,14 +62,6 @@ public class Cart {
     this.createdDate = createdDate;
   }
   
-  public List<Product> getProducts() {
-    return products;
-  }
-  
-  public void setProducts(List<Product> products) {
-    this.products = products;
-  }
-  
   public List<PhotoFile> getFiles() {
     return files;
   }
@@ -90,35 +69,19 @@ public class Cart {
   public void setFiles(List<PhotoFile> files) {
     this.files = files;
   }
-  
-  public List<Member> getMembers() {
-    return members;
-  }
-  
-  public void setMembers(List<Member> members) {
-    this.members = members;
-  }
-  
-  public Product getProduct() {
-    return product;
+
+  public List<CartProduct> getCartProducts() {
+    return cartProducts;
   }
 
-  public void setProduct(Product product) {
-    this.product = product;
-  }
-  
-  public ProductOption getProductOption() {
-    return productOption;
-  }
-
-  public void setProductOption(ProductOption productOption) {
-    this.productOption = productOption;
+  public void setCartProducts(List<CartProduct> cartProducts) {
+    this.cartProducts = cartProducts;
   }
 
   @Override
   public String toString() {
-    return "Cart [cartNo=" + cartNo + ", createdDate=" + createdDate + ", files=" + files + ", memberNo=" + memberNo
-        + ", members=" + members + ", optionNo=" + optionNo + ", options=" + options + ", productNo=" + productNo
-        + ", products=" + products + ", quantity=" + quantity + "]";
+    return "Cart [cartNo=" + cartNo + ", memberNo=" + memberNo + ", productNo=" + productNo
+        + ", optionNo=" + optionNo + ", quantity=" + quantity + ", createdDate=" + createdDate
+        + ", files=" + files + ", cartProducts=" + cartProducts + "]";
   }
 }
