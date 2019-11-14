@@ -71,7 +71,8 @@
 						class="nav-link"> <i class="nav-icon fa fa-book"></i>
 							<p>My Review</p>
 					</a></li>
-					<li class="nav-item"><a href="pages/widgets.html"
+					<li class="nav-item"><a 
+          href="/app/order/searchbymember"
 						class="nav-link"> <i class="nav-icon fa fa-list"></i>
 							<p>My Order</p>
 					</a></li>

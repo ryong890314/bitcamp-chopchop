@@ -30,6 +30,14 @@
       상품상세: <textarea name='detail'></textarea><br>
       재고: <input type='text' name='stock'><br>
       할인율: <input type='text' name='discount'><br>
+      옵션명: <input type="text" name="optionTitle"><br>
+      옵션가격: <input type="text" name="optionPrice"><br>
+      옵션명: <input type="text" name="optionTitle"><br>
+      옵션가격: <input type="text" name="optionPrice"><br>
+      옵션명: <input type="text" name="optionTitle"><br>
+      옵션가격: <input type="text" name="optionPrice"><br>
+      옵션명: <input type="text" name="optionTitle"><br>
+      옵션가격: <input type="text" name="optionPrice"><br>
       상품분류: <select name='category'>
         <option id='category1' value='food'>식품</option>
         <option id='category2' value='train'>훈련/장난감</option>

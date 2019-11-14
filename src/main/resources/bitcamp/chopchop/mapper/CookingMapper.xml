@@ -12,16 +12,6 @@
 <result column="content" property="content"/>
 </resultMap>
 
-<select id="findAll" parameterType="int" resultMap="CookingMap">
-  select
-    cooking_id,
-    process_no,
-    file_path,
-    content
-  from cooking
-  where recipe_id=#{value}
-</select>
-
 <insert id="insert" parameterType="Cooking">
   insert into cooking(recipe_id, process_no, file_path, content)
   values(#{recipeNo},#{processNo},#{filePath},#{content})
@@ -47,7 +37,7 @@
   update cooking
   <set>
     <if test="processNo != null">process_no=#{processNo},</if>
-    <if test="filePath != null">file_path=#{filePath},</if>
+<!--     <if test="filePath != null">file_path=#{filePath},</if> -->
     <if test="content != null">content=#{content}</if>
   </set>
   where cooking_id=#{cookingNo}

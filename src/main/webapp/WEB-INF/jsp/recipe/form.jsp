@@ -6,8 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/recipe/form.css">
+<link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <style>
- #my-label {
+ img {
+   width:150px; 
+   object-fit: cover;
+ }
+ .my-label {
   display: inline-block;
   padding: .5em .75em;
   margin-left: 32px;
@@ -42,22 +47,23 @@
                           <div class="block-content">
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">작성자</label></div>
-                                  <div class="col-xs-10"><input type="text" name="nickname" class="form-control" placeholder="${loginUser.nickname}" value=""></div>
+                                  <div class="col-xs-10"><input type="text" name="nickname" class="form-control" placeholder="${loginUser.nickname}" readonly></div>
                               </div>
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">제목</label></div>
-                                  <div class="col-xs-10"><input type="text" name="title" class="form-control" placeholder="레시피 제목을 입력해주세요" value=""></div>
+                                  <div class="col-xs-10"><input type="text" name="title" class="form-control" required placeholder="레시피 제목을 입력해주세요" value=""></div>
                               </div>
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">분류</label></div>
                                   <div class="col-xs-10">
-                                  <select class="form-control" name="category">
-                                          <option value="1">분류</option>
-                                          <option value="강아지">강아지</option>
-                                          <option value="고양이">고양이</option>
-                                          <option value="작은동물">작은동물</option>
-                                          <option value="기타">기타</option>
-                                      </select></div>
+                                  <select class="form-control" name="category" required>
+                                          <option value="">분류</option>
+                                          <option value="1">강아지</option>
+                                          <option value="2">고양이</option>
+                                          <option value="3">작은동물</option>
+                                          <option value="4">기타</option>
+                                  </select>
+                                  </div>
                               </div>
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">태그</label></div>
@@ -86,7 +92,6 @@
                                   
                                   <div id="cookingDiv" class="block-content">
                                   <!-- 순서 박스 들어갈 Div -->
-                              <!-- 순서 박스 들어갈 Div -->
                                   </div>
                               </div>
                           </div>
@@ -106,7 +111,7 @@
                                               <div class="img">
                                               <img id="image"/></div> <!-- 미리보기사진  -->
                                               <div style='display: none;'><input type="file" id='my-thumbnail' name='filePath' class="my-thumbnail" style="width:100px;"/></div>
-                                              <label id='my-label' for="my-thumbnail">+ 완성 사진 </label>
+                                              <label id='my-label' class="my-label" for="my-thumbnail">+ 완성 사진 </label>
                                           </div>
                                           <div class="des"><textarea class="form-control" name="content">간단한 설명 입력해주세요</textarea></div>
                                       </div>
@@ -136,56 +141,49 @@
 </div>
 </script>
 
-<script> // 재료,용량 추가
- "use strict";
+<script>
+"use strict";
   function addIngredient() {
-    console.log("추가버튼누름");
     var html = $('#t1').html();
     $('#ingredient-block').append(html);
   };
-</script>
 
-<script> // 재료, 용량 삭제
- "use strict";
   function delIngredient(event) {
     $(event.target.parentNode.parentNode).remove();
   };
 </script>
-
 <script id="t2" type="cookingHtml"> 
 <div class='row form-group my-cooking'>
   <div class='row form-group'>
-         순서: <input type='text' name='processNo' value=''>
+    <input type='text' class='form-control' name='processNo' style='padding:13px; width:50px; margin-left:15px; font-size:12px;' value='' placeholder='순서' required>
   </div>
   <div class='box-photo'>
     <div class='photo'>
-      <div class='img'>
+      <div class='img' style="margin-bottom:3px;">
        <img class='preview-cooking-image'>
       </div>
-      <input class='my-cooking-image' type='file' name='filePath2' value=''>
-      <button class='btn btn-outline btn-block btn-sm' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
+      <span class="fileinput-button my-label" style="margin-left:27px;">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>파일 선택</span>
+        <input class='my-cooking-image' type='file' name='filePath2' value='' >
+      </span>
+      <button class='btn btn-outline btn-block btn-sm' style='boarder:none; margin-top:3px;' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
     </div>
     <div class='des'><textarea class='form-control' name='cookingContent'></textarea></div>
   </div>
 </div>
 </script>
 
-<script>//조리순서 추가
-"use strict";
+<script>
 function addCooking() {
   var html = $('#t2').html();
   $('#cookingDiv').append(html);
 };
-</script>
 
-<script> // 조리순서 삭제
-"use strict";
 function delCooking(event) {
   $(event.target.parentNode.parentNode.parentNode).remove();
 };
-</script> 
 
-<script>
 function readURL(input) {
   var reader = new FileReader();
   reader.onload = function(e) {
@@ -203,7 +201,7 @@ $('.my-thumbnail').change(function() {
 function readURL2(input) {
   var reader2 = new FileReader();
   reader2.onload = function(e) {
-    $(input.parentNode).find('.preview-cooking-image').attr('src', e.target.result);
+    $(input.parentNode.parentNode).find('.preview-cooking-image').attr('src', e.target.result);
   }
   reader2.readAsDataURL(input.files[0]);
 };
@@ -212,8 +210,6 @@ $(document).on('change', '.my-cooking-image', function() {
   readURL2(this);
 });
 </script>
-
-
 
 </body>
 </html>

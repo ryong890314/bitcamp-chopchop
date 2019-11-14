@@ -3,6 +3,8 @@
 <html>
 <head>
 <title>CHOPCHOP 회원가입</title>
+<!-- Favicon -->
+<link rel="icon" href="/img/core-img/favicon.ico">
 <link rel="stylesheet" href="/css/member/style_join.css">
 <link rel="stylesheet" href="/css/member/style_footer.css">
 </head>

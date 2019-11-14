@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
 <meta charset="UTF-8">
 <meta name="description" content="">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,8 +9,6 @@
 <link rel="stylesheet" href="/css/member/style_footer.css">
 
 
-</head>
-<body>
 	<footer class="footer-area">
 		<div class="container">
 			<div class="row">
@@ -53,6 +49,3 @@
 		})();
 	</script>
 	<!--End of Tawk.to Script-->
-
-</body>
-</html>

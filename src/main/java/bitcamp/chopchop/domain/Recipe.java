@@ -32,6 +32,14 @@ public class Recipe implements Serializable {
   // 자식테이블 'RecipeComment"의 데이터를 담을 RecipeComment 객체 목록.
   private List<RecipeComment> recipeComments;
   
+  @Override
+  public String toString() {
+    return "Recipe [recipeNo=" + recipeNo + ", memberNo=" + memberNo + ", title=" + title
+        + ", createdDate=" + createdDate + ", viewCount=" + viewCount + ", content=" + content
+        + ", thumbnail=" + thumbnail + ", category=" + category + ", tag=" + tag + ", otherInfo="
+        + otherInfo + ", scrap=" + scrap + ", ingredients=" + ingredients + ", cookings=" + cookings
+        + ", recipeLikes=" + recipeLikes + ", recipeComments=" + recipeComments + "]";
+  }
   public List<RecipeLike> getRecipeLikes() {
     return recipeLikes;
   }

@@ -1,5 +1,7 @@
 package bitcamp.chopchop.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -8,14 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.RecipeComment;
+import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.RecipeCommentService;
 
 @Controller
 @RequestMapping("/recipecomment")
 public class RecipeCommentController {
   @Resource private RecipeCommentService recipeCommentService;
+  @Resource private MemberService memberService;
   
   @GetMapping("form")
   public void form() {
@@ -50,16 +55,47 @@ public class RecipeCommentController {
   }
   
   @GetMapping("list")
-  public void list(Model model, int no) throws Exception {
-    // 해당 레시피의 댓글 목록을 불러온다.
-    List<RecipeComment> recipeComments = recipeCommentService.list(no);
+  public void list(@RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "4") int pageSize, 
+      int no, Model model, HttpSession session) throws Exception {
+
+    if (pageSize < 4 || pageSize > 10) { 
+      pageSize = 4;
+    }
+    int size = recipeCommentService.size(no);
+    int totalPage = size / pageSize;
+    if (size % pageSize > 0) {
+      totalPage++;
+    }
+    
+    if (pageNo < 1 || pageNo > totalPage) {
+      pageNo = 1;
+    }
+    List<RecipeComment> originRecipeComments = recipeCommentService.list(no, pageNo, pageSize);
+    List<HashMap<String,Object>> recipeComments = new ArrayList<>(); 
+    Member viewer = (Member) session.getAttribute("loginUser");
+    
+    for (int i = 0; i < originRecipeComments.size(); i++) {
+      HashMap<String,Object> hashMap = new HashMap<>();
+      Member member = memberService.get(originRecipeComments.get(i).getMemberNo()); 
+      hashMap.put("member", member);
+      hashMap.put("recipeComment", originRecipeComments.get(i));
+      hashMap.put("viewer", viewer);
+      recipeComments.add(hashMap);
+    }
+    
     model.addAttribute("recipeComments", recipeComments);
+    model.addAttribute("pageNo", pageNo);
+    model.addAttribute("pageSize", pageSize);
+    model.addAttribute("totalPage", totalPage);
+    model.addAttribute("size", size);
+    model.addAttribute("beginPage", (pageNo - 1) > 0 ? (pageNo - 1) : 1);
+    model.addAttribute("endPage", (pageNo + 1) < totalPage ? (pageNo + 1) : totalPage);
+    
   }
   
   @PostMapping("update")
   public String update(RecipeComment recipeComment) throws Exception {
-    System.out.println("=============================");
-    System.out.println(recipeComment);
     recipeCommentService.update(recipeComment);
     return "redirect:/app/recipe/list";
   }

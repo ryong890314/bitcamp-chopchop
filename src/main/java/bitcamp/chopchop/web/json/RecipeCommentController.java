@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.RecipeComment;
@@ -27,15 +28,8 @@ public class RecipeCommentController {
       recipeComment.setMemberNo(member.getMemberNo());
       recipeComment.setRecipeNo(no);
       recipeCommentService.insert(recipeComment);
-      
-      RecipeComment recipeComment2 = recipeCommentService.get(recipeComment.getCommentNo());
-      
-      JsonResult jsonResult = new JsonResult();
-      HashMap<String,Object> hashMap = new HashMap<>();
-      hashMap.put("member", member);
-      hashMap.put("recipeComment", recipeComment2);
-      jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
-      return jsonResult;
+
+      return new JsonResult().setState(JsonResult.SUCCESS);
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
@@ -53,7 +47,6 @@ public class RecipeCommentController {
 
   @GetMapping("detail")
   public JsonResult detail(int no) throws Exception {
-    // 해당 레시피의 댓글 목록을 불러온다.
     try {
       RecipeComment recipeComment = recipeCommentService.get(no);
       return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipeComment);
@@ -63,22 +56,46 @@ public class RecipeCommentController {
   }
 
   @GetMapping("list")
-  public JsonResult list(int no, HttpSession session) throws Exception {
+  public JsonResult list(@RequestParam(defaultValue = "1") int pageNo,
+                         @RequestParam(defaultValue = "4") int pageSize, // 한페이지에 들어갈 댓글 갯수
+                         int no, HttpSession session) throws Exception {
+    if (pageSize < 4 || pageSize > 10) { 
+      pageSize = 4;
+    }
+    int size = recipeCommentService.size(no);
+    int totalPage = size / pageSize;
+    if (size % pageSize > 0) {
+      totalPage++;
+    }
+    if (pageNo < 1 || pageNo > totalPage) {
+      pageNo = 1;
+    }
+    
     try {
-      List<RecipeComment> originRecipeComments = recipeCommentService.list(no);// 모든 댓글리스트
-      List<HashMap<String,Object>> recipeComments = new ArrayList<>(); // 댓글 + 작성자를 담을 리스트
+      List<RecipeComment> originRecipeComments = recipeCommentService.list(no, pageNo, pageSize);
+      List<HashMap<String,Object>> recipeComments = new ArrayList<>(); 
       Member viewer = (Member) session.getAttribute("loginUser");
+      
+      HashMap<String,Object> result = new HashMap<>();
       
       for (int i = 0; i < originRecipeComments.size(); i++) {
         HashMap<String,Object> hashMap = new HashMap<>();
-        Member member = memberService.get(originRecipeComments.get(i).getMemberNo()); //작성자멤버
+        Member member = memberService.get(originRecipeComments.get(i).getMemberNo()); 
         hashMap.put("member", member);
         hashMap.put("recipeComment", originRecipeComments.get(i));
         hashMap.put("viewer", viewer);
         recipeComments.add(hashMap);
       }
       
-      return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipeComments);
+      result.put("recipeComments", recipeComments);
+      result.put("pageNo", pageNo);
+      result.put("pageSize", pageSize);
+      result.put("totalPage", totalPage);
+      result.put("size", size);
+      result.put("beginPage", (pageNo - 1) > 0 ? (pageNo - 1) : 1);
+      result.put("endPage", (pageNo + 1) < totalPage ? (pageNo + 1) : totalPage);
+
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(result);
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
