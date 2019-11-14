@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Ingredient;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Recipe;
-import bitcamp.chopchop.domain.RecipeComment;
 import bitcamp.chopchop.domain.RecipeLike;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.RecipeCommentService;
@@ -53,7 +53,6 @@ public class RecipeController {
         temp.setName(ingredientNames[i]);
         temp.setQuantity(quantity[i]);
         ingredients.add(temp);
-        System.out.println(i +"번재료입니다ㅏㅏㅏㅏ" + ingredientNames[i]);
       }
 
       recipe.setCookings(cookingFileWriter.getCookings(filePath2, processNo, cookingContent));
@@ -77,12 +76,10 @@ public class RecipeController {
 
   @GetMapping("detail")
   public JsonResult detail(int no, HttpSession session) throws Exception {
-    //    session.setAttribute("no", 1);
     try {
       Recipe recipe = recipeService.get(no);
       Member member = memberService.get(recipe.getMemberNo());
       Member viewer = (Member) session.getAttribute("loginUser");
-      List<RecipeComment> recipeComments = recipeCommentService.list(recipe.getRecipeNo());
       
       RecipeLike recipeLike = new RecipeLike();
       recipeLike.setMemberNo(viewer.getMemberNo());
@@ -101,7 +98,6 @@ public class RecipeController {
       hashMap.put("recipe", recipe);
       hashMap.put("isCheck", likeCheck);
       hashMap.put("viewer", viewer);
-      hashMap.put("recipeComments", recipeComments);
       jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
       return jsonResult;
     } catch (Exception e) {
@@ -146,10 +142,34 @@ public class RecipeController {
   }
 
   @GetMapping("list")
-  public JsonResult list() throws Exception {
+  public JsonResult list(@RequestParam(defaultValue = "1") int pageNo,
+                         @RequestParam(defaultValue = "4") int pageSize) throws Exception {
+    // 총 페이지 개수 알아내기
+    if (pageSize < 4 || pageSize > 20) {
+      pageSize = 4;
+    }
+    int size = recipeService.size();
+    int totalPage = size / pageSize;
+    if (size % pageSize > 0) {
+      totalPage++;
+    }
+    
+    // 요청하는 페이지 번호가 유효하지 않을 때는 기본 값으로 1페이지를 지정한다.
+    if (pageNo < 1 || pageNo > totalPage) {
+      pageNo = 1;
+    }
+    
     try {
-      List<Recipe> recipes = recipeService.list();
-      return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipes);
+      List<Recipe> recipes = recipeService.list(pageNo, pageSize);
+      
+      HashMap<String,Object> result = new HashMap<>();
+      result.put("recipes", recipes);
+      result.put("pageNo", pageNo);
+      result.put("pageSize", pageSize);
+      result.put("totalPage", totalPage);
+      result.put("size", size);
+      
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(result);
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
@@ -157,9 +177,28 @@ public class RecipeController {
   
   @GetMapping("listSort")
   public JsonResult listSort(@RequestParam(defaultValue = "recipe_id") String column) throws Exception {
+    
     try {
-      System.out.println("들어온 컬럼????????" + column);
       List<Recipe> recipes = recipeService.listSort(column);
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipes);
+    } catch (Exception e) {
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
+    }
+  }
+  
+  @GetMapping("listCategory")
+  public JsonResult listCategory(String category) throws Exception {
+    try {
+      List<Recipe> originrecipes = recipeService.listSort("recipe_id");
+      List<Recipe> recipes = new ArrayList<>();
+      
+      for (Recipe recipe : originrecipes) {
+        if (category.equals("0")) {
+          recipes.add(recipe);
+        } else if (recipe.getCategory().equals(category)) {
+          recipes.add(recipe);
+        }
+      }
       return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipes);
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
@@ -190,7 +229,6 @@ public class RecipeController {
       HashMap<String,Object> hashMap = new HashMap<>();
       
       recipe = recipeService.get(no);
-      System.out.println("findLike  " + recipeService.findLike(recipeLike));
       
       if (recipeService.findLike(recipeLike) == 1) { // 좋아요 취소해야함
         recipeService.deleteLike(recipeLike);
@@ -198,7 +236,6 @@ public class RecipeController {
         hashMap.put("member", member);
         hashMap.put("isLike", false);
         hashMap.put("scrap", recipeService.get(no).getScrap());
-        System.out.println("좋아요취소 ===> 스크랩수" + recipeService.get(no).getScrap());
         jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
         return jsonResult;
 
@@ -209,10 +246,46 @@ public class RecipeController {
         hashMap.put("member", member);
         hashMap.put("isLike", true);
         hashMap.put("scrap", recipeService.get(no).getScrap());
-        System.out.println("조아요====> 스크랩수" + recipeService.get(no).getScrap());
         jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
         return jsonResult;
       }
+    } catch (Exception e) {
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
+    }
+  }
+  
+  //=========================================================================================
+  
+  @GetMapping("myrecipe")
+  public JsonResult myList(Model model, HttpSession session) throws Exception {
+    try {
+      Member member = (Member) session.getAttribute("loginUser");
+      List<Recipe> recipes = recipeService.listSort("recipe_id");
+      List<Recipe> myrecipes = new ArrayList<>(); // 내 레시피 목록을 담을 리스트 준비
+      for (Recipe recipe : recipes) {
+        if (recipe.getMemberNo() != member.getMemberNo()) 
+          continue;
+        System.out.println("스크랩수우우우" + recipe.getScrap());
+        myrecipes.add(recipe);
+      }
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(myrecipes);
+    } catch (Exception e) {
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
+    }
+  }
+  
+  @GetMapping("myscrap")
+  public JsonResult scrapList(Model model, HttpSession session) throws Exception {
+    try {
+      Member member = (Member) session.getAttribute("loginUser");
+      List<RecipeLike> recipeLikes = recipeService.listLike(); 
+      List<Recipe> scrapRecipes = new ArrayList<>(); 
+      for (RecipeLike recipeLike : recipeLikes) {
+        if (recipeLike.getMemberNo() == member.getMemberNo()) {
+          scrapRecipes.add(recipeService.get(recipeLike.getRecipeNo()));
+        }
+      }
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(scrapRecipes);
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }

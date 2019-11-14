@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="/css/recipe/form.css">
 <link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <style>
+ img {
+   width:150px; 
+   object-fit: cover;
+ }
  .my-label {
   display: inline-block;
   padding: .5em .75em;
@@ -47,18 +51,19 @@
                               </div>
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">제목</label></div>
-                                  <div class="col-xs-10"><input type="text" name="title" class="form-control" placeholder="레시피 제목을 입력해주세요" value=""></div>
+                                  <div class="col-xs-10"><input type="text" name="title" class="form-control" required placeholder="레시피 제목을 입력해주세요" value=""></div>
                               </div>
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">분류</label></div>
                                   <div class="col-xs-10">
-                                  <select class="form-control" name="category">
-                                          <option value="1">분류</option>
-                                          <option value="강아지">강아지</option>
-                                          <option value="고양이">고양이</option>
-                                          <option value="작은동물">작은동물</option>
-                                          <option value="기타">기타</option>
-                                      </select></div>
+                                  <select class="form-control" name="category" required>
+                                          <option value="">분류</option>
+                                          <option value="1">강아지</option>
+                                          <option value="2">고양이</option>
+                                          <option value="3">작은동물</option>
+                                          <option value="4">기타</option>
+                                  </select>
+                                  </div>
                               </div>
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">태그</label></div>
@@ -136,17 +141,13 @@
 </div>
 </script>
 
-<script> // 재료,용량 추가
- "use strict";
+<script>
+"use strict";
   function addIngredient() {
-    console.log("추가버튼누름");
     var html = $('#t1').html();
     $('#ingredient-block').append(html);
   };
-</script>
 
-<script> // 재료, 용량 삭제
- "use strict";
   function delIngredient(event) {
     $(event.target.parentNode.parentNode).remove();
   };
@@ -154,14 +155,14 @@
 <script id="t2" type="cookingHtml"> 
 <div class='row form-group my-cooking'>
   <div class='row form-group'>
-    <input type='text' class='form-control' name='processNo' style='width:50px; margin-left:15px; font-size:12px;' value='' placeholder='순서를입력해주세요'>
+    <input type='text' class='form-control' name='processNo' style='padding:13px; width:50px; margin-left:15px; font-size:12px;' value='' placeholder='순서' required>
   </div>
   <div class='box-photo'>
     <div class='photo'>
-      <div class='img'>
+      <div class='img' style="margin-bottom:3px;">
        <img class='preview-cooking-image'>
       </div>
-      <span class="fileinput-button my-label">
+      <span class="fileinput-button my-label" style="margin-left:27px;">
         <i class="glyphicon glyphicon-plus"></i>
         <span>파일 선택</span>
         <input class='my-cooking-image' type='file' name='filePath2' value='' >
@@ -173,22 +174,16 @@
 </div>
 </script>
 
-<script>//조리순서 추가
-"use strict";
+<script>
 function addCooking() {
   var html = $('#t2').html();
   $('#cookingDiv').append(html);
 };
-</script>
 
-<script> // 조리순서 삭제
-"use strict";
 function delCooking(event) {
   $(event.target.parentNode.parentNode.parentNode).remove();
 };
-</script> 
 
-<script>
 function readURL(input) {
   var reader = new FileReader();
   reader.onload = function(e) {
@@ -215,8 +210,6 @@ $(document).on('change', '.my-cooking-image', function() {
   readURL2(this);
 });
 </script>
-
-
 
 </body>
 </html>

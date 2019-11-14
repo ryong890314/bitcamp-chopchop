@@ -6,34 +6,33 @@
 <head>
 <meta charset="UTF-8"><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/css/recipe/findRecipe.css">
-   <style>
-        .bueno-btn {
-          background-color: #b0c364;
-          -webkit-transition-duration: 500ms;
-          transition-duration: 500ms;
-          position: relative;
-          z-index: 1;
-          display: inline-block;
-          min-width: 160px;
-          height: 50px;
-          color: #ffffff;
-          border-radius: 0;
-          padding: 0 30px;
-          margin-left: 50px;
-          font-size: 14px;
-          line-height: 50px;
-          font-weight: 500;
-          text-transform: capitalize; }
-        .bueno-btn:hover, .bueno-btn:focus {
-          font-size: 14px;
-          font-weight: 500;
-          background-color: #000000;
-          color: #ffffff; }
-    </style>
-    <title>Find Recipe</title>
+<style>
+.bueno-btn {
+  background-color: #b0c364;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  min-width: 160px;
+  height: 50px;
+  color: #ffffff;
+  border-radius: 0;
+  padding: 0 30px;
+  margin-left: 50px;
+  font-size: 14px;
+  line-height: 50px;
+  font-weight: 500;
+  text-transform: capitalize; }
+.bueno-btn:hover, .bueno-btn:focus {
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #000000;
+  color: #ffffff; }
+</style>
+<title>Find Recipe</title>
 </head>
 <body>
-<h1>레시피 검색</h1>
 
 <span class="page-wrap" id="page-mount-point"><span class="page">
                     <div class="search-utility-hero" data-photo-lightness="dark" data-track-location="above-the-fold" data-track-source="page-region"><strong class="find-a-recipe">Find a Recipe</strong>
@@ -56,16 +55,16 @@
         </span></span>
 
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-         <!-- First Photo Grid-->
-        <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-         <c:forEach items="${recipes}" var="recipe">
-            <div class="w3-quarter">
-                <img src='/upload/recipe/${recipe.thumbnail}' alt="Sandwich" style="width:280px; height:250px">
-                <h3><a href='detail?no=${recipe.recipeNo}'>${recipe.title}</a></h3>
-                <p>${recipe.content}</p>
-            </div>
-            </c:forEach>
-        </div>
+<!-- First Photo Grid-->
+<div class="w3-row-padding w3-padding-16 w3-center" id="food">
+ <c:forEach items="${recipes}" var="recipe">
+  <div class="w3-quarter">
+    <img src='/upload/recipe/${recipe.thumbnail}' alt="Sandwich" style="width:280px; height:250px">
+    <h3><a href='detail?no=${recipe.recipeNo}'>${recipe.title}</a></h3>
+    <p>${recipe.content}</p>
+  </div>
+</c:forEach>
+</div>
 
 
 </body>

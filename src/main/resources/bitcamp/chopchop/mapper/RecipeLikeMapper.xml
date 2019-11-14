@@ -20,7 +20,6 @@
   where recipe_id=#{recipeNo} AND member_id=#{memberNo}
 </delete>
 
-
 <select id="findLike" parameterType="RecipeLike" resultType="int">
   select count(*) 
   from recipe_like
@@ -31,5 +30,10 @@
   delete from recipe_like
   where recipe_id=#{value}
 </delete>
+
+<select id="findAll" resultMap="RecipeLikeMap">
+  select like_id,member_id,recipe_id
+  from recipe_like
+</select>
 
 </mapper>

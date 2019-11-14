@@ -31,7 +31,7 @@ public class DefaultRecipeService implements RecipeService {
       throw new Exception("내용을 입력해주세요");
     }
 
-    int result = recipeDao.insert(recipe);
+    recipeDao.insert(recipe);
     for (Ingredient ingredient : recipe.getIngredients()) {
       ingredient.setRecipeNo(recipe.getRecipeNo());
       ingredientDao.insert(ingredient);
@@ -49,14 +49,17 @@ public class DefaultRecipeService implements RecipeService {
     if (recipe == null) {
       throw new Exception("데이터가 없습니다!");
     }
-    System.out.println("조회수 증가???????????");
     recipeDao.increaseViewCount(no);
     return recipe;
   }
 
   @Override
-  public List<Recipe> list() throws Exception {
-    return recipeDao.findAll();
+  public List<Recipe> list(int pageNo, int pageSize) throws Exception {
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("offset", (pageNo - 1) * pageSize);
+    param.put("pageSize", pageSize);
+    
+    return recipeDao.findAll(param);
   }
 
   @Override
@@ -76,7 +79,11 @@ public class DefaultRecipeService implements RecipeService {
     ingredientDao.deleteAll(no);
     recipeDao.delete(no);
   }
-
+  
+  @Override
+  public int size() throws Exception {
+    return recipeDao.countAll();
+  }
 
   @Override
   public List<Recipe> search(String keyword) throws Exception {
@@ -97,16 +104,21 @@ public class DefaultRecipeService implements RecipeService {
       }
     }
 
-    if (recipe.getCookings() != null) {
-      for (Cooking cooking : recipe.getCookings()) {
+    for (Cooking cooking : recipe.getCookings()) {
+      if (cooking.getFilePath() == null) {
+        cookingDao.update(cooking);
+      } else {
         cooking.setRecipeNo(recipe.getRecipeNo());
         cookingDao.insert(cooking);
       }
     }
   }
-
+  
   @Override
-  public void deleteFile(HashMap<String, Object> hashMap) throws Exception {
+  public void deleteFile(int[] fileNo, int no) throws Exception {
+    HashMap<String,Object> hashMap = new HashMap<>();
+    hashMap.put("fileNo", fileNo);
+    hashMap.put("recipeNo", no);
     cookingDao.delete(hashMap);
   }
 
@@ -126,6 +138,11 @@ public class DefaultRecipeService implements RecipeService {
   @Override
   public int findLike(RecipeLike recipeLike) throws Exception {
     return recipeLikeDao.findLike(recipeLike);
+  }
+  
+  @Override
+  public List<RecipeLike> listLike() throws Exception {
+    return recipeLikeDao.findAll();
   }
 
 }

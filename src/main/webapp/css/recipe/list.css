@@ -2,7 +2,6 @@
 /* :: 1.0 Import Fonts */
 /* :: 2.0 Import All CSS */
 @import url(/node_modules/bootstrap/dist/css/bootstrap.min.css);
-@import url(/css/common/classy-nav.css);
 @import url(/css/common/nice-select.css);
 /* :: 3.0 Base CSS */
 
@@ -21,36 +20,6 @@
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-}
-
-/* :: 3.7.0 bueno Button */
-.bueno-btn {
-    background-color: #b0c364;
-    -webkit-transition-duration: 500ms;
-    transition-duration: 500ms;
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    min-width: 160px;
-    height: 50px;
-    color: #ffffff;
-    border-radius: 0;
-    padding: 0 30px;
-    font-size: 14px;
-    line-height: 50px;
-    font-weight: 500;
-    text-transform: capitalize;
-}
-
-.bueno-btn:hover,
-.bueno-btn:focus {
-    font-size: 14px;
-    font-weight: 500;
-    background-color: #000000;
-    color: #ffffff;
-}
-
-content: "";
 }
 
 .bueno-search-area {
@@ -105,3 +74,4 @@ content: "";
     text-transform: uppercase;
     font-weight: 600;
 }
+
