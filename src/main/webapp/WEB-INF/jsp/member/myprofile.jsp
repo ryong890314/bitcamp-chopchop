@@ -20,16 +20,24 @@
 			<h1 class="myprofile-h1">Dashboard</h1>
 			<figure class="snip1559" style="margin-left:33%;">
 				<div class="profile-image">
-					<div class="image-text" >
-						<input type="hidden" id="userphoto" value="${member.photo}" /> <img
-							src='/upload/member/${member.photo}' id="userThumb"
-							class="my-thumb profile-img">
-					</div>
+					<input type="hidden" id="userphoto" value="${member.photo}" /> <img
+						src='/upload/member/${member.photo}' id="userThumb"
+						class="my-thumb profile-img">
 				</div>
 				<figcaption>
 					<h3>${member.nickname}</h3>
 				</figcaption>
 			</figure>
+
+
+
+
+
+
+
+
+
+
 
 			<!-- Main content -->
 			<section class="content">
@@ -97,11 +105,9 @@
 				</div>
 				<!-- /.row -->
 			</section>
-
 		</div>
 	</div>
 	<!-- ./wrapper -->
-
 	<script>
 		function formLoad() {
 			// hidden값을 이용해서 자바스크립트를 이용한 경우

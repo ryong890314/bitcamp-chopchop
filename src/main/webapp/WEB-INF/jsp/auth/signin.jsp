@@ -85,8 +85,6 @@
 			var userPssword = $("input[name=password]").val();
 			
 			$.post("/app/json/auth/login", {email : userEmail, password : userPssword}, function(data) {
-				console.log("들어왔냐?");
-				console.log(data);
  				if (data.state == "success") {
  					window.location.href = '/app/member/list';
 				} else {

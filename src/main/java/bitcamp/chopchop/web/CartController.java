@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.domain.CartProduct;
 import bitcamp.chopchop.domain.Member;
@@ -26,6 +27,7 @@ import bitcamp.chopchop.web.json.JsonResult;
 
 @Controller
 @RequestMapping("/cart")
+@SessionAttributes("loginUser")
 public class CartController {
 
   @Resource
@@ -49,11 +51,14 @@ public class CartController {
   @PostMapping("add")
   @ResponseBody
   public JsonResult add(@RequestBody CartProduct product, Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    Member member = memberService.get(loginUser.getMemberNo());
-    System.out.println(product);
+//    Member member = memberService.get(loginUser.getMemberNo());
     for(int i=0; i<product.getOptions().size(); i++) {
       Cart cart = new Cart();
+      cart.setMemberNo(memberService.get(loginUser.getMemberNo()).getMemberNo());
       cart.setProductNo(product.getNo());
+      cart.setOptionNo(product.getOptions().get(i).getNo());
+      cart.setQuantity(product.getOptions().get(i).getQuantity());
+      cartService.insert(cart);
     }
     
     return new JsonResult().setState(JsonResult.SUCCESS);

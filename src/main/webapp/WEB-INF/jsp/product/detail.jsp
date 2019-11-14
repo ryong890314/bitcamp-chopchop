@@ -232,7 +232,7 @@
     <input type='hidden' class='option-no' value="{{no}}">
     {{title}}
   </div>
-  <input class='option-quantity' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='0' max='1000'>
+  <input class='option-quantity' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='1' max='1000'>
   <input class='option-price' type='hidden' type='number' value="{{price}}">
   <span style='float: right; padding-top: 5px;' class=''><span class='option-price-sum'>{{price}}</span>원</span>
 
@@ -245,7 +245,7 @@
   // 제품 옵션 데이터 준비
   var options = [];
 <c:forEach items="${product.options}" var="productOption">
-  options.push({'no': ${productOption.optionNo}, 'title': '${productOption.title}', 'price': ${productOption.price}});
+  options.push({'no': ${productOption.optionNo}, 'title': '${productOption.title}', 'price': productPrice + ${productOption.price}});
 </c:forEach>
     
   function getOption(no) {
@@ -274,9 +274,10 @@
 
   // 옵션 변경
   $('#selected-option-div').on('change', '.option-quantity', function (e) {
-    var optionQuantity = $(this).val();
-    var optionPrice = $(this.parentNode).find('.option-price').val();
-    $(this.parentNode).find('.option-price-sum').html( optionQuantity * optionPrice);
+    var productPrice = parseInt(${product.price * (100 - product.discount) / 100});
+    var optionQuantity = parseInt($(this).val());
+    var optionPrice = parseInt($(this.parentNode).find('.option-price').val());
+    $(this.parentNode).find('.option-price-sum').html(optionPrice * optionQuantity);
     calculatePrice();
   });
 
@@ -292,7 +293,7 @@
     for (i = 0; i < optionPrices.length; i++) {
       checkPrice += parseInt(optionPrices[i].innerText);
     }
-    $('#total-check-price').html(Number(productPrice + checkPrice).toLocaleString('en'));
+    $('#total-check-price').html(Number(checkPrice).toLocaleString('en'));
   }
   
   // 장바구니 담기

@@ -54,7 +54,7 @@
         <th>상품/옵션정보</th>
         <th style="width: 80px">수량</th>
         <th>상품금액</th>
-        <th style="width: 80px">옵션가</th>
+        <th style="width: 100px">옵션가</th>
         <th>총액</th>
         <th style="width: 100px">배송비</th>
         <th style="width: 50px">주문</th>
