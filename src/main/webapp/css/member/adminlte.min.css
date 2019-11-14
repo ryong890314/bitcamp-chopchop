@@ -4020,10 +4020,6 @@ html {
   }
 }
 
-.content-wrapper {
-  background: #f4f6f9
-}
-
 .content-wrapper>.content {
   padding: 0 .5rem
 }
@@ -6093,6 +6089,9 @@ label:not (.form-check-label ):not (.custom-file-label ) {
   position: relative
 }
 
+.small-box:hover {
+	  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
 .small-box>.inner {
   padding: 10px
 }
