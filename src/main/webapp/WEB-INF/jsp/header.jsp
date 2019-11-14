@@ -31,6 +31,7 @@
 								<a href="/app/index" style="text-decoration:none; font-size:60px; margin-left: 60%; margin-bottom:20px; opacity:0.7;">ChopChop</a>
 						</div>
 					</div>
+					
 					<div class="col-12 col-sm-6 col-lg-5 col-xl-4">
 						<!-- Top Search Area -->
 						<div class="top-search-area">
