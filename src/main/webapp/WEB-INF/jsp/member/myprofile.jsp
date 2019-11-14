@@ -9,6 +9,22 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/member/myProfile.css">
+
+<!-- mypage_sidebar start-->
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="/css/member/adminlte.min.css">
+<!-- Favicon -->
+<link rel="icon" href="/img/core-img/favicon.ico">
+<!-- </head> -->
+<!-- mypage_sidebar  end -->
+<title>MY RECIPES</title>
+
 <style>
 </style>
 </head>
@@ -115,5 +131,29 @@
 			$(this).removeClass("hover");
 		});
 	</script>
+	
+	 <!--  mypage_sidebar script  start -->
+  <!-- jQuery -->
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="/js/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <!-- AdminLTE App -->
+  <script src="/js/dist/adminlte.js"></script>
+
+  <script>
+    function sidebar_form() {
+      // hidden값을 이용해서 자바스크립트를 이용한 경우
+      if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
+        $("#userThumb").attr("src", "/upload/member/info_photo.jpg");
+      } else {
+        $("#userThumb").attr("src",
+            "/upload/member/" + $("#userphoto").val());
+      }
+    }
+  </script>
+  
+  <!--  mypage_sidebar script  end -->
+  </body>
 <jsp:include page="../footer.jsp" />
 </html>

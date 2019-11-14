@@ -7,6 +7,21 @@
 <meta charset="UTF-8">
 <!-- <link rel="stylesheet" href="/css/recipe/w3.css"> -->
 <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+
+<!-- mypage_sidebar start-->
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="/css/member/adminlte.min.css">
+<!-- Favicon -->
+<link rel="icon" href="/img/core-img/favicon.ico">
+<!-- </head> -->
+<!-- mypage_sidebar  end -->
+
 <title>MY RECIPES</title>
 <style>
 .container {
@@ -15,7 +30,6 @@
 
 </style>
 </head>
-<jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
 <div class="container" >
   <h1>My Recipe</h1>
@@ -23,6 +37,7 @@
     <div class="w3-row-padding w3-padding-16 w3-center" id="food"></div>
   </div>
 </div>
+<jsp:include page="../member/mypage_sidebar.jsp" />
 
 
 <div class="bueno-post-area mb-70">
@@ -91,5 +106,29 @@ function del(recipeNo) {
   });
 }
 </script>
+
+  <!--  mypage_sidebar script  start -->
+  <!-- jQuery -->
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <!-- AdminLTE App -->
+  <script src="/js/dist/adminlte.js"></script>
+
+  <script>
+    function sidebar_form() {
+      // hidden값을 이용해서 자바스크립트를 이용한 경우
+      if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
+        $("#userThumb").attr("src", "/upload/member/info_photo.jpg");
+      } else {
+        $("#userThumb").attr("src",
+            "/upload/member/" + $("#userphoto").val());
+      }
+    }
+  </script>
+  
+  <!--  mypage_sidebar script  end -->
+  
 </body>
 </html>
