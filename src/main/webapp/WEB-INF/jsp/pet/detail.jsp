@@ -14,7 +14,7 @@
 <body>
 
 	<div id='content' class="container">
-		<h1>My Pet Information</h1>
+		<h2>My Pet Information</h2>
 		<button type="button" class="btn btn-primary"
 			style="background-color: #b0c364; border-color: #b0c364;"
 			onclick="location.href='/app/pet/form?no=${member.memberNo}'">펫
