@@ -125,7 +125,7 @@
     from 
       cart c
         left join product p on c.product_id=p.product_id
-	      left join store_photo f on p.product_id=f.product_id
+        left join store_photo f on p.product_id=f.product_id
         left join product_option o on c.option_id=o.option_id
     where c.member_id like #{memberNo}
     order by cart_id desc, photo_id
@@ -133,7 +133,7 @@
   
   <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyColumn="cart_id" keyProperty="cartNo">
     insert into cart(member_id, product_id, option_id, quantity)
-    values(#{memberNo},#{productNo},#{optionNo}, #{quantity}) 
+    values(#{memberNo},#{productNo},#{optionNo},#{quantity}) 
   </insert>
   
   <update id="update" parameterType="Cart">

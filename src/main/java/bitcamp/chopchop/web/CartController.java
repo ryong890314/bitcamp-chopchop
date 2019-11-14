@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.chopchop.domain.Cart;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Product;
-import bitcamp.chopchop.domain.ProductOption;
 import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.ProductOptionService;
@@ -34,18 +33,21 @@ public class CartController {
   @Resource
   private ProductOptionService productOptionService;
 
+  @GetMapping("form")
+  public void form() {
+  }
+  
   @GetMapping("list")
   public void list(Model model) throws Exception {
     model.addAttribute("carts", cartService.list());
   }
 
   @GetMapping("add")
-  public void add(Cart cart, Product product, int no, Model model, HttpSession session) throws Exception {
+  public void add(int productNo, Cart cart, Product product, int no, Model model, HttpSession session) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
-    System.out.println("들어가나");
     cart.setMemberNo(member.getMemberNo());
     cart.setProductNo(productService.get(no).getProductNo());
-    // cart.setOptionNo(productOptionService.get(no).getOptionNo());
+//     cart.setOptionNo(productOptionService.get(no).getOptionNo());
     cartService.insert(cart);
   }
 
@@ -87,10 +89,10 @@ public class CartController {
     return "redirect:../order/cartorderform";
   }
 
-//  @GetMapping("detail")
-//  public void detail(Model model, int no) throws Exception {
-//    model.addAttribute("cart", cartService.get(no));
-//  }
+  @GetMapping("detail")
+  public void detail(Model model, int no) throws Exception {
+    model.addAttribute("cart", cartService.get(no));
+  }
 
   @GetMapping("search")
   public void search(Model model, HttpSession session) throws Exception {

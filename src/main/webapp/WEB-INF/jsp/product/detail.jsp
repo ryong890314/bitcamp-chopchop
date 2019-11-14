@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -145,7 +146,7 @@
                 <div class="col-md-8">
 
                   <div class="form-group">
-                    <select class="form-control optionselect" id="optionNo" name='optionNo'>
+                    <select id="product-option" class="form-control optionselect" id="optionNo" name='optionNo'>
                       <option selected disabled>옵션을 선택해주세요</option>
 
                       <c:forEach items="${product.options}" var="productOption">
@@ -178,8 +179,8 @@
 
               <hr>
 
-              <button class="btn bueno-btn" style="margin-top:10px; width:215px;" onclick="add_cart()">장바구니</button>
-              <button class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
+              <button type="button" class="btn bueno-btn" style="margin-top:10px; width:215px;" onclick="add_cart()">장바구니</button>
+              <button type="button" class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
             </form>
 
           </div>
@@ -222,12 +223,32 @@
       </div>
     </div>
   </div>
+
   <jsp:include page="../footer.jsp" />
 
-  <script>
+
+<script>
+  // 제품 옵션 데이터 준비
+  var options = [];
+<c:forEach items="${product.options}" var="productOption">
+  options.push({'no': ${productOption.optionNo}, 'title': '${productOption.title}', 'price': ${productOption.price}});
+</c:forEach>
+    
+  function getOption(no) {
+    for (var option of options) {
+      if (no == option.no) {
+        return option;
+      }
+    }
+    return null;
+  }
+    
+    
     // 선택한 옵션 등록하기
     var count = 1;
-    $(document).on("change", ".optionselect", function () {
+    $('#product-option').change(function(e) {
+      addOption(getOption($(this).val()));
+      /*
       var addOptionCheck = document.querySelector('[id^="addOptionNo"]') !== null;
       var tempAddOptionNo = $(this).val();
       var tempAddOptionTitle = $(this).find(":selected").attr("id");
@@ -246,12 +267,14 @@
         addOption(tempAddOptionNo, tempAddOptionTitle);
       }
       reprice();
+      */
     })
-  </script>
+</script>
 
   <script>
     // 중복코드 제거
     function addOption(tempAddOptionNo, tempAddOptionTitle) {
+      /*
       var html = "";
       html += "<div style='width: 440px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-width: 1px; margin: 5px 15px; padding: 0px 15px 10px 15px;'>";
       html += "<div><span class='closeIcon' name='delIngredientBtn' onclick='delOption(event)'>&times;</span></div>"
@@ -282,21 +305,21 @@
       count++;
       $('#ingredient-block').append(html);
       $(".optionselect").find("option:eq(0)").prop("selected", true);
+      */
     }
-  </script>
 
-  <script>
     // 옵션 삭제
-    "use strict";
     function delOption(event) {
+      /*
       $(event.target.parentNode.parentNode).remove();
       reprice();
+      */
     };
-  </script>
+    
 
-  <script>
     // 옵션 변경
     $(document).on("change", ".input-quantity", function (tempAddQuantityNo, tempOptionRepriceNoH, tempOptionRepriceNoS, tempOptionRepriceNoA) {
+      /*
       tempRequantity = tempAddQuantityNo.target.value;
       var tempOptionRepriceH = $(this).parent().children("[class^=optionRepriceNoH]").val();
       tempReAddOptionPrice = tempOptionRepriceH * tempRequantity;
@@ -304,6 +327,7 @@
       $(this).parent().children("[class^=optionRepriceNoA]").html(Number(tempReAddOptionPrice).toLocaleString('en') + ' 원');
       $(this).parent().children("[id^=optionRepriceNoS]").val(tempAddOptionPrice);
       reprice();
+      */
     });
   </script>
 
@@ -319,16 +343,18 @@
   </script>
 
   <script>
-    // 장바구니 담기
-    function add_cart() {
+  // 장바구니 담기
+  function add_cart() {
 
-      if (confirm("장바구니에 담겠습니까?")) {
-        for (i = 0; i < document.getElementsByClassName("addOptionNo").length; i++) {
-          location.href = "../cart/add?no=${product.productNo}" + "&optionNo=" + document.getElementsByClassName("addOptionNo")[i].value + "&quantity=" + document.getElementsByClassName("input-quantity")[i].value;
-        }
-        alert("장바구니에 상품을 담았습니다.");
+    if (confirm("장바구니에 담겠습니까?")) {
+      var productOptions = document.getElementsByClassName("addOptionNo");
+      for (i = 0; i < productOptions.length; i++) {
+        console.log(productOptions[i]);
+        location.href = "../cart/add?no=${product.productNo}" + "&optionNo=" + document.getElementsByClassName("addOptionNo")[i].value + "&quantity=" + document.getElementsByClassName("input-quantity")[i].value;
       }
+      alert("장바구니에 상품을 담았습니다.");
     }
+  }
   </script>
 
 </body>

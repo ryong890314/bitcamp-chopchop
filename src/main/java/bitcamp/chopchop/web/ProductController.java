@@ -2,7 +2,6 @@ package bitcamp.chopchop.web;
 
 import java.util.List;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +42,7 @@ public class ProductController {
 
   @PostMapping("add")
   public String add(
-      HttpServletRequest request, Product product, 
+      Product product, 
       MultipartFile[] filePath, String[] optionTitle, String[] optionPrice) throws Exception {
     product.setFiles(photoFileWriter.getPhotoFiles(filePath));
     productService.insert(product);
