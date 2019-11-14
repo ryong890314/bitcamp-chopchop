@@ -19,7 +19,7 @@
 		<!-- Left navbar links -->
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-				href="#"><i class="fas fa-bars"></i></a></li>
+				href="#" style="font-size: large;"><i class="fas fa-bars"></i></a></li>
 		</ul>
 	</nav>
 	<!-- /.navbar -->
@@ -37,7 +37,6 @@
 		<div class="sidebar">
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-
 				<div class="image">
 					<input type="hidden" id="userphoto" value="${member.photo}" /> <img
 						src='/upload/member/${member.photo}' id="userThumb"
@@ -45,10 +44,9 @@
 						style="width: 40px; height: 40px; margin-left: -5px;">
 				</div>
 
-
 				<div class="info">
 					<!-- user name받기~ -->
-					<a href="/app/member/myprofile" class='nav-user'>${member.nickname}</a>
+					<a href="/app/member/myprofile" style="font-size: large; padding-left:5px;" class='nav-user'>${member.nickname}</a>
 				</div>
 			</div>
 
@@ -60,24 +58,24 @@
 					<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 					<li class="nav-item"><a href="/app/member/detail"
-						class="nav-link"> <i class="nav-icon fa fa-user"></i>
+						class="nav-link" style="font-size: large;"> <i class="nav-icon fa fa-user"></i>
 							<p>My Profile</p>
 					</a></li>
 					<li class="nav-item"><a href="/app/member/detail"
-						class="nav-link"> <i class="nav-icon fa fa-paw"></i>
+						class="nav-link" style="font-size: large;"> <i class="nav-icon fa fa-paw"></i>
 							<p>My Recipe</p>
 					</a></li>
 					<li class="nav-item"><a href="/app/member/detail"
-						class="nav-link"> <i class="nav-icon fa fa-book"></i>
+						class="nav-link" style="font-size: large;"> <i class="nav-icon fa fa-book"></i>
 							<p>My Review</p>
 					</a></li>
 					<li class="nav-item"><a 
           href="/app/order/searchbymember"
-						class="nav-link"> <i class="nav-icon fa fa-list"></i>
+						class="nav-link" style="font-size: large;"> <i class="nav-icon fa fa-list"></i>
 							<p>My Order</p>
 					</a></li>
 					<li class="nav-item"><a href="pages/widgets.html"
-						class="nav-link"> <i class="nav-icon fa fa-bookmark"></i>
+						class="nav-link" style="font-size: large;"> <i class="nav-icon fa fa-bookmark"></i>
 							<p>My Bookmark</p>
 					</a></li>
 				</ul>
