@@ -14,6 +14,7 @@ a {
 }
 </style>
 </head>
+<jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
 
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">

@@ -63,7 +63,7 @@
 						class="nav-link"> <i class="nav-icon fa fa-user"></i>
 							<p>My Profile</p>
 					</a></li>
-					<li class="nav-item"><a href="/app/member/detail"
+					<li class="nav-item"><a href="/app/recipe/myrecipe"
 						class="nav-link"> <i class="nav-icon fa fa-paw"></i>
 							<p>My Recipe</p>
 					</a></li>

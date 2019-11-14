@@ -13,7 +13,7 @@ import bitcamp.chopchop.service.RecipeService;
 
 @Controller
 @RequestMapping("/")
-public class CommonController {
+public class MainController {
   
   @Resource 
   RecipeService recipeService;
