@@ -16,6 +16,8 @@ public class Member implements Serializable {
   private String baseAddress;
   private String detailAddress;
   private int grade;
+  
+  private List<Recipe> recipes;
   private List<Pet> pets;
 
   public List<Pet> getPets() {
@@ -104,5 +106,13 @@ public class Member implements Serializable {
 
   public void setGrade(int grade) {
     this.grade = grade;
+  }
+
+  public List<Recipe> getRecipes() {
+    return recipes;
+  }
+
+  public void setRecipes(List<Recipe> recipes) {
+    this.recipes = recipes;
   }
 }

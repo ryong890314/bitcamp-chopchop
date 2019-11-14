@@ -1,13 +1,5 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ChopChop-MyPage</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="/js/plugins/fontawesome-free/css/all.min.css">
@@ -53,7 +45,7 @@
 
 				<div class="info">
 					<!-- user name받기~ -->
-					<a href="/app/member/myprofile" class='nav-user'>${loginUser.nickname}</a>
+					<a href="/app/member/myprofile" class='nav-user'>${member.nickname}</a>
 				</div>
 			</div>
 
@@ -99,7 +91,6 @@
 	<!-- jQuery UI 1.11.4 -->
 	<script src="/js/jquery-ui/jquery-ui.min.js"></script>
 	<!-- Bootstrap 4 -->
-	<script src="/node_modules/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="/js/dist/adminlte.js"></script>
 
