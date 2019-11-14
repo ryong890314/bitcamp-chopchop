@@ -28,7 +28,6 @@
     
 #prod_columns figure:hover {
     box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    
 }
 
 #prod_columns figure img {
@@ -44,8 +43,8 @@
 }
 </style>
 </head>
-<body>
 <jsp:include page="header.jsp"/>
+<body>
     <!-- ##### Hero Area Start ##### -->
     <h3>popular recipe</h3>
     <div class="hero-area" style="width:1100px; margin: 0 auto;">

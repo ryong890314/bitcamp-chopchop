@@ -184,6 +184,7 @@
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
 	<script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
 	<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -248,11 +249,11 @@
 					if (xhr.readyState == 4) {
 						if (xhr.status == 200) {
 							if (xhr.responseText == "1") { // 1이면 변경완료, 0이면 변경 못함
-								alert("변경완료 되었습니다.");
+								swal("변경완료 되었습니다.");
 								$('#exampleModal').modal("hide");
 							}
 						} else {
-							alert("시스템 오류 발생!");
+							swal("시스템 오류 발생!");
 						}
 					}
 				};
@@ -293,7 +294,7 @@
                   pCheckFlag = true;
                 }
               } else {
-                alert("시스템 오류 발생!");
+                swal("시스템 오류 발생!");
               }
             }
           };
@@ -440,7 +441,7 @@
 									nCheckFlag = true;
 								}
 							} else {
-								alert("시스템 오류 발생!");
+							  swal("시스템 오류 발생!");
 							}
 						}
 					}
