@@ -15,7 +15,7 @@ Favicon
 <!-- </head> -->
 
 <div class="hold-transition sidebar-mini layout-fixed"
-	onload="formLoad();">
+	onload="sidebar_form()();">
 
 	<!-- Navbar -->
 	<nav class="main-header navbar navbar-expand navbar-white navbar-light">

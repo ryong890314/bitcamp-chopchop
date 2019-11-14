@@ -540,7 +540,7 @@
   <!-- jQuery -->
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
-  <script src="/js/jquery-ui/jquery-ui.min.js"></script>
+  <script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
   <!-- Bootstrap 4 -->
   <!-- AdminLTE App -->
   <script src="/js/dist/adminlte.js"></script>
