@@ -1,14 +1,13 @@
 package bitcamp.chopchop.service.impl;
 
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import bitcamp.chopchop.dao.CartDao;
+import bitcamp.chopchop.dao.ProductOptionDao;
 import bitcamp.chopchop.domain.Cart;
+import bitcamp.chopchop.domain.ProductOption;
 import bitcamp.chopchop.service.CartService;
 
 @Service
@@ -16,6 +15,8 @@ public class DefaultCartService implements CartService {
 
   @Resource
   private CartDao cartDao;
+  @Resource
+  private ProductOptionDao productOptionDao;
 
   @Override
   public void insert(Cart cart) throws Exception {
@@ -49,10 +50,15 @@ public class DefaultCartService implements CartService {
   }
 
    @Override
-  public List<Cart> search(String keyword) throws Exception {
+  public List<Cart> search(int keyword) throws Exception {
     return cartDao.findByKeyword(keyword);
   }
 
+   @Override
+  public ProductOption getOption(int no) throws Exception {
+    return productOptionDao.findBy(no);
+  }
+   
 }
 
 

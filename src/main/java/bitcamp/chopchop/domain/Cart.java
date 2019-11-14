@@ -10,7 +10,10 @@ public class Cart {
   private int optionNo;
   private int quantity;
   private Date createdDate;
-
+  private Product product;
+  private ProductOption productOption;
+  
+  
   private List<Product> products;
   private List<PhotoFile> files;
   private List<Member> members;
@@ -95,6 +98,22 @@ public class Cart {
   public void setMembers(List<Member> members) {
     this.members = members;
   }
+  
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
+  }
+  
+  public ProductOption getProductOption() {
+    return productOption;
+  }
+
+  public void setProductOption(ProductOption productOption) {
+    this.productOption = productOption;
+  }
 
   @Override
   public String toString() {
@@ -102,6 +121,4 @@ public class Cart {
         + ", members=" + members + ", optionNo=" + optionNo + ", options=" + options + ", productNo=" + productNo
         + ", products=" + products + ", quantity=" + quantity + "]";
   }
-
-  
 }

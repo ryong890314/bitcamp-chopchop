@@ -55,27 +55,5 @@
         </div>
   
   
-  <script type="text/javascript">
-    var title = document.getElementById('title');
-    var content = document.getElementById('content');
-    for(var e of content) {
-      e.style['display']=hidden;
-    }
-    
-    function getParameterByName(name, url) {
-      if (!url) url = window.location.href;
-      name = name.replace(/[\[\]]/g, "\\$&");
-      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-          results = regex.exec(url);
-      return results[2];
-    }
-  
-    var productNo = getParameterByName('no');
-    document.getElementById('productNo').value=productNo;
-
-
-
-
-  </script>
 </body>
 </html>

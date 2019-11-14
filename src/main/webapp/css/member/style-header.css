@@ -27,6 +27,30 @@ h6 {
     font-weight: 600;
 }
 
+<<<<<<< HEAD
+=======
+p {
+    font-family: "Montserrat", sans-serif;
+    color: #7a7a7a;
+    font-size: 14px;
+    line-height: 2;
+    font-weight: 500;
+}
+
+a,
+a:hover,
+a:focus {
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    text-decoration: none;
+    outline: 0 solid transparent;
+    color: #000000;
+/*     font-weight: 600; */
+/*     font-size: 16px; */
+    font-family: "Montserrat", sans-serif;
+}
+
+>>>>>>> 2f714f550f807ad1e4fc45992caea8f852d030d4
 ul,
 ol {
     margin: 0;

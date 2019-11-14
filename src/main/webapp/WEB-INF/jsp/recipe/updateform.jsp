@@ -6,8 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/recipe/form.css">
+<link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <style>
- #my-label {
+  img {
+    width: 150px;
+    object-fit: cover;
+  }
+ .my-label {
   display: inline-block;
   padding: .5em .75em;
   margin-left: 32px;
@@ -52,11 +57,14 @@
                                       <div class="row form-group">
                                           <div class="col-xs-2"><label class="label">분류</label></div>
                                           <div class="col-xs-10">
-                                          <select class="form-control" name="category">
-                                                  <option value="1">분류</option>
-                                                  <option value="강아지">멍키친</option>
-                                                  <option value="고양이">냥키친</option>
-                                              </select></div>
+                                          <select class="form-control" name="category" required>
+                                            <option value="">분류</option>
+                                            <option value="1">강아지</option>
+                                            <option value="2">고양이</option>
+                                            <option value="3">작은동물</option>
+                                            <option value="4">기타</option>
+                                           </select>
+                                          </div>
                                       </div>
                                       <div class="row form-group">
                                           <div class="col-xs-2"><label class="label">태그</label></div>
@@ -96,14 +104,20 @@
                                           <!-- 순서 박스 들어갈 Div -->
                                           <div class='row form-group my-cooking'>
                                           <div class='row form-group'>
-                                                                                             순서: <input type='text' name='processNo' value='${cooking.processNo}'></div>
+                                            <input type='text' class='form-control' name='processNo' style='width:50px; margin-left:15px; font-size:12px; padding:13px;' value='${cooking.processNo}'>
+                                          </div>
                                           <div class='box-photo'>
                                             <div class='photo'>
-                                              <div class='img'>
-                                               <img class='preview-cooking-image' src='/upload/recipe/${cooking.filePath}'></div>
-                                              <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value='${cooking.filePath}'>
-                                              <input class='cooking-check' type='hidden' name='fileNo' value='${cooking.cookingNo}'>
-                                          <button class='btn btn-outline btn-block btn-sm' name='delCookingBtn' type='button' onclick='delCooking(event)'>순서 삭제</button>
+                                              <div class='img' style="margin-bottom:3px;">
+                                               <img class='preview-cooking-image' src='/upload/recipe/${cooking.filePath}'>
+                                              </div>
+                                              <span class="fileinput-button my-label" style="margin-left:27px;">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                                <span>파일 선택</span>
+                                                <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value='${cooking.filePath}'>
+                                                <input class='cooking-check' type='hidden' name='fileNo' value='${cooking.cookingNo}'>
+                                              </span>
+                                          <button class='btn btn-outline btn-block btn-sm' style='margin:2px;' name='delCookingBtn' type='button' onclick='delCooking(event)'>순서 삭제</button>
                                             </div>
                                           <div class='des'><textarea class='form-control' name='cookingContent'>${cooking.content}</textarea></div>
                                           </div>
@@ -124,14 +138,14 @@
                                   <div class="block-title _gray"><span class="title">요리 완성</span></div>
                                   <div class="block-content">
                                       <div>
-                                          <!-- 썸네일사진추가아아아아아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ -->
+                                          <!-- 썸네일사진-->
                                           <div class="box-photo">
                                                   <div class="photo">
                                                       <div class="img">
                                                       <img id="image" src='/upload/recipe/${recipe.thumbnail}'></div>
                                                       <div style='display: none;'>
                                                       <input class="btn btn-outline btn-images my-thumbnail" id="my-thumbnail" type="file" name='filePath'></div>
-                                                      <label id='my-label' for="my-thumbnail">+ 사진 수정</label>
+                                                      <label id='my-label' class='my-label' for="my-thumbnail">+ 사진 수정</label>
                                                       
                                                   </div>
                                                   <div class="des"><textarea class="form-control" name="content">${recipe.content}</textarea></div>
@@ -139,7 +153,7 @@
                                       </div><br><br>
                                       <div class="row form-group">
                                           <div class="col-xs-12 text-center"><button class="btn btn-default" style="height: auto; border: none;">수정하기</button>
-                                          <input id="delBtn"class="btn btn-default" type="button" value='삭제하기' style="height: auto; background-color: #ff4500; border:none;"></div>
+                                          <input id="delBtn"class="btn btn-danger" type="button" value='삭제하기' style="height: auto; border:none;"></div>
                                       </div>
                                   </div>
                               </div>
@@ -155,6 +169,15 @@
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
+<script>
+inputOption();
+
+function inputOption() {
+  console.log(${recipe.category});
+  $('select').val(${recipe.category}).trigger('change');
+}
+</script>
+
 <script id="t1" type="ingredientHtml">
 <div class='group-flex my-ingredient'>
 <div class='form-group'><label class='label'>재료 </label><input type='text' name='ingredientNames' class='form-control' value=''></div>
@@ -163,69 +186,56 @@
 </div>
 </script>
 
-<script> // 재료,용량 추가
+<script> 
 "use strict";
 function addIngredient() {
   console.log("추가버튼누름");
   var html = $('#t1').html();
   $('#ingredient-block').append(html);
 };
-</script>
 
-<script> // 재료, 용량 삭제
- "use strict";
-  function delIngredient(event) {
-    
-    $(event.target.parentNode.parentNode).remove();
-// 방법1)
-//    event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode); // DOM API
-
-// 방법2)
-//  이벤트가 발생한 버튼이 포함된 , 제거할 div 태그를 찾는다.
-//  => event.target.parentNode.parentNode <div class="group-flex my-ingredient">
-//     그 찾은 div 태그를 remove() 로 제거한다.
-//     $(event.target.parentNode.parentNode).remove(); // jquery
-  };
+function delIngredient(event) {
+  
+  $(event.target.parentNode.parentNode).remove();
+};
 </script>
 
 
 <script id="t2" type="cookingHtml">
 <div class='row form-group my-cooking'>
   <div class='row form-group'>
-         순서: <input type='text' name='processNo' value=''>
+    <input type='text' class='form-control' name='processNo' style='padding:13px; width:50px; margin-left:15px; font-size:12px;' value='' placeholder='순서' required>
   </div>
   <div class='box-photo'>
     <div class='photo'>
-      <div class='img'>
+      <div class='img' style="margin-bottom:3px;">
        <img class='preview-cooking-image'>
       </div>
-      <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value=''>
-      <input class='cooking-check' type='hidden' name='fileNo' value='${cooking.cookingNo}'>
-      <button class='btn btn-outline btn-block btn-sm' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
+      <span class="fileinput-button my-label" style="margin-left:27px;">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>파일 선택</span>
+        <input class='btn btn-outline btn-images my-cooking-image' type='file' name='filePath2' value=''>
+        <input class='cooking-check' type='hidden' name='fileNo' value='${cooking.cookingNo}'>
+      </span>
+      <button class='btn btn-outline btn-block btn-sm' style='margin:2px;' type='button' name='delCookingBtn' onclick='delCooking(event)'>순서 삭제</button>
     </div>
     <div class='des'><textarea class='form-control' name='cookingContent'></textarea></div>
   </div>
 </div>
 </script>
 
-<script>//조리순서 추가
+<script>
 "use strict";
 function addCooking() {
   console.log("추가버튼누름");
   var html = $('#t2').html();
   $('#cookingDiv').append(html);
 };
-</script>
 
-<script> // 조리순서 삭제
-"use strict";
 function delCooking(event) {
   $(event.target.parentNode.parentNode.parentNode).remove();
 };
-</script> 
 
-<script>
-// 완성사진 미리보기
 function readURL(input) {
   var reader = new FileReader();
   reader.onload = function(e) {
@@ -238,11 +248,10 @@ $('.my-thumbnail').change(function() {
   readURL(this);
 });
 
-// cooking image 미리보기
 function readURL2(input) {
   var reader2 = new FileReader();
   reader2.onload = function(e) {
-    $(input.parentNode).find('.preview-cooking-image').attr('src', e.target.result);
+    $(input.parentNode.parentNode).find('.preview-cooking-image').attr('src', e.target.result);
   }
   reader2.readAsDataURL(input.files[0]);
 };
@@ -253,9 +262,7 @@ $(document).on('change', '.my-cooking-image', function() {
   console.log(check.val());
   readURL2(this);
 });
-</script>
 
-<script>
 $('#delBtn').on('click', function(){
   location.href = '/app/recipe/delete?no=' + ${recipe.recipeNo};
 });

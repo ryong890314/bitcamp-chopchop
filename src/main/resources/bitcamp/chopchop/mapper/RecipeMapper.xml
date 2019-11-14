@@ -74,7 +74,7 @@
     </collection>
   </resultMap>
   
-  <select id="findAll" resultMap="RecipeMap">
+  <select id="findAll" resultMap="RecipeMap" parameterType="map">
     select
       recipe_id,
       member_id,
@@ -91,23 +91,23 @@
       recipe
     order by
       recipe_id desc
+    limit #{offset}, #{pageSize}
   </select>
   
   <select id="findSort" parameterType="String" resultMap="RecipeMap">
    select
      recipe_id,
+     member_id,
      title,
      created_date,
      view_count,
      thumbnail,
      other_info,
-     category,
+     scrap,
      content
    from 
      recipe
-   
    order by ${column} desc
-   
   </select>
   
   <select id="findBy" parameterType="int" resultMap="RecipeMap">
@@ -240,15 +240,6 @@
       recipe_id=#{value}
   </update>
   
-  <!-- 
-  <select id="increaseScrapCount" parameterType="Recipe" resultMap="TotalRecipeMap">
-    select count(r.scrap) from recipe r
-    left outer join recipe_like rl
-    on r.recipe_id=rl.recipe_id
-    where r.recipe_id=#{value}
-  </select>
-   -->
-  
   <delete id="delete" parameterType="int">
     delete from recipe
     where recipe_id=#{value}
@@ -256,6 +247,10 @@
   
   <select id="mainTop" resultMap="RecipeMap">
     SELECT * FROM recipe ORDER BY view_count DESC LIMIT 5
+  </select>
+  
+  <select id="countAll" resultType="int">
+    select count(*) from recipe;
   </select>
 
  </mapper>

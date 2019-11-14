@@ -23,11 +23,6 @@ public class DefaultOrderService implements OrderService {
     return orderDao.findAll();
   }
 
-//  @Override
-//  public List<Order> searchByMember(int no) throws Exception {
-//    return orderDao.findByMember(no);
-//  }
-
   @Override
   public Order get(int no) throws Exception {
     Order order = orderDao.findBy(no);
@@ -44,13 +39,19 @@ public class DefaultOrderService implements OrderService {
   
   @Transactional
   @Override
-  public void insert(Order order, OrderProduct orderProduct) throws Exception {
+  public void insert(Order order) throws Exception {
     // 주문 정보는 서버에서 처리하고, 회원정보는 로그인 정보 세션에서 가져옴
     orderDao.insert(order);
+    
+  }
+
+  @Transactional
+  @Override
+  public void insert(OrderProduct orderProduct, Order order) throws Exception {
     orderProduct.setOrderNo(order.getOrderNo());
     orderProductDao.insert(orderProduct);
   }
-
+  
   @Override
   public void update(Order order) throws Exception {
     orderDao.update(order);
@@ -60,5 +61,10 @@ public class DefaultOrderService implements OrderService {
   public void delete(int no) throws Exception {
     orderProductDao.delete(no);
     orderDao.delete(no);
+  }
+  
+  @Override
+  public List<OrderProduct> searchByMember(int no) throws Exception {
+    return orderProductDao.findByMemberWith(no);
   }
 }
