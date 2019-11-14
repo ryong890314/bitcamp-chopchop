@@ -50,6 +50,7 @@
     <mapper resource="bitcamp/chopchop/mapper/RecipeCommentMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/OrderMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/OrderProductMapper.xml"/>
+    <mapper resource="bitcamp/chopchop/mapper/PetMapper.xml"/>
   </mappers>
 </configuration>
 

@@ -65,17 +65,17 @@
 					<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 					<li class="nav-item"><a
-						href="/app/member/detail?no=${loginUser.memberNo}"
+						href="/app/member/detail"
 						class="nav-link"> <i class="nav-icon fa fa-user"></i>
 							<p>My Profile</p>
 					</a></li>
 					<li class="nav-item"><a
-						href="/app/member/detail?no=${loginUser.memberNo}"
+						href="/app/member/detail"
 						class="nav-link"> <i class="nav-icon fa fa-paw"></i>
 							<p>My Recipe</p>
 					</a></li>
 					<li class="nav-item"><a
-						href="/app/member/detail?no=${loginUser.memberNo}"
+						href="/app/member/detail"
 						class="nav-link"> <i class="nav-icon fa fa-book"></i>
 							<p>My Review</p>
 					</a></li>
@@ -107,12 +107,10 @@
 	<script>
     function formLoad() {
         // hidden값을 이용해서 자바스크립트를 이용한 경우
-        if (document.getElementById("userphoto").value == null
-            || document.getElementById("userphoto").value == "") {
-          document.getElementById("userThumb").src = "/upload/member/info_photo.jpg";
+        if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
+            $("#userThumb").attr("src", "/upload/member/info_photo.jpg");
         } else {
-          document.getElementById("userThumb").src = "/upload/member/"
-              + document.getElementById("userphoto").value;
+            $("#userThumb").attr("src", "/upload/member/" + $("#userphoto").val());
         }
-      }
+    }
 	</script>

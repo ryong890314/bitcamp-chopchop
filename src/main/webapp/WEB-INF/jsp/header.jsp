@@ -2,32 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<meta name="description" content="">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-<!-- Title -->
-<title>ChopChop - Food Blog</title>
-
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
-
 <!-- Stylesheet -->
 <link rel="stylesheet" href="/css/member/style-header.css">
-
-</head>
-
-<body>
-	<!-- ##### Header Area Start ##### -->
 	<header class="header-area">
-
 		<!-- Top Header Area -->
 		<div class="top-header-area bg-img bg-overlay"
 			style="background-image: url(/img/bg-img/header.jpg);">
@@ -103,14 +82,13 @@
 											href='/app/auth/signin'>Sign in</a></li>
 									</c:if>
 									<c:if test="${not empty loginUser}">
-										<li><a href="/app/member/detail?no=${loginUser.memberNo}" class='nav-user'>Hello!
+										<li><a href="/app/member/myprofile" class='nav-user'>Hello!
 												${loginUser.nickname}</a></li>
 									</c:if>
 									<c:if test="${not empty loginUser}">
 										<li><a class='classy-btn c' href='/app/auth/logout'>Sign
 												out</a></li>
 									</c:if>
-
 								</ul>
 							</div>
 							<!-- Nav End -->
@@ -121,9 +99,7 @@
 		</div>
 	</header>
 	<!-- ##### Header Area End ##### -->
-
 	<div style="height: 30px;"></div>
-</body>
 
 <!-- ##### Footer Area End ##### -->
 
@@ -138,5 +114,3 @@
 <script src="/js/plugins/plugins.js"></script>
 <!-- Active js -->
 <script src="/js/active.js"></script>
-
-</html>

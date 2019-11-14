@@ -19,5 +19,7 @@ public interface RecipeService {
   void insertLike(RecipeLike recipeLike) throws Exception; // 좋아요 
   void deleteLike(RecipeLike recipeLike) throws Exception; // 좋아요 취소
   int findLike(RecipeLike recipeLike) throws Exception; // 좋아요 했는지 확인 
+  
+  List<Recipe> mainTop() throws Exception;
 }
 

@@ -10,13 +10,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/member/myProfile.css">
 <style>
-.small-box:hover{
-boarder:1px solid ;
+.small-box:hover {
+	boarder: 1px solid #b0c364;
 }
 </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<jsp:include page="../member/mypage_sidebar.jsp" />
+	<jsp:include page="../member/mypage_sidebar.jsp" />
 	<div class="wrapper">
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
@@ -26,16 +26,16 @@ boarder:1px solid ;
 					<div class="row mb-2">
 						<div class="col-sm-6">
 							<h1 class="m-0 text-dark">Dashboard</h1>
+							<div class="image">
+								<input type="hidden" id="userphoto" value="${member.photo}" />
+								<img src='/upload/member/${member.photo}' id="userThumb"
+									class="img-circle elevation-2 my-thumb"
+									style="width: auto; height: auto; max-width: 250px; max-height: 250px; margin-left: 82%;">
+							</div>
+							<div>
+								<h2 style="margin-left: 95%;">${member.nickname}</h2>
+							</div>
 						</div>
-						<h2>${member.photo}</h2>
-						<!-- /.col
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">My Page</li>
-                            </ol>
-                        </div>
-                        <!-- /.col -->
 					</div>
 					<!-- /.row -->
 				</div>
@@ -67,7 +67,7 @@ boarder:1px solid ;
 							<div class="small-box">
 								<div class="inner">
 									<h3>My Review</h3>
-									<p>My Review</p>
+									<p>All my reviews</p>
 								</div>
 								<div class="icon">
 									<i class="ion ion-ios-book"></i>
@@ -82,7 +82,7 @@ boarder:1px solid ;
 							<div class="small-box ">
 								<div class="inner">
 									<h3>My Order</h3>
-									<p>My Order</p>
+									<p>All my orders</p>
 								</div>
 								<div class="icon">
 									<i class="ion ion-ios-list"></i>
@@ -96,7 +96,7 @@ boarder:1px solid ;
 							<div class="small-box">
 								<div class="inner">
 									<h3>My Bookmar</h3>
-									<p>My Bookmark</p>
+									<p>All my bookmarks</p>
 								</div>
 								<div class="icon">
 									<i class="ion ion-bookmark"></i>
@@ -125,12 +125,11 @@ boarder:1px solid ;
 	<script>
 		function formLoad() {
 			// hidden값을 이용해서 자바스크립트를 이용한 경우
-			if (document.getElementById("userphoto").value == null
-					|| document.getElementById("userphoto").value == "") {
-				document.getElementById("userThumb").src = "/upload/member/info_photo.jpg";
+			if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
+				$("#userThumb").attr("src", "/upload/member/info_photo.jpg");
 			} else {
-				document.getElementById("userThumb").src = "/upload/member/"
-						+ document.getElementById("userphoto").value;
+				$("#userThumb").attr("src",
+						"/upload/member/" + $("#userphoto").val());
 			}
 		}
 	</script>

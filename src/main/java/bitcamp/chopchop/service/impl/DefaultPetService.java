@@ -34,6 +34,7 @@ public class DefaultPetService implements PetService{
 
   @Override
   public void update(Pet pet) throws Exception {
+    System.out.println("PetService"  + pet.getName());
     petDao.update(pet);
   }
 

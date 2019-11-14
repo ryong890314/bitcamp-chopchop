@@ -1,4 +1,3 @@
-
 package bitcamp.chopchop.web;
 
 import java.io.File;
@@ -10,10 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
@@ -23,13 +24,11 @@ import bitcamp.chopchop.service.PetService;
 @Controller
 
 @RequestMapping("/member")
+@SessionAttributes("loginUser")
 public class MemberController {
 
   @Resource
   private MemberService memberService;
-
-  // @Resource
-  // private Pet2Service pet2Service;
 
   @Resource
   private PetService petService;
@@ -42,9 +41,8 @@ public class MemberController {
 
 
   @GetMapping("myprofile")
-  public void myProfile(Model model, HttpSession session) throws Exception {
-    Member member = (Member) session.getAttribute("loginUser");
-    System.out.println(member.getPhoto()+ "");
+  public void myProfile(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
     model.addAttribute("member", member);
   }
 
@@ -89,7 +87,7 @@ public class MemberController {
   }
 
   @RequestMapping(value = "signE", method = RequestMethod.GET)
-  public @ResponseBody int signEmailCheck(String email) throws Exception {
+  public @ResponseBody Member signEmailCheck(String email) throws Exception {
     return memberService.signEmailCheck(email);
   }
 
@@ -100,11 +98,11 @@ public class MemberController {
 
 
   @GetMapping("detail")
-  public void detail(Model model, int no) throws Exception {
-    Member member = memberService.get(no);
-    System.out.println(member.getMemberNo());
-    System.out.println("멤버사진==>" + member.getPhoto());
-    List<Pet> pets = petService.getPets(no);
+  public void detail(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    System.out.println(loginUser.getMemberNo());
+    
+    Member member = memberService.get(loginUser.getMemberNo());
+    List<Pet> pets = petService.getPets(loginUser.getMemberNo());
     model.addAttribute("member", member);
     model.addAttribute("pets", pets);
   }
