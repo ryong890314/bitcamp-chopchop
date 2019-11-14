@@ -17,20 +17,21 @@
 	<div class="wrapper">
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			<h1 class="myprofile-h1">Dashboard</h1>
-			<figure class="snip1559">
-				<div class="profile-image">
-					<div class="image-text">
-						<input type="hidden" id="userphoto" value="${member.photo}" /> <img
-							src='/upload/member/${member.photo}' id="userThumb"
-							class="my-thumb profile-img">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1 class="m-0 text-dark myprofile-h1">Dashboard</h1>
+							<div class="image-text">
+									<input type="hidden" id="userphoto" value="${member.photo}" />
+									<img src='/upload/member/${member.photo}' id="userThumb"
+										class="my-thumb profile-img">
+							</div>
+						</div>
 					</div>
 				</div>
-				<figcaption>
-					<h3>${member.nickname}</h3>
-				</figcaption>
-			</figure>
-
+			</div>
 			<!-- Main content -->
 			<section class="content">
 				<!-- Small boxes (Stat box) -->
@@ -97,11 +98,15 @@
 				</div>
 				<!-- /.row -->
 			</section>
-
+			<!-- /.content -->
 		</div>
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- /.control-sidebar -->
 	</div>
 	<!-- ./wrapper -->
-
 	<script>
 		function formLoad() {
 			// hidden값을 이용해서 자바스크립트를 이용한 경우
@@ -112,12 +117,6 @@
 						"/upload/member/" + $("#userphoto").val());
 			}
 		}
-	</script>
-	<script>
-		/* Demo purposes only */
-		$(".hover").mouseleave(function() {
-			$(this).removeClass("hover");
-		});
 	</script>
 </body>
 <jsp:include page="../footer.jsp" />
