@@ -12,11 +12,11 @@
 <style>
 </style>
 </head>
+<jsp:include page="../member/mypage_sidebar.jsp" />
 <body class="hold-transition sidebar-mini layout-fixed">
-	<jsp:include page="../member/mypage_sidebar.jsp" />
 	<div class="wrapper">
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
+		<div class="content-wrapper" style="width: 1100px;margin: 0 auto;">
 			<h1 class="myprofile-h1">Dashboard</h1>
 			<figure class="snip1559" style="margin-left:33%;">
 				<div class="profile-image">
@@ -28,16 +28,6 @@
 					<h3>${member.nickname}</h3>
 				</figcaption>
 			</figure>
-
-
-
-
-
-
-
-
-
-
 
 			<!-- Main content -->
 			<section class="content">
@@ -91,7 +81,7 @@
 						<!-- small box -->
 						<div class="small-box">
 							<div class="inner">
-								<h3 class="myprofile-h3">My Bookmar</h3>
+								<h3 class="myprofile-h3">My Bookmark</h3>
 								<p>All my bookmarks</p>
 							</div>
 							<div class="icon">
@@ -125,6 +115,5 @@
 			$(this).removeClass("hover");
 		});
 	</script>
-</body>
 <jsp:include page="../footer.jsp" />
 </html>
