@@ -19,14 +19,10 @@ public class CookingFileWriter {
   }
 
   public List<Cooking> getCookings(MultipartFile[] filePath2, int[] processNo, String[] cookingContent) throws Exception {
-    // 넘어온 파라미터가 있는지 체크하기 //안함
-
 
     List<Cooking> cookings = new ArrayList<>();
     for (int i = 0; i < processNo.length; i++) {
       Cooking cooking = new Cooking();
-      System.out.println("=========================사진 들어왓나");
-      System.out.println(filePath2[i].getSize());
       if (filePath2[i].isEmpty())
         continue;
       String filename = UUID.randomUUID().toString();

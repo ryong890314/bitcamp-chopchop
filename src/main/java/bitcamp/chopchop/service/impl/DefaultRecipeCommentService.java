@@ -1,5 +1,6 @@
 package bitcamp.chopchop.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,12 @@ public class DefaultRecipeCommentService implements RecipeCommentService {
   @Resource private RecipeCommentDao recipeCommentDao;
 
   @Override
-  public List<RecipeComment> list(int no) throws Exception {
-    return recipeCommentDao.findAll(no);
+  public List<RecipeComment> list(int no, int pageNo, int pageSize) throws Exception {
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("offset", (pageNo - 1) * pageSize);
+    param.put("pageSize", pageSize);
+    param.put("no", no);
+    return recipeCommentDao.findAll(param);
   }
 
   @Override
@@ -37,5 +42,10 @@ public class DefaultRecipeCommentService implements RecipeCommentService {
     if (recipeCommentDao.delete(no) == 0) {
      throw new Exception("해당 데이터가 없습니다.");
     }
+  }
+  
+  @Override
+  public int size(int no) throws Exception {
+    return recipeCommentDao.countAll(no);
   }
 }

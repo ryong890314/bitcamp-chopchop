@@ -12,11 +12,13 @@
     <result column="created_date" property="createdDate"/>
   </resultMap>
   
-  <select id="findAll" parameterType="int" resultMap="RecipeCommentMap">
+  <select id="findAll" parameterType="map" resultMap="RecipeCommentMap">
     select
       comment_id, recipe_id, member_id, content, created_date
     from recipe_comment
-    where recipe_id=#{value}
+    where recipe_id=#{no}
+    order by comment_id desc
+    limit #{offset}, #{pageSize}
   </select>
   
   <select id="findBy" parameterType="int" resultMap="RecipeCommentMap">
@@ -48,5 +50,10 @@
     delete from recipe_comment
     where recipe_id=#{value}
   </delete>
+  
+  <select id="countAll" parameterType="int" resultType="int">
+    select count(*) from recipe_comment
+    where recipe_id=#{value}
+  </select>
 
 </mapper>
