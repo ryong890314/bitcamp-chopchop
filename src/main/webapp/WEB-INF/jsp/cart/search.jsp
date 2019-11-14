@@ -63,22 +63,22 @@
       <c:forEach items="${carts}" var="cart">
         <tr style="text-align: center;">
           <td>
-            <form method="post" action="cheoption">
-              <input class="myChkbox" type="checkbox" name="chkbox" value="${cart.cartNo}">
-            </form>
+            <input class="myChkbox" type="checkbox" name="chkbox" value="${cart.cartNo}">
           </td>
           <td>
             <c:forEach items="${cart.files}" var="file" end="0">
               <img src='/upload/product/${file.filePath}' style="width: 100px; height: 100px; object-fit: cover">
             </c:forEach>
           </td>
-          <td style="text-align: left">
+          <td class="selected-products" style="text-align: left">
             <c:forEach items="${cart.products}" var="product">
+            <input class="selected-product-productNo" type="hidden" value="${product.productNo}">
               ${product.title}<br>
             </c:forEach>
               <hr>
                 <c:forEach items="${cart.options}" var="productOption">
                   ${productOption.title} ( +<fmt:formatNumber value="${productOption.price}" pattern="#,###"/>원 )<br>
+                  <input class="selected-product-optionNo" type="hidden" value="${productOption.optionNo}">
                 </c:forEach>
             </td>
           <td>
@@ -107,8 +107,8 @@
             <c:forEach items="${cart.options}" var="productOption">
             <td>
 <%--                     <a style="text-decoration:line-through"><fmt:formatNumber value="${(product.price + productOption.price) * cart.quantity}" pattern="#,###"/>원</a><br> --%>
-                    <a style="color:red"><fmt:formatNumber value="${((product.price * (100 - product.discount) / 100) + productOption.price) * cart.quantity}" pattern="#,###"/>원</a><br>
-                    <input type="hidden" name="chkprice" value="${(product.price + productOption.price) * (100 - product.discount) / 100 * cart.quantity}">
+                    <span style="color:red"><fmt:formatNumber value="${((product.price * (100 - product.discount) / 100) + productOption.price) * cart.quantity}" pattern="#,###"/></span>원<br>
+                    <input class="selected-product-price" type=text name="chkprice" value="${((product.price * (100 - product.discount) / 100) + productOption.price) * cart.quantity}">
                   </td>
               </c:forEach>
               </c:forEach>
@@ -142,6 +142,10 @@
 <button type="button" class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
 <button type="button" id="selectOrderBtn" class="btn bueno-btn" onclick="check_Order()">선택구매</button>
 <button type="button" id="allOrderBtn" class="btn bueno-btn" onclick="all_Order()">전체구매</button>
+<form action="../order/cartorderform" method='post'>
+  <input type="text" name="fuck" value="fuck">
+  <input id="fuck" type="submit" value="fuck" onsubmit="abc()">
+</form>
 </div>
 
 </div>
@@ -249,6 +253,34 @@
       }
     }
   </script>
+  
+  
+  <script>
+//     var data = {
+//       'no': [],
+//       'optionNo':[],
+//       'quantity': []
+//     }
+  
+   function abc(){
+      var data = {
+          'no': [],
+          'optionNo':[],
+          'quantity': []
+        }
+    }
+    
+    var checkBox = $('.myChkBox');
+    var selectedProduct = $('.selected-product-productNo');
+    for(var i=0;i<selectedProduct.length;i++){
+      var selectedNo = $('.selected-product-productNo')[i];
+      var selectedOptionNo = $('.selected-product-optionNo')[i];
+      var selectedQuantity = $('.input-number')[i];
+      data.no.push($(selectedNo).val());
+      data.optionNo.push($(selectedOptionNo).val());
+      data.quantity.push($(selectedQuantity).val());
+    }
+  </script>
 
   <script>
     // 선택 상품금액
@@ -257,7 +289,6 @@
       for (var i = 0; i < myCheckBoxes.length; i++){
         if (myCheckBoxes[i].checked) {
           alert(parseInt(myCheckBoxes[i].value)); //
-
         }
       }
     }
@@ -270,13 +301,6 @@
       $('#chkbox').val()
     }
   </script>
-
-  <script>
-  
-  </script>
-
-
-
 
 
 

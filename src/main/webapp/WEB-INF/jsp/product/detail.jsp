@@ -150,7 +150,7 @@
                       <option selected disabled>옵션을 선택해주세요</option>
 
                       <c:forEach items="${product.options}" var="productOption">
-                        <option value="${productOption.optionNo}" name="${productOption.price}"
+                        <option value="${productOption.optionNo}" 
                           id="${productOption.title}">${productOption.title}
                           (+${productOption.price}원)
                         </option>
@@ -222,6 +222,7 @@
   </div>
 
   <jsp:include page="../footer.jsp" />
+<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 
 <script id="option-template" type="text/x-handlebars-template">
 <div class='selected-option' style='width: 440px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-width: 1px; margin: 5px 15px; padding: 0px 15px 10px 15px;'>
@@ -327,7 +328,6 @@
     });
   });
   </script>
-
 </body>
 
 </html>
