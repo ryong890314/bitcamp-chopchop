@@ -18,9 +18,9 @@
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<h1 class="myprofile-h1">Dashboard</h1>
-			<figure class="snip1559">
+			<figure class="snip1559" style="margin-left:33%;">
 				<div class="profile-image">
-					<div class="image-text">
+					<div class="image-text" >
 						<input type="hidden" id="userphoto" value="${member.photo}" /> <img
 							src='/upload/member/${member.photo}' id="userThumb"
 							class="my-thumb profile-img">
