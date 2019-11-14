@@ -4,17 +4,44 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.chopchop.dao.MemberDao">
 
-<resultMap type="Member" id="MemberMap">
-  <id column="member_id" property="memberNo"/>
-  <result column="post_no" property="postNo"/>
-  <result column="base_address" property="baseAddress"/>
-  <result column="detail_address" property="detailAddress"/>
-  <result column="email" property="email"/>
-  <result column="password" property="password"/>
-  <result column="photo" property="photo"/>
-  <result column="nickname" property="nickname"/>
-  <result column="tel" property="tel"/>
-</resultMap> 
+	<resultMap type="Member" id="MemberMap">
+		<id column="member_id" property="memberNo" />
+		<result column="post_no" property="postNo" />
+		<result column="base_address" property="baseAddress" />
+		<result column="detail_address" property="detailAddress" />
+		<result column="email" property="email" />
+		<result column="password" property="password" />
+		<result column="photo" property="photo" />
+		<result column="nickname" property="nickname" />
+		<result column="tel" property="tel" />
+	</resultMap>
+
+	<!-- Member and Recipe join -->
+	<resultMap type="Member" id="MemberRecipeMap">
+		<id column="member_id" property="memberNo" />
+		<result column="post_no" property="postNo" />
+		<result column="base_address" property="baseAddress" />
+		<result column="detail_address" property="detailAddress" />
+		<result column="email" property="email" />
+		<result column="password" property="password" />
+		<result column="photo" property="photo" />
+		<result column="nickname" property="nickname" />
+		<result column="tel" property="tel" />
+
+		<collection property="recipes" ofType="Recipe">
+			<id column="recipe_id" property="recipeNo" />
+			<result column="member_id" property="memberNo" />
+			<result column="title" property="title" />
+			<result column="created_date" property="createdDate" />
+			<result column="view_count" property="viewCount" />
+			<result column="content" property="content" />
+			<result column="thumbnail" property="thumbnail" />
+			<result column="category" property="category" />
+			<result column="tag" property="tag" />
+			<result column="other_info" property="otherInfo" />
+			<result column="scrap" property="scrap" />
+		</collection>
+	</resultMap>
 
 	<sql id="basicColumn">
 		select
@@ -57,11 +84,10 @@
 		select count(*)
 		from member
 		where nickname = #{nickname}
-		<!-- 자기 자신을 제외한 닉네임을 찾는다. 
-		내가 이미 쓰고 있는 닉네임이 아닌 다른사람이 쓰고 있는 닉네임만을 찾는다. -->
-<!-- 		<if test="memberNo != null"> -->
-<!-- 		and member_id = #{memberNo} -->
-<!-- 		</if> -->
+		<!-- 자기 자신을 제외한 닉네임을 찾는다. 내가 이미 쓰고 있는 닉네임이 아닌 다른사람이 쓰고 있는 닉네임만을 찾는다. -->
+		<!-- <if test="memberNo != null"> -->
+		<!-- and member_id = #{memberNo} -->
+		<!-- </if> -->
 	</select>
 
 	<select id="signEmailCheck" parameterType="String"
@@ -81,13 +107,14 @@
 	<select id="findByEmailPassword" parameterType="map"
 		resultMap="MemberMap">
 		<include refid="basicColumn" />
-        ,
-    photo,
-    post_no,
-    base_address,
-    detail_address
+		,
+		photo,
+		post_no,
+		base_address,
+		detail_address
 		from member
-		where email = #{email} and password = password(#{password})
+		where email =
+		#{email} and password = password(#{password})
 	</select>
 
 	<select id="findBy" parameterType="int" resultMap="MemberMap">
@@ -98,7 +125,8 @@
 		base_address,
 		detail_address
 		from member
-		where member_id = #{memberNo}
+		where member_id =
+		#{memberNo}
 	</select>
 
 	<update id="update" parameterType="Member">
@@ -115,27 +143,38 @@
 		</set>
 		where member_id = #{memberNo}
 	</update>
-  
-  <delete id="delete" parameterType="int">
-    delete from member
-    where member_id = #{member.memberNo}
-  </delete>
-  
-  <select id="chkPw" parameterType="map" resultType="int">
-    SELECT count(*) FROM member
+
+	<delete id="delete" parameterType="int">
+		delete from member
+		where
+		member_id = #{member.memberNo}
+	</delete>
+
+	<select id="chkPw" parameterType="map" resultType="int">
+		SELECT
+		count(*) FROM member
 		WHERE member_id = #{memberNo}
-		AND PASSWORD = password(#{password})
-  </select>
-  
-  <update id="uptPw" parameterType="map">
-    UPDATE member
-		SET PASSWORD = password(#{password})
+		AND PASSWORD =
+		password(#{password})
+	</select>
+
+	<update id="uptPw" parameterType="map">
+		UPDATE member
+		SET PASSWORD =
+		password(#{password})
+		WHERE member_id =
+		#{memberNo}
+	</update>
+
+	<!-- find password - signin -->
+	<update id="findPw" parameterType="member">
+		select password from member
+		where email= #{email}
+	</update>
+
+	<select id="count" parameterType="int" resultMap="MemberMap">
+		SELECT count(*)
+		FROM member
 		WHERE member_id = #{memberNo}
-  </update>
-  
-  <!-- find password - signin -->
-   <update  id="findPw" parameterType="member">
-   select password from member where email= #{email}
-  </update>
-  
+	</select>
 </mapper>

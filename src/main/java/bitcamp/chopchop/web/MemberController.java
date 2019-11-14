@@ -38,8 +38,7 @@ public class MemberController {
   public MemberController(ServletContext sc) {
     uploadDir = sc.getRealPath("/upload/member");
   }
-
-
+  
   @GetMapping("myprofile")
   public void myProfile(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
@@ -48,7 +47,6 @@ public class MemberController {
 
   @GetMapping("form")
   public void form() {
-
   }
 
   @PostMapping("add")

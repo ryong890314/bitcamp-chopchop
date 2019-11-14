@@ -23,9 +23,9 @@ public class CommonController {
   
   @GetMapping("index")
   public void form(Model model) throws Exception {
-//    List<Recipe> recipeList = recipeService.mainTop();
-//    List<Product> productList = productService.mainTop();
-    model.addAttribute("recipeList", recipeService.mainTop());
-    model.addAttribute("productList", productService.mainTop());
+    List<Recipe> recipeList = recipeService.mainTop();
+    List<Product> productList = productService.mainTop();
+    model.addAttribute("recipeList", recipeList);
+    model.addAttribute("productList", productList);
   }
 }
