@@ -9,16 +9,20 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.chopchop.domain.Cart;
+import bitcamp.chopchop.domain.CartProduct;
 import bitcamp.chopchop.domain.Member;
-import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.ProductOptionService;
 import bitcamp.chopchop.service.ProductService;
+import bitcamp.chopchop.web.json.JsonResult;
 
 @Controller
 @RequestMapping("/cart")
@@ -42,13 +46,17 @@ public class CartController {
     model.addAttribute("carts", cartService.list());
   }
 
-  @GetMapping("add")
-  public void add(int productNo, Cart cart, Product product, int no, Model model, HttpSession session) throws Exception {
-    Member member = (Member) session.getAttribute("loginUser");
-    cart.setMemberNo(member.getMemberNo());
-    cart.setProductNo(productService.get(no).getProductNo());
-//     cart.setOptionNo(productOptionService.get(no).getOptionNo());
-    cartService.insert(cart);
+  @PostMapping("add")
+  @ResponseBody
+  public JsonResult add(@RequestBody CartProduct product, Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    System.out.println(product);
+    for(int i=0; i<product.getOptions().size(); i++) {
+      Cart cart = new Cart();
+      cart.setProductNo(product.getNo());
+    }
+    
+    return new JsonResult().setState(JsonResult.SUCCESS);
   }
 
   // button delete

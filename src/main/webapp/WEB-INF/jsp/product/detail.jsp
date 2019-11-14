@@ -120,7 +120,7 @@
               </div>
               <div class="col-md-8">
                 <span>
-                  <fmt:formatNumber value="${product.price * (100 - product.discount) / 100}" pattern="#,###" />
+                  <span id='product-price'><fmt:formatNumber value="${product.price * (100 - product.discount) / 100}" pattern="#,###" /></span>
                   원</span>
               </div>
             </div>
@@ -160,26 +160,23 @@
                   </div>
 
                 </div>
-                <div id="ingredient-block" class="block-content">
+                <div id="selected-option-div" class="block-content">
                   <!-- 상품옵션 들어가는 Div -->
                 </div>
               </div>
-
               <hr>
-
               <div class="row">
                 <div class="col-md-4">
                   <label for="exampleInput">주문금액</label>
                 </div>
                 <div class="col-md-8" style="text-align: right;">
-                  <a id="totalCheckPrice" style="color: red; margin: 10px; font-size: 20px;">0</a><a
-                    style="font-size: 20px;">원</a>
+                  <span id="total-check-price" style="color: red; margin: 10px; font-size: 20px;">0</span><span style="font-size: 20px;">원</span>
                 </div>
               </div>
 
               <hr>
 
-              <button type="button" class="btn bueno-btn" style="margin-top:10px; width:215px;" onclick="add_cart()">장바구니</button>
+              <button id="cart-btn" type="button" class="btn bueno-btn" style="margin-top:10px; width:215px;">장바구니</button>
               <button type="button" class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
             </form>
 
@@ -226,8 +223,25 @@
 
   <jsp:include page="../footer.jsp" />
 
+<script id="option-template" type="text/x-handlebars-template">
+<div class='selected-option' style='width: 440px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-width: 1px; margin: 5px 15px; padding: 0px 15px 10px 15px;'>
+  <div>
+    <span class='closeIcon'>&times;</span>
+  </div>
+  <div style='padding: 10px 22px 10px 0;'>
+    <input type='hidden' class='option-no' value="{{no}}">
+    {{title}}
+  </div>
+  <input class='option-quantity' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='0' max='1000'>
+  <input class='option-price' type='hidden' type='number' value="{{price}}">
+  <span style='float: right; padding-top: 5px;' class=''><span class='option-price-sum'>{{price}}</span>원</span>
+
+</div>
+</script>
 
 <script>
+  var productPrice = parseInt(${product.price * (100 - product.discount) / 100});
+  
   // 제품 옵션 데이터 준비
   var options = [];
 <c:forEach items="${product.options}" var="productOption">
@@ -243,118 +257,74 @@
     return null;
   }
     
+  var optionTemplate = Handlebars.compile($('#option-template').html());
+  
+  calculatePrice();
+  
+  // 선택한 옵션 등록하기
+  $('#product-option').change(function(e) {
+    var selectedOption = getOption($(this).val());
+    if ($('#selected-option-div .option-no[value=' + selectedOption.no +']').length > 0) 
+      return;
+    console.log(selectedOption)
+    $('#selected-option-div').append(optionTemplate(selectedOption));
+    calculatePrice();
+  })
     
-    // 선택한 옵션 등록하기
-    var count = 1;
-    $('#product-option').change(function(e) {
-      addOption(getOption($(this).val()));
-      /*
-      var addOptionCheck = document.querySelector('[id^="addOptionNo"]') !== null;
-      var tempAddOptionNo = $(this).val();
-      var tempAddOptionTitle = $(this).find(":selected").attr("id");
-      if (addOptionCheck == false) {
-        addOption(tempAddOptionNo, tempAddOptionTitle);
-      } else {
-        var addOptionCheckNum = document.getElementsByClassName('addOptionNo');
-        for (var i = 0; i < addOptionCheckNum.length; i++) {
-          if (addOptionCheckNum[i].value == $(this).val()) {
-            alert("이미 등록된 옵션입니다.");
-            $(".optionselect").find("option:eq(0)").prop("selected", true);
-            return false;
-            break;
-          }
-        }
-        addOption(tempAddOptionNo, tempAddOptionTitle);
-      }
-      reprice();
-      */
-    })
-</script>
 
-  <script>
-    // 중복코드 제거
-    function addOption(tempAddOptionNo, tempAddOptionTitle) {
-      /*
-      var html = "";
-      html += "<div style='width: 440px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-width: 1px; margin: 5px 15px; padding: 0px 15px 10px 15px;'>";
-      html += "<div><span class='closeIcon' name='delIngredientBtn' onclick='delOption(event)'>&times;</span></div>"
-      html += "<div style='padding: 10px 22px 10px 0;'>";
-      html += "<input type='hidden' class='addOptionNo' id='addOptionNo" + count + "' value=" + tempAddOptionNo + ">" + tempAddOptionTitle;
-      html += "</div>"
-      html += "<input class='input-quantity' name='quantity' id='addQuantityNo" + count + "' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='0' max='1000'>";
-      var tempAddQuantityNo = "addQuantityNo" + count;
-      var tempRequantity = 1; // 변경될 수량
-      var tempReAddOptionPrice = 0;
-      html += "<c:forEach items='${product.options}' var='productOption'>"
-      if ('${productOption.optionNo}' == tempAddOptionNo) {
-        var tempAddOptionPriceUnit = parseInt("${((product.price) * (100 - product.discount) / 100 + productOption.price)}");
-        var tempReAddOptionPrice = tempAddOptionPriceUnit * tempRequantity;
-        var tempReAddOptionPriceA = Number(tempAddOptionPriceUnit * tempRequantity).toLocaleString('en'); // 출력용
-      }
-      html += "</c:forEach>"
-      var tempReAddOptionPriceS = tempAddOptionPriceUnit;
-      var tempAddOptionPriceNo = "addOptionPriceNo" + count;
-      html += "<input class='input-price" + count + "' type='hidden' type='number' id='addOptionPriceNo" + count + "' value=" + tempReAddOptionPriceS + ">"
-      html += "<a style='float: right; padding-top: 5px;' class='optionRepriceNoA" + count + "' value=" + tempReAddOptionPriceA + ' 원' + "> " + tempReAddOptionPriceA + " 원</a>";
-      html += "<input type='hidden' name='chkprice' class='optionRepriceNoH" + count + "' value=" + tempReAddOptionPrice + ">"
-      html += "<input type='hidden' name='chkpriceS' id='optionRepriceNoS" + count + "' value=" + tempReAddOptionPriceS + ">";
-      var tempOptionRepriceNoA = "optionRepriceNoA" + count; // (상품금액 + 옵션금액) * 수량
-      var tempOptionRepriceNoH = "optionRepriceNoH" + count; // 상품금액 + 옵션금액
-      var tempOptionRepriceNoS = "optionRepriceNoS" + count; // 전체 주문금액 합계
-      html += "</div>"
-      count++;
-      $('#ingredient-block').append(html);
-      $(".optionselect").find("option:eq(0)").prop("selected", true);
-      */
+  // 옵션 변경
+  $('#selected-option-div').on('change', '.option-quantity', function (e) {
+    var optionQuantity = $(this).val();
+    var optionPrice = $(this.parentNode).find('.option-price').val();
+    $(this.parentNode).find('.option-price-sum').html( optionQuantity * optionPrice);
+    calculatePrice();
+  });
+
+  $('#selected-option-div').on('click', '.closeIcon', function (e) {
+    $(this.parentNode.parentNode).remove();
+    calculatePrice();
+  });
+  
+  // 주문 가격 재계산
+  function calculatePrice() {
+    var optionPrices = $('#selected-option-div .option-price-sum');
+    var checkPrice = 0;
+    for (i = 0; i < optionPrices.length; i++) {
+      checkPrice += parseInt(optionPrices[i].innerText);
     }
-
-    // 옵션 삭제
-    function delOption(event) {
-      /*
-      $(event.target.parentNode.parentNode).remove();
-      reprice();
-      */
+    $('#total-check-price').html(Number(productPrice + checkPrice).toLocaleString('en'));
+  }
+  
+  // 장바구니 담기
+  $('#cart-btn').click(function(e) {
+    if (!confirm("장바구니에 담겠습니까?"))
+      return;
+    
+    var data = {
+      'no': ${product.productNo},
+      'options': []
     };
     
-
-    // 옵션 변경
-    $(document).on("change", ".input-quantity", function (tempAddQuantityNo, tempOptionRepriceNoH, tempOptionRepriceNoS, tempOptionRepriceNoA) {
-      /*
-      tempRequantity = tempAddQuantityNo.target.value;
-      var tempOptionRepriceH = $(this).parent().children("[class^=optionRepriceNoH]").val();
-      tempReAddOptionPrice = tempOptionRepriceH * tempRequantity;
-      tempAddOptionPrice = tempReAddOptionPrice;
-      $(this).parent().children("[class^=optionRepriceNoA]").html(Number(tempReAddOptionPrice).toLocaleString('en') + ' 원');
-      $(this).parent().children("[id^=optionRepriceNoS]").val(tempAddOptionPrice);
-      reprice();
-      */
+    var selectedOptions = $('#selected-option-div .selected-option');
+    for (var i = 0; i < selectedOptions.length; i++) {
+      var selectedOption = selectedOptions[i];
+      data['options'].push({
+        'no': $(selectedOption).find('.option-no').val(),
+        'quantity': $(selectedOption).find('.option-quantity').val()
+      });
+    }
+    console.log(data);
+    $.ajax({
+      url: '/app/cart/add', 
+      method: 'post',
+      data: JSON.stringify(data), 
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(response) {
+        alert("장바구니에 상품을 담았습니다.");
+      }
     });
-  </script>
-
-  <script>
-    function reprice() {
-      var myCheckPrice = document.getElementsByName('chkpriceS');
-      var checkPrice = 0;
-      for (j = 0; j < myCheckPrice.length; j++) {
-        checkPrice += parseInt(myCheckPrice[j].value);
-      }
-      totalCheckPrice.innerHTML = Number(checkPrice).toLocaleString('en');
-    }
-  </script>
-
-  <script>
-  // 장바구니 담기
-  function add_cart() {
-
-    if (confirm("장바구니에 담겠습니까?")) {
-      var productOptions = document.getElementsByClassName("addOptionNo");
-      for (i = 0; i < productOptions.length; i++) {
-        console.log(productOptions[i]);
-        location.href = "../cart/add?no=${product.productNo}" + "&optionNo=" + document.getElementsByClassName("addOptionNo")[i].value + "&quantity=" + document.getElementsByClassName("input-quantity")[i].value;
-      }
-      alert("장바구니에 상품을 담았습니다.");
-    }
-  }
+  });
   </script>
 
 </body>

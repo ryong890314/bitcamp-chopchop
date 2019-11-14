@@ -10,7 +10,6 @@ public class Cart {
   private int optionNo;
   private int quantity;
   private Date createdDate;
-  private boolean check;
   private Product product;
   private ProductOption productOption;
   
@@ -100,14 +99,6 @@ public class Cart {
     this.members = members;
   }
   
-  public boolean isCheck() {
-    return check;
-  }
-
-  public void setCheck(boolean check) {
-    this.check = check;
-  }
-  
   public Product getProduct() {
     return product;
   }
@@ -130,6 +121,4 @@ public class Cart {
         + ", members=" + members + ", optionNo=" + optionNo + ", options=" + options + ", productNo=" + productNo
         + ", products=" + products + ", quantity=" + quantity + "]";
   }
-
-  
 }
