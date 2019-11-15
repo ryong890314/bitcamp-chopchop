@@ -8,9 +8,9 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="/css/member/style_footer.css">
 
-<hr>
 	<footer class="footer-area">
-		<div class="container" style="width:1100px;">
+		<div class="container px-0" style="width:1100px;">
+      <hr>
 			<div class="row">
 				<div class="col-12 col-sm-3" style="text-align: center;">
         <span>
@@ -21,7 +21,7 @@
 
 					<!-- Footer Nav -->
 					<div class="footer-nav">
-            <ul style="margin-bottom: 0;">
+            <ul class="mb-0">
               <li><a href="/app/member/contact">회사소개</a></li>
               <li><a href="">이용약관</a></li>
               <li><a href="">개인정보처리방침</a></li>

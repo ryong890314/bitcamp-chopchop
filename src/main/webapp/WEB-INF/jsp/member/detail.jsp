@@ -75,6 +75,7 @@
 
 .mInfo {
   border-bottom: 2px solid #404040;
+  padding-bottom: 5px;
 }
 
 </style>
@@ -84,7 +85,7 @@
 <body onload="formLoad();">
 	<div class="content-wrapper">
 		<div class="container memb-info">
-			<h2 clas="mInfo">My Information</h2>
+			<h2 class="mInfo">My Information</h2>
 			<form action='update' method='post' name="form"
 				enctype='multipart/form-data' onsubmit="return checkAll();">
 				<div class="row">
@@ -171,7 +172,6 @@
 				</div>
 			</form>
 		</div>
-		<hr>
 		<jsp:include page="../pet/detail.jsp" />
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"

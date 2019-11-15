@@ -21,20 +21,19 @@
 <body>
 
   <!-- ##### Contact Area Start ##### -->
-  <section class="contact-area section-padding-100">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-8 col-xl-9">
-          <div class="contact-content mb-100">
-            <h3 class="mb-50">CHOPCHOP RECIPE</h3>
+  <section class="contact-area section-padding-100 contact-area-all">
+    <div class="container px-0">
+      <div class="row px-0 ml-0" style="width:1100px;">
+        <div class="col-12 px-0" style="width:1100px;">
+            <h3>CHOPCHOP RECIPE</h3>
             <p>건강한 식재료로 만드는 반려동물 집밥!<br>
             "밥이 보약이다!"<br>
             내 아이에게 좋은 것만 먹이고 싶은 부모의 마음을 담습니다. <br>
             반려 동물들에게 신선한 재료와 정성이 담긴 엄마의 집밥은 든든합니다.</p><br><br>
 
-          <h4 class="mb-50">CHOPCHOP INFOMATION</h4>
-            <div class="row align-items-center mt-30 mb-50">
-            <div class="col-12 col-lg-8">
+          <h3>CHOPCHOP INFOMATION</h3>
+            <div class="row">
+            <div class="col-12 col-lg-6">
                 <!-- ##### Google Maps ##### -->
                 <div class="map-area">
                   <iframe
@@ -43,9 +42,10 @@
                     allowfullscreen=""></iframe>
                 </div>
               </div>
+              
               <div class="col-12 col-lg-4">
                 <!-- Single Contact Info -->
-                <div class="single-contact-info d-flex align-items-center">
+                <div class="single-contact-info">
                   <div class="icon mr-15">
                     <img src="/img/core-img/placeholder.png" alt="">
                   </div>
@@ -53,7 +53,7 @@
                 </div>
 
                 <!-- Single Contact Info -->
-                <div class="single-contact-info d-flex align-items-center">
+                <div class="single-contact-info">
                   <div class="icon mr-15">
                     <img src="/img/core-img/smartphone.png" alt="">
                   </div>
@@ -61,7 +61,7 @@
                 </div>
 
                 <!-- Single Contact Info -->
-                <div class="single-contact-info d-flex align-items-center">
+                <div class="single-contact-info">
                   <div class="icon mr-15">
                     <img src="/img/core-img/message.png" alt="">
                   </div>
@@ -69,11 +69,9 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-    </div>
   </section>
   
 

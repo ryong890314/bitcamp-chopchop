@@ -10,6 +10,7 @@
 <style>
 .container {
   width: 1100px !important;
+  padding: 0 !important;
 }
 
 #prod_columns {
