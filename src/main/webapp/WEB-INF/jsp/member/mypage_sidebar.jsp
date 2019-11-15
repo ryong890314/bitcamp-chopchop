@@ -81,7 +81,7 @@ Favicon
 							class="nav-icon fa fa-list"></i>
 							<p>My Order</p>
 					</a></li>
-					<li class="nav-item"><a href="pages/widgets.html"
+					<li class="nav-item"><a href="/app/recipe/myscrap"
 						class="nav-link" style="font-size: large;"> <i
 							class="nav-icon fa fa-bookmark"></i>
 							<p>My Bookmark</p>
