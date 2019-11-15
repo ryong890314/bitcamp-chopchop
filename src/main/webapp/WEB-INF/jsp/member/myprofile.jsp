@@ -53,7 +53,7 @@
 						<!-- small box -->
 						<div class="small-box">
 							<div class="inner">
-								<h3 class="myprofile-h3">My Recipe</h3>
+								<h3 class="myprofile-h3">Recipe</h3>
 								<p>All my recipes</p>
 							</div>
 							<div class="icon">
@@ -68,7 +68,7 @@
 						<!-- small box -->
 						<div class="small-box">
 							<div class="inner">
-								<h3 class="myprofile-h3">My Review</h3>
+								<h3 class="myprofile-h3">Review</h3>
 								<p>All my reviews</p>
 							</div>
 							<div class="icon">
@@ -83,7 +83,7 @@
 						<!-- small box -->
 						<div class="small-box ">
 							<div class="inner">
-								<h3 class="myprofile-h3">My Order</h3>
+								<h3 class="myprofile-h3">Order</h3>
 								<p>All my orders</p>
 							</div>
 							<div class="icon">
@@ -97,7 +97,7 @@
 						<!-- small box -->
 						<div class="small-box">
 							<div class="inner">
-								<h3 class="myprofile-h3">My Bookmark</h3>
+								<h3 class="myprofile-h3">Bookmark</h3>
 								<p>All my bookmarks</p>
 							</div>
 							<div class="icon">
