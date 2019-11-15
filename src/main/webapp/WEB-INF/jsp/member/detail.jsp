@@ -68,6 +68,15 @@
   margin-top: 140px;
 }
 
+.memb-info {
+  width: 1100px !important;;
+  margin: 0 auto;
+}
+
+.mInfo {
+  border-bottom: 2px solid #404040;
+}
+
 </style>
 </head>
 <jsp:include page="../member/mypage_sidebar.jsp" />
@@ -76,8 +85,8 @@
 	<%-- <jsp:include page="../header.jsp"/> --%>
 
 	<div class="content-wrapper">
-		<div class="container" style="width: 1100px;margin: 0 auto;">
-			<h2>My Information</h2>
+		<div class="container memb-info">
+			<h2 clas="mInfo">My Information</h2>
 			<form action='update' method='post' name="form"
 				enctype='multipart/form-data' onsubmit="return checkAll();">
 				<div class="row">

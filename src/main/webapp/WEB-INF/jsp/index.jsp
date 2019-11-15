@@ -55,7 +55,7 @@
             <div class="single-slide">
                 <!-- Blog Thumbnail -->
                 <div class="blog-thumbnail">
-                    <a href="/app/recipe/detail?no=${recipe.recipeNo}"><img class="recipe_thumb" src="/upload/recipe/${recipe.thumbnail}" 
+                    <a href="/app/recipe/detail?no=${recipe.recipeNo}"><img class="recipe_thumb tagA" src="/upload/recipe/${recipe.thumbnail}" 
                     style="width:595px;height:400px;object-fit:cover;"></a>
                 </div>
   	            <!-- Blog Content -->
@@ -64,7 +64,7 @@
     	            <div class="blog-content-bg">
   	                <div class="blog-content">
 	                    <span class="post-tag">${recipe.category}</span>
-	                    <a href="/app/recipe/detail?no=${recipe.recipeNo}" class="post-title titlaa">${recipe.title}</a>
+	                    <a href="/app/recipe/detail?no=${recipe.recipeNo}" class="post-title titlaa tagA">${recipe.title}</a>
                       <div class="post-meta">
                         <span class="post-author">by ${recipe.memberNo}</span><br>
                         <span class="post-date">${recipe.createdDate}</span>
@@ -91,7 +91,7 @@
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
                                 <span class="post-tag">chop store</span>
-                                <a href="/app/product/category?species=강아지" class="post-title">강아지</a>
+                                <a href="/app/product/category?species=강아지" class="post-title tagA">강아지</a>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
                                 <span class="post-tag">chop store</span>
-                                <a href="/app/product/category?species=고양이" class="post-title">고양이</a>
+                                <a href="/app/product/category?species=고양이" class="post-title tagA">고양이</a>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
                                 <span class="post-tag">chop store</span>
-                                <a href="/app/product/category?species=작은" class="post-title">작은친구들</a>
+                                <a href="/app/product/category?species=작은" class="post-title tagA">작은친구들</a>
                             </div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
               <figcaption>
                 <div class="product-info">
                 <a href="/app/product/detail?no=${product.productNo}">
-                <div class="product-title"><b>${product.title}</b></div></a>
+                <div class="product-title tagA"><b>${product.title}</b></div></a>
                   <div class="product-detail"><span>${product.detail}</span></div>
                   <div class="product-price"><span>${product.price}원</span></div>
                 </div>
@@ -151,7 +151,7 @@
 </div>
 
     <!-- ##### Instagram Area Start ##### -->
-    <div class="instagram-feed-area d-flex flex-wrap">
+    <div class="instagram-feed-area d-flex flex-wrap" style="max-width: 1100px;margin: 0 auto;">
         <!-- Single Instagram -->
         <div class="single-instagram">
             <img src="../img/bg-img/insta1.jpg" alt="">
