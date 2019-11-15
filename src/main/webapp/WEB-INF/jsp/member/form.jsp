@@ -33,7 +33,6 @@
   
   function email_check() {
 	  var eCheckFlag = false;
-	  console.log("email_check");
     if (form.email.value == "") { // 빈 값 검사
       document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
       $("#email_chk").css('color', 'red');

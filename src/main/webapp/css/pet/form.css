@@ -57,7 +57,7 @@ input[name="gender"]:checked+label, input[name="gender"]:checked+label:hover
 	width: 350px;
 	height: 40px;
 	display: flex;
-	margin: 50px auto !important;
+	margin: 15px auto !important;
 	align-items: center;
 	justify-content: space-around;
 	border: 2px solid #b0c364;

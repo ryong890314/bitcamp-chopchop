@@ -2,6 +2,7 @@ package bitcamp.chopchop.domain;
 
 public class OrderProduct {
 
+  private int orderProductNo;
   private int orderNo;
   private int productNo;
   private int quantity;
@@ -13,9 +14,18 @@ public class OrderProduct {
 
   @Override
   public String toString() {
-    return "OrderProduct [orderNo=" + orderNo + ", productNo=" + productNo + ", quantity="
-        + quantity + ", discountPrice=" + discountPrice + ", optionNo=" + optionNo + ", product="
-        + product + ", productOption=" + productOption + ", order=" + order + "]";
+    return "OrderProduct [orderProductNo=" + orderProductNo + ", orderNo=" + orderNo
+        + ", productNo=" + productNo + ", quantity=" + quantity + ", discountPrice=" + discountPrice
+        + ", optionNo=" + optionNo + ", product=" + product + ", order=" + order
+        + ", productOption=" + productOption + "]";
+  }
+
+  public int getOrderProductNo() {
+    return orderProductNo;
+  }
+
+  public void setOrderProductNo(int orderProductNo) {
+    this.orderProductNo = orderProductNo;
   }
 
   public ProductOption getProductOption() {

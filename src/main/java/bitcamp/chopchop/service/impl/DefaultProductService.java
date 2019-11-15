@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import bitcamp.chopchop.dao.CommentDao;
 import bitcamp.chopchop.dao.PhotoFileDao;
 import bitcamp.chopchop.dao.ProductDao;
+import bitcamp.chopchop.dao.ProductOptionDao;
 import bitcamp.chopchop.domain.PhotoFile;
 import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.service.ProductService;
@@ -22,6 +23,8 @@ public class DefaultProductService implements ProductService {
   private PhotoFileDao photoFileDao;
   @Resource
   private CommentDao commentDao;
+  @Resource
+  private ProductOptionDao productOptionDao;
 
   @Transactional
   @Override
@@ -86,6 +89,11 @@ public class DefaultProductService implements ProductService {
   @Override
   public List<Product> search(String keyword) throws Exception {
     return productDao.findByKeyword(keyword);
+  }
+
+  @Override
+  public List<Product> mainTop() throws Exception {
+    return productDao.mainTop();
   }
   
 }

@@ -245,6 +245,10 @@
     where recipe_id=#{value}
   </delete>
   
+  <select id="mainTop" resultMap="RecipeMap">
+    SELECT * FROM recipe ORDER BY view_count DESC LIMIT 5
+  </select>
+  
   <select id="countAll" resultType="int">
     select count(*) from recipe;
   </select>

@@ -7,8 +7,12 @@
 <html>
 <head>
   <title>상품 목록</title>
-  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <link rel='stylesheet' href='/css/product/style.css'>
+  <link rel='stylesheet' href='/css/member/style_footer.css'>
+  <link rel='stylesheet' href='/css/member/style-header.css'>
+  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
+  <link rel="icon" href="img/core-img/favicon.ico">
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
   <style>
 
   #content {
@@ -161,14 +165,16 @@
 
 <div class="card" style="width: 18rem;">
   <c:forEach items="${product.files}" var="file" end="0">
-    <img src='/upload/product/${file.filePath}' style="width: 286px; height: 286px;" alt=""> 
+    <img src='/upload/product/${file.filePath}' style="width: 286px; height: 286px; object-fit: cover" alt=""> 
   </c:forEach>
   
   <div class="card-body">
     <h5 class="card-title">${product.title}</h5>
-    <p class="card-text"><span style="text-decoration-line:line-through; color:gray;">${product.price}원</span><br>
-    <span class="totalPrice">${product.price * (100-product.discount)/100}</span>원</p>
-    <a href='detail?no=${product.productNo}' class="btn bueno-btn">구매하기</a>
+    <a><span style=" text-decoration:line-through">
+    <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span><br>
+    <span><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###" /> 원
+    </span><br></a>
+    <a href='detail?no=${product.productNo}'><button  class="btn bueno-btn">구매하기</button></a>
   </div>
 </div>
 </div>

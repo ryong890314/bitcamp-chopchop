@@ -56,7 +56,7 @@ public class DefaultMemberService implements MemberService {
   }
   
   @Override
-  public int signEmailCheck(String email) throws Exception {
+  public Member signEmailCheck(String email) throws Exception {
     return memberDao.signEmailCheck(email);
   }
   

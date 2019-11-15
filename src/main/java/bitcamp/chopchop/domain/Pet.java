@@ -14,10 +14,7 @@ public class Pet implements Serializable {
   private int gender;
   private int age;
   private String filePath;
-  
-  private Member members;
-  
-  private Breed breeds;
+  private String breed;
   
   public int getPetNo() {
     return petNo;
@@ -67,12 +64,12 @@ public class Pet implements Serializable {
     this.age = age;
   }
 
-  public Breed getBreeds() {
-    return breeds;
+  public String getBreed() {
+    return breed;
   }
 
-  public void setBreeds(Breed breeds) {
-    this.breeds = breeds;
+  public void setBreed(String breed) {
+    this.breed = breed;
   }
 
   public int getMemberNo() {
@@ -81,14 +78,6 @@ public class Pet implements Serializable {
 
   public void setMemberNo(int memberNo) {
     this.memberNo = memberNo;
-  }
-
-  public Member getMembers() {
-    return members;
-  }
-
-  public void setMembers(Member members) {
-    this.members = members;
   }
 
   public String getFilePath() {

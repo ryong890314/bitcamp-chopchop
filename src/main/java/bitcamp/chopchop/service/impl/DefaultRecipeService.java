@@ -145,4 +145,10 @@ public class DefaultRecipeService implements RecipeService {
     return recipeLikeDao.findAll();
   }
 
+  @Override
+  public List<Recipe> mainTop() throws Exception {
+    return recipeDao.mainTop();
+    
+  }
+
 }
