@@ -30,9 +30,9 @@
 </head>
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body class="hold-transition sidebar-mini layout-fixed">
-	<div class="wrapper">
+	<div class="wrapper" style=" margin: 0 0 0 15%;">
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper" style="width: 1100px;margin: 0 auto;">
+		<div class="content-wrapper" style="width: 1100px;">
 			<h1 class="myprofile-h1">Dashboard</h1>
 			<figure class="snip1559" style="margin-left:33%;">
 				<div class="profile-image">
