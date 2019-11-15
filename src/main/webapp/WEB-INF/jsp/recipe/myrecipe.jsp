@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/recipe/w3.css">
+<!-- <link rel="stylesheet" href="/css/recipe/w3.css"> -->
 <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
 
 <!-- mypage_sidebar start-->
@@ -24,18 +24,49 @@
 
 <title>MY RECIPES</title>
 <style>
-a {
-  color: #000000;
+.container {
+  margin: 0 auto;
 }
+
 </style>
 </head>
 <body>
-<jsp:include page="../member/mypage_sidebar.jsp" />
-
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+<div class="container" >
+  <h1>My Recipe</h1>
+  <div class="w3-main w3-content w3-padding" >
+    <div class="w3-row-padding w3-padding-16 w3-center" id="food"></div>
   </div>
 </div>
+<jsp:include page="../member/mypage_sidebar.jsp" />
+
+
+<div class="bueno-post-area mb-70">
+  <div class="container">
+    <div class="row ">
+      <h3>popular product</h3>
+        <div id="prod_columns">
+          <c:forEach items="${productList}" var="product" begin='0' end="7" >
+            <figure>
+              <a href="/app/product/detail?no=${product.productNo}"><img src="/upload/product/${product.files[0].filePath}"></a>
+              <figcaption>
+                <div class="product-info">
+                <a href="/app/product/detail?no=${product.productNo}">
+                <div class="product-title"><b>${product.title}</b></div></a>
+                  <div class="product-detail"><span>${product.detail}</span></div>
+                  <div class="product-price"><span>${product.price}원</span></div>
+                </div>
+              </figcaption>
+            </figure>
+          </c:forEach>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
 <script src="/js/jquery/jquery-2.2.4.min.js"></script>
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>

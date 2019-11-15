@@ -77,7 +77,7 @@
 
 	<div class="content-wrapper">
 		<div class="container" style="width: 1100px;margin: 0 auto;">
-			<h1>My Information</h1>
+			<h2>My Information</h2>
 			<form action='update' method='post' name="form"
 				enctype='multipart/form-data' onsubmit="return checkAll();">
 				<div class="row">
