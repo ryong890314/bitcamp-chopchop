@@ -14,7 +14,7 @@
 body {
 	background-image: url('/img/core-img/myprofile_bg.png');
 	background-repeat: no-repeat;
-	background-position: 90px 50%;
+	background-position: 15% 45%;
 }
 
 .snip1559 {
@@ -70,3 +70,43 @@ body {
 	color: #888;
 	letter-spacing: 1px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Effect 6 */
+ .hovicon.effect-6 {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 1);
+    -webkit-transition: background 0.2s, color 0.2s;
+    -moz-transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s;
+}
+.hovicon.effect-6:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #64bb5d;
+}
+.hovicon.effect-6:hover i {
+    color: #64bb5d;
+}
+.hovicon.effect-6:hover:before {
+    -webkit-animation: spinAround 2s linear infinite;
+    -moz-animation: spinAround 2s linear infinite;
+    animation: spinAround 2s linear infinite;
+}
+
