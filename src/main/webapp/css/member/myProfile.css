@@ -11,10 +11,10 @@
 	margin-left: 1% !important;
 }
 
-body {
+.content-wrapper {
 	background-image: url('/img/core-img/myprofile_bg.png');
 	background-repeat: no-repeat;
-	background-position: 90px 50%;
+	background-position: 47% 45%;
 }
 
 .snip1559 {

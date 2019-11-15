@@ -61,7 +61,7 @@ public class AuthController {
     try {
       
       String user = "bitcamp1234@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
-      String password = "kim1016!"; // 패스워드
+      String password = "Dmzizi1016!"; // 패스워드
 
       Member member = memberService.signEmailCheck(email);
 
