@@ -12,9 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.domain.ProductOption;
+import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.service.CommentService;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.ProductOptionService;
+import bitcamp.chopchop.service.ProductReviewService;
 import bitcamp.chopchop.service.ProductService;
 
 @Controller
@@ -31,6 +33,8 @@ public class ProductController {
   private MemberService memberService;
   @Resource
   private ProductOptionService productOptionService;
+  @Resource
+  private ProductReviewService productReviewService;
 
 
   @GetMapping("form")
@@ -67,8 +71,10 @@ public class ProductController {
   public void detail(Model model, int no) throws Exception {
     Product product = productService.get(no);
     List<Comment> comments = commentService.findByProductWith(product.getProductNo());
+    List<ProductReview> productReviews = productReviewService.list(product.getProductNo());
     model.addAttribute("product", productService.get(no));
     model.addAttribute("comments", comments);
+    model.addAttribute("productReviews", productReviews);
   }
 
   @GetMapping("search")

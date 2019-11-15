@@ -28,6 +28,22 @@
     order by product_review_id
   </select>
   
+  <select id="findByProductReview" parameterType="int" resultMap="ProductReviewMap">
+    select
+      product_review_id,
+      product_id,
+      member_id,
+      file_path,
+      content,
+      rating,
+      created_date
+    from
+      product_review
+    where
+      product_id=#{value}
+    order by product_review_id desc
+  </select>
+
   <select id="findBy" parameterType="int" resultMap="ProductReviewMap">
     select
       product_review_id,
