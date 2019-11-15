@@ -236,7 +236,6 @@
   <input class='option-quantity' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='1' max='1000'>
   <input class='option-price' type='hidden' type='number' value="{{price}}">
   <span style='float: right; padding-top: 5px;' class=''><span class='option-price-sum'>{{price}}</span>원</span>
-
 </div>
 </script>
 
@@ -248,6 +247,8 @@
 <c:forEach items="${product.options}" var="productOption">
   options.push({'no': ${productOption.optionNo}, 'title': '${productOption.title}', 'price': productPrice + ${productOption.price}});
 </c:forEach>
+    
+    console.log(options);
     
   function getOption(no) {
     for (var option of options) {
@@ -267,7 +268,7 @@
     var selectedOption = getOption($(this).val());
     if ($('#selected-option-div .option-no[value=' + selectedOption.no +']').length > 0) 
       return;
-    console.log(selectedOption)
+    console.log("========" + selectedOption)
     $('#selected-option-div').append(optionTemplate(selectedOption));
     calculatePrice();
   })

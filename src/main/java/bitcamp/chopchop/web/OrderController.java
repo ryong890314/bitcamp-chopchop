@@ -52,7 +52,11 @@ public class OrderController {
     @SuppressWarnings("unchecked")
     List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selected");
     for(Cart cart : selectedProduct) {
-      System.out.println(cart.getCartProduct());
+      cart.setProduct(productService.get(cart.getProductNo()));
+      cart.setProductOption(cartService.getOption(cart.getOptionNo()));
+      System.out.println("카트번호는 " + cart.getCartNo());
+      System.out.println("옵션번호는 " + cart.getOptionNo());
+      System.out.println("옵션은" + cart.getProductOption());
     }
     model.addAttribute("selected", selectedProduct);
     session.setAttribute("selectedProduct", selectedProduct);
