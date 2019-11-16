@@ -83,7 +83,8 @@
 			
 			for(var i=1; i<5; i++) {
 			test = tempUser.charAt(tempUser.indexOf('@') - i);
-			var starID = tempUser.replace(tempUser.indexOf('@') - i, '*');
+			var starID = tempUser.replace(test, '*');
+			console.log(starID)
 			}
 			
 			
