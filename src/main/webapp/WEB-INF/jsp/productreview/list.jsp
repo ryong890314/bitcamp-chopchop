@@ -20,6 +20,11 @@
     /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
   }
 
+  #myModal {
+  top: 50%;
+  margin-top: -325px;
+}
+
 </style>
 
 <body onload="star_grade()">
@@ -71,7 +76,7 @@
         <th style="width: 150px">등록일</th>
       </tr>
       <c:forEach items="${productReviews}" var="productReview">
-        <tr style="text-align: center;" data-toggle="modal" data-target="#exampleModalCenter">
+        <tr style="text-align: center;" data-toggle="modal" data-target="#myModal">
           <!-- <td>${productReview.productReviewNo}</td>
           <td>${productReview.productNo}</td> -->
           <td style=><img src='/upload/productreview/${productReview.filePath}'
@@ -91,35 +96,50 @@
     </table>
   </div>
   
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-md-6">
-                  <c:forEach items="${productReviews}" var="productReview" end="0">
+    
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">상품 후기</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+              <div class="modal-body">
+              <div class="row">
+                <c:forEach items="${productReviews}" var="productReview" end="0">
+                <div class="col-md-8">
                     <img src='/upload/productreview/${productReview.filePath}'
                     style="width: 500px; height: 500px; object-fit: cover">
+                  </div>
+                  <div class="col-md-4" style="padding-left: 0px;">
+                    <div style="height: 67px; text-align: center;">
+                      <div style='color: red; font-size: 25px;'>
+                        <td value='${productReview.rating}'>
+                            <c:if test="${productReview.rating == 1}">★☆☆☆☆</c:if>
+                            <c:if test="${productReview.rating == 2}">★★☆☆☆</c:if>
+                            <c:if test="${productReview.rating == 3}">★★★☆☆</c:if>
+                            <c:if test="${productReview.rating == 4}">★★★★☆</c:if>
+                            <c:if test="${productReview.rating == 5}">★★★★★</c:if>
+                          </td>
+                        </div>
+                           ${productReview.memberNo} │ ${productReview.createdDate}
+                      </div>
+                      <hr>
+                    <div  style="overflow:auto; height: 400px;">
+                      ${productReview.content}
+                    </div>
+                    </div>
                   </c:forEach>
                 </div>
-                          <div class="col-md-6">
-                            여기내용
-                          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+                
+              </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+
   
   
   <script>
