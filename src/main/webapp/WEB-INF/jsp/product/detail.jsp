@@ -193,9 +193,8 @@
           <img src="/upload/product/${file.filePath}" class="rounded mx-auto d-block" alt="...">
         </c:forEach>
       </p>
-      <hr class="my-4">
-      
-      <jsp:include page="../productreview/list.jsp" />
+<!--       <hr class="my-4"> -->
+<%--       <jsp:include page="../productreview/list.jsp" /> --%>
 
       <hr class="my-4">
       <jsp:include page="../comment/productCommentList.jsp" />

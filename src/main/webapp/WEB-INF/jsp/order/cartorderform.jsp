@@ -27,28 +27,26 @@
 <body>
   <jsp:include page="../header.jsp"/>
   
-<!--   <table class='table table-bordered'> -->
-<!--     <tr> -->
-<!--       <td>상품이름</td> -->
-<!--       <td>상품가격</td> -->
-<!--       <td>옵션이름</td> -->
-<!--       <td>옵션가격</td> -->
-<!--       <td>수량</td> -->
-<!--     </tr> -->
-<%--     <c:forEach items="${carts}" var="cart"> --%>
-<%--     <c:forEach items="${products}" var="product"> --%>
-<%--     <c:forEach items="${productOptions}" var="productOption"> --%>
-<!--       <tr> -->
-<%--         <td>${product.title}</td> --%>
-<%--         <td>${product.price}</td> --%>
-<%--         <td>${productOption.title}</td> --%>
-<%--         <td>${productOption.price}</td> --%>
-<%--         <td>${cart.quantity}</td> --%>
-<!--       </tr> -->
-<%--     </c:forEach> --%>
-<%--     </c:forEach> --%>
-<%--     </c:forEach> --%>
-<!--   </table> -->
+  <table class='table table-bordered'>
+    <tr>
+      <td>상품이름</td>
+      <td>상품가격</td>
+      <td>상품할인률</td>
+      <td>옵션이름</td>
+      <td>옵션가격</td>
+      <td>수량</td>
+    </tr>
+    <c:forEach items="${carts}" var="cart">
+      <tr>
+        <td>${cart.product.title}</td>
+        <td>${cart.product.price}</td>
+        <td>${cart.product.discount}</td>
+        <td>${cart.productOption.title}</td>
+        <td>${cart.productOption.price}</td>
+        <td>${cart.quantity}</td>
+      </tr>
+    </c:forEach>
+  </table>
   
   
   

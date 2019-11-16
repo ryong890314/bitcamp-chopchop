@@ -17,7 +17,6 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
 import bitcamp.chopchop.domain.Product;
-import bitcamp.chopchop.domain.ProductOption;
 import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
@@ -54,16 +53,12 @@ public class OrderController {
   @PostMapping("cartorderform")
   public void cartorderform(Model model, String[] cartNo) throws Exception {
     List<Cart> carts = new ArrayList<>();
-    List<Product> products = new ArrayList<>();
-    List<ProductOption> productOptions = new ArrayList<>();
     for (int i=0;i<cartNo.length; i++) {
       carts.add(cartService.get(Integer.parseInt(cartNo[i])));
-      products.add(productService.get(carts.get(i).getProductNo()));
-      productOptions.add(productOptionService.get(carts.get(i).getOptionNo()));
+      carts.get(i).setProduct(productService.get(carts.get(i).getProductNo()));
+      carts.get(i).setProductOption(productOptionService.get(carts.get(i).getOptionNo()));
     }
     model.addAttribute("carts", carts);
-    model.addAttribute("products", products);
-    model.addAttribute("productOption", productOptions);
   }
 
   @GetMapping("list")
