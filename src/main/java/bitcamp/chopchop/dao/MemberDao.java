@@ -20,6 +20,7 @@ public interface MemberDao {
   int signPasswordCheck(String password);
   int chkPw(HashMap<String, Object> map) throws Exception;
   int uptPw(HashMap<String, Object> map) throws Exception;
+  Member findMyID(String tel) throws Exception;
 }
 
 

@@ -64,7 +64,12 @@ public class DefaultMemberService implements MemberService {
   public int signPasswordCheck(String password) throws Exception {
     return memberDao.signPasswordCheck(password);
   }
-
+  
+  @Override
+  public Member findMyID(String tel) throws Exception {
+    return memberDao.findMyID(tel);
+  }
+  
   @Override
   public void sendMail() throws Exception {
     String user = "bitcamp1234@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
@@ -149,5 +154,4 @@ public class DefaultMemberService implements MemberService {
     map.put("memberNo", memberNo);
     return memberDao.uptPw(map);
   }
-
 }

@@ -171,10 +171,10 @@
 		select password from member
 		where email= #{email}
 	</update>
-
-	<select id="count" parameterType="int" resultMap="MemberMap">
-		SELECT count(*)
-		FROM member
-		WHERE member_id = #{memberNo}
-	</select>
+	
+	<select id="findMyID" resultMap="MemberMap" resultType="String">
+    select * from member
+    where tel= #{tel}
+  </select>
+	
 </mapper>

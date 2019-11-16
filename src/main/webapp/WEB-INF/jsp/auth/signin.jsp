@@ -19,8 +19,7 @@
 			<div class="header">
 				<div class="logo-area"></div>
 			</div>
-			<form name="signinform"
-				onsubmit="return checkAll();">
+			<form name="signinform" onsubmit="return checkAll();">
 				<label for="email">Email</label> <input type="email" name="email"
 					value='${cookie.email.value}' onblur="email_check();" />
 				<div id="email_chk" class="vali_check"></div>
@@ -33,9 +32,26 @@
 			</form>
 			<input class="btnn" type="button"
 				onclick="window.location.href = '/app/member/form';"
-				value="Create Account" /> <a href="/app/auth/findPassword"
-				onclick="window.open(this.href, '_blank', 'width=600px,height=600px,toolbars=no,scrollbars=no'); return false;">
-				Forgot your password?</a>
+				value="Create Account" />
+
+			<div class="find_info">
+				<a target="_blank" id="pwinquiry" href="/app/auth/findID"
+					onclick="window.open(this.href, '_blank', 'width=600px,height=600px,toolbars=no,scrollbars=no'); return false;">
+					Find my ID</a> <span class="bar" aria-hidden="true">|</span> <a
+					href="/app/auth/findPassword"
+					onclick="window.open(this.href, '_blank', 'width=600px,height=600px,toolbars=no,scrollbars=no'); return false;">
+					Find my password</a> <span class="bar" aria-hidden="true">|</span>
+			</div>
+
+
+
+
+
+
+
+
+
+
 		</div>
 	</div>
 
@@ -83,14 +99,22 @@
 		function check_signin() {
 			var userEmail = $("input[name=email]").val();
 			var userPssword = $("input[name=password]").val();
-			
-			$.post("/app/json/auth/login", {email : userEmail, password : userPssword}, function(data) {
- 				if (data.state == "success") {
- 					window.location.href = '/app/member/list';
-				} else {
-					document.getElementById("password_chk").innerHTML = "가입하지 않은 아이디거나, 잘못된 비밀번호입니다.";
-					$("#password_chk").css('color', 'red');} 
-				});
+
+			$
+					.post(
+							"/app/json/auth/login",
+							{
+								email : userEmail,
+								password : userPssword
+							},
+							function(data) {
+								if (data.state == "success") {
+									window.location.href = '/app/member/list';
+								} else {
+									document.getElementById("password_chk").innerHTML = "가입하지 않은 아이디거나, 잘못된 비밀번호입니다.";
+									$("#password_chk").css('color', 'red');
+								}
+							});
 		}
 	</script>
 	<jsp:include page="../footer.jsp" />

@@ -97,7 +97,6 @@ public class MemberController {
 
   @GetMapping("detail")
   public void detail(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    System.out.println(loginUser.getMemberNo());
     
     Member member = memberService.get(loginUser.getMemberNo());
     List<Pet> pets = petService.getPets(loginUser.getMemberNo());

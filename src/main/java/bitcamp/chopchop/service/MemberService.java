@@ -17,6 +17,7 @@ public interface MemberService {
   void update(Member member) throws Exception;
   void delete(int no) throws Exception;
   Member signEmailCheck(String email) throws Exception;
+  Member findMyID(String tel) throws Exception;
   int signPasswordCheck(String password) throws Exception;
   int chkPw(String password, int memberNo) throws Exception;
   int uptPw(String password, int memberNo) throws Exception;

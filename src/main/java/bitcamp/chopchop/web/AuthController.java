@@ -32,6 +32,19 @@ public class AuthController {
   @GetMapping("signin")
   public void signin() {}
 
+  @GetMapping("findID")
+  public void findID() {}
+  
+  @GetMapping("getID")
+  public void getID(String tel, HttpSession session) {
+    try {
+      Member member = memberService.findMyID(tel);
+      session.setAttribute("member", member);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
   @GetMapping("findPassword")
   public void findPassword() {}
 
@@ -47,7 +60,7 @@ public class AuthController {
     Member member = memberService.get(email, password);
 
     session.setAttribute("loginUser", member);
-    return "redirect:../member/list";
+    return "redirect:../index";
   }
 
   @GetMapping("logout")
@@ -65,9 +78,6 @@ public class AuthController {
 
       Member member = memberService.signEmailCheck(email);
 
-      System.out.println("들어옴  email" + email);
-      
-      System.out.println("맴버임:" + member ); 
       if (member != null) {
 
         // SMTP 서버 정보를 설정한다.
@@ -112,8 +122,6 @@ public class AuthController {
         // send the message
         Transport.send(message); //// 전송
         System.out.println("message sent successfully...");
-      } else {
-        
       }
     } catch (AddressException e) {
       e.printStackTrace();

@@ -57,11 +57,14 @@
 }
 </style>
 </head>
+<body onload="hide_id()">
+
 <div class="get-password-page">
-	<div class="get-password-header">Find My Password</div>
+	<div class="get-password-header">Find My ID</div>
 	<div class="get-password-content">
 		<div class="get-password-div">
-			<span>메일을 발송했습니다.</span>
+			<span>My ID: <a name="userid" id=getID>${member.email}</a></span>
+			<input type="hidden" class="name" value="${member.email}">
 		</div>
 	</div>
 	<div class="get-password-button">
@@ -70,10 +73,22 @@
 	</div>
 </div>
 
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <script>
-// /app/json/auth/getPassword ajax 데이터 가져오기
-// state 가 successㅇ이면 
-// state 가 failure 이면 안내창 등등 띄우기
+	function hide_id() {
+		var userID = document.getElementsByClassName("name")[0].value;
+		console.log("일단  들어왔나  체크 해  봅시다아아ㅏㅇ" + userID);
+		
+		var splitID = userID.split('@');
+		var emailForm = "@" + splitID[1];
+		
+		var guessID = userID.replace(2, (userID.indexOf('@')-1), "*");
+		console.log("guessID" + guessID);
+		
+		var starID = guessID.;
+		
+		getID.innerHTML = starID;
+	}
 </script>
-
+</body>
 </html>

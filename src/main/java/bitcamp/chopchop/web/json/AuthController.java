@@ -23,12 +23,25 @@ public class AuthController {
     try {
       Member member = memberService.signEmailCheck(email);
 
-      System.out.println("user email: " + email);
-      System.out.println("member: " +  member);
-      
       if (member == null) {
         return new JsonResult().setState(JsonResult.FAILURE);
       }
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(member);
+    } catch (Exception e) {
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
+    }
+  }
+
+  @GetMapping("getMemberID")
+  public JsonResult findByTel(String tel) throws Exception {
+    try {
+      Member member = memberService.findMyID(tel);
+
+
+      if (member == null) {
+        return new JsonResult().setState(JsonResult.FAILURE);
+      }
+
       return new JsonResult().setState(JsonResult.SUCCESS).setResult(member);
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());

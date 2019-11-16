@@ -63,7 +63,7 @@
 	cursor: pointer;
 }
 
-.emailBox {
+.telBox {
 	width: 360px;
 	height: 28px;
 	position: center;
@@ -73,48 +73,49 @@
 <body>
 	<div class="find-password-page"
 		ng-controller="FindIdCtrl as findIdCtrl">
-		<div class="find-password-header">Find My Password</div>
-		<form method='POST' action='/app/auth/getPassword' name="signinform"
+		<div class="find-password-header">Find My ID</div>
+		<form method='POST' action='/app/auth/getID' name="signinform"
 			onsubmit="return checkAll();">
 			<div class="find-password-content">
 				<div class="find-password-div">
-					등록하신 <span>E-Mail</span> 주소를 입력하세요.
+					등록하신 <span>전화번호를</span> 입력하세요.
 				</div>
 				<div>
-					<input class="emailBox" type="email" name="email"
-						placeholder="E-Mail" onblur="email_check();">
+					<input class="telBox" type="tel" name="tel"
+						placeholder="Telephone" onblur="tel_check();">
 				</div>
-				<div id="email_chk" class="vali_check"></div>
+				<div id="tel_chk" class="vali_check"></div>
 			</div>
 			<div class="find-password-button">
-				<button type="submit" onclick="find_email();" id="passwordRequest">Send</button>
+				<button type="submit" onclick="find_id();" id="IDRequest">Find ID</button>
 			</div>
 		</form>
 	</div>
 
 	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript">
-		function email_check() {
+		function tel_check() {
 			var eCheckFlag = false;
-			console.log("email_check");
-			if (signinform.email.value == "") { // 빈 값 검사
-				document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
-				$("#email_chk").css('color', 'red');
+			console.log("tel_check");
+			if (signinform.tel.value == "") { // 빈 값 검사
+				document.getElementById("tel_chk").innerHTML = "전화번호를 입력하세요.";
+				$("#tel_chk").css('color', 'red');
 			} else {
-				document.getElementById("email_chk").innerHTML = "";
+				document.getElementById("tel_chk").innerHTML = "";
 				eCheckFlag = true;
 			}
 			return eCheckFlag;
 		}
-		function find_email() {
-			var userEmail = $("input[name=email]").val();
-			$.get("/app/json/auth/getMember?email=" + userEmail,
+		function find_id() {
+			var userTel = $("input[name=tel]").val();
+			$.get("/app/json/auth/getMemberID?tel=" + userTel,
 							function(data) {
+				console.log(data.state);
 								if (data.state == "success") {
-									window.location.href = '/app/auth/getPassword?email='
-											+ userEmail;
+									window.location.href = '/app/auth/getID?tel='
+											+ userTel;
 								} else {
-									alert("없는 이메일 입니다. 다시 입력해 주세요")
+									alert("없는 전화번호 입니다. 다시 입력해 주세요")
 									location.reload();
 								}
 							});
@@ -122,7 +123,7 @@
 
 		function checkAll() {
 			var checkCnt = 0;
-			if (email_check()) {
+			if (tel_check()) {
 				checkCnt++;
 			}
 
