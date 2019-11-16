@@ -72,13 +72,13 @@
           </td>
           <td class="selected-products" style="text-align: left">
             <c:forEach items="${cart.products}" var="product">
-            <input class="selected-product-productNo" data-name="productNo" type="hidden" value="${product.productNo}">
+            <input class="selected-product-productNo" data-name="productNo" data-no="" type="hidden" value="${product.productNo}">
               ${product.title}<br>
             </c:forEach>
               <hr>
                 <c:forEach items="${cart.options}" var="productOption">
                   ${productOption.title} ( +<fmt:formatNumber value="${productOption.price}" pattern="#,###"/>원 )<br>
-                  <input class="selected-product-optionNo" data-name="optionNo" type="hidden" value="${productOption.optionNo}">
+                  <input class="selected-product-optionNo" data-name="optionNo" data-no="" type="hidden" value="${productOption.optionNo}">
                 </c:forEach>
             </td>
           <td>
@@ -137,8 +137,6 @@
       
 
     <hr class="my-4">
-<form id="selected-product" action="/app/order/cartorderform">
-</form>
 
 <div style="text-align: right">
 <button type="button" class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
@@ -147,27 +145,57 @@
 </div>
 </div>
 
+
+<form id="selected-product" action="/app/order/cartorderform" method="post">
+<button value="test" class="btn bueno-btn" id="testBtn"></button>
+</form>
+
   <jsp:include page="../footer.jsp"/>
 
   <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
   <script id="cart-template" type="text/x-handlebars-template">
-    <input type="text" class="product-no" value="{{productNo}}">
-    <input type="text" class="option-no" value="{{optionNo}}">
+    <input type="text" class="product-no" name="productNo">
+    <input type="text" class="option-no" name="optionNo">
+    <input type="text" class="cart-no" name="cartNo">
   </script>
   
   <script>
+    var chkbox = $('.myChkbox');
     var cartTemplate = Handlebars.compile($('#cart-template').html());
     
     var noCheck = [];
     <c:forEach items="${carts}" var="cart">
       <c:forEach items="${cart.products}" var="product">
       <c:forEach items="${cart.options}" var="productOption">
-        noCheck.push({'productNo':${cart.productNo}, 'optionNo':${productOption.optionNo}})
+        noCheck.push({'cartNo':${cart.cartNo}, 'productNo':${cart.productNo}, 'optionNo':${productOption.optionNo}})
       </c:forEach>
       </c:forEach>
     </c:forEach>
-    
     console.log(noCheck);
+    var temp =0;
+    $('#testBtn').on('click', (e) => {
+      for(var i=0;i<$('.selected-products input[data-name="productNo"]').length;i++){
+        if(chkbox[i].checked) {
+          $('.selected-products input[data-name="productNo"]').attr('data-no', i);
+          var selectedIndex = $('.selected-products input[data-name="productNo"]').attr('data-no');
+//           console.log( $('.selected-products input[data-name="productNo"]').attr('data-no'));
+          $('#selected-product').append(cartTemplate());
+          console.log($('#selected-product').html());
+          var proNo = $('#selected-product .product-no');
+          console.log(i);
+          document.getElementsByClassName('product-no')[temp].setAttribute('value', noCheck[selectedIndex].productNo);
+          document.getElementsByClassName('option-no')[temp].setAttribute('value', noCheck[selectedIndex].optionNo);
+          document.getElementsByClassName('cart-no')[temp].setAttribute('value', noCheck[selectedIndex].cartNo);
+          temp++;
+          console.log($('#selected-product').html());
+        }
+      }
+    });
+  
+    
+    
+    
+    
     
     function getProductNo(no) {
       for (var checkProduct of noCheck) {
@@ -187,24 +215,23 @@
       return null;
     }
     
+    var tempProductNo = $('.selected-products input[data-name="productNo"]');
+    var tempOptionNo = $('.selected-products input[data-name="optionNo"]');
     
-    $('.myChkbox').on('change', (e) => {
-      for(var i=0; i<$('.myChkbox').length; i++){
-        var check = $('.myChkbox');
-        if($('.check-td  > input[type="checkbox"]').checked) {
-          var tempProductNo = $('.selected-products input[data-name="productNo"]');
-          var tempOptionNo = $('.selected-products input[data-name="optionNo"]');
-          var selectedProductNo = getProductNo(tempProductNo[i].value);
-          var selectedOptionNo = getOptionNo(tempOptionNo[i].value);
-          var selectedOptionNo = getProductNo(tempOptionNo[i].value);
-          $('#selected-product').append(cartTemplate(selectedProductNo));
-        }
+//     $('#testBtn').on('click', (e) => {
+//       for(var i=0; i<$('.myChkbox').length; i++){
+//         var check = $('.myChkbox');
+//         if($('.check-td  > input[type="checkbox"]').checked) {
+//           var selectedProductNo = getProductNo(tempProductNo[i].value);
+//           var selectedOptionNo = getOptionNo(tempOptionNo[i].value);
+//           var selectedOptionNo = getProductNo(tempOptionNo[i].value);
+//           $('#selected-product').append(cartTemplate(selectedProductNo));
+//           console.log("상품번호 " + selectedProductNo);
+//           console.log("옵션번호 " + selectedOptionNo);
+//         }
         
-        console.log($('#selected-product').html());
-//         console.log("상품번호 " + tempProductNo[i].value);
-//         console.log("옵션번호 " + tempOptionNo[i].value);
-      }
-    })
+//       }
+//     })
     
     
   

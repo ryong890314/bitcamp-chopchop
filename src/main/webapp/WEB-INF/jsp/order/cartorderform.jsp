@@ -27,6 +27,31 @@
 <body>
   <jsp:include page="../header.jsp"/>
   
+<!--   <table class='table table-bordered'> -->
+<!--     <tr> -->
+<!--       <td>상품이름</td> -->
+<!--       <td>상품가격</td> -->
+<!--       <td>옵션이름</td> -->
+<!--       <td>옵션가격</td> -->
+<!--       <td>수량</td> -->
+<!--     </tr> -->
+<%--     <c:forEach items="${carts}" var="cart"> --%>
+<%--     <c:forEach items="${products}" var="product"> --%>
+<%--     <c:forEach items="${productOptions}" var="productOption"> --%>
+<!--       <tr> -->
+<%--         <td>${product.title}</td> --%>
+<%--         <td>${product.price}</td> --%>
+<%--         <td>${productOption.title}</td> --%>
+<%--         <td>${productOption.price}</td> --%>
+<%--         <td>${cart.quantity}</td> --%>
+<!--       </tr> -->
+<%--     </c:forEach> --%>
+<%--     </c:forEach> --%>
+<%--     </c:forEach> --%>
+<!--   </table> -->
+  
+  
+  
   <form action="addfromcart" method="post" id="orderForm">
       <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
       <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto;">

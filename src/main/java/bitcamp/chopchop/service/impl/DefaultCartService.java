@@ -3,7 +3,6 @@ package bitcamp.chopchop.service.impl;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.chopchop.dao.CartDao;
 import bitcamp.chopchop.dao.ProductOptionDao;
 import bitcamp.chopchop.domain.Cart;

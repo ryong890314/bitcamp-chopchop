@@ -96,6 +96,7 @@
       cart_id,
       member_id,
       product_id,
+      option_id,
       quantity,
       created_date
     from

@@ -1,5 +1,6 @@
 package bitcamp.chopchop.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -16,9 +17,11 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
 import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.domain.ProductOption;
 import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
+import bitcamp.chopchop.service.ProductOptionService;
 import bitcamp.chopchop.service.ProductService;
 
 @Controller
@@ -34,7 +37,8 @@ public class OrderController {
   private CartService cartService;
   @Resource
   private MemberService memberService;
-  
+  @Resource
+  private ProductOptionService productOptionService;
   
   @GetMapping("form")
   public void form(
@@ -47,19 +51,19 @@ public class OrderController {
     model.addAttribute("product", product); // 주문에서 선택한 상품
   }
 
-  @GetMapping("cartorderform")
-  public void cartorderform(HttpSession session, Model model) throws Exception {
-    @SuppressWarnings("unchecked")
-    List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selected");
-    for(Cart cart : selectedProduct) {
-      cart.setProduct(productService.get(cart.getProductNo()));
-      cart.setProductOption(cartService.getOption(cart.getOptionNo()));
-      System.out.println("카트번호는 " + cart.getCartNo());
-      System.out.println("옵션번호는 " + cart.getOptionNo());
-      System.out.println("옵션은" + cart.getProductOption());
+  @PostMapping("cartorderform")
+  public void cartorderform(Model model, String[] cartNo) throws Exception {
+    List<Cart> carts = new ArrayList<>();
+    List<Product> products = new ArrayList<>();
+    List<ProductOption> productOptions = new ArrayList<>();
+    for (int i=0;i<cartNo.length; i++) {
+      carts.add(cartService.get(Integer.parseInt(cartNo[i])));
+      products.add(productService.get(carts.get(i).getProductNo()));
+      productOptions.add(productOptionService.get(carts.get(i).getOptionNo()));
     }
-    model.addAttribute("selected", selectedProduct);
-    session.setAttribute("selectedProduct", selectedProduct);
+    model.addAttribute("carts", carts);
+    model.addAttribute("products", products);
+    model.addAttribute("productOption", productOptions);
   }
 
   @GetMapping("list")
@@ -69,7 +73,8 @@ public class OrderController {
 
   @GetMapping("searchbymember")
   public void searchByMember(
-      Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+      Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) 
+          throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
     List<OrderProduct> orderProducts2 = orderService.searchByMember(member.getMemberNo());
 
