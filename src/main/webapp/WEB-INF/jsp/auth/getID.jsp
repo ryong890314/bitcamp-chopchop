@@ -59,36 +59,38 @@
 </head>
 <body onload="hide_id()">
 
-<div class="get-password-page">
-	<div class="get-password-header">Find My ID</div>
-	<div class="get-password-content">
-		<div class="get-password-div">
-			<span>My ID: <a name="userid" id=getID>${member.email}</a></span>
-			<input type="hidden" class="name" value="${member.email}">
+	<div class="get-password-page">
+		<div class="get-password-header">Find My ID</div>
+		<div class="get-password-content">
+			<div class="get-password-div">
+				<span>My ID: <a name="userid" id=getID>${member.email}</a></span> <input
+					type="hidden" class="name" value="${member.email}">
+			</div>
+		</div>
+		<div class="get-password-button">
+			<Input type="button" onclick="self.close()" class="passwordRequest"
+				value="Close">
 		</div>
 	</div>
-	<div class="get-password-button">
-		<Input type="button" onclick="self.close()" class="passwordRequest"
-			value="Close">
-	</div>
-</div>
 
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-<script>
-	function hide_id() {
-		var userID = document.getElementsByClassName("name")[0].value;
-		console.log("일단  들어왔나  체크 해  봅시다아아ㅏㅇ" + userID);
-		
-		var splitID = userID.split('@');
-		var emailForm = "@" + splitID[1];
-		
-		var guessID = userID.replace(2, (userID.indexOf('@')-1), "*");
-		console.log("guessID" + guessID);
-		
-		var starID = guessID.;
-		
-		getID.innerHTML = starID;
-	}
-</script>
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<script>
+		function hide_id() {
+			var tempUser = document.getElementsByClassName("name")[0].value;
+			console.log(tempUser.indexOf('@'));
+
+			var test = 0;
+			
+			for(var i=1; i<5; i++) {
+			test = tempUser.charAt(tempUser.indexOf('@') - i);
+			var starID = tempUser.replace(tempUser.indexOf('@') - i, '*');
+			}
+			
+			
+			getID.innerHTML = starID;
+		}
+	</script>
+
+
 </body>
 </html>
