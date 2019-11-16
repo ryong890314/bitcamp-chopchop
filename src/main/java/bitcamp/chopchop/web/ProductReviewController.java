@@ -49,8 +49,8 @@ public class ProductReviewController {
   
   @GetMapping("list")
   public void list(Model model, int no) throws Exception {
-    List<ProductReview> productReviews = productReviewService.list(no);
-    model.addAttribute("productReviews", productReviews);
+    // List<ProductReview> productReviews = productReviewService.list(no);
+    // model.addAttribute("productReviews", productReviews);
   }
 
   @PostMapping("add")
@@ -60,7 +60,7 @@ public class ProductReviewController {
     productReview.setFilePath(writeFile(file));
     productReview.setContent(productReview.getContent());
     productReviewService.insert(productReview);
-    return "redirect:../productreview/list?no=" + productReview.getProductNo();
+    return "redirect:../product/detail?no=" + productReview.getProductNo();
   }
 
   private String writeFile(MultipartFile file) throws Exception {
@@ -70,9 +70,6 @@ public class ProductReviewController {
     file.transferTo(new File(uploadDir + "/" + filename));
     return filename;
   }
-
-
-
 
   @GetMapping("commentDelete")
   public String commentDelete(int no, int productNo) 

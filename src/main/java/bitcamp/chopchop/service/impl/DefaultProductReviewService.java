@@ -36,7 +36,7 @@ public class DefaultProductReviewService implements ProductReviewService {
 
   @Override
   public List<ProductReview> list(int no) throws Exception {
-    return productReviewDao.findAll();
+    return productReviewDao.findByProductReview(no);
   }
   
   @Override
