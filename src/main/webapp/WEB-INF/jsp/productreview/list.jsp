@@ -21,10 +21,9 @@
   }
 
   #myModal {
-  top: 50%;
-  margin-top: -325px;
-}
-
+    top: 50%;
+    margin-top: -325px;
+  }
 </style>
 
 <body onload="star_grade()">
@@ -76,10 +75,10 @@
         <th style="width: 150px">등록일</th>
       </tr>
       <c:forEach items="${productReviews}" var="productReview">
-        <tr style="text-align: center;" data-toggle="modal" data-target="#myModal">
-          <!-- <td>${productReview.productReviewNo}</td>
-          <td>${productReview.productNo}</td> -->
-          <td style=><img src='/upload/productreview/${productReview.filePath}'
+        <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
+          <!-- <td>${productReview.productReviewNo}</td> -->
+          <!-- <td>${productReview.productNo}</td> -->
+          <td><img src='/upload/productreview/${productReview.filePath}'
               style="width: 100px; height: 100px; object-fit: cover"></td>
           <td style="text-align: left"><span class="txt_post">${productReview.content}</span></td>
           <td>${productReview.memberNo}</td>
@@ -90,62 +89,82 @@
             <c:if test="${productReview.rating == 4}">★★★★☆</c:if>
             <c:if test="${productReview.rating == 5}">★★★★★</c:if>
           </td>
-          <td>${productReview.createdDate}</td>
+          <td>${productReview.createdDate}
+              <input type="hidden" class="tempNo" value="${productReview.productReviewNo}">
+          </td>
         </tr>
       </c:forEach>
     </table>
   </div>
-  
-    
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">상품 후기</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-            </div>
-              <div class="modal-body">
-              <div class="row">
-                <c:forEach items="${productReviews}" var="productReview" end="0">
-                <div class="col-md-8">
-                    <img src='/upload/productreview/${productReview.filePath}'
-                    style="width: 500px; height: 500px; object-fit: cover">
-                  </div>
-                  <div class="col-md-4" style="padding-left: 0px;">
-                    <div style="height: 67px; text-align: center;">
-                      <div style='color: red; font-size: 25px;'>
-                        <td value='${productReview.rating}'>
-                            <c:if test="${productReview.rating == 1}">★☆☆☆☆</c:if>
-                            <c:if test="${productReview.rating == 2}">★★☆☆☆</c:if>
-                            <c:if test="${productReview.rating == 3}">★★★☆☆</c:if>
-                            <c:if test="${productReview.rating == 4}">★★★★☆</c:if>
-                            <c:if test="${productReview.rating == 5}">★★★★★</c:if>
-                          </td>
-                        </div>
-                           ${productReview.memberNo} │ ${productReview.createdDate}
-                      </div>
-                      <hr>
-                    <div  style="overflow:auto; height: 400px;">
-                      ${productReview.content}
-                    </div>
-                    </div>
-                  </c:forEach>
-                </div>
-                
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">상품 후기</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <c:forEach items="${productReviews}" var="productReview">
+              <c:set var="selectReviewNo" value="18"/>
+              <!-- <input class="selectReviewNo" type="hidden" value="18"/> -->
+              <c:if test="${productReview.productReviewNo == selectReviewNo}">
+              <div class="col-md-8">
+                <img src='/upload/productreview/${productReview.filePath}'
+                  style="width: 500px; height: 500px; object-fit: cover">
               </div>
+              <div class="col-md-4" style="padding-left: 0px;">
+                <div style="height: 67px; text-align: center;">
+                  <div style='color: red; font-size: 25px;'>
+                    <td value='${productReview.rating}'>
+                      <c:if test="${productReview.rating == 1}">★☆☆☆☆</c:if>
+                      <c:if test="${productReview.rating == 2}">★★☆☆☆</c:if>
+                      <c:if test="${productReview.rating == 3}">★★★☆☆</c:if>
+                      <c:if test="${productReview.rating == 4}">★★★★☆</c:if>
+                      <c:if test="${productReview.rating == 5}">★★★★★</c:if>
+                    </td>
+                  </div>
+                  ${productReview.memberNo} │ ${productReview.createdDate}
+                </div>
+                <hr>
+                <div style="overflow:auto; height: 400px;">
+                  ${productReview.content}
+                </div>
+              </div>
+            </c:if>
+            </c:forEach>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-  
-  
+<!-- <script>
+  let 칼럼1 = new Array();
+  let 칼럼2 = new Array();
+  let 칼럼3 = new Array();
+  let 칼럼4 = new Array();
+</script>
+
+<c:forEach items="${productReviews}" var="productReview">
   <script>
- $(document).on("click", ".txt_post", function () {
-   console.log($(this).context.textContent)
- });
+    칼럼1.push(${productReview.칼럼10});
+  </script>
+</c:forEach> -->
+
+  <script>
+
+ $(document).on("click", ".tempTr", function () {
+   console.log($(this).context.children[4].children[0].value); // reveiwNo...
+   var tempChkReviewNo = $(this).context.children[4].children[0].value;
+   console.log($(this))
+});
+
   </script>
 
 </body>
