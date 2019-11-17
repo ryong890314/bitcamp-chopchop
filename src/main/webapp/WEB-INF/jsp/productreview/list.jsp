@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 
 <html>
+  
 <style>
   .txt_post {
     font-size: 16px;
@@ -12,12 +13,10 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 4;
-    /* 라인수 */
     -webkit-box-orient: vertical;
     word-wrap: break-word;
     line-height: 1.5em;
     height: 6.0em;
-    /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
   }
 
   #myModal {
@@ -30,7 +29,7 @@
 
   <div>
     <h4 class="mb-50">상품 후기</h4>
-
+    
     <div class="row">
       <div class="col-md-5">
         <c:set var="total" value="0" />
@@ -90,10 +89,13 @@
         </tr>
       </c:forEach>
     </table>
-    
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">후기등록</button>
+
+
   </div>
 
-  <!-- Modal -->
+  <!-- detail Modal -->
 
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -115,6 +117,7 @@
                   <span id="tempStar">별점</span>
                   </div>
                   <span id="tempId">아이디</span>
+                  <span> | </span>
                   <span id="tempDate">날짜</span>
                 </div>
                 <hr>
@@ -128,7 +131,57 @@
     </div>
   </div>
 
+<!-- add modal -->
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">상품후기 등록</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form action='../productreview/add' enctype='multipart/form-data' method='post'>
+          <input type='hidden' name='productNo' id='productNo' value='${product.productNo}'><br>
+          
+          <div class="row">
+                <div class="col-md-4">
+                  <div>
+            <input type="hidden" id="photo" value="${productReview.filePath}" />
+            <img id="imgThumb" class="imgThumb" style="width: 250px; height: 250px; object-fit: cover">
+          </div>
+            <input type='file' id='fileupload' name='file' /><br>
+          </div>
+          <div class="col-md-8">
+          <select class="custom-select" name='rating'>
+              <option selected value="5">★★★★★ 아주좋아요</option>
+              <option value="4">★★★★☆ 맘에들어요</option>
+              <option value="3">★★★☆☆ 보통이에요</option>
+              <option value="2">★★☆☆☆ 그냥그래요</option>
+              <option value="1">★☆☆☆☆ 별로에요</option>
+            </select>
+            <hr>
+            <input type="text" class="form-control" name="content" style="overflow:auto; height: 200px;">
+        </div>
+      </div>
+        <hr>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+            <button type="submit" class="btn btn-primary">등록하기</button>
+            <!-- <button type="submit" class="btn btn-primary">등록하기</button> -->
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
   <script>
+
+// 리스트
 
  $(document).on("click", ".tempTr", function () {
    tempImg.innerHTML = $(this)[0].cells[0].innerHTML;
@@ -137,6 +190,27 @@
    tempStar.innerText = $(this)[0].cells[3].innerText;
    tempDate.innerText = $(this)[0].cells[4].innerText;
 });
+
+// 등록
+
+function formLoad() {
+      // hidden값을 이용해서 자바스크립트를 이용한 경우
+      if (document.getElementById("photo").value == null
+        || document.getElementById("photo").value == "") {
+        document.getElementById("imgThumb").src = "/upload/productreview/info_photo.jpg";
+      } else {
+        document.getElementById("imgThumb").src = "/upload/productreview/"
+          + document.getElementById("photo").value;
+      }
+    }
+
+    document.getElementById("fileupload").onchange = function () {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById("imgThumb").src = e.target.result;
+      };
+      reader.readAsDataURL(this.files[0]);
+    };
 
   </script>
 

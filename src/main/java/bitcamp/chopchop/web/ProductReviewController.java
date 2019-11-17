@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.domain.Member;
+import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.service.CommentService;
 import bitcamp.chopchop.service.MemberService;
@@ -54,7 +55,7 @@ public class ProductReviewController {
   }
 
   @PostMapping("add")
-  public String add(ProductReview productReview, HttpSession session, MultipartFile file) throws Exception {
+  public String add(ProductReview productReview, HttpSession session, Model model, MultipartFile file) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
     productReview.setMemberNo(member.getMemberNo());
     productReview.setFilePath(writeFile(file));
