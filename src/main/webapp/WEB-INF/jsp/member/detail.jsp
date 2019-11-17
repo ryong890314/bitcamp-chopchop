@@ -69,7 +69,7 @@
 }
 
 .memb-info {
-  width: 1100px !important;;
+  width: 1100px !important;
   margin: 0 auto;
 }
 
@@ -77,15 +77,18 @@
   border-bottom: 2px solid #404040;
   padding-bottom: 5px;
 }
-
 </style>
 </head>
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <jsp:include page="../header.jsp" />
 <body onload="formLoad();">
 	<div class="content-wrapper">
-		<div class="container memb-info">
-			<h2 class="mInfo">My Information</h2>
+		<div class="container memb-info px-0">
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mInfo">
+        <h3>My Information</h3>
+			   <span style="float: right;font-size: 14px;">
+         <a href="" >My Page</a>&nbsp>&nbspMy information</a></span> 
+      </div>
 			<form action='update' method='post' name="form"
 				enctype='multipart/form-data' onsubmit="return checkAll();">
 				<div class="row">
@@ -171,7 +174,7 @@
 					</div>
 				</div>
 			</form>
-		</div>
+		</div> <br><br><br>
 		<jsp:include page="../pet/detail.jsp" />
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"

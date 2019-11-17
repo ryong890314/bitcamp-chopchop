@@ -26,6 +26,10 @@
 a {
 	color: #000000;
 }
+.mInfo {
+  border-bottom: 2px solid #404040;
+  padding-bottom: 5px;
+}
 </style>
 </head>
 <jsp:include page="../header.jsp" />
@@ -33,11 +37,16 @@ a {
 <body>
 	<div class="content-wrapper">
 		<div class="w3-main w3-content w3-padding"
-			style="max-width: 1200px; margin-top: 100px">
+			style="max-width: 1200px;">
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mInfo">
+      <h3>My Recipe</h3>
+       <span style="float: right;font-size: 14px;">
+       <a href="" >My Page</a>&nbsp>&nbspMy Recipe</a></span> 
+    </div>
 			<div class="w3-row-padding w3-padding-16 w3-center" id="food">
 			</div>
 		</div>
-
+    
 		<script src="/js/jquery/jquery-2.2.4.min.js"></script>
 		<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 

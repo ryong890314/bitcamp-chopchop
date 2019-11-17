@@ -8,15 +8,16 @@
 <title>CHOPCHOP MAIN</title>
 <link rel="stylesheet" href="/css/main/main_style.css">
 <style>
+ 
 .container {
   width: 1100px !important;
   padding: 0 !important;
 }
 
 #prod_columns {
-    width: 1100px;
-    column-width: 250px;    
-    column-gap: 10px;
+    width: 1100px; 
+/*      column-width: 250px;     */
+     column-gap: 10px;  
 }
 
 #prod_columns figure {
@@ -130,7 +131,7 @@
 
 <div class="bueno-post-area mb-70">
   <div class="container">
-    <div class="row ">
+    <div class="row">
       <h3>popular product</h3>
         <div id="prod_columns">
           <c:forEach items="${productList}" var="product" begin='0' end="7" >
@@ -241,13 +242,6 @@
     <!-- Active js -->
     <script src="../js/active.js"></script>
     
-    <script type="text/javascript">
     
-    function aaa(rNo) {
-    	alert('rNo ===>', rNo);
-    	alert('recipeNo ===>', $('#recipeNo').val());
-    	frm.submit();
-    }
-    </script>
 </body>
 </html>

@@ -11,19 +11,22 @@
 	crossorigin='anonymous'>
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <style type="text/css">
-  .pet-info {
-    margin: 0 auto;
-    width: 1100px !important;
-  }
-  .pInfo {
-    border-bottom: 2px solid #404040;
-  }
+	.pet-info { 
+	  margin: 0 auto; 
+	  width: 1100px !important; 
+	 } 
+	.pInfo {
+	  border-bottom: 2px solid #404040;
+	  padding-bottom: 5px;
+	}
 </style>
 </head>
 <body>
 
-	<div id='content' class="container pet-info">
-		<h3 class="pInfo">My Pet Information</h3>
+	<div id='content' class="container pet-info px-0">
+	 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 pInfo">
+		<h3>My Pet Information</h3>
+	 </div>
 		<button type="button" class="btn btn-primary"
 			style="background-color: #b0c364; border-color: #b0c364;"
 			onclick="location.href='/app/pet/form?no=${member.memberNo}'">펫 등록</button>

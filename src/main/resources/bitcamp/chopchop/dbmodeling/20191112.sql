@@ -125,7 +125,7 @@ CREATE TABLE pet (
   age          INTEGER      NULL,     -- 나이
   gender       INTEGER      NOT NULL, -- 성별
   file_path    VARCHAR(50)  NULL,     -- 사진
-  COL          VARCHAR(50)  NULL,     -- 품종
+  breed          VARCHAR(50)  NULL,     -- 품종
   category_id  INTEGER      NULL      -- 동물분류번호
 );
 
