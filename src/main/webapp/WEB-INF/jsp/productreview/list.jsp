@@ -26,10 +26,9 @@
   }
 </style>
 
-<body onload="star_grade()">
-  <div id='productReviewBody'>
+<body>
+  <div>
     <h4 class="mb-50">상품 후기</h4>
-    <!-- 평균 -->
     <div class="row">
       <div class="col-md-5">
         <c:set var="total" value="0" />
@@ -66,8 +65,6 @@
     </div>
     <table class='table table-hover'>
       <tr style="text-align: center;">
-        <!-- <th>상품후기번호</th>
-        <th>상품번호</th> -->
         <th style="width: 130px">사진</th>
         <th>내용</th>
         <th style="width: 150px">작성자</th>
@@ -76,8 +73,6 @@
       </tr>
       <c:forEach items="${productReviews}" var="productReview">
         <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
-          <!-- <td>${productReview.productReviewNo}</td> -->
-          <!-- <td>${productReview.productNo}</td> -->
           <td><img src='/upload/productreview/${productReview.filePath}'
               style="width: 100px; height: 100px; object-fit: cover"></td>
           <td style="text-align: left"><span class="txt_post">${productReview.content}</span></td>
@@ -90,7 +85,6 @@
             <c:if test="${productReview.rating == 5}">★★★★★</c:if>
           </td>
           <td>${productReview.createdDate}
-              <input type="hidden" class="tempNo" value="${productReview.productReviewNo}">
           </td>
         </tr>
       </c:forEach>
@@ -98,8 +92,9 @@
   </div>
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <!-- Modal 1-->
+  
+  <!-- <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -110,10 +105,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <c:forEach items="${productReviews}" var="productReview">
-              <c:set var="selectReviewNo" value="18"/>
-              <!-- <input class="selectReviewNo" type="hidden" value="18"/> -->
-              <c:if test="${productReview.productReviewNo == selectReviewNo}">
+            <c:forEach items="${productReviews}" var="productReview" end="0">
               <div class="col-md-8">
                 <img src='/upload/productreview/${productReview.filePath}'
                   style="width: 500px; height: 500px; object-fit: cover">
@@ -136,28 +128,50 @@
                   ${productReview.content}
                 </div>
               </div>
-            </c:if>
             </c:forEach>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <!-- Modal 2-->
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">상품 후기</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-md-8">
+                <span class="tempImg" style="width: 500px; height: 500px; object-fit: cover">이미지</span>
+              </div>
+              <div class="col-md-4" style="padding-left: 0px;">
+                <div style="height: 67px; text-align: center;">
+                  <div style='color: red; font-size: 25px;'>
+                  <span class="tempStar">별점</span>
+                  </div>
+                  <span class="tempId">아이디</span>
+                  <span class="tempDate">날짜</span>
+                </div>
+                <hr>
+                <div style="overflow:auto; height: 400px;">
+                  <span class="tempCont">내용</span>
+                </div>
+              </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-<!-- <script>
-  let 칼럼1 = new Array();
-  let 칼럼2 = new Array();
-  let 칼럼3 = new Array();
-  let 칼럼4 = new Array();
-</script>
-
-<c:forEach items="${productReviews}" var="productReview">
-  <script>
-    칼럼1.push(${productReview.칼럼10});
-  </script>
-</c:forEach> -->
-
-  <script>
+  <!-- <script>
 
  $(document).on("click", ".tempTr", function () {
    console.log($(this).context.children[4].children[0].value); // reveiwNo...
@@ -165,7 +179,8 @@
    console.log($(this))
 });
 
-  </script>
+
+  </script> -->
 
 </body>
 
