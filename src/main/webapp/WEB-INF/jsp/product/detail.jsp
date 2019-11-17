@@ -195,8 +195,10 @@
       </p>
       <hr class="my-4">
       
-      
+      <div>
+          <h4 class="mb-50">상품 후기</h4>
       <jsp:include page="../productreview/list.jsp" />
+      </div>
 
       <hr class="my-4">
       <jsp:include page="../comment/productCommentList.jsp" />
