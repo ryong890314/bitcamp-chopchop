@@ -1,6 +1,4 @@
 /* Master Stylesheet - 1.0 */
-/* :: 1.0 Import Fonts */
-/* @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700"); */
 /* :: 2.0 Import All CSS */
 @import url(/css/member/classy-nav.css);
 @import url(/css/common/font-awesome.min.css);
@@ -12,59 +10,14 @@
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Sunflower', sans-serif;
     font-size: 14px;
 }
 
-h1,
-h2,
-h4,
-h5,
-h6 {
-    font-family: "Montserrat", sans-serif;
-    color: #272727;
-    line-height: 1.3;
-    font-weight: 600;
-}
-
-<<<<<<< HEAD
-=======
-p {
-    font-family: "Montserrat", sans-serif;
-    color: #7a7a7a;
-    font-size: 14px;
-    line-height: 2;
-    font-weight: 500;
-}
-
-a,
-a:hover,
-a:focus {
-    -webkit-transition-duration: 500ms;
-    transition-duration: 500ms;
-    text-decoration: none;
-    outline: 0 solid transparent;
-    color: #000000;
-/*     font-weight: 600; */
-/*     font-size: 16px; */
-    font-family: "Montserrat", sans-serif;
-}
-
->>>>>>> 2f714f550f807ad1e4fc45992caea8f852d030d4
-ul,
-ol {
-    margin: 0;
-}
-
-ul li,
-ol li {
-    list-style: none;
-}
-
-img {
-    height: auto;
-    max-width: 100%;
-}
+/* img { */
+/*     height: auto; */
+/*     max-width: 100%; */
+/* } */
 
 /* :: 3.5.0 Miscellaneous */
 .tooltip-inner {
@@ -136,7 +89,7 @@ img {
     font-size: 24px;
     height: 40px;
     line-height: 37px;
-    right: 50px;
+    left: 50%;
     text-align: center;
     width: 40px;
     border-radius: 50%;
@@ -180,6 +133,7 @@ img {
 
 /* :: 4.0 Header Area CSS */
 .header-area {
+    font-family: 'Sunflower', sans-serif;
     position: relative;
     z-index: 1000;
     width: 100%;

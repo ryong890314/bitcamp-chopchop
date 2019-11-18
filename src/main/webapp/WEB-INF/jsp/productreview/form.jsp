@@ -9,6 +9,7 @@
     crossorigin="anonymous"></script>
   <link rel='stylesheet' href='/css/common/bootstrap.min.css'>
   <link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
+  
 </head>
 
 <body onload="formLoad()">

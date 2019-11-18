@@ -1,7 +1,6 @@
 package bitcamp.chopchop.dao;
 
 import java.util.HashMap;
-import java.util.List;
 import bitcamp.chopchop.domain.Cooking;
 
 public interface CookingDao {

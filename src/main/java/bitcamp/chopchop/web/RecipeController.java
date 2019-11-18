@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +23,6 @@ import bitcamp.chopchop.domain.RecipeLike;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.RecipeCommentService;
 import bitcamp.chopchop.service.RecipeService;
-import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.geometry.Positions;
-import net.coobird.thumbnailator.name.Rename;
 
 @Controller
 @RequestMapping("/recipe")
@@ -58,9 +54,6 @@ public class RecipeController {
     recipe.setThumbnail(filename);
     filePath.transferTo(new File(uploadDir + "/" + filename));
     
-    // Thumbnail image
-    //Thumbnails.of(uploadDir + "/" + filename).size(280, 250).outputFormat("jpg").toFiles(Rename.PREFIX_DOT_THUMBNAIL);
-
     List<Ingredient> ingredients = new ArrayList<>();
     for (int i = 0; i < ingredientNames.length; i++) {
       Ingredient ingredient = new Ingredient();
@@ -83,7 +76,6 @@ public class RecipeController {
 
   @GetMapping("detail")
   public void detail(Model model, int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    System.out.println("detail호출~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     Recipe recipe = recipeService.get(no);
     Member member = memberService.get(recipe.getMemberNo()); // 작성자멤버
     Member viewer = memberService.get(loginUser.getMemberNo()); // 글을 보는사람
@@ -125,8 +117,6 @@ public class RecipeController {
       String filename = UUID.randomUUID().toString();
       recipe.setThumbnail(filename);
       filePath.transferTo(new File(uploadDir + "/" + filename));
-      // Thumbnail image
-      //Thumbnails.of(uploadDir + "/" + filename).size(280, 250).outputFormat("jpg").toFiles(Rename.PREFIX_DOT_THUMBNAIL);
     }
 
     List<Ingredient> ingredients = new ArrayList<>();
@@ -183,6 +173,7 @@ public class RecipeController {
                      @RequestParam(defaultValue = "4") int pageSize) throws Exception {
     
     Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
     List<Recipe> recipes = recipeService.list(pageNo, pageSize);
     List<Recipe> myrecipes = new ArrayList<>(); 
     for (Recipe recipe : recipes) {
@@ -197,6 +188,7 @@ public class RecipeController {
   public void scrapList(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     
     Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
     List<RecipeLike> recipeLikes = recipeService.listLike(); 
     List<Recipe> scrapRecipes = new ArrayList<>(); 
     for (RecipeLike recipeLike : recipeLikes) {

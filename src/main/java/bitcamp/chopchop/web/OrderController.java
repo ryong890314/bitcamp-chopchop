@@ -1,5 +1,6 @@
 package bitcamp.chopchop.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -16,9 +17,11 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
 import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.domain.ProductOption;
 import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
+import bitcamp.chopchop.service.ProductOptionService;
 import bitcamp.chopchop.service.ProductService;
 
 @Controller
@@ -34,28 +37,36 @@ public class OrderController {
   private CartService cartService;
   @Resource
   private MemberService memberService;
+  @Resource
+  private ProductOptionService productOptionService;
   
-  
-  @GetMapping("form")
-  public void form(
-      int no, Model model, HttpSession session, @
-      ModelAttribute("loginUser") Member loginUser) 
-          throws Exception {
-    Member member = memberService.get(loginUser.getMemberNo());
-    Product product = productService.get(no);
-    model.addAttribute("loginUser", member);
-    model.addAttribute("product", product); // 주문에서 선택한 상품
+  @PostMapping("form")
+  public void form(Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser,
+      String[] optNo, String[] optQuantity, String[] optPrice, int productNo) throws Exception {
+    Product product = productService.get(productNo);
+    ArrayList<ProductOption> tempOptions = new ArrayList<>();
+    for (int i=0;i<optNo.length;i++) {
+      tempOptions.add(productOptionService.get(Integer.parseInt(optNo[i])));
+      tempOptions.get(i).setQuantity(Integer.parseInt(optQuantity[i]));
+      product.setOptions(tempOptions);
+    }
+//    System.out.println(tempOptions);
+    model.addAttribute("product", product);
   }
 
-  @GetMapping("cartorderform")
-  public void cartorderform(HttpSession session, Model model) throws Exception {
-    @SuppressWarnings("unchecked")
-    List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selected");
-    for(Cart cart : selectedProduct) {
-      System.out.println(cart.getCartProducts());
+  @PostMapping("cartorderform")
+  public void cartorderform(Model model, String[] cartNo, 
+      @ModelAttribute("loginUser") Member loginUser, HttpSession session) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    List<Cart> carts = new ArrayList<>();
+    for (int i=0;i<cartNo.length; i++) {
+      carts.add(cartService.get(Integer.parseInt(cartNo[i])));
+      carts.get(i).setProduct(productService.get(carts.get(i).getProductNo()));
+      carts.get(i).setProductOption(productOptionService.get(carts.get(i).getOptionNo()));
     }
-    model.addAttribute("selected", selectedProduct);
-    session.setAttribute("selectedProduct", selectedProduct);
+    model.addAttribute("loginUser", member);
+    model.addAttribute("carts", carts);
+    session.setAttribute("selectedProduct", carts);
   }
 
   @GetMapping("list")
@@ -65,32 +76,36 @@ public class OrderController {
 
   @GetMapping("searchbymember")
   public void searchByMember(
-      Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+      Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) 
+          throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
-    List<OrderProduct> orderProducts2 = orderService.searchByMember(member.getMemberNo());
+    List<OrderProduct> orderProducts = orderService.searchByMember(member.getMemberNo());
 
-    for(OrderProduct op : orderProducts2) {
+    for(OrderProduct op : orderProducts) {
       op.setProduct(productService.get(op.getProductNo()));
       op.setOrder(orderService.get(op.getOrderNo()));
     }
     model.addAttribute("loginUser", member);
-    model.addAttribute("orderProducts2", orderProducts2);
+    model.addAttribute("orderProducts2", orderProducts);
+    session.setAttribute("selectedProduct", orderProducts);
   }
 
   @PostMapping("add")
   @Transactional
-  public String add(
-      HttpSession session, Order order, int no, int optionNo, int quantity, int discountPrice) 
-          throws Exception {
-    System.out.println(order);
-    OrderProduct orderProduct = new OrderProduct();
-
-    orderProduct.setProductNo(productService.get(no).getProductNo());
-    orderProduct.setOptionNo(optionNo);
-    orderProduct.setQuantity(quantity);
-    orderProduct.setDiscountPrice(discountPrice);
+  public String add(HttpSession session, Order order, int no, int[] optionNo, int[] quantity) throws Exception {
     orderService.insert(order);
-    orderService.insert(orderProduct, order);
+    OrderProduct orderProduct = new OrderProduct();
+    for(int i=0 ; i<optionNo.length ; i++) {
+      Product product = productService.get(no);
+      orderProduct.setProductNo(no);
+      orderProduct.setOptionNo(optionNo[i]);
+      orderProduct.setQuantity(quantity[i]);
+      orderProduct.setDiscountPrice(((product.getPrice() * (100-product.getDiscount())/100) + productOptionService.get(optionNo[i]).getPrice()) * quantity[i]);
+      if(orderProduct.getDiscountPrice() < 50000) {
+        orderProduct.setDiscountPrice(orderProduct.getDiscountPrice() + 2500);
+      }
+      orderService.insert(orderProduct, order);
+    }
     session.setAttribute("order", order);
     session.setAttribute("orderProduct", orderProduct);
 
@@ -99,22 +114,24 @@ public class OrderController {
 
   @PostMapping("addfromcart")
   @Transactional
-  public String addFromCart(HttpSession session, Order order, int optionNo) throws Exception {
+  public String addFromCart(HttpSession session, Order order) throws Exception {
     OrderProduct orderProduct = new OrderProduct();
-
     @SuppressWarnings("unchecked")
     List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selectedProduct");
     orderService.insert(order);
     if (selectedProduct != null) {
       for (Cart cart : selectedProduct) {
-        
+        Product product = cart.getProduct();
+        ProductOption productOption = cart.getProductOption();
         orderProduct.setProductNo(cart.getProductNo());
-        orderProduct.setOptionNo(optionNo);
+        orderProduct.setOptionNo(cart.getOptionNo());
         orderProduct.setQuantity(cart.getQuantity());
-//        orderProduct.setDiscountPrice((cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount()) * cart.getQuantity()) / 100));
-//        System.out.println("총액은2 " + (cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount()) * cart.getQuantity()) / 100));
+        orderProduct.setDiscountPrice(((product.getPrice() * (100-product.getDiscount())/100) + productOption.getPrice()) * cart.getQuantity());
+        if(orderProduct.getDiscountPrice() < 50000) {
+          orderProduct.setDiscountPrice(orderProduct.getDiscountPrice() + 2500);
+        }
         orderService.insert(orderProduct, order);
-        cartService.delete(cart.getCartNo());
+//        cartService.delete(cart.getCartNo()); // 테스트할 때 막아두고 나중에 풀 것
       }
     }
     session.setAttribute("order", order);
@@ -145,7 +162,7 @@ public class OrderController {
     orderProduct = (OrderProduct) session.getAttribute("orderProduct");
     model.addAttribute("order", order);
     model.addAttribute("orderProduct", orderProduct);
-    model.addAttribute("product", productService.get(orderProduct.getProductNo()));
+//    model.addAttribute("product", productService.get(orderProduct.getProductNo()));
   }
 
   @GetMapping("updateform")

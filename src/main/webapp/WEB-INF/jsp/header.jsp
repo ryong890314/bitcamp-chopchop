@@ -102,8 +102,7 @@
   <!-- ##### Header Area End ##### -->
   <div style="height: 30px;"></div>
 
-<!-- ##### Footer Area End ##### -->
-
+<!-- should add to all pages -->
 <!-- ##### All Javascript Script ##### -->
 <!-- jQuery-2.2.4 js -->
 <script src="/js/jquery/jquery-2.2.4.min.js"></script>
@@ -115,3 +114,5 @@
 <script src="/js/plugins/plugins.js"></script>
 <!-- Active js -->
 <script src="/js/active.js"></script>
+
+<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>

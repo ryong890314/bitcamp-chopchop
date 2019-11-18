@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +9,33 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/member/myProfile.css">
+
+<!-- mypage_sidebar start-->
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="/css/member/adminlte.min.css">
+<!-- Favicon -->
+<link rel="icon" href="/img/core-img/favicon.ico">
+<!-- </head> -->
+<!-- mypage_sidebar  end -->
+<title>MY RECIPES</title>
+
 <style>
 </style>
 </head>
+<jsp:include page="../header.jsp" />
+<jsp:include page="../member/mypage_sidebar.jsp" />
 <body class="hold-transition sidebar-mini layout-fixed">
-	<jsp:include page="../member/mypage_sidebar.jsp" />
-	<div class="wrapper">
+	<div class="wrapper" style=" margin: 0 0 0 15%;">
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
+		<div class="content-wrapper" style="width: 1100px;">
 			<h1 class="myprofile-h1">Dashboard</h1>
-			<figure class="snip1559" style="margin-left:33%;">
+			<figure class="snip1559" style="margin-left:25%;">
 				<div class="profile-image">
 					<input type="hidden" id="userphoto" value="${member.photo}" /> <img
 						src='/upload/member/${member.photo}' id="userThumb"
@@ -29,16 +46,6 @@
 				</figcaption>
 			</figure>
 
-
-
-
-
-
-
-
-
-
-
 			<!-- Main content -->
 			<section class="content">
 				<!-- Small boxes (Stat box) -->
@@ -47,7 +54,7 @@
 						<!-- small box -->
 						<div class="small-box">
 							<div class="inner">
-								<h3 class="myprofile-h3">My Recipe</h3>
+								<h3 class="myprofile-h3">Recipe</h3>
 								<p>All my recipes</p>
 							</div>
 							<div class="icon">
@@ -62,7 +69,7 @@
 						<!-- small box -->
 						<div class="small-box">
 							<div class="inner">
-								<h3 class="myprofile-h3">My Review</h3>
+								<h3 class="myprofile-h3">Review</h3>
 								<p>All my reviews</p>
 							</div>
 							<div class="icon">
@@ -77,7 +84,7 @@
 						<!-- small box -->
 						<div class="small-box ">
 							<div class="inner">
-								<h3 class="myprofile-h3">My Order</h3>
+								<h3 class="myprofile-h3">Order</h3>
 								<p>All my orders</p>
 							</div>
 							<div class="icon">
@@ -91,7 +98,7 @@
 						<!-- small box -->
 						<div class="small-box">
 							<div class="inner">
-								<h3 class="myprofile-h3">My Bookmar</h3>
+								<h3 class="myprofile-h3">Bookmark</h3>
 								<p>All my bookmarks</p>
 							</div>
 							<div class="icon">
@@ -125,6 +132,28 @@
 			$(this).removeClass("hover");
 		});
 	</script>
-</body>
+	
+	 <!--  mypage_sidebar script  start -->
+  <!-- jQuery -->
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="/js/jquery-ui/jquery-ui.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/js/dist/adminlte.js"></script>
+
+  <script>
+    function sidebar_form() {
+      // hidden값을 이용해서 자바스크립트를 이용한 경우
+      if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
+        $("#userThumb").attr("src", "/upload/member/info_photo.jpg");
+      } else {
+        $("#userThumb").attr("src",
+            "/upload/member/" + $("#userphoto").val());
+      }
+    }
+  </script>
+  
+  <!--  mypage_sidebar script  end -->
+  </body>
 <jsp:include page="../footer.jsp" />
 </html>

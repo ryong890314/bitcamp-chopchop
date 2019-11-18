@@ -36,7 +36,7 @@
 
 </head>
 
-<body onload="check_all()">
+<body>
 
     <jsp:include page="../header.jsp"/>
 
@@ -62,23 +62,23 @@
       </tr>
       <c:forEach items="${carts}" var="cart">
         <tr style="text-align: center;">
-          <td>
-            <form method="post" action="cheoption">
-              <input class="myChkbox" type="checkbox" name="chkbox" value="${cart.cartNo}">
-            </form>
+          <td class="check-td">
+            <input class="myChkbox" type="checkbox" name="chkbox" value="${cart.cartNo}">
           </td>
           <td>
             <c:forEach items="${cart.files}" var="file" end="0">
               <img src='/upload/product/${file.filePath}' style="width: 100px; height: 100px; object-fit: cover">
             </c:forEach>
           </td>
-          <td style="text-align: left">
+          <td class="selected-products" style="text-align: left">
             <c:forEach items="${cart.products}" var="product">
+            <input class="selected-product-productNo" data-name="productNo" data-no="" type="hidden" value="${product.productNo}">
               ${product.title}<br>
             </c:forEach>
               <hr>
                 <c:forEach items="${cart.options}" var="productOption">
                   ${productOption.title} ( +<fmt:formatNumber value="${productOption.price}" pattern="#,###"/>원 )<br>
+                  <input class="selected-product-optionNo" data-name="optionNo" data-no="" type="hidden" value="${productOption.optionNo}">
                 </c:forEach>
             </td>
           <td>
@@ -107,8 +107,8 @@
             <c:forEach items="${cart.options}" var="productOption">
             <td>
 <%--                     <a style="text-decoration:line-through"><fmt:formatNumber value="${(product.price + productOption.price) * cart.quantity}" pattern="#,###"/>원</a><br> --%>
-                    <a style="color:red"><fmt:formatNumber value="${((product.price * (100 - product.discount) / 100) + productOption.price) * cart.quantity}" pattern="#,###"/>원</a><br>
-                    <input type="hidden" name="chkprice" value="${(product.price + productOption.price) * (100 - product.discount) / 100 * cart.quantity}">
+                    <span style="color:red"><fmt:formatNumber value="${((product.price * (100 - product.discount) / 100) + productOption.price) * cart.quantity}" pattern="#,###"/></span>원<br>
+                    <input class="selected-product-price" type="hidden" name="chkprice" value="${((product.price * (100 - product.discount) / 100) + productOption.price) * cart.quantity}">
                   </td>
               </c:forEach>
               </c:forEach>
@@ -129,24 +129,110 @@
     <hr class="my-4" style="margin-top: 0px;">
     
     <div style="text-align: right;">
-        <a1>상품금액 </a1><a id="sumCheckPrice">0</a>
-        <a1>원 + 배송비 </a1><a id="shipCheckPrice">0</a>
-        <a1>원 = 합계금액 </a1><a id="totalCheckPrice" style="color: red">0</a>
-        <a1>원</a1>
+        <a>상품금액 </a><a id="sumCheckPrice">0</a>
+        <a>원 + 배송비 </a><a id="shipCheckPrice">0</a>
+        <a>원 = 합계금액 </a><a id="totalCheckPrice" style="color: red">0</a>
+        <a>원</a>
       </div>
       
 
     <hr class="my-4">
 
 <div style="text-align: right">
-<button type="button" class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
-<button type="button" id="selectOrderBtn" class="btn bueno-btn" onclick="check_Order()">선택구매</button>
-<button type="button" id="allOrderBtn" class="btn bueno-btn" onclick="all_Order()">전체구매</button>
-</div>
+<form id="selected-product" method="post">
 
+<button type="button" class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
+<button type="submit" id="selectOrderBtn" class="btn bueno-btn" formaction="/app/order/cartorderform">선택구매</button>
+<button type="button" id="allOrderBtn" class="btn bueno-btn" onclick="all_Order()">전체구매</button>
+</form>
+
+</div>
 </div>
 
   <jsp:include page="../footer.jsp"/>
+
+  <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+  <script id="cart-template" type="text/x-handlebars-template">
+    <input type="hidden" class="product-no" name="productNo">
+    <input type="hidden" class="option-no" name="optionNo">
+    <input type="hidden" class="cart-no" name="cartNo">
+  </script>
+  
+  <script>
+    var chkbox = $('.myChkbox');
+    var cartTemplate = Handlebars.compile($('#cart-template').html());
+    
+    var noCheck = [];
+    <c:forEach items="${carts}" var="cart">
+      <c:forEach items="${cart.products}" var="product">
+      <c:forEach items="${cart.options}" var="productOption">
+        noCheck.push({'cartNo':${cart.cartNo}, 'productNo':${cart.productNo}, 'optionNo':${productOption.optionNo}})
+      </c:forEach>
+      </c:forEach>
+    </c:forEach>
+    console.log(noCheck);
+    var temp =0;
+    $('#selectOrderBtn').on('click', (e) => {
+      for(var i=0;i<$('.selected-products input[data-name="productNo"]').length;i++){
+        if(chkbox[i].checked) {
+          $('.selected-products input[data-name="productNo"]').attr('data-no', i);
+          var selectedIndex = $('.selected-products input[data-name="productNo"]').attr('data-no');
+//           console.log( $('.selected-products input[data-name="productNo"]').attr('data-no'));
+          $('#selected-product').append(cartTemplate());
+          console.log($('#selected-product').html());
+          var proNo = $('#selected-product .product-no');
+          console.log(i);
+          document.getElementsByClassName('product-no')[temp].setAttribute('value', noCheck[selectedIndex].productNo);
+          document.getElementsByClassName('option-no')[temp].setAttribute('value', noCheck[selectedIndex].optionNo);
+          document.getElementsByClassName('cart-no')[temp].setAttribute('value', noCheck[selectedIndex].cartNo);
+          temp++;
+          console.log($('#selected-product').html());
+        }
+      }
+    });
+    
+    function getProductNo(no) {
+      for (var checkProduct of noCheck) {
+        if(no == checkProduct.productNo) {
+          return checkProduct;
+        }
+      }
+      return null;
+    }
+  
+    function getOptionNo(no) {
+      for (var checkOption of noCheck) {
+        if(no == checkOption.optionNo) {
+          return checkOption;
+        }
+      }
+      return null;
+    }
+    
+    var tempProductNo = $('.selected-products input[data-name="productNo"]');
+    var tempOptionNo = $('.selected-products input[data-name="optionNo"]');
+    
+//     $('#testBtn').on('click', (e) => {
+//       for(var i=0; i<$('.myChkbox').length; i++){
+//         var check = $('.myChkbox');
+//         if($('.check-td  > input[type="checkbox"]').checked) {
+//           var selectedProductNo = getProductNo(tempProductNo[i].value);
+//           var selectedOptionNo = getOptionNo(tempOptionNo[i].value);
+//           var selectedOptionNo = getProductNo(tempOptionNo[i].value);
+//           $('#selected-product').append(cartTemplate(selectedProductNo));
+//           console.log("상품번호 " + selectedProductNo);
+//           console.log("옵션번호 " + selectedOptionNo);
+//         }
+        
+//       }
+//     })
+    
+    
+  
+
+  </script>
+  
+  
 
   <script>
       var myCheckBoxes = document.getElementsByClassName('myChkbox');
@@ -249,6 +335,40 @@
       }
     }
   </script>
+  
+  
+  <script>
+    $('#test').on('click',(e) => {
+      var data = {
+        'no': [],
+        'optionNo':[],
+        'quantity': [],
+        'redirect':'/app/order/cartorderform'
+      }
+      
+      var checkBox = $('.myChkBox');
+      var selectedProduct = $('.selected-product-productNo');
+      for(var i=0;i<selectedProduct.length;i++){
+        var selectedNo = $('.selected-product-productNo')[i];
+        var selectedOptionNo = $('.selected-product-optionNo')[i];
+        var selectedQuantity = $('.input-number')[i];
+        data.no.push($(selectedNo).val());
+        data.optionNo.push($(selectedOptionNo).val());
+        data.quantity.push($(selectedQuantity).val());
+      }
+      
+      $.ajax({
+        url: '/app/order/cartorderform', 
+        method: 'post',
+        data: JSON.stringify(data), 
+        dataType: 'json',
+        contentType: 'application/json',
+        complete: function(data) {
+          window.location = '/app/order/cartorderform';
+        }
+      });
+    });
+  </script>
 
   <script>
     // 선택 상품금액
@@ -257,7 +377,6 @@
       for (var i = 0; i < myCheckBoxes.length; i++){
         if (myCheckBoxes[i].checked) {
           alert(parseInt(myCheckBoxes[i].value)); //
-
         }
       }
     }
@@ -270,13 +389,6 @@
       $('#chkbox').val()
     }
   </script>
-
-  <script>
-  
-  </script>
-
-
-
 
 
 

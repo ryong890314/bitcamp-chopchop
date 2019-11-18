@@ -50,7 +50,7 @@ public class CartController {
 
   @PostMapping("add")
   @ResponseBody
-  public JsonResult add(@RequestBody CartProduct product, Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+  public JsonResult add(@RequestBody CartProduct product, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     for(int i=0; i<product.getOptions().size(); i++) {
       Cart cart = new Cart();
       cart.setMemberNo(memberService.get(loginUser.getMemberNo()).getMemberNo());
@@ -58,9 +58,9 @@ public class CartController {
       cart.setOptionNo(product.getOptions().get(i).getNo());
       cart.setQuantity(product.getOptions().get(i).getQuantity());
       cart.setProduct(productService.get(product.getNo()));
+      System.out.println(cart.getProduct());
       cartService.insert(cart);
     }
-    session.setAttribute("cartProduct", product);
     return new JsonResult().setState(JsonResult.SUCCESS);
   }
 
@@ -93,7 +93,10 @@ public class CartController {
     for (int i = 0; i < arrIdx.length; i++) {
       selected.add(cartService.get(Integer.parseInt(arrIdx[i])));
     }
+    
     for (Cart tempCart : selected) {
+      System.out.println(tempCart.getOptionNo());
+      tempCart.setProductOption(cartService.getOption(tempCart.getOptionNo()));
     }
     
     session.setAttribute("selected", selected);
