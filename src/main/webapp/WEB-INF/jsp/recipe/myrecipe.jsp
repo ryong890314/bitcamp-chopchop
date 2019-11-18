@@ -33,7 +33,7 @@ a {
     <img src='/img/recipe/like.png' style='height:15px; margin-top:-2px;'>&nbsp{{scrap}}
   </div>
     <h3><a href='detail?no={{recipeNo}}'>{{title}}</a></h3>
-    <p>{{content}}</p>
+    <p>{{otherInfo}}</p>
 <button type="del-btn" class="btn btn-light" onclick="del({{recipeNo}});">DELETE</button>
 </div>
 {{/each}}
