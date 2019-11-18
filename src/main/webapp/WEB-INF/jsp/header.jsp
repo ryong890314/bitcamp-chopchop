@@ -6,6 +6,7 @@
 <link rel="icon" href="/img/core-img/favicon.ico">
 <!-- Stylesheet -->
 <link rel="stylesheet" href="/css/member/style-header.css">
+
 <header class="header-area">
 	<!-- Top Header Area -->
 	<div class="top-header-area bg-img bg-overlay"
@@ -66,15 +67,15 @@
 						<div class="classynav">
 							<ul>
 								<li><a class="nav-items" href="/app/index"
-									style="padding-left: 30px !important;">Home</a></li>
+									style="padding-left: 30px !important; font-size:20px;">Home</a></li>
 								<li><a class="nav-items" href="/app/recipe/list"
-								style="padding-left: 30px !important;">ChopRecipe</a>
+								style="padding-left: 30px !important; font-size:20px;">ChopRecipe</a>
 								<li><a class="nav-items" href="/app/product/list"
-								style="padding-left: 30px !important;">ChopStore</a></li>
+								style="padding-left: 30px !important; font-size:20px;">ChopStore</a></li>
 								<li><a class="nav-items" href=""
-								style="padding-left: 30px !important;">ChopEvent</a></li>
-								<li><a class="nav-items" href=""
-								style="padding-left: 30px !important;">ChopRank</a></li>
+								style="padding-left: 30px !important; font-size:20px;">ChopEvent</a></li>
+								<li><a class="nav-items" href="/app/recipe/rank"
+								style="padding-left: 30px !important; font-size:20px;">ChopRank</a></li>
 
 								<!-- Login/Register -->
 								<c:if test="${not empty loginUser}">
@@ -87,14 +88,14 @@
 								</c:if>
 								<c:if test="${empty loginUser}">
 									<li><a class='classy-btn login-area'
-										href='/app/auth/signin' >Sign in</a></li>
+										href='/app/auth/signin' style="font-size:15px">Sign in</a></li>
 								</c:if>
 								<c:if test="${not empty loginUser}">
-									<li><a href="/app/member/myprofile" class='nav-user'>Hello!
+									<li><a href="/app/member/myprofile" class='nav-user' style="font-size:15px">Hello!
 											${loginUser.nickname}</a></li>
 								</c:if>
 								<c:if test="${not empty loginUser}">
-									<li><a class='classy-btn c' href='/app/auth/logout'>Sign
+									<li><a class='classy-btn c' href='/app/auth/logout' style="font-size:15px">Sign
 											out</a></li>
 								</c:if>
 							</ul>
@@ -113,13 +114,6 @@
 <!-- ##### All Javascript Script ##### -->
 <!-- jQuery-2.2.4 js -->
 <script src="/js/jquery/jquery-2.2.4.min.js"></script>
-<!-- Popper js -->
-<script src="/js/bootstrap/popper.min.js"></script>
 <!-- Bootstrap js -->
-<script src="/js/bootstrap/bootstrap.min.js"></script>
-<!-- All Plugins js -->
-<script src="/js/plugins/plugins.js"></script>
-<!-- Active js -->
-<script src="/js/active.js"></script>
-
+<script src="/node_modules/dist/js/bootstrap.min.js"></script>
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
