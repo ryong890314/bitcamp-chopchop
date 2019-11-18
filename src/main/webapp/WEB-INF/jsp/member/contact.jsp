@@ -15,7 +15,6 @@
 
 <!-- Stylesheet -->
 <link rel="stylesheet" href="/css/member/style_contact.css">
-<link rel="stylesheet" href="/css/member/style_footer.css">
 <jsp:include page="../header.jsp" />
 </head>
 <body>
@@ -32,7 +31,7 @@
             반려 동물들에게 신선한 재료와 정성이 담긴 엄마의 집밥은 든든합니다.</p><br><br>
 
           <h3>CHOPCHOP INFOMATION</h3>
-            <div class="row">
+            <div class="row" style="width:1100px;">
             <div class="col-12 col-lg-6">
                 <!-- ##### Google Maps ##### -->
                 <div class="map-area">

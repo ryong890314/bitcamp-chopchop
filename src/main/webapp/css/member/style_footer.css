@@ -1,9 +1,10 @@
 /* :: 2.0 Import All CSS */
-@import url('https://fonts.googleapis.com/css?family=Sunflower:300,500,700&display=swap&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean');
 @import url(/css/common/bootstrap.min.css);
 
 /* :: 8.0 Footer Area CSS */
 .footer-area {
+  font-family: 'Nanum Gothic', sans-serif;
 	position: relative;
 	z-index: 1;
 	padding: 30px 0 50px 0;
@@ -16,6 +17,10 @@
   
 .foot-img {
   text-align: center !important;
+}
+
+.foot-img img {
+  width: 150px;
 }
 
 .footer-area .copywrite-text {
@@ -32,13 +37,13 @@
 }
 
 .footer-area .footer-nav {
+  
 	position: relative;
 	z-index: 1;
 	display: block;
 }
 
 .footer-nav span {
-  font-family: 'Sunflower', sans-serif;
   color: #7a7a7a; 
   font-size: 13px;
   line-height: 2;
@@ -80,7 +85,6 @@ ul li, ol li {
 	font-weight: 400;
 	text-decoration: none;
 	padding: 0;
-	font-family: 'Sunflower', sans-serif;
 }
 
 @media only screen and (max-width: 767px) {

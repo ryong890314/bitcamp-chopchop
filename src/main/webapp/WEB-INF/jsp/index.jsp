@@ -1,55 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>CHOPCHOP MAIN</title>
 <link rel="stylesheet" href="/css/main/main_style.css">
-<style>
- 
-.container {
-  width: 1100px !important;
-  padding: 0 !important;
-}
-
-#prod_columns {
-  width: 1100px; 
-  column-width: 250px;
-  column-gap: 10px;  
-}
-
-#prod_columns figure {
-  height: 430px;
-  display: inline-block;
-  margin: 0;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-    
-#prod_columns figure:hover {
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-}
-
-#prod_columns figure img {
-  object-fit: cover;
-  width: 250px;
-  height: 300px;
-}
-
-#prod_columns figure figcaption {
-  border-top:1px solid rgba(0,0,0,0.1);
-  margin-top: 5px;
-  padding: 10px;
-}
-</style>
 </head>
 <jsp:include page="header.jsp"/>
 <body>
     <!-- ##### Hero Area Start ##### -->
     <h3>popular recipe</h3>
-    <div class="hero-area" style="width:1100px; margin: 0 auto;">
+    <div class="hero-area">
         <!-- Hero Post Slides -->
         <div class="hero-post-slides owl-carousel">
             <!-- Single Slide -->
@@ -57,8 +21,8 @@
             <div class="single-slide">
                 <!-- Blog Thumbnail -->
                 <div class="blog-thumbnail">
-                    <a href="/app/recipe/detail?no=${recipe.recipeNo}"><img class="recipe_thumb tagA" src="/upload/recipe/${recipe.thumbnail}" 
-                    style="width:595px;height:400px;object-fit:cover;"></a>
+                    <a href="/app/recipe/detail?no=${recipe.recipeNo}">
+                    <img class="recipe_thumb tagA" src="/upload/recipe/${recipe.thumbnail}"></a>
                 </div>
   	            <!-- Blog Content -->
   	            <div class="blog-content-bg" >
@@ -86,7 +50,7 @@
             <div class="row" style="width: 1100px;margin: 0 auto;">
             <h3>chop Store</h3>
                 <!-- Single Post Catagory -->
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4 px-1">
                     <div class="single-post-catagory mb-30">
                         <img src="../img/main/photo1.png">
                         <!-- Content -->
@@ -99,7 +63,7 @@
                     </div>
                 </div>
                 <!-- Single Post Catagory -->
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4 px-1">
                     <div class="single-post-catagory mb-30">
                         <img src="../img/main/photo1.png">
                         <!-- Content -->
@@ -112,7 +76,7 @@
                     </div>
                 </div>
                 <!-- Single Post Catagory -->
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-4 px-1">
                     <div class="single-post-catagory mb-30">
                         <img src="../img/main/photo1.png">
                         <!-- Content -->
@@ -139,10 +103,19 @@
               <a href="/app/product/detail?no=${product.productNo}"><img src="/upload/product/${product.files[0].filePath}"></a>
               <figcaption>
                 <div class="product-info">
-                <a href="/app/product/detail?no=${product.productNo}">
-                <div class="product-title tagA"><b style="font-size: 20px;">${product.title}</b></div></a>
+                  <div class="product-title tagA">
+                    <a href="/app/product/detail?no=${product.productNo}"><strong style="font-size: 22px;">${product.title}</strong></a>
+                  </div>
                   <div class="product-detail"><span>${product.detail}</span></div>
-                  <div class="product-price"><span>${product.price}원</span></div>
+                    <div class="product-price">
+                      <c:if test="${product.discount ne 0}">
+                        <span style="color:#35c5f0;">${product.discount}%&nbsp</span>
+                        <span style=" text-decoration:line-through">
+                        <fmt:formatNumber value="${product.price}" pattern="#,###" />원</span>&nbsp
+                      </c:if>
+<%--                       <span style="color:#35c5f0;">${product.discount}%&nbsp</span> --%>
+                      <span><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###" />원</span>
+                    </div>
                 </div>
               </figcaption>
             </figure>

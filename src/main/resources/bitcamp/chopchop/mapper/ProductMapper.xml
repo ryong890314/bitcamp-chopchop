@@ -220,7 +220,7 @@
   </delete>
   
   <select id="mainTop" resultMap="findWithFilesMap">
-    SELECT product.product_id, detail, title, price, view_count, file_path, photo_id 
+    SELECT product.product_id, detail, title, price, view_count, file_path, photo_id, discount
 FROM product left JOIN store_photo ON product.product_id = store_photo.product_id 
 ORDER BY view_count DESC, photo_id ASC
   </select>
