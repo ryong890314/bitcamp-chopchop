@@ -23,6 +23,11 @@
     top: 50%;
     margin-top: -325px;
   }
+
+  #myAddModal {
+    top: 50%;
+    margin-top: -240px;
+  }
 </style>
 
 <body>
@@ -74,6 +79,7 @@
       </tr>
       <c:forEach items="${productReviews}" var="productReview">
         <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
+          <input type="hidden" class="tempProductReviewNo" value="${productReview.productReviewNo}">
           <td style="width: 100px; height: 100px; object-fit: cover"><img src='/upload/productreview/${productReview.filePath}'></td>
           <td style="text-align: left"><span class="txt_post">${productReview.content}</span></td>
           <td>${productReview.memberNo}</td>
@@ -112,7 +118,8 @@
                 <span id="tempImg" style="width: 500px; height: 500px; object-fit: cover">이미지</span>
               </div>
               <div class="col-md-4" style="padding-left: 0px;">
-                <div style="height: 67px; text-align: center;">
+                <div style="height: 50px; text-align: center;">
+                  <input type="hidden" id="tempModalProductReviewNo" value="890314">
                   <div style='color: red; font-size: 25px;'>
                   <span id="tempStar">별점</span>
                   </div>
@@ -121,9 +128,15 @@
                   <span id="tempDate">날짜</span>
                 </div>
                 <hr>
-                <div style="overflow:auto; height: 400px;">
+                <div style="overflow:auto; height: 350px;">
                   <span id="tempCont">내용</span>
                 </div>
+                <hr>
+                <div style="height: 38; text-align: right;">
+                    <button type="button" class="btn btn-danger" onclick="reviewDel()" style="width: 60px;">삭제</button>
+                    <button type="button" class="btn btn-primary" style="width: 60px;">변경</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 120px;">닫기</button>
+                  </div>
               </div>
           </div>
         </div>
@@ -133,7 +146,7 @@
 
 <!-- add modal -->
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade bd-example-modal-lg" id="myAddModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -158,26 +171,31 @@
           </div>
           <div class="col-md-8">
           <select class="custom-select" name='rating'>
-              <option selected value="5">★★★★★ 아주좋아요</option>
-              <option value="4">★★★★☆ 맘에들어요</option>
-              <option value="3">★★★☆☆ 보통이에요</option>
-              <option value="2">★★☆☆☆ 그냥그래요</option>
-              <option value="1">★☆☆☆☆ 별로에요</option>
+              <option selected value="5">★★★★★ [아주좋아요]</option>
+              <option value="4">★★★★☆ [맘에들어요]</option>
+              <option value="3">★★★☆☆ [보통이에요]</option>
+              <option value="2">★★☆☆☆ [그냥그래요]</option>
+              <option value="1">★☆☆☆☆ [별로에요]</option>
             </select>
             <hr>
-            <input type="text" class="form-control" name="content" style="overflow:auto; height: 200px;">
+            <!-- <input type="text" class="form-control" name="content" style="overflow:auto; height: 200px;"> -->
+            <textarea class="form-control" id="message-text" name="content" style="overflow:auto; height: 200px; resize: none;"></textarea>
         </div>
       </div>
         <hr>
+        <div style="text-align: right;">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
             <button type="submit" class="btn btn-primary">등록하기</button>
             <!-- <button type="submit" class="btn btn-primary">등록하기</button> -->
+          </div>
         </form>
 
       </div>
     </div>
   </div>
 </div>
+
+
 
   <script>
 
@@ -189,6 +207,7 @@
    tempId.innerText = $(this)[0].cells[2].innerText;
    tempStar.innerText = $(this)[0].cells[3].innerText;
    tempDate.innerText = $(this)[0].cells[4].innerText;
+   tempModalProductReviewNo.value = $(this).context.childNodes[1].defaultValue;
 });
 
 // 등록
@@ -211,6 +230,16 @@ function formLoad() {
       };
       reader.readAsDataURL(this.files[0]);
     };
+
+    // 삭제
+
+      function reviewDel() {
+        var selectedReviewNo = document.getElementById("tempModalProductReviewNo").value;
+        if (confirm("진짜 삭제할거가?")) {
+          location.href = "../productreview/delete?no=" + selectedReviewNo + "&productNo=${product.productNo}"; 
+          alert("삭제했다!")
+        }
+    }
 
   </script>
 

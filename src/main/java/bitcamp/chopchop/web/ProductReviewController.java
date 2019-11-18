@@ -1,7 +1,6 @@
 package bitcamp.chopchop.web;
 
 import java.io.File;
-import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -18,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.domain.Member;
-import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.service.CommentService;
 import bitcamp.chopchop.service.MemberService;
@@ -72,10 +70,10 @@ public class ProductReviewController {
     return filename;
   }
 
-  @GetMapping("commentDelete")
-  public String commentDelete(int no, int productNo) 
+  @GetMapping("delete")
+  public String delete(int no, int productNo) 
       throws Exception {
-    commentService.commentDelete(no);
+    productReviewService.delete(no);
     return "redirect:../product/detail?no="+ productNo;
   }
   
