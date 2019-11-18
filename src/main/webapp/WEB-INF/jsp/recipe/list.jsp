@@ -144,7 +144,7 @@ function loadList() {
 
   $('.my-sort').on('change', function() {
     var selectOption = $('.my-sort').val();
-    $.get("/app/json/recipe/listSort?column=" + selectOption, function(data) {
+    $.get("/app/json/recipe/listSort?column=" + selectOption, function(data) {  
     $('.my-list').remove();
     $('.view-more').remove();
       for (var b of data.result) {
@@ -158,7 +158,7 @@ $('.my-category').on('change', function() {
   
   console.log(selectOption);
   $.get("/app/json/recipe/listCategory?category=" + selectOption, function(data) {
-    console.log(data.result);
+    console.log(data);
     $('.my-list').remove();
     $('.view-more').remove();
     for (var b of data.result) {

@@ -9,6 +9,15 @@ public class Cart {
   private int productNo;
   private int optionNo;
   private int quantity;
+  private Product product;
+  public Product getProduct() {
+    return product;
+  }
+
+  public void setProduct(Product product) {
+    this.product = product;
+  }
+
   private Date createdDate;
   
   private List<PhotoFile> files;

@@ -64,7 +64,7 @@
               <div class="classynav">
                 <ul>
                   <li><a class="nav-items" href="/app/index">Home</a></li>
-                  <li><a class="nav-items" href="#">ChopRecipe</a>
+                  <li><a class="nav-items" href="/app/recipe/list">ChopRecipe</a>
                   <li><a class="nav-items" href="">ChopStore</a></li>
                   <li><a class="nav-items" href="">ChopTalk</a></li>
                   <li><a class="nav-items" href="">ChopRank</a></li>

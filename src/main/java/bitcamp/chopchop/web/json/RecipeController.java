@@ -10,10 +10,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Ingredient;
 import bitcamp.chopchop.domain.Member;
@@ -26,6 +28,7 @@ import bitcamp.chopchop.web.CookingFileWriter;
 
 @RestController("json.RecipeController")
 @RequestMapping("/json/recipe")
+@SessionAttributes("loginUser")
 public class RecipeController {
   @Resource private RecipeService recipeService;
   @Resource private CookingFileWriter cookingFileWriter;
@@ -75,11 +78,11 @@ public class RecipeController {
   }
 
   @GetMapping("detail")
-  public JsonResult detail(int no, HttpSession session) throws Exception {
+  public JsonResult detail(int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     try {
       Recipe recipe = recipeService.get(no);
       Member member = memberService.get(recipe.getMemberNo());
-      Member viewer = (Member) session.getAttribute("loginUser");
+      Member viewer = memberService.get(loginUser.getMemberNo());
       
       RecipeLike recipeLike = new RecipeLike();
       recipeLike.setMemberNo(viewer.getMemberNo());
@@ -191,13 +194,32 @@ public class RecipeController {
     try {
       List<Recipe> originrecipes = recipeService.listSort("recipe_id");
       List<Recipe> recipes = new ArrayList<>();
-      
       for (Recipe recipe : originrecipes) {
         if (category.equals("0")) {
           recipes.add(recipe);
         } else if (recipe.getCategory().equals(category)) {
+          System.out.println(recipe.getTitle());
           recipes.add(recipe);
         }
+      }
+      return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipes);
+    } catch (Exception e) {
+      return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
+    }
+  }
+  
+  @SuppressWarnings("rawtypes")
+  @GetMapping("rank")
+  public JsonResult rank(@RequestParam(defaultValue = "view_count") String column) throws Exception {
+    try {
+      List<Recipe> originRecipes = recipeService.listSort(column);
+      List<HashMap> recipes = new ArrayList<>();
+      
+      for (int i = 0; i < 20; i++) {
+        HashMap<String,Object> hashMap = new HashMap<>();
+        hashMap.put("recipes", originRecipes.get(i)); // recipes;
+        hashMap.put("member", memberService.get(originRecipes.get(i).getMemberNo()));
+        recipes.add(hashMap);
       }
       return new JsonResult().setState(JsonResult.SUCCESS).setResult(recipes);
     } catch (Exception e) {
@@ -216,9 +238,9 @@ public class RecipeController {
   }
 
   @GetMapping("like")
-  public JsonResult like(int no, HttpSession session) throws Exception {
+  public JsonResult like(int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     try {
-      Member member = (Member)session.getAttribute("loginUser");
+      Member member = memberService.get(loginUser.getMemberNo());
       Recipe recipe = recipeService.get(no);
 
       RecipeLike recipeLike = new RecipeLike();
@@ -257,9 +279,9 @@ public class RecipeController {
   //=========================================================================================
   
   @GetMapping("myrecipe")
-  public JsonResult myList(Model model, HttpSession session) throws Exception {
+  public JsonResult myList(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     try {
-      Member member = (Member) session.getAttribute("loginUser");
+      Member member = memberService.get(loginUser.getMemberNo());
       List<Recipe> recipes = recipeService.listSort("recipe_id");
       List<Recipe> myrecipes = new ArrayList<>(); // 내 레시피 목록을 담을 리스트 준비
       for (Recipe recipe : recipes) {
@@ -275,9 +297,9 @@ public class RecipeController {
   }
   
   @GetMapping("myscrap")
-  public JsonResult scrapList(Model model, HttpSession session) throws Exception {
+  public JsonResult scrapList(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     try {
-      Member member = (Member) session.getAttribute("loginUser");
+      Member member = memberService.get(loginUser.getMemberNo());
       List<RecipeLike> recipeLikes = recipeService.listLike(); 
       List<Recipe> scrapRecipes = new ArrayList<>(); 
       for (RecipeLike recipeLike : recipeLikes) {

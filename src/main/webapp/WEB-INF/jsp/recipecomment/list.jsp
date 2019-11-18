@@ -81,9 +81,9 @@
 <script id="t1" type="commentHtml">
 {{#each recipeComments}}
 <li class='single_comment_area'>
-<div class='comment-content d-flex my-comment'>
+<div class='comment-content d-flex my-comment' style='height:70px;'>
     <div class='comment-author'>
-    <img src='/img/core-img/choplogo.png' alt='author'>
+    <img class='author-img' src='/upload/member/{{member.photo}}' alt='author'>
     </div>
   <div class='comment-meta'>
     <div class='d-flex'>

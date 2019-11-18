@@ -6,10 +6,12 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.RecipeComment;
 import bitcamp.chopchop.service.MemberService;
@@ -17,14 +19,15 @@ import bitcamp.chopchop.service.RecipeCommentService;
 
 @RestController("json.RecipeCommentController")
 @RequestMapping("/json/recipecomment")
+@SessionAttributes("loginUser")
 public class RecipeCommentController {
   @Resource private RecipeCommentService recipeCommentService;
   @Resource private MemberService memberService;
 
   @PostMapping("add")
-  public JsonResult add(RecipeComment recipeComment, int no, HttpSession session) throws Exception {
+  public JsonResult add(RecipeComment recipeComment, int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     try {
-      Member member = (Member)session.getAttribute("loginUser");
+      Member member = memberService.get(loginUser.getMemberNo());
       recipeComment.setMemberNo(member.getMemberNo());
       recipeComment.setRecipeNo(no);
       recipeCommentService.insert(recipeComment);
@@ -58,7 +61,7 @@ public class RecipeCommentController {
   @GetMapping("list")
   public JsonResult list(@RequestParam(defaultValue = "1") int pageNo,
                          @RequestParam(defaultValue = "4") int pageSize, // 한페이지에 들어갈 댓글 갯수
-                         int no, HttpSession session) throws Exception {
+                         int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     if (pageSize < 4 || pageSize > 10) { 
       pageSize = 4;
     }
@@ -74,7 +77,7 @@ public class RecipeCommentController {
     try {
       List<RecipeComment> originRecipeComments = recipeCommentService.list(no, pageNo, pageSize);
       List<HashMap<String,Object>> recipeComments = new ArrayList<>(); 
-      Member viewer = (Member) session.getAttribute("loginUser");
+      Member viewer = memberService.get(loginUser.getMemberNo());
       
       HashMap<String,Object> result = new HashMap<>();
       

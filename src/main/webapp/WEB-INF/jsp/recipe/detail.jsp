@@ -8,6 +8,19 @@
 <link rel="stylesheet" href="/css/recipe/detail.css">
 <link rel="stylesheet" href="/css/recipe/comment.css">
 <style>
+ .comment-author {
+  width: 150px;
+  height: 150px; 
+  border-radius: 70%;
+  overflow: hidden;
+ }
+ 
+ .author-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
+
  button:focus {
   outline:none;
  }
@@ -127,6 +140,7 @@
 <jsp:include page="../recipecomment/list.jsp"/>
 
 <script>
+"use strict";
 loadData();
 function loadData() {
   var writerNo = ${member.memberNo};
@@ -136,7 +150,6 @@ function loadData() {
   }
 };
 
-"use strict";
 $('#likeBtn').click(function() {
   $.get("/app/json/recipe/like?no=" + ${recipe.recipeNo}, function(data) {
     if(data.result.isLike) { 

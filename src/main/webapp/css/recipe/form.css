@@ -19,9 +19,9 @@ a:focus {
   text-decoration: none;
   color: #f44d45;
 }
-img {
-  max-width: 100%;
-}
+/* img { */
+/*   max-width: 100%; */
+/* } */
 ul,
 ol {
   margin: 0;

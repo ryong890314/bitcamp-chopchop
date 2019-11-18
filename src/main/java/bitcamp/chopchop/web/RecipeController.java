@@ -10,9 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Cooking;
 import bitcamp.chopchop.domain.Ingredient;
@@ -28,6 +30,7 @@ import net.coobird.thumbnailator.name.Rename;
 
 @Controller
 @RequestMapping("/recipe")
+@SessionAttributes("loginUser")
 public class RecipeController {
   @Resource private RecipeService recipeService;
   @Resource private CookingFileWriter cookingFileWriter;
@@ -46,9 +49,9 @@ public class RecipeController {
   }
 
   @PostMapping("add")
-  public String add(HttpSession session, Recipe recipe, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
+  public String add(@ModelAttribute("loginUser") Member loginUser, Recipe recipe, MultipartFile filePath, MultipartFile[] filePath2, String[] ingredientNames, String[] quantity, String[] cookingContent, 
       int[] processNo) throws Exception {
-    Member member = (Member)session.getAttribute("loginUser");
+    Member member = memberService.get(loginUser.getMemberNo());
     recipe.setMemberNo(member.getMemberNo());
 
     String filename = UUID.randomUUID().toString();
@@ -79,10 +82,11 @@ public class RecipeController {
   }
 
   @GetMapping("detail")
-  public void detail(Model model, int no, HttpSession session) throws Exception {
+  public void detail(Model model, int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    System.out.println("detail호출~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     Recipe recipe = recipeService.get(no);
     Member member = memberService.get(recipe.getMemberNo()); // 작성자멤버
-    Member viewer = (Member) session.getAttribute("loginUser"); // 글을 보는사람
+    Member viewer = memberService.get(loginUser.getMemberNo()); // 글을 보는사람
     RecipeLike recipeLike = new RecipeLike();
     recipeLike.setMemberNo(viewer.getMemberNo());
     recipeLike.setRecipeNo(recipe.getRecipeNo());
@@ -166,13 +170,19 @@ public class RecipeController {
     List<Recipe> recipes = recipeService.list(pageNo, pageSize);
     model.addAttribute("recipes", recipes);
   }
+  
+  @GetMapping("rank")
+  public void rank(Model model) throws Exception {
+    List<Recipe> recipes = recipeService.listSort("recipe_id");
+    model.addAttribute("recipes", recipes);
+  }
 
   @GetMapping("myrecipe")
-  public void myList(Model model, HttpSession session,
+  public void myList(Model model, @ModelAttribute("loginUser") Member loginUser,
                      @RequestParam(defaultValue = "1") int pageNo,
                      @RequestParam(defaultValue = "4") int pageSize) throws Exception {
     
-    Member member = (Member) session.getAttribute("loginUser");
+    Member member = memberService.get(loginUser.getMemberNo());
     List<Recipe> recipes = recipeService.list(pageNo, pageSize);
     List<Recipe> myrecipes = new ArrayList<>(); 
     for (Recipe recipe : recipes) {
@@ -184,9 +194,9 @@ public class RecipeController {
   }
   
   @GetMapping("myscrap")
-  public void scrapList(Model model, HttpSession session) throws Exception {
+  public void scrapList(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     
-    Member member = (Member) session.getAttribute("loginUser");
+    Member member = memberService.get(loginUser.getMemberNo());
     List<RecipeLike> recipeLikes = recipeService.listLike(); 
     List<Recipe> scrapRecipes = new ArrayList<>(); 
     for (RecipeLike recipeLike : recipeLikes) {
