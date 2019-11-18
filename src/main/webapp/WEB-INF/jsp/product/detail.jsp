@@ -198,7 +198,6 @@
 
       <hr class="my-4">
       <jsp:include page="../comment/productCommentList.jsp" />
-      
       <div class="post-a-comment-area mb-30">
         <h4 class="mb-50">Leave a reply</h4>
         <div class="contact-form-area">

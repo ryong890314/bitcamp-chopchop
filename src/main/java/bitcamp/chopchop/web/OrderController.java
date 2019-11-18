@@ -17,6 +17,7 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.OrderProduct;
 import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.domain.ProductOption;
 import bitcamp.chopchop.service.CartService;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
@@ -41,8 +42,7 @@ public class OrderController {
   
   @GetMapping("form")
   public void form(
-      int no, Model model, HttpSession session, @
-      ModelAttribute("loginUser") Member loginUser) 
+      int no, Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) 
           throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
     Product product = productService.get(no);
@@ -51,14 +51,20 @@ public class OrderController {
   }
 
   @PostMapping("cartorderform")
-  public void cartorderform(Model model, String[] cartNo) throws Exception {
+  public void cartorderform(
+      Model model, String[] cartNo, 
+      @ModelAttribute("loginUser") Member loginUser, HttpSession session) 
+          throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
     List<Cart> carts = new ArrayList<>();
     for (int i=0;i<cartNo.length; i++) {
       carts.add(cartService.get(Integer.parseInt(cartNo[i])));
       carts.get(i).setProduct(productService.get(carts.get(i).getProductNo()));
       carts.get(i).setProductOption(productOptionService.get(carts.get(i).getOptionNo()));
     }
+    model.addAttribute("loginUser", member);
     model.addAttribute("carts", carts);
+    session.setAttribute("selectedProduct", carts);
   }
 
   @GetMapping("list")
@@ -71,14 +77,15 @@ public class OrderController {
       Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) 
           throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
-    List<OrderProduct> orderProducts2 = orderService.searchByMember(member.getMemberNo());
+    List<OrderProduct> orderProducts = orderService.searchByMember(member.getMemberNo());
 
-    for(OrderProduct op : orderProducts2) {
+    for(OrderProduct op : orderProducts) {
       op.setProduct(productService.get(op.getProductNo()));
       op.setOrder(orderService.get(op.getOrderNo()));
     }
     model.addAttribute("loginUser", member);
-    model.addAttribute("orderProducts2", orderProducts2);
+    model.addAttribute("orderProducts2", orderProducts);
+    session.setAttribute("selectedProduct", orderProducts);
   }
 
   @PostMapping("add")
@@ -103,22 +110,27 @@ public class OrderController {
 
   @PostMapping("addfromcart")
   @Transactional
-  public String addFromCart(HttpSession session, Order order, int optionNo) throws Exception {
+  public String addFromCart(HttpSession session, Order order) throws Exception {
     OrderProduct orderProduct = new OrderProduct();
 
     @SuppressWarnings("unchecked")
     List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selectedProduct");
+    System.out.println(selectedProduct);
+    System.out.println(order);
     orderService.insert(order);
     if (selectedProduct != null) {
       for (Cart cart : selectedProduct) {
-        
+        Product product = cart.getProduct();
+        ProductOption productOption = cart.getProductOption();
         orderProduct.setProductNo(cart.getProductNo());
-        orderProduct.setOptionNo(optionNo);
+        orderProduct.setOptionNo(cart.getOptionNo());
         orderProduct.setQuantity(cart.getQuantity());
-        orderProduct.setDiscountPrice((cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount()) * cart.getQuantity()) / 100));
-//        System.out.println("총액은2 " + (cart.getProduct().getPrice() * ((100 - cart.getProduct().getDiscount()) * cart.getQuantity()) / 100));
+        orderProduct.setDiscountPrice(((product.getPrice() * (100-product.getDiscount())/100) + productOption.getPrice()) * cart.getQuantity());
+        if(orderProduct.getDiscountPrice() < 50000) {
+          orderProduct.setDiscountPrice(orderProduct.getDiscountPrice() + 2500);
+        }
         orderService.insert(orderProduct, order);
-        cartService.delete(cart.getCartNo());
+//        cartService.delete(cart.getCartNo()); // 테스트할 때 막아두고 나중에 풀 것
       }
     }
     session.setAttribute("order", order);
