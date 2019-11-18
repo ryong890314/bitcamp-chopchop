@@ -18,13 +18,14 @@ public class Product {
   private List<PhotoFile> files;
   private List<Comment> comments;
   private List<ProductOption> options;
+  private List<ProductReview> productReviews;
 
   @Override
   public String toString() {
-    return "Product [productNo=" + productNo + ", title=" + title + ", price=" + price + ", detail="
-        + detail + ", stock=" + stock + ", discount=" + discount + ", category=" + category
-        + ", species=" + species + ", viewCount=" + viewCount + ", member=" + member + ", files="
-        + files + ", comments=" + comments + ", options=" + options + "]";
+    return "Product [category=" + category + ", comments=" + comments + ", detail=" + detail + ", discount=" + discount
+        + ", files=" + files + ", member=" + member + ", options=" + options + ", price=" + price + ", productNo="
+        + productNo + ", productReviews=" + productReviews + ", species=" + species + ", stock=" + stock + ", title="
+        + title + ", viewCount=" + viewCount + "]";
   }
 
   public int getProductNo() {
@@ -129,6 +130,14 @@ public class Product {
 
   public void setOptions(List<ProductOption> options) {
     this.options = options;
+  }
+
+  public List<ProductReview> getProductReviews() {
+    return productReviews;
+  }
+
+  public void setProductReviews(List<ProductReview> productReviews) {
+    this.productReviews = productReviews;
   }
 
 

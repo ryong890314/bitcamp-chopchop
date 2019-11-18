@@ -1,5 +1,8 @@
 /* :: 2.0 Import All CSS */
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Sunflower:300,500,700&display=swap&subset=korean');
+=======
+>>>>>>> 25e7479e0ff260ed052a4ed21ec237dec5de1811
 @import url(/css/common/bootstrap.min.css);
 
 /* :: 8.0 Footer Area CSS */

@@ -1,6 +1,7 @@
 package bitcamp.chopchop.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ProductReview {
 
@@ -11,6 +12,8 @@ public class ProductReview {
   private String content;
   private int rating;
   private Date createdDate;
+
+  private List<Product> products;
 
   public int getProductReviewNo() {
     return productReviewNo;
@@ -67,13 +70,20 @@ public class ProductReview {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
+  
+    public List<Product> getProducts() {
+      return products;
+    }
+  
+    public void setProducts(List<Product> products) {
+      this.products = products;
+    }
 
   @Override
   public String toString() {
     return "ProductReview [content=" + content + ", createdDate=" + createdDate + ", filePath=" + filePath
-        + ", memberNo=" + memberNo + ", productNo=" + productNo + ", productReviewNo=" + productReviewNo + ", rating="
-        + rating + "]";
+        + ", memberNo=" + memberNo + ", productNo=" + productNo + ", productReviewNo=" + productReviewNo + ", products="
+        + products + ", rating=" + rating + "]";
   }
-  
   
 }

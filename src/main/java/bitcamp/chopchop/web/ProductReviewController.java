@@ -1,7 +1,6 @@
 package bitcamp.chopchop.web;
 
 import java.io.File;
-import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.service.CommentService;
@@ -54,7 +52,7 @@ public class ProductReviewController {
   }
 
   @PostMapping("add")
-  public String add(ProductReview productReview, HttpSession session, MultipartFile file) throws Exception {
+  public String add(ProductReview productReview, HttpSession session, Model model, MultipartFile file) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
     productReview.setMemberNo(member.getMemberNo());
     productReview.setFilePath(writeFile(file));
@@ -71,23 +69,24 @@ public class ProductReviewController {
     return filename;
   }
 
-  @GetMapping("commentDelete")
-  public String commentDelete(int no, int productNo) 
+  @GetMapping("delete")
+  public String delete(int no, int productNo) 
       throws Exception {
-    commentService.commentDelete(no);
+    productReviewService.delete(no);
     return "redirect:../product/detail?no="+ productNo;
   }
+  
+    @PostMapping("update")
+    public String update(ProductReview productReview, MultipartFile file, HttpServletRequest request, int productNo) 
+        throws Exception {
+          productReview.setFilePath(writeFile(file));
+      productReviewService.update(productReview);
+      return "redirect:../product/detail?no=" + productNo;
+    }
   
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
     model.addAttribute("comment", commentService.get(no));
-  }
-
-  @PostMapping("update")
-  public String update(Comment comment, HttpServletRequest request, int productNo) 
-      throws Exception {
-    commentService.update(comment);
-    return "redirect:../product/detail?no=" + productNo;
   }
 
   @GetMapping("updateform")

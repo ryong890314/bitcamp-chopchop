@@ -13,6 +13,7 @@
   <link rel='stylesheet' href='/css/member/style-header.css'>
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <link rel="icon" href="img/core-img/favicon.ico">
+  <link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
   <style>
