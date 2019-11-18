@@ -28,24 +28,27 @@
   <jsp:include page="../header.jsp"/>
   
   <form action="add" method="post" id="orderForm">
-      <input type="hidden" name="quantity" value="${quantity}">
       <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
       <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto;">
     <tr>
-      <td>상품</td>
+      <td>상품명</td>
       <td>상품 가격</td>
+      <td>옵션명</td>
       <td>수량</td>
       <td>할인률</td>
       <td>결제 금액</td>
     </tr>
-    <tr>
-      <td>${product.title}</td>
-      <td>${product.price}원</td>
-      <td>${quantity}</td>
-      <td>${product.discount}%</td>
-      <td><span style="text-decoration-line:line-through; color:gray;">${product.price * quantity}원</span><br>
-      <span id="totalPrice">${product.price * quantity * (100-product.discount)/100}</span>원</td>
+    <c:forEach items="${product.options}" var="option">
+      <tr>
+        <td>${product.title}</td>
+        <td>${product.price}원</td>
+        <td>${option.title}</td>
+        <td>${option.quantity}</td>
+        <td>${product.discount}%</td>
+        <td><span style="text-decoration-line:line-through; color:gray;">${(product.price + option.price) * option.quantity}원</span><br>
+        <span id="totalPrice">${product.price * option.quantity * (100-product.discount)/100}</span>원</td>
     </tr>
+    </c:forEach>
     <c:forEach items="${products}" var="products">
       <tr>
         <td>${products.title}</td>
@@ -154,8 +157,8 @@
         <a href="../product/detail?no=${product.productNo}" class="btn btn-danger" style="margin-left:30px;">취소</a>
       </div>
       <input type="hidden" name="optionNo" value=1>
-      <input type="hidden" name="quantity" value="${quantity}">
-      <input type="hidden" id="discountPrice" name="discountPrice" value="${product.price * quantity * (100-product.discount)/100}">
+<%--       <input type="hidden" name="quantity" value="${quantity}"> --%>
+<%--       <input type="hidden" id="discountPrice" name="discountPrice" value="${product.price * quantity * (100-product.discount)/100}"> --%>
 <!--     </div> -->
   <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

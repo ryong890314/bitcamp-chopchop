@@ -137,7 +137,6 @@
             </div>
 
             <!-- <form action="../order/form" method="post"> -->
-            <form>
               <input type='hidden' name='no' value='${product.productNo}'>
               <div class="row">
                 <div class="col-md-4">
@@ -175,11 +174,13 @@
               </div>
 
               <hr>
-
+            <form id="order-form" method="post">
+              <div id="order-option">
+              </div>
+              <input type="hidden" name="productNo" value="${product.productNo}">
               <button id="cart-btn" type="button" class="btn bueno-btn" style="margin-top:10px; width:215px;">장바구니</button>
-              <button type="button" class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
+              <button id="order-btn" type="submit" class="btn bueno-btn" formaction="/app/order/form" style="margin-top:10px; width:215px;">구매하기</button>
             </form>
-
           </div>
         </div>
       </div>
@@ -234,13 +235,22 @@
     <input type='hidden' class='option-no' value="{{no}}">
     {{title}}
   </div>
-  <input class='option-quantity' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='1' max='1000'>
+  <input class='option-quantity' data-no='' type='number' style='text-align:center; width: 60px; vertical-align: top;' value='1' min='1' max='1000'>
   <input class='option-price' type='hidden' type='number' value="{{price}}">
   <span style='float: right; padding-top: 5px;' class=''><span class='option-price-sum'>{{price}}</span>원</span>
 </div>
 </script>
 
+<script id="order-template" type="text/x-handlebars-template">
+<div>
+  <div><input type='text' class='order-no' name='optNo' value="{{no}}"></div>
+  <div><input class='order-quantity' name='optQuantity' type='text' value='1'></div>
+  <div><input class='order-price' name='optPrice' type='text' type='number' value="{{price}}"></div>
+</div>
+</script>
+
 <script>
+  var dataNo = 0;
   var productPrice = parseInt(${product.price * (100 - product.discount) / 100});
   
   // 제품 옵션 데이터 준비
@@ -261,6 +271,7 @@
   }
     
   var optionTemplate = Handlebars.compile($('#option-template').html());
+  var orderTemplate = Handlebars.compile($('#order-template').html());
   
   calculatePrice();
   
@@ -269,22 +280,31 @@
     var selectedOption = getOption($(this).val());
     if ($('#selected-option-div .option-no[value=' + selectedOption.no +']').length > 0) 
       return;
-    console.log("========" + selectedOption)
     $('#selected-option-div').append(optionTemplate(selectedOption));
+    $('#order-option').append(orderTemplate(selectedOption));
     calculatePrice();
   })
-    
+  
 
+  
   // 옵션 변경
   $('#selected-option-div').on('change', '.option-quantity', function (e) {
     var productPrice = parseInt(${product.price * (100 - product.discount) / 100});
     var optionQuantity = parseInt($(this).val());
     var optionPrice = parseInt($(this.parentNode).find('.option-price').val());
     $(this.parentNode).find('.option-price-sum').html(optionPrice * optionQuantity);
+    $('.order-quantity').val(optionQuantity);
+    var optQuantity = $('#selected-option-div .option-quantity');
+    var optOrder = $('#order-option .order-quantity');
+    for(var i=0; i<optQuantity.length; i++) {
+      optOrder[i].value = optQuantity[i].value;
+    }
     calculatePrice();
   });
 
   $('#selected-option-div').on('click', '.closeIcon', function (e) {
+    var node = this.parentNode.parentNode.parentNode.parentNode.parentNode;
+    $(node).find('form').remove();
     $(this.parentNode.parentNode).remove();
     calculatePrice();
   });
@@ -329,7 +349,41 @@
       }
     });
   });
+  
   </script>
 </body>
-
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

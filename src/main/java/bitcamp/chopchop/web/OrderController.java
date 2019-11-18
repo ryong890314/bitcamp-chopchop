@@ -40,21 +40,23 @@ public class OrderController {
   @Resource
   private ProductOptionService productOptionService;
   
-  @GetMapping("form")
-  public void form(
-      int no, Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) 
-          throws Exception {
-    Member member = memberService.get(loginUser.getMemberNo());
-    Product product = productService.get(no);
-    model.addAttribute("loginUser", member);
-    model.addAttribute("product", product); // 주문에서 선택한 상품
+  @PostMapping("form")
+  public void form(Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser,
+      String[] optNo, String[] optQuantity, String[] optPrice, int productNo) throws Exception {
+    Product product = productService.get(productNo);
+    ArrayList<ProductOption> tempOptions = new ArrayList<>();
+    for (int i=0;i<optNo.length;i++) {
+      tempOptions.add(productOptionService.get(Integer.parseInt(optNo[i])));
+      tempOptions.get(i).setQuantity(Integer.parseInt(optQuantity[i]));
+      product.setOptions(tempOptions);
+    }
+//    System.out.println(tempOptions);
+    model.addAttribute("product", product);
   }
 
   @PostMapping("cartorderform")
-  public void cartorderform(
-      Model model, String[] cartNo, 
-      @ModelAttribute("loginUser") Member loginUser, HttpSession session) 
-          throws Exception {
+  public void cartorderform(Model model, String[] cartNo, 
+      @ModelAttribute("loginUser") Member loginUser, HttpSession session) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
     List<Cart> carts = new ArrayList<>();
     for (int i=0;i<cartNo.length; i++) {

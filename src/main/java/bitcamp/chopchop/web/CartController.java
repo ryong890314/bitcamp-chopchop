@@ -50,7 +50,7 @@ public class CartController {
 
   @PostMapping("add")
   @ResponseBody
-  public JsonResult add(@RequestBody CartProduct product, Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+  public JsonResult add(@RequestBody CartProduct product, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     for(int i=0; i<product.getOptions().size(); i++) {
       Cart cart = new Cart();
       cart.setMemberNo(memberService.get(loginUser.getMemberNo()).getMemberNo());
