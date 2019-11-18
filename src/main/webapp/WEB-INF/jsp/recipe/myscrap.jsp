@@ -23,20 +23,26 @@
 <style type="text/css">
 .mInfo {
 	border-bottom: 2px solid #404040;
-	padding-bottom: 5px;
+}
+.sInfo-font {
+  font-family: 'Sunflower', sans-serif;
+}
+.mypage-tagA {
+  font-size: inherit;
+  color:#404040;
 }
 </style>
 </head>
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-	<div class="content-wrapper">
-		<div class="w3-main w3-content w3-padding"
+<!-- 	<div class="content-wrapper"> -->
+		<div class="w3-main w3-content w3-padding sInfo-font"
 			style="max-width: 1200px;">
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mInfo">
+			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
       <h3>My Bookmark</h3>
        <span style="float: right;font-size: 14px;">
-       <a href="" >My Page</a>&nbsp>&nbspMy Bookmark</a></span> 
+       <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Bookmark</a></span> 
 		</div>
 			<div class="w3-row-padding w3-padding-16 w3-center" id="food"></div>
 
@@ -46,7 +52,7 @@
 		<script id="t1" type="listHtml">
 {{#each result}}
 <div class='w3-quarter my-list'>
-    <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:280px; height:250px'>
+    <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;'>
     <h3><a href='detail?no={{recipeNo}}'>{{title}}</a></h3>
     <p>{{content}}</p>
 </div>
@@ -89,6 +95,7 @@
 			}
 		</script>
 	</div>
+<!--   </div> -->
 </body>
 <jsp:include page="../footer.jsp" />
 </html>

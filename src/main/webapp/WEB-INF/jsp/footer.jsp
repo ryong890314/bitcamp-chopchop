@@ -7,12 +7,11 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="/css/member/style_footer.css">
-
+  <hr>
 	<footer class="footer-area">
-		<div class="container px-0" style="width:1100px;">
-      <hr>
-			<div class="row">
-				<div class="col-12 col-sm-3" style="text-align: center;">
+		<div class="foot-container px-0">
+			<div class="row mx-0">
+				<div class="col-12 col-sm-3 foot-img">
         <span>
           <img src="/img/core-img/choplogo.png" style="width: 150px;">
         </span>
@@ -22,14 +21,14 @@
 					<!-- Footer Nav -->
 					<div class="footer-nav">
             <ul class="mb-0">
+              <li><a href="/app/index">HOME</a></li>
               <li><a href="/app/member/contact">회사소개</a></li>
               <li><a href="">이용약관</a></li>
               <li><a href="">개인정보처리방침</a></li>
               <li><a href="">광고문의</a></li>
-              <li><a href="">문의사항</a></li>
             </ul>
 					
-              <span>CHOPCHOP대표 김챱챱 &nbsp| 사업자등록번호 214-85-24928 &nbsp| 개인정보보호관리책임자 박챱챱</span><br>
+              <span>CHOPCHOP대표 김chopchop &nbsp| 사업자등록번호 214-85-24928 &nbsp| 개인정보보호관리책임자 엄chopchop</span><br>
               <span>서울시 서초구 강남대로 459 (서초동, 백암빌딩) &nbsp| Fax. 02-6007-1245</span><br>
               <span>고객센터전화문의 02-3486-9600 &nbsp| Email문의 chopchop@gmail.com</span><br>
               <span>통신판매업신고번호 제 서초-00098호</span><br>

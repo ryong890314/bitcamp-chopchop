@@ -15,33 +15,33 @@
 }
 
 #prod_columns {
-    width: 1100px; 
-/*      column-width: 250px;     */
-     column-gap: 10px;  
+  width: 1100px; 
+  column-width: 250px;
+  column-gap: 10px;  
 }
 
 #prod_columns figure {
-    height: 430px;
-    display: inline-block;
-    margin: 0;
-    margin-bottom: 10px;
-    padding: 10px;
+  height: 430px;
+  display: inline-block;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 10px;
 }
     
 #prod_columns figure:hover {
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
 }
 
 #prod_columns figure img {
-    object-fit: cover;
-    width: 250px;
-    height: 300px;
+  object-fit: cover;
+  width: 250px;
+  height: 300px;
 }
 
 #prod_columns figure figcaption {
-    border-top:1px solid rgba(0,0,0,0.1);
-    margin-top: 5px;
-    padding: 10px;
+  border-top:1px solid rgba(0,0,0,0.1);
+  margin-top: 5px;
+  padding: 10px;
 }
 </style>
 </head>
@@ -66,7 +66,7 @@
     	            <div class="blog-content-bg">
   	                <div class="blog-content">
 	                    <span class="post-tag">${recipe.category}</span>
-	                    <a href="/app/recipe/detail?no=${recipe.recipeNo}" class="post-title titlaa tagA">${recipe.title}</a>
+	                    <a href="/app/recipe/detail?no=${recipe.recipeNo}" class="post-title tagA">${recipe.title}</a>
                       <div class="post-meta">
                         <span class="post-author">by ${recipe.memberNo}</span><br>
                         <span class="post-date">${recipe.createdDate}</span>
@@ -83,7 +83,7 @@
     <!-- ##### Catagory Area Start ##### -->
     <div class="post-catagory section-padding-100-0 mb-70">
         <div class="container">
-            <div class="row justify-content-center">
+            <div class="row" style="width: 1100px;margin: 0 auto;">
             <h3>chop Store</h3>
                 <!-- Single Post Catagory -->
                 <div class="col-12 col-md-6 col-lg-4">
@@ -131,7 +131,7 @@
 
 <div class="bueno-post-area mb-70">
   <div class="container">
-    <div class="row">
+    <div class="row" style="width: 1100px;margin: 0 auto;">
       <h3>popular product</h3>
         <div id="prod_columns">
           <c:forEach items="${productList}" var="product" begin='0' end="7" >
@@ -140,7 +140,7 @@
               <figcaption>
                 <div class="product-info">
                 <a href="/app/product/detail?no=${product.productNo}">
-                <div class="product-title tagA"><b>${product.title}</b></div></a>
+                <div class="product-title tagA"><b style="font-size: 20px;">${product.title}</b></div></a>
                   <div class="product-detail"><span>${product.detail}</span></div>
                   <div class="product-price"><span>${product.price}원</span></div>
                 </div>

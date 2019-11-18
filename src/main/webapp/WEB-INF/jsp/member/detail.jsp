@@ -25,73 +25,20 @@
 <link rel="icon" href="/img/core-img/favicon.ico">
 <!-- </head> -->
 <!-- mypage_sidebar  end -->
-<title>MY RECIPES</title>
-
-<style type="text/css">
-.card-img {
-	width: 200px !important;
-	height: 215px !important;
-	object-fit: cover !important;
-}
-
-.tagA {
-	color: #ffffff;
-	background: #b0c364;
-	font-size: 1.2em;
-	padding: 0.3em 0.5em;
-	margin-right: 0.1em;
-}
-
-.tagA:hover {
-	background-color: #b0c364;
-	color: white;
-}
-
-.change_btn {
-	width: 115px;
-	height: 40px;
-	display: inline;
-	align-items: center;
-	justify-content: space-around;
-	border: 2px solid #b0c364;
-	background-color: white;
-	cursor: pointer;
-	color: #b0c364;
-}
-
-.change_btn:hover {
-	background-color: #b0c364;
-	color: white;
-}
-
-.text-center {
-	margin-top: 140px;
-}
-
-.memb-info {
-  width: 1100px !important;
-  margin: 0 auto;
-}
-
-.mInfo {
-  border-bottom: 2px solid #404040;
-  padding-bottom: 5px;
-}
-</style>
 </head>
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <jsp:include page="../header.jsp" />
 <body onload="formLoad();">
 	<div class="content-wrapper">
 		<div class="container memb-info px-0">
-			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mInfo">
+			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
         <h3>My Information</h3>
-			   <span style="float: right;font-size: 14px;">
-         <a href="" >My Page</a>&nbsp>&nbspMy information</a></span> 
+			   <span class="mInfo-span">
+         <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy information</a></span> 
       </div>
 			<form action='update' method='post' name="form"
 				enctype='multipart/form-data' onsubmit="return checkAll();">
-				<div class="row">
+				<div class="row mem-Row">
 					<div class="col-5">
 						<div id='content'>
 							<div>
@@ -174,7 +121,7 @@
 					</div>
 				</div>
 			</form>
-		</div> <br><br><br>
+		</div> <br><br>
 		<jsp:include page="../pet/detail.jsp" />
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"

@@ -11,22 +11,23 @@
 	crossorigin='anonymous'>
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <style type="text/css">
-	.pet-info { 
-	  margin: 0 auto; 
-	  width: 1100px !important; 
-	 } 
-	.pInfo {
-	  border-bottom: 2px solid #404040;
-	  padding-bottom: 5px;
-	}
+  .pet-info { 
+    font-family: 'Sunflower', sans-serif;
+    margin: 0 auto; 
+    width: 1100px !important; 
+  } 
+  .pInfo {
+    border-bottom: 2px solid #404040;
+  }
 </style>
 </head>
 <body>
 
 	<div id='content' class="container pet-info px-0">
-	 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 pInfo">
+	 <div class="d-flex justify-content-between align-items-center pt-3 pb-0 mb-3 pInfo">
 		<h3>My Pet Information</h3>
 	 </div>
+   <div class="pl-3">
 		<button type="button" class="btn btn-primary"
 			style="background-color: #b0c364; border-color: #b0c364;"
 			onclick="location.href='/app/pet/form?no=${member.memberNo}'">펫 등록</button>
@@ -49,8 +50,7 @@
 								<p class="card-text">
 									<div>품종 : ${pet.breed}</div>
                   <div>등록번호 : ${pet.registerNo}</div>
-									<div>등록일 : ${pet.createdDate}</div>
-								</p>
+									<div>등록일 : ${pet.createdDate}</div></p>
 								<p class="card-text">
 									<!-- Button trigger modal -->
 									<button type="button" class="btn btn-primary my-btn"
@@ -68,6 +68,7 @@
 				</div>
 			</c:forEach>
 		</form>
+    </div>
 	</div>
 
 	<script>
