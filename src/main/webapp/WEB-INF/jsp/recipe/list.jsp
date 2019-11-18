@@ -118,7 +118,7 @@
   <a href='detail?no={{recipeNo}}'>
   <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
   <h3>{{title}}</a></h3>
-  <p>{{otherInfo}}</p>
+    <p>{{otherInfo}}</p>
 </div>
 </script>
 

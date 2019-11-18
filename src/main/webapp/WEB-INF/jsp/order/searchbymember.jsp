@@ -7,7 +7,7 @@
 <html>
 <head>
   <title>주문 목록</title>
-  <link rel='stylesheet' href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+<!--   <link rel='stylesheet' href="/node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="/css/member/style_contact.css">
   <link rel="stylesheet" href="/css/member/style_footer.css">
   <style>
@@ -31,12 +31,31 @@
     text-align: center;
     float: left;
   }
+  
+  .mInfo {
+    border-bottom: 2px solid #404040;
+  }
+  
+  .sInfo-font {
+    font-family: 'Sunflower', sans-serif;
+  }
+  
+  .mypage-tagA {
+    font-size: inherit;
+    color:#404040;
+  }
   </style>
 
 </head>
 <body>
   <jsp:include page="../header.jsp"/>
+  <jsp:include page="../member/mypage_sidebar.jsp" />
   <div id="orderBody">
+  <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
+      <h3>My Order</h3>
+       <span style="float: right;font-size: 14px;">
+       <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Order</a></span> 
+    </div>
     <div class="d-flex align-content-start flex-wrap">
       <table class='table table-hover' style="text-align:center;">
         <tr>
