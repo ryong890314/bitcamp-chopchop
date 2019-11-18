@@ -28,9 +28,14 @@
     top: 50%;
     margin-top: -240px;
   }
+
+  #myUpdateModal {
+    top: 50%;
+    margin-top: -240px;
+  }
 </style>
 
-<body>
+<body onload="formLoad()">
 
   <div>
     <h4 class="mb-50">상품 후기</h4>
@@ -119,7 +124,7 @@
               </div>
               <div class="col-md-4" style="padding-left: 0px;">
                 <div style="height: 50px; text-align: center;">
-                  <input type="hidden" id="tempModalProductReviewNo" value="890314">
+                  <input type="hidden" id="tempModalProductReviewNo" value="0">
                   <div style='color: red; font-size: 25px;'>
                   <span id="tempStar">별점</span>
                   </div>
@@ -134,7 +139,7 @@
                 <hr>
                 <div style="height: 38; text-align: right;">
                     <button type="button" class="btn btn-danger" onclick="reviewDel()" style="width: 60px;">삭제</button>
-                    <button type="button" class="btn btn-primary" style="width: 60px;">변경</button>
+                    <button type="button" class="btn btn-primary" style="width: 60px;" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg-update">수정</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 120px;">닫기</button>
                   </div>
               </div>
@@ -195,6 +200,58 @@
   </div>
 </div>
 
+<!-- update modal -->
+
+<div class="modal fade bd-example-modal-lg-update" id="myUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">상품후기 수정</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form action='../productreview/update' enctype='multipart/form-data' method='post'>
+          <input type='hidden' name='productNo' id='productNo' value='${product.productNo}'><br>
+          <input type='hidden' name='productReviewNo' id='productReviewNo' value='${product.productNo}'><br>
+          
+          <div class="row">
+                <div class="col-md-4">
+                  <div>
+            <input type="hidden" id="photo" value="${productReview.filePath}" />
+            <img id="imgThumb" class="imgThumb" style="width: 250px; height: 250px; object-fit: cover">
+          </div>
+            <input type='file' id='fileupload' name='file' /><br>
+          </div>
+          <div class="col-md-8">
+          <select class="custom-select" name='rating'>
+              <option selected value="5">★★★★★ [아주좋아요]</option>
+              <option value="4">★★★★☆ [맘에들어요]</option>
+              <option value="3">★★★☆☆ [보통이에요]</option>
+              <option value="2">★★☆☆☆ [그냥그래요]</option>
+              <option value="1">★☆☆☆☆ [별로에요]</option>
+            </select>
+            <hr>
+            <!-- <input type="text" class="form-control" name="content" style="overflow:auto; height: 200px;"> -->
+            <textarea class="form-control" id="tempContUpdate" name="content" style="overflow:auto; height: 200px; resize: none;"></textarea>
+        </div>
+      </div>
+        <hr>
+        <div style="text-align: right;">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+            <button type="submit" class="btn btn-primary">수정하기</button>
+            <!-- <button type="submit" class="btn btn-primary">등록하기</button> -->
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
   <script>
@@ -207,7 +264,11 @@
    tempId.innerText = $(this)[0].cells[2].innerText;
    tempStar.innerText = $(this)[0].cells[3].innerText;
    tempDate.innerText = $(this)[0].cells[4].innerText;
+
+   tempContUpdate.innerText = $(this)[0].cells[1].innerText;
+
    tempModalProductReviewNo.value = $(this).context.childNodes[1].defaultValue;
+   productReviewNo.value =  $(this).context.childNodes[1].defaultValue;
 });
 
 // 등록

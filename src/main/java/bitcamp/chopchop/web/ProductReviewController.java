@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.service.CommentService;
@@ -77,16 +76,17 @@ public class ProductReviewController {
     return "redirect:../product/detail?no="+ productNo;
   }
   
+    @PostMapping("update")
+    public String update(ProductReview productReview, MultipartFile file, HttpServletRequest request, int productNo) 
+        throws Exception {
+          productReview.setFilePath(writeFile(file));
+      productReviewService.update(productReview);
+      return "redirect:../product/detail?no=" + productNo;
+    }
+  
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
     model.addAttribute("comment", commentService.get(no));
-  }
-
-  @PostMapping("update")
-  public String update(Comment comment, HttpServletRequest request, int productNo) 
-      throws Exception {
-    commentService.update(comment);
-    return "redirect:../product/detail?no=" + productNo;
   }
 
   @GetMapping("updateform")
