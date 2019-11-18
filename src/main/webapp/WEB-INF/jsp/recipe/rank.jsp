@@ -29,51 +29,72 @@
   <br>
   
   <div class="container">
-        <div class="row justify-content-center">
-            <!-- Sidebar Area -->
-            <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
-                <div class="sidebar-area">
-                    <!-- Single Widget Area -->
-                    <div class="single-widget-area author-widget mb-30">
-                        <div class="background-pattern bg-img" style="background-image: url(/img/core-img/pattern2.png);">
-                            <div class="author-thumbnail">
-                                <img src="/img/bg-img/23.jpg" alt="">
-                            </div>
-                            <p>My name is <span>Jessica Smith</span>, I’m a passionate cook with a love for vegan food.</p>
-                        </div>
-                    </div>
+    <div class="row justify-content-center" style="background-image: url(/img/core-img/pattern2.png);">
+        <!-- Sidebar Area -->
+        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
+          <div class="sidebar-area">
+            <!-- Single Widget Area -->
+            <div class="single-widget-area author-widget mb-30" style="width:280px;">
+              <div style="text-align: center; visibility: hidden;">
+                <img src="/img/recipe/silver.png" style="height:50px;">
+              </div>
+<!--               <div class="background-pattern bg-img"  style="background-image: url(/img/core-img/pattern2.png); box-shadow: 2px 2px 5px rgba(0,0,0,0.3);"> -->
+              <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
+                <div class="author-thumbnail">
+                  <img src="/img/bg-img/17.jpg">
                 </div>
+                <h5>레시피제목</h5>
+                <span><img src='/img/recipe/eye.png' style='height:15px;'>&nbsp15</span>
+                <span><img src='/img/recipe/like.png' style='height:15px;'>&nbsp20</span>
+                <p></p>
+              </div>
             </div>
+          </div>
+        </div>
             
-            <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
-                <div class="sidebar-area">
-
-                    <!-- Single Widget Area -->
-                    <div class="single-widget-area author-widget mb-30">
-                        <div class="background-pattern bg-img" style="background-image: url(/img/core-img/pattern2.png);">
-                            <div class="author-thumbnail">
-                                <img src="/img/bg-img/23.jpg" alt="">
-                            </div>
-                            <p>My name is <span>Jessica Smith</span>, I’m a passionate cook with a love for vegan food.</p>
-                        </div>
-                    </div>
+        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
+          <div class="sidebar-area">
+            <!-- Single Widget Area -->
+            <div class="single-widget-area author-widget mb-30" style="width:280px;">
+              <div style="text-align: center;">
+                <img src="/img/recipe/crowns.png" style="height:50px;">
+              </div>
+<!--               <div class="background-pattern bg-img"  style="background-image: url(/img/core-img/pattern2.png); box-shadow: 2px 2px 5px rgba(0,0,0,0.3);"> -->
+              <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
+                <div class="author-thumbnail">
+                  <img src="/img/bg-img/17.jpg">
                 </div>
+                <h5>레시피제목</h5>
+<!--                 <span>닉네임</span><br> -->
+                <span><img src='/img/recipe/eye.png' style='height:15px;'>&nbsp15</span>
+                <span><img src='/img/recipe/like.png' style='height:15px;'>&nbsp20</span>
+                <p></p>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
-                <div class="sidebar-area">
-
-                    <!-- Single Widget Area -->
-                    <div class="single-widget-area author-widget mb-30">
-                        <div class="background-pattern bg-img" style="background-image: url(/img/core-img/pattern2.png);">
-                            <div class="author-thumbnail">
-                                <img src="/img/bg-img/23.jpg" alt="">
-                            </div>
-                            <p>My name is <span>Jessica Smith</span>, I’m a passionate cook with a love for vegan food.</p>
-                        </div>
-                    </div>
+        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
+          <div class="sidebar-area">
+            <!-- Single Widget Area -->
+            <div class="single-widget-area author-widget mb-30" style="width:280px;">
+              <div style="text-align: center; visibility: hidden;">
+                <img src="/img/recipe/silver.png" style="height:50px;">
+              </div>
+<!--               <div class="background-pattern bg-img"  style="background-image: url(/img/core-img/pattern2.png); box-shadow: 2px 2px 5px rgba(0,0,0,0.3);"> -->
+              <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
+                <div class="author-thumbnail">
+                  <img src="/img/bg-img/17.jpg">
                 </div>
+                <h5>레시피제목</h5>
+                <span><img src='/img/recipe/eye.png' style='height:15px;'>&nbsp15</span>
+                <span><img src='/img/recipe/like.png' style='height:15px;'>&nbsp20</span>
+                <p></p>
+              </div>
             </div>
+          </div>
+        </div>
+            
         </div>
     </div>
   
