@@ -1,4 +1,5 @@
 /* :: 2.0 Import All CSS */
+@import url('https://fonts.googleapis.com/css?family=Sunflower:300,500,700&display=swap&subset=korean');
 @import url(/css/common/bootstrap.min.css);
 
 /* :: 8.0 Footer Area CSS */
@@ -8,8 +9,17 @@
 	padding: 30px 0 50px 0;
 }
 
+.foot-container {
+  width:1100px !important;
+  margin: 0 auto !important;
+}
+  
+.foot-img {
+  text-align: center !important;
+}
+
 .footer-area .copywrite-text {
-	font-size: 12px;
+	font-size: 13px;
 	margin-bottom: 0;
 	color: #7a7a7a;
 	font-weight: 400;
@@ -17,7 +27,7 @@
 
 .footer-area .copywrite-text a {
 	color: #7a7a7a;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 400;
 }
 
@@ -28,9 +38,9 @@
 }
 
 .footer-nav span {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Sunflower', sans-serif;
   color: #7a7a7a; 
-  font-size: 12px;
+  font-size: 13px;
   line-height: 2;
   font-weight: 500; }
 
@@ -65,11 +75,12 @@ ul li, ol li {
 	position: relative;
 	z-index: 1;
 	color: #7a7a7a;
-	font-size: 12px;
+	font-size: 13px;
 	margin: 0 15px 0 0;
 	font-weight: 400;
 	text-decoration: none;
 	padding: 0;
+	font-family: 'Sunflower', sans-serif;
 }
 
 @media only screen and (max-width: 767px) {

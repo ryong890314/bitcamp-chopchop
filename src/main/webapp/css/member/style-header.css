@@ -1,6 +1,4 @@
 /* Master Stylesheet - 1.0 */
-/* :: 1.0 Import Fonts */
-/* @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700"); */
 /* :: 2.0 Import All CSS */
 @import url(/css/member/classy-nav.css);
 @import url(/css/common/font-awesome.min.css);
@@ -12,13 +10,14 @@
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Sunflower', sans-serif;
     font-size: 14px;
 }
 
-img {
-    height: auto;
-}
+/* img { */
+/*     height: auto; */
+/*     max-width: 100%; */
+/* } */
 
 /* :: 3.5.0 Miscellaneous */
 .tooltip-inner {
@@ -134,6 +133,7 @@ img {
 
 /* :: 4.0 Header Area CSS */
 .header-area {
+    font-family: 'Sunflower', sans-serif;
     position: relative;
     z-index: 1000;
     width: 100%;
