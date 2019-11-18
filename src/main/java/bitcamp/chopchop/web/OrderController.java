@@ -92,18 +92,20 @@ public class OrderController {
 
   @PostMapping("add")
   @Transactional
-  public String add(
-      HttpSession session, Order order, int no, int optionNo, int quantity, int discountPrice) 
-          throws Exception {
-    System.out.println(order);
-    OrderProduct orderProduct = new OrderProduct();
-
-    orderProduct.setProductNo(productService.get(no).getProductNo());
-    orderProduct.setOptionNo(optionNo);
-    orderProduct.setQuantity(quantity);
-    orderProduct.setDiscountPrice(discountPrice);
+  public String add(HttpSession session, Order order, int no, int[] optionNo, int[] quantity) throws Exception {
     orderService.insert(order);
-    orderService.insert(orderProduct, order);
+    OrderProduct orderProduct = new OrderProduct();
+    for(int i=0 ; i<optionNo.length ; i++) {
+      Product product = productService.get(no);
+      orderProduct.setProductNo(no);
+      orderProduct.setOptionNo(optionNo[i]);
+      orderProduct.setQuantity(quantity[i]);
+      orderProduct.setDiscountPrice(((product.getPrice() * (100-product.getDiscount())/100) + productOptionService.get(optionNo[i]).getPrice()) * quantity[i]);
+      if(orderProduct.getDiscountPrice() < 50000) {
+        orderProduct.setDiscountPrice(orderProduct.getDiscountPrice() + 2500);
+      }
+      orderService.insert(orderProduct, order);
+    }
     session.setAttribute("order", order);
     session.setAttribute("orderProduct", orderProduct);
 
@@ -114,11 +116,8 @@ public class OrderController {
   @Transactional
   public String addFromCart(HttpSession session, Order order) throws Exception {
     OrderProduct orderProduct = new OrderProduct();
-
     @SuppressWarnings("unchecked")
     List<Cart> selectedProduct = (List<Cart>) session.getAttribute("selectedProduct");
-    System.out.println(selectedProduct);
-    System.out.println(order);
     orderService.insert(order);
     if (selectedProduct != null) {
       for (Cart cart : selectedProduct) {
@@ -163,7 +162,7 @@ public class OrderController {
     orderProduct = (OrderProduct) session.getAttribute("orderProduct");
     model.addAttribute("order", order);
     model.addAttribute("orderProduct", orderProduct);
-    model.addAttribute("product", productService.get(orderProduct.getProductNo()));
+//    model.addAttribute("product", productService.get(orderProduct.getProductNo()));
   }
 
   @GetMapping("updateform")
