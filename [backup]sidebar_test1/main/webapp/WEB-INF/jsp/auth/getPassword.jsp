@@ -57,44 +57,23 @@
 }
 </style>
 </head>
-<body onload="hide_id()">
-
-	<div class="get-password-page">
-		<div class="get-password-header">Find My ID</div>
-		<div class="get-password-content">
-			<div class="get-password-div">
-				<span>My ID: <a name="userid" id=getID></a></span> <input
-					type="hidden" class="name" value="${member.email}">
-			</div>
-		</div>
-		<div class="get-password-button">
-			<Input type="button" onclick="self.close()" class="passwordRequest"
-				value="Close">
+<div class="get-password-page">
+	<div class="get-password-header">Find My Password</div>
+	<div class="get-password-content">
+		<div class="get-password-div">
+			<span>메일을 발송했습니다.</span>
 		</div>
 	</div>
+	<div class="get-password-button">
+		<Input type="button" onclick="self.close()" class="passwordRequest"
+			value="Close">
+	</div>
+</div>
 
-	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-	<script>
-		function hide_id() {
-			var tempUser = document.getElementsByClassName("name")[0].value;
-			var test = tempUser.indexOf('@');
-			var backID = tempUser.substr(test);
-			console.log("backID= " + backID);
-			
-			
-			var userID = tempUser.substr(0, test);
-			var frontID = userID.substring(0,3);
-			var star = "*";
-		  var stackStar = "";
+<script>
+// /app/json/auth/getPassword ajax 데이터 가져오기
+// state 가 successㅇ이면 
+// state 가 failure 이면 안내창 등등 띄우기
+</script>
 
-			for (var i = 0; i <(userID.length)-3; i++) {
-				stackStar += star;
-			}
-			var starID = frontID + stackStar + backID;
-			getID.innerHTML = starID;
-		}
-	</script>
-
-
-</body>
 </html>

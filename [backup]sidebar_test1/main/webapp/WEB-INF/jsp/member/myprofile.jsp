@@ -11,14 +11,6 @@
 <link rel="stylesheet" href="/css/member/myProfile.css">
 
 <!-- mypage_sidebar start-->
-<!-- Font Awesome -->
-<link rel="stylesheet"
-  href="/js/plugins/fontawesome-free/css/all.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="/css/member/adminlte.min.css">
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
 <!-- </head> -->
@@ -29,9 +21,9 @@
 </style>
 </head>
 <jsp:include page="../header.jsp" />
-<jsp:include page="../member/mypage_sidebar.jsp" />
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper" style=" margin: 0 0 0 15%;">
+<jsp:include page="../member/mypage_sidebar.jsp" />
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper" style="width: 1100px;">
 			<h1 class="myprofile-h1">Dashboard</h1>
@@ -133,13 +125,11 @@
 		});
 	</script>
 	
-  <!--  mypage_sidebar script  start -->
+	 <!--  mypage_sidebar script  start -->
   <!-- jQuery -->
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
-  <script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="/js/dist/adminlte.js"></script>
+  <script src="/js/jquery-ui/jquery-ui.min.js"></script>
 
   <script>
     function sidebar_form() {

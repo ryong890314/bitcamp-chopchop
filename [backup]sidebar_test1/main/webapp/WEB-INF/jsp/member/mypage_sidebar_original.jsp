@@ -52,37 +52,37 @@ Favicon
 
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item"><a href="/app/member/detail"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-user"></i>
-              <p>My Profile</p>
-          </a></li>
-          <li class="nav-item"><a href="/app/recipe/myrecipe"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-paw"></i>
-              <p>My Recipe</p>
-          </a></li>
-          <li class="nav-item"><a href="/app/member/detail"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-book"></i>
-              <p>My Review</p>
-          </a></li>
-          <li class="nav-item"><a href="/app/order/searchbymember"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-list"></i>
-              <p>My Order</p>
-          </a></li>
-          <li class="nav-item"><a href="/app/recipe/myscrap"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-bookmark"></i>
-              <p>My Bookmark</p>
-          </a></li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+					<li class="nav-item"><a href="/app/member/detail"
+						class="nav-link" style="font-size: large;"> <i
+							class="nav-icon fa fa-user"></i>
+							<p>My Profile</p>
+					</a></li>
+					<li class="nav-item"><a href="/app/recipe/myrecipe"
+						class="nav-link" style="font-size: large;"> <i
+							class="nav-icon fa fa-paw"></i>
+							<p>My Recipe</p>
+					</a></li>
+					<li class="nav-item"><a href="/app/member/detail"
+						class="nav-link" style="font-size: large;"> <i
+							class="nav-icon fa fa-book"></i>
+							<p>My Review</p>
+					</a></li>
+					<li class="nav-item"><a href="/app/order/searchbymember"
+						class="nav-link" style="font-size: large;"> <i
+							class="nav-icon fa fa-list"></i>
+							<p>My Order</p>
+					</a></li>
+					<li class="nav-item"><a href="/app/recipe/myscrap"
+						class="nav-link" style="font-size: large;"> <i
+							class="nav-icon fa fa-bookmark"></i>
+							<p>My Bookmark</p>
+					</a></li>
+				</ul>
+			</nav>
+			<!-- /.sidebar-menu -->
+		</div>
+		<!-- /.sidebar -->
+	</aside>
 </div>
 
 
