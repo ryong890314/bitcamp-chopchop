@@ -1,29 +1,34 @@
 /* :: 2.0 Import All CSS */
-/* @import url(/css/common/bootstrap.min.css); */
+@import url('https://fonts.googleapis.com/css?family=Sunflower:300,500,700&display=swap&subset=korean');
+@import url(/css/common/bootstrap.min.css);
 
 /* :: 8.0 Footer Area CSS */
 .footer-area {
 	position: relative;
 	z-index: 1;
-	padding: 50px 0;
+	padding: 30px 0 50px 0;
+}
+
+.foot-container {
+  width:1100px !important;
+  margin: 0 auto !important;
+}
+  
+.foot-img {
+  text-align: center !important;
 }
 
 .footer-area .copywrite-text {
-	font-size: 12px;
+	font-size: 13px;
 	margin-bottom: 0;
-	color: #666666;
+	color: #7a7a7a;
 	font-weight: 400;
 }
 
 .footer-area .copywrite-text a {
 	color: #7a7a7a;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 400;
-}
-
-.footer-area .copywrite-text a:hover, .footer-area .copywrite-text a:focus
-	{
-	color: #b0c364;
 }
 
 .footer-area .footer-nav {
@@ -31,6 +36,13 @@
 	z-index: 1;
 	display: block;
 }
+
+.footer-nav span {
+  font-family: 'Sunflower', sans-serif;
+  color: #7a7a7a; 
+  font-size: 13px;
+  line-height: 2;
+  font-weight: 500; }
 
 ul li, ol li {
   list-style: none;
@@ -40,13 +52,8 @@ ul li, ol li {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	-ms-grid-row-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
+	padding: 0;
+	
 }
 
 @media only screen and (max-width: 767px) {
@@ -67,12 +74,13 @@ ul li, ol li {
 .footer-area .footer-nav li a {
 	position: relative;
 	z-index: 1;
-	color: #666666;
-	font-size: 12px;
-	margin: 0 10px;
+	color: #7a7a7a;
+	font-size: 13px;
+	margin: 0 15px 0 0;
 	font-weight: 400;
-	padding: 0 5px;
 	text-decoration: none;
+	padding: 0;
+	font-family: 'Sunflower', sans-serif;
 }
 
 @media only screen and (max-width: 767px) {
@@ -88,7 +96,7 @@ ul li, ol li {
 	width: 100%;
 	height: 3px;
 	background-color: #b0c364; 
-	bottom: -8px;
+	bottom: -3px;
 	left: 0;
 	right: 0;
 	z-index: -1;
