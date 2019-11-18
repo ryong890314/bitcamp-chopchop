@@ -243,9 +243,9 @@
 
 <script id="order-template" type="text/x-handlebars-template">
 <div>
-  <div><input type='text' class='order-no' name='optNo' value="{{no}}"></div>
-  <div><input class='order-quantity' name='optQuantity' type='text' value='1'></div>
-  <div><input class='order-price' name='optPrice' type='text' type='number' value="{{price}}"></div>
+  <div><input type='hidden' class='order-no' name='optNo' value="{{no}}"></div>
+  <div><input class='order-quantity' name='optQuantity' type='hidden' value='1'></div>
+  <div><input class='order-price' name='optPrice' type='hidden' type='number' value="{{price}}"></div>
 </div>
 </script>
 
