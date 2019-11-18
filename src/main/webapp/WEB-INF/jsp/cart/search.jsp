@@ -139,24 +139,23 @@
     <hr class="my-4">
 
 <div style="text-align: right">
+<form id="selected-product" method="post">
+
 <button type="button" class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
-<button type="button" id="selectOrderBtn" class="btn bueno-btn" onclick="check_Order()">선택구매</button>
+<button type="submit" id="selectOrderBtn" class="btn bueno-btn" formaction="/app/order/cartorderform">선택구매</button>
 <button type="button" id="allOrderBtn" class="btn bueno-btn" onclick="all_Order()">전체구매</button>
-</div>
-</div>
-
-
-<form id="selected-product" action="/app/order/cartorderform" method="post">
-<button value="test" class="btn bueno-btn" id="testBtn"></button>
 </form>
+
+</div>
+</div>
 
   <jsp:include page="../footer.jsp"/>
 
   <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
   <script id="cart-template" type="text/x-handlebars-template">
-    <input type="text" class="product-no" name="productNo">
-    <input type="text" class="option-no" name="optionNo">
-    <input type="text" class="cart-no" name="cartNo">
+    <input type="hidden" class="product-no" name="productNo">
+    <input type="hidden" class="option-no" name="optionNo">
+    <input type="hidden" class="cart-no" name="cartNo">
   </script>
   
   <script>
@@ -173,7 +172,7 @@
     </c:forEach>
     console.log(noCheck);
     var temp =0;
-    $('#testBtn').on('click', (e) => {
+    $('#selectOrderBtn').on('click', (e) => {
       for(var i=0;i<$('.selected-products input[data-name="productNo"]').length;i++){
         if(chkbox[i].checked) {
           $('.selected-products input[data-name="productNo"]').attr('data-no', i);
@@ -191,11 +190,6 @@
         }
       }
     });
-  
-    
-    
-    
-    
     
     function getProductNo(no) {
       for (var checkProduct of noCheck) {
