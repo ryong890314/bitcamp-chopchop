@@ -84,19 +84,6 @@ Favicon
   </aside>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- jQuery -->
 <!--  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   jQuery UI 1.11.4

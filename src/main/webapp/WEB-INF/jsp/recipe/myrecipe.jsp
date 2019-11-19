@@ -5,67 +5,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/recipe/w3.css">
-<link rel="stylesheet"
-	href="/node_modules/bootstrap/dist/css/bootstrap.css">
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="/js/plugins/fontawesome-free/css/all.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!--Theme style -->
-<link rel="stylesheet" href="/css/member/adminlte.min.css">
-<!--Favicon -->
-<link rel="icon" href="/img/core-img/favicon.ico">
-<!-- </head> -->
-
 <title>MY RECIPES</title>
-<style>
-
-.rInfo {
-  border-bottom: 2px solid #404040;
-  padding-bottom: 5px;
-}
-
-/* .rInfo-font { */
-/*   font-family: 'Sunflower', sans-serif; */
-/* } */
-
-.mypage-tagA {
-  font-size: inherit;
-  color:#404040;
-}
-</style>
+<link rel="stylesheet" href="/css/recipe/myrecipe.css">
 </head>
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-<!-- 	<div class="content-wrapper"> -->
-		<div class="w3-main w3-content w3-padding rInfo-font" 
-			style="max-width: 1200px;height: 816px;width: 982px; margin-left: 27%;">
-			<div class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
-      <h3>My Recipe</h3>
-       <span style="float: right;font-size: 14px;">
-       <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Recipe</a></span> 
-    </div>
-			<div class="w3-row-padding w3-padding-16 w3-center" id="food">
-			</div>
-		</div>
-    
-		<script src="/js/jquery/jquery-2.2.4.min.js"></script>
-		<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
-
-		<script id="t1" type="listHtml">
+  <div class="w2-main w2-content px-0" >
+  	<div class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
+    <h3>My Recipe</h3>
+     <span class="rInfo-span">
+     <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Recipe</span> 
+  </div>
+  	<div class="w2-row-padding w2-padding-16 w2-center" id="food">
+  	</div>
+  </div>
+  
+  <script id="t1" type="listHtml">
 {{#each result}}
-<div class='w3-quarter my-list'>
+<div class='w2-quarter my-list'>
   <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;'>
   <div>
     <img src='/img/recipe/eye.png' style='height:15px; margin-top:-2.5px;'>&nbsp{{viewCount}}&nbsp&nbsp
     <img src='/img/recipe/like.png' style='height:15px; margin-top:-2px;'>&nbsp{{scrap}}
   </div>
-    <h3><a href='detail?no={{recipeNo}}'>{{title}}</a></h3>
+    <h3><a href='detail?no={{recipeNo}}' class="r-tagA">{{title}}</a></h3>
     <p>{{otherInfo}}</p>
 <button type="del-btn" class="btn btn-light" onclick="del({{recipeNo}});">DELETE</button>
 </div>
@@ -91,12 +55,7 @@
 			}
 		</script>
 
-		<!-- jQuery -->
-		<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-		<!-- jQuery UI 1.11.4-->
-		<script src="/js/jquery-ui/jquery-ui.min.js"></script>
-		<!-- Bootstrap 4 AdminLTE App -->
-		<script src="/js/dist/adminlte.js"></script>
+		
 
 		<script>
 			function formLoad() {
@@ -111,7 +70,6 @@
 				}
 			}
 		</script>
-<!-- 	</div> -->
 </body>
 <jsp:include page="../footer.jsp" />
 </html>

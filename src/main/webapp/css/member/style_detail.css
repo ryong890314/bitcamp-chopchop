@@ -6,7 +6,6 @@
  margin: 5px 0 10px 0;
 }
 .pet-info { 
-  font-family: 'Nanum Gothic', sans-serif;
   margin: 0 auto; 
   width: 1100px !important; 
 } 
@@ -14,10 +13,6 @@
 .my-button {
   background-color: #b0c364 !important;  
   border-color: #b0c364 !important;
-}
-
-.modal-content {
-  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .container {
@@ -36,7 +31,6 @@
 }
 
 .mem-Row {
-  font-family: 'Nanum Gothic', sans-serif;
   width: 1100px !important;
   margin: 0 !important;
 }
@@ -45,20 +39,6 @@
   width: 200px !important;
   height: 215px !important;
   object-fit: cover !important;
-}
-
-.tagA {
-  font-family: 'Nanum Gothic', sans-serif;
-  color: #ffffff;
-  background: #b0c364;
-  font-size: 1.2em;
-  padding: 0.3em 0.5em;
-  margin-right: 0.1em;
-}
-
-.tagA:hover {
-  background-color: red;
-  color: white;
 }
 
 .change_btn {
@@ -83,7 +63,6 @@
 }
 
 .memb-info {
-  font-family: 'Nanum Gothic', sans-serif;
   width: 1100px !important;
   margin: 0 auto;
 }
