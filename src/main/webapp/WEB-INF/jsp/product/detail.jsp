@@ -9,7 +9,7 @@
 
 <head>
   <title>상품 상세</title>
-  <link rel='stylesheet' href='/css/product/style.css'>
+  <!-- <link rel='stylesheet' href='/css/product/style.css'> -->
   <link rel='stylesheet' href='/css/member/style_footer.css'>
   <link rel='stylesheet' href='/css/member/style-header.css'>
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
@@ -193,8 +193,8 @@
           <img src="/upload/product/${file.filePath}" class="rounded mx-auto d-block" alt="...">
         </c:forEach>
       </p>
-<!--       <hr class="my-4"> -->
-<%--       <jsp:include page="../productreview/list.jsp" /> --%>
+       <hr class="my-4">
+       <jsp:include page="../productreview/list.jsp" /> 
 
       <hr class="my-4">
       <jsp:include page="../comment/productCommentList.jsp" />

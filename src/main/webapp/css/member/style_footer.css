@@ -1,13 +1,8 @@
 /* :: 2.0 Import All CSS */
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 @import url('https://fonts.googleapis.com/css?family=Sunflower:300,500,700&display=swap&subset=korean');
-=======
->>>>>>> 25e7479e0ff260ed052a4ed21ec237dec5de1811
 @import url(/css/common/bootstrap.min.css);
 
-=======
->>>>>>> c6c62bf3d1db2abf4afebeb351ca5c7ebc493999
 /* :: 8.0 Footer Area CSS */
 .footer-area {
 	position: relative;
