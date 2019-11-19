@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,6 @@
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <link rel="icon" href="img/core-img/favicon.ico">
   <link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
-  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
   <style>
     #jumbotron.jumbotron-fluid {
@@ -156,9 +156,7 @@
                         </option>
                       </c:forEach>
                     </select>
-
                   </div>
-
                 </div>
                 <div id="selected-option-div" class="block-content">
                   <!-- 상품옵션 들어가는 Div -->
@@ -173,10 +171,10 @@
                   <span id="total-check-price" style="color: red; margin: 10px; font-size: 20px;">0</span><span style="font-size: 20px;">원</span>
                 </div>
               </div>
-
               <hr>
             <form id="order-form" method="post">
               <div id="order-option">
+              <!-- 옵션정보 넣는 div -->
               </div>
               <input type="hidden" name="productNo" value="${product.productNo}">
               <button id="cart-btn" type="button" class="btn bueno-btn" style="margin-top:10px; width:215px;">장바구니</button>
@@ -228,7 +226,7 @@
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 
 <script id="option-template" type="text/x-handlebars-template">
-<div class='selected-option' style='width: 440px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-width: 1px; margin: 5px 15px; padding: 0px 15px 10px 15px;'>
+<div class='selected-option' data-index='' style='width: 440px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-width: 1px; margin: 5px 15px; padding: 0px 15px 10px 15px;'>
   <div>
     <span class='closeIcon'>&times;</span>
   </div>
@@ -243,7 +241,7 @@
 </script>
 
 <script id="order-template" type="text/x-handlebars-template">
-<div>
+<div class='selected-order-option' data-index=''>
   <div><input type='text' class='order-no' name='optNo' value="{{no}}"></div>
   <div><input class='order-quantity' name='optQuantity' type='text' value='1'></div>
   <div><input class='order-price' name='optPrice' type='text' type='number' value="{{price}}"></div>
@@ -273,8 +271,8 @@
     
   var optionTemplate = Handlebars.compile($('#option-template').html());
   var orderTemplate = Handlebars.compile($('#order-template').html());
-  
   calculatePrice();
+  
   
   // 선택한 옵션 등록하기
   $('#product-option').change(function(e) {
@@ -284,9 +282,8 @@
     $('#selected-option-div').append(optionTemplate(selectedOption));
     $('#order-option').append(orderTemplate(selectedOption));
     calculatePrice();
+    
   })
-  
-
   
   // 옵션 변경
   $('#selected-option-div').on('change', '.option-quantity', function (e) {
@@ -304,9 +301,19 @@
   });
 
   $('#selected-option-div').on('click', '.closeIcon', function (e) {
-    var node = this.parentNode.parentNode.parentNode.parentNode.parentNode;
-    $(node).find('form').remove();
-    $(this.parentNode.parentNode).remove();
+    var OrderOption = $('.selected-order-option');
+    var delOption = $(this.parentNode.parentNode);
+    
+    var selectedOption = $('.selected-option');
+    var selectedOrderOption = $('.selected-order-option');
+    for(var i=0;i<$('.selected-option').length; i++) {
+      selectedOption[i].setAttribute('data-index', i);
+      selectedOrderOption[i].setAttribute('data-index', i);
+      if($(this.parentNode.parentNode).attr('data-index') == selectedOrderOption[i].getAttribute('data-index')) {
+        $(this.parentNode.parentNode).remove();
+        selectedOrderOption[i].remove();
+      }
+    }
     calculatePrice();
   });
   
