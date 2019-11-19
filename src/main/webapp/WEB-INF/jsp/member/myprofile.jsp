@@ -62,7 +62,7 @@
 							<div class="icon">
 								<i class="ion ion-ios-paw"></i>
 							</div>
-							<a href="#" class="small-box-footer">More info <i
+							<a href="/app/recipe/myrecipe" class="small-box-footer">More info <i
 								class="fas fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
@@ -92,7 +92,7 @@
 							<div class="icon">
 								<i class="ion ion-ios-list"></i>
 							</div>
-							<a href="#" class="small-box-footer">More info <i
+							<a href="/app/order/searchbymember" class="small-box-footer">More info <i
 								class="fas fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
@@ -106,7 +106,7 @@
 							<div class="icon">
 								<i class="ion ion-bookmark"></i>
 							</div>
-							<a href="#" class="small-box-footer">More info <i
+							<a href="/app/recipe/myscrap" class="small-box-footer">More info <i
 								class="fas fa-arrow-circle-right"></i></a>
 						</div>
 					</div>

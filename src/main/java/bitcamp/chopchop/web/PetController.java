@@ -33,6 +33,7 @@ public class PetController {
   
   @GetMapping("updateForm")
   public void updateForm(Model model, int no) throws Exception {
+    System.out.println("펫 ~ㅇㄴㄹㄴㄷㄹㄴㄱㄴㄷㄱㄴㄷㄱ~~~~~~~~~~~~~~~~~~~~~~~~~업데이트 들어옴!");
     Pet pet  =  petService.get(no);
     model.addAttribute("pet", pet);
   }
@@ -42,7 +43,7 @@ public class PetController {
   public String add(Pet pet, MultipartFile file) throws Exception {
     pet.setFilePath(writeFile(file));
     petService.insert(pet);
-    return "redirect:../member/detail?no=" + pet.getMemberNo();
+    return "redirect:../member/detail";
   }
 
 //  @GetMapping("list")
@@ -61,7 +62,7 @@ public class PetController {
   public String update(Pet pet, MultipartFile file) throws Exception {
     pet.setFilePath(writeFile(file));
     petService.update(pet);
-    return "redirect:/app/member/list";
+    return "redirect:/app/member/detail";
   }
 
   @GetMapping("delete")
