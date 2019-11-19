@@ -2,6 +2,7 @@ package bitcamp.chopchop.web;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
@@ -162,9 +163,8 @@ public class RecipeController {
   }
   
   @GetMapping("rank")
-  public void rank(Model model) throws Exception {
-    List<Recipe> recipes = recipeService.listSort("recipe_id");
-    model.addAttribute("recipes", recipes);
+  public void rank() {
+    
   }
 
   @GetMapping("myrecipe")

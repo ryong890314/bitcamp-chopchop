@@ -445,11 +445,8 @@ select::-ms-expand {
 .btn.special-btn {background-color: #fff;margin:0px;height:34px;color:#888;}
 .btn.special-btn:focus {border: none;outline: none;}
 
-
-
 input, select {
   outline: none;
-  font-family: ë‹ì›€;
   color: #717171;
 }
 

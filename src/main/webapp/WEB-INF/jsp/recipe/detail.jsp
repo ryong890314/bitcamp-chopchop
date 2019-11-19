@@ -76,7 +76,7 @@
                   <div class="recipe-info">
                     <ul class="info-data">
                         <li><span>30 min</span></li>
-                        <li><span>카테고리:${category}</span></li>
+                        <li><span>CATEGORY:${category}</span></li>
                         <li><span>${recipe.tag}</span></li>
                     </ul>
                   </div>
@@ -122,7 +122,7 @@
              </div>
              <div class="row">
                <div class="col-4">
-                <img src='/upload/recipe/${cooking.filePath}' class='cookingphoto'">
+                <img src='/upload/recipe/${cooking.filePath}' class='cookingphoto'>
               </div>
                <div class="col-8">
                  <p class="mb-30">${cooking.content}</p>

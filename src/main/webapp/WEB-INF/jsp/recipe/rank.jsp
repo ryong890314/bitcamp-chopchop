@@ -8,11 +8,6 @@
 <title>RANKING</title>
 <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/recipe/rank.css">
-<style>
-#nav-tab > a:hover {
-  background-color: #b0c364;
-}
-</style>
 </head>
 <body>
 <jsp:include page="../header.jsp" />
@@ -21,74 +16,73 @@
   
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="views-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">VIEWS</a>
-      <a class="nav-item nav-link" id="scraps-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">SCRAPS</a>
+      <a class="nav-item nav-link active" id="views-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-home" aria-selected="true">VIEWS</a>
+      <a class="nav-item nav-link" id="scraps-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false">SCRAPS</a>
     </div>
   </nav>
   
   <br>
   
   <div class="container">
-    <div class="row justify-content-center" style="background-image: url(/img/core-img/pattern2.png);">
+    <div class="row justify-content-center" style="">
         <!-- Sidebar Area -->
-        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
+        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 rank-silver">
           <div class="sidebar-area">
             <!-- Single Widget Area -->
             <div class="single-widget-area author-widget mb-30" style="width:280px;">
-              <div style="text-align: center; visibility: hidden;">
-                <img src="/img/recipe/silver.png" style="height:50px;">
+              <div style="text-align: center;">
+                <img src="/img/recipe/star.png" style="height:30px;">
+                <img src="/img/recipe/star.png" style="height:30px;">
               </div>
-<!--               <div class="background-pattern bg-img"  style="background-image: url(/img/core-img/pattern2.png); box-shadow: 2px 2px 5px rgba(0,0,0,0.3);"> -->
               <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
                 <div class="author-thumbnail">
-                  <img src="/img/bg-img/17.jpg">
+                  <img class="thumbnail">
                 </div>
-                <h5>레시피제목</h5>
-                <span><img src='/img/recipe/eye.png' style='height:15px;'>&nbsp15</span>
-                <span><img src='/img/recipe/like.png' style='height:15px;'>&nbsp20</span>
+                <h5></h5>
+                <img src='/img/recipe/eye.png' style='height:15px; margin-right:2px;'>&nbsp;<span class="view-count"></span>
+                <img src='/img/recipe/like.png' style='height:15px;'>&nbsp;<span class="scrap"></span>
                 <p></p>
               </div>
             </div>
           </div>
         </div>
             
-        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
+        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 rank-gold">
           <div class="sidebar-area">
             <!-- Single Widget Area -->
             <div class="single-widget-area author-widget mb-30" style="width:280px;">
               <div style="text-align: center;">
-                <img src="/img/recipe/crowns.png" style="height:50px;">
+                <img src="/img/recipe/star.png" style="height:30px;">
+                <img src="/img/recipe/star.png" style="height:30px;">
+                <img src="/img/recipe/star.png" style="height:30px;">
               </div>
-<!--               <div class="background-pattern bg-img"  style="background-image: url(/img/core-img/pattern2.png); box-shadow: 2px 2px 5px rgba(0,0,0,0.3);"> -->
               <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
                 <div class="author-thumbnail">
-                  <img src="/img/bg-img/17.jpg">
+                  <img class="thumbnail">
                 </div>
-                <h5>레시피제목</h5>
-<!--                 <span>닉네임</span><br> -->
-                <span><img src='/img/recipe/eye.png' style='height:15px;'>&nbsp15</span>
-                <span><img src='/img/recipe/like.png' style='height:15px;'>&nbsp20</span>
+                <h5></h5>
+                <img src='/img/recipe/eye.png' style='height:15px;'>&nbsp;<span class="view-count"></span>
+                <img src='/img/recipe/like.png' style='height:15px;'>&nbsp;<span class="scrap"></span>
                 <p></p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3">
+        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 rank-bronze">
           <div class="sidebar-area">
             <!-- Single Widget Area -->
             <div class="single-widget-area author-widget mb-30" style="width:280px;">
-              <div style="text-align: center; visibility: hidden;">
-                <img src="/img/recipe/silver.png" style="height:50px;">
+              <div style="text-align: center;">
+                <img src="/img/recipe/star.png" style="height:30px;">
               </div>
-<!--               <div class="background-pattern bg-img"  style="background-image: url(/img/core-img/pattern2.png); box-shadow: 2px 2px 5px rgba(0,0,0,0.3);"> -->
               <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
                 <div class="author-thumbnail">
-                  <img src="/img/bg-img/17.jpg">
+                  <img class="thumbnail">
                 </div>
-                <h5>레시피제목</h5>
-                <span><img src='/img/recipe/eye.png' style='height:15px;'>&nbsp15</span>
-                <span><img src='/img/recipe/like.png' style='height:15px;'>&nbsp20</span>
+                <h5></h5>
+                <img src='/img/recipe/eye.png' style='height:15px;'>&nbsp;<span class="view-count"></span>
+                <img src='/img/recipe/like.png' style='height:15px;'>&nbsp;<span class="scrap"></span>
                 <p></p>
               </div>
             </div>
@@ -97,11 +91,6 @@
             
         </div>
     </div>
-  
-  
-  
-  
-  
   
   <table class="table table-hover rank-table" style="vertical-align: middle; text-align: center;">
     <thead style="background-color: #b0c364; color: #ffffff;">
@@ -125,30 +114,18 @@
 <script src="/js/jquery/jquery-2.2.4.min.js"></script>
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 
-<script id="t1bak" type="rank-template">
-{{#each result}}
-<tr>
-  <th scope="row" class="rank-no" style="text-align:center;">{{inc @index}}</th>
-  <td><img src='/upload/recipe/{{thumbnail}}' style='height:40px;'></td>
-  <td style="vertical-align: middle;">{{title}}</td>
-  <td style="vertical-align: middle;">{{viewCount}}</td>
-  <td style="vertical-align: middle;">{{scrap}}</td>
-</tr>
-{{/each}}
-</script>
-
 <script id="t1" type="rank-template">
 {{#each result}}
 <tr class='my-tr'>
   <th style="vertical-align: middle;" scope="row" class="rank-no">
   {{#if gold}}
-  <img src="/img/recipe/gold.png" class="rank-img" style='height:50px;'>
+    <img src="/img/recipe/gold.png" class="rank-img" style='height:50px;'>
   {{else if silver}}
-  <img src="/img/recipe/silver.png" class="rank-img" style='height:50px;'>
+    <img src="/img/recipe/silver.png" class="rank-img" style='height:50px;'>
   {{else if bronze}}
-  <img src="/img/recipe/bronze.png" class="rank-img" style='height:50px;'>
+    <img src="/img/recipe/bronze.png" class="rank-img" style='height:50px;'>
   {{else}}
-  {{rankNo}}
+    {{rankNo}}
   {{/if}}
   </th>
   <td><img src='/upload/recipe/{{recipes.thumbnail}}' style='height:100px; width:100px; object-fit:cover;'></td>
@@ -195,6 +172,7 @@ function loadList() {
       item.silver = item.rankNo == 2;
       item.bronze = item.rankNo == 3;
     }
+    showRank(data.result);
     $('tbody > tr').remove();
     tbody.append(template(data))
     });
@@ -209,6 +187,7 @@ $('a#scraps-tab').click(function() {
       item.silver = item.rankNo == 2;
       item.bronze = item.rankNo == 3;
     }
+    showRank(data.result);
     $('tbody > tr').remove();
     tbody.append(template(data));
   })
@@ -216,18 +195,28 @@ $('a#scraps-tab').click(function() {
 
 $('a#views-tab').click(function() {
   loadList();
-//   $.get("/app/json/recipe/rank?column=" + "view_count", function(data) {
-//     var no = 0;
-//     $('tbody > tr').remove();
-//     for (var item of data.result) {
-//       item.rankNo = ++no;
-//       item.gold = item.rankNo == 1;
-//       item.silver = item.rankNo == 2;
-//       item.bronze = item.rankNo == 3;
-//     }
-//     tbody.append(template(data));
-//   })
 });
+
+function showRank(object) {
+  var gold = object[0];
+  var silver = object[1];
+  var bronze = object[2];
+  $('.rank-gold').find('.thumbnail').attr('src','/upload/recipe/' + gold.recipes.thumbnail);
+  $('.rank-gold').find('h5').text(gold.recipes.title);
+  $('.rank-gold').find('.view-count').text(gold.recipes.viewCount);
+  $('.rank-gold').find('.scrap').text(gold.recipes.scrap);
+  
+  $('.rank-silver').find('.thumbnail').attr('src','/upload/recipe/' + silver.recipes.thumbnail);
+  $('.rank-silver').find('h5').text(silver.recipes.title);
+  $('.rank-silver').find('.view-count').text(silver.recipes.viewCount);
+  $('.rank-silver').find('.scrap').text(silver.recipes.scrap);
+  
+  $('.rank-bronze').find('.thumbnail').attr('src','/upload/recipe/' + bronze.recipes.thumbnail);
+  $('.rank-bronze').find('h5').text(bronze.recipes.title);
+  $('.rank-bronze').find('.view-count').text(bronze.recipes.viewCount);
+  $('.rank-bronze').find('.scrap').text(bronze.recipes.scrap);
+  
+};
 
 </script>
 </body>
