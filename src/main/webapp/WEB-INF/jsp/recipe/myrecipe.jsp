@@ -44,7 +44,7 @@
 <body>
 <!-- 	<div class="content-wrapper"> -->
 		<div class="w3-main w3-content w3-padding rInfo-font" 
-			style="max-width: 1200px;">
+			style="max-width: 1200px;height: 816px;width: 982px; margin-left: 27%;">
 			<div class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3>My Recipe</h3>
        <span style="float: right;font-size: 14px;">

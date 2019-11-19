@@ -18,8 +18,7 @@
 @import url(/css/member/adminlte.min.css);
 
 @import
-  url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css)
-  ;
+  url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
 
 /* :: 3.5.0 Miscellaneous */
 .tooltip-inner {
