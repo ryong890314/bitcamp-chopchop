@@ -10,11 +10,11 @@
 <!--   <link rel='stylesheet' href="/node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
 
   <style>
-/*   #orderBody { */
-/*     width: 1100px; */
-/*     padding-top: 10px; */
-/*     margin: auto auto; */
-/*   } */
+   #orderBody { 
+     width: 1100px; 
+     padding-top: 10px; 
+     margin: 0 auto; 
+   } 
 
 /*   #productBody { */
 /*     width: 1100px; */
@@ -32,7 +32,6 @@
   
   .mInfo {
     border-bottom: 2px solid #404040;
-    font-family: 'Sunflower', sans-serif;
   }
   
   .mypage-tagA {

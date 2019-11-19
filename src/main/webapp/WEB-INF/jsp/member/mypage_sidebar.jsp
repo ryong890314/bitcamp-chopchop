@@ -20,12 +20,6 @@ Favicon
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="/app/member/list" class="brand-link"> <img
-      src="/img/core-img/smallLogo.png" alt="ChopChop Logo"
-      class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text">ChopChop</span>
-    </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -84,19 +78,6 @@ Favicon
     <!-- /.sidebar -->
   </aside>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- jQuery -->
 <!--  <script src="/node_modules/jquery/dist/jquery.min.js"></script>

@@ -11,13 +11,14 @@
 	 <div class="d-flex justify-content-between align-items-center pt-3 pb-0 mb-3 pInfo">
 		<h3>My Pet Information</h3>
 	 </div>
-   <div class="pl-3">
-		<button type="button" class="btn btn-primary my-button"
-			style="background-color: #b0c364; border-color: #b0c364;"
+   <span class="pl-2" style="float: right;">
+		<button type="button" class="btn btn-primary my-button" 
 			onclick="location.href='/app/pet/form?no=${member.memberNo}'">펫 등록</button>
+    </span>
+    <div>
 		<form action='/app/pet/updateForm' method='post'>
 			<c:forEach items="${pets}" var="pet">
-				<div class="card mb-3" style="max-width: 540px; margin: 10px 0;"
+				<div class="card mb-3" style="max-width: 540px; margin: 10px;"
 					id="row_div_${pet.petNo}">
 					<div class="row">
 						<div class="col-md-4">
@@ -25,16 +26,16 @@
 						</div>
 						<div class="col-md-8">
 							<div class="card-body" style="margin-left:10px;">
-								<h5 class="card-title age">
-									<b>${pet.name}</b> (${pet.age}세,
-									<c:if test="${pet.gender eq 0}">수컷</c:if>
-									<c:if test="${pet.gender eq 1}">암컷</c:if>
-									)
-								</h5>
+								<h5 class="card-title age"><b>${pet.name}</b></h5> 
+								
 								<p class="card-text">
-									<div>품종 : ${pet.breed}</div>
-                  <div>등록번호 : ${pet.registerNo}</div>
-									<div>등록일 : ${pet.createdDate}</div></p>
+                  <span>${pet.age}세 &nbsp | &nbsp</span>
+  									<span><c:if test="${pet.gender eq 0}">수컷</c:if></span>
+  									<span><c:if test="${pet.gender eq 1}">암컷</c:if></span>
+									<span>&nbsp | &nbsp${pet.breed}</span><br>
+                  <span>등록번호&nbsp&nbsp${pet.registerNo}</span><br>
+									<span>등록일&nbsp&nbsp${pet.createdDate}</span>
+                </p>
 								<p class="card-text">
 									<!-- Button trigger modal -->
 									<button type="button" class="btn btn-primary my-button"

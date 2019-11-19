@@ -17,12 +17,12 @@
 			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
         <h3>My Information</h3>
 			   <span class="mInfo-span">
-         <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy information</a></span> 
+         <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Information</span> 
       </div>
 			<form action='update' method='post' name="form"
 				enctype='multipart/form-data' onsubmit="return checkAll();">
-				<div class="row mem-Row">
-					<div class="col-5">
+				<div class="row justify-content-center mem-Row">
+					<div class="col-4" style="text-align: center;">
 						<div id='content'>
 							<div>
 								<input type="hidden" id="photo2" value="${member.photo}" /> <img
@@ -35,7 +35,7 @@
 							</span>
 						</div>
 					</div>
-					<div class="col-7">
+					<div class="col-8">
 						<input type='hidden' id='memberNo' name='memberNo'
 							value='${member.memberNo}' readonly>
 						<div class="form-group row">
@@ -284,34 +284,6 @@
               + document.getElementById("nowPassword").value
               + "&memberNo="
               + document.getElementById("memberNo").value);
-
-          
-          
-//           var allData = {
-//               "password" : document.getElementById("nowPassword").value, 
-//               "memberNo" : document.getElementById("memberNo").value
-//           };
-//             $.ajax({
-//               url:"chkPw",
-//               type:"POST",
-//               dataType: "json",
-//               data: allData,
-//               success: function(result){ // result는 컨트롤에서 받아온값
-//                 console.log("result = ", result);
-//                 if (result == "0") { // 1이면 동일, 0이면 패스워드 틀림
-//                   $("#password1_chk").html("패스워드를 다시 확인해주세요.");
-//                    $("#password1_chk").css('color', 'red');
-//                  } else {
-//                    $("#password1_chk").html("");
-//                    pCheckFlag = true;
-//                  }
-//               },
-//               error : function(xhr, status, error) {
-//                 alert("시스템 오류 발생!");
-//               }
-//             });
-
-
         }
       }
       return pCheckFlag;

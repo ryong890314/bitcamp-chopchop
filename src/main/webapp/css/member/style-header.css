@@ -8,10 +8,15 @@
 @import url(/node_modules/blueimp-file-upload/css/jquery.fileupload.css);
 @import url(/css/member/adminlte.min.css);
 @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+/* @import url(/css/recipe/w3.css); */
 
 /* :: 3.0 Base CSS */
 html, body {
   font-family: 'Nanum Gothic', sans-serif !important;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 /* :: 3.5.0 Miscellaneous */
@@ -73,29 +78,6 @@ html, body {
 
 .bg-fixed {
   background-attachment: fixed !important;
-}
-
-/* :: 3.6.0 ScrollUp */
-#scrollUp {
-  background-color: #000000;
-  border-radius: 0;
-  bottom: 50px;
-  color: #ffffff;
-  font-size: 24px;
-  height: 40px;
-  line-height: 37px;
-  left: 50%;
-  text-align: center;
-  width: 40px;
-  border-radius: 50%;
-  -webkit-transition-duration: 100ms;
-  transition-duration: 100ms;
-  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.15);
-}
-
-#scrollUp:hover, #scrollUp:focus {
-  background-color: #b0c364;
-  color: #ffffff;
 }
 
 /* :: 3.7.0 bueno Button */
