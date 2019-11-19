@@ -50,8 +50,6 @@
       font-weight:bold;
     }
     
-    
-    
   </style>
   
 </head>
@@ -99,7 +97,7 @@
         <select name='species' class="form-control optionselect">
           <option id='1' value='dog'>강아지</option>
           <option id='2' value='cat'>고양이</option>
-          <option id='3' value='bird'>작은 친구들</option>
+          <option id='3' value='other'>작은 친구들</option>
         </select><br>
       </div>
       <div class="col-md-6">

@@ -147,7 +147,7 @@
 
                   <div class="form-group">
                     <select id="product-option" class="form-control optionselect" id="optionNo" name='optionNo'>
-                      <option selected disabled>옵션을 선택해주세요</option>
+                      <option id="default-select" selected disabled>옵션을 선택해주세요.</option>
 
                       <c:forEach items="${product.options}" var="productOption">
                         <option value="${productOption.optionNo}" 
@@ -178,7 +178,7 @@
               </div>
               <input type="hidden" name="productNo" value="${product.productNo}">
               <button id="cart-btn" type="button" class="btn bueno-btn" style="margin-top:10px; width:215px;">장바구니</button>
-              <button id="order-btn" type="submit" class="btn bueno-btn" formaction="/app/order/form" style="margin-top:10px; width:215px;">구매하기</button>
+              <button id="order-btn" type="button" class="btn bueno-btn" style="margin-top:10px; width:215px;">구매하기</button>
             </form>
           </div>
         </div>
@@ -242,9 +242,9 @@
 
 <script id="order-template" type="text/x-handlebars-template">
 <div class='selected-order-option' data-index=''>
-  <div><input type='text' class='order-no' name='optNo' value="{{no}}"></div>
-  <div><input class='order-quantity' name='optQuantity' type='text' value='1'></div>
-  <div><input class='order-price' name='optPrice' type='text' type='number' value="{{price}}"></div>
+  <div><input type='hidden' class='order-no' name='optNo' value="{{no}}"></div>
+  <div><input class='order-quantity' name='optQuantity' type='hidden' value='1'></div>
+  <div><input class='order-price' name='optPrice' type='hidden' type='number' value="{{price}}"></div>
 </div>
 </script>
 
@@ -277,12 +277,13 @@
   // 선택한 옵션 등록하기
   $('#product-option').change(function(e) {
     var selectedOption = getOption($(this).val());
-    if ($('#selected-option-div .option-no[value=' + selectedOption.no +']').length > 0) 
+    if ($('#selected-option-div .option-no[value=' + selectedOption.no +']').length > 0) {
+      alert('이미 선택한 옵션입니다.');
       return;
+    }
     $('#selected-option-div').append(optionTemplate(selectedOption));
     $('#order-option').append(orderTemplate(selectedOption));
     calculatePrice();
-    
   })
   
   // 옵션 변경
@@ -357,6 +358,25 @@
       }
     });
   });
+  
+  var loginCheck = '${loginUser.memberNo}';
+
+  //주문 할 때 로그인 체크
+  $('#order-btn').on('click', (e) => {
+    if(loginCheck == '') {
+      if(!confirm('로그인이 필요합니다. 로그인하시겠습니까?')) {
+        return false;
+      } else {
+        location.href = '/app/auth/signin';
+      }
+    } else {
+      alert('주문하시겠습니까?');
+      $('#order-btn').attr('type', 'submit');
+      $('#order-btn').attr('formaction', '/app/order/form');
+    }
+  })
+  
+  
   
   </script>
 </body>

@@ -72,6 +72,7 @@ public class DefaultProductService implements ProductService {
   @Override
   public void update(Product product) throws Exception {
     productDao.update(product);
+    
     if(product.getFiles().size() > 0) {
       photoFileDao.deleteAll(product.getProductNo());
       for (PhotoFile file : product.getFiles()) {
