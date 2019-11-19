@@ -11,7 +11,6 @@
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-
   <div class="w2-main w2-content px-0" >
     <div class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3>My Bookmark</h3>
@@ -46,10 +45,6 @@
 				});
 			}
 		</script>
-
-<!-- 		<script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
-<!-- 		<script src="/js/jquery-ui/jquery-ui.min.js"></script> -->
-<!-- 		<script src="/js/dist/adminlte.js"></script> -->
 
 		<script>
 			function formLoad() {

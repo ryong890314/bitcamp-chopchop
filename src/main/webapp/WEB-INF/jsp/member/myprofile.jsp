@@ -17,24 +17,24 @@
 <!-- Ionicons -->
 <link rel="stylesheet"
   href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="/css/member/adminlte.min.css">
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
 <!-- </head> -->
 <!-- mypage_sidebar  end -->
-<title>MY RECIPES</title>
-
 <style>
 </style>
 </head>
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body class="hold-transition sidebar-mini layout-fixed">
-	<div class="wrapper" style=" margin: 0 0 0 15%;">
+	<div class="wrapper" style="margin: 0 0 0 15%;">
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper" style="width: 1100px;">
-			<h1 class="myprofile-h1">Dashboard</h1>
+		<div class="content-wrapper" style="max-width: 1200px;height: 816px;width: 982px;">
+			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo" style="border-bottom: 2px solid #404040;">
+        <h3>My profile</h3>
+         <span class="mInfo-span" >
+         <a class="mypage-tagA">My Page</a><a>&nbsp>&nbspMyprofile</a></span> 
+      </div>
 			<figure class="snip1559" style="margin-left:25%;">
 				<div class="profile-image">
 					<input type="hidden" id="userphoto" value="${member.photo}" /> <img
@@ -60,7 +60,7 @@
 							<div class="icon">
 								<i class="ion ion-ios-paw"></i>
 							</div>
-							<a href="#" class="small-box-footer">More info <i
+							<a href="/app/recipe/myrecipe" class="small-box-footer">More info <i
 								class="fas fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
@@ -90,7 +90,7 @@
 							<div class="icon">
 								<i class="ion ion-ios-list"></i>
 							</div>
-							<a href="#" class="small-box-footer">More info <i
+							<a href="/app/order/searchbymember" class="small-box-footer">More info <i
 								class="fas fa-arrow-circle-right"></i></a>
 						</div>
 					</div>
@@ -104,7 +104,7 @@
 							<div class="icon">
 								<i class="ion ion-bookmark"></i>
 							</div>
-							<a href="#" class="small-box-footer">More info <i
+							<a href="/app/recipe/myscrap" class="small-box-footer">More info <i
 								class="fas fa-arrow-circle-right"></i></a>
 						</div>
 					</div>

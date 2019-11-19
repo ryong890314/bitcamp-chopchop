@@ -28,9 +28,10 @@
 							data-toggle="tooltip" data-placement="bottom" title="Behance"><i
 							class="fa fa-behance" aria-hidden="true"></i></a> <a href="#"
 							data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i
-							class="fa fa-linkedin" aria-hidden="true"></i></a> <a
-							href="/app/index"
-							style="text-decoration: none; font-size: 60px; margin-left: 60%; margin-bottom: 20px; opacity: 0.7;">ChopChop</a>
+							class="fa fa-linkedin" aria-hidden="true"></i></a>
+						<div>
+							<a href="/app/index" class="chop-logo">ChopChop</a>
+						</div>
 					</div>
 				</div>
 				<div class="col-12 col-sm-6 col-lg-5 col-xl-4">
@@ -65,15 +66,15 @@
 						<div class="classynav">
 							<ul>
 								<li><a class="nav-items" href="/app/index"
-									style="padding-left: 30px !important; font-size:20px;">Home</a></li>
+									style="padding-left: 30px !important; font-size: 20px;">Home</a></li>
 								<li><a class="nav-items" href="/app/recipe/list"
-								style="padding-left: 30px !important; font-size:20px;">ChopRecipe</a>
+									style="padding-left: 30px !important; font-size: 20px;">ChopRecipe</a>
 								<li><a class="nav-items" href="/app/product/list"
-								style="padding-left: 30px !important; font-size:20px;">ChopStore</a></li>
+									style="padding-left: 30px !important; font-size: 20px;">ChopStore</a></li>
 								<li><a class="nav-items" href=""
-								style="padding-left: 30px !important; font-size:20px;">ChopEvent</a></li>
+									style="padding-left: 30px !important; font-size: 20px;">ChopEvent</a></li>
 								<li><a class="nav-items" href="/app/recipe/rank"
-								style="padding-left: 30px !important; font-size:20px;">ChopRank</a></li>
+									style="padding-left: 30px !important; font-size: 20px;">ChopRank</a></li>
 
 								<!-- Login/Register -->
 								<c:if test="${not empty loginUser}">
@@ -86,15 +87,15 @@
 								</c:if>
 								<c:if test="${empty loginUser}">
 									<li><a class='classy-btn login-area'
-										href='/app/auth/signin' style="font-size:15px">Sign in</a></li>
+										href='/app/auth/signin' style="font-size: 15px">Sign in</a></li>
 								</c:if>
 								<c:if test="${not empty loginUser}">
-									<li><a href="/app/member/myprofile" class='nav-user' style="font-size:15px">Hello!
-											${loginUser.nickname}</a></li>
+									<li><a href="/app/member/myprofile" class='nav-user'
+										style="font-size: 15px">Hello! ${loginUser.nickname}</a></li>
 								</c:if>
 								<c:if test="${not empty loginUser}">
-									<li><a class='classy-btn c' href='/app/auth/logout' style="font-size:15px">Sign
-											out</a></li>
+									<li><a class='classy-btn c' href='/app/auth/logout'
+										style="font-size: 15px">Sign out</a></li>
 								</c:if>
 							</ul>
 						</div>
