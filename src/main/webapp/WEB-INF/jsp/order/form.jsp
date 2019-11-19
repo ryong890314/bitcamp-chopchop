@@ -40,7 +40,7 @@
       <td>옵션 가격</td>
       <td>수량</td>
       <td>할인률</td>
-      <td>결제 금액</td>
+      <td>상품 최종 금액</td>
     </tr>
     <c:forEach items="${product.options}" var="option">
       <tr>
@@ -55,6 +55,14 @@
       <input type="hidden" name="optionNo" value="${option.optionNo}">
       <input type="hidden" name="quantity" value="${option.quantity}">
     </c:forEach>
+    <tr>
+      <td>총 상품금액</td>
+      <td><span id="resultPrice"><fmt:formatNumber value="" pattern="#,###"/></span>원</td>
+      <td>배송비</td>
+      <td><span id="shipPrice"></span>원</td>
+      <td>총 주문금액</td>
+      <td><span id="ship-price-sum"></span>원</td>
+    </tr>
   </table>
 <!--     <div style="display: table; margin-left: auto; margin-right:auto;"> -->
       <div class="row">
@@ -139,7 +147,7 @@
       <div class="row">
       <div class="col-md-6">
       <label for="exampleInput">주문상태</label>
-      <select id="selectBox" name="shipDate" class="form-control" required="required">
+      <select id="selectBox" name="shipStatus" class="form-control" required="required">
         <option value="1">입금 전</option>
         <option value="2">입금 확인</option>
         <option value="3">발송</option>
@@ -188,14 +196,22 @@
 </div>
 
   </form>
-  
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
   <jsp:include page="../footer.jsp"/>
   
   <script>
-    var totalPrice = document.getElementsByClassName('totalPrice');
-    for(var i=0;i<totalPrice.length;i++){
-      totalPrice[i].innerText = parseInt(totalPrice[i].innerText);
+//     var totalPrice = document.getElementsByClassName('totalPrice');
+//     for(var i=0;i<totalPrice.length;i++){
+//       totalPrice[i].innerText = parseInt(totalPrice[i].innerText);
+//     }
+    
+    var priceSum = 0;
+    for (var i=0; i<totalPrice.length; i++) {
+      console.log(totalPrice[i].innerText);
+      priceSum += parseInt(totalPrice[i].innerText);
     }
+    $('#resultPrice').text
     
   </script>
   
@@ -237,7 +253,6 @@
 //     console.log(name);
     
 //     document.querySelector('#modalName').innerText = document.querySelector('#recipientName').value;
-    
     
     var isChecked = false;
     
@@ -293,10 +308,17 @@
         isChecked = true;
       }
       
+      var totalPrice = $('.totalPrice');
+      var priceSum = 0;
+      for (var i=0; i<totalPrice.length; i++) {
+        console.log(totalPrice[i].innerText);
+        priceSum += parseInt(totalPrice[i].innerText);
+      }
+            
       if(isChecked) {
         $('#orderModal').on('show.bs.modal', function (e) {
           $('#modalProduct').text('${product.title}');
-          $('#modalPrice').text($('#totalPrice').text() + " 원");
+          $('#modalPrice').text(priceSum + " 원");
           $('#modalName').text($('#recipientName').val());
           $('#modalTel').text($('#recipientTel').val());
           $('#modalPostNo').text($('#recipientPostNo').val());

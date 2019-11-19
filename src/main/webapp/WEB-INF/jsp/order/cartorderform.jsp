@@ -145,7 +145,7 @@
       <div class="row">
       <div class="col-md-6">
       <label for="exampleInput">주문상태</label>
-      <select id="selectBox" name="shipDate" class="form-control" required="required">
+      <select id="selectBox" name="shipStatus" class="form-control" required="required">
         <option value="1">입금 전</option>
         <option value="2">입금 확인</option>
         <option value="3">발송</option>
@@ -203,8 +203,9 @@
   </div>
 </div>
 </form>
-  <jsp:include page="../footer.jsp"/>
 
+  <jsp:include page="../footer.jsp"/>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
   <script>
   
     var productTotal = document.getElementsByClassName('product-total-price');
