@@ -222,7 +222,6 @@
     </div>
   </div>
 
-  <jsp:include page="../footer.jsp" />
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 
 <script id="option-template" type="text/x-handlebars-template">
