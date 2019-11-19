@@ -6,9 +6,8 @@
 
 <head>
   <title>장바구니</title>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"></script>
+  <link rel='stylesheet' href='/node_modules/jquery/dist/jquery.min.js'>
+  <link rel='stylesheet' href='/css/common/bootstrap.min.css'>
   
 <!--   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'> -->
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -142,7 +141,7 @@
 
 <button type="button" class="btn bueno-btn" onclick='check_Del();'>선택삭제</button>
 <button type="submit" id="selectOrderBtn" class="btn bueno-btn" formaction="/app/order/cartorderform">선택구매</button>
-<button type="button" id="allOrderBtn" class="btn bueno-btn" onclick="all_Order()">전체구매</button>
+<button type="submit" id="allOrderBtn" class="btn bueno-btn" formaction="/app/order/cartorderform">전체구매</button>
 </form>
 
 </div>
@@ -169,14 +168,13 @@
       </c:forEach>
       </c:forEach>
     </c:forEach>
-    console.log(noCheck);
+    
     var temp =0;
     $('#selectOrderBtn').on('click', (e) => {
       for(var i=0;i<$('.selected-products input[data-name="productNo"]').length;i++){
         if(chkbox[i].checked) {
           $('.selected-products input[data-name="productNo"]').attr('data-no', i);
           var selectedIndex = $('.selected-products input[data-name="productNo"]').attr('data-no');
-//           console.log( $('.selected-products input[data-name="productNo"]').attr('data-no'));
           $('#selected-product').append(cartTemplate());
           console.log($('#selected-product').html());
           var proNo = $('#selected-product .product-no');
@@ -190,26 +188,53 @@
       }
     });
     
-    function getProductNo(no) {
-      for (var checkProduct of noCheck) {
-        if(no == checkProduct.productNo) {
-          return checkProduct;
+    $('#allOrderBtn').on('click', (e) => {
+      var allOrderBtn = $('.myChkbox');
+      for (i = 0; i < allOrderBtn.length; i++) {
+        myCheckBoxes[i].checked = true;
+      }
+      
+      if(!confirm('모두 구매하시겠습니까?')) {
+        for(var i=0;i<allOrderBtn.length; i++) {
+          myCheckBoxes[i].checked = false;
+        }
+        return;
+      }
+      
+      for(var i=0;i<$('.selected-products input[data-name="productNo"]').length;i++){
+        if(chkbox[i].checked) {
+          $('.selected-products input[data-name="productNo"]').attr('data-no', i);
+          var selectedIndex = $('.selected-products input[data-name="productNo"]').attr('data-no');
+          $('#selected-product').append(cartTemplate());
+          var proNo = $('#selected-product .product-no');
+          document.getElementsByClassName('product-no')[temp].setAttribute('value', noCheck[selectedIndex].productNo);
+          document.getElementsByClassName('option-no')[temp].setAttribute('value', noCheck[selectedIndex].optionNo);
+          document.getElementsByClassName('cart-no')[temp].setAttribute('value', noCheck[selectedIndex].cartNo);
+          temp++;
         }
       }
-      return null;
-    }
-  
-    function getOptionNo(no) {
-      for (var checkOption of noCheck) {
-        if(no == checkOption.optionNo) {
-          return checkOption;
-        }
-      }
-      return null;
-    }
+    });
     
-    var tempProductNo = $('.selected-products input[data-name="productNo"]');
-    var tempOptionNo = $('.selected-products input[data-name="optionNo"]');
+//     function getProductNo(no) {
+//       for (var checkProduct of noCheck) {
+//         if(no == checkProduct.productNo) {
+//           return checkProduct;
+//         }
+//       }
+//       return null;
+//     }
+  
+//     function getOptionNo(no) {
+//       for (var checkOption of noCheck) {
+//         if(no == checkOption.optionNo) {
+//           return checkOption;
+//         }
+//       }
+//       return null;
+//     }
+    
+//     var tempProductNo = $('.selected-products input[data-name="productNo"]');
+//     var tempOptionNo = $('.selected-products input[data-name="optionNo"]');
     
 //     $('#testBtn').on('click', (e) => {
 //       for(var i=0; i<$('.myChkbox').length; i++){
@@ -225,14 +250,7 @@
         
 //       }
 //     })
-    
-    
-  
-
   </script>
-  
-  
-
   <script>
       var myCheckBoxes = document.getElementsByClassName('myChkbox');
       
@@ -278,13 +296,12 @@
 
   <script>
   // 상품 전체구매
-    function all_Order() {
-      var allOrderBtn = $('.myChkbox');
-        for (i = 0; i < allOrderBtn.length; i++) {
-          myCheckBoxes[i].checked = true;
-        }
-      check_Order();
-    }
+//     function all_Order() {
+
+//       $('#allOrderBtn').attr('type', 'submit');
+//       $('#allOrderBtn').attr('formaction', '/app/order/cartorderform');
+//       check_Order();
+//     }
   </script> 
   
   

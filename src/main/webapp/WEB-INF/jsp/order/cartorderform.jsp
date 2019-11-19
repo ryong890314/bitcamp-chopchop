@@ -212,7 +212,6 @@
       var result = 0;
     for(var i=0;i<productTotal.length; i++) {
       result += parseInt(productTotal[i].innerText);
-      console.log(result);
       $('#resultPrice').text(result);
     }
     
@@ -223,6 +222,7 @@
     }
   
     $('#ship-price-sum').text(parseInt($('#resultPrice').text()) + parseInt($('#shipPrice').text()));
+    
   </script>
   
   <script> // 주문자와 동일 체크
@@ -259,12 +259,6 @@
     var chooseAccount = chooseRadio[1];
     var chooseEasy = chooseRadio[2];
 
-//     var name = $('#recipientName').val();
-//     console.log(name);
-    
-//     document.querySelector('#modalName').innerText = document.querySelector('#recipientName').value;
-    
-    
     var isChecked = false;
     
     $('#orderButton').on('click', function(e){
@@ -454,8 +448,6 @@
     }).open();
 }
 </script>
-  
-  
   
 </body>
 </html>
