@@ -23,18 +23,20 @@
 <link rel="icon" href="/img/core-img/favicon.ico">
 <!-- </head> -->
 <!-- mypage_sidebar  end -->
-<title>MY RECIPES</title>
-
 <style>
 </style>
 </head>
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="font-family: 'Nanum Gothic', sans-serif;">
 	<div class="wrapper" style=" margin: 0 0 0 15%;">
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper" style="width: 1100px;">
-			<h1 class="myprofile-h1">Dashboard</h1>
+			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo" style="border-bottom: 2px solid #404040;">
+        <h3>Myprofile</h3>
+         <span class="mInfo-span" >
+         <a class="mypage-tagA">My Page</a>&nbsp>&nbspMyprofile</a></span> 
+      </div>
 			<figure class="snip1559" style="margin-left:25%;">
 				<div class="profile-image">
 					<input type="hidden" id="userphoto" value="${member.photo}" /> <img
