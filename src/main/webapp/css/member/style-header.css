@@ -1,13 +1,17 @@
 /* Master Stylesheet - 1.0 */
 /* :: 2.0 Import All CSS */
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean');
 @import url(/css/member/classy-nav.css);
-
 @import url(/css/common/font-awesome.min.css);
+@import url(/node_modules/bootstrap/dist/css/bootstrap.min.css);
+@import url(/node_modules/jquery-ui-dist/jquery-ui.css);
+@import url(/node_modules/blueimp-file-upload/css/jquery.fileupload.css);
+@import url(/css/member/adminlte.min.css);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
 
 /* :: 3.0 Base CSS */
-body {
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 14px;
+html, body {
+  font-family: 'Nanum Gothic', sans-serif !important;
 }
 
 /* :: 3.5.0 Miscellaneous */

@@ -6,25 +6,8 @@
 <head>
 <title>My Page</title>
 <link rel="stylesheet" href="/css/member/style_detail.css">
-<link rel="stylesheet" href="/node_modules/jquery-ui-dist/jquery-ui.css">
-<link rel="stylesheet"
-	href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
-
-<!-- mypage_sidebar start-->
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="/js/plugins/fontawesome-free/css/all.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="/css/member/adminlte.min.css">
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
-<!-- </head> -->
-<!-- mypage_sidebar  end -->
 </head>
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <jsp:include page="../header.jsp" />
@@ -514,13 +497,6 @@
       reader.readAsDataURL(this.files[0]);
     };
   </script>
-	<!--  mypage_sidebar script  start -->
-	<!-- jQuery -->
-	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-	<!-- jQuery UI 1.11.4 -->
-	<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-	<!-- AdminLTE App -->
-	<script src="/js/dist/adminlte.js"></script>
 
 	<script>
     function sidebar_form() {

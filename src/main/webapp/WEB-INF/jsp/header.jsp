@@ -33,7 +33,6 @@
 							style="text-decoration: none; font-size: 60px; margin-left: 60%; margin-bottom: 20px; opacity: 0.7;">ChopChop</a>
 					</div>
 				</div>
-
 				<div class="col-12 col-sm-6 col-lg-5 col-xl-4">
 					<!-- Top Search Area -->
 					<div class="top-search-area">
@@ -53,7 +52,6 @@
 	<div class="bueno-main-menu" id="sticker">
 		<div class="classy-nav-container breakpoint-off"
 			style="height: 100px;">
-
 			<div class="container">
 				<!-- Menu -->
 				<nav class="classy-navbar justify-content-between" id="buenoNav">
@@ -114,6 +112,20 @@
 <!-- ##### All Javascript Script ##### -->
 <!-- jQuery-2.2.4 js -->
 <script src="/js/jquery/jquery-2.2.4.min.js"></script>
-<!-- Bootstrap js -->
-<script src="/node_modules/dist/js/bootstrap.min.js"></script>
+<!-- handlebars js -->
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+<!-- jQuery -->
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/js/dist/adminlte.js"></script>
+
+
+
+
+
+
+
+
+  

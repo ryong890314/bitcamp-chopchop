@@ -13,11 +13,7 @@ img {
   max-width: 100%;
 }
 
-body {
-  font-family: 'Nanum Gothic', sans-serif !important;
-}
-
-.container {
+.container, .row {
   width: 1100px !important;
   padding: 0 !important;
 }
@@ -114,12 +110,13 @@ h3 {
   margin-bottom: 20px !important;
   top: 0;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 700 !important;
   width: 100vw;
   text-align: center;
   font-size: 33px !important;
-  color: #ffffff;
+  color: #404040;
   opacity: 0.75;
+  
 }
 
 /* :: 3.5.0 Miscellaneous */

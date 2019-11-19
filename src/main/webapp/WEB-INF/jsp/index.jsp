@@ -95,7 +95,7 @@
 
 <div class="bueno-post-area mb-70">
   <div class="container">
-    <div class="row" style="width: 1100px;margin: 0 auto;">
+    <div class="row ml-0">
       <h3>popular product</h3>
         <div id="prod_columns">
           <c:forEach items="${productList}" var="product" begin='0' end="7" >
@@ -113,7 +113,6 @@
                         <span style=" text-decoration:line-through">
                         <fmt:formatNumber value="${product.price}" pattern="#,###" />원</span>&nbsp
                       </c:if>
-<%--                       <span style="color:#35c5f0;">${product.discount}%&nbsp</span> --%>
                       <span><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###" />원</span>
                     </div>
                 </div>

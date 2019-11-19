@@ -1,10 +1,6 @@
 /* :: 2.0 Import All CSS */
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean');
-@import url(/css/common/bootstrap.min.css);
-
 /* :: 8.0 Footer Area CSS */
 .footer-area {
-  font-family: 'Nanum Gothic', sans-serif;
 	position: relative;
 	z-index: 1;
 	padding: 30px 0 50px 0;
