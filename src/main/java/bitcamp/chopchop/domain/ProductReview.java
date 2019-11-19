@@ -14,6 +14,7 @@ public class ProductReview {
   private Date createdDate;
 
   private List<Product> products;
+  private List<Member> members;
 
   public int getProductReviewNo() {
     return productReviewNo;
@@ -78,12 +79,20 @@ public class ProductReview {
     public void setProducts(List<Product> products) {
       this.products = products;
     }
+    
+      public List<Member> getMembers() {
+        return members;
+      }
+    
+      public void setMembers(List<Member> members) {
+        this.members = members;
+      }
 
   @Override
   public String toString() {
     return "ProductReview [content=" + content + ", createdDate=" + createdDate + ", filePath=" + filePath
-        + ", memberNo=" + memberNo + ", productNo=" + productNo + ", productReviewNo=" + productReviewNo + ", products="
-        + products + ", rating=" + rating + "]";
+        + ", memberNo=" + memberNo + ", members=" + members + ", productNo=" + productNo + ", productReviewNo="
+        + productReviewNo + ", products=" + products + ", rating=" + rating + "]";
   }
   
 }

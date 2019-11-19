@@ -5,8 +5,18 @@
 <!DOCTYPE html>
 
 <html>
-  
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
+
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean');
+html, body {
+  font-family: 'Nanum Gothic', sans-serif !important
+}
+
+img {
+  height: auto;
+  max-width: 100%; }
+
   .txt_post {
     font-size: 16px;
     overflow: hidden;
@@ -62,7 +72,7 @@
       </div>
       <div class="col-md-1">
         <p style="color:red; margin-bottom: 25; font-size: 25px; font-weight: 5000px; vertical-align: middle;">
-          ${Math.round(avg*10)/10}
+          <fmt:formatNumber value="${avg}" pattern="#,###.#"/> 
         </p>
       </div>
       <div class="col-md-1">
@@ -74,6 +84,7 @@
         </p>
       </div>
     </div>
+    
     <table class='table table-hover'>
       <tr style="text-align: center;">
         <th style="width: 130px">사진</th>
@@ -85,9 +96,14 @@
       <c:forEach items="${productReviews}" var="productReview">
         <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
           <input type="hidden" class="tempProductReviewNo" value="${productReview.productReviewNo}">
-          <td style="width: 100px; height: 100px; object-fit: cover"><img src='/upload/productreview/${productReview.filePath}'></td>
+          <td style="width: 100px; height: 100px; object-fit: cover"><img
+              src="/upload/productreview/${productReview.filePath}"></td>
           <td style="text-align: left"><span class="txt_post">${productReview.content}</span></td>
-          <td>${productReview.memberNo}</td>
+          <td>
+            <c:forEach items="${productReview.members}" var="member">
+              ${member.nickname}
+            </c:forEach>
+          </td>
           <td style='color: red;' value='${productReview.rating}'>
             <c:if test="${productReview.rating == 1}">★☆☆☆☆</c:if>
             <c:if test="${productReview.rating == 2}">★★☆☆☆</c:if>
@@ -183,7 +199,6 @@
               <option value="1">★☆☆☆☆ [별로에요]</option>
             </select>
             <hr>
-            <!-- <input type="text" class="form-control" name="content" style="overflow:auto; height: 200px;"> -->
             <textarea class="form-control" id="message-text" name="content" style="overflow:auto; height: 200px; resize: none;"></textarea>
         </div>
       </div>
@@ -191,7 +206,6 @@
         <div style="text-align: right;">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
             <button type="submit" class="btn btn-primary">등록하기</button>
-            <!-- <button type="submit" class="btn btn-primary">등록하기</button> -->
           </div>
         </form>
 
@@ -222,7 +236,7 @@
                 <div class="col-md-4">
                   <div>
             <input type="hidden" id="photo" value="${productReview.filePath}" />
-            <img id="imgThumb" class="imgThumb" style="width: 250px; height: 250px; object-fit: cover">
+            <span id="tempImgUpdate" class="imgThumb" style="width: 250px; height: 250px; object-fit: cover"></span>
           </div>
             <input type='file' id='fileupload' name='file' /><br>
           </div>
@@ -235,7 +249,6 @@
               <option value="1">★☆☆☆☆ [별로에요]</option>
             </select>
             <hr>
-            <!-- <input type="text" class="form-control" name="content" style="overflow:auto; height: 200px;"> -->
             <textarea class="form-control" id="tempContUpdate" name="content" style="overflow:auto; height: 200px; resize: none;"></textarea>
         </div>
       </div>
@@ -243,16 +256,12 @@
         <div style="text-align: right;">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
             <button type="submit" class="btn btn-primary">수정하기</button>
-            <!-- <button type="submit" class="btn btn-primary">등록하기</button> -->
           </div>
         </form>
-
       </div>
     </div>
   </div>
 </div>
-
-
 
   <script>
 
@@ -265,6 +274,7 @@
    tempStar.innerText = $(this)[0].cells[3].innerText;
    tempDate.innerText = $(this)[0].cells[4].innerText;
 
+   tempImgUpdate.innerHTML = $(this)[0].cells[0].innerHTML;
    tempContUpdate.innerText = $(this)[0].cells[1].innerText;
 
    tempModalProductReviewNo.value = $(this).context.childNodes[1].defaultValue;
@@ -274,13 +284,10 @@
 // 등록
 
 function formLoad() {
-      // hidden값을 이용해서 자바스크립트를 이용한 경우
-      if (document.getElementById("photo").value == null
-        || document.getElementById("photo").value == "") {
-        document.getElementById("imgThumb").src = "/upload/productreview/info_photo.jpg";
+      if ($("#photo").val() == null || $("#photo").val() == "") {
+        $("#imgThumb").attr("src", "/upload/productreview/info_photo.jpg");
       } else {
-        document.getElementById("imgThumb").src = "/upload/productreview/"
-          + document.getElementById("photo").value;
+        $("#imgThumb").attr("src", "/upload/productreview/" + $("#photo").val());
       }
     }
 
@@ -296,9 +303,8 @@ function formLoad() {
 
       function reviewDel() {
         var selectedReviewNo = document.getElementById("tempModalProductReviewNo").value;
-        if (confirm("진짜 삭제할거가?")) {
+        if (confirm("후기를 삭제하시겠습니까?")) {
           location.href = "../productreview/delete?no=" + selectedReviewNo + "&productNo=${product.productNo}"; 
-          alert("삭제했다!")
         }
     }
 

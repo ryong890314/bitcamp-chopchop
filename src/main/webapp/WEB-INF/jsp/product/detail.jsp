@@ -8,12 +8,12 @@
 
 <head>
   <title>상품 상세</title>
-  <link rel='stylesheet' href='/css/product/style.css'>
+  <!-- <link rel='stylesheet' href='/css/product/style.css'> -->
   <link rel='stylesheet' href='/css/member/style_footer.css'>
   <link rel='stylesheet' href='/css/member/style-header.css'>
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <link rel="icon" href="img/core-img/favicon.ico">
-  <link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
+  <!-- <link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css"> -->
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
   <style>
@@ -195,8 +195,8 @@
           <img src="/upload/product/${file.filePath}" class="rounded mx-auto d-block" alt="...">
         </c:forEach>
       </p>
-<!--       <hr class="my-4"> -->
-<%--       <jsp:include page="../productreview/list.jsp" /> --%>
+       <hr class="my-4">
+       <jsp:include page="../productreview/list.jsp" /> 
 
       <hr class="my-4">
       <jsp:include page="../comment/productCommentList.jsp" />
@@ -244,9 +244,9 @@
 
 <script id="order-template" type="text/x-handlebars-template">
 <div>
-  <div><input type='hidden' class='order-no' name='optNo' value="{{no}}"></div>
-  <div><input class='order-quantity' name='optQuantity' type='hidden' value='1'></div>
-  <div><input class='order-price' name='optPrice' type='hidden' type='number' value="{{price}}"></div>
+  <div><input type='text' class='order-no' name='optNo' value="{{no}}"></div>
+  <div><input class='order-quantity' name='optQuantity' type='text' value='1'></div>
+  <div><input class='order-price' name='optPrice' type='text' type='number' value="{{price}}"></div>
 </div>
 </script>
 
