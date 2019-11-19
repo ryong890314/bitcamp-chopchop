@@ -121,11 +121,3 @@
 <script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/js/dist/adminlte.js"></script>
-
-
-
-
-
-
-
-
