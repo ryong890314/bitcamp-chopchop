@@ -131,94 +131,6 @@
     color: #fff
 }
 
-@media (min-width :576px) {
-    .layout-sm-footer-fixed .wrapper .control-sidebar {
-        bottom: 0
-    }
-
-    .layout-sm-footer-fixed .wrapper .main-footer {
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        right: 0;
-        z-index: 1032
-    }
-
-    .layout-sm-footer-fixed .wrapper .content-wrapper {
-        margin-bottom: calc(3.5rem + 1px)
-    }
-
-    .layout-sm-footer-not-fixed .wrapper .main-footer {
-        position: static
-    }
-}
-
-@media (min-width :768px) {
-    .layout-md-footer-fixed .wrapper .control-sidebar {
-        bottom: 0
-    }
-
-    .layout-md-footer-fixed .wrapper .main-footer {
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        right: 0;
-        z-index: 1032
-    }
-
-    .layout-md-footer-fixed .wrapper .content-wrapper {
-        margin-bottom: calc(3.5rem + 1px)
-    }
-
-    .layout-md-footer-not-fixed .wrapper .main-footer {
-        position: static
-    }
-}
-
-@media (min-width :992px) {
-    .layout-lg-footer-fixed .wrapper .control-sidebar {
-        bottom: 0
-    }
-
-    .layout-lg-footer-fixed .wrapper .main-footer {
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        right: 0;
-        z-index: 1032
-    }
-
-    .layout-lg-footer-fixed .wrapper .content-wrapper {
-        margin-bottom: calc(3.5rem + 1px)
-    }
-
-    .layout-lg-footer-not-fixed .wrapper .main-footer {
-        position: static
-    }
-}
-
-@media (min-width :1200px) {
-    .layout-xl-footer-fixed .wrapper .control-sidebar {
-        bottom: 0
-    }
-
-    .layout-xl-footer-fixed .wrapper .main-footer {
-        bottom: 0;
-        left: 0;
-        position: fixed;
-        right: 0;
-        z-index: 1032
-    }
-
-    .layout-xl-footer-fixed .wrapper .content-wrapper {
-        margin-bottom: calc(3.5rem + 1px)
-    }
-
-    .layout-xl-footer-not-fixed .wrapper .main-footer {
-        position: static
-    }
-}
-
 .layout-top-nav .wrapper {
     margin-left: 0
 }
@@ -331,10 +243,10 @@
 .layout-fixed .main-sidebar {
     float: none;
     height: 42%;
-    position: fixed;
-    top: 31%;
+    position: absolute;
+    top: 32%;
     left: 14%;
-    border: 1px solid 
+    border-right: 1px solid;
 }
 
 .main-sidebar::-webkit-scrollbar {
@@ -715,21 +627,6 @@
 
 .nav-sidebar .nav-header:not (:first-of-type) {
     padding:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         1 .7rem 1 rem .5rem
 }
 
@@ -867,21 +764,6 @@
 
 .nav-compact .nav-header:not (:first-of-type) {
     padding:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         .75rem .5rem .25rem
 }
 
