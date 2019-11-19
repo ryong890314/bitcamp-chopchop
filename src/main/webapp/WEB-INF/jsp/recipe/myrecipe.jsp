@@ -23,14 +23,15 @@
 
 <title>MY RECIPES</title>
 <style>
+
 .rInfo {
   border-bottom: 2px solid #404040;
   padding-bottom: 5px;
 }
 
-.rInfo-font {
-  font-family: 'Sunflower', sans-serif;
-}
+/* .rInfo-font { */
+/*   font-family: 'Sunflower', sans-serif; */
+/* } */
 
 .mypage-tagA {
   font-size: inherit;

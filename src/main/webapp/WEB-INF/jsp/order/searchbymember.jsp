@@ -8,38 +8,30 @@
 <head>
   <title>주문 목록</title>
 <!--   <link rel='stylesheet' href="/node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
-  <link rel='stylesheet' href='/css/product/style.css'>
-  <link rel='stylesheet' href='/css/member/style_footer.css'>
-  <link rel='stylesheet' href='/css/member/style-header.css'>
-  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-  <link rel="icon" href="img/core-img/favicon.ico">
+
   <style>
+/*   #orderBody { */
+/*     width: 1100px; */
+/*     padding-top: 10px; */
+/*     margin: auto auto; */
+/*   } */
 
-  #orderBody {
-    width: 1100px;
-    padding-top: 10px;
-    margin: auto auto;
-  }
+/*   #productBody { */
+/*     width: 1100px; */
+/*     margin: auto auto; */
+/*     text-align: center; */
+/*     vertical-align: middle; */
+/*   } */
 
-  #productBody {
-    width: 1100px;
-    margin: auto auto;
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  #productList {
-    padding: 5px;
-    margin: 5px;
-    text-align: center;
-    float: left;
-  }
+/*   #productList { */
+/*     padding: 5px; */
+/*     margin: 5px; */
+/*     text-align: center; */
+/*     float: left; */
+/*   } */
   
   .mInfo {
     border-bottom: 2px solid #404040;
-  }
-  
-  .sInfo-font {
     font-family: 'Sunflower', sans-serif;
   }
   

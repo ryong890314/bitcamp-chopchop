@@ -5,15 +5,10 @@
 <html>
 <head>
 <title>회원 목록</title>
-<link rel='stylesheet'
-	href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel="stylesheet" href="/css/member/style_contact.css">
 </head>
 <jsp:include page="../header.jsp" />
 <body>
-
-
-	<div id="content" style="width: 1100px;margin: 0 auto;">
+	<div id="my-content" style="width: 1100px;margin: 0 auto;">
 		<h1>회원 목록</h1>
 		<a href='form'>새 회원</a><br>
 		<table class='table table-hover'>
@@ -33,22 +28,6 @@
 			</c:forEach>
 		</table>
 	</div>
-
-	<!--Start of Tawk.to Script-->
-	<script type="text/javascript">
-		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-		(function() {
-			var s1 = document.createElement("script"), s0 = document
-					.getElementsByTagName("script")[0];
-			s1.async = true;
-			s1.src = 'https://embed.tawk.to/5dc15bc3e4c2fa4b6bda1100/default';
-			s1.charset = 'UTF-8';
-			s1.setAttribute('crossorigin', '*');
-			s0.parentNode.insertBefore(s1, s0);
-		})();
-	</script>
-	<!--End of Tawk.to Script-->
-
 </body>
 <jsp:include page="../footer.jsp" />
 </html>
