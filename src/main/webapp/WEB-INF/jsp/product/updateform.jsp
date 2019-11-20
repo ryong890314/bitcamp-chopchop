@@ -116,8 +116,9 @@
       <div style="margin-top:10px;">
         <button type="button" id="add-button" class="btn bueno-btn">수정</button>
         <button class="btn bueno-btn">취소</button>
+        <button id="delete-button" type="button" class="btn bueno-btn" style="float:right; background-color:red;">삭제</button>
       </div>
-      <input type="text" name="productNo" value="${product.productNo}">
+      <input type="hidden" name="productNo" value="${product.productNo}">
     </form>
   </div>
   <jsp:include page="../footer.jsp" />
@@ -212,6 +213,13 @@
     $(document).on('change', '.add-photo-file', function() {
       readURL2(this);
     });
+    
+    $('#delete-button').click(function (e) {
+      $('#delete-button').attr('type', 'submit');
+      $('#delete-button').attr('formaction', 'delete');
+    })
+    
+    
     
   </script>
   

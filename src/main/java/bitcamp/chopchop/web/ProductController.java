@@ -56,15 +56,14 @@ public class ProductController {
       productOption.setProductNo(product.getProductNo());
       productOption.setTitle(optionTitle[i]);
       productOption.setPrice(Integer.parseInt(optionPrice[i]));
-      System.out.println("========================================== " + productOption + " ====================================================");
       productOptionService.insert(productOption);
     }
     return "redirect:list";
   }
 
-  @GetMapping("delete")
-  public String delete(int no) throws Exception {
-    productService.delete(no);
+  @PostMapping("delete")
+  public String delete(int productNo) throws Exception {
+    productService.delete(productNo);
     return "redirect:list";
   }
 

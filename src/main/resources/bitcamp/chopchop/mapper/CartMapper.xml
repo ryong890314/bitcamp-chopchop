@@ -147,5 +147,13 @@
     delete from cart
     where cart_id=#{cartNo}
   </delete>
+  
+  <delete id="deleteAll" parameterType="int">
+    delete from 
+      cart
+    where
+      product_id=#{value}
+  </delete>
+  
 
 </mapper>

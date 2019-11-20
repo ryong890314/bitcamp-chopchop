@@ -14,11 +14,12 @@
   <link rel="icon" href="img/core-img/favicon.ico">
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
   <style>
-
+  
   #content {
     width: 1100px;
     padding-top: 10px;
-    margin: auto auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #productBody {
@@ -29,10 +30,11 @@
   }
 
   #productList {
-    padding: 5px;
-    margin: 5px;
+    width:265px;
+/*     padding: 5px; */
+    margin:5px;
     text-align: center;
-    float: left;
+/*     float: left; */
   }
   </style>
 
@@ -66,7 +68,7 @@
 <!--         </header> -->
 
     <!-- ##### Catagory Area Start ##### -->
-    <div class="post-catagory section-padding-100" style="margin-top:30px;">
+    <div class="post-catagory section-padding-100" style="margin:30px auto auto auto; width:1100px;">
         <div class="container">
             <div class="row">
                 <!-- Single Post Catagory -->
@@ -76,8 +78,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=강아지" class="post-tag">강아지</a>
-                                <a href="category?species=강아지" class="post-title" style="color:#524845">강아지</a>
+                                <a href="category?species=dog" class="post-tag">강아지</a>
+                                <a href="category?species=dog" class="post-title" style="color:#524845">강아지</a>
                             </div>
                         </div>
                     </div>
@@ -89,8 +91,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=고양이" id="species" class="post-tag">고양이</a>
-                                <a href="category?species=고양이" class="post-title" style="color:#524845">고양이</a>
+                                <a href="category?species=cat" id="species" class="post-tag">고양이</a>
+                                <a href="category?species=cat" class="post-title" style="color:#524845">고양이</a>
                             </div>
                         </div>
                     </div>
@@ -102,8 +104,8 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=새" id="species" class="post-tag">작은 친구들</a>
-                                <a href="category?species=새" class="post-title" style="color:#524845">작은 친구들</a>
+                                <a href="category?species=others" id="species" class="post-tag">작은 친구들</a>
+                                <a href="category?species=others" class="post-title" style="color:#524845">작은 친구들</a>
                             </div>
                         </div>
                     </div>
@@ -118,12 +120,12 @@
 <c:forEach items="${products}" var="product" varStatus="status">
   <div id="productList">
 
-<div class="card" style="width: 18rem;">
+<div class="card" >
   <c:forEach items="${product.files}" var="file" end="0">
-    <img src='/upload/product/${file.filePath}' style="width: 286px; height: 286px; object-fit: cover" alt=""> 
+    <img src='/upload/product/${file.filePath}' style="width: 265px; height: 265px; object-fit: cover" alt=""> 
   </c:forEach>
   
-  <div class="card-body">
+  <div class="card-body" style="width: 265px;">
     <h5 class="card-title">${product.title}</h5>
     <a><span style=" text-decoration:line-through">
     <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span><br>
