@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -11,9 +11,7 @@
 
 <style>
 #orderBody {
-  width: 1100px;
-  padding-top: 10px;
-  margin: 0 auto;
+	width: 1100px;
 }
 .rInfo {
   border-bottom: 2px solid #404040;
@@ -49,10 +47,11 @@
   color: #404040 !important;
   font-size: 18px;
 }
-
 </style>
 
 </head>
+<jsp:include page="../header.jsp" />
+	<jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
   <jsp:include page="../header.jsp" />
 <%--   <jsp:include page="../member/mypage_sidebar.jsp" /> --%>

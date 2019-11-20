@@ -14,8 +14,7 @@ Favicon
 <link rel="icon" href="/img/core-img/favicon.ico"> -->
 <!-- </head> -->
 
-<div class="hold-transition sidebar-mini layout-fixed"
-  onload="sidebar_form()();">
+<div class="hold-transition sidebar-mini layout-fixed">
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -25,10 +24,10 @@ Favicon
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+        <div class="image" onload="sidebar_form();">
           <input type="hidden" id="userphoto" value="${member.photo}" /> <img
             src='/upload/member/${member.photo}' id="userThumb"
-            class="img-circle elevation-2 my-thumb"
+            class="img-circle my-thumb"
             style="width: 40px; height: 40px; margin-left: -5px;">
         </div>
 
@@ -85,15 +84,11 @@ Favicon
 </div>
 
 <!-- jQuery -->
-<!--  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  jQuery UI 1.11.4
+<!--   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/js/jquery-ui/jquery-ui.min.js"></script>
-  Bootstrap 4
-  AdminLTE App
-  <script src="/js/dist/adminlte.js"></script>
+  
   <script>
     function formLoad() {
-      // hidden값을 이용해서 자바스크립트를 이용한 경우
       if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
         $("#userThumb").attr("src", "/upload/member/info_photo.jpg");
       } else {
@@ -101,4 +96,4 @@ Favicon
             "/upload/member/" + $("#userphoto").val());
       }
     }
-  </script> -->
+  </script>  -->
