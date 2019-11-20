@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +13,10 @@
 <!-- mypage_sidebar start-->
 <!-- Font Awesome -->
 <link rel="stylesheet"
-  href="/js/plugins/fontawesome-free/css/all.min.css">
+	href="/js/plugins/fontawesome-free/css/all.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet"
-  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
 <!-- </head> -->
@@ -29,18 +29,27 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper" style="margin: 0 0 0 15%;">
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper" style="max-width: 1200px;height: 816px;width: 982px;">
-			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo" style="border-bottom: 2px solid #404040;">
-        <h3>My profile</h3>
-         <span class="mInfo-span" >
-         <a class="mypage-tagA">My Page</a><a>&nbsp>&nbspMyprofile</a></span> 
-      </div>
-			<figure class="snip1559" style="margin-left:25%;">
-				<div class="profile-image">
+		<div class="content-wrapper"
+			style="max-width: 1200px; height: 816px; width: 982px;">
+			<div
+				class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo"
+				style="border-bottom: 2px solid #404040;">
+				<h3>My profile</h3>
+				<span class="mInfo-span"> <a class="mypage-tagA">My Page</a><a>&nbsp>&nbspMyprofile</a></span>
+			</div>
+			<figure class="snip1559" style="margin-left: 25%;">
+				<%-- 	<div class="profile-image">
 					<input type="hidden" id="userphoto" value="${member.photo}" /> <img
 						src='/upload/member/${member.photo}' id="userThumb"
 						class="my-thumb profile-img">
+				</div> --%>
+
+				<div class="profile-image">
+					<input type="hidden" id="photo2" value="${member.photo}" /> <img
+						src='/upload/member/${member.photo}' id="imgThumb"
+						class="my-thumb profile-img">
 				</div>
+
 				<figcaption>
 					<h3>${member.nickname}</h3>
 				</figcaption>
@@ -60,8 +69,9 @@
 							<div class="icon">
 								<i class="ion ion-ios-paw"></i>
 							</div>
-							<a href="/app/recipe/myrecipe" class="small-box-footer">More info <i
-								class="fas fa-arrow-circle-right"></i></a>
+							<a href="/app/recipe/myrecipe" class="small-box-footer">More
+								info <i class="fas fa-arrow-circle-right"></i>
+							</a>
 						</div>
 					</div>
 					<!-- ./col -->
@@ -90,8 +100,9 @@
 							<div class="icon">
 								<i class="ion ion-ios-list"></i>
 							</div>
-							<a href="/app/order/searchbymember" class="small-box-footer">More info <i
-								class="fas fa-arrow-circle-right"></i></a>
+							<a href="/app/order/searchbymember" class="small-box-footer">More
+								info <i class="fas fa-arrow-circle-right"></i>
+							</a>
 						</div>
 					</div>
 					<div class="col-lg-3 col-6">
@@ -104,8 +115,9 @@
 							<div class="icon">
 								<i class="ion ion-bookmark"></i>
 							</div>
-							<a href="/app/recipe/myscrap" class="small-box-footer">More info <i
-								class="fas fa-arrow-circle-right"></i></a>
+							<a href="/app/recipe/myscrap" class="small-box-footer">More
+								info <i class="fas fa-arrow-circle-right"></i>
+							</a>
 						</div>
 					</div>
 					<!-- ./col -->
@@ -115,6 +127,15 @@
 		</div>
 	</div>
 	<!-- ./wrapper -->
+
+	<!--  mypage_sidebar script  start -->
+	<!-- jQuery -->
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<!-- jQuery UI 1.11.4 -->
+	<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="/js/dist/adminlte.js"></script>
+
 	<script>
 		function formLoad() {
 			// hidden값을 이용해서 자바스크립트를 이용한 경우
@@ -132,28 +153,20 @@
 			$(this).removeClass("hover");
 		});
 	</script>
-	
-  <!--  mypage_sidebar script  start -->
-  <!-- jQuery -->
-  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="/js/dist/adminlte.js"></script>
 
-  <script>
-    function sidebar_form() {
-      // hidden값을 이용해서 자바스크립트를 이용한 경우
-      if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
-        $("#userThumb").attr("src", "/upload/member/info_photo.jpg");
-      } else {
-        $("#userThumb").attr("src",
-            "/upload/member/" + $("#userphoto").val());
-      }
-    }
-  </script>
-  
-  <!--  mypage_sidebar script  end -->
-  </body>
+	<script>
+		function sidebar_form() {
+			// hidden값을 이용해서 자바스크립트를 이용한 경우
+			if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
+				$("#userThumb").attr("src", "/upload/member/info_photo.jpg");
+			} else {
+				$("#userThumb").attr("src",
+						"/upload/member/" + $("#userphoto").val());
+			}
+		}
+	</script>
+
+	<!--  mypage_sidebar script  end -->
+</body>
 <jsp:include page="../footer.jsp" />
 </html>

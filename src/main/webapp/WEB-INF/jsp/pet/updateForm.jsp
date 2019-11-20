@@ -8,7 +8,6 @@
 <title>Update My Pet's Information</title>
 <link rel="stylesheet" href="/css/pet/form.css">
 <link rel="stylesheet" href="/css/pet/input.css">
-<jsp:include page="../header.jsp" />
 <style>
 .update-form {
 	position: relative;
@@ -17,6 +16,8 @@
 }
 </style>
 </head>
+<h1>Update My Pet</h1>
+<hr>
 <div class="content-wrapper" style="width: 1100px; margin: 0 auto;">
 	<div class="update-form">
 		<div class="col-md-6 col-md-offset-3">
@@ -75,16 +76,19 @@
 							<input id="female" type="radio" name="gender" value=1 />
 							<label for="female">Female</label>
 						</c:if>
-						
+
 						<c:if test="${pet.gender eq 1}">
-						<input id="male" type="radio" name="gender" value=0 checked="checked"/> <label
-              for="male">Male</label> <input id="female" type="radio"
-              name="gender" value=1 checked="checked"/> <label for="female">Female</label>
+							<input id="male" type="radio" name="gender" value=0
+								checked="checked" />
+							<label for="male">Male</label>
+							<input id="female" type="radio" name="gender" value=1
+								checked="checked" />
+							<label for="female">Female</label>
 						</c:if>
 
 					</div>
-					
-					
+
+
 					<%-- 
 					 						<input id="male" type="radio" name="gender" value="0"/> 
 						<label for="male">Male</label>
