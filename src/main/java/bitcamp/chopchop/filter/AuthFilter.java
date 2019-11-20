@@ -1,5 +1,4 @@
 package bitcamp.chopchop.filter;
-
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -9,7 +8,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 // 역할:
 // => 로그인 사용자만 등록, 변경, 삭제를 수행할 수 있게 한다.
 //
@@ -54,10 +52,3 @@ public class AuthFilter implements Filter {
     chain.doFilter(request, response);
   }
 }
-
-
-
-
-
-
-

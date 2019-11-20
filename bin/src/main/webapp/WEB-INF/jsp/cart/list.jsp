@@ -20,6 +20,7 @@
         <th>장바구니 번호</th>
         <th>회원번호</th>
         <th>상품번호</th>
+        <th>옵션번호</th>
         <th>수량</th>
         <th>등록일</th>
       </tr>
@@ -28,6 +29,7 @@
           <td>${cart.cartNo}</td>
           <td>${cart.memberNo}</td>
           <td>${cart.productNo}</td>
+          <td>${cart.optionNo}</td>
           <td>${cart.quantity}</td>
           <td>${cart.createdDate}</td>
         </tr>

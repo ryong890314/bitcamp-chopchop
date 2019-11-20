@@ -1,16 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/recipe/w3.css">
 <link rel="stylesheet" href="/css/recipe/list.css">
-   <style>
-   a {
-   color: black;
-   }
+<style>
+ img.thumbnail {
+  width: 280px;
+  height: 250px;
+  object-fit: cover;
+ }
+
+ a {
+  color: #000000;
+ }
    /* :: 3.7.0 bueno Button */
 .bueno-btn {
     background-color: #b0c364;
@@ -38,16 +44,15 @@
     color: #ffffff;
 }
     </style>
-    <title>Recipe List</title>
+    <title>RECIPE LIST</title>
 </head>
 <body>
-
-<%-- findRecipe --%>
+<%-- <jsp:include page="../header.jsp" /> --%>
 <jsp:include page="findRecipe.jsp"/>
 
 
 <!-- ##### Search Area Start ##### -->
-    <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="height: 50px; background-image: url(/img/core-img/pattern.png);">
+    <div class="bueno-search-area pb-70 bg-img" style="height: 40px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -57,25 +62,25 @@
                                 <div class="form-group mb-30" style="display: none">
                                 </div>
                             </div>
-<!--                             <div class="col-12 col-sm-6 col-lg-3"> -->
-<!--                                 <div class="form-group mb-30"  style="display: none"> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="form-group mb-30">
-                                    <select id="sort" class="form-control" id="ingredients">
-                                      <option value="">Recipe List</option>
-                                      <option value="">Order by Views</option>
-                                      <option value="">Order by Scraps</option>
-                                      <option value="">Order by latest</option>
-                                      <option value="">Ingredients 4</option>
+                                    <select id="selectCategory" name='category' class="form-control my-category">
+                                      <option value="0" selected="selected">카테고리 보기</option>
+                                      <option value="1">강아지</option>
+                                      <option value="2">고양이</option>
+                                      <option value="3">작은동물</option>
+                                      <option value="4">기타</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="form-group mb-30">
-                                    <button class="btn bueno-btn w-100">Search</button>
+                                    <select id="selectColumn" name='column' class="form-control my-sort">
+                                      <option value="recipe_id" selected="selected">리스트 보기</option>
+                                      <option value="view_count">조회순</option>
+                                      <option value="scrap">좋아요순</option>
+                                      <option value="created_date">최신순</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
@@ -88,30 +93,97 @@
         </div>
     </div>
 
-        
-<!-- <form action='form'> -->
-<!--   <button class="btn bueno-btn mt-30">레시피 등록</button> -->
-<!-- </form> -->
-
-
  <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
- 
          <!-- First Photo Grid-->
         <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-         <c:forEach items="${recipes}" var="recipe">
-            <div class="w3-quarter">
-                <img src='/upload/recipe/${recipe.thumbnail}' alt="Sandwich" style="width:280px; height:250px">
-                <h3><a href='detail?no=${recipe.recipeNo}'>${recipe.title}</a></h3>
-                <p>${recipe.content}</p>
-            </div>
-        </c:forEach>
         </div>
+ <button type="button" class="btn btn-outline-secondary btn-lg btn-block view-more">더보기</button>
  </div>
  
-     <script src="/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="/js/plugins/plugins.js"></script>
-    <!-- Active js -->
-    <script src="/js/active.js"></script>
+<script src="/js/jquery/jquery-2.2.4.min.js"></script>
+<script src="/js/plugins/plugins.js"></script>
+<script src="/js/active.js"></script>
+<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+
+<script id="t1back" type="listHtml">
+<div class='w3-quarter my-list'>
+  <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
+  <h3><a href='detail?no={{recipeNo}}'>{{title}}</a></h3>
+  <p>{{otherInfo}}</p>
+</div>
+</script>
+<script id="t1" type="listHtml">
+<div class='w3-quarter my-list'>
+  <a href='detail?no={{recipeNo}}' style='text-decoration:none;'>
+  <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
+  <h3>{{title}}</a></h3>
+    <p>{{otherInfo}}</p>
+</div>
+</script>
+
+<script>
+"use strict";
+var dbody = $('#food');
+var templateSrc = $('#t1').html();
+var template = Handlebars.compile(templateSrc);
+
+loadList();
+function loadList() {
+  $.get("/app/json/recipe/list", function(data) {
+    console.log(data.result);
+    for (var b of data.result.recipes) {
+      $(template(b)).appendTo(dbody);
+    }
+    
+    window.currentPage = data.result.pageNo;
+    window.pageSize = data.result.pageSize;
+    window.totalPage = data.result.totalPage;
+  });
+}
+
+$('.my-sort').on('change', function() {
+  var selectOption = $('.my-sort').val();
+  $.get("/app/json/recipe/listSort?column=" + selectOption, function(data) {  
+  $('.my-list').remove();
+  $('.view-more').remove();
+    for (var b of data.result) {
+      $(template(b)).appendTo(dbody);
+    }
+  });
+}); 
+  
+$('.my-category').on('change', function() {
+  var selectOption = $('.my-category').val();
+  
+  console.log(selectOption);
+  $.get("/app/json/recipe/listCategory?category=" + selectOption, function(data) {
+    console.log(data);
+    $('.my-list').remove();
+    $('.view-more').remove();
+    for (var b of data.result) {
+      $(template(b)).appendTo(dbody);
+    }
+  });
+});
+
+$('.view-more').click((e) => {
+  if (currentPage >= totalPage)
+    return;
+  next(currentPage, pageSize, totalPage);
+});
+
+function next(currentPage, pageSize, totalPage) {
+  $.get("/app/json/recipe/list?pageNo=" + (currentPage + 1), function(data) {
+    console.log(data.result);
+    for (var b of data.result.recipes) {
+      $(template(b)).appendTo(dbody);
+    }
+    window.currentPage = data.result.pageNo;
+    window.pageSize = data.result.pageSize;
+    window.totalPage = data.result.totalPage;
+  });
+};
+</script>
+
 </body>
 </html>

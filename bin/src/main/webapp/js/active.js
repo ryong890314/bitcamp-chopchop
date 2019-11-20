@@ -79,6 +79,8 @@
 
         welcomeSlide.on('translated.owl.carousel', function () {
             var slideLayer = welcomeSlide.find('.owl-item.active').find("[data-animation]");
+            welcomeSlide.find('.owl-item.active')
+            $
             slideLayer.each(function () {
                 var anim_name = $(this).data('animation');
                 $(this).addClass('animated ' + anim_name).css('opacity', '1');

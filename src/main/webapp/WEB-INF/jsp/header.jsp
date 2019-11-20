@@ -59,22 +59,16 @@
 					<!-- Logo Area -->
 					<!--            <a style="padding-top: 30px;" href="/app/member/list"><img
               src="/img/core-img/choplogo.png" style="width: 80px;" alt=""></a> -->
-					<!-- Menu -->
-					<div class="classy-menu"
-						style="padding-top: 37px; padding-left: 30px;">
-						<!-- Nav Start -->
-						<div class="classynav">
-							<ul>
-								<li><a class="nav-items" href="/app/index"
-									style="padding-left: 30px !important; font-size: 20px;">Home</a></li>
-								<li><a class="nav-items" href="/app/recipe/list"
-									style="padding-left: 30px !important; font-size: 20px;">ChopRecipe</a>
-								<li><a class="nav-items" href="/app/product/list"
-									style="padding-left: 30px !important; font-size: 20px;">ChopStore</a></li>
-								<li><a class="nav-items" href=""
-									style="padding-left: 30px !important; font-size: 20px;">ChopEvent</a></li>
-								<li><a class="nav-items" href="/app/recipe/rank"
-									style="padding-left: 30px !important; font-size: 20px;">ChopRank</a></li>
+            <!-- Menu -->
+            <div class="classy-menu" style="padding-top: 37px;">
+              <!-- Nav Start -->
+              <div class="classynav">
+                <ul>
+                  <li><a class="nav-items" href="/app/index">Home</a></li>
+                  <li><a class="nav-items" href="/app/recipe/list">ChopRecipe</a>
+                  <li><a class="nav-items" href="">ChopStore</a></li>
+                  <li><a class="nav-items" href="">ChopTalk</a></li>
+                  <li><a class="nav-items" href="">ChopRank</a></li>
 
 								<!-- Login/Register -->
 								<c:if test="${not empty loginUser}">
@@ -91,7 +85,7 @@
 								</c:if>
 								<c:if test="${not empty loginUser}">
 									<li><a href="/app/member/myprofile" class='nav-user'
-										style="font-size: 15px">Hello! ${loginUser.nickname}</a></li>
+										style="font-size: 15px;">Hello! ${loginUser.nickname}</a></li>
 								</c:if>
 								<c:if test="${not empty loginUser}">
 									<li><a class='classy-btn c' href='/app/auth/logout'

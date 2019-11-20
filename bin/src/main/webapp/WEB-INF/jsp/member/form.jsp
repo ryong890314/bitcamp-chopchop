@@ -3,9 +3,10 @@
 <html>
 <head>
 <title>CHOPCHOP 회원가입</title>
+<!-- Favicon -->
 <link rel="stylesheet" href="/css/member/style_join.css">
-<link rel="stylesheet" href="/css/member/style_footer.css">
 </head>
+<jsp:include page="../header.jsp" />
 <body>
   <div class="bucket">
     <div class="buffer">
@@ -21,7 +22,7 @@
           <div id="password2_chk" class="vali_check"></div>
         <input type="text" id="nickname" name="nickname" placeholder="닉네임" onblur="nickname_check();" maxlength="12"/>
           <div id="nickname_chk" class="vali_check"></div>
-        <input type="tel" id="tel" name="tel" placeholder="핸드폰 번호    '-'없이 숫자만 입력해주세요." onblur="tel_check();" maxlength="11"/> 
+        <input type="tel" id="tel" name="tel" placeholder="핸드폰 번호&nbsp&nbsp&nbsp'-'없이 숫자만 입력해주세요." onblur="tel_check();" maxlength="11"/> 
           <div id="tel_chk" class="vali_check"></div>
         <input type="submit" class="btn" value="회원가입" />
       </form>
@@ -33,7 +34,6 @@
   
   function email_check() {
 	  var eCheckFlag = false;
-	  console.log("email_check");
     if (form.email.value == "") { // 빈 값 검사
       document.getElementById("email_chk").innerHTML = "이메일을 입력하세요.";
       $("#email_chk").css('color', 'red');
@@ -205,7 +205,6 @@ function password_check() {
     return checkCnt == 5 ? true : false; 
    }
 </script>
-<!-- <script src="//code.jquery.com/jquery-3.1.0.min.js"></script> -->
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <jsp:include page="../footer.jsp"/>
 </body>

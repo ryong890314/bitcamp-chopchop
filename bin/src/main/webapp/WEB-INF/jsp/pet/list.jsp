@@ -4,41 +4,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>펫 목록</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel="stylesheet" href="/css/member/style_contact.css">
+<meta charset="UTF-8">
+<title>My Page</title>
+<link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel="stylesheet" href="/css/member/style_contact.css">
+<style type="text/css">
+  .card-img {
+    width: 200px;
+    height: 200px;
+  }
+</style>
 </head>
 <body>
-
-<jsp:include page="../header.jsp"/>
-
 <div id='content'>
-<h1>펫 목록</h1>
-<a href='form'>새 회원</a><br>
-<table class='table table-hover'>
-<tr>
-
-  <th>회원번호</th>
-  <th>번호</th>
-  <th>이름</th>
-  <th>나이</th>
-  <th>성별</th>
-</tr>
-
+<h1>My Pet Infomation</h1>
+<a href='form'>펫 등록</a><br>
 <c:forEach items="${pets}" var="pet">
-  <tr>
-    <td>${pet.members.memberNo}</td>
-    <td><a href='detail?no=${pet.petNo}'>${pet.petNo}</a></td>
-    <td>${pet.name}</td>
-    <td>${pet.age}</td>
-    <td>${pet.gender}</td>
-    <c:forEach items="${pet.breeds.breed}" var="breed">
-    </c:forEach>
-  </tr>
-</c:forEach>
-</table>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="/upload/pet2/${pet.filePath}" class="card-img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${pet.name}(${pet.age}세, ${pet.gender})</h5>
+        <p class="card-text">등록일 : ${pet.createdDate}<br>등록번호 : ${pet.registerNo}<br></p>
+        <p class="card-text"><small class="text-muted"><a href="#">수정 </a><a href="#"> 삭제</a></small></p>
+      </div>
+    </div>
+  </div>
 </div>
-<jsp:include page="../footer.jsp"/>
+</c:forEach>
+</div>
 
 </body>
 </html>

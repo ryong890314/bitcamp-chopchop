@@ -1,120 +1,159 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ChopChop-MyPage</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>ChopChop-MyPage</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/member/myProfile.css">
+
+<!-- mypage_sidebar start-->
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Favicon -->
+<link rel="icon" href="/img/core-img/favicon.ico">
+<!-- </head> -->
+<!-- mypage_sidebar  end -->
+<style>
+</style>
 </head>
-
+<jsp:include page="../header.jsp" />
+<jsp:include page="../member/mypage_sidebar.jsp" />
 <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-<jsp:include page="../member/mypage_sidebar.jsp"/>
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Dashboard</h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">My Page</li>
-                            </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
+	<div class="wrapper" style="margin: 0 0 0 15%;">
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper" style="max-width: 1200px;height: 816px;width: 982px;">
+			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo" style="border-bottom: 2px solid #404040;">
+        <h3>My profile</h3>
+         <span class="mInfo-span" >
+         <a class="mypage-tagA">My Page</a><a>&nbsp>&nbspMyprofile</a></span> 
+      </div>
+			<figure class="snip1559" style="margin-left:25%;">
+				<div class="profile-image">
+					<input type="hidden" id="userphoto" value="${member.photo}" /> <img
+						src='/upload/member/${member.photo}' id="userThumb"
+						class="my-thumb profile-img">
+				</div>
+				<figcaption>
+					<h3>${member.nickname}</h3>
+				</figcaption>
+			</figure>
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <!-- Small boxes (Stat box) -->
-                    <div class="row">
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3>150</h3>
+			<!-- Main content -->
+			<section class="content">
+				<!-- Small boxes (Stat box) -->
+				<div class="row">
+					<div class="col-lg-3 col-6">
+						<!-- small box -->
+						<div class="small-box">
+							<div class="inner">
+								<h3 class="myprofile-h3">Recipe</h3>
+								<p>All my recipes</p>
+							</div>
+							<div class="icon">
+								<i class="ion ion-ios-paw"></i>
+							</div>
+							<a href="/app/recipe/myrecipe" class="small-box-footer">More info <i
+								class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+					<!-- ./col -->
+					<div class="col-lg-3 col-6">
+						<!-- small box -->
+						<div class="small-box">
+							<div class="inner">
+								<h3 class="myprofile-h3">Review</h3>
+								<p>All my reviews</p>
+							</div>
+							<div class="icon">
+								<i class="ion ion-ios-book"></i>
+							</div>
+							<a href="#" class="small-box-footer">More info <i
+								class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+					<!-- ./col -->
+					<div class="col-lg-3 col-6">
+						<!-- small box -->
+						<div class="small-box ">
+							<div class="inner">
+								<h3 class="myprofile-h3">Order</h3>
+								<p>All my orders</p>
+							</div>
+							<div class="icon">
+								<i class="ion ion-ios-list"></i>
+							</div>
+							<a href="/app/order/searchbymember" class="small-box-footer">More info <i
+								class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+					<div class="col-lg-3 col-6">
+						<!-- small box -->
+						<div class="small-box">
+							<div class="inner">
+								<h3 class="myprofile-h3">Bookmark</h3>
+								<p>All my bookmarks</p>
+							</div>
+							<div class="icon">
+								<i class="ion ion-bookmark"></i>
+							</div>
+							<a href="/app/recipe/myscrap" class="small-box-footer">More info <i
+								class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+					<!-- ./col -->
+				</div>
+				<!-- /.row -->
+			</section>
+		</div>
+	</div>
+	<!-- ./wrapper -->
+	<script>
+		function formLoad() {
+			// hidden값을 이용해서 자바스크립트를 이용한 경우
+			if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
+				$("#userThumb").attr("src", "/upload/member/info_photo.jpg");
+			} else {
+				$("#userThumb").attr("src",
+						"/upload/member/" + $("#userphoto").val());
+			}
+		}
+	</script>
+	<script>
+		/* Demo purposes only */
+		$(".hover").mouseleave(function() {
+			$(this).removeClass("hover");
+		});
+	</script>
+	
+  <!--  mypage_sidebar script  start -->
+  <!-- jQuery -->
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/js/dist/adminlte.js"></script>
 
-                                    <p>My Profile</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-bag"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                                    <p>My Pet</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-warning">
-                                <div class="inner">
-                                    <h3>44</h3>
-                                    <p>My Recipe</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <h3>65</h3>
-
-                                    <p>My Order</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-pie-graph"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                    </div>
-                    <!-- /.row -->
-                    <!-- Main row -->
-
-                    <!-- /.row (main row) -->
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
-    
-</body>
-
+  <script>
+    function sidebar_form() {
+      // hidden값을 이용해서 자바스크립트를 이용한 경우
+      if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
+        $("#userThumb").attr("src", "/upload/member/info_photo.jpg");
+      } else {
+        $("#userThumb").attr("src",
+            "/upload/member/" + $("#userphoto").val());
+      }
+    }
+  </script>
+  
+  <!--  mypage_sidebar script  end -->
+  </body>
+<jsp:include page="../footer.jsp" />
 </html>

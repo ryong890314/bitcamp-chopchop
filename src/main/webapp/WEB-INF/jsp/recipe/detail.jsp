@@ -8,6 +8,19 @@
 <link rel="stylesheet" href="/css/recipe/detail.css">
 <link rel="stylesheet" href="/css/recipe/comment.css">
 <style>
+ .comment-author {
+  width: 150px;
+  height: 150px; 
+  border-radius: 70%;
+  overflow: hidden;
+ }
+ 
+ .author-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
+
  button:focus {
   outline:none;
  }
@@ -57,13 +70,13 @@
               <div class="col-8">
                 <div class="blog-thumbnail mb-50">
                 <img src='/upload/recipe/${recipe.thumbnail}' alt="">
-                  </div>
+                </div>
               </div>
               <div class="col-4">
                   <div class="recipe-info">
                     <ul class="info-data">
                         <li><span>30 min</span></li>
-                        <li><span>카테고리:${category}</span></li>
+                        <li><span>CATEGORY:${category}</span></li>
                         <li><span>${recipe.tag}</span></li>
                     </ul>
                   </div>
@@ -109,7 +122,7 @@
              </div>
              <div class="row">
                <div class="col-4">
-                <img src='/upload/recipe/${cooking.filePath}' class='cookingphoto'">
+                <img src='/upload/recipe/${cooking.filePath}' class='cookingphoto'>
               </div>
                <div class="col-8">
                  <p class="mb-30">${cooking.content}</p>
@@ -127,6 +140,7 @@
 <jsp:include page="../recipecomment/list.jsp"/>
 
 <script>
+"use strict";
 loadData();
 function loadData() {
   var writerNo = ${member.memberNo};
@@ -136,7 +150,6 @@ function loadData() {
   }
 };
 
-"use strict";
 $('#likeBtn').click(function() {
   $.get("/app/json/recipe/like?no=" + ${recipe.recipeNo}, function(data) {
     if(data.result.isLike) { 

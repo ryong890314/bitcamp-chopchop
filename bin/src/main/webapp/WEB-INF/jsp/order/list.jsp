@@ -43,8 +43,8 @@
   <div class="d-flex align-content-start flex-wrap">
       <table class='table table-hover'>
       <tr>
-        <th>문의번호</th>
-        <th>회원번호</th>
+        <th>주문번호</th>
+        <th>회원이름</th>
         <th>우편번호</th>
         <th>기본주소</th>
         <th>상세주소</th>
@@ -58,7 +58,7 @@
   <td>${order.orderNo}</td>
   <td>${order.memberNo}</td>
   <td>${order.postNo}</td>
-  <td>${order.address}</td>
+  <td>${order.baseAddress}</td>
   <td>${order.detailAddress}</td>
   <td>${order.paymentDate}</td>
   <td>${order.paymentMethod}</td>

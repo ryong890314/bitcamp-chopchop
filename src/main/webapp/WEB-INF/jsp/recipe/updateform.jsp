@@ -8,10 +8,19 @@
 <link rel="stylesheet" href="/css/recipe/form.css">
 <link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <style>
-  img {
-    width: 150px;
-    object-fit: cover;
-  }
+ img {
+  border: none;
+ }
+ 
+ img.preview-cooking-image {
+  height: 150px;
+  object-fit: cover;
+ }
+ 
+ #image {
+  height: 150px;
+  object-fit: cover;
+ }
  .my-label {
   display: inline-block;
   padding: .5em .75em;
@@ -104,7 +113,7 @@
                                           <!-- 순서 박스 들어갈 Div -->
                                           <div class='row form-group my-cooking'>
                                           <div class='row form-group'>
-                                            <input type='text' class='form-control' name='processNo' style='width:50px; margin-left:15px; font-size:12px; padding:13px;' value='${cooking.processNo}'>
+                                            <input type='text' class='form-control' name='processNo' style='width:50px; margin-left:15px; font-size:12px; padding-left:13px;' value='${cooking.processNo}'>
                                           </div>
                                           <div class='box-photo'>
                                             <div class='photo'>
@@ -204,7 +213,7 @@ function delIngredient(event) {
 <script id="t2" type="cookingHtml">
 <div class='row form-group my-cooking'>
   <div class='row form-group'>
-    <input type='text' class='form-control' name='processNo' style='padding:13px; width:50px; margin-left:15px; font-size:12px;' value='' placeholder='순서' required>
+    <input type='text' class='form-control' name='processNo' style='padding-left:13px; width:50px; margin-left:15px; font-size:12px;' value='' placeholder='순서' required>
   </div>
   <div class='box-photo'>
     <div class='photo'>

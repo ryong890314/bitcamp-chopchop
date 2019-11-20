@@ -3,13 +3,13 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
 @import url("https://fonts.googleapis.com/css?family=Jua&display=swap");
 /* :: 2.0 Import All CSS */
-@import url(../common/bootstrap.min.css);
-@import url(../common/classy-nav.css);
-@import url(../common/owl.carousel.min.css);
-@import url(../common/animate.css);
-@import url(../common/magnific-popup.css);
-@import url(../common/font-awesome.min.css);
-@import url(../common/nice-select.css);
+@import url(css/common/bootstrap.min.css);
+@import url(css/common/classy-nav.css);
+@import url(css/common/owl.carousel.min.css);
+@import url(css/common/animate.css);
+@import url(css/common/magnific-popup.css);
+@import url(css/common/font-awesome.min.css);
+@import url(css/common/nice-select.css);
 /* :: 3.0 Base CSS */
 * {
   margin: 0;
@@ -409,21 +409,23 @@ h3 {
 
 /* :: 3.7.0 bueno Button */
 .bueno-btn {
-  background-color: #b0c364;
-  -webkit-transition-duration: 500ms;
-  transition-duration: 500ms;
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-  min-width: 160px;
-  height: 50px;
-  color: #ffffff;
-  border-radius: 0;
-  padding: 0 30px;
-  font-size: 14px;
-  line-height: 50px;
-  font-weight: 500;
-  text-transform: capitalize; }
+    background-color: #b0c364;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    min-width: 160px;
+    height: 50px;
+    color: #ffffff;
+    border-radius: 0;
+    padding: 0 30px;
+    font-size: 14px;
+    line-height: 50px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
   .bueno-btn:hover, .bueno-btn:focus {
     font-size: 14px;
     font-weight: 500;
@@ -921,78 +923,6 @@ h3 {
 .pagination .page-item.active .page-link {
   background-color: #b0c364;
   color: #ffffff; }
-
-/* :: 8.0 Footer Area CSS */
-.footer-area {
-  position: relative;
-  z-index: 1;
-  padding: 50px 0; }
-  .footer-area .copywrite-text {
-    font-size: 12px;
-    margin-bottom: 0;
-    color: #666666;
-    font-weight: 400; }
-    .footer-area .copywrite-text a {
-      color: #666666;
-      font-size: 12px;
-      font-weight: 400; }
-      .footer-area .copywrite-text a:hover, .footer-area .copywrite-text a:focus {
-        color: #b0c364; }
-  .footer-area .footer-nav {
-    position: relative;
-    z-index: 1;
-    display: block; }
-    .footer-area .footer-nav ul {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -ms-grid-row-align: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      justify-content: center; }
-      @media only screen and (max-width: 767px) {
-        .footer-area .footer-nav ul {
-          -webkit-box-pack: start;
-          -ms-flex-pack: start;
-          justify-content: flex-start;
-          margin-top: 30px; } }
-      @media only screen and (min-width: 576px) and (max-width: 767px) {
-        .footer-area .footer-nav ul {
-          margin-top: 0; } }
-    .footer-area .footer-nav li a {
-      position: relative;
-      z-index: 1;
-      color: #666666;
-      font-size: 12px;
-      margin: 0 10px;
-      font-weight: 400;
-      padding: 0 5px; }
-      @media only screen and (max-width: 767px) {
-        .footer-area .footer-nav li a {
-          padding: 0 2px;
-          margin: 0 3px; } }
-      .footer-area .footer-nav li a::after {
-        -webkit-transition-duration: 500ms;
-        transition-duration: 500ms;
-        width: 100%;
-        height: 3px;
-        background-color: #b0c364;
-        bottom: -8px;
-        left: 0;
-        right: 0;
-        z-index: -1;
-        position: absolute;
-        content: '';
-        visibility: hidden;
-        opacity: 0; }
-      .footer-area .footer-nav li a:hover, .footer-area .footer-nav li a:focus {
-        color: #b0c364; }
-    .footer-area .footer-nav li.active a::after, .footer-area .footer-nav li:hover a::after {
-      visibility: visible;
-      opacity: 1; }
 
 /* :: 9.0 Instagram Feed Area */
 .instagram-feed-area {

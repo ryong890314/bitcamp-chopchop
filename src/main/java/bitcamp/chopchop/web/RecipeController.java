@@ -2,6 +2,7 @@ package bitcamp.chopchop.web;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
@@ -40,8 +41,9 @@ public class RecipeController {
   }
 
   @GetMapping("form")
-  public void form() {
-
+  public void form(@ModelAttribute("loginUser") Member loginUser, Model model) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
   }
 
   @PostMapping("add")
@@ -54,9 +56,6 @@ public class RecipeController {
     recipe.setThumbnail(filename);
     filePath.transferTo(new File(uploadDir + "/" + filename));
     
-    // Thumbnail image
-    //Thumbnails.of(uploadDir + "/" + filename).size(280, 250).outputFormat("jpg").toFiles(Rename.PREFIX_DOT_THUMBNAIL);
-
     List<Ingredient> ingredients = new ArrayList<>();
     for (int i = 0; i < ingredientNames.length; i++) {
       Ingredient ingredient = new Ingredient();
@@ -120,8 +119,6 @@ public class RecipeController {
       String filename = UUID.randomUUID().toString();
       recipe.setThumbnail(filename);
       filePath.transferTo(new File(uploadDir + "/" + filename));
-      // Thumbnail image
-      //Thumbnails.of(uploadDir + "/" + filename).size(280, 250).outputFormat("jpg").toFiles(Rename.PREFIX_DOT_THUMBNAIL);
     }
 
     List<Ingredient> ingredients = new ArrayList<>();
@@ -164,6 +161,11 @@ public class RecipeController {
       @RequestParam(defaultValue = "4") int pageSize) throws Exception {
     List<Recipe> recipes = recipeService.list(pageNo, pageSize);
     model.addAttribute("recipes", recipes);
+  }
+  
+  @GetMapping("rank")
+  public void rank() {
+    
   }
 
   @GetMapping("myrecipe")

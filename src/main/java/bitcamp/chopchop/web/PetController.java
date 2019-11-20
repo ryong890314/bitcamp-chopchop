@@ -33,7 +33,6 @@ public class PetController {
   
   @GetMapping("updateForm")
   public void updateForm(Model model, int no) throws Exception {
-    System.out.println("펫 ~ㅇㄴㄹㄴㄷㄹㄴㄱㄴㄷㄱㄴㄷㄱ~~~~~~~~~~~~~~~~~~~~~~~~~업데이트 들어옴!");
     Pet pet  =  petService.get(no);
     model.addAttribute("pet", pet);
   }

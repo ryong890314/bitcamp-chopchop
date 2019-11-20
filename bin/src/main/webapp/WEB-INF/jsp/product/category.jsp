@@ -7,7 +7,7 @@
 <html>
 <head>
   <title>게시물 목록</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <link rel='stylesheet' href='/css/style.css'>
   <link rel="stylesheet" href="/css/style_contact.css">
   <link rel="stylesheet" href="/css/style_footer.css">
@@ -93,14 +93,13 @@
           <td>
             <p>
               <c:forEach items="${product.files}" var="file" end="0">
-                <img src='/upload/product/${file.filePath}' class='photo2' width=200>
+                  <img src='/upload/product/${file.filePath}' class='photo2' width=200>
               </c:forEach>
             </p>
           </td>
         </tr>
       </c:forEach>
     </table>
-    
   </div>
   <jsp:include page="../footer.jsp" />
   

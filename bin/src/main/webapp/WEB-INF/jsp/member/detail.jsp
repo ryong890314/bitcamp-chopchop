@@ -1,164 +1,212 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>My Page</title>
 <link rel="stylesheet" href="/css/member/style_detail.css">
-<link rel="stylesheet" href="/node_modules/jquery-ui-dist/jquery-ui.css">
-<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-
-<style type="text/css">
-.card-img {
-  width: 200px !important; 
-  height: 200px !important;
-  object-fit: cover !important;
-}
-</style>
+<!-- Favicon -->
+<link rel="icon" href="/img/core-img/favicon.ico">
 </head>
+<jsp:include page="../member/mypage_sidebar.jsp" />
+<jsp:include page="../header.jsp" />
 <body onload="formLoad();">
-
-  <%-- <jsp:include page="../header.jsp"/> --%>
-  <jsp:include page="../member/mypage_sidebar.jsp" />
-  <div class="content-wrapper">
-    <div class="container">
-      <h1>내정보</h1>
-      <form action='update' method='post' name="form"
-        enctype='multipart/form-data' onsubmit="return checkAll();">
-        <div class="row">
-          <div class="col-5">
-            <div id='content'>
-              <div>
-                <input type="hidden" id="photo2" value="${member.photo}" /> 
-                <img id="imgThumb" class="imgThumb"> 
-              </div>
-              <div style="display: none;">
-                <input type='file' id="file" name='file' />
-              </div>
-              <label id="label" for="file">사진 변경</label>
-            </div>
-          </div>
-          <div class="col-7">
-            <input type='hidden' id='memberNo' name='memberNo' value='${member.memberNo}' readonly><br> 
-            이메일 <input type='text' id='email' name='email' value='${member.email}' readonly><br>
-            비밀번호 <input type="button" name="pwUpdate" value="비밀번호 변경" data-toggle="modal" data-target="#exampleModal" /><br> 
-            닉네임 <input type='text' name='nickname' value='${member.nickname}' maxlength="12" onblur="nickname_check();"><br>
-            <div id="nickname_chk" class="vali_check"></div>
-            핸드폰 번호 <input type='tel' name='tel' value='${member.tel}' maxlength="11" onblur="tel_check();"><br>
-            <div id="tel_chk" class="vali_check"></div>
-            우편번호 <input type='text' id="postNo" name='postNo' value='${member.postNo}'> 
-            <input type="button" name="post_search" value="우편번호 찾기" onclick="myPostcode();" /><br>
-            기본주소 <input type='text' id="baseAddress" name='baseAddress' value='${member.baseAddress}'><br> 
-            상세주소 <input type='text' id="detailAddress" name='detailAddress' value='${member.detailAddress}'><br> 
-            <input type="hidden" id="nickname1" value="${member.nickname}" />
-            <!-- 원래 닉네임값  -->
-            <button>변경</button>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <a href="delete?no=${member.memberNo}"
-                  onclick="return confirm('정말 탈퇴하시겠습니까?');">회원탈퇴</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <hr>
-    
-    <div id='content' class="container">
-      <h1>My Pet Infomation</h1>
-      <a href='/app/pet/form?no=${member.memberNo}'>펫 등록</a><br>
-      <c:forEach items="${pets}" var="pet">
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row">
-            <div class="col-md-4">
-              <img src="/upload/pet/${pet.filePath}" class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">${pet.name}(${pet.age}세, 
-                  <c:if test="${pet.gender eq 0}">수컷</c:if>
-                  <c:if test="${pet.gender eq 1}">암컷</c:if>)
-                </h5>
-                <p class="card-text">등록일 : ${pet.createdDate}<br>등록번호 : ${pet.registerNo}<br></p>
-                <p class="card-text"><small class="text-muted"><a href="#">수정 </a><a href="#"> 삭제</a></small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </c:forEach>
-    </div>
-<!--    이미지 상하정렬  -->
-<!--     <div class="container"> -->
-<!--       <h1>My Pet Infomation</h1> -->
-<%--       <a href='/app/pet2/form?no=${member.memberNo}'>펫 등록</a><br> --%>
-<!--       <div class="card-deck"> -->
-<%--         <c:forEach items="${pets}" var="pet"> --%>
-<!--           <div class="card" style="max-width: 300px;"> -->
-<%--           <img src="/upload/pet/${pet.photo}" class="card-img-top card-img"> --%>
-<!--           <div class="card-body" style=""> -->
-<%--             <h5 class="card-title">${pet.name}(${pet.age}세,  --%>
-<%--                 <c:if test="${pet.gender eq 0}"> --%>
-<!--                            수컷 -->
-<%--                 </c:if> --%>
-<%--                 <c:if test="${pet.gender eq 1}"> --%>
-<!--                           암컷 -->
-<%--                 </c:if> --%>
-<!--                 )</h5> -->
-<%--                 <p class="card-text">등록일 : ${pet.createdDate}<br>등록번호 : ${pet.registerNo}<br></p> --%>
-<!--                 <p class="card-text"><small class="text-muted"><a href="#">수정 </a><a href="#"> 삭제</a></small></p> -->
-<!--           </div> -->
-<!--         </div> -->
-<%--         </c:forEach> --%>
-<!--       </div> -->
-<!--     </div> -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-      aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">비밀번호 변경</h5>
-            <button type="button" class="close" data-dismiss="modal"
-              aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            현재 비밀번호 <input type="password" id="nowPassword" name="nowPassword"
-              onblur="nowpw_check();" maxlength="15" />
-            <div id="password1_chk" class="vali_check"></div>
-            새 비밀번호 <input type="password" id="newPassword" name="newPassword"
-              onblur="newpw_check();" maxlength="15" />
-            <div id="password2_chk" class="vali_check"></div>
-            새 비밀번호 확인<input type="password" id="newPassword2"
-              name="newPassword2" onblur="newpw2_check();" maxlength="15" />
-            <div id="password3_chk" class="vali_check"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary"
-              data-dismiss="modal">닫기</button>
-            <button type="button" class="btn btn-primary"
-              onclick="changePw();">변경</button>
-          </div>
-        </div>
+	<div class="content-wrapper">
+		<div class="container memb-info px-0">
+			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
+        <h3>My Information</h3>
+			   <span class="mInfo-span">
+         <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Information</span> 
       </div>
-    </div>
-  </div>
-  <jsp:include page="../footer.jsp" />
+			<form action='update' method='post' name="form"
+				enctype='multipart/form-data' onsubmit="return checkAll();">
+				<div class="row justify-content-center mem-Row">
+					<div class="col-4" style="text-align: center;">
+						<div id='content'>
+							<div>
+								<input type="hidden" id="photo2" value="${member.photo}" /> <img
+									id="imgThumb" class="imgThumb">
+							</div>
+							<span class="btn btn-primary fileinput-button"
+								style="background-color: #b0c364; border-color: #b0c364;">
+								<span>사진 변경</span> <input id="fileupload" type="file"
+								name="file">
+							</span>
+						</div>
+					</div>
+					<div class="col-8">
+						<input type='hidden' id='memberNo' name='memberNo'
+							value='${member.memberNo}' readonly>
+						<div class="form-group row">
+							<label for="email" class="col-sm-3 col-form-label">이메일</label>
+							<div class="col-sm-6">
+								<input type="email" readonly class="form-control-plaintext"
+									id="email" value="${member.email}">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="password" class="col-sm-3 col-form-label">패스워드</label>
+							<div class="col-sm-6">
+								<input type="button" class="form-control change_btn"
+									id="password" name="pwUpdate" value="비밀번호 변경"
+									data-toggle="modal" data-target="#exampleModal" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="nickname" class="col-sm-3 col-form-label">닉네임</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="nickname"
+									name='nickname' value='${member.nickname}' maxlength="12"
+									onblur="nickname_check();">
+								<div id="nickname_chk" class="vali_check"></div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="tel" class="col-sm-3 col-form-label">핸드폰번호</label>
+							<div class="col-sm-6">
+								<input type="tel" class="form-control" id="tel" name='tel'
+									value='${member.tel}' maxlength="11" onblur="tel_check();">
+								<div id="tel_chk" class="vali_check"></div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="postNo" class="col-sm-3 col-form-label">우편번호</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="postNo"
+									name='postNo' value='${member.postNo}'>
+							</div>
+							<div class="col-sm-3">
+								<input type="button" class="form-control change_btn" id="postNo"
+									name='post_search' value="우편번호 찾기" onclick="myPostcode();">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="baseAddress" class="col-sm-3 col-form-label">기본주소</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="baseAddress"
+									name='baseAddress' value='${member.baseAddress}'>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="detailAddress" class="col-sm-3 col-form-label">상세주소</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="detailAddress"
+									name='detailAddress' value='${member.detailAddress}'>
+							</div>
+						</div>
+						<!-- 원래 닉네임값  -->
+						<input type="hidden" id="nickname1" value="${member.nickname}" />
+						<button type="submit" class="btn btn-primary"
+							style="background-color: #b0c364; border-color: #b0c364;">변경</button>
+						<button type="button" id="memberdelete" class="btn btn-primary"
+							style="background-color: #b0c364; border-color: #b0c364;">회원탈퇴</button>
+					</div>
+				</div>
+			</form>
+		</div> <br><br>
+		<jsp:include page="../pet/detail.jsp" />
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">비밀번호 변경</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+							<label for="nowPassword" class="col-sm-4 col-form-label">현재
+								비밀번호</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" id="nowPassword"
+									name='nowPassword' onblur="nowpw_check();" maxlength="15">
+								<div id="password1_chk" class="vali_check"></div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="newPassword" class="col-sm-4 col-form-label">새
+								비밀번호</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" id="newPassword"
+									name='newPassword' onblur="newpw_check();" maxlength="15">
+								<div id="password2_chk" class="vali_check"></div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="newPassword" class="col-sm-4 col-form-label">새
+								비밀번호 확인</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" id="newPassword2"
+									name='newPassword2' onblur="newpw2_check();" maxlength="15">
+								<div id="password3_chk" class="vali_check"></div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary"
+							style="background-color: #b0c364; border-color: #b0c364;"
+							onclick="changePw();">변경</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  <script
-    src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-  <script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script>
+	<script
+		src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+	<script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script>
+  
+   $(function(){
+       $('#exampleModal').on('shown.bs.modal', function () {
+         pop_init ();
+       });
+    });
+    
+   function pop_init (){
+     $("#nowPassword").val("");
+     $("#newPassword").val("");
+     $("#newPassword2").val("");
+     $("#password1_chk").html("");
+     $("#password2_chk").html("");
+     $("#password3_chk").html("");
+   }
+   
+  $('#memberdelete').click(function(){
+    Swal.fire({
+    title: '탈퇴하시겠습니까?',
+    text: "저장된 데이터가 모두 사라집니다.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#b0c364;',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '탈퇴',
+    cancelButtonText: '취소'
+  }).then((result) => {
+    console.log(result);
+    if (result.value) {
+//      Swal.fire(
+//        '탈퇴가 정상 처리되었습니다.',
+//        '데이터가 모두 삭제되었습니다.',
+//        'success',
+//        )
+       location.href='delete?no=${member.memberNo}'
+      }
+    })
+  })
+
     function changePw() {
       var cnt = 0;
 
@@ -174,19 +222,17 @@
 
       // 업데이트 해줄 ajax memberNo, 변경할 패스워드
       if (cnt == 3) {
+        
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
           if (xhr.readyState == 4) {
             if (xhr.status == 200) {
               if (xhr.responseText == "1") { // 1이면 변경완료, 0이면 변경 못함
-                alert("변경완료 되었습니다.");
+                swal("변경완료 되었습니다.");
                 $('#exampleModal').modal("hide");
-                document.getElementById("nowPassword").value = "";
-                document.getElementById("newPassword").value = "";
-                document.getElementById("newPassword2").value = "";
               }
             } else {
-              alert("시스템 오류 발생!");
+              swal("시스템 오류 발생!");
             }
           }
         };
@@ -203,29 +249,26 @@
 
     function nowpw_check() {
       var pCheckFlag = false;
-      if (document.getElementById("nowPassword").value == "") {
-        document.getElementById("password1_chk").innerHTML = "비밀번호를 입력하세요.";
+      if ($("#nowPassword").val() == "") {
+        $("#password1_chk").html("비밀번호를 입력하세요.");
+        $("#password1_chk").css('color', 'red');
       }
 
       // 비밀번호 정규식 검사 
-      if (document.getElementById("nowPassword").value != "") {
-        var passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-        if (!passwordRegExp
-            .test(document.getElementById("nowPassword").value)) {
-          document.getElementById("password1_chk").innerHTML = "8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
-        } else {
+      if ($("#nowPassword").val() != "") {
           var xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
               if (xhr.status == 200) {
                 if (xhr.responseText == "0") { // 1이면 동일, 0이면 패스워드 틀림
                   document.getElementById("password1_chk").innerHTML = "패스워드를 다시 확인해주세요.";
+                  $("#password1_chk").css('color', 'red');
                 } else {
                   document.getElementById("password1_chk").innerHTML = "";
                   pCheckFlag = true;
                 }
               } else {
-                alert("시스템 오류 발생!");
+                swal("시스템 오류 발생!");
               }
             }
           };
@@ -236,24 +279,26 @@
               + document.getElementById("nowPassword").value
               + "&memberNo="
               + document.getElementById("memberNo").value);
-        }
+        
       }
       return pCheckFlag;
     }
     function newpw_check() {
       var pCheckFlag = false;
-      if (document.getElementById("newPassword").value == "") {
-        document.getElementById("password2_chk").innerHTML = "새 비밀번호를 입력하세요.";
+      if ($("#newPassword").val() == "") {
+        $("#password2_chk").html("새 비밀번호를 입력하세요.");
+        $("#password2_chk").css('color', 'red');
       }
 
       // 비밀번호 정규식 검사 
-      if (document.getElementById("newPassword").value != "") {
+      if ($("#newPassword").val() != "") {
         var passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-        if (!passwordRegExp
-            .test(document.getElementById("newPassword").value)) {
-          document.getElementById("password2_chk").innerHTML = "8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+        if (!passwordRegExp.test($("#newPassword").val())) {
+          $("#password2_chk").html("8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+          $("#password2_chk").css('color', 'red');
         } else {
-          document.getElementById("password2_chk").innerHTML = "안전한 비밀번호입니다.";
+          $("#password2_chk").html("안전한 비밀번호입니다.");
+          $("#password2_chk").css('color', 'green');
           pCheckFlag = true;
         }
       }
@@ -262,17 +307,19 @@
 
     function newpw2_check() {
       var p2CheckFlag = false;
-      if (document.getElementById("newPassword2").value == "") {
-        document.getElementById("password3_chk").innerHTML = "비밀번호 확인을 입력하세요.";
+      if ($("#newPassword2").val() == "") {
+        $("#password3_chk").html("비밀번호 확인을 입력하세요.");
+        $("#password3_chk").css('color', 'red');
       }
 
       // 비밀번호 & 비밀번호 확인이 같은 값인지 검사 
-      if (document.getElementById("newPassword2").value != "") {
-        if (document.getElementById("newPassword").value != document
-            .getElementById("newPassword2").value) {
-          document.getElementById("password3_chk").innerHTML = "두 비밀번호가 다릅니다.";
+      
+      if ($("#newPassword2").val() != "") {
+        if ($("#newPassword").val() != $("#newPassword2").val()) {
+          $("#password3_chk").html("두 비밀번호가 다릅니다.");
+          $("#password3_chk").css('color', 'red');
         } else {
-          document.getElementById("password3_chk").innerHTML = "";
+          $("#password3_chk").html("");
           p2CheckFlag = true;
         }
       }
@@ -281,12 +328,11 @@
 
     function formLoad() {
       // hidden값을 이용해서 자바스크립트를 이용한 경우
-      if (document.getElementById("photo2").value == null
-          || document.getElementById("photo2").value == "") {
-        document.getElementById("imgThumb").src = "/upload/member/info_photo.jpg";
+      if ($("#photo2").val() == null || $("#photo2").val() == "") {
+        $("#imgThumb").attr("src", "/upload/member/info_photo.jpg");
+        //document.getElementById("imgThumb").src = "/upload/member/info_photo.jpg";
       } else {
-        document.getElementById("imgThumb").src = "/upload/member/"
-            + document.getElementById("photo2").value;
+        $("#imgThumb").attr("src", "/upload/member/" + $("#photo2").val());
       }
     }
 
@@ -304,14 +350,16 @@
     function nickname_check() {
       var nCheckFlag = false;
       if (form.nickname.value == "") {
-        document.getElementById("nickname_chk").innerHTML = "닉네임을 입력하세요.";
+        $("#nickname_chk").html("닉네임을 입력하세요.");
+        $("#nickname_chk").css('color', 'red');
       }
       // 닉네임 정규식 검사 
       var nRegPass = false;
       if (form.nickname.value != "") {
         var nicknameRegExp = /^[a-zA-z0-9가-힣]{2,12}$/;
         if (!nicknameRegExp.test(form.nickname.value)) {
-          document.getElementById("nickname_chk").innerHTML = "닉네임 형식이 올바르지 않습니다!";
+          $("#nickname_chk").html("닉네임 형식이 올바르지 않습니다!");
+          $("#nickname_chk").css('color', 'red');
         } else {
           nRegPass = true;
         }
@@ -321,7 +369,8 @@
       if (nRegPass) {
         // 원래 닉네임과 동일하게 쓴다면 ajax 돌 필요도 없다.
         if (form.nickname.value == form.nickname1.value) {
-          document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
+          $("#nickname_chk").html("변경 가능한 닉네임입니다.");
+          $("#nickname_chk").css('color', 'green');
           nCheckFlag = true;
         } else {
           var xhr = new XMLHttpRequest();
@@ -331,37 +380,39 @@
                 // 0이면 가입 가능, 아니면 중복!
                 if (xhr.responseText == "1") {
                   document.getElementById("nickname_chk").innerHTML = "중복된 닉네임입니다.";
+                  $("#nickname_chk").css('color', 'red');
                 } else {
-                  document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
+                  document.getElementById("nickname_chk").innerHTML = "변경 가능한 닉네임입니다. ";
+                  $("#nickname_chk").css('color', 'green');
                   nCheckFlag = true;
                 }
               } else {
-                alert("시스템 오류 발생!");
+                swal("시스템 오류 발생!");
               }
             }
           }
           // false는 동기식(Ajax 순서대로 진행하도록 동기식으로)
-          xhr.open("GET", "dupN?nickname=" + form.nickname.value,
-              false);
+          xhr.open("GET", "dupN?nickname=" + form.nickname.value, false);
           xhr.send();
         }
       }
-
       return nCheckFlag;
     }
 
     function tel_check() {
       var tCheckFlag = false;
       if (form.tel.value == "") {
-        document.getElementById("tel_chk").innerHTML = "핸드폰 번호를 입력하세요.";
+        $("#tel_chk").html("핸드폰 번호를 입력하세요.");
+        $("#tel_chk").css('color', 'red');
       }
       // 핸드폰 번호 정규식 검사 
       if (form.tel.value != "") {
         var telRegExp = /^[0-9]{3}[0-9]{3,4}[0-9]{4}$/;
         if (!telRegExp.test(form.tel.value)) {
-          document.getElementById("tel_chk").innerHTML = "핸드폰 번호의 형식이 올바르지 않습니다.";
+          $("#tel_chk").html("핸드폰 번호의 형식이 올바르지 않습니다.");
+          $("#tel_chk").css('color', 'red');
         } else {
-          document.getElementById("tel_chk").innerHTML = "";
+          $("#tel_chk").html("");
           tCheckFlag = true;
         }
       }
@@ -395,26 +446,38 @@
               if (extraRoadAddr !== '') {
                 extraRoadAddr = ' (' + extraRoadAddr + ')';
               }
-              console.log(data);
               // 우편번호와 주소 정보를 해당 필드에 넣는다.
               document.getElementById("postNo").value = data.postcode;
               document.getElementById("baseAddress").value = data.jibunAddress;
               document.getElementById("detailAddress").value = "";
-
             }
           }).open();
     }
 
     // 사진 미리보기 
-    document.getElementById("file").onchange = function() {
+    document.getElementById("fileupload").onchange = function() {
       var reader = new FileReader();
       reader.onload = function(e) {
         document.getElementById("imgThumb").src = e.target.result;
+//        $("#imgThumb").attr("src", "e.target.result");
       };
       reader.readAsDataURL(this.files[0]);
     };
   </script>
 
+	<script>
+    function sidebar_form() {
+      // hidden값을 이용해서 자바스크립트를 이용한 경우
+      if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
+        $("#userThumb").attr("src", "/upload/member/info_photo.jpg");
+      } else {
+        $("#userThumb").attr("src",
+            "/upload/member/" + $("#userphoto").val());
+      }
+    }
+  </script>
 
+	<!--  mypage_sidebar script  end -->
 </body>
+<jsp:include page="../footer.jsp" />
 </html>
