@@ -30,11 +30,11 @@
 	<div class="wrapper" style="margin: 0 0 0 15%;">
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper"
-			style="max-width: 1200px; height: 816px; width: 982px;">
+			style="max-width: 1200px; width: 982px;">
 			<div
 				class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo"
 				style="border-bottom: 2px solid #404040;">
-				<h3>My profile</h3>
+				<h4>My profile</h4>
 				<span class="mInfo-span"> <a class="mypage-tagA">My Page</a><a>&nbsp>&nbspMyprofile</a></span>
 			</div>
 			<figure class="snip1559" style="margin-left: 25%;">
@@ -51,7 +51,7 @@
 				</div>
 
 				<figcaption>
-					<h3>${member.nickname}</h3>
+					<h4>${member.nickname}</h4>
 				</figcaption>
 			</figure>
 
@@ -63,7 +63,7 @@
 						<!-- small box -->
 						<div class="small-box">
 							<div class="inner">
-								<h3 class="myprofile-h3">Recipe</h3>
+								<h4 class="myprofile-h4">Recipe</h4>
 								<p>All my recipes</p>
 							</div>
 							<div class="icon">
@@ -79,7 +79,7 @@
 						<!-- small box -->
 						<div class="small-box">
 							<div class="inner">
-								<h3 class="myprofile-h3">Review</h3>
+								<h4 class="myprofile-h4">Review</h4>
 								<p>All my reviews</p>
 							</div>
 							<div class="icon">
@@ -94,7 +94,7 @@
 						<!-- small box -->
 						<div class="small-box ">
 							<div class="inner">
-								<h3 class="myprofile-h3">Order</h3>
+								<h4 class="myprofile-h4">Order</h4>
 								<p>All my orders</p>
 							</div>
 							<div class="icon">
@@ -109,7 +109,7 @@
 						<!-- small box -->
 						<div class="small-box">
 							<div class="inner">
-								<h3 class="myprofile-h3">Bookmark</h3>
+								<h4 class="myprofile-h4">Bookmark</h4>
 								<p>All my bookmarks</p>
 							</div>
 							<div class="icon">

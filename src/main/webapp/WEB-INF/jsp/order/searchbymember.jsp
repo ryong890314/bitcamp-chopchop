@@ -50,12 +50,12 @@
     color:#404040;
   }
   </style>
-
 </head>
+<jsp:include page="../header.jsp" />
+<jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-  <jsp:include page="../header.jsp"/>
 <%--   <jsp:include page="../member/mypage_sidebar.jsp" /> --%>
-  <div id="orderBody">
+  <div id="orderBody" style="max-width: 1200px;margin-left: 530px;margin-bottom: 300px;">
   <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
       <h3>My Order</h3>
        <span style="float: right;font-size: 14px;">

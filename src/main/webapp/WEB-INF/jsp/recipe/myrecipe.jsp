@@ -23,7 +23,7 @@
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
 	<div class="w3-main w3-content w3-padding rInfo-font"
-		style="max-width: 1200px; margin-right: 197px;">
+		style="max-width: 1200px;margin-right: 197px;margin-bottom: 310px;">
 		<div
 			class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
 			<h3>My Recipe</h3>
