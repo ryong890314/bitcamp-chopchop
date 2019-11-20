@@ -17,12 +17,8 @@
 <!-- Ionicons -->
 <link rel="stylesheet"
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Favicon -->
-<link rel="icon" href="/img/core-img/favicon.ico">
 <!-- </head> -->
 <!-- mypage_sidebar  end -->
-<style>
-</style>
 </head>
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
@@ -34,15 +30,10 @@
 			<div
 				class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo"
 				style="border-bottom: 2px solid #404040;">
-				<h4>My profile</h4>
+				<h3>My profile</h3>
 				<span class="mInfo-span"> <a class="mypage-tagA">My Page</a><a>&nbsp>&nbspMyprofile</a></span>
 			</div>
 			<figure class="snip1559" style="margin-left: 25%;">
-				<%-- 	<div class="profile-image">
-					<input type="hidden" id="userphoto" value="${member.photo}" /> <img
-						src='/upload/member/${member.photo}' id="userThumb"
-						class="my-thumb profile-img">
-				</div> --%>
 
 				<div class="profile-image">
 					<input type="hidden" id="photo2" value="${member.photo}" /> <img

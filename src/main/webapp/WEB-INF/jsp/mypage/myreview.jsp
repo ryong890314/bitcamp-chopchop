@@ -14,8 +14,6 @@
 <style>
 #orderBody {
 	width: 1100px;
-	padding-top: 10px;
-	margin: 0 auto;
 }
 
 /*   #productBody { */
@@ -33,8 +31,6 @@
 /*   } */
 #orderBody {
 	width: 1100px;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .mInfo {

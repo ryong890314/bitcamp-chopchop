@@ -12,13 +12,6 @@
 .mInfo {
   border-bottom: 2px solid #404040;
 }
-.sInfo-font {
-  font-family: 'Sunflower', sans-serif;
-}
-.mypage-tagA {
-  font-size: inherit;
-  color:#404040;
-}
 </style>
 </head>
 <jsp:include page="../header.jsp" />
@@ -26,11 +19,11 @@
 <body>
 <!--  <div class="content-wrapper"> -->
     <div class="w3-main w3-content w3-padding sInfo-font"
-      style="max-width: 1200px;margin-left: 530px;margin-bottom: 310px;">
+      style="max-width: 1200px;margin-left: 510px;margin-bottom: 310px;">
       <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
       <h3>My Bookmark</h3>
        <span style="float: right;font-size: 14px;">
-       <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Bookmark</a></span> 
+       <a class="mypage-tagA">My Page</a>&nbsp>&nbspMy Bookmark</a></span> 
     </div>
       <div class="w3-row-padding w3-padding-16 w3-center" id="food"></div>
 

@@ -10,11 +10,9 @@
 <style>
 .rInfo {
 	border-bottom: 2px solid #404040;
-	padding-bottom: 5px;
 }
 
 .mypage-tagA {
-	font-size: inherit;
 	color: #404040;
 }
 </style>
@@ -28,7 +26,7 @@
 			class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
 			<h3>My Recipe</h3>
 			<span style="float: right; font-size: 14px;"> <a
-				href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy
+			 class="mypage-tagA">My Page</a>&nbsp>&nbspMy
 				Recipe</a></span>
 		</div>
 		<div class="w3-row-padding w3-padding-16 w3-center" id="food"></div>

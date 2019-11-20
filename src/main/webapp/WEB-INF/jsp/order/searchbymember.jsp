@@ -16,8 +16,6 @@
   <style>
    #orderBody { 
      width: 1100px; 
-     padding-top: 10px; 
-     margin: 0 auto; 
    } 
 
 /*   #productBody { */
