@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Member;
+import bitcamp.chopchop.domain.OrderProduct;
 import bitcamp.chopchop.domain.Pet;
+import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.domain.Recipe;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.PetService;
 
@@ -134,6 +137,10 @@ public class MemberController {
   @PostMapping("uptPw")
   public @ResponseBody int uptPw(String password, int memberNo) throws Exception {
     return memberService.uptPw(password, memberNo);
+  }
+  
+  @GetMapping("myreview")
+  public void myreview(Model model) throws Exception {
   }
 
 

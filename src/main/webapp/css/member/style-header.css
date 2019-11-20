@@ -1,8 +1,6 @@
 /* Master Stylesheet - 1.0 */
 /* :: 2.0 Import All CSS */
-@import
-  url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean')
-  ;
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean');
 
 @import url(/css/member/classy-nav.css);
 
@@ -18,8 +16,11 @@
 
 @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
 
-@import
-  url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+
+body {
+  font-family: 'Nanum Gothic', sans-serif !important;
+}
 
 a {
   text-decoration: none !important;
