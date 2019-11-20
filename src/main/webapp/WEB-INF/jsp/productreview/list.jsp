@@ -51,9 +51,9 @@
 
   <div>
     <h4 class="mb-50">상품 후기</h4>
-<!-- 상품후기 상단 -->
+    <!-- 상품후기 상단 -->
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-8">
         <c:set var="total" value="0" />
         <c:forEach items="${productReviews}" var="productReview" varStatus="status">
           <input type="hidden" value="${productReview.rating}" />
@@ -80,13 +80,13 @@
       <div class="col-md-1">
         <p style="color:gray; margin-bottom: 25; font-size: 25px; font-weight: 5000px; vertical-align: middle;">│</p>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-2">
         <p style="color:black; margin-bottom: 25; font-size: 25px; font-weight: 5000px; vertical-align: middle;">
           ${count} REVIEWS
         </p>
       </div>
     </div>
-<!-- 상품 후기 테이블 -->
+    <!-- 상품 후기 테이블 -->
     <table class='table table-hover'>
       <tr style="text-align: center;">
         <th style="width: 130px">사진</th>
@@ -98,7 +98,7 @@
       <c:forEach items="${productReviews}" var="productReview">
         <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
           <input type="hidden" class="tempProductReviewNo" value="${productReview.productReviewNo}">
-          <input type="hidden" class="writer" value="${productReview.memberNo}">
+          <input type="hidden" class="tempProductReviewWriter" value="${productReview.memberNo}">
           <td style="width: 100px; height: 100px; object-fit: cover"><img
               src="/upload/productreview/${productReview.filePath}"></td>
           <td style="text-align: left"><span class="txt_post">${productReview.content}</span></td>
@@ -120,9 +120,9 @@
       </c:forEach>
     </table>
 
-<c:if test="${sessionScope.loginUser != null}">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">후기등록</button>
-</c:if>
+    <c:if test="${sessionScope.loginUser != null}">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">후기등록</button>
+    </c:if>
 
   </div>
 
@@ -145,6 +145,8 @@
             <div class="col-md-4" style="padding-left: 0px;">
               <div style="height: 50px; text-align: center;">
                 <input type="hidden" id="tempModalProductReviewNo" value="0">
+                <input type="hidden" id="tempModalWriter" value="0">
+
                 <div style='color: red; font-size: 25px;'>
                   <span id="tempStar">별점</span>
                 </div>
@@ -158,14 +160,10 @@
               </div>
               <hr>
               <div style="height: 38; text-align: right;">
-                <input type="text" class="tempWriter" value="${productReview.memberNo}">
-                <c:if test="${sessionScope.loginUser != null}">
-                  <c:if test="${seesionScope.loginUser == productReview.memberNo}">
-                  <button type="button" class="btn btn-danger" onclick="reviewDel()" style="width: 60px;">삭제</button>
-                  <button type="button" class="btn btn-primary" style="width: 60px;" data-dismiss="modal"
+                <button type="button" class="btn btn-danger" onclick="reviewDel()"
+                  style="display:none; width: 60px;">삭제</button>
+                <button type="button" class="btn btn-primary" style="display:none; width: 60px; " data-dismiss="modal"
                   data-toggle="modal" data-target=".bd-example-modal-lg-update">수정</button>
-                </c:if>
-                </c:if>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 120px;">닫기</button>
               </div>
             </div>
@@ -277,13 +275,13 @@
   </div>
 
   <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-  
+
   <script>
 
-  // 리스트
+    // 리스트
 
     $(document).on("click", ".tempTr", function () {
-      console.log($(this));
+
       tempImg.innerHTML = $(this)[0].cells[0].innerHTML;
       tempCont.innerText = $(this)[0].cells[1].innerText;
       tempId.innerText = $(this)[0].cells[2].innerText;
@@ -293,39 +291,62 @@
       tempImgUpdate.innerHTML = $(this)[0].cells[0].innerHTML;
       tempContUpdate.innerText = $(this)[0].cells[1].innerText;
 
-      tempWriter.value = $(this)[0].children[1].value;
       tempModalProductReviewNo.value = $(this)[0].children[0].value;
+      tempModalWriter.value = $(this)[0].children[1].value;
+
       productReviewNo.value = $(this)[0].children[0].value;
 
+    })
+
+    $('#myModal').on('shown.bs.modal', function (e) {
+
+      var deleteIcon = $(this)[0].childNodes[1].children[0].children[1].children[0].children[1].children[4].children[0];
+      var updateIcon = $(this)[0].childNodes[1].children[0].children[1].children[0].children[1].children[4].children[1];
+      var productReviewWriterNo = $(this)[0].children[0].children[0].children[1].children[0].children[1].children[0].children[1].defaultValue;
+      var loginMemberNo = '${loginUser.memberNo}';
+
+      if (loginMemberNo == productReviewWriterNo) {
+        console.log("일치 delete")
+        deleteIcon.style.display = 'inline';
+        updateIcon.style.display = 'inline';
+      }
+    });
+
+    $('#myModal').on('hide.bs.modal', function (e) {
+
+      var deleteIcon = $(this)[0].childNodes[1].children[0].children[1].children[0].children[1].children[4].children[0];
+      var updateIcon = $(this)[0].childNodes[1].children[0].children[1].children[0].children[1].children[4].children[1];
+      deleteIcon.style.display = 'none';
+      updateIcon.style.display = 'none';
 
     });
 
-  // 등록
+    // 등록
 
-  function formLoad() {
-  if ($("#photo").val() == null || $("#photo").val() == "") {
-  $("#imgThumb").attr("src", "/upload/productreview/info_photo.jpg");
-  } else {
-  $("#imgThumb").attr("src", "/upload/productreview/" + $("#photo").val());
-  }
-  }
+    function formLoad() {
+      if ($("#photo").val() == null || $("#photo").val() == "") {
+        $("#imgThumb").attr("src", "/upload/productreview/info_photo.jpg");
+      } else {
+        $("#imgThumb").attr("src", "/upload/productreview/" + $("#photo").val());
+      }
+    }
 
-  document.getElementById("fileupload").onchange = function () {
-  var reader = new FileReader();
-  reader.onload = function (e) {
-  document.getElementById("imgThumb").src = e.target.result;
-  };
-  reader.readAsDataURL(this.files[0]);
-  };
+    document.getElementById("fileupload").onchange = function () {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById("imgThumb").src = e.target.result;
+      };
+      reader.readAsDataURL(this.files[0]);
+    };
 
-  // 삭제
+    // 삭제
 
-  function reviewDel() {
-  var selectedReviewNo = document.getElementById("tempModalProductReviewNo").value;
-  if (confirm("후기를 삭제하시겠습니까?")) {
-  location.href = "../productreview/delete?no=" + selectedReviewNo + "&productNo=${product.productNo}";
-  }
-  }
+    function reviewDel() {
+      var selectedReviewNo = document.getElementById("tempModalProductReviewNo").value;
+      if (confirm("후기를 삭제하시겠습니까?")) {
+        location.href = "../productreview/delete?no=" + selectedReviewNo + "&productNo=${product.productNo}";
+      }
+    }
 
   </script>
 

@@ -111,7 +111,9 @@ public class CartController {
   @GetMapping("search")
   public void search(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     List<Cart> carts = cartService.search(loginUser.getMemberNo());
+    Member member = memberService.get(loginUser.getMemberNo());
     model.addAttribute("carts", carts);
+    model.addAttribute("member", member);
   }
 
   @PostMapping("update")
