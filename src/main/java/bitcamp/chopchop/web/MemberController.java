@@ -108,7 +108,7 @@ public class MemberController {
   public String update(Member member, MultipartFile file) throws Exception {
     member.setPhoto(writeFile(file));
     memberService.update(member);
-    return "redirect:list";
+    return "redirect:myprofile";
   }
 
   private String writeFile(MultipartFile file) throws Exception {

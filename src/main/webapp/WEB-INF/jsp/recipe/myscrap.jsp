@@ -5,43 +5,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/recipe/w3.css">
-
+<link rel="stylesheet" href="/css/recipe/myrecipe.css">
 <title>MY SCRAP RECIPES</title>
-<style type="text/css">
-.mInfo {
-  border-bottom: 2px solid #404040;
-}
-.sInfo-font {
-  font-family: 'Sunflower', sans-serif;
-}
-.mypage-tagA {
-  font-size: inherit;
-  color:#404040;
-}
-</style>
 </head>
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-<!--  <div class="content-wrapper"> -->
-    <div class="w3-main w3-content w3-padding sInfo-font"
-      style="max-width: 1200px; margin-right: 197px;">
-      <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
+
+  <div class="w2-main w2-content px-0" >
+    <div class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3>My Bookmark</h3>
-       <span style="float: right;font-size: 14px;">
-       <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Bookmark</a></span> 
+      <span class="rInfo-span">
+      <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Bookmark</span> 
     </div>
-      <div class="w3-row-padding w3-padding-16 w3-center" id="food"></div>
-
-    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
-    <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
-
+    <div class="w2-row-padding w2-padding-16 w2-center" id="food">
+    </div>
+  </div>
+    
     <script id="t1" type="listHtml">
 {{#each result}}
-<div class='w3-quarter my-list'>
+<div class='w2-quarter my-list'>
     <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;'>
-    <h3><a href='detail?no={{recipeNo}}'>{{title}}</a></h3>
+    <h3><a href='detail?no={{recipeNo}}' class="r-tagA">{{title}}</a></h3>
     <p>{{content}}</p>
 </div>
 {{/each}}
@@ -61,13 +46,6 @@
       }
     </script>
 
-    <!-- jQuery -->
-    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4-->
-    <script src="/js/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Bootstrap 4 AdminLTE App -->
-    <script src="/js/dist/adminlte.js"></script>
-
     <script>
       function formLoad() {
         // hidden값을 이용해서 자바스크립트를 이용한 경우
@@ -81,8 +59,6 @@
         }
       }
     </script>
-  </div>
-<!--   </div> -->
 </body>
 <jsp:include page="../footer.jsp" />
 </html>

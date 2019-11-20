@@ -4,11 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel='stylesheet'
-  href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel="icon" href="img/core-img/favicon.ico">
-<link rel="stylesheet"
-  href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
+<link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel="icon" href="/img/core-img/favicon.ico">
+<link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <title>My Review</title>
 
 <style>
@@ -17,33 +15,39 @@
   padding-top: 10px;
   margin: 0 auto;
 }
-
-/*   #productBody { */
-/*     width: 1100px; */
-/*     margin: auto auto; */
-/*     text-align: center; */
-/*     vertical-align: middle; */
-/*   } */
-
-/*   #productList { */
-/*     padding: 5px; */
-/*     margin: 5px; */
-/*     text-align: center; */
-/*     float: left; */
-/*   } */
-#orderBody {
-  width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.mInfo {
+.rInfo {
   border-bottom: 2px solid #404040;
+  padding-bottom: 5px;
 }
 
 .mypage-tagA {
   font-size: inherit;
-  color: #404040;
+  color:#404040;
+}
+  
+.rInfo-span {
+  float: right;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.review-tr, .tr-test {
+  text-align: center;
+}
+
+.review-tagP {
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 320px;
+  display: block;
+}
+
+.r-tagA {
+  outline: 0 solid transparent;
+  color: #404040 !important;
+  font-size: 18px;
 }
 
 </style>
@@ -51,53 +55,59 @@
 </head>
 <body>
   <jsp:include page="../header.jsp" />
-  <%--   <jsp:include page="../member/mypage_sidebar.jsp" /> --%>
+<%--   <jsp:include page="../member/mypage_sidebar.jsp" /> --%>
   <div id="orderBody">
     <div
-      class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
+      class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3>My Review</h3>
-      <span style="float: right; font-size: 14px;"> <a
-        href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy
-        Review
+      <span class="rInfo-span"> <a href="/app/member/myprofile"
+        class="mypage-tagA">My Page</a>&nbsp>&nbspMy Review
       </span>
     </div>
     <table class='table table-hover'>
-      <tr style="text-align: center;">
-        <th style="width: 100px">번호</th>
-        <th style="width: 240px">상품명</th>
+      <tr class="review-tr">
+        <th style="width: 70px">번호</th>
+        <th style="width: 270px">상품명</th>
         <th>내용</th>
-        <th style="width: 160px">평점</th>
-        <th style="width: 160px">작성일</th>
+        <th style="width: 140px">평점</th>
+        <th style="width: 140px">작성일</th>
       </tr>
-
+      
       <c:forEach items="${productReviews}" var="productReview" varStatus="status">
-        <tr>
-          <td><div>${status.count}</div></td>
-          <td>
-            <div>
-              <a href="/app/product/detail?no=${productReview.products[0].productNo}" target="_blank"> 
-              ${productReview.products[0].title}</a>
-            </div>
-          </td>
-          
-          <td>
-            <div>
-              <p><img src="/upload/productreview/${productReview.filePath}"
-                  style="width: 100px; margin-right: 16px;"></p>
+        <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
+          <tr class="tr-test">
+            <td><div style="vertical-align: middle;">${status.count}</div></td>
+            <td>
               <div>
-                <p>${productReview.content}</p>
+                <a href="/app/product/detail?no=${productReview.products[0].productNo}" target="_blank" class="r-tagA"> 
+                ${productReview.products[0].title}</a><br>
+                <c:if test="${not empty productReview.options[0].title}">
+                  <span>[옵션] ${productReview.options[0].title}</span>
+                </c:if>
               </div>
-            </div>
-          </td>
-          
-          <td style="color: red;">
-            <c:if test="${productReview.rating == 1}">★☆☆☆☆</c:if> 
-            <c:if test="${productReview.rating == 2}">★★☆☆☆</c:if> 
-            <c:if test="${productReview.rating == 3}">★★★☆☆</c:if> 
-            <c:if test="${productReview.rating == 4}">★★★★☆</c:if> 
-            <c:if test="${productReview.rating == 5}">★★★★★</c:if>
-          </td>
-          <td>${productReview.createdDate}</td>
+            </td>
+            
+            <td>
+              <div>
+                <p style="float: left;">
+                <img src="/upload/productreview/${productReview.filePath}" style="width: 100px; margin-right: 22px;"></p>
+                <div>
+                  <p class="review-tagP">
+                    ${productReview.content}</p>
+                </div>
+              </div>
+            </td>
+            
+            
+            <td style="color: red;">
+              <c:if test="${productReview.rating == 1}">★☆☆☆☆</c:if> 
+              <c:if test="${productReview.rating == 2}">★★☆☆☆</c:if> 
+              <c:if test="${productReview.rating == 3}">★★★☆☆</c:if> 
+              <c:if test="${productReview.rating == 4}">★★★★☆</c:if> 
+              <c:if test="${productReview.rating == 5}">★★★★★</c:if>
+            </td>
+            <td>${productReview.createdDate}</td>
+          </tr>
         </tr>
       </c:forEach>
     </table>
@@ -195,7 +205,14 @@
       //       reader.readAsDataURL(this.files[0]);
       //     };
     </script>
-
+  <!-- <script>
+    var tdTest = $('.tr-test td');
+    
+    for (var i = 0; i < tdTest.length; i++) {
+      tdTest[i].setAttribute('style', 'vertical-align: middle');
+      
+    }
+  </script> -->
 </body>
 </html>
 
