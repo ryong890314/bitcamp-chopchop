@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <style>
  img {
-   width:150px; 
-   object-fit: cover;
+  border: none;
  }
+ 
+ img.preview-cooking-image {
+  height: 150px;
+  object-fit: cover;
+ }
+ 
+ #image {
+  height: 150px;
+  object-fit: cover;
+ }
+ 
  .my-label {
   display: inline-block;
   padding: .5em .75em;
@@ -42,12 +52,13 @@
               <div>
                   <form name="frmRecipe" action='add' method='post' enctype='multipart/form-data'>
                   <input type="hidden" name="user_id" value="1">
-                      <div class="toobar"><strong class="title pull-left">레시피 등록 </strong><button class="btn btn-default pull-right">등록</button></div>
+                      <div class="toobar"><strong class="title pull-left">레시피 등록 </strong></div>
                       <div class="block-write">
                           <div class="block-content">
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">작성자</label></div>
-                                  <div class="col-xs-10"><input type="text" name="nickname" class="form-control" placeholder="${loginUser.nickname}" readonly></div>
+<%--                                   <div class="col-xs-10"><input type="text" name="nickname" class="form-control" placeholder="${loginUser.nickname}" readonly></div> --%>
+                                  <div class="col-xs-10"><label class="label">&nbsp${member.nickname}</label></div>
                               </div>
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">제목</label></div>
@@ -113,7 +124,7 @@
                                               <div style='display: none;'><input type="file" id='my-thumbnail' name='filePath' class="my-thumbnail" style="width:100px;"/></div>
                                               <label id='my-label' class="my-label" for="my-thumbnail">+ 완성 사진 </label>
                                           </div>
-                                          <div class="des"><textarea class="form-control" name="content">간단한 설명 입력해주세요</textarea></div>
+                                          <div class="des"><textarea class="form-control" name="content" placeholder="간단한 설명 입력해주세요"></textarea></div>
                                       </div>
                               </div><br><br>
                               <div class="row form-group">
@@ -155,7 +166,7 @@
 <script id="t2" type="cookingHtml"> 
 <div class='row form-group my-cooking'>
   <div class='row form-group'>
-    <input type='text' class='form-control' name='processNo' style='padding:13px; width:50px; margin-left:15px; font-size:12px;' value='' placeholder='순서' required>
+    <input type='text' class='form-control' name='processNo' style='padding-left:13px; width:50px; margin-left:15px; font-size:12px;' value='' placeholder='순서' required>
   </div>
   <div class='box-photo'>
     <div class='photo'>

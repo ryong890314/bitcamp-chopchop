@@ -59,6 +59,7 @@
 					<!-- Logo Area -->
 					<!--            <a style="padding-top: 30px;" href="/app/member/list"><img
               src="/img/core-img/choplogo.png" style="width: 80px;" alt=""></a> -->
+<<<<<<< HEAD
 					<!-- Menu -->
 					<div class="classy-menu"
 						style="padding-top: 37px; padding-left: 30px;">
@@ -75,6 +76,18 @@
 									style="padding-left: 25px !important; font-size: 18px;">ChopEvent</a></li>
 								<li><a class="nav-items" href="/app/recipe/rank"
 									style="padding-left: 25px !important; font-size: 18px;">ChopRank</a></li>
+=======
+            <!-- Menu -->
+            <div class="classy-menu" style="padding-top: 37px;">
+              <!-- Nav Start -->
+              <div class="classynav">
+                <ul>
+                  <li><a class="nav-items" href="/app/index">Home</a></li>
+                  <li><a class="nav-items" href="/app/recipe/list">ChopRecipe</a>
+                  <li><a class="nav-items" href="">ChopStore</a></li>
+                  <li><a class="nav-items" href="">ChopTalk</a></li>
+                  <li><a class="nav-items" href="">ChopRank</a></li>
+>>>>>>> 90b7bdd9bd0819cfd35d7a18410c5bbf0bdfecf6
 
 								<!-- Login/Register -->
 								<c:if test="${not empty loginUser}">

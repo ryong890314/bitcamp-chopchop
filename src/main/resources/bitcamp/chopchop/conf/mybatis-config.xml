@@ -48,6 +48,7 @@
     <mapper resource="bitcamp/chopchop/mapper/CookingMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/RecipeLikeMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/RecipeCommentMapper.xml"/>
+<!--     <mapper resource="bitcamp/chopchop/mapper/GalleryMapper.xml"/> -->
     <mapper resource="bitcamp/chopchop/mapper/OrderMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/OrderProductMapper.xml"/>
     <mapper resource="bitcamp/chopchop/mapper/PetMapper.xml"/>
