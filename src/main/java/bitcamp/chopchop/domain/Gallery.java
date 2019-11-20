@@ -2,6 +2,7 @@ package bitcamp.chopchop.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Gallery implements Serializable {
@@ -14,11 +15,22 @@ public class Gallery implements Serializable {
   
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
+  private List<GalleryPhoto> galleryPhotos;
 
   @Override
   public String toString() {
     return "Gallery [galleryNo=" + galleryNo + ", memberNo=" + memberNo + ", content=" + content
         + ", viewCount=" + viewCount + ", createdDate=" + createdDate + "]";
+  }
+  
+
+  public List<GalleryPhoto> getGalleryPhotos() {
+    return galleryPhotos;
+  }
+
+
+  public void setGalleryPhotos(List<GalleryPhoto> galleryPhotos) {
+    this.galleryPhotos = galleryPhotos;
   }
 
   public int getGalleryNo() {

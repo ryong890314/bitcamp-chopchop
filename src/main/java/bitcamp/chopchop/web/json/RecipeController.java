@@ -80,6 +80,7 @@ public class RecipeController {
   public JsonResult detail(int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     try {
       Recipe recipe = recipeService.get(no);
+      recipeService.insertViewCount(no);
       Member member = memberService.get(recipe.getMemberNo());
       Member viewer = memberService.get(loginUser.getMemberNo());
       
@@ -247,14 +248,13 @@ public class RecipeController {
       JsonResult jsonResult = new JsonResult();
       HashMap<String,Object> hashMap = new HashMap<>();
       
-      recipe = recipeService.get(no);
       
       if (recipeService.findLike(recipeLike) == 1) { // 좋아요 취소해야함
         recipeService.deleteLike(recipeLike);
         hashMap.put("recipeNo", recipe.getRecipeNo());
         hashMap.put("member", member);
         hashMap.put("isLike", false);
-        hashMap.put("scrap", recipeService.get(no).getScrap());
+        hashMap.put("scrap", recipe.getScrap());
         jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
         return jsonResult;
 
@@ -264,7 +264,7 @@ public class RecipeController {
         hashMap.put("recipeNo", recipe.getRecipeNo());
         hashMap.put("member", member);
         hashMap.put("isLike", true);
-        hashMap.put("scrap", recipeService.get(no).getScrap());
+        hashMap.put("scrap", recipe.getScrap());
         jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
         return jsonResult;
       }

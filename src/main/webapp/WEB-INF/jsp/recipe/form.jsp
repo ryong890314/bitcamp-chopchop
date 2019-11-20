@@ -82,7 +82,7 @@
                               </div>
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">기타정보</label></div>
-                                  <div class="col-xs-10"><input type="text" name="otherInfo" class="form-control" placeholder="1개 이상의 정보는 #로 구분해주세요." value=""></div>
+                                  <div class="col-xs-10"><input type="text" name="otherInfo" class="form-control" placeholder="기타정보를 입력해주세요." value="" required></div>
                               </div>
                           </div>
                           <div class="block-title"><span class="title">재료 정보</span></div>
