@@ -51,7 +51,7 @@
 
   <div>
     <h4 class="mb-50">상품 후기</h4>
-
+<!-- 상품후기 상단 -->
     <div class="row">
       <div class="col-md-5">
         <c:set var="total" value="0" />
@@ -86,7 +86,7 @@
         </p>
       </div>
     </div>
-
+<!-- 상품 후기 테이블 -->
     <table class='table table-hover'>
       <tr style="text-align: center;">
         <th style="width: 130px">사진</th>
@@ -98,6 +98,7 @@
       <c:forEach items="${productReviews}" var="productReview">
         <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
           <input type="hidden" class="tempProductReviewNo" value="${productReview.productReviewNo}">
+          <input type="hidden" class="writer" value="${productReview.memberNo}">
           <td style="width: 100px; height: 100px; object-fit: cover"><img
               src="/upload/productreview/${productReview.filePath}"></td>
           <td style="text-align: left"><span class="txt_post">${productReview.content}</span></td>
@@ -157,10 +158,13 @@
               </div>
               <hr>
               <div style="height: 38; text-align: right;">
+                <input type="text" class="tempWriter" value="${productReview.memberNo}">
                 <c:if test="${sessionScope.loginUser != null}">
+                  <c:if test="${seesionScope.loginUser == productReview.memberNo}">
                   <button type="button" class="btn btn-danger" onclick="reviewDel()" style="width: 60px;">삭제</button>
                   <button type="button" class="btn btn-primary" style="width: 60px;" data-dismiss="modal"
                   data-toggle="modal" data-target=".bd-example-modal-lg-update">수정</button>
+                </c:if>
                 </c:if>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 120px;">닫기</button>
               </div>
@@ -278,19 +282,23 @@
 
   // 리스트
 
-  $(document).on("click", ".tempTr", function () {
-  tempImg.innerHTML = $(this)[0].cells[0].innerHTML;
-  tempCont.innerText = $(this)[0].cells[1].innerText;
-  tempId.innerText = $(this)[0].cells[2].innerText;
-  tempStar.innerText = $(this)[0].cells[3].innerText;
-  tempDate.innerText = $(this)[0].cells[4].innerText;
+    $(document).on("click", ".tempTr", function () {
+      console.log($(this));
+      tempImg.innerHTML = $(this)[0].cells[0].innerHTML;
+      tempCont.innerText = $(this)[0].cells[1].innerText;
+      tempId.innerText = $(this)[0].cells[2].innerText;
+      tempStar.innerText = $(this)[0].cells[3].innerText;
+      tempDate.innerText = $(this)[0].cells[4].innerText;
 
-  tempImgUpdate.innerHTML = $(this)[0].cells[0].innerHTML;
-  tempContUpdate.innerText = $(this)[0].cells[1].innerText;
+      tempImgUpdate.innerHTML = $(this)[0].cells[0].innerHTML;
+      tempContUpdate.innerText = $(this)[0].cells[1].innerText;
 
-  tempModalProductReviewNo.value = $(this)[0].children[0].value;
-  productReviewNo.value = $(this)[0].children[0].value;
-  });
+      tempWriter.value = $(this)[0].children[1].value;
+      tempModalProductReviewNo.value = $(this)[0].children[0].value;
+      productReviewNo.value = $(this)[0].children[0].value;
+
+
+    });
 
   // 등록
 
