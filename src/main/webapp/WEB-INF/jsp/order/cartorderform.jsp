@@ -31,23 +31,33 @@
       <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
       <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto;">
     <tr>
-      <td>상품</td>
+      <td>상품명</td>
       <td>상품 가격</td>
+      <td>옵션명</td>
+      <td>옵션 가격</td>
       <td>수량</td>
-<!--       <td>할인률</td> -->
       <td>결제 금액</td>
     </tr>
-    <c:forEach items="${selected}" var="cart">
+    <c:forEach items="${carts}" var="cart">
       <tr>
-        <td>${cart.product.title}<br>${cart.productOption.title}</td>
-        <td><fmt:formatNumber value="${cart.product.price}" pattern="#,###"/>원<br>옵션가는 ${cart.productOption.price}원</td>
+        <td>${cart.product.title}</td>
+        <td><fmt:formatNumber value="${cart.product.price}" pattern="#,###"/>원</td>
+        <td>${cart.productOption.title}</td>
+        <td><fmt:formatNumber value="${cart.productOption.price}" pattern="#,###"/>원</td>
         <td class="cartQuantity">${cart.quantity}개</td>
-        <td><fmt:formatNumber value="${((cart.product.price * (100-cart.product.discount)/100) + cart.productOption.price) * cart.quantity}" pattern="#,###"/>원</td>
+        <td>
+          <span><fmt:formatNumber value="${((cart.product.price * (100-cart.product.discount)/100) + cart.productOption.price) * cart.quantity}" pattern="#,###"/></span>원
+          <span class="product-total-price" style="display:none;">${((cart.product.price * (100-cart.product.discount)/100) + cart.productOption.price) * cart.quantity}</span>
+        </td>
       </tr>
     </c:forEach>
     <tr>
+      <td>총 상품금액</td>
+      <td><span id="resultPrice"><fmt:formatNumber value="" pattern="#,###"/></span>원</td>
+      <td>배송비</td>
+      <td><span id="shipPrice"></span>원</td>
       <td>총 주문금액</td>
-      <td><span id="resultPrice"></span>원</td>
+      <td><span id="ship-price-sum"></span>원</td>
     </tr>
   </table>
 <!--     <div style="display: table; margin-left: auto; margin-right:auto;"> -->
@@ -107,9 +117,12 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">      
-          <label for="exampleInput">주문자 이메일</label>
+        <div class="col-md-6">
+          <label for="exampleInput">이메일</label>
           <input type="text" id="customerEmail" class="form-control" name="" value="${loginUser.email}">
+        </div>
+        <div class="col-md-6">
+          <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
         </div>
       </div>
       
@@ -160,24 +173,20 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-6">제품명</div>
-          <div class="col-md-6">가격</div>
+          <div class="col-md-6">주문 총액</div>
+          <div class="col-md-6" id="finalPrice"></div>
         </div>
         <div class="row">
           <c:forEach items="${selected}" var="products">
             <div class="col-md-6">
               <div id="modalProduct">${products.product.title}</div>
             </div>
-            <div class="col-md-6">
-              <div id="modalPrice">${products.product.price}원</div>
-            </div>
           </c:forEach>
         </div>
         <div class="row">
-          <div class="col-md-4" id="finalPrice"></div>
+          <div class="col-md-4" id=""></div>
         </div>
-        
-        <hr>
+        <br><br>
         수령인: <span id="modalName"></span><br>
         수령인 연락처: <span id="modalTel"></span><br>
         수령인 우편번호: <span id="modalPostNo"></span><br>
@@ -197,23 +206,23 @@
   <jsp:include page="../footer.jsp"/>
 
   <script>
-//     var totalPrice = $('.totalPrice');
-//     var temp = 0;
-//     for(var i of totalPrice){
-//       i.innerText = parseInt(i.innerText);
-//       temp += parseInt(i.innerText);
-//       console.log(temp);
-//     }
+  
+    var productTotal = document.getElementsByClassName('product-total-price');
+  
+      var result = 0;
+    for(var i=0;i<productTotal.length; i++) {
+      result += parseInt(productTotal[i].innerText);
+      console.log(result);
+      $('#resultPrice').text(result);
+    }
     
-//     var result = document.querySelector('#resultPrice');
+    $('#shipPrice').text(0);
     
-//     if(temp < 50000) {
-//       temp += 2500;
-//       console.log('배송비 더해서 ' + temp);
-//     }
-    
-//     result.innerText = temp;
-    
+    if($('#resultPrice').text() < 50000){
+      $('#shipPrice').text(2500);
+    }
+  
+    $('#ship-price-sum').text(parseInt($('#resultPrice').text()) + parseInt($('#shipPrice').text()));
   </script>
   
   <script> // 주문자와 동일 체크
@@ -327,7 +336,7 @@
           } else if(chooseEasy.checked) {
             $('#modalPayment').text(chooseEasy.value);
           }
-          $('#finalPrice').text(temp + "원");
+          $('#finalPrice').text($('#ship-price-sum').text() + "원");
         })
       } else {
         return false;
@@ -388,6 +397,63 @@
       }
     });
   </script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+  function sample4_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 참고 항목 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('recipientPostNo').value = data.zonecode;
+            document.getElementById("recipientBaseAddress").value = roadAddr;
+            document.getElementById("recipientDetailAddress").value = data.jibunAddress;
+            
+            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+            if(roadAddr !== ''){
+                document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+            } else {
+                document.getElementById("sample4_extraAddress").value = '';
+            }
+
+            var guideTextBox = document.getElementById("guide");
+            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if(data.autoRoadAddress) {
+                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                guideTextBox.style.display = 'block';
+
+            } else if(data.autoJibunAddress) {
+                var expJibunAddr = data.autoJibunAddress;
+                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                guideTextBox.style.display = 'block';
+            } else {
+                guideTextBox.innerHTML = '';
+                guideTextBox.style.display = 'none';
+            }
+        }
+    }).open();
+}
+</script>
   
   
   

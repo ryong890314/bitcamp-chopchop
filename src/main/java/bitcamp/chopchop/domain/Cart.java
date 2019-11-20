@@ -13,11 +13,20 @@ public class Cart {
   private Product product;
   private ProductOption productOption;
   
-  
+  private CartProduct cartProduct;
   private List<Product> products;
   private List<PhotoFile> files;
   private List<Member> members;
   private List<ProductOption> options;
+
+  @Override
+  public String toString() {
+    return "Cart [cartNo=" + cartNo + ", memberNo=" + memberNo + ", productNo=" + productNo
+        + ", optionNo=" + optionNo + ", quantity=" + quantity + ", createdDate=" + createdDate
+        + ", product=" + product + ", productOption=" + productOption + ", cartProduct="
+        + cartProduct + ", products=" + products + ", files=" + files + ", members=" + members
+        + ", options=" + options + "]";
+  }
 
   public int getCartNo() {
     return cartNo;
@@ -115,10 +124,11 @@ public class Cart {
     this.productOption = productOption;
   }
 
-  @Override
-  public String toString() {
-    return "Cart [cartNo=" + cartNo + ", createdDate=" + createdDate + ", files=" + files + ", memberNo=" + memberNo
-        + ", members=" + members + ", optionNo=" + optionNo + ", options=" + options + ", productNo=" + productNo
-        + ", products=" + products + ", quantity=" + quantity + "]";
+  public CartProduct getCartProduct() {
+    return cartProduct;
+  }
+
+  public void setCartProduct(CartProduct cartProduct) {
+    this.cartProduct = cartProduct;
   }
 }
