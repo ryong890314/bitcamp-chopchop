@@ -56,7 +56,6 @@ public class ProductController {
       productOption.setProductNo(product.getProductNo());
       productOption.setTitle(optionTitle[i]);
       productOption.setPrice(Integer.parseInt(optionPrice[i]));
-      System.out.println("========================================== " + productOption + " ====================================================");
       productOptionService.insert(productOption);
     }
     return "redirect:list";

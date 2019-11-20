@@ -222,8 +222,37 @@
     </div>
   </div>
 
-<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">댓글 수정</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type='hidden' class="modal-commentNo" name='commentNo' value='' >
+        <label>제목</label>
+        <input type="text" class="form-control" name="title" value=""><hr>
+        <label>내용</label>
+        <textarea class="form-control modal-comment-text" name='content' rows='3' cols='55'></textarea><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-closeBtn" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger modal-delBtn">Delete</button>
+        <button type="button" class="btn btn-primary modal-saveBtn">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+  
 
+
+
+<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 <script id="option-template" type="text/x-handlebars-template">
 <div class='selected-option' data-index='' style='width: 440px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-width: 1px; margin: 5px 15px; padding: 0px 15px 10px 15px;'>
   <div>
@@ -385,6 +414,39 @@
     }
   })
   
+  console.log(loginCheck);
+  var commentMember = $('.member-no');
+  var updateButton = $('.reply');
+  for(var i=0; i<commentMember.length; i++) {
+    if(commentMember[i].innerText == loginCheck) {
+      updateButton[i].setAttribute("style", 'display:inline');
+    }
+  }
+  
+  var commentNo = $('.comment-no');
+  console.log(commentNo);
+  $('.reply').on('click', function(e) {
+    $('#exampleModal').modal('show');
+    $('.modal-commentNo').val($(this.parentNode).find('span').text());
+  })
+  
+  
+  $('.modal-saveBtn').on('click', (e) => {
+    $.ajax({
+      url:'/app/comment/update',
+      method:'post',
+      data: {'commentNo':$('.modal-commentNo').val(), 
+             'title':$('.modal-body input').val(),
+             'content':$('.modal-body textarea').val()},
+      
+      success: function(result) {
+        alert:'수정되었습니다.';
+        $('#exampleModal').modal('hide');
+      }
+    })
+    
+    
+  });
   </script>
 </body>
 </html>
