@@ -198,27 +198,6 @@
 
       <hr class="my-4">
       <jsp:include page="../comment/productCommentList.jsp" />
-      <div class="post-a-comment-area mb-30">
-        <h4 class="mb-50">Leave a reply</h4>
-        <div class="contact-form-area">
-          <form action="../comment/add" method="post">
-            <div id="abc">
-              <input type='hidden' name='productNo' id='productNo' value='${product.productNo}'>
-              <input type='hidden' name='memberNo' value='${loginUser.memberNo}' readonly>
-              <div class="col-12 col-lg-6">
-                <input type="text" name='title' class="form-control" id="title" placeholder="title">
-              </div>
-              <div class="col-12">
-                <textarea name='content' class="form-control" id="message" cols="30" rows="10"
-                  placeholder="Message"></textarea>
-              </div>
-              <div class="col-12">
-                <button class="btn bueno-btn mt-30" type="submit">Submit Comment</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -235,9 +214,9 @@
       <div class="modal-body">
         <input type='hidden' class="modal-commentNo" name='commentNo' value='' >
         <label>제목</label>
-        <input type="text" class="form-control" name="title" value=""><hr>
+        <input type="text" id="modal-comment-title" class="form-control modal-comment-title" name="title" value=""><hr>
         <label>내용</label>
-        <textarea class="form-control modal-comment-text" name='content' rows='3' cols='55'></textarea><br>
+        <textarea id="modal-comment-content" class="form-control modal-comment-content" name='content' rows='3' cols='55'></textarea><br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary modal-closeBtn" data-dismiss="modal">Close</button>
@@ -276,6 +255,31 @@
 </div>
 </script>
 
+<script id="comment-template" type="text/x-handlebars-template">
+<div class='append-comment-div'>
+<ol>
+  <li class="single_comment_area" id="isComment">
+    <div class="comment-content d-flex">
+      <div class="comment-author">
+        <p><span id="memberName" style="font-size:14px;">{{nickname}}</span></p>
+      </div>
+      <div class="comment-meta">
+        <div class="d-flex">
+          <span class="comment-no" style="color:red;">{{commentNo}}</span>
+          <span class="update-title">{{title}}</span>
+          <span class="post-date">{{createdDate}}</span>
+          <button style="" class="reply">수정</button>
+          <button style="" class="comment-delete-btn">삭제</button>
+          <button style="" class="comment-delete-btn">답변</button>
+        </div>
+        <p class="update-content">{{content}}</p>
+      </div>
+    </div><hr style="width:1100px;">
+  </li>
+</ol>
+</div>
+</script>
+
 <script>
   var dataNo = 0;
   var productPrice = parseInt(${product.price * (100 - product.discount) / 100});
@@ -285,8 +289,6 @@
 <c:forEach items="${product.options}" var="productOption">
   options.push({'no': ${productOption.optionNo}, 'title': '${productOption.title}', 'price': productPrice + ${productOption.price}});
 </c:forEach>
-    
-    console.log(options);
     
   function getOption(no) {
     for (var option of options) {
@@ -414,39 +416,123 @@
     }
   })
   
-  console.log(loginCheck);
-  var commentMember = $('.member-no');
-  var updateButton = $('.reply');
-  for(var i=0; i<commentMember.length; i++) {
-    if(commentMember[i].innerText == loginCheck) {
-      updateButton[i].setAttribute("style", 'display:inline');
-    }
-  }
   
+  // 자기 댓글만 수정 삭제
   var commentNo = $('.comment-no');
-  console.log(commentNo);
-  $('.reply').on('click', function(e) {
+  $(document).on('click', '.reply', function(e) {
+    console.log(this);
+    console.log($(this));
     $('#exampleModal').modal('show');
-    $('.modal-commentNo').val($(this.parentNode).find('span').text());
+    $('.modal-commentNo').val($(this.parentNode).find('span[class="comment-no"]').text());
+  })
+  
+  $('#exampleModal').on('show.bs.modal', function () {
+    $('#modal-comment-title').val('');
+    $('#modal-comment-content').val('');
   })
   
   
-  $('.modal-saveBtn').on('click', (e) => {
+  var commentMember = $('.member-no');
+  var updateButton = $('.reply');
+  var deleteButton = $('.comment-delete-btn');
+  for(var i=0; i<commentMember.length; i++) {
+    if(commentMember[i].innerText == loginCheck) {
+      updateButton[i].setAttribute("style", 'display:inline');
+      deleteButton[i].setAttribute("style", 'display:inline');
+    }
+  }
+
+  
+  // 댓글 입력
+  var commentTemplate = Handlebars.compile($('#comment-template').html());
+
+  $('#comment-submit').on('click', function (e) {
+    var submitComment = {
+      'productNo':$('#productNo').val(),
+      'memberNo':$('#memberNo').val(),
+      'title':$('#title').val(),
+      'content':$('#message').val()
+    }
+  
+    var commentTitle=submitComment.title;
+    var commentContent=submitComment.content;
+    var commentAppend = $('#append-comment');
+
+    $.ajax({
+      url:'/app/comment/add',
+      method:'post',
+      data:JSON.stringify(submitComment),
+      dataType:'json',
+      contentType:'application/json',
+      success: function (result, data) {
+        console.log(result);
+        console.log(data);
+        var commentJson = {
+          'commentNo': 1,
+          'nickname': '${loginUser.nickname}',
+          'title': $('#title').val(),
+          'createdDate': '2019-11-20',
+          'content': $('#message').val()
+        };
+        console.log(commentJson);
+        $('#fuck').append(commentTemplate(commentJson));
+        
+      }
+    })
+  });
+  
+  
+  // 댓글 수정
+  $(document).on('click', '.modal-saveBtn', function(e) {
+    var commentData = 
+    {
+      'commentNo':$('.modal-commentNo').val(), 
+      'title':$('#modal-comment-title').val(),
+      'content':$('#modal-comment-content').val()
+    };
+    
     $.ajax({
       url:'/app/comment/update',
       method:'post',
-      data: {'commentNo':$('.modal-commentNo').val(), 
-             'title':$('.modal-body input').val(),
-             'content':$('.modal-body textarea').val()},
-      
+      data: JSON.stringify(commentData),
+      dataType: 'json',
+      contentType: 'application/json',
       success: function(result) {
-        alert:'수정되었습니다.';
+        var updateCommentNo = $('.comment-no');
+        var updateTitle = $('.update-title');
+        var updateContent = $('.update-content');
+        console.log(updateCommentNo);
+        console.log(updateTitle);
+        console.log(updateContent);
+        for(var i=0; i<updateCommentNo.length; i++) {
+          if(updateCommentNo[i].innerText == commentData.commentNo) {
+            console.log('if')
+            updateTitle[i].innerText = commentData.title;
+            updateContent[i].innerText = commentData.content;
+          }
+        }
         $('#exampleModal').modal('hide');
       }
     })
-    
-    
   });
+  
+  // 댓글 삭제
+  $('.comment-delete-btn').on('click', function (e) {
+//     alert('삭제하시겠습니까?')
+    var commentDiv = $(this.parentNode.parentNode.parentNode.parentNode);
+    var commentNo = $(this.parentNode).find('span[class="comment-no"]').text();
+    console.log(commentDiv);
+    $.ajax({
+      url:'/app/comment/commentDelete',
+      method: 'post',
+      data: {commentNo: commentNo, productNo: ${product.productNo}},
+      success: function(result) {
+        console.log('댓글 삭제');
+        $(commentDiv).remove();
+      }
+    });
+  })
+
   </script>
 </body>
 </html>

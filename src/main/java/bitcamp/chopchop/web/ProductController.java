@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.domain.Product;
@@ -21,6 +22,7 @@ import bitcamp.chopchop.service.ProductService;
 
 @Controller
 @RequestMapping("/product")
+@SessionAttributes("loginUser")
 public class ProductController {
 
   @Resource
