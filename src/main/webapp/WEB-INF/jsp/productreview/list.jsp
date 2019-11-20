@@ -5,17 +5,19 @@
 <!DOCTYPE html>
 
 <html>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
+  @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean');
 
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean');
-html, body {
-  font-family: 'Nanum Gothic', sans-serif !important
-}
+  html,
+  body {
+    font-family: 'Nanum Gothic', sans-serif !important
+  }
 
-img {
-  height: auto;
-  max-width: 100%; }
+  img {
+    height: auto;
+    max-width: 100%;
+  }
 
   .txt_post {
     font-size: 16px;
@@ -49,7 +51,7 @@ img {
 
   <div>
     <h4 class="mb-50">상품 후기</h4>
-    
+
     <div class="row">
       <div class="col-md-5">
         <c:set var="total" value="0" />
@@ -72,7 +74,7 @@ img {
       </div>
       <div class="col-md-1">
         <p style="color:red; margin-bottom: 25; font-size: 25px; font-weight: 5000px; vertical-align: middle;">
-          <fmt:formatNumber value="${avg}" pattern="#,###.#"/> 
+          <fmt:formatNumber value="${avg}" pattern="#,###.#" />
         </p>
       </div>
       <div class="col-md-1">
@@ -84,7 +86,7 @@ img {
         </p>
       </div>
     </div>
-    
+
     <table class='table table-hover'>
       <tr style="text-align: center;">
         <th style="width: 130px">사진</th>
@@ -117,8 +119,9 @@ img {
       </c:forEach>
     </table>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">후기등록</button>
-
+<c:if test="${sessionScope.loginUser != null}">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">후기등록</button>
+</c:if>
 
   </div>
 
@@ -135,178 +138,186 @@ img {
         </div>
         <div class="modal-body">
           <div class="row">
-              <div class="col-md-8">
-                <span id="tempImg" style="width: 500px; height: 500px; object-fit: cover">이미지</span>
-              </div>
-              <div class="col-md-4" style="padding-left: 0px;">
-                <div style="height: 50px; text-align: center;">
-                  <input type="hidden" id="tempModalProductReviewNo" value="0">
-                  <div style='color: red; font-size: 25px;'>
+            <div class="col-md-8">
+              <span id="tempImg" style="width: 500px; height: 500px; object-fit: cover">이미지</span>
+            </div>
+            <div class="col-md-4" style="padding-left: 0px;">
+              <div style="height: 50px; text-align: center;">
+                <input type="hidden" id="tempModalProductReviewNo" value="0">
+                <div style='color: red; font-size: 25px;'>
                   <span id="tempStar">별점</span>
-                  </div>
-                  <span id="tempId">아이디</span>
-                  <span> | </span>
-                  <span id="tempDate">날짜</span>
                 </div>
-                <hr>
-                <div style="overflow:auto; height: 350px;">
-                  <span id="tempCont">내용</span>
-                </div>
-                <hr>
-                <div style="height: 38; text-align: right;">
-                    <button type="button" class="btn btn-danger" onclick="reviewDel()" style="width: 60px;">삭제</button>
-                    <button type="button" class="btn btn-primary" style="width: 60px;" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg-update">수정</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 120px;">닫기</button>
-                  </div>
+                <span id="tempId">아이디</span>
+                <span> | </span>
+                <span id="tempDate">날짜</span>
               </div>
+              <hr>
+              <div style="overflow:auto; height: 350px;">
+                <span id="tempCont">내용</span>
+              </div>
+              <hr>
+              <div style="height: 38; text-align: right;">
+                <c:if test="${sessionScope.loginUser != null}">
+                  <button type="button" class="btn btn-danger" onclick="reviewDel()" style="width: 60px;">삭제</button>
+                  <button type="button" class="btn btn-primary" style="width: 60px;" data-dismiss="modal"
+                  data-toggle="modal" data-target=".bd-example-modal-lg-update">수정</button>
+                </c:if>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 120px;">닫기</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-<!-- add modal -->
+  <!-- add modal -->
 
-<div class="modal fade bd-example-modal-lg" id="myAddModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">상품후기 등록</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade bd-example-modal-lg" id="myAddModal" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">상품후기 등록</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
 
-        <form action='../productreview/add' enctype='multipart/form-data' method='post'>
-          <input type='hidden' name='productNo' id='productNo' value='${product.productNo}'><br>
-          
-          <div class="row">
-                <div class="col-md-4">
-                  <div>
-            <input type="hidden" id="photo" value="${productReview.filePath}" />
-            <img id="imgThumb" class="imgThumb" style="width: 250px; height: 250px; object-fit: cover">
-          </div>
-            <input type='file' id='fileupload' name='file' /><br>
-          </div>
-          <div class="col-md-8">
-          <select class="custom-select" name='rating'>
-              <option selected value="5">★★★★★ [아주좋아요]</option>
-              <option value="4">★★★★☆ [맘에들어요]</option>
-              <option value="3">★★★☆☆ [보통이에요]</option>
-              <option value="2">★★☆☆☆ [그냥그래요]</option>
-              <option value="1">★☆☆☆☆ [별로에요]</option>
-            </select>
+          <form action='../productreview/add' enctype='multipart/form-data' method='post'>
+            <input type='hidden' name='productNo' id='productNo' value='${product.productNo}'><br>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div>
+                  <input type="hidden" id="photo" value="${productReview.filePath}" />
+                  <img id="imgThumb" class="imgThumb" style="width: 250px; height: 250px; object-fit: cover">
+                </div>
+                <input type='file' id='fileupload' name='file' /><br>
+              </div>
+              <div class="col-md-8">
+                <select class="custom-select" name='rating'>
+                  <option selected value="5">★★★★★ [아주좋아요]</option>
+                  <option value="4">★★★★☆ [맘에들어요]</option>
+                  <option value="3">★★★☆☆ [보통이에요]</option>
+                  <option value="2">★★☆☆☆ [그냥그래요]</option>
+                  <option value="1">★☆☆☆☆ [별로에요]</option>
+                </select>
+                <hr>
+                <textarea class="form-control" id="message-text" name="content"
+                  style="overflow:auto; height: 200px; resize: none;"></textarea>
+              </div>
+            </div>
             <hr>
-            <textarea class="form-control" id="message-text" name="content" style="overflow:auto; height: 200px; resize: none;"></textarea>
-        </div>
-      </div>
-        <hr>
-        <div style="text-align: right;">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-            <button type="submit" class="btn btn-primary">등록하기</button>
-          </div>
-        </form>
+            <div style="text-align: right;">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+              <button type="submit" class="btn btn-primary">등록하기</button>
+            </div>
+          </form>
 
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- update modal -->
+  <!-- update modal -->
 
-<div class="modal fade bd-example-modal-lg-update" id="myUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">상품후기 수정</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+  <div class="modal fade bd-example-modal-lg-update" id="myUpdateModal" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">상품후기 수정</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
 
-        <form action='../productreview/update' enctype='multipart/form-data' method='post'>
-          <input type='hidden' name='productNo' id='productNo' value='${product.productNo}'><br>
-          <input type='hidden' name='productReviewNo' id='productReviewNo' value='${product.productNo}'><br>
-          
-          <div class="row">
-                <div class="col-md-4">
-                  <div>
-            <input type="hidden" id="photo" value="${productReview.filePath}" />
-            <span id="tempImgUpdate" class="imgThumb" style="width: 250px; height: 250px; object-fit: cover"></span>
-          </div>
-            <input type='file' id='fileupload' name='file' /><br>
-          </div>
-          <div class="col-md-8">
-          <select class="custom-select" name='rating'>
-              <option selected value="5">★★★★★ [아주좋아요]</option>
-              <option value="4">★★★★☆ [맘에들어요]</option>
-              <option value="3">★★★☆☆ [보통이에요]</option>
-              <option value="2">★★☆☆☆ [그냥그래요]</option>
-              <option value="1">★☆☆☆☆ [별로에요]</option>
-            </select>
+          <form action='../productreview/update' enctype='multipart/form-data' method='post'>
+            <input type='hidden' name='productNo' id='productNo' value='${product.productNo}'><br>
+            <input type='hidden' name='productReviewNo' id='productReviewNo' value='${product.productNo}'><br>
+
+            <div class="row">
+              <div class="col-md-4">
+                <div>
+                  <input type="hidden" id="photo" value="${productReview.filePath}" />
+                  <span id="tempImgUpdate" class="imgThumb"
+                    style="width: 250px; height: 250px; object-fit: cover"></span>
+                </div>
+                <input type='file' id='fileupload' name='file' /><br>
+              </div>
+              <div class="col-md-8">
+                <select class="custom-select" name='rating'>
+                  <option selected value="5">★★★★★ [아주좋아요]</option>
+                  <option value="4">★★★★☆ [맘에들어요]</option>
+                  <option value="3">★★★☆☆ [보통이에요]</option>
+                  <option value="2">★★☆☆☆ [그냥그래요]</option>
+                  <option value="1">★☆☆☆☆ [별로에요]</option>
+                </select>
+                <hr>
+                <textarea class="form-control" id="tempContUpdate" name="content"
+                  style="overflow:auto; height: 200px; resize: none;"></textarea>
+              </div>
+            </div>
             <hr>
-            <textarea class="form-control" id="tempContUpdate" name="content" style="overflow:auto; height: 200px; resize: none;"></textarea>
+            <div style="text-align: right;">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+              <button type="submit" class="btn btn-primary">수정하기</button>
+            </div>
+          </form>
         </div>
-      </div>
-        <hr>
-        <div style="text-align: right;">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-            <button type="submit" class="btn btn-primary">수정하기</button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
-</div>
 
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  
   <script>
 
-// 리스트
+  // 리스트
 
- $(document).on("click", ".tempTr", function () {
-   tempImg.innerHTML = $(this)[0].cells[0].innerHTML;
-   tempCont.innerText = $(this)[0].cells[1].innerText;
-   tempId.innerText = $(this)[0].cells[2].innerText;
-   tempStar.innerText = $(this)[0].cells[3].innerText;
-   tempDate.innerText = $(this)[0].cells[4].innerText;
+  $(document).on("click", ".tempTr", function () {
+  tempImg.innerHTML = $(this)[0].cells[0].innerHTML;
+  tempCont.innerText = $(this)[0].cells[1].innerText;
+  tempId.innerText = $(this)[0].cells[2].innerText;
+  tempStar.innerText = $(this)[0].cells[3].innerText;
+  tempDate.innerText = $(this)[0].cells[4].innerText;
 
-   tempImgUpdate.innerHTML = $(this)[0].cells[0].innerHTML;
-   tempContUpdate.innerText = $(this)[0].cells[1].innerText;
+  tempImgUpdate.innerHTML = $(this)[0].cells[0].innerHTML;
+  tempContUpdate.innerText = $(this)[0].cells[1].innerText;
 
-   tempModalProductReviewNo.value = $(this).context.childNodes[1].defaultValue;
-   productReviewNo.value =  $(this).context.childNodes[1].defaultValue;
-});
+  tempModalProductReviewNo.value = $(this)[0].children[0].value;
+  productReviewNo.value = $(this)[0].children[0].value;
+  });
 
-// 등록
+  // 등록
 
-function formLoad() {
-      if ($("#photo").val() == null || $("#photo").val() == "") {
-        $("#imgThumb").attr("src", "/upload/productreview/info_photo.jpg");
-      } else {
-        $("#imgThumb").attr("src", "/upload/productreview/" + $("#photo").val());
-      }
-    }
+  function formLoad() {
+  if ($("#photo").val() == null || $("#photo").val() == "") {
+  $("#imgThumb").attr("src", "/upload/productreview/info_photo.jpg");
+  } else {
+  $("#imgThumb").attr("src", "/upload/productreview/" + $("#photo").val());
+  }
+  }
 
-    document.getElementById("fileupload").onchange = function () {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        document.getElementById("imgThumb").src = e.target.result;
-      };
-      reader.readAsDataURL(this.files[0]);
-    };
+  document.getElementById("fileupload").onchange = function () {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+  document.getElementById("imgThumb").src = e.target.result;
+  };
+  reader.readAsDataURL(this.files[0]);
+  };
 
-    // 삭제
+  // 삭제
 
-      function reviewDel() {
-        var selectedReviewNo = document.getElementById("tempModalProductReviewNo").value;
-        if (confirm("후기를 삭제하시겠습니까?")) {
-          location.href = "../productreview/delete?no=" + selectedReviewNo + "&productNo=${product.productNo}"; 
-        }
-    }
+  function reviewDel() {
+  var selectedReviewNo = document.getElementById("tempModalProductReviewNo").value;
+  if (confirm("후기를 삭제하시겠습니까?")) {
+  location.href = "../productreview/delete?no=" + selectedReviewNo + "&productNo=${product.productNo}";
+  }
+  }
 
   </script>
 
