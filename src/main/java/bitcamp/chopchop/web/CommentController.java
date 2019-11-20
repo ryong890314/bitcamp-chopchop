@@ -1,13 +1,13 @@
 package bitcamp.chopchop.web;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.service.CommentService;
 import bitcamp.chopchop.service.MemberService;
@@ -28,17 +28,17 @@ public class CommentController {
   @GetMapping("form")
   public void form() {
   }
-
+  
+  @ResponseBody
   @PostMapping("add")
-  public String add(Comment comment) throws Exception {
+  public JsonResult add(@RequestBody Comment comment) throws Exception {
     commentService.insert(comment);
-    return "redirect:../product/detail?no=" + comment.getProductNo();
+    return new JsonResult().setState(JsonResult.SUCCESS);
   }
 
-  @GetMapping("commentDelete")
-  public String commentDelete(int no, int productNo) 
-      throws Exception {
-    commentService.commentDelete(no);
+  @PostMapping("commentDelete")
+  public String commentDelete(int commentNo, int productNo) throws Exception {
+    commentService.commentDelete(commentNo);
     return "redirect:../product/detail?no="+ productNo;
   }
 
@@ -47,9 +47,9 @@ public class CommentController {
     model.addAttribute("comment", commentService.get(no));
   }
   
+  @ResponseBody
   @PostMapping("update")
-  public JsonResult update(@RequestBody Comment comment, HttpServletRequest request, int productNo)
-      throws Exception {
+  public JsonResult update(@RequestBody Comment comment) throws Exception {
     System.out.println(comment);
     commentService.update(comment);
     return new JsonResult().setState(JsonResult.SUCCESS);
