@@ -13,7 +13,7 @@ public class Order {
   private String detailAddress;
   private Date paymentDate;
   private String paymentMethod;
-  private String shipDate; // (주문 상태)
+  private String shipStatus; // (주문 상태)
   private String invoice;
   private OrderProduct orderProduct;
   private Member member;
@@ -26,8 +26,16 @@ public class Order {
     return "Order [orderNo=" + orderNo + ", memberNo=" + memberNo + ", name=" + name + ", tel="
         + tel + ", postNo=" + postNo + ", baseAddress=" + baseAddress + ", detailAddress="
         + detailAddress + ", paymentDate=" + paymentDate + ", paymentMethod=" + paymentMethod
-        + ", shipDate=" + shipDate + ", invoice=" + invoice + ", orderProduct=" + orderProduct
+        + ", shipStatus=" + shipStatus + ", invoice=" + invoice + ", orderProduct=" + orderProduct
         + ", member=" + member + ", orderProducts=" + orderProducts + ", members=" + members + "]";
+  }
+
+  public String getShipStatus() {
+    return shipStatus;
+  }
+
+  public void setShipStatus(String shipStatus) {
+    this.shipStatus = shipStatus;
   }
 
   public int getOrderNo() {
@@ -108,15 +116,6 @@ public class Order {
 
   public Order setPaymentMethod(String paymentMethod) {
     this.paymentMethod = paymentMethod;
-    return this;
-  }
-
-  public String getShipDate() {
-    return shipDate;
-  }
-
-  public Order setShipDate(String shipDate) {
-    this.shipDate = shipDate;
     return this;
   }
 

@@ -28,33 +28,41 @@
   <jsp:include page="../header.jsp"/>
   
   <form action="add" method="post" id="orderForm">
-      <input type="hidden" name="quantity" value="${quantity}">
-      <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
-      <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto;">
+    <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
+    <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto;">
     <tr>
-      <td>상품</td>
+      <td>상품명</td>
+      <td>${product.title}</td>
+    </tr>
+    <tr>
       <td>상품 가격</td>
+      <td>옵션명</td>
+      <td>옵션 가격</td>
       <td>수량</td>
       <td>할인률</td>
-      <td>결제 금액</td>
+      <td>상품 최종 금액</td>
     </tr>
-    <tr>
-      <td>${product.title}</td>
-      <td>${product.price}원</td>
-      <td>${quantity}</td>
-      <td>${product.discount}%</td>
-      <td><span style="text-decoration-line:line-through; color:gray;">${product.price * quantity}원</span><br>
-      <span id="totalPrice">${product.price * quantity * (100-product.discount)/100}</span>원</td>
-    </tr>
-    <c:forEach items="${products}" var="products">
+    <c:forEach items="${product.options}" var="option">
       <tr>
-        <td>${products.title}</td>
-        <td>${products.price}</td>
-        <td></td>
-        <td>${products.discount}</td>
-<%--         <td>${products.}</td> --%>
+        <td>${product.price}원</td>
+        <td>${option.title}</td>
+        <td>${option.price}원</td>
+        <td>${option.quantity}</td>
+        <td>${product.discount}%</td>
+        <td><span style="text-decoration-line:line-through; color:gray;">${(product.price + option.price) * option.quantity}원</span><br>
+        <span class="totalPrice">${(product.price * (100-product.discount)/100 + option.price) * option.quantity}</span>원</td>
       </tr>
+      <input type="hidden" name="optionNo" value="${option.optionNo}">
+      <input type="hidden" name="quantity" value="${option.quantity}">
     </c:forEach>
+    <tr>
+      <td>총 상품금액</td>
+      <td><span id="resultPrice"><fmt:formatNumber value="" pattern="#,###"/></span>원</td>
+      <td>배송비</td>
+      <td><span id="shipPrice"></span>원</td>
+      <td>총 주문금액</td>
+      <td><span id="ship-price-sum"></span>원</td>
+    </tr>
   </table>
 <!--     <div style="display: table; margin-left: auto; margin-right:auto;"> -->
       <div class="row">
@@ -139,7 +147,7 @@
       <div class="row">
       <div class="col-md-6">
       <label for="exampleInput">주문상태</label>
-      <select id="selectBox" name="shipDate" class="form-control" required="required">
+      <select id="selectBox" name="shipStatus" class="form-control" required="required">
         <option value="1">입금 전</option>
         <option value="2">입금 확인</option>
         <option value="3">발송</option>
@@ -149,13 +157,9 @@
       </div>
       <div>
         <input type="hidden" id="textbox" name="no" value="${product.productNo}">
-        <input type="hidden" id="textbox" name="discount" value="${product.discount}">
         <button type="button" id="orderButton" class="btn btn-success" data-toggle="modal" data-target="#orderModal">주문</button>
         <a href="../product/detail?no=${product.productNo}" class="btn btn-danger" style="margin-left:30px;">취소</a>
       </div>
-      <input type="hidden" name="optionNo" value=1>
-      <input type="hidden" name="quantity" value="${quantity}">
-      <input type="hidden" id="discountPrice" name="discountPrice" value="${product.price * quantity * (100-product.discount)/100}">
 <!--     </div> -->
   <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -192,27 +196,28 @@
 </div>
 
   </form>
-  
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
   <jsp:include page="../footer.jsp"/>
   
   <script>
+//     var totalPrice = document.getElementsByClassName('totalPrice');
+//     for(var i=0;i<totalPrice.length;i++){
+//       totalPrice[i].innerText = parseInt(totalPrice[i].innerText);
+//     }
     
-  </script>
-  
-  
-  <script>
-    var totalPrice = document.querySelector('#totalPrice');
-    var resultPrice = parseInt(totalPrice.innerText);
-    totalPrice.innerText = resultPrice;
-    
-    var discountPrice = document.querySelector('#discountPrice');
-    discountPrice.value = parseInt(discountPrice.value);
+    var priceSum = 0;
+    for (var i=0; i<totalPrice.length; i++) {
+      console.log(totalPrice[i].innerText);
+      priceSum += parseInt(totalPrice[i].innerText);
+    }
+    $('#resultPrice').text
     
   </script>
   
   <script> // 주문자와 동일 체크
     var checkBox = document.querySelector('#checkBox');
-    if(!(${loginUser.memberNo} == 0)) {
+    if(${loginUser.memberNo} != 0) {
       checkBox.removeAttribute("disabled")
     }
 
@@ -248,7 +253,6 @@
 //     console.log(name);
     
 //     document.querySelector('#modalName').innerText = document.querySelector('#recipientName').value;
-    
     
     var isChecked = false;
     
@@ -304,10 +308,17 @@
         isChecked = true;
       }
       
+      var totalPrice = $('.totalPrice');
+      var priceSum = 0;
+      for (var i=0; i<totalPrice.length; i++) {
+        console.log(totalPrice[i].innerText);
+        priceSum += parseInt(totalPrice[i].innerText);
+      }
+            
       if(isChecked) {
         $('#orderModal').on('show.bs.modal', function (e) {
           $('#modalProduct').text('${product.title}');
-          $('#modalPrice').text($('#totalPrice').text() + " 원");
+          $('#modalPrice').text(priceSum + " 원");
           $('#modalName').text($('#recipientName').val());
           $('#modalTel').text($('#recipientTel').val());
           $('#modalPostNo').text($('#recipientPostNo').val());

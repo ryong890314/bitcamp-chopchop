@@ -24,20 +24,20 @@
                     <a href="/app/recipe/detail?no=${recipe.recipeNo}">
                     <img class="recipe_thumb tagA" src="/upload/recipe/${recipe.thumbnail}"></a>
                 </div>
-  	            <!-- Blog Content -->
-  	            <div class="blog-content-bg" >
+                <!-- Blog Content -->
+                <div class="blog-content-bg" >
                   <input type="hidden" name="recipeNo" id="recipeNo" value="${recipe.recipeNo}">
-    	            <div class="blog-content-bg">
-  	                <div class="blog-content">
-	                    <span class="post-tag">${recipe.category}</span>
-	                    <a href="/app/recipe/detail?no=${recipe.recipeNo}" class="post-title tagA">${recipe.title}</a>
+                  <div class="blog-content-bg">
+                    <div class="blog-content">
+                      <span class="post-tag">${recipe.category}</span>
+                      <a href="/app/recipe/detail?no=${recipe.recipeNo}" class="post-title tagA">${recipe.title}</a>
                       <div class="post-meta">
                         <span class="post-author">by ${recipe.memberNo}</span><br>
                         <span class="post-date">${recipe.createdDate}</span>
                       </div>
-  	                </div>
-    	            </div>
-  	            </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </c:forEach>
         </div>

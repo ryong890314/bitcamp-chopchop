@@ -66,7 +66,7 @@
 <!--         </header> -->
 
     <!-- ##### Catagory Area Start ##### -->
-    <div class="post-catagory section-padding-100">
+    <div class="post-catagory section-padding-100" style="margin-top:30px;">
         <div class="container">
             <div class="row">
                 <!-- Single Post Catagory -->
@@ -102,58 +102,13 @@
                         <!-- Content -->
                         <div class="catagory-content-bg">
                             <div class="catagory-content">
-                                <a href="category?species=새" id="species" class="post-tag">새</a>
-                                <a href="category?species=새" class="post-title" style="color:#524845">새</a>
+                                <a href="category?species=새" id="species" class="post-tag">작은 친구들</a>
+                                <a href="category?species=새" class="post-title" style="color:#524845">작은 친구들</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 </div>
-    </div>
-    </div>
-        <div class="post-catagory section-padding-100">
-        <div class="container">
-            <div class="row">
-                <!-- Single Post Catagory -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-post-catagory mb-30">
-<!--                         <img src="img/bg-img/6.jpg" alt=""> -->
-                        <!-- Content -->
-                        <div class="catagory-content-bg">
-                            <div class="catagory-content">
-                                <a href="category?species=물고기" id="species" class="post-tag">물고기</a>
-                                <a href="category?species=물고기" class="post-title" style="color:#524845">물고기</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Post Catagory -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-post-catagory mb-30">
-<!--                         <img src="img/bg-img/6.jpg" alt=""> -->
-                        <!-- Content -->
-                        <div class="catagory-content-bg">
-                            <div class="catagory-content">
-                                <a href="category?species=작은" id="species" class="post-tag">작은 동물</a>
-                                <a href="category?species=작은" class="post-title" style="color:#524845">작은 동물</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Post Catagory -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-post-catagory mb-30">
-<!--                         <img src="img/bg-img/6.jpg" alt=""> -->
-                        <!-- Content -->
-                        <div class="catagory-content-bg">
-                            <div class="catagory-content">
-                                <a href="category?species=파충류" id="species" class="post-tag">파충류</a>
-                                <a href="category?species=파충류" class="post-title" style="color:#524845">파충류</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
     </div>
     </div>
   <button type="button" onclick="location.href='form'">새 상품</button>
@@ -174,7 +129,6 @@
     <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span><br>
     <span><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###" /> 원
     </span><br></a>
-    ${product.discount}
     <a href='detail?no=${product.productNo}'><button  class="btn bueno-btn">구매하기</button></a>
   </div>
 </div>

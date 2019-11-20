@@ -1,5 +1,6 @@
 package bitcamp.chopchop.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
@@ -11,9 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Comment;
 import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.domain.ProductOption;
+import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.service.CommentService;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.ProductOptionService;
+import bitcamp.chopchop.service.ProductReviewService;
 import bitcamp.chopchop.service.ProductService;
 
 @Controller
@@ -30,6 +33,8 @@ public class ProductController {
   private MemberService memberService;
   @Resource
   private ProductOptionService productOptionService;
+  @Resource
+  private ProductReviewService productReviewService;
 
 
   @GetMapping("form")
@@ -42,8 +47,8 @@ public class ProductController {
 
   @PostMapping("add")
   public String add(
-      Product product, 
-      MultipartFile[] filePath, String[] optionTitle, String[] optionPrice) throws Exception {
+      Product product, MultipartFile[] filePath, String[] optionTitle, String[] optionPrice) 
+          throws Exception {
     product.setFiles(photoFileWriter.getPhotoFiles(filePath));
     productService.insert(product);
     ProductOption productOption = new ProductOption();
@@ -51,14 +56,15 @@ public class ProductController {
       productOption.setProductNo(product.getProductNo());
       productOption.setTitle(optionTitle[i]);
       productOption.setPrice(Integer.parseInt(optionPrice[i]));
+      System.out.println("========================================== " + productOption + " ====================================================");
       productOptionService.insert(productOption);
     }
     return "redirect:list";
   }
 
-  @GetMapping("delete")
-  public String delete(int no) throws Exception {
-    productService.delete(no);
+  @PostMapping("delete")
+  public String delete(int productNo) throws Exception {
+    productService.delete(productNo);
     return "redirect:list";
   }
 
@@ -66,9 +72,10 @@ public class ProductController {
   public void detail(Model model, int no) throws Exception {
     Product product = productService.get(no);
     List<Comment> comments = commentService.findByProductWith(product.getProductNo());
-    System.out.println(model);
+    List<ProductReview> productReviews = productReviewService.list(product.getProductNo());
     model.addAttribute("product", productService.get(no));
     model.addAttribute("comments", comments);
+    model.addAttribute("productReviews", productReviews);
   }
 
   @GetMapping("search")
@@ -84,12 +91,30 @@ public class ProductController {
   }
 
   @PostMapping("update")
-  public String update(Product product, MultipartFile[] filePath)
-      throws Exception {
-
+  public String update(
+      Product product, MultipartFile[] filePath, String[] optionTitle, String[] optionPrice)
+          throws Exception {
+    ProductOption productOption = new ProductOption();
+    List<ProductOption> options = new ArrayList<>();
     product.setFiles(photoFileWriter.getPhotoFiles(filePath));
-    productService.update(product);
-    return "redirect:list";
+    if (optionTitle.length == 0 || optionPrice.length == 0) {
+      System.out.println("넘어온게 음슴");
+      productService.update(product);
+    } else {
+      System.out.println("넘어온게 있슴");
+      productOptionService.deleteAll(product.getProductNo());
+      for (int i=0; i<optionTitle.length; i++) {
+        productOption.setProductNo(product.getProductNo());
+        productOption.setTitle(optionTitle[i]);
+        productOption.setPrice(Integer.parseInt(optionPrice[i]));
+        options.add(productOption);
+        product.setOptions(options);
+        productOptionService.insert(productOption);
+      }
+      System.out.println(product);
+      productService.update(product);
+    }
+    return "redirect:detail?no=" + product.getProductNo();
   }
 
   @GetMapping("updateform")
