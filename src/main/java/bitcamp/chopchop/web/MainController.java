@@ -16,10 +16,10 @@ import bitcamp.chopchop.service.RecipeService;
 public class MainController {
   
   @Resource 
-  RecipeService recipeService;
+  private RecipeService recipeService;
   
   @Resource
-  ProductService productService;
+  private ProductService productService;
   
   @GetMapping("index")
   public void form(Model model) throws Exception {
@@ -29,3 +29,4 @@ public class MainController {
     model.addAttribute("productList", productList);
   }
 }
+//

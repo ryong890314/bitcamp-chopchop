@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.vali_check {
+  color: red;
+}
+
+.imgThumb {
+ width: 200px;
+ height: 200px;
+}
+
+.container {
+ margin-bottom: 10px;
+}

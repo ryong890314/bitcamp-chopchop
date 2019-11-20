@@ -9,4 +9,5 @@ public interface ProductReviewService {
   void insert(ProductReview productReview) throws Exception;
   void update(ProductReview productReview) throws Exception;
   void delete(int no) throws Exception;
+  List<ProductReview> myreview(int no) throws Exception;
 }

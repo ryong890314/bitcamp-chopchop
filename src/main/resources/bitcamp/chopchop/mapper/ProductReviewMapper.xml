@@ -23,8 +23,8 @@
     <result column="rating" property="rating"/>
     <result column="created_date" property="createdDate"/>
 
-<collection property="members" ofType="Member">
-      <id column="member_id" property="memberNo"/>
+    <collection property="members" ofType="Member">
+    <id column="member_id" property="memberNo"/>
     <result column="post_no" property="postNo"/>
     <result column="base_address" property="baseAddress"/>
     <result column="detail_address" property="detailAddress"/>
@@ -33,6 +33,11 @@
     <result column="photo" property="photo"/>
     <result column="nickname" property="nickname"/>
     <result column="tel" property="tel"/>
+    </collection>
+    
+    <collection property="products" ofType="Product">
+      <id column="product_id" property="productNo"/>
+      <result column="title" property="title"/>
     </collection>
 
   </resultMap>  
@@ -107,4 +112,26 @@
     delete from product_review
     where product_review_id=#{productReviewNo}
   </delete>
+  
+  <select id="myreview" parameterType="int" resultMap="findProductReviewMap">
+    select
+      r.product_review_id,
+      r.product_id,
+      r.member_id,
+      r.file_path,
+      r.content,
+      r.rating,
+      r.created_date,
+      m.member_id, 
+      p.title
+    from
+      product_review r
+      left outer join member m on r.member_id = m.member_id
+      left outer join product p on p.product_id = r.product_id
+      
+    where
+      m.member_id=#{value}
+    order by r.created_date desc
+  </select>
+  
 </mapper>

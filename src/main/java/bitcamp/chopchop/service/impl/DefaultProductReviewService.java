@@ -43,6 +43,11 @@ public class DefaultProductReviewService implements ProductReviewService {
   public void update(ProductReview productReview) throws Exception {
     productReviewDao.update(productReview);
   }
+
+  @Override
+  public List<ProductReview> myreview(int no) throws Exception {
+    return productReviewDao.myreview(no);
+  }
 }
 
 

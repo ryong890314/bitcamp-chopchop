@@ -190,7 +190,7 @@
     text: "저장된 데이터가 모두 사라집니다.",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
+    confirmButtonColor: '#b0c364;',
     cancelButtonColor: '#d33',
     confirmButtonText: '탈퇴',
     cancelButtonText: '취소'
@@ -256,11 +256,6 @@
 
       // 비밀번호 정규식 검사 
       if ($("#nowPassword").val() != "") {
-        var passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-        if (!passwordRegExp.test($("#nowPassword").val())) {
-          $("#password1_chk").html("8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
-          $("#password1_chk").css('color', 'red');
-        } else {
           var xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
@@ -284,7 +279,7 @@
               + document.getElementById("nowPassword").value
               + "&memberNo="
               + document.getElementById("memberNo").value);
-        }
+        
       }
       return pCheckFlag;
     }
@@ -374,7 +369,7 @@
       if (nRegPass) {
         // 원래 닉네임과 동일하게 쓴다면 ajax 돌 필요도 없다.
         if (form.nickname.value == form.nickname1.value) {
-          $("#nickname_chk").html("가입 가능한 닉네임입니다.");
+          $("#nickname_chk").html("변경 가능한 닉네임입니다.");
           $("#nickname_chk").css('color', 'green');
           nCheckFlag = true;
         } else {
@@ -387,7 +382,7 @@
                   document.getElementById("nickname_chk").innerHTML = "중복된 닉네임입니다.";
                   $("#nickname_chk").css('color', 'red');
                 } else {
-                  document.getElementById("nickname_chk").innerHTML = "가입 가능한 닉네임입니다. ";
+                  document.getElementById("nickname_chk").innerHTML = "변경 가능한 닉네임입니다. ";
                   $("#nickname_chk").css('color', 'green');
                   nCheckFlag = true;
                 }

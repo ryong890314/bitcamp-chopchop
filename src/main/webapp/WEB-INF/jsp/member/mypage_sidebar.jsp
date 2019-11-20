@@ -56,7 +56,7 @@ Favicon
               class="nav-icon fa fa-paw"></i>
               <p>My Recipe</p>
           </a></li>
-          <li class="nav-item"><a href="/app/member/detail"
+          <li class="nav-item"><a href="/app/mypage/myreview"
             class="nav-link" style="font-size: large;"> <i
               class="nav-icon fa fa-book"></i>
               <p>My Review</p>
