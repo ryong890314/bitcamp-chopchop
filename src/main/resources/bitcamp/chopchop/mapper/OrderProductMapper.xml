@@ -33,7 +33,7 @@
       <result column="detail_address" property="detailAddress"/>
       <result column="payment_date" property="paymentDate"/>
       <result column="payment_method" property="paymentMethod"/>
-      <result column="ship_date" property="shipDate"/>
+      <result column="ship_status" property="shipStatus"/>
       <result column="invoice" property="invoice"/>
     </association>
   </resultMap>

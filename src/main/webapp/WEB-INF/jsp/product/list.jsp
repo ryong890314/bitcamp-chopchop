@@ -7,144 +7,131 @@
 <html>
 <head>
   <title>상품 목록</title>
-  <link rel='stylesheet' href='/css/product/style.css'>
-  <link rel='stylesheet' href='/css/member/style_footer.css'>
-  <link rel='stylesheet' href='/css/member/style-header.css'>
+  <link rel="stylesheet" href="/css/main/main_style.css">
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-  <link rel="icon" href="img/core-img/favicon.ico">
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
   <style>
-  
-  #content {
-    width: 1100px;
-    padding-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  #productBody {
-    width: 1100px;
-    margin: auto auto;
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  #productList {
-    width:265px;
-/*     padding: 5px; */
-    margin:5px;
-    text-align: center;
-/*     float: left; */
-  }
+  #prod_columns {
+  width: 1100px; 
+  column-width: 1100px;
+  column-gap: 10px;  
+}
   </style>
 
 </head>
 <body>
-  
 
 <jsp:include page="../header.jsp"/>
 
-<!-- <header class="header-area"> -->
-<!--         <div class="top-header-area bg-img bg-overlay" style="background-image: url(img/bg-img/header.jpg);"> -->
-<!--             <div class="container h-100"> -->
-<!--                 <div class="row h-100 align-items-center justify-content-between"> -->
-<!--                     <div class="col-12 col-sm-6"> -->
-<!--                       <div id='content'> -->
-<!--                       <h1>상품 목록</h1> -->
-<!--                       </div> -->
-<!--                     </div> -->
-<!--                     <div class="col-12 col-sm-6 col-lg-5 col-xl-4"> -->
-<!--                         Top Search Area -->
-<!--                         <div class="top-search-area"> -->
-<!--                             <form action='search'> -->
-<!--                               <input type='text' name='keyword' placeholder="Search"> -->
-<!--                                 <button type="submit" class="btn"><i class="fa fa-search"></i></button> -->
-<!--                             </form> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--         </header> -->
+<h3>chop Store</h3>          
+<div class="post-catagory section-padding-100-0 mb-70">
+    <div>
+        <div class="row" style="width: 1100px;margin: 0 auto;">
+          <!-- Single Post Catagory -->
+        <div class="col-12 col-md-6 col-lg-3 px-1">
+            <div class="single-post-catagory mb-30">
+                <!-- <img src="../img/main/photo1.png"> -->
+                <!-- Content -->
+                <div class="catagory-content-bg">
+                    <div class="catagory-content">
+                        <span class="post-tag">chop store</span>
+                        <a href="/app/product/list" class="post-title tagA">전체</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- Single Post Catagory -->
+            <div class="col-12 col-md-6 col-lg-3 px-1">
+                <div class="single-post-catagory mb-30">
+                    <!-- <img src="../img/main/photo1.png"> -->
+                    <!-- Content -->
+                    <div class="catagory-content-bg">
+                        <div class="catagory-content">
+                            <span class="post-tag">chop store</span>
+                            <a href="/app/product/category?species=dog" class="post-title tagA">강아지</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Post Catagory -->
+            <div class="col-12 col-md-6 col-lg-3 px-1">
+                <div class="single-post-catagory mb-30">
+                    <!-- <img src="../img/main/photo1.png"> -->
+                    <!-- Content -->
+                    <div class="catagory-content-bg">
+                        <div class="catagory-content">
+                            <span class="post-tag">chop store</span>
+                            <a href="/app/product/category?species=cat" class="post-title tagA">고양이</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Post Catagory -->
+            <div class="col-12 col-md-6 col-lg-3 px-1">
+                <div class="single-post-catagory mb-30">
+                    <!-- <img src="../img/main/photo1.png"> -->
+                    <!-- Content -->
+                    <div class="catagory-content-bg">
+                        <div class="catagory-content">
+                            <span class="post-tag">chop store</span>
+                            <a href="/app/product/category?species=other" class="post-title tagA">작은친구들</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- ##### Catagory Area Start ##### -->
-    <div class="post-catagory section-padding-100" style="margin:30px auto auto auto; width:1100px;">
-        <div class="container">
-            <div class="row">
-                <!-- Single Post Catagory -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-post-catagory mb-30">
-<!--                         <img src="img/bg-img/4.jpg" alt=""> -->
-                        <!-- Content -->
-                        <div class="catagory-content-bg">
-                            <div class="catagory-content">
-                                <a href="category?species=dog" class="post-tag">강아지</a>
-                                <a href="category?species=dog" class="post-title" style="color:#524845">강아지</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Post Catagory -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-post-catagory mb-30">
-<!--                         <img src="img/bg-img/5.jpg" alt=""> -->
-                        <!-- Content -->
-                        <div class="catagory-content-bg">
-                            <div class="catagory-content">
-                                <a href="category?species=cat" id="species" class="post-tag">고양이</a>
-                                <a href="category?species=cat" class="post-title" style="color:#524845">고양이</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Post Catagory -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-post-catagory mb-30">
-<!--                         <img src="img/bg-img/6.jpg" alt=""> -->
-                        <!-- Content -->
-                        <div class="catagory-content-bg">
-                            <div class="catagory-content">
-                                <a href="category?species=others" id="species" class="post-tag">작은 친구들</a>
-                                <a href="category?species=others" class="post-title" style="color:#524845">작은 친구들</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-    </div>
-    </div>
   <button type="button" onclick="location.href='form'">새 상품</button>
   
-<div id="productBody">
-  <div class="d-flex align-content-start flex-wrap">
-<c:forEach items="${products}" var="product" varStatus="status">
-  <div id="productList">
-
-<div class="card" >
-  <c:forEach items="${product.files}" var="file" end="0">
-    <img src='/upload/product/${file.filePath}' style="width: 265px; height: 265px; object-fit: cover" alt=""> 
-  </c:forEach>
-  
-  <div class="card-body" style="width: 265px;">
-    <h5 class="card-title">${product.title}</h5>
-    <a><span style=" text-decoration:line-through">
-    <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span><br>
-    <span><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###" /> 원
-    </span><br></a>
-    <a href='detail?no=${product.productNo}'><button  class="btn bueno-btn">구매하기</button></a>
-  </div>
-</div>
-</div>
-</c:forEach> 
-</div>
-</div>
+  <div class="bueno-post-area mb-70">
+      <div class="container">
+        <div class="row ml-0" >
+            <div id="prod_columns"style="align-content: center;">
+              <c:forEach items="${products}" var="product">
+                <figure>
+                  <a href="/app/product/detail?no=${product.productNo}"><img src="/upload/product/${product.files[0].filePath}"></a>
+                  <figcaption>
+                    <div class="product-info">
+                      <div class="product-title tagA">
+                        <a href="/app/product/detail?no=${product.productNo}"><strong style="font-size: 22px;">${product.title}</strong></a>
+                      </div>
+                      <div class="product-detail"><span>${product.detail}</span></div>
+                        <div class="product-price">
+                          <c:if test="${product.discount ne 0}">
+                            <span style="color:#35c5f0;">${product.discount}%&nbsp</span>
+                            <span style=" text-decoration:line-through">
+                            <fmt:formatNumber value="${product.price}" pattern="#,###" />원</span>&nbsp
+                          </c:if>
+                          <span><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###" />원</span>
+                        </div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </c:forEach>
+            </div>
+        </div>
+      </div>
+    </div>
 
 <jsp:include page="../footer.jsp"/>
-  <script>
+
+<script src="../js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="../js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="../js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="../js/plugins/plugins.js"></script>
+<!-- Active js -->
+<script src="../js/active.js"></script>
+
+  <!-- <script>
     var totalPrice = document.getElementsByClassName('totalPrice');
     for(var i of totalPrice) {
       i.innerText = parseInt(i.innerText)
     }
-  </script>
+  </script> -->
 </body>
 </html>

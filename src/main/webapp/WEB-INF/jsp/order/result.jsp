@@ -23,7 +23,7 @@
     결제수단<br>${order.paymentMethod}<br><br><hr>
     관리자<br>
     입금일<br>${order.paymentDate}<br>
-    주문상태<br>${order.shipDate}<br>
+    주문상태<br>${order.shipStatus}<br>
   <jsp:include page="../footer.jsp"/>
 </body>
 </html>
