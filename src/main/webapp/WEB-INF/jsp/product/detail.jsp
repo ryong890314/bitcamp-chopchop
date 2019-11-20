@@ -273,7 +273,6 @@
   var orderTemplate = Handlebars.compile($('#order-template').html());
   calculatePrice();
   
-  
   // 선택한 옵션 등록하기
   $('#product-option').change(function(e) {
     var selectedOption = getOption($(this).val());
@@ -330,33 +329,44 @@
   
   // 장바구니 담기
   $('#cart-btn').click(function(e) {
-    if (!confirm("장바구니에 담겠습니까?"))
-      return;
     
-    var data = {
-      'no': ${product.productNo},
-      'options': []
-    };
-    
-    var selectedOptions = $('#selected-option-div .selected-option');
-    for (var i = 0; i < selectedOptions.length; i++) {
-      var selectedOption = selectedOptions[i];
-      data['options'].push({
-        'no': $(selectedOption).find('.option-no').val(),
-        'quantity': $(selectedOption).find('.option-quantity').val()
+    if(loginCheck == '') {
+      if(!confirm('로그인이 필요합니다. 로그인하시겠습니까?')) {
+        return false;
+      } else {
+        location.href = '/app/auth/signin';
+      }
+
+    } else {
+      if (!confirm("장바구니에 담겠습니까?"))
+        return;
+      
+      var data = {
+        'no': ${product.productNo},
+        'options': []
+      };
+      
+      var selectedOptions = $('#selected-option-div .selected-option');
+      for (var i = 0; i < selectedOptions.length; i++) {
+        var selectedOption = selectedOptions[i];
+        data['options'].push({
+          'no': $(selectedOption).find('.option-no').val(),
+          'quantity': $(selectedOption).find('.option-quantity').val()
+        });
+      }
+      
+      console.log(data);
+      $.ajax({
+        url: '/app/cart/add', 
+        method: 'post',
+        data: JSON.stringify(data), 
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function(response) {
+          alert("장바구니에 상품을 담았습니다.");
+        }
       });
     }
-    console.log(data);
-    $.ajax({
-      url: '/app/cart/add', 
-      method: 'post',
-      data: JSON.stringify(data), 
-      dataType: 'json',
-      contentType: 'application/json',
-      success: function(response) {
-        alert("장바구니에 상품을 담았습니다.");
-      }
-    });
   });
   
   var loginCheck = '${loginUser.memberNo}';
@@ -375,8 +385,6 @@
       $('#order-btn').attr('formaction', '/app/order/form');
     }
   })
-  
-  
   
   </script>
 </body>

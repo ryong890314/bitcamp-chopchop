@@ -4,6 +4,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import bitcamp.chopchop.dao.CartDao;
 import bitcamp.chopchop.dao.CommentDao;
 import bitcamp.chopchop.dao.PhotoFileDao;
 import bitcamp.chopchop.dao.ProductDao;
@@ -25,6 +26,8 @@ public class DefaultProductService implements ProductService {
   private CommentDao commentDao;
   @Resource
   private ProductOptionDao productOptionDao;
+  @Resource
+  private CartDao cartDao;
 
   @Transactional
   @Override
@@ -48,6 +51,8 @@ public class DefaultProductService implements ProductService {
       throw new Exception("해당 데이터가 없습니다.");
     }
     
+    cartDao.deleteAll(no);
+    productOptionDao.deleteAll(no);
     commentDao.deleteAll(no);
     photoFileDao.deleteAll(no);
     productDao.delete(no);
