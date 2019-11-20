@@ -242,7 +242,7 @@
 /* sidebar location */
 .layout-fixed .main-sidebar {
     float: none;
-    height: 58%;
+    height: auto;
     position: absolute;
     top: 32%;
     left: 14%;
