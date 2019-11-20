@@ -47,7 +47,7 @@
     <title>RECIPE LIST</title>
 </head>
 <body>
-<%-- <jsp:include page="../header.jsp" /> --%>
+<jsp:include page="../header.jsp" /> 
 <jsp:include page="findRecipe.jsp"/>
 
 

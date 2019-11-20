@@ -42,16 +42,6 @@
 					onclick="window.open(this.href, '_blank', 'width=600px,height=600px,toolbars=no,scrollbars=no'); return false;">
 					Find my password</a> <span class="bar" aria-hidden="true">|</span>
 			</div>
-
-
-
-
-
-
-
-
-
-
 		</div>
 	</div>
 
