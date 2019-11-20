@@ -169,8 +169,9 @@ public class RecipeController {
   }
   
   @GetMapping("rank")
-  public void rank() {
-    
+  public void rank(@ModelAttribute("loginUser") Member loginUser, Model model) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
   }
 
   @GetMapping("myrecipe")
