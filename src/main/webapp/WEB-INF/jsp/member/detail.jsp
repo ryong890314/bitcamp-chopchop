@@ -6,25 +6,8 @@
 <head>
 <title>My Page</title>
 <link rel="stylesheet" href="/css/member/style_detail.css">
-<link rel="stylesheet" href="/node_modules/jquery-ui-dist/jquery-ui.css">
-<link rel="stylesheet"
-	href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
-
-<!-- mypage_sidebar start-->
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="/js/plugins/fontawesome-free/css/all.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="/css/member/adminlte.min.css">
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
-<!-- </head> -->
-<!-- mypage_sidebar  end -->
 </head>
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <jsp:include page="../header.jsp" />
@@ -34,12 +17,12 @@
 			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
         <h3>My Information</h3>
 			   <span class="mInfo-span">
-         <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy information</a></span> 
+         <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Information</span> 
       </div>
 			<form action='update' method='post' name="form"
 				enctype='multipart/form-data' onsubmit="return checkAll();">
-				<div class="row mem-Row">
-					<div class="col-5">
+				<div class="row justify-content-center mem-Row">
+					<div class="col-4" style="text-align: center;">
 						<div id='content'>
 							<div>
 								<input type="hidden" id="photo2" value="${member.photo}" /> <img
@@ -52,7 +35,7 @@
 							</span>
 						</div>
 					</div>
-					<div class="col-7">
+					<div class="col-8">
 						<input type='hidden' id='memberNo' name='memberNo'
 							value='${member.memberNo}' readonly>
 						<div class="form-group row">
@@ -301,34 +284,6 @@
               + document.getElementById("nowPassword").value
               + "&memberNo="
               + document.getElementById("memberNo").value);
-
-          
-          
-//           var allData = {
-//               "password" : document.getElementById("nowPassword").value, 
-//               "memberNo" : document.getElementById("memberNo").value
-//           };
-//             $.ajax({
-//               url:"chkPw",
-//               type:"POST",
-//               dataType: "json",
-//               data: allData,
-//               success: function(result){ // result는 컨트롤에서 받아온값
-//                 console.log("result = ", result);
-//                 if (result == "0") { // 1이면 동일, 0이면 패스워드 틀림
-//                   $("#password1_chk").html("패스워드를 다시 확인해주세요.");
-//                    $("#password1_chk").css('color', 'red');
-//                  } else {
-//                    $("#password1_chk").html("");
-//                    pCheckFlag = true;
-//                  }
-//               },
-//               error : function(xhr, status, error) {
-//                 alert("시스템 오류 발생!");
-//               }
-//             });
-
-
         }
       }
       return pCheckFlag;
@@ -514,13 +469,6 @@
       reader.readAsDataURL(this.files[0]);
     };
   </script>
-	<!--  mypage_sidebar script  start -->
-	<!-- jQuery -->
-	<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-	<!-- jQuery UI 1.11.4 -->
-	<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
-	<!-- AdminLTE App -->
-	<script src="/js/dist/adminlte.js"></script>
 
 	<script>
     function sidebar_form() {

@@ -12,7 +12,7 @@
 <style>
 .update-form {
 	position: relative;
-	left: 38% !important;
+	left: 25% !important;
 	width: 800px;
 }
 </style>
@@ -98,7 +98,7 @@
 					<hr>
 					<button class="sub-btn" type="submit">Update</button>
 					<button class="sub-btn" style="margin-top: -10px;"
-						onclick="history.back(-1);">Back</button>
+						onclick="window.history.go(-1);">Back</button>
 				</form>
 			</div>
 		</div>

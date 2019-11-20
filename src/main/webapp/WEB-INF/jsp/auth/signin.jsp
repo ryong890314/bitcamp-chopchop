@@ -42,16 +42,6 @@
 					onclick="window.open(this.href, '_blank', 'width=600px,height=600px,toolbars=no,scrollbars=no'); return false;">
 					Find my password</a> <span class="bar" aria-hidden="true">|</span>
 			</div>
-
-
-
-
-
-
-
-
-
-
 		</div>
 	</div>
 
@@ -109,7 +99,7 @@
 							},
 							function(data) {
 								if (data.state == "success") {
-									window.location.href = '/app/member/list';
+									window.location.href = '/app/index';
 								} else {
 									document.getElementById("password_chk").innerHTML = "가입하지 않은 아이디거나, 잘못된 비밀번호입니다.";
 									$("#password_chk").css('color', 'red');

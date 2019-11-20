@@ -174,6 +174,7 @@
     <fmt:formatNumber value="${product.price}" pattern="#,###" /> 원</span><br>
     <span><fmt:formatNumber value="${product.price * (100-product.discount)/100}" pattern="#,###" /> 원
     </span><br></a>
+    ${product.discount}
     <a href='detail?no=${product.productNo}'><button  class="btn bueno-btn">구매하기</button></a>
   </div>
 </div>

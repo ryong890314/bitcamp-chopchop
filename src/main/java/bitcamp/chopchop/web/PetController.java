@@ -42,7 +42,7 @@ public class PetController {
   public String add(Pet pet, MultipartFile file) throws Exception {
     pet.setFilePath(writeFile(file));
     petService.insert(pet);
-    return "redirect:../member/detail?no=" + pet.getMemberNo();
+    return "redirect:../member/detail";
   }
 
 //  @GetMapping("list")
@@ -61,7 +61,7 @@ public class PetController {
   public String update(Pet pet, MultipartFile file) throws Exception {
     pet.setFilePath(writeFile(file));
     petService.update(pet);
-    return "redirect:/app/member/list";
+    return "redirect:/app/member/detail";
   }
 
   @GetMapping("delete")
