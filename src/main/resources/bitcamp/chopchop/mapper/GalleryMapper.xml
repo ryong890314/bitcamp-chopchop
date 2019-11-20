@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.chopchop.dao.GalleryDao">
+
+  <resultMap type="Gallery" id="GalleryMap">
+    <id column="gallery_id" property="galleryNo"/>
+    <result column="member_id" property="memberNo"/>
+    <result column="content" property="content"/>
+    <result column="view_count" property="viewCount"/>
+    <result column="created_date" property="createdDate"/>
+  </resultMap>
+  
+  <select id="findAll" resultMap="GalleryMap">
+    select gallery_id,member_id,content,view_count,created_date
+    from gallery
+  </select>  
+  
+  <select id="findBy" parameterType="int" resultMap="GalleryMap">
+    select
+    gallery_id, member_id, content, view_count, created_date
+    from gallery
+    where gallery_id=#{value}
+  </select>
+  
+  <update id="increaseViewCount" parameterType="int">
+    update gallery set
+      view_count = view_count + 1
+    where gallery_id=#{value}
+  </update>
+  
+  <insert id="insert" parameterType="Gallery">
+    insert into gallery(member_id,content)
+    values(#{memberNo},#{content})
+  </insert>
+  
+  <update id="update" parameterType="Gallery">
+    update gallery set
+      content=#{content}
+    where gallery_id=#{galleryNo}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from gallery
+    where gallery_id=#{value}
+  </delete>
+</mapper>
+  

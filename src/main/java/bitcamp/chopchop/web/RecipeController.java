@@ -41,8 +41,9 @@ public class RecipeController {
   }
 
   @GetMapping("form")
-  public void form() {
-
+  public void form(@ModelAttribute("loginUser") Member loginUser, Model model) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
   }
 
   @PostMapping("add")

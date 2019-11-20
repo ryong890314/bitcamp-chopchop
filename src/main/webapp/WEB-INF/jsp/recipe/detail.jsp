@@ -70,7 +70,7 @@
               <div class="col-8">
                 <div class="blog-thumbnail mb-50">
                 <img src='/upload/recipe/${recipe.thumbnail}' alt="">
-                  </div>
+                </div>
               </div>
               <div class="col-4">
                   <div class="recipe-info">

@@ -31,8 +31,8 @@
             <!-- Single Widget Area -->
             <div class="single-widget-area author-widget mb-30" style="width:280px;">
               <div style="text-align: center;">
-                <img src="/img/recipe/star.png" style="height:30px;">
-                <img src="/img/recipe/star.png" style="height:30px;">
+                <img src="/img/recipe/silver.png" style="height:50px;">
+<!--                 <img src="/img/recipe/star.png" style="height:30px;"> -->
               </div>
               <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
                 <div class="author-thumbnail">
@@ -52,9 +52,9 @@
             <!-- Single Widget Area -->
             <div class="single-widget-area author-widget mb-30" style="width:280px;">
               <div style="text-align: center;">
-                <img src="/img/recipe/star.png" style="height:30px;">
-                <img src="/img/recipe/star.png" style="height:30px;">
-                <img src="/img/recipe/star.png" style="height:30px;">
+                <img src="/img/recipe/gold.png" style="height:50px;">
+<!--                 <img src="/img/recipe/star.png" style="height:30px;"> -->
+<!--                 <img src="/img/recipe/star.png" style="height:30px;"> -->
               </div>
               <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
                 <div class="author-thumbnail">
@@ -74,7 +74,7 @@
             <!-- Single Widget Area -->
             <div class="single-widget-area author-widget mb-30" style="width:280px;">
               <div style="text-align: center;">
-                <img src="/img/recipe/star.png" style="height:30px;">
+                <img src="/img/recipe/bronze.png" style="height:50px;">
               </div>
               <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
                 <div class="author-thumbnail">
@@ -129,7 +129,7 @@
   {{/if}}
   </th>
   <td><img src='/upload/recipe/{{recipes.thumbnail}}' style='height:100px; width:100px; object-fit:cover;'></td>
-  <td style="vertical-align: middle; text-align:left; font-size:20px;"><a href="detail?no={{recipes.recipeNo}}">{{recipes.title}}</a></td>
+  <td style="vertical-align: middle; text-align:left; font-size:20px;"><a href="detail?no={{recipes.recipeNo}}" style='text-decoration:none;'>{{recipes.title}}</a></td>
   <td style="vertical-align: middle;">
     <div style="border-radius: 70%; overflow: hidden; width:50px; height:50px;">
     <img src="/upload/member/{{member.photo}}" style="width:100%; height:100%; object-fit: cover;">
@@ -164,7 +164,7 @@ var template = Handlebars.compile(trTemplateSrc);
 
 function loadList() {
   $.get("/app/json/recipe/rank", function(data) {  
-    console.log(data.result);
+    console.log(data);
     var no = 0;
     for (var item of data.result) {
       item.rankNo = ++no;

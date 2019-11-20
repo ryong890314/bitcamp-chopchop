@@ -197,7 +197,6 @@ public class RecipeController {
         if (category.equals("0")) {
           recipes.add(recipe);
         } else if (recipe.getCategory().equals(category)) {
-          System.out.println(recipe.getTitle());
           recipes.add(recipe);
         }
       }
@@ -213,8 +212,7 @@ public class RecipeController {
     try {
       List<Recipe> originRecipes = recipeService.listSort(column);
       List<HashMap> recipes = new ArrayList<>();
-      
-      for (int i = 0; i < 20; i++) {
+      for (int i = 0; i < 5; i++) {
         HashMap<String,Object> hashMap = new HashMap<>();
         hashMap.put("recipes", originRecipes.get(i)); // recipes;
         hashMap.put("member", memberService.get(originRecipes.get(i).getMemberNo()));
@@ -282,11 +280,10 @@ public class RecipeController {
     try {
       Member member = memberService.get(loginUser.getMemberNo());
       List<Recipe> recipes = recipeService.listSort("recipe_id");
-      List<Recipe> myrecipes = new ArrayList<>(); // 내 레시피 목록을 담을 리스트 준비
+      List<Recipe> myrecipes = new ArrayList<>(); 
       for (Recipe recipe : recipes) {
         if (recipe.getMemberNo() != member.getMemberNo()) 
           continue;
-        System.out.println("스크랩수우우우" + recipe.getScrap());
         myrecipes.add(recipe);
       }
       return new JsonResult().setState(JsonResult.SUCCESS).setResult(myrecipes);

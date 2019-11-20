@@ -52,13 +52,13 @@
               <div>
                   <form name="frmRecipe" action='add' method='post' enctype='multipart/form-data'>
                   <input type="hidden" name="user_id" value="1">
-                      <div class="toobar"><strong class="title pull-left">레시피 등록 </strong><button class="btn btn-default pull-right">등록</button></div>
+                      <div class="toobar"><strong class="title pull-left">레시피 등록 </strong></div>
                       <div class="block-write">
                           <div class="block-content">
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">작성자</label></div>
 <%--                                   <div class="col-xs-10"><input type="text" name="nickname" class="form-control" placeholder="${loginUser.nickname}" readonly></div> --%>
-                                  <div class="col-xs-10"><label class="label">&nbsp${loginUser.nickname}</label></div>
+                                  <div class="col-xs-10"><label class="label">&nbsp${member.nickname}</label></div>
                               </div>
                               <div class="row form-group">
                                   <div class="col-xs-2"><label class="label">제목</label></div>

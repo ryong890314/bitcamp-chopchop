@@ -77,9 +77,9 @@
                                 <div class="form-group mb-30">
                                     <select id="selectColumn" name='column' class="form-control my-sort">
                                       <option value="recipe_id" selected="selected">리스트 보기</option>
-                                      <option value="view_count">Order by Views 조회순</option>
-                                      <option value="scrap">Order by Scraps 좋아요순</option>
-                                      <option value="created_date">Order by latest 최신순</option>
+                                      <option value="view_count">조회순</option>
+                                      <option value="scrap">좋아요순</option>
+                                      <option value="created_date">최신순</option>
                                     </select>
                                 </div>
                             </div>
@@ -112,10 +112,9 @@
   <p>{{otherInfo}}</p>
 </div>
 </script>
-
 <script id="t1" type="listHtml">
 <div class='w3-quarter my-list'>
-  <a href='detail?no={{recipeNo}}'>
+  <a href='detail?no={{recipeNo}}' style='text-decoration:none;'>
   <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
   <h3>{{title}}</a></h3>
     <p>{{otherInfo}}</p>
@@ -142,16 +141,16 @@ function loadList() {
   });
 }
 
-  $('.my-sort').on('change', function() {
-    var selectOption = $('.my-sort').val();
-    $.get("/app/json/recipe/listSort?column=" + selectOption, function(data) {  
-    $('.my-list').remove();
-    $('.view-more').remove();
-      for (var b of data.result) {
-        $(template(b)).appendTo(dbody);
-      }
-    });
-  }); 
+$('.my-sort').on('change', function() {
+  var selectOption = $('.my-sort').val();
+  $.get("/app/json/recipe/listSort?column=" + selectOption, function(data) {  
+  $('.my-list').remove();
+  $('.view-more').remove();
+    for (var b of data.result) {
+      $(template(b)).appendTo(dbody);
+    }
+  });
+}); 
   
 $('.my-category').on('change', function() {
   var selectOption = $('.my-category').val();
