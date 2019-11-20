@@ -79,6 +79,7 @@ public class RecipeController {
   @GetMapping("detail")
   public void detail(Model model, int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     Recipe recipe = recipeService.get(no);
+    recipeService.insertViewCount(no);
     Member member = memberService.get(recipe.getMemberNo()); // 작성자멤버
     Member viewer = memberService.get(loginUser.getMemberNo()); // 글을 보는사람
     RecipeLike recipeLike = new RecipeLike();
@@ -105,9 +106,11 @@ public class RecipeController {
   }
 
   @GetMapping("updateform")
-  public void updateform(Model model, int no) throws Exception {
+  public void updateform(@ModelAttribute("loginUser") Member loginUser, Model model, int no) throws Exception {
     Recipe recipe = recipeService.get(no);
+    Member member = memberService.get(loginUser.getMemberNo());
     model.addAttribute("recipe", recipe);
+    model.addAttribute("member", member);
   }
   
   @PostMapping("update")
@@ -156,16 +159,19 @@ public class RecipeController {
   }
 
   @GetMapping("list")
-  public void list(Model model,
+  public void list(@ModelAttribute("loginUser") Member loginUser, Model model,
       @RequestParam(defaultValue = "1") int pageNo,
       @RequestParam(defaultValue = "4") int pageSize) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
     List<Recipe> recipes = recipeService.list(pageNo, pageSize);
     model.addAttribute("recipes", recipes);
+    model.addAttribute("member", member);
   }
   
   @GetMapping("rank")
-  public void rank() {
-    
+  public void rank(@ModelAttribute("loginUser") Member loginUser, Model model) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
   }
 
   @GetMapping("myrecipe")
@@ -201,8 +207,10 @@ public class RecipeController {
   }
 
   @GetMapping("search")
-  public void search(Model model, String keyword) throws Exception {
+  public void search(@ModelAttribute("loginUser") Member loginUser,Model model, String keyword) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
     List<Recipe> recipes = recipeService.search(keyword);
     model.addAttribute("recipes", recipes);
+    model.addAttribute("member", member);
   }
 }
