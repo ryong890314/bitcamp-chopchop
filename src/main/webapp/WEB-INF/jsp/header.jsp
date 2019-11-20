@@ -66,15 +66,15 @@
 						<div class="classynav">
 							<ul>
 								<li><a class="nav-items" href="/app/index"
-									style="padding-left: 30px !important; font-size: 20px;">Home</a></li>
+									style="padding-left: 25px !important; font-size: 18px;">Home</a></li>
 								<li><a class="nav-items" href="/app/recipe/list"
-									style="padding-left: 30px !important; font-size: 20px;">ChopRecipe</a>
+									style="padding-left: 25px !important; font-size: 18px;">ChopRecipe</a>
 								<li><a class="nav-items" href="/app/product/list"
-									style="padding-left: 30px !important; font-size: 20px;">ChopStore</a></li>
+									style="padding-left: 25px !important; font-size: 18px;">ChopStore</a></li>
 								<li><a class="nav-items" href=""
-									style="padding-left: 30px !important; font-size: 20px;">ChopEvent</a></li>
+									style="padding-left: 25px !important; font-size: 18px;">ChopEvent</a></li>
 								<li><a class="nav-items" href="/app/recipe/rank"
-									style="padding-left: 30px !important; font-size: 20px;">ChopRank</a></li>
+									style="padding-left: 25px !important; font-size: 18px;">ChopRank</a></li>
 
 								<!-- Login/Register -->
 								<c:if test="${not empty loginUser}">
@@ -91,7 +91,7 @@
 								</c:if>
 								<c:if test="${not empty loginUser}">
 									<li><a href="/app/member/myprofile" class='nav-user'
-										style="font-size: 15px">Hello! ${loginUser.nickname}</a></li>
+										style="font-size: 15px;">Hello! ${loginUser.nickname}</a></li>
 								</c:if>
 								<c:if test="${not empty loginUser}">
 									<li><a class='classy-btn c' href='/app/auth/logout'

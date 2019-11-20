@@ -26,7 +26,7 @@
 						</div>
 						<div class="col-md-8">
 							<div class="card-body" style="margin-left:10px;">
-								<h5 class="card-title age"><b>${pet.name}</b></h5> 
+								<h5 class="card-title age"><b>${pet.name}</b></h5>
 								
 								<p class="card-text">
                   <span>${pet.age}세 &nbsp | &nbsp</span>
