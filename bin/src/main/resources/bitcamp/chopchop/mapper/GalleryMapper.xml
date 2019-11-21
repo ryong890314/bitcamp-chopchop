@@ -12,6 +12,20 @@
     <result column="created_date" property="createdDate"/>
   </resultMap>
   
+  <resultMap type="Gallery" id="GalleryWithPhotosMap">
+    <id column="gallery_id" property="galleryNo"/>
+    <result column="member_id" property="memberNo"/>
+    <result column="content" property="content"/>
+    <result column="view_count" property="viewCount"/>
+    <result column="created_date" property="createdDate"/>
+    
+    <collection property="galleryPhotos" ofType="GalleryPhoto">
+      <id column="photo_id" property="photoNo"/>
+      <result column="gallery_id" property="galleryNo"/>
+      <result column="file_path" property="filePath"/>
+    </collection>
+  </resultMap>
+  
   <select id="findAll" resultMap="GalleryMap">
     select gallery_id,member_id,content,view_count,created_date
     from gallery
@@ -22,6 +36,17 @@
     gallery_id, member_id, content, view_count, created_date
     from gallery
     where gallery_id=#{value}
+  </select>
+  
+  <select id="findWithPhotosBy" parameterType="int" resultMap="GalleryWithPhotosMap">
+    select
+      g.gallery_id, g.member_id, g.content, g.view_count, g.created_date,
+      p.photo_id, p.file_path
+    from 
+      gallery g
+        left outer join gallery_photo p on g.gallery_id=p.gallery_id
+    where
+      g.gallery_id=#{value}
   </select>
   
   <update id="increaseViewCount" parameterType="int">

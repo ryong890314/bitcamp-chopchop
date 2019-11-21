@@ -1,2 +1,12 @@
 /.gradle/
+/.gitignore
+/README.md
+/build.gradle
+/build/
+/docs/
+/gradle/
+/gradlew
+/gradlew.bat
+/settings.gradle
+/src/
 /main/
