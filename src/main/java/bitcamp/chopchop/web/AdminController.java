@@ -1,0 +1,54 @@
+package bitcamp.chopchop.web;
+
+import java.util.List;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import bitcamp.chopchop.domain.Member;
+import bitcamp.chopchop.domain.Pet;
+import bitcamp.chopchop.domain.Recipe;
+import bitcamp.chopchop.service.MemberService;
+import bitcamp.chopchop.service.OrderService;
+import bitcamp.chopchop.service.PetService;
+import bitcamp.chopchop.service.ProductService;
+import bitcamp.chopchop.service.RecipeService;
+
+@Controller
+@RequestMapping("/admin")
+@SessionAttributes("loginUser")
+public class AdminController {
+  
+  @Resource private RecipeService recipeService;
+  @Resource private MemberService memberService;
+  @Resource private PetService petService;
+  @Resource private ProductService productService;
+  @Resource private OrderService orderService;
+  
+  @GetMapping("member_list")
+  public void list(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    List<Member> members = memberService.list();
+    List<Pet> pets = petService.list();
+    model.addAttribute("member", member);
+    model.addAttribute("members", members);
+    model.addAttribute("pets", pets);
+  }
+  
+  @GetMapping("recipe_list")
+  public void list(HttpSession session, Model model,
+      @RequestParam(defaultValue = "1") int pageNo,
+      @RequestParam(defaultValue = "4") int pageSize) throws Exception {
+    if (session.getAttribute("loginUser") != null) {
+      Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
+      model.addAttribute("member", member);
+    }
+    List<Recipe> recipes = recipeService.list(pageNo, pageSize);
+    model.addAttribute("recipes", recipes);
+  }
+}

@@ -24,13 +24,6 @@ Favicon
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image" onload="sidebar_form();">
-          <input type="hidden" id="userphoto" value="${member.photo}" /> <img
-            src='/upload/member/${member.photo}' id="userThumb"
-            class="img-circle my-thumb"
-            style="width: 40px; height: 40px; margin-left: -5px;">
-        </div>
-
         <div class="info">
           <!-- user name받기~ -->
           <a href="/app/member/myprofile"
@@ -50,7 +43,7 @@ Favicon
               class="nav-icon fa fa-user"></i>
               <p>My Profile</p>
           </a></li>
-          <li class="nav-item"><a href="/app/recipe/myrecipe"
+          <li class="nav-item"><a href="/app/admin/recipe_list"
             class="nav-link" style="font-size: large;"> <i
               class="nav-icon fa fa-paw"></i>
               <p>My Recipe</p>
