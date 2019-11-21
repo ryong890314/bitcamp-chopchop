@@ -70,7 +70,7 @@
       <div class="col-md-6">
         <label for="exampleInput">수령인 이름</label>
         <input type="text" id="recipientName" class="form-control" name="name" value="" placeholder="이름을 입력하세요." required="required">
-        <div id="nameCheck" style="color:red;">"</div>
+        <div id="nameCheck" style="color:red;"></div>
       </div>
       </div>
       <div class="row">

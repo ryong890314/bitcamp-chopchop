@@ -271,7 +271,6 @@
           <span class="post-date">{{createdDate}}</span>
           <button style="" class="reply">수정</button>
           <button style="" class="comment-delete-btn">삭제</button>
-          <button style="" class="comment-delete-btn">답변</button>
         </div>
         <p class="update-content">{{content}}</p>
       </div>
@@ -436,12 +435,15 @@
     $('#modal-comment-content').val('');
   })
   
-  
+  var memberGrade = ${loginUser.grade};
   var commentMember = $('.member-no');
   var updateButton = $('.reply');
   var deleteButton = $('.comment-delete-btn');
   for(var i=0; i<commentMember.length; i++) {
     if(commentMember[i].innerText == loginCheck) {
+      updateButton[i].setAttribute("style", 'display:inline');
+      deleteButton[i].setAttribute("style", 'display:inline');
+    } else if(memberGrade == 0) {
       updateButton[i].setAttribute("style", 'display:inline');
       deleteButton[i].setAttribute("style", 'display:inline');
     }
@@ -481,7 +483,8 @@
         };
         console.log(commentJson);
         $('#fuck').append(commentTemplate(commentJson));
-        
+        $('#title').val("");
+        $('#message').val("");
       }
     })
   });
@@ -522,10 +525,10 @@
   });
   
   // 댓글 삭제
-  $('.comment-delete-btn').on('click', function (e) {
+  $(document).on('click', '.comment-delete-btn', function (e) {
     alert('삭제하시겠습니까?')
     var commentDiv = $(this.parentNode.parentNode.parentNode.parentNode);
-    var commentNo = $(this.parentNode).find('span[class="comment-no"]').text();
+    var commentNo = $(this.parentNode).find('a[class="comment-no"]').text();
     console.log(commentDiv);
     $.ajax({
       url:'/app/comment/commentDelete',
@@ -540,10 +543,14 @@
   
   // 관리자 기능
   var adminCheck = ${loginUser.grade};
+  var commentAnswer = $('.comment-answer-btn');
   if(adminCheck == 0) {
     console.log("들어오지마");
     console.log(adminCheck);
     $('#update-product').attr('style', 'display:inline');
+    for(var i=0; i<commentAnswer.length;i++){
+      commentAnswer[i].setAttribute('style', 'display:inline')
+    }
   }
   </script>
 </body>
