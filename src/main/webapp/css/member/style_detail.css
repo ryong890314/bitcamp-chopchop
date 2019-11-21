@@ -1,3 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+
+.recipe-h3 {
+  font-family: 'Oswald' !important;
+  text-transform: uppercase;
+  font-size: 37px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  margin: 0 0 8px !important;
+}
 
 .imgThumb {
  width: 200px;

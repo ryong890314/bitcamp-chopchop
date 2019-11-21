@@ -23,7 +23,7 @@
 
   <div class="w2-main w2-content px-0" style="margin: 0 auto; margin-bottom: 200px;">
     <div class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
-      <h3>My Bookmark</h3>
+      <h3 class="recipe-h3">My Bookmark</h3>
       <span class="rInfo-span">
       <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Bookmark</span> 
     </div>
