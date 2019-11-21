@@ -63,7 +63,3 @@ dependencies {
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> f2db59b7f3aad8c2471741ed81e1d0764b29ed15
