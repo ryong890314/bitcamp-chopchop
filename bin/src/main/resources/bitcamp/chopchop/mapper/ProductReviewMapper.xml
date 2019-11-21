@@ -40,6 +40,12 @@
       <result column="title" property="title"/>
     </collection>
 
+    <collection property="options" ofType="ProductOption">
+      <id column="option_id" property="optionNo"/>
+      <result column="product_id" property="productNo"/>
+      <result column="otitle" property="title"/>
+    </collection>
+
   </resultMap>  
   
   <select id="findAll" parameterType="int" resultMap="ProductReviewMap">
@@ -123,11 +129,13 @@
       r.rating,
       r.created_date,
       m.member_id, 
-      p.title
+      p.title, 
+      o.title otitle
     from
       product_review r
       left outer join member m on r.member_id = m.member_id
       left outer join product p on p.product_id = r.product_id
+      left outer join product_option o on p.product_id = o.product_id
       
     where
       m.member_id=#{value}

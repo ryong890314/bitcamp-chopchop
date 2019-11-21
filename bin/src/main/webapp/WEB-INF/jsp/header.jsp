@@ -18,9 +18,9 @@
 					<div class="top-social-info">
 						<a href="#" data-toggle="tooltip" data-placement="bottom"
 							title="Pinterest"><i class="fa fa-pinterest"
-							aria-hidden="true"></i></a> <a href="#" data-toggle="tooltip"
+							aria-hidden="true"></i></a> <a href="https://www.facebook.com/" data-toggle="tooltip"
 							data-placement="bottom" title="Facebook"><i
-							class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#"
+							class="fa fa-facebook" aria-hidden="true"></i></a> <a href="https://twitter.com/"
 							data-toggle="tooltip" data-placement="bottom" title="Twitter"><i
 							class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"
 							data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i
@@ -59,7 +59,6 @@
 					<!-- Logo Area -->
 					<!--            <a style="padding-top: 30px;" href="/app/member/list"><img
               src="/img/core-img/choplogo.png" style="width: 80px;" alt=""></a> -->
-<<<<<<< HEAD
 					<!-- Menu -->
 					<div class="classy-menu"
 						style="padding-top: 37px; padding-left: 30px;">
@@ -76,18 +75,6 @@
 									style="padding-left: 25px !important; font-size: 18px;">ChopEvent</a></li>
 								<li><a class="nav-items" href="/app/recipe/rank"
 									style="padding-left: 25px !important; font-size: 18px;">ChopRank</a></li>
-=======
-            <!-- Menu -->
-            <div class="classy-menu" style="padding-top: 37px;">
-              <!-- Nav Start -->
-              <div class="classynav">
-                <ul>
-                  <li><a class="nav-items" href="/app/index">Home</a></li>
-                  <li><a class="nav-items" href="/app/recipe/list">ChopRecipe</a>
-                  <li><a class="nav-items" href="">ChopStore</a></li>
-                  <li><a class="nav-items" href="">ChopTalk</a></li>
-                  <li><a class="nav-items" href="">ChopRank</a></li>
->>>>>>> 90b7bdd9bd0819cfd35d7a18410c5bbf0bdfecf6
 
 								<!-- Login/Register -->
 								<c:if test="${not empty loginUser}">
@@ -100,15 +87,15 @@
 								</c:if>
 								<c:if test="${empty loginUser}">
 									<li><a class='classy-btn login-area'
-										href='/app/auth/signin' style="font-size: 15px">Sign in</a></li>
+										href='/app/auth/signin' style="font-size: 15px; margin-left: 167px;">Sign in</a></li>
 								</c:if>
 								<c:if test="${not empty loginUser}">
 									<li><a href="/app/member/myprofile" class='nav-user'
-										style="font-size: 15px;">Hello! ${loginUser.nickname}</a></li>
+										style="font-size: 15px;">Hello! ${member.nickname}</a></li>
 								</c:if>
 								<c:if test="${not empty loginUser}">
 									<li><a class='classy-btn c' href='/app/auth/logout'
-										style="font-size: 15px">Sign out</a></li>
+										style="font-size: 15px;  margin-left: 100px;">Sign out</a></li>
 								</c:if>
 							</ul>
 						</div>

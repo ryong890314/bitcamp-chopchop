@@ -72,6 +72,12 @@
       <result column="recipe_id" property="recipeNo"/>
       <result column="member_id" property="memberNo"/>
     </collection>
+    
+    <!--  Member 객체 연결 -->
+    <collection property="members" ofType="Member">
+      <id column="member_id" property="memberNo"/>
+      <result column="nickname" property="nickname"/>
+    </collection>
   </resultMap>
   
   <select id="findAll" resultMap="RecipeMap" parameterType="map">
@@ -253,7 +259,23 @@
   <!-- ========================================================================== -->
   
   <select id="mainTop" resultMap="RecipeMap">
-    SELECT * FROM recipe ORDER BY view_count DESC LIMIT 5
+    SELECT 
+      r.recipe_id,
+      r.member_id,
+      r.title,
+      r.created_date,
+      r.view_count,
+      r.content,
+      r.thumbnail,
+      r.category,
+      r.tag,
+      r.scrap,
+      r.other_info,
+      m.member_id, 
+      m.nickname
+    FROM 
+      recipe r left join member m on r.member_id = m.member_id  
+    ORDER BY view_count DESC LIMIT 5
   </select>
 
  </mapper>
