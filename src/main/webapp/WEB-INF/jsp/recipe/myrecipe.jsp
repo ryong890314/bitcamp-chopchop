@@ -11,7 +11,7 @@
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-  <div class="w2-main w2-content px-0" style="margin-left: 530px; margin-bottom: 360px;">
+  <div class="w2-main w2-content px-0" style="margin: 0 auto; margin-bottom: 200px;">
     <div
       class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3>My Recipe</h3>

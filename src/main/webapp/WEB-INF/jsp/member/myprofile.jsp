@@ -25,7 +25,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper" style="width: 1100px;margin: 0px auto;">
+		<div class="content-wrapper" style="width: 1100px;margin: 0 auto;height: 700px; min-height: 700px;">
       <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
         <h3>My profile</h3>
          <span class="mInfo-span">

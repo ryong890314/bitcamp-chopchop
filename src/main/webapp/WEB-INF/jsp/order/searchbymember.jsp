@@ -52,12 +52,11 @@
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-<%--   <jsp:include page="../member/mypage_sidebar.jsp" /> --%>
-  <div id="orderBody" style="max-width: 1200px;margin-left: 530px;margin-bottom: 300px;">
+  <div id="orderBody" style="margin: 0 auto; margin-bottom: 200px;">
   <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
       <h3>My Order</h3>
        <span style="float: right;font-size: 14px;">
-       <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Order</a></span> 
+       <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Order</span> 
     </div>
     <div class="d-flex align-content-start flex-wrap">
       <table class='table table-hover' style="text-align:center;">
@@ -68,7 +67,6 @@
           <th>최종가격</th>
           <th>주문일</th>
           <th>상태</th>
-          <th></th>
         </tr>
         <c:forEach items="${orderProducts2}" var="orderProduct">
           <tr>
