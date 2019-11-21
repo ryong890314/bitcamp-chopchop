@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -159,19 +160,23 @@ public class RecipeController {
   }
 
   @GetMapping("list")
-  public void list(@ModelAttribute("loginUser") Member loginUser, Model model,
+  public void list(HttpSession session, Model model,
       @RequestParam(defaultValue = "1") int pageNo,
       @RequestParam(defaultValue = "4") int pageSize) throws Exception {
-    Member member = memberService.get(loginUser.getMemberNo());
+    if (session.getAttribute("loginUser") != null) {
+      Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
+      model.addAttribute("member", member);
+    }
     List<Recipe> recipes = recipeService.list(pageNo, pageSize);
     model.addAttribute("recipes", recipes);
-    model.addAttribute("member", member);
   }
   
   @GetMapping("rank")
-  public void rank(@ModelAttribute("loginUser") Member loginUser, Model model) throws Exception {
-    Member member = memberService.get(loginUser.getMemberNo());
-    model.addAttribute("member", member);
+  public void rank(HttpSession session, Model model) throws Exception {
+    if (session.getAttribute("loginUser") != null) {
+      Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
+      model.addAttribute("member", member);
+    }
   }
 
   @GetMapping("myrecipe")
