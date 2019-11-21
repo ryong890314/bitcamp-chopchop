@@ -9,10 +9,9 @@
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
 </head>
-<jsp:include page="../member/mypage_sidebar.jsp" />
 <jsp:include page="../header.jsp" />
 <body onload="formLoad();">
-	<div class="content-wrapper">
+	<div class="content-wrapper" style="width: 1100px;margin: 0px auto;"> 
 		<div class="container memb-info px-0">
 			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
         <h3>My Information</h3>
