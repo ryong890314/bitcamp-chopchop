@@ -9,7 +9,7 @@
 
 <head>
   <title>상품 상세</title>
-  <!-- <link rel='stylesheet' href='/css/product/style.css'> -->
+  <link rel='stylesheet' href='/css/product/style.css'>
   <link rel='stylesheet' href='/css/member/style_footer.css'>
   <link rel='stylesheet' href='/css/member/style-header.css'>
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>

@@ -49,9 +49,14 @@ public class DefaultRecipeService implements RecipeService {
     if (recipe == null) {
       throw new Exception("데이터가 없습니다!");
     }
-    recipeDao.increaseViewCount(no);
     return recipe;
   }
+  
+  @Override
+  public void insertViewCount(int no) throws Exception {
+    recipeDao.increaseViewCount(no);
+  }
+  
 
   @Override
   public List<Recipe> list(int pageNo, int pageSize) throws Exception {

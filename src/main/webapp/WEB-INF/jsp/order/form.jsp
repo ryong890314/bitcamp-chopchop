@@ -201,10 +201,10 @@
   <jsp:include page="../footer.jsp"/>
   
   <script>
-//     var totalPrice = document.getElementsByClassName('totalPrice');
-//     for(var i=0;i<totalPrice.length;i++){
-//       totalPrice[i].innerText = parseInt(totalPrice[i].innerText);
-//     }
+    var totalPrice = document.getElementsByClassName('totalPrice');
+    for(var i=0;i<totalPrice.length;i++){
+      totalPrice[i].innerText = parseInt(totalPrice[i].innerText);
+    }
     
     var priceSum = 0;
     for (var i=0; i<totalPrice.length; i++) {

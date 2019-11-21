@@ -13,10 +13,11 @@ public class ProductReview {
   private int rating;
   private Date createdDate;
 
-private String writer;
+  private String writer;
 
   private List<Product> products;
   private List<Member> members;
+  private List<ProductOption> options;
 
   public int getProductReviewNo() {
     return productReviewNo;
@@ -101,8 +102,16 @@ private String writer;
   @Override
   public String toString() {
     return "ProductReview [content=" + content + ", createdDate=" + createdDate + ", filePath=" + filePath
-        + ", memberNo=" + memberNo + ", members=" + members + ", productNo=" + productNo + ", productReviewNo="
-        + productReviewNo + ", products=" + products + ", rating=" + rating + ", writer=" + writer + "]";
+        + ", memberNo=" + memberNo + ", members=" + members + ", options=" + options + ", productNo=" + productNo
+        + ", productReviewNo=" + productReviewNo + ", products=" + products + ", rating=" + rating + "]";
+  }
+
+  public List<ProductOption> getOptions() {
+    return options;
+  }
+
+  public void setOptions(List<ProductOption> options) {
+    this.options = options;
   }
   
 }

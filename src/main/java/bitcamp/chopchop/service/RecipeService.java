@@ -1,7 +1,6 @@
 package bitcamp.chopchop.service;
 
 import java.util.List;
-import bitcamp.chopchop.domain.Cooking;
 import bitcamp.chopchop.domain.Recipe;
 import bitcamp.chopchop.domain.RecipeLike;
 
@@ -10,6 +9,7 @@ public interface RecipeService {
   List<Recipe> listSort(String column) throws Exception; // 정렬해서 조회
   
   Recipe get(int no) throws Exception;
+  void insertViewCount(int no) throws Exception;
   void insert(Recipe recipe) throws Exception;
   void update(Recipe recipe) throws Exception;
   void deleteFile(int[] fileNo, int no) throws Exception;

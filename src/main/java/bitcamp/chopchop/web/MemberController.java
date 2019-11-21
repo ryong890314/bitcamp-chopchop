@@ -97,7 +97,6 @@ public class MemberController {
 
   @GetMapping("detail")
   public void detail(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    
     Member member = memberService.get(loginUser.getMemberNo());
     List<Pet> pets = petService.getPets(loginUser.getMemberNo());
     model.addAttribute("member", member);
@@ -108,7 +107,7 @@ public class MemberController {
   public String update(Member member, MultipartFile file) throws Exception {
     member.setPhoto(writeFile(file));
     memberService.update(member);
-    return "redirect:list";
+    return "redirect:myprofile";
   }
 
   private String writeFile(MultipartFile file) throws Exception {
@@ -135,6 +134,5 @@ public class MemberController {
   public @ResponseBody int uptPw(String password, int memberNo) throws Exception {
     return memberService.uptPw(password, memberNo);
   }
-
-
+  
 }

@@ -7,6 +7,7 @@
 <html>
 <head>
   <title>상품 목록</title>
+  <link rel="stylesheet" href="/css/product/style.css">
   <link rel="stylesheet" href="/css/main/main_style.css">
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>

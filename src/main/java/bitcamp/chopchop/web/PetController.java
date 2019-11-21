@@ -7,16 +7,24 @@ import javax.servlet.ServletContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
+import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.PetService;
 
 @Controller
 @RequestMapping("/pet")
+@SessionAttributes("loginUser")
 public class PetController {
 
+  @Resource
+  private MemberService memberService;
+  
   @Resource
   private PetService petService;
 
@@ -27,8 +35,10 @@ public class PetController {
   }
 
   @GetMapping("form")
-  public void form(Model model, int no) {
-    model.addAttribute("memberNo", no);
+  public void form(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
+    System.out.println("일단 무사히  끝냄~ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
   }
   
   @GetMapping("updateForm")
@@ -42,7 +52,7 @@ public class PetController {
   public String add(Pet pet, MultipartFile file) throws Exception {
     pet.setFilePath(writeFile(file));
     petService.insert(pet);
-    return "redirect:../member/detail?no=" + pet.getMemberNo();
+    return "redirect:../member/detail";
   }
 
 //  @GetMapping("list")
@@ -61,7 +71,7 @@ public class PetController {
   public String update(Pet pet, MultipartFile file) throws Exception {
     pet.setFilePath(writeFile(file));
     petService.update(pet);
-    return "redirect:/app/member/list";
+    return "redirect:/app/member/detail";
   }
 
   @GetMapping("delete")
