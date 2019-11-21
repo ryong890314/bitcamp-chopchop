@@ -13,6 +13,7 @@
 #orderBody {
 	width: 1100px;
 }
+
 .rInfo {
   border-bottom: 2px solid #404040;
   padding-bottom: 5px;
@@ -47,6 +48,15 @@
   color: #404040 !important;
   font-size: 18px;
 }
+
+.recipe-h3 {
+  font-family: 'Oswald' !important;
+  text-transform: uppercase;
+  font-size: 37px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  margin: 0 0 8px !important;
+}
 </style>
 
 </head>
@@ -56,7 +66,7 @@
   <div id="orderBody" style="margin: 0 auto; margin-bottom: 200px;">
     <div
       class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
-      <h3>My Review</h3>
+      <h3 class="recipe-h3">My Review</h3>
       <span class="rInfo-span"> <a href="/app/member/myprofile"
         class="mypage-tagA">My Page</a>&nbsp>&nbspMy Review
       </span>

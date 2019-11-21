@@ -14,7 +14,7 @@
 	<div class="content-wrapper" style="width: 1100px;margin: 0px auto;min-height: 680px;"> 
 		<div class="container memb-info px-0">
 			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
-        <h3>My Information</h3>
+        <h3 class="recipe-h3">My Information</h3>
 			   <span class="mInfo-span">
          <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Information</span> 
       </div>

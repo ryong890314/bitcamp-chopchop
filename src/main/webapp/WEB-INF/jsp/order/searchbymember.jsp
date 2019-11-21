@@ -47,6 +47,21 @@
     font-size: inherit;
     color:#404040;
   }
+  
+  .recipe-h3 {
+  font-family: 'Oswald' !important;
+  text-transform: uppercase;
+  font-size: 37px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  margin: 0 0 8px !important;
+}
+
+.rInfo-span {
+  float: right;
+  font-size: 14px;
+  font-weight: 600;
+}
   </style>
 </head>
 <jsp:include page="../header.jsp" />
@@ -54,8 +69,8 @@
 <body>
   <div id="orderBody" style="margin: 0 auto; margin-bottom: 200px;">
   <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
-      <h3>My Order</h3>
-       <span style="float: right;font-size: 14px;">
+      <h3 class="recipe-h3">My Order</h3>
+       <span class="rInfo-span">
        <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Order</span> 
     </div>
     <div class="d-flex align-content-start flex-wrap">
