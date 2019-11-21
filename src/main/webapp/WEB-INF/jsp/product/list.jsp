@@ -16,6 +16,26 @@
   column-width: 1100px;
   column-gap: 10px;  
 }
+
+#prod_columns figure {
+  height: 460px;
+  display: inline-block;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.product-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    width: 230px;
+    line-height: 2em;
+    height: 4.0em;
+}
   </style>
 
 </head>
