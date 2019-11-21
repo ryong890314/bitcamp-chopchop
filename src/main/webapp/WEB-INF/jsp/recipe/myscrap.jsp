@@ -12,7 +12,7 @@
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
 
-  <div class="w2-main w2-content px-0" style="margin-left: 530px;">
+  <div class="w2-main w2-content px-0" style="margin-left: 530px; margin-bottom: 360px;">
     <div class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3>My Bookmark</h3>
       <span class="rInfo-span">
