@@ -8,6 +8,15 @@
 <link rel="stylesheet" href="/css/recipe/myrecipe.css">
 <title>MY SCRAP RECIPES</title>
 </head>
+<!-- mypage_sidebar start-->
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- mypage_sidebar  end -->
+
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>

@@ -2,93 +2,72 @@
   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- Font Awesome -->
-<!-- <link rel="stylesheet"
-  href="/js/plugins/fontawesome-free/css/all.min.css">
-Ionicons
-<link rel="stylesheet"
-  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-Theme style
-<link rel="stylesheet" href="/css/member/adminlte.min.css">
-Favicon
-<link rel="icon" href="/img/core-img/favicon.ico"> -->
-<!-- </head> -->
-
-<div class="hold-transition sidebar-mini layout-fixed">
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image" onload="sidebar_form();">
-          <input type="hidden" id="userphoto" value="${member.photo}" /> <img
-            src='/upload/member/${member.photo}' id="userThumb"
-            class="img-circle my-thumb"
-            style="width: 40px; height: 40px; margin-left: -5px;">
+<!-- Main content -->
+      <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row" style="width:1100px; margin:auto auto 50px auto;">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box">
+              <div class="inner">
+                <h4 class="myprofile-h4">Recipe</h4>
+                <p>All my recipes</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-ios-paw"></i>
+              </div>
+              <a href="/app/recipe/myrecipe" class="small-box-footer">More
+                info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box">
+              <div class="inner">
+                <h4 class="myprofile-h4">Review</h4>
+                <p>All my reviews</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-ios-book"></i>
+              </div>
+              <a href="/app/mypage/myreview" class="small-box-footer">More info <i
+                class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box ">
+              <div class="inner">
+                <h4 class="myprofile-h4">Order</h4>
+                <p>All my orders</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-ios-list"></i>
+              </div>
+              <a href="/app/order/searchbymember" class="small-box-footer">More
+                info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box">
+              <div class="inner">
+                <h4 class="myprofile-h4">Bookmark</h4>
+                <p>All my bookmarks</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bookmark"></i>
+              </div>
+              <a href="/app/recipe/myscrap" class="small-box-footer">More
+                info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- ./col -->
         </div>
-
-        <div class="info">
-          <!-- user name받기~ -->
-          <a href="/app/member/myprofile"
-            style="font-size: large; padding-left: 5px;" class='nav-user'>${member.nickname}</a>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column"
-          data-widget="treeview" role="menu" data-accordion="false">
-
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item"><a href="/app/member/detail"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-user"></i>
-              <p>My Profile</p>
-          </a></li>
-          <li class="nav-item"><a href="/app/recipe/myrecipe"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-paw"></i>
-              <p>My Recipe</p>
-          </a></li>
-          <li class="nav-item"><a href="/app/mypage/myreview"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-book"></i>
-              <p>My Review</p>
-          </a></li>
-          <li class="nav-item"><a href="/app/order/searchbymember"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-list"></i>
-              <p>My Order</p>
-          </a></li>
-          <li class="nav-item"><a href="/app/recipe/myscrap"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-bookmark"></i>
-              <p>My Bookmark</p>
-          </a></li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-</div>
-
-<!-- jQuery -->
-<!--   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="/js/jquery-ui/jquery-ui.min.js"></script>
-  
-  <script>
-    function formLoad() {
-      if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
-        $("#userThumb").attr("src", "/upload/member/info_photo.jpg");
-      } else {
-        $("#userThumb").attr("src",
-            "/upload/member/" + $("#userphoto").val());
-      }
-    }
-  </script>  -->
+        <!-- /.row -->
+      </section>

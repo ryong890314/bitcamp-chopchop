@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 <title>MY RECIPES</title>
 <link rel="stylesheet" href="/css/recipe/myrecipe.css">
+<!-- mypage_sidebar start-->
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- mypage_sidebar  end -->
 </head>
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
@@ -22,6 +30,7 @@
     <div class="w2-row-padding w2-padding-16 w2-center" id="food">
     </div>
   </div>
+
 
   <script id="t1" type="listHtml">
 {{#each result}}
