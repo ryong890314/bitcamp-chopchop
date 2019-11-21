@@ -3,11 +3,9 @@ plugins {
     id 'eclipse-wtp'
     id 'war'
 }
-
 repositories {
     jcenter()
 }
-
 dependencies {
     // MariaDB JDBC Driver
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.3'
@@ -63,4 +61,3 @@ dependencies {
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'
 }
-

@@ -32,11 +32,10 @@
 
 </head>
 <jsp:include page="../header.jsp" />
-<jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
 
 
-	<div id='productBody' style="margin-left: 550px; margin-bottom: 120px;">
+	<div id='productBody'>
 
 		<div style="margin-bottom: 5px;">
 			<button type='button' class="btn btn-secondary btn-sm"
