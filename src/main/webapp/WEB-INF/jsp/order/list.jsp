@@ -62,7 +62,7 @@
   <td>${order.detailAddress}</td>
   <td>${order.paymentDate}</td>
   <td>${order.paymentMethod}</td>
-  <td>${order.shipDate}</td>
+  <td>${order.shipStatus}</td>
   <td>${order.invoice}</td>
 </tr>
 </c:forEach>
