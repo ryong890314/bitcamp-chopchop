@@ -3,6 +3,7 @@ package bitcamp.chopchop.web;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,9 +46,7 @@ public class ProductController {
   public void form() {}
 
   @GetMapping("list")
-  public void list(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    Member member = memberService.get(loginUser.getMemberNo());
-    model.addAttribute("loginUser", member);
+  public void list(Model model, HttpSession session, Member loginUser) throws Exception {
     model.addAttribute("products", productService.list());
   }
 

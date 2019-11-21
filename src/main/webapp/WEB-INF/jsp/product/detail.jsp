@@ -518,7 +518,7 @@
   
   // 댓글 삭제
   $('.comment-delete-btn').on('click', function (e) {
-//     alert('삭제하시겠습니까?')
+    alert('삭제하시겠습니까?')
     var commentDiv = $(this.parentNode.parentNode.parentNode.parentNode);
     var commentNo = $(this.parentNode).find('span[class="comment-no"]').text();
     console.log(commentDiv);
