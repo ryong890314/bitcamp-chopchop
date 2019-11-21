@@ -19,7 +19,6 @@ import bitcamp.chopchop.service.PetService;
 
 @Controller
 @RequestMapping("/pet")
-@SessionAttributes("loginUser")
 public class PetController {
 
   @Resource
@@ -35,10 +34,8 @@ public class PetController {
   }
 
   @GetMapping("form")
-  public void form(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    Member member = memberService.get(loginUser.getMemberNo());
-    model.addAttribute("member", member);
-    System.out.println("일단 무사히  끝냄~ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+  public void form(Model model, int no) throws Exception {
+    model.addAttribute("memberNo", no);
   }
   
   @GetMapping("updateForm")
