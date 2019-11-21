@@ -71,7 +71,6 @@
         <th style="width: 140px">평점</th>
         <th style="width: 140px">작성일</th>
       </tr>
-      
       <c:forEach items="${productReviews}" var="productReview" varStatus="status">
         <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
           <tr class="tr-test">

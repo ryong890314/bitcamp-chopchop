@@ -32,13 +32,16 @@ public class Recipe implements Serializable {
   // 자식테이블 'RecipeComment"의 데이터를 담을 RecipeComment 객체 목록.
   private List<RecipeComment> recipeComments;
   
+  private List<Member> members;
+  
   @Override
   public String toString() {
     return "Recipe [recipeNo=" + recipeNo + ", memberNo=" + memberNo + ", title=" + title
         + ", createdDate=" + createdDate + ", viewCount=" + viewCount + ", content=" + content
         + ", thumbnail=" + thumbnail + ", category=" + category + ", tag=" + tag + ", otherInfo="
         + otherInfo + ", scrap=" + scrap + ", ingredients=" + ingredients + ", cookings=" + cookings
-        + ", recipeLikes=" + recipeLikes + ", recipeComments=" + recipeComments + "]";
+        + ", recipeLikes=" + recipeLikes + ", recipeComments=" + recipeComments + ", members="
+        + members + "]";
   }
   public List<RecipeLike> getRecipeLikes() {
     return recipeLikes;
@@ -130,5 +133,12 @@ public class Recipe implements Serializable {
   public void setRecipeComments(List<RecipeComment> recipeComments) {
     this.recipeComments = recipeComments;
   }
+  public List<Member> getMembers() {
+    return members;
+  }
+  public void setMembers(List<Member> members) {
+    this.members = members;
+  }
+  
 
 }
