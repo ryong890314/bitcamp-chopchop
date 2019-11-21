@@ -103,12 +103,10 @@
     </div>
 </div>
 
-  <button type="button" onclick="location.href='form'">새 상품</button>
-  
   <div class="bueno-post-area mb-70">
       <div class="container">
         <div class="row ml-0" >
-            <div id="prod_columns"style="align-content: center;">
+            <div id="prod_columns" style="align-content: center;">
               <c:forEach items="${products}" var="product">
                 <figure>
                   <a href="/app/product/detail?no=${product.productNo}"><img src="/upload/product/${product.files[0].filePath}"></a>
@@ -132,6 +130,7 @@
               </c:forEach>
             </div>
         </div>
+        <br><button type="button" id="new-product" class="btn btn-success" onclick="location.href='form'" style="display:none;">새 상품</button>
       </div>
     </div>
 
@@ -147,11 +146,17 @@
 <!-- Active js -->
 <script src="../js/active.js"></script>
 
-  <!-- <script>
-    var totalPrice = document.getElementsByClassName('totalPrice');
-    for(var i of totalPrice) {
-      i.innerText = parseInt(i.innerText)
-    }
-  </script> -->
+<script>
+
+  var adminCheck = ${loginUser.grade};
+  if(adminCheck == 0) {
+    $('#new-product').attr('style', 'inline');
+  }
+  
+  
+</script>
+
+
+
 </body>
 </html>

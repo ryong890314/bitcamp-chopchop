@@ -9,7 +9,7 @@
 
 <head>
   <title>상품 상세</title>
-  <link rel='stylesheet' href='/css/product/style.css'>
+  <link rel='stylesheet' href='/css/recipe/comments.css'>
   <link rel='stylesheet' href='/css/member/style_footer.css'>
   <link rel='stylesheet' href='/css/member/style-header.css'>
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
@@ -78,8 +78,6 @@
 
   <div>
     <div id="productBody">
-      <a href="updateform?no=${product.productNo}">수정</a>
-
       <div class="row">
         <div class="col-md-7">
           <!-- Blog Thumbnail -->
@@ -198,6 +196,11 @@
 
       <hr class="my-4">
       <jsp:include page="../comment/productCommentList.jsp" />
+    <br><br>
+    <form action="updateform" method="post">
+      <input type="hidden" name="no" value="${product.productNo}">
+      <button id="update-product" class="btn btn-success" style="display:none;">수정</button>
+    </form>
     </div>
   </div>
 
@@ -227,9 +230,7 @@
   </div>
 </div>
 <!-- Modal -->
-  
-
-
+<jsp:include page="../footer.jsp" />
 
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 <script id="option-template" type="text/x-handlebars-template">
@@ -281,6 +282,7 @@
 </script>
 
 <script>
+
   var dataNo = 0;
   var productPrice = parseInt(${product.price * (100 - product.discount) / 100});
   
@@ -394,6 +396,9 @@
         contentType: 'application/json',
         success: function(response) {
           alert("장바구니에 상품을 담았습니다.");
+        },
+        error: function(response) {
+          alert('해당 상품이 장바구니에 있습니다.');
         }
       });
     }
@@ -532,7 +537,14 @@
       }
     });
   })
-
+  
+  // 관리자 기능
+  var adminCheck = ${loginUser.grade};
+  if(adminCheck == 0) {
+    console.log("들어오지마");
+    console.log(adminCheck);
+    $('#update-product').attr('style', 'display:inline');
+  }
   </script>
 </body>
 </html>

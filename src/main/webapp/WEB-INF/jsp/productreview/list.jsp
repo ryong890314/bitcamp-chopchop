@@ -318,6 +318,9 @@
       var updateIcon = $(this)[0].childNodes[1].children[0].children[1].children[0].children[1].children[4].children[1];
       deleteIcon.style.display = 'none';
       updateIcon.style.display = 'none';
+      $(document).on('load', function(e){
+        $('#update-product').attr('style', 'hidden');
+      })
 
     });
 

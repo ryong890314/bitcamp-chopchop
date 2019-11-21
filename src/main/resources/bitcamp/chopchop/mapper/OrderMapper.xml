@@ -156,4 +156,14 @@
       order_id=#{orderNo}
   </update>
   
+  <update id="statusUpdate" parameterType="Order">
+    update
+      store_order
+    set
+      ship_status=#{shipStatus}
+    where
+      order_id=#{orderNo}
+  </update>
+  
+  
 </mapper>
