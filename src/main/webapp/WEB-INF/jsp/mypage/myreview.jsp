@@ -53,9 +53,7 @@
 <jsp:include page="../header.jsp" />
 	<jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-  <jsp:include page="../header.jsp" />
-<%--   <jsp:include page="../member/mypage_sidebar.jsp" /> --%>
-  <div id="orderBody">
+  <div id="orderBody" style="margin-left: 530px;">
     <div
       class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3>My Review</h3>
