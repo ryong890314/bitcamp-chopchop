@@ -16,20 +16,13 @@
     padding-top: 10px;
     margin: auto auto;
   }
-
-  #productBody {
+  
+  form {
     width: 1100px;
+    padding-top: 10px;
     margin: auto auto;
-    text-align: center;
-    vertical-align: middle;
   }
 
-  #productList {
-    padding: 5px;
-    margin: 5px;
-    text-align: center;
-    float: left;
-  }
   </style>
 
 </head>
@@ -47,18 +40,18 @@
           <th></th>
         </tr>
           <tr>
-            <td><input type='text' name='postNo' value='${order.postNo}'></td>
-            <td><input type='text' name='baseAddress' value='${order.baseAddress}'></td>
-            <td><input type='text' name='detailAddress' value='${order.detailAddress}'></td>
-            <td><input type='text' name='tel' value='${order.tel}'></td>
+            <td><input type='text' class="form-control"name='postNo' value='${order.postNo}'></td>
+            <td><input type='text' class="form-control" name='baseAddress' value='${order.baseAddress}'></td>
+            <td><input type='text' class="form-control" name='detailAddress' value='${order.detailAddress}'></td>
+            <td><input type='text' class="form-control" name='tel' value='${order.tel}'></td>
             <td></td>
           </tr>
       </table>
       <input type="submit" value='수정'>
+      <button type="button" id="cancelBtn" onclick="location.href='searchbymember'">취소</button>
       </form>
     </div>
   </div>
-  <button id="cancelBtn" onclick="location.href='searchbymember'">취소</button>
   <jsp:include page="../footer.jsp"/>
   
 </body>
@@ -74,7 +67,6 @@
 
 
 
-s
 
 
 

@@ -14,7 +14,7 @@
   object-fit: cover;
  }
 
- a {
+ .my-list a {
   color: #000000;
  }
    /* :: 3.7.0 bueno Button */
