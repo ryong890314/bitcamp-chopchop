@@ -17,23 +17,23 @@
         <!-- Hero Post Slides -->
         <div class="hero-post-slides owl-carousel">
             <!-- Single Slide -->
-            <c:forEach items="${recipeList}" var="recipe">
+            <c:forEach items="${recipeList}" var="recipes">
             <div class="single-slide">
                 <!-- Blog Thumbnail -->
                 <div class="blog-thumbnail">
-                    <a href="/app/recipe/detail?no=${recipe.recipeNo}">
-                    <img class="recipe_thumb tagA" src="/upload/recipe/${recipe.thumbnail}"></a>
+                    <a href="/app/recipe/detail?no=${recipes.recipe.recipeNo}">
+                    <img class="recipe_thumb tagA" src="/upload/recipe/${recipes.recipe.thumbnail}"></a>
                 </div>
                 <!-- Blog Content -->
                 <div class="blog-content-bg" >
-                  <input type="hidden" name="recipeNo" id="recipeNo" value="${recipe.recipeNo}">
+                  <input type="hidden" name="recipeNo" id="recipeNo" value="${recipes.recipe.recipeNo}">
                   <div class="blog-content-bg">
                     <div class="blog-content">
-                      <span class="post-tag">${recipe.category}</span>
-                      <a href="/app/recipe/detail?no=${recipe.recipeNo}" class="post-title tagA">${recipe.title}</a>
+                      <span class="post-tag">${recipes.recipe.category}</span>
+                      <a href="/app/recipe/detail?no=${recipes.recipe.recipeNo}" class="post-title tagA">${recipes.recipe.title}</a>
                       <div class="post-meta">
-                        <span class="post-author">by ${recipe.memberNo}</span><br>
-                        <span class="post-date">${recipe.createdDate}</span>
+                        <span class="post-author">by ${recipes.recipeMember.nickname}</span><br>
+                        <span class="post-date">${recipes.recipe.createdDate}</span>
                       </div>
                     </div>
                   </div>
