@@ -46,7 +46,7 @@ public class ProductReviewController {
   }
   
   @GetMapping("list")
-  public void list(Model model, int no) throws Exception {
+  public void list(Model model, int no, HttpSession session) throws Exception {
     // List<ProductReview> productReviews = productReviewService.list(no);
     // model.addAttribute("productReviews", productReviews);
   }

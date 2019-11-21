@@ -135,7 +135,7 @@ public class OrderController {
       }
     }
     session.setAttribute("order", order);
-    return "redirect:../product/list";
+    return "redirect:result";
   }
 
   @GetMapping("delete")

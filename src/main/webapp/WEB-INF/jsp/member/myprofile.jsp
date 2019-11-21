@@ -21,20 +21,18 @@
 <!-- mypage_sidebar  end -->
 </head>
 <jsp:include page="../header.jsp" />
-<jsp:include page="../member/mypage_sidebar.jsp" />
+<%-- <jsp:include page="../member/mypage_sidebar.jsp" /> --%>
 <body class="hold-transition sidebar-mini layout-fixed">
-	<div class="wrapper" style="margin: 0 0 0 15%;">
+	<div class="wrapper">
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper"
-			style="max-width: 1200px; width: 982px;">
-			<div
-				class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo"
-				style="border-bottom: 2px solid #404040;">
-				<h3>My profile</h3>
-				<span class="mInfo-span"> <a class="mypage-tagA">My Page</a><a>&nbsp>&nbspMyprofile</a></span>
-			</div>
+		<div class="content-wrapper" style="width: 1100px;margin: 0px auto;">
+      <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
+        <h3>My profile</h3>
+         <span class="mInfo-span">
+         <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Profile</span> 
+      </div>
+      
 			<figure class="snip1559" style="margin-left: 25%;">
-
 				<div class="profile-image">
 					<input type="hidden" id="photo2" value="${member.photo}" /> <img
 						src='/upload/member/${member.photo}' id="imgThumb"

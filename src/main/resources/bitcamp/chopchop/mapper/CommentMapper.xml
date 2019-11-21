@@ -83,7 +83,7 @@
       c.product_id=#{value}
   </select>
   
-  <insert id="insert" parameterType="Comment">
+  <insert id="insert" parameterType="Comment" useGeneratedKeys="true" keyColumn="comment_id" keyProperty="commentNo">
     insert into product_comment(product_id, member_id, title, content, created_date)
     values(#{productNo}, #{memberNo}, #{title}, #{content}, now())
   </insert>

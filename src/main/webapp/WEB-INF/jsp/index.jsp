@@ -97,7 +97,7 @@
   <div class="container">
     <div class="row ml-0">
       <h3>popular product</h3>
-        <div id="prod_columns">
+        <div id="prod_columns" style="height: 960px;">
           <c:forEach items="${productList}" var="product" begin='0' end="7" >
             <figure>
               <a href="/app/product/detail?no=${product.productNo}"><img src="/upload/product/${product.files[0].filePath}"></a>

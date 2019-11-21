@@ -13,6 +13,8 @@ public class ProductReview {
   private int rating;
   private Date createdDate;
 
+  private String writer;
+
   private List<Product> products;
   private List<Member> members;
   private List<ProductOption> options;
@@ -88,6 +90,14 @@ public class ProductReview {
       public void setMembers(List<Member> members) {
         this.members = members;
       }
+      
+        public String getWriter() {
+          return writer;
+        }
+      
+        public void setWriter(String writer) {
+          this.writer = writer;
+        }
 
   @Override
   public String toString() {
