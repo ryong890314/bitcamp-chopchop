@@ -6,11 +6,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Comment;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.domain.ProductOption;
 import bitcamp.chopchop.domain.ProductReview;
@@ -43,7 +45,9 @@ public class ProductController {
   public void form() {}
 
   @GetMapping("list")
-  public void list(Model model) throws Exception {
+  public void list(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("loginUser", member);
     model.addAttribute("products", productService.list());
   }
 
@@ -70,24 +74,30 @@ public class ProductController {
   }
 
   @GetMapping("detail")
-  public void detail(Model model, int no) throws Exception {
+  public void detail(Model model, int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     Product product = productService.get(no);
     List<Comment> comments = commentService.findByProductWith(product.getProductNo());
     List<ProductReview> productReviews = productReviewService.list(product.getProductNo());
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("loginUser", member);
     model.addAttribute("product", productService.get(no));
     model.addAttribute("comments", comments);
     model.addAttribute("productReviews", productReviews);
   }
 
   @GetMapping("search")
-  public void search(Model model, String keyword) throws Exception {
+  public void search(Model model, String keyword, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
     List<Product> products = productService.search(keyword);
+    model.addAttribute("loginUser", member);
     model.addAttribute("products", products);
   }
 
   @GetMapping("category")
-  public void categorySearch(String species, Model model) throws Exception {
+  public void categorySearch(String species, Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     List<Product> products = productService.categorySearch(species);
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("loginUser", member);
     model.addAttribute("products", products);
   }
 
@@ -119,8 +129,10 @@ public class ProductController {
   }
 
   @GetMapping("updateform")
-  public void updateform(Model model, int no) throws Exception {
+  public void updateform(Model model, int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
     model.addAttribute("product", productService.get(no));
+    model.addAttribute("loginUser", member);
   }
 }
 
