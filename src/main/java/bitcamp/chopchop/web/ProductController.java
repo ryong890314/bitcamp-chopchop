@@ -73,30 +73,24 @@ public class ProductController {
   }
 
   @GetMapping("detail")
-  public void detail(Model model, int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+  public void detail(Model model, int no) throws Exception {
     Product product = productService.get(no);
     List<Comment> comments = commentService.findByProductWith(product.getProductNo());
     List<ProductReview> productReviews = productReviewService.list(product.getProductNo());
-    Member member = memberService.get(loginUser.getMemberNo());
-    model.addAttribute("loginUser", member);
     model.addAttribute("product", productService.get(no));
     model.addAttribute("comments", comments);
     model.addAttribute("productReviews", productReviews);
   }
 
   @GetMapping("search")
-  public void search(Model model, String keyword, @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    Member member = memberService.get(loginUser.getMemberNo());
+  public void search(Model model, String keyword) throws Exception {
     List<Product> products = productService.search(keyword);
-    model.addAttribute("loginUser", member);
     model.addAttribute("products", products);
   }
 
   @GetMapping("category")
-  public void categorySearch(String species, Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+  public void categorySearch(String species, Model model) throws Exception {
     List<Product> products = productService.categorySearch(species);
-    Member member = memberService.get(loginUser.getMemberNo());
-    model.addAttribute("loginUser", member);
     model.addAttribute("products", products);
   }
 
