@@ -21,9 +21,9 @@
             <!-- Comment Meta -->
             <div class="comment-meta">
               <div class="d-flex">
-                <span class="comment-no" style="display:none;">${comment.commentNo}</span>
-                <span class="update-title">${comment.title}</span>
-                <span class="post-date">${comment.createdDate}</span>
+                <a class="comment-no" style="display:none;">${comment.commentNo}</a>
+                <a class="update-title">${comment.title}</a>
+                <a class="post-date">${comment.createdDate}</a>
                 <button style="display:none;" class="reply">수정</button>
                 <button style="display:none;" class="comment-delete-btn">삭제</button>
                 <button class="comment-answer-btn">답변</button>
