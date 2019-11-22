@@ -66,7 +66,7 @@ public class AuthController {
   @GetMapping("logout")
   public String logout(HttpSession session) throws Exception {
     session.invalidate();
-    return "redirect:signin";
+    return "redirect:/app/index";
   }
 
   @RequestMapping(path = "getPassword", method = RequestMethod.GET)

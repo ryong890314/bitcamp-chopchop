@@ -90,6 +90,7 @@
           <th>최종가격</th>
           <th>주문일</th>
           <th>상태</th>
+          <th> </th>
         </tr>
         <c:forEach items="${orderProducts2}" var="orderProduct">
           <tr>

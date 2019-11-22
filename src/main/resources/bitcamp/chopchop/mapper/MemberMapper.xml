@@ -177,5 +177,9 @@
     select * from member
     where tel= #{tel}
   </select>
+  
+  <select id="countAll" resultType="int">
+    select count(*) from member
+  </select>
 	
 </mapper>
