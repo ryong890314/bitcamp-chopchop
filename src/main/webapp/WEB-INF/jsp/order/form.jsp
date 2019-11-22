@@ -211,7 +211,21 @@
       console.log(totalPrice[i].innerText);
       priceSum += parseInt(totalPrice[i].innerText);
     }
-    $('#resultPrice').text
+    $('#resultPrice').text(priceSum);
+    console.log(priceSum);
+    var shipPrice = $('#shipPrice');
+    $(shipPrice).text(2500);
+    if(priceSum > 50000) {
+      console.log('들어옴');
+      $(shipPrice).text(0);
+    }
+    
+    var shipPriceSum = $('#ship-price-sum');
+    var priceShipSum = parseInt(priceSum) + parseInt($(shipPrice).text());
+    console.log(priceShipSum);
+    $(shipPriceSum).text(priceShipSum);
+    console.log();
+    
     
   </script>
   
