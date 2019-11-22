@@ -131,12 +131,14 @@ public class DefaultRecipeService implements RecipeService {
   @Override
   public void insertLike(RecipeLike recipeLike) throws Exception {
     recipeDao.increaseScrapCount(recipeLike.getRecipeNo());
+    System.out.println("좋아요 올라감");
     recipeLikeDao.insertLike(recipeLike);
   }
 
   @Override
   public void deleteLike(RecipeLike recipeLike) throws Exception {
     recipeDao.decreaseScrapCount(recipeLike.getRecipeNo());
+    System.out.println("좋아요 내려감");
     recipeLikeDao.deleteLike(recipeLike);
   }
 

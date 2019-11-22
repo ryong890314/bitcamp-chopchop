@@ -75,15 +75,16 @@ public class RecipeController {
     recipeService.delete(no);
     return "redirect:list";
   }
-
+  
   @GetMapping("detail")
   public void detail(Model model, int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     Recipe recipe = recipeService.get(no);
     recipeService.insertViewCount(no);
-    Member member = memberService.get(recipe.getMemberNo()); // 작성자멤버
-    Member viewer = memberService.get(loginUser.getMemberNo()); // 글을 보는사람
+    
+    Member recipeMember = memberService.get(recipe.getMemberNo()); // 작성자멤버
+    Member member = memberService.get(loginUser.getMemberNo()); // 글을 보는사람
     RecipeLike recipeLike = new RecipeLike();
-    recipeLike.setMemberNo(viewer.getMemberNo());
+    recipeLike.setMemberNo(member.getMemberNo());
     recipeLike.setRecipeNo(recipe.getRecipeNo());
     int check = recipeService.findLike(recipeLike);
     boolean likeCheck = false;
@@ -100,11 +101,11 @@ public class RecipeController {
       case "4" : model.addAttribute("category", "기타"); break;
     }
     model.addAttribute("recipe", recipe);
+    model.addAttribute("recipeMember", recipeMember);
     model.addAttribute("member", member);
-    model.addAttribute("viewer", viewer);
     model.addAttribute("isCheck", likeCheck);
   }
-
+  
   @GetMapping("updateform")
   public void updateform(@ModelAttribute("loginUser") Member loginUser, Model model, int no) throws Exception {
     Recipe recipe = recipeService.get(no);
@@ -161,11 +162,11 @@ public class RecipeController {
   @GetMapping("list")
   public void list(HttpSession session, Model model,
       @RequestParam(defaultValue = "1") int pageNo,
-      @RequestParam(defaultValue = "4") int pageSize) throws Exception {
+      @RequestParam(defaultValue = "16") int pageSize) throws Exception {
     if (session.getAttribute("loginUser") != null) {
       Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
       model.addAttribute("member", member);
-    }
+    } 
     List<Recipe> recipes = recipeService.list(pageNo, pageSize);
     model.addAttribute("recipes", recipes);
   }
@@ -181,7 +182,7 @@ public class RecipeController {
   @GetMapping("myrecipe")
   public void myList(Model model, @ModelAttribute("loginUser") Member loginUser,
                      @RequestParam(defaultValue = "1") int pageNo,
-                     @RequestParam(defaultValue = "4") int pageSize) throws Exception {
+                     @RequestParam(defaultValue = "16") int pageSize) throws Exception {
     
     Member member = memberService.get(loginUser.getMemberNo());
     model.addAttribute("member", member);

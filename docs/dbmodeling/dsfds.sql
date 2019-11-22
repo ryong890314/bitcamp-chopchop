@@ -1,17 +1,9 @@
--- 회원
-DROP TABLE IF EXISTS member RESTRICT;
 
 -- 반려동물 정보
 DROP TABLE IF EXISTS pet RESTRICT;
 
 -- 상품
 DROP TABLE IF EXISTS product RESTRICT;
-
--- 레시피
-DROP TABLE IF EXISTS recipe RESTRICT;
-
--- 레시피댓글
-DROP TABLE IF EXISTS recipe_comment RESTRICT;
 
 -- 후기
 DROP TABLE IF EXISTS review RESTRICT;
@@ -24,9 +16,6 @@ DROP TABLE IF EXISTS notice RESTRICT;
 
 -- 이벤트
 DROP TABLE IF EXISTS event RESTRICT;
-
--- 레시피랭킹
-DROP TABLE IF EXISTS recipe_ranking RESTRICT;
 
 -- 찹톡
 DROP TABLE IF EXISTS gallery RESTRICT;
@@ -57,18 +46,6 @@ DROP TABLE IF EXISTS category RESTRICT;
 
 -- 주문상품
 DROP TABLE IF EXISTS order_product RESTRICT;
-
--- 회원랭킹
-DROP TABLE IF EXISTS member_ranking RESTRICT;
-
--- 조리과정
-DROP TABLE IF EXISTS cooking RESTRICT;
-
--- 재료
-DROP TABLE IF EXISTS ingredient RESTRICT;
-
--- 레시피좋아요
-DROP TABLE IF EXISTS recipe_like RESTRICT;
 
 -- 상품사진
 DROP TABLE IF EXISTS store_photo RESTRICT;
