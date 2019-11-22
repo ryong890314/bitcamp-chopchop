@@ -12,6 +12,7 @@
     <result column="title" property="title"/>
     <result column="content" property="content"/>
     <result column="created_date" property="createdDate"/>
+    <result column="answer" property="answer"/>
   </resultMap>
   
   <resultMap type="Comment" id="CommentMemberMap">
@@ -21,6 +22,7 @@
     <result column="title" property="title"/>
     <result column="content" property="content"/>
     <result column="created_date" property="createdDate"/>
+    <result column="answer" property="answer"/>
     
     <association property="member" javaType="Member">
       <id column="member_id" property="memberNo"/>
@@ -104,4 +106,13 @@
     delete from product_comment
     where comment_id=#{value}
   </delete>
+  
+  <update id="insertAnswer" parameterType="Comment">
+    update 
+      product_comment
+    set
+      answer=#{answer}
+    where
+      comment_id=#{commentNo}
+  </update>
 </mapper>

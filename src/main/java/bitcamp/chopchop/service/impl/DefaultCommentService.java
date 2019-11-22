@@ -48,6 +48,11 @@ public class DefaultCommentService implements CommentService {
   public List<Comment> findByProductWith(int no) throws Exception {
     return commentDao.findByProductWith(no);
   }
+  
+  @Override
+  public void commentAnswer(Comment comment) throws Exception {
+    commentDao.insertAnswer(comment);
+  }
 }
 
 
