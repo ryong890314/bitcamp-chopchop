@@ -41,8 +41,12 @@ public class OrderController {
   private ProductOptionService productOptionService;
   
   @PostMapping("form")
-  public void form(Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser,
-      String[] optNo, String[] optQuantity, String[] optPrice, int productNo) throws Exception {
+  public void form(Model model, HttpSession session, String[] optNo, String[] optQuantity, 
+      String[] optPrice, int productNo) throws Exception {
+    if (session.getAttribute("loginUser") != null) {
+      Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
+      model.addAttribute("member", member);
+    }
     Product product = productService.get(productNo);
     ArrayList<ProductOption> tempOptions = new ArrayList<>();
     for (int i=0;i<optNo.length;i++) {
@@ -57,14 +61,16 @@ public class OrderController {
   @PostMapping("cartorderform")
   public void cartorderform(Model model, String[] cartNo, 
       @ModelAttribute("loginUser") Member loginUser, HttpSession session) throws Exception {
-    Member member = memberService.get(loginUser.getMemberNo());
+    if (session.getAttribute("loginUser") != null) {
+      Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
+      model.addAttribute("member", member);
+    }
     List<Cart> carts = new ArrayList<>();
     for (int i=0;i<cartNo.length; i++) {
       carts.add(cartService.get(Integer.parseInt(cartNo[i])));
       carts.get(i).setProduct(productService.get(carts.get(i).getProductNo()));
       carts.get(i).setProductOption(productOptionService.get(carts.get(i).getOptionNo()));
     }
-    model.addAttribute("loginUser", member);
     model.addAttribute("carts", carts);
     session.setAttribute("selectedProduct", carts);
   }
@@ -75,18 +81,22 @@ public class OrderController {
   }
 
   @GetMapping("searchbymember")
-  public void searchByMember(
-      Model model, HttpSession session, @ModelAttribute("loginUser") Member loginUser) 
-          throws Exception {
-    Member member = memberService.get(loginUser.getMemberNo());
+  public void searchByMember(Model model, HttpSession session) throws Exception {
+    
+    Member member = new Member();
+    if (session.getAttribute("loginUser") != null) {
+      member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
+      model.addAttribute("member", member);
+    }
     List<OrderProduct> orderProducts = orderService.searchByMember(member.getMemberNo());
 
     for(OrderProduct op : orderProducts) {
       op.setProduct(productService.get(op.getProductNo()));
       op.setOrder(orderService.get(op.getOrderNo()));
+      op.setProductOption(productOptionService.get(op.getOptionNo()));
     }
     model.addAttribute("loginUser", member);
-    model.addAttribute("orderProducts2", orderProducts);
+    model.addAttribute("orderProducts", orderProducts);
     session.setAttribute("selectedProduct", orderProducts);
   }
 
@@ -166,7 +176,51 @@ public class OrderController {
   }
 
   @GetMapping("updateform")
-  public void updateform(int no, Model model) throws Exception {
+  public void updateform(int no, Model model, HttpSession session) throws Exception {
+    if (session.getAttribute("loginUser") != null) {
+      Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
+      model.addAttribute("member", member);
+    }
     model.addAttribute("order", orderService.get(no));
   }
+  
+  @PostMapping("statusupdate")
+  public String statusUpdate(int no, int status) throws Exception {
+    Order order = orderService.get(no);
+    order.setShipStatus(String.valueOf(status));
+    orderService.updateStatus(order);
+    return "redirect:searchbymember";
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
