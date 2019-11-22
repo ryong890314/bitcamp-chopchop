@@ -91,18 +91,22 @@
           <th>주문일</th>
           <th>상태</th>
         </tr>
-        <c:forEach items="${orderProducts2}" var="orderProduct">
+        <c:forEach items="${orderProducts}" var="orderProduct">
           <tr>
             <td>${orderProduct.product.title}</td>
-            <td>${orderProduct.optionNo}</td>
+            <td>${orderProduct.productOption.title}</td>
             <td>${orderProduct.quantity}</td>
             <td>${orderProduct.discountPrice}원</td>
             <td>${orderProduct.order.paymentDate}</td>
-            <td><span class="ship-status">${orderProduct.order.shipStatus}</span></td>
+            <td class="ship"><span class="ship-status">${orderProduct.order.shipStatus}</span></td>
             <td>
-              <button id="cancelBtn" onclick="location.href='delete?no=${orderProduct.orderNo}'">취소</button>
-              <button id="updateBtn" onclick="location.href='updateform?no=${orderProduct.order.orderNo}'">변경</button>
-              <button type="button" class="reviewBtn" style="display:none;" data-toggle="modal" data-target=".bd-example-modal-lg">후기작성</button>
+              <span class="status" style="display:none">${orderProduct.order.shipStatus}</span>
+              <span class="product-no" style="display:none">${orderProduct.product.productNo}</span>
+              <span class="order-no" style="display:none">${orderProduct.order.orderNo}</span>
+              <button id="updateBtn" class="btn btn-success" onclick="location.href='updateform?no=${orderProduct.order.orderNo}'">변경</button>
+              <button type="button" class="recieveBtn btn btn-success">구매확정</button>
+              <button type="button" class="reviewBtn btn btn-success" data-toggle="modal" style="display:none" data-target=".bd-example-modal-lg">후기작성</button>
+              <button id="cancelBtn" class="btn btn-danger" onclick="location.href='delete?no=${orderProduct.orderNo}'">주문취소</button>
             </td>
           </tr>
         </c:forEach>
@@ -123,7 +127,7 @@
         <div class="modal-body">
   
           <form action='../productreview/add' enctype='multipart/form-data' method='post'>
-            <input type='text' name='productNo' id='productNo' value='${orderProduct.product.productNo}'><br>
+            <input type='hidden' name='productNo' id='productNo' value=''><br>
             <div class="row">
                   <div class="col-md-4">
                     <div>
@@ -164,13 +168,9 @@
   <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
   
   <script>
-  $('#myAddModal').on('show.bs.modal', function (e) {
-    formLoad();
-  })
-
-  
-  
+  function changeStatus() {
     var shipStatus=$('.ship-status');
+    var recieveButton=$('.recieveBtn');
     var reviewButton=$('.reviewBtn');
     for (var i=0; i<shipStatus.length; i++) {
       if (shipStatus[i].innerText == 1) {
@@ -180,15 +180,20 @@
       } else if (shipStatus[i].innerText == 3) {
         shipStatus[i].innerText="발송";
       } else if (shipStatus[i].innerText == 4) {
+        console.log('구매확정');
         shipStatus[i].innerText="구매확정";
+        recieveButton[i].setAttribute('style', 'display:none');
+        reviewButton[i].setAttribute('style', 'display:inline');
       }
     }
-    
-    for (var  i=0; i<shipStatus.length; i++) {
-      if (shipStatus[i].innerText == '구매확정') {
-        reviewButton[i].setAttribute('style', 'inline');
-      } 
-    }
+  }
+  
+  changeStatus();
+  
+  $('#myAddModal').on('show.bs.modal', function (e) {
+    formLoad();
+  })
+  
     
     function formLoad() {
       if ($("#photo").val() == null || $("#photo").val() == "") {
@@ -205,7 +210,38 @@
       };
       reader.readAsDataURL(this.files[0]);
     };
-
+    
+    
+    
+    $(document).on('click', '.reviewBtn', function(e) {
+      var productNo = $(this.parentNode).find('.product-no').text();
+      $('#myAddModal').on('shown.bs.modal', function (e) {
+        $('#productNo').val(productNo);
+      });
+      console.log(productNo);
+    });
+    
+    
+    $(document).on('click', '.recieveBtn' , function(e){
+      var ship = $(this.parentNode.parentNode).find('.ship').find('.ship-status');
+      var orderNo = $(this.parentNode).find('.order-no').text();
+      var recieveBtn = $(this);
+      var reviewBtn = $(this.parentNode).find('.reviewBtn');
+      console.log($(ship).text());
+      
+      $.ajax({
+        url:'/app/order/statusupdate',
+        method:'post',
+        data:{no: orderNo, status: 4},
+        success: function(e) {
+          $(ship).text('구매확정');
+          changeStatus();
+          $(recieveBtn).attr('style', 'display:none');
+          $(reviewBtn).attr('style', 'display:inline');
+        }
+      })
+    })
+    
   </script>
   
 </body>

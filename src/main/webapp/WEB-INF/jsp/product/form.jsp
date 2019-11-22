@@ -120,9 +120,9 @@
       <!-- 사진 추가되는 div -->
       </div>
       <div>
-        <button type="button" id="addPhoto" class="btn btn-success" style="margin-top:10px;">사진추가</button>
+        <button type="button" id="addPhoto" class="btn btn-success" style="margin-top:10px;">사진추가</button><hr style="margin:30px auto;">
       </div>
-      <div style="margin-top:10px;">
+      <div style="margin-top:10px; padding:0px 0px 0px 723px;">
         <button type="button" id="add-button" class="btn bueno-btn">등록</button>
         <button class="btn bueno-btn">취소</button>
       </div>

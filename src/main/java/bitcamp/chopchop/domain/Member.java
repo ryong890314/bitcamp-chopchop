@@ -115,4 +115,13 @@ public class Member implements Serializable {
   public void setRecipes(List<Recipe> recipes) {
     this.recipes = recipes;
   }
+
+  @Override
+  public String toString() {
+    return "Member [memberNo=" + memberNo + ", nickname=" + nickname + ", email=" + email
+        + ", password=" + password + ", tel=" + tel + ", photo=" + photo + ", postNo=" + postNo
+        + ", baseAddress=" + baseAddress + ", detailAddress=" + detailAddress + ", grade=" + grade
+        + ", recipes=" + recipes + ", pets=" + pets + "]";
+  }
+  
 }

@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <html>
-
 <head>
+  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <title>주문 성공</title>
   <style>
     #resultForm {
@@ -20,8 +20,8 @@
 
 
   <div class="jumbotron" id="resultForm" style="padding-bottom: 20px;">
-    <h1 class="display-4">고객님 주문이 완료되었습니다!</h1>
-    <p class="lead">주문내역 및 배송에 관한 안내는 주문조회를 통하여 확인 가능합니다.</p>
+    <h1 class="display-4">주문이 완료되었습니다!</h1>
+    <p class="lead">주문내역 및 배송안내는 마이페이지에서 확인 가능합니다.</p>
     <hr class="my-4">
     <label>배송지 정보</label>
     <div class="row">
@@ -77,7 +77,7 @@
     <hr class="my-4">
 
     <div style="float: right;">
-    <a class="btn btn-danger" href="/app/order/searchbymember" role="button">주문조회</a>
+    <a class="btn btn-success" href="/app/order/searchbymember" role="button">주문조회</a>
     <a class="btn btn-secondary" href="/app/product/list" role="button">쇼핑계속하기</a>
   </div>
 

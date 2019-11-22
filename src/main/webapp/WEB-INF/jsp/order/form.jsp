@@ -68,7 +68,7 @@
       <div class="row">
       <div class="col-md-6">
         <label for="exampleInput">주문자 이름</label>
-        <input type="text" id="customerName" class="form-control" value="${loginUser.nickname}">
+        <input type="text" id="customerName" class="form-control" value="${loginUser.nickname}" readonly>
       </div>
       <div class="col-md-6">
         <label for="exampleInput">수령인 이름</label>
@@ -79,7 +79,7 @@
       <div class="row">
         <div class="col-md-6">
           <label for="exampleInput">주문자 연락처</label>
-          <input type="text" id="customerTel" class="form-control" name="" value="${loginUser.tel}">
+          <input type="text" id="customerTel" class="form-control" name="" value="${loginUser.tel}" readonly>
         </div>
         <div class="col-md-6">      
           <label for="exampleInput">수령인 연락처</label>
@@ -90,7 +90,7 @@
       <div class="row">
         <div class="col-md-6">
           <label for="exampleInput">우편번호</label>
-          <input type="text" id="customerPostNo" class="form-control" name="" value="${loginUser.postNo}">
+          <input type="text" id="customerPostNo" class="form-control" name="" value="${loginUser.postNo}" readonly>
         </div>
         <div class="col-md-6">      
           <label for="exampleInput">수령인 우편번호</label>
@@ -101,7 +101,7 @@
       <div class="row">
         <div class="col-md-6">
           <label for="exampleInput">기본주소</label>
-          <input type="text" id="customerBaseAddress" class="form-control" name="" value="${loginUser.baseAddress}">
+          <input type="text" id="customerBaseAddress" class="form-control" name="" value="${loginUser.baseAddress}" readonly>
         </div>
         <div class="col-md-6">      
           <label for="exampleInput">수령인 기본주소</label>
@@ -112,7 +112,7 @@
       <div class="row">
         <div class="col-md-6">
           <label for="exampleInput">상세주소</label>
-          <input type="text" id="customerDetailAddress" class="form-control" name="" value="${loginUser.detailAddress}">
+          <input type="text" id="customerDetailAddress" class="form-control" name="" value="${loginUser.detailAddress}" readonly>
         </div>
         <div class="col-md-6">
           <label for="exampleInput">수령인 상세주소</label>
@@ -211,7 +211,21 @@
       console.log(totalPrice[i].innerText);
       priceSum += parseInt(totalPrice[i].innerText);
     }
-    $('#resultPrice').text
+    $('#resultPrice').text(priceSum);
+    console.log(priceSum);
+    var shipPrice = $('#shipPrice');
+    $(shipPrice).text(2500);
+    if(priceSum > 50000) {
+      console.log('들어옴');
+      $(shipPrice).text(0);
+    }
+    
+    var shipPriceSum = $('#ship-price-sum');
+    var priceShipSum = parseInt(priceSum) + parseInt($(shipPrice).text());
+    console.log(priceShipSum);
+    $(shipPriceSum).text(priceShipSum);
+    console.log();
+    
     
   </script>
   

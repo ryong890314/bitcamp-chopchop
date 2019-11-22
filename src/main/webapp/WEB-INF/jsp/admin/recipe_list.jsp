@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -8,120 +8,123 @@
 <link rel="stylesheet" href="/css/recipe/w3.css">
 <link rel="stylesheet" href="/css/recipe/list.css">
 <style>
- img.thumbnail {
-  width: 280px;
-  height: 250px;
-  object-fit: cover;
- }
+img.thumbnail {
+	width: 280px;
+	height: 250px;
+	object-fit: cover;
+}
 
- .my-list a {
-  color: #000000;
- }
-   /* :: 3.7.0 bueno Button */
+.my-list a {
+	color: #000000;
+}
+/* :: 3.7.0 bueno Button */
 .bueno-btn {
-    background-color: #b0c364;
-    -webkit-transition-duration: 500ms;
-    transition-duration: 500ms;
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    min-width: 160px;
-    height: 50px;
-    color: #ffffff;
-    border-radius: 0;
-    padding: 0 30px;
-    font-size: 14px;
-    line-height: 50px;
-    font-weight: 500;
-    text-transform: capitalize;
+	background-color: #b0c364;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	min-width: 160px;
+	height: 50px;
+	color: #ffffff;
+	border-radius: 0;
+	padding: 0 30px;
+	font-size: 14px;
+	line-height: 50px;
+	font-weight: 500;
+	text-transform: capitalize;
 }
 
-.bueno-btn:hover,
-.bueno-btn:focus {
-    font-size: 14px;
-    font-weight: 500;
-    background-color: #000000;
-    color: #ffffff;
+.bueno-btn:hover, .bueno-btn:focus {
+	font-size: 14px;
+	font-weight: 500;
+	background-color: #000000;
+	color: #ffffff;
 }
-    </style>
-    <title>ALL RECIPE LIST</title>
+</style>
+<title>ALL RECIPE LIST</title>
 </head>
 <body>
-<jsp:include page="../header.jsp" /> 
-<jsp:include page="admin_sidebar.jsp"/>
+	<jsp:include page="../header.jsp" />
+	<jsp:include page="admin_sidebar.jsp" />
 
 
-<!-- ##### Search Area Start ##### -->
-    <div class="bueno-search-area pb-70 bg-img" style="height: 40px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <form action="#" method="post">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="form-group mb-30" style="display: none">
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="form-group mb-30">
-                                    <select id="selectCategory" name='category' class="form-control my-category">
-                                      <option value="0" selected="selected">카테고리 보기</option>
-                                      <option value="1">강아지</option>
-                                      <option value="2">고양이</option>
-                                      <option value="3">작은동물</option>
-                                      <option value="4">기타</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="form-group mb-30">
-                                    <select id="selectColumn" name='column' class="form-control my-sort">
-                                      <option value="recipe_id" selected="selected">리스트 보기</option>
-                                      <option value="view_count">조회순</option>
-                                      <option value="scrap">좋아요순</option>
-                                      <option value="created_date">최신순</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <button id="add" class="btn bueno-btn w-100" type="button" onclick="location='form.jsp'">레시피등록</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	<!-- ##### Search Area Start ##### -->
+	<div class="bueno-search-area pb-70 bg-img" style="height: 40px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<form action="#" method="post">
+						<div class="row">
+							<div class="col-12 col-sm-6 col-lg-3">
+								<div class="form-group mb-30" style="display: none"></div>
+							</div>
+							<div class="col-12 col-sm-6 col-lg-3">
+								<div class="form-group mb-30">
+									<select id="selectCategory" name='category'
+										class="form-control my-category">
+										<option value="0" selected="selected">카테고리 보기</option>
+										<option value="1">강아지</option>
+										<option value="2">고양이</option>
+										<option value="3">작은동물</option>
+										<option value="4">기타</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-12 col-sm-6 col-lg-3">
+								<div class="form-group mb-30">
+									<select id="selectColumn" name='column'
+										class="form-control my-sort">
+										<option value="recipe_id" selected="selected">리스트 보기</option>
+										<option value="view_count">조회순</option>
+										<option value="scrap">좋아요순</option>
+										<option value="created_date">최신순</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-12 col-sm-6 col-lg-3">
+								<button id="add" class="btn bueno-btn w-100" type="button"
+									onclick="location='form.jsp'">레시피등록</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
- <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-         <!-- First Photo Grid-->
-        <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-        </div>
- <button type="button" class="btn btn-outline-secondary btn-lg btn-block view-more">더보기</button>
- </div>
- 
-<script src="/js/jquery/jquery-2.2.4.min.js"></script>
-<script src="/js/plugins/plugins.js"></script>
-<script src="/js/active.js"></script>
-<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+	<div class="w3-main w3-content w3-padding"
+		style="max-width: 1100px; margin-top: 100px">
+		<!-- First Photo Grid-->
+		<div class="w3-row-padding w3-padding-16 w3-center" id="food"></div>
+		<button type="button"
+			class="btn btn-outline-secondary btn-lg btn-block view-more">더보기</button>
+	</div>
 
-<script id="t1back" type="listHtml">
+	<script src="/js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="/js/plugins/plugins.js"></script>
+	<script src="/js/active.js"></script>
+	<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+
+	<script id="t1back" type="listHtml">
 <div class='w3-quarter my-list'>
   <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
   <h3><a href='detail?no={{recipeNo}}'>{{title}}</a></h3>
   <p>{{otherInfo}}</p>
 </div>
 </script>
-<script id="t1" type="listHtml">
+	<script id="t1" type="listHtml">
 <div class='w3-quarter my-list'>
   <a href='detail?no={{recipeNo}}' style='text-decoration:none;'>
   <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
   <h3>{{title}}</a></h3>
     <p>{{otherInfo}}</p>
+<button type="del-btn" class="btn btn-light" onclick="del({{recipeNo}});">DELETE</button>
 </div>
 </script>
 
-<script>
+	<script>
 "use strict";
 var dbody = $('#food');
 var templateSrc = $('#t1').html();
@@ -184,6 +187,12 @@ function next(currentPage, pageSize, totalPage) {
   });
 };
 </script>
-
+	<script>
+function del(recipeNo) {
+    $.get('/app/recipe/delete?no=' + recipeNo, function(data) {
+      loadList();
+    });
+  }
+</script>
 </body>
 </html>

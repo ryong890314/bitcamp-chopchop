@@ -9,7 +9,7 @@
 
 <head>
   <title>상품 상세</title>
-  <link rel='stylesheet' href='/css/product/style.css'>
+  <link rel='stylesheet' href='/css/recipe/comments.css'>
   <link rel='stylesheet' href='/css/member/style_footer.css'>
   <link rel='stylesheet' href='/css/member/style-header.css'>
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
@@ -78,8 +78,6 @@
 
   <div>
     <div id="productBody">
-      <a href="updateform?no=${product.productNo}">수정</a>
-
       <div class="row">
         <div class="col-md-7">
           <!-- Blog Thumbnail -->
@@ -198,6 +196,11 @@
 
       <hr class="my-4">
       <jsp:include page="../comment/productCommentList.jsp" />
+    <br><br>
+    <form action="updateform" method="post">
+      <input type="hidden" name="no" value="${product.productNo}">
+      <button id="update-product" class="btn btn-success" style="display:none;">수정</button>
+    </form>
     </div>
   </div>
 
@@ -227,9 +230,7 @@
   </div>
 </div>
 <!-- Modal -->
-  
-
-
+<jsp:include page="../footer.jsp" />
 
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 <script id="option-template" type="text/x-handlebars-template">
@@ -270,7 +271,6 @@
           <span class="post-date">{{createdDate}}</span>
           <button style="" class="reply">수정</button>
           <button style="" class="comment-delete-btn">삭제</button>
-          <button style="" class="comment-delete-btn">답변</button>
         </div>
         <p class="update-content">{{content}}</p>
       </div>
@@ -281,6 +281,7 @@
 </script>
 
 <script>
+
   var dataNo = 0;
   var productPrice = parseInt(${product.price * (100 - product.discount) / 100});
   
@@ -394,6 +395,9 @@
         contentType: 'application/json',
         success: function(response) {
           alert("장바구니에 상품을 담았습니다.");
+        },
+        error: function(response) {
+          alert('해당 상품이 장바구니에 있습니다.');
         }
       });
     }
@@ -431,12 +435,15 @@
     $('#modal-comment-content').val('');
   })
   
-  
+  var memberGrade = ${loginUser.grade};
   var commentMember = $('.member-no');
   var updateButton = $('.reply');
   var deleteButton = $('.comment-delete-btn');
   for(var i=0; i<commentMember.length; i++) {
     if(commentMember[i].innerText == loginCheck) {
+      updateButton[i].setAttribute("style", 'display:inline');
+      deleteButton[i].setAttribute("style", 'display:inline');
+    } else if(memberGrade == 0) {
       updateButton[i].setAttribute("style", 'display:inline');
       deleteButton[i].setAttribute("style", 'display:inline');
     }
@@ -476,7 +483,8 @@
         };
         console.log(commentJson);
         $('#fuck').append(commentTemplate(commentJson));
-        
+        $('#title').val("");
+        $('#message').val("");
       }
     })
   });
@@ -517,10 +525,10 @@
   });
   
   // 댓글 삭제
-  $('.comment-delete-btn').on('click', function (e) {
-//     alert('삭제하시겠습니까?')
+  $(document).on('click', '.comment-delete-btn', function (e) {
+    alert('삭제하시겠습니까?')
     var commentDiv = $(this.parentNode.parentNode.parentNode.parentNode);
-    var commentNo = $(this.parentNode).find('span[class="comment-no"]').text();
+    var commentNo = $(this.parentNode).find('a[class="comment-no"]').text();
     console.log(commentDiv);
     $.ajax({
       url:'/app/comment/commentDelete',
@@ -532,7 +540,18 @@
       }
     });
   })
-
+  
+  // 관리자 기능
+  var adminCheck = ${loginUser.grade};
+  var commentAnswer = $('.comment-answer-btn');
+  if(adminCheck == 0) {
+    console.log("들어오지마");
+    console.log(adminCheck);
+    $('#update-product').attr('style', 'display:inline');
+    for(var i=0; i<commentAnswer.length;i++){
+      commentAnswer[i].setAttribute('style', 'display:inline')
+    }
+  }
   </script>
 </body>
 </html>

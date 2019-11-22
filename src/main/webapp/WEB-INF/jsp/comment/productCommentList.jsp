@@ -26,7 +26,7 @@
                 <a class="post-date">${comment.createdDate}</a>
                 <button style="display:none;" class="reply">수정</button>
                 <button style="display:none;" class="comment-delete-btn">삭제</button>
-                <button class="comment-answer-btn">답변</button>
+                <button class="comment-answer-btn" style="display:none">답변</button>
               </div>
                 <p class="update-content">${comment.content}</p>
             </div>
