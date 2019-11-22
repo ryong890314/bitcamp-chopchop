@@ -15,4 +15,5 @@ public interface OrderService {
   void delete(int no) throws Exception;
   OrderProduct getOrderProduct(int no) throws Exception;
   List<OrderProduct> searchByMember(int no) throws Exception;
+  void updateStatus(Order order) throws Exception;
 }

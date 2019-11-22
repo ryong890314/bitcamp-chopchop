@@ -111,12 +111,16 @@
       <!-- 사진 추가되는 div -->
       </div>
       <div>
-        <button type="button" id="addPhoto" class="btn btn-success" style="margin-top:10px;">사진추가</button>
+        <button type="button" id="addPhoto" class="btn btn-success" style="margin-top:10px;">사진추가</button><hr style="margin:30px auto;">
       </div>
-      <div style="margin-top:10px;">
-        <button type="button" id="add-button" class="btn bueno-btn">수정</button>
-        <button class="btn bueno-btn">취소</button>
-        <button id="delete-button" type="button" class="btn bueno-btn" style="float:right; background-color:red;">삭제</button>
+      <div class="row" style="margin-top:10px;">
+        <div class="col-md-3">
+          <button id="delete-button" type="button" class="btn bueno-btn" style="background-color:red;">삭제</button>
+        </div>
+        <div class="col-md-9" style="padding: 0px 0px 0px 470px;">
+          <button class="btn bueno-btn">취소</button>
+          <button type="button" id="add-button" class="btn bueno-btn">수정</button>
+        </div>
       </div>
       <input type="hidden" name="productNo" value="${product.productNo}">
     </form>

@@ -218,8 +218,8 @@
   float: none;
   height: auto;
   position: absolute;
-  top: 32%;
-  left: 14%;
+  top: 35%;
+  left: 8%;
   border-right: 1px solid;
 }
 
@@ -464,15 +464,6 @@
   z-index: 1038
 }
 
-.sidebar {
-  height: calc(100% - 4rem);
-  overflow-y: auto;
-  padding-bottom: 0;
-  padding-left: .5rem;
-  padding-right: .5rem;
-  padding-top: 0
-}
-
 .user-panel {
   position: relative
 }
@@ -518,7 +509,7 @@
 }
 
 .nav-sidebar .nav-link>.right, .nav-sidebar .nav-link>p>.right {
-  position: absolute;
+  position: relative;
   right: 1rem;
   top: .7rem
 }

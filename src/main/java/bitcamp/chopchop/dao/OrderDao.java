@@ -11,4 +11,5 @@ public interface OrderDao {
   void update(Order order) throws Exception;
   void delete(int no) throws Exception; // 주문 취소
   Order result() throws Exception; // 주문 결과 보기
+  void statusUpdate(Order order) throws Exception;
 }

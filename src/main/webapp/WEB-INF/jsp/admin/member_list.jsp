@@ -48,7 +48,10 @@
 }
 </style>
 </head>
+<!-- Theme style -->
+<link rel="stylesheet" href="/css/member/adminlte.min.css">
 <jsp:include page="../header.jsp" />
+<jsp:include page="admin_sidebar.jsp"/>
 <%-- <jsp:include page="admin_sidebar.jsp"/> --%>
 <body>
   <div id="admin-content">

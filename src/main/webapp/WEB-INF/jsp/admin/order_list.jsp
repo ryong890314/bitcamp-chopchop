@@ -68,12 +68,11 @@
   </style>
 
 </head>
-<body>
-  
 
 <jsp:include page="../header.jsp"/>
 <%-- <jsp:include page="admin_sidebar.jsp"/> --%>
-
+<body>
+  
   
 <div id="admin-content">
 <div class="d-flex justify-content-between align-items-center py-0 mb-3 oInfo">

@@ -30,6 +30,10 @@
     text-align: center;
     float: left;
   }
+  
+  table {
+    text-align: center;
+  }
   </style>
 
 </head>
@@ -62,7 +66,7 @@
   <td>${order.detailAddress}</td>
   <td>${order.paymentDate}</td>
   <td>${order.paymentMethod}</td>
-  <td>${order.shipDate}</td>
+  <td class="ship-status">${order.shipStatus}</td>
   <td>${order.invoice}</td>
 </tr>
 </c:forEach>
@@ -73,6 +77,30 @@
   ${member.nickname}<br>
   ${member.email}<br>
 </c:forEach>
-<jsp:include page="../footer.jsp"/>
 
+
+
+
+
+
+<jsp:include page="../footer.jsp"/>
+<script>
+function changeStatus() {
+  var shipStatus=$('.ship-status');
+  for (var i=0; i<shipStatus.length; i++) {
+    if (shipStatus[i].innerText == 1) {
+      shipStatus[i].innerText="입금 전";
+    } else if (shipStatus[i].innerText == 2) {
+      shipStatus[i].innerText="입금 확인";
+    } else if (shipStatus[i].innerText == 3) {
+      shipStatus[i].innerText="발송";
+    } else if (shipStatus[i].innerText == 4) {
+      shipStatus[i].innerText="구매확정";
+    }
+  }
+}
+
+changeStatus();
+
+</script>
 </body></html>
