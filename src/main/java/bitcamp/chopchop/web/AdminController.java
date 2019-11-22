@@ -32,7 +32,7 @@ public class AdminController {
   @Resource private OrderService orderService;
   
   @GetMapping("member_list")
-  public void list(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+  public void memberTotalList(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
     List<Member> members = memberService.list();
     List<Pet> pets = petService.list();
@@ -42,7 +42,7 @@ public class AdminController {
   }
   
   @GetMapping("recipe_list")
-  public void list(HttpSession session, Model model,
+  public void recipeTotalList(HttpSession session, Model model,
       @RequestParam(defaultValue = "1") int pageNo,
       @RequestParam(defaultValue = "4") int pageSize) throws Exception {
     if (session.getAttribute("loginUser") != null) {
@@ -53,13 +53,17 @@ public class AdminController {
     model.addAttribute("recipes", recipes);
   }
   
-//  @GetMapping("order_list")
-//  public void orderTotalList(Model model) throws Exception {
-//    model.addAttribute("orders", orderService.list());
-//  }
+  @GetMapping("order_list")
+  public void orderTotalList(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
+    model.addAttribute("orders", orderService.list());
+  }
   
   @GetMapping("product_list")
-  public void list(Model model) throws Exception {
+  public void productTotalList(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
     model.addAttribute("products", productService.list());
     
   }

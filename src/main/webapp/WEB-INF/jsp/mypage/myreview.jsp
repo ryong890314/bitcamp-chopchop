@@ -46,7 +46,8 @@
 .r-tagA {
   outline: 0 solid transparent;
   color: #404040 !important;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .recipe-h3 {
@@ -56,6 +57,13 @@
   font-weight: 500 !important;
   line-height: 1.2 !important;
   margin: 0 0 8px !important;
+}
+
+span {
+  color: #7a7a7a;
+  font-size: 15px;
+  line-height: 2;
+  font-weight: 400;
 }
 </style>
 

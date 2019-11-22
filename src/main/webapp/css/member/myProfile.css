@@ -8,19 +8,15 @@
 
 .snip1559 {
 	position: relative;
-	display: inline-block;
 	overflow: hidden;
-	margin: 10px;
 	min-width: 350px;
-	max-width: 550px;
 	width: 100%;
 	color: #2B2B2B;
-	text-align: center;
 	font-size: 16px;
-	margin-top: 0;
-	margin-bottom: 3%;
-	border:1px soild white;
-	cursor:pointer;
+	text-align: center;
+  display: table;
+  max-width: 50%;
+  margin: 0 auto;
 }
 
 .snip1559:hover{

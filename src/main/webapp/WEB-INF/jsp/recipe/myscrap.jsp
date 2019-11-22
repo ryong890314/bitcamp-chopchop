@@ -34,7 +34,7 @@
     <script id="t1" type="listHtml">
 {{#each result}}
 <div class='w2-quarter my-list'>
-    <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;'>
+    <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;object-fit:cover;'>
     <h3><a href='detail?no={{recipeNo}}' class="r-tagA">{{title}}</a></h3>
     <p>{{content}}</p>
 </div>

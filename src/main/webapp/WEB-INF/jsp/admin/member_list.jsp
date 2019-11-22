@@ -9,7 +9,7 @@
 <style>
 #admin-content {
   width: 1100px !important;
-  margin: 0 auto;
+  margin: 30px auto;
 }
 
 .mInfo {
@@ -45,7 +45,7 @@
 </style>
 </head>
 <jsp:include page="../header.jsp" />
-<jsp:include page="admin_sidebar.jsp"/>
+<%-- <jsp:include page="admin_sidebar.jsp"/> --%>
 <body>
   <div id="admin-content">
     <div
@@ -62,6 +62,7 @@
         <th>이메일</th>
         <th>닉네임</th>
         <th>핸드폰 번호</th>
+        <th>상태</th>
       </tr>
       <c:forEach items="${members}" var="member">
         <tr>
@@ -69,10 +70,38 @@
           <td>${member.email}</td>
           <td>${member.nickname}</td>
           <td>${member.tel}</td>
+          <td>
+            <button type="button" class="memberDelete" id="${member.memberNo }">탈퇴</button>
+          </td>
         </tr>
       </c:forEach>
     </table>
   </div>
 </body>
 <jsp:include page="../footer.jsp" />
+<script type="text/javascript">
+
+$('.memberDelete').click(function(){
+  Swal.fire({
+  title: '정말로 탈퇴 시키시겠습니까?',
+  text: "저장된 데이터가 모두 사라집니다.",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#b0c364;',
+  cancelButtonColor: '#d33',
+  confirmButtonText: '탈퇴',
+  cancelButtonText: '취소'
+}).then((result) => {
+  console.log(result);
+  if (result.value) {
+//    Swal.fire(
+//      '탈퇴가 정상 처리되었습니다.',
+//      '데이터가 모두 삭제되었습니다.',
+//      'success',
+//      )
+     location.href='delete?no=${member.memberNo}'
+    }
+  })
+})
+</script>
 </html>

@@ -11,31 +11,6 @@
 <!--   <link rel="stylesheet" href="/css/main/main_style.css"> -->
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <style>
-/*   #prod_columns { */
-/*   width: 1100px;  */
-/*   column-width: 1100px; */
-/*   column-gap: 10px;   */
-/* } */
-
-/* #prod_columns figure { */
-/*   height: 460px; */
-/*   display: inline-block; */
-/*   margin: 0; */
-/*   margin-bottom: 10px; */
-/*   padding: 10px; */
-/* } */
-
-/* .product-title { */
-/*     overflow: hidden; */
-/*     text-overflow: ellipsis; */
-/*     display: -webkit-box; */
-/*     -webkit-line-clamp: 2; */
-/*     -webkit-box-orient: vertical; */
-/*     word-wrap: break-word; */
-/*     width: 230px; */
-/*     line-height: 2em; */
-/*     height: 4.0em; */
-/* } */
 
 #admin-content {
   width: 1100px;
@@ -74,64 +49,6 @@
 
 <jsp:include page="../header.jsp"/>
 
-<div class="post-catagory section-padding-100-0 mb-70">
-    <div>
-        <div class="row" style="width: 1100px;margin: 0 auto;">
-          <!-- Single Post Catagory -->
-        <div class="col-12 col-md-6 col-lg-3 px-1">
-            <div class="single-post-catagory mb-30">
-                <!-- <img src="../img/main/photo1.png"> -->
-                <!-- Content -->
-                <div class="catagory-content-bg">
-                    <div class="catagory-content">
-                        <span class="post-tag">chop store</span>
-                        <a href="/app/product/list" class="post-title tagA">전체</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <!-- Single Post Catagory -->
-            <div class="col-12 col-md-6 col-lg-3 px-1">
-                <div class="single-post-catagory mb-30">
-                    <!-- <img src="../img/main/photo1.png"> -->
-                    <!-- Content -->
-                    <div class="catagory-content-bg">
-                        <div class="catagory-content">
-                            <span class="post-tag">chop store</span>
-                            <a href="/app/product/category?species=dog" class="post-title tagA">강아지</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Single Post Catagory -->
-            <div class="col-12 col-md-6 col-lg-3 px-1">
-                <div class="single-post-catagory mb-30">
-                    <!-- <img src="../img/main/photo1.png"> -->
-                    <!-- Content -->
-                    <div class="catagory-content-bg">
-                        <div class="catagory-content">
-                            <span class="post-tag">chop store</span>
-                            <a href="/app/product/category?species=cat" class="post-title tagA">고양이</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Single Post Catagory -->
-            <div class="col-12 col-md-6 col-lg-3 px-1">
-                <div class="single-post-catagory mb-30">
-                    <!-- <img src="../img/main/photo1.png"> -->
-                    <!-- Content -->
-                    <div class="catagory-content-bg">
-                        <div class="catagory-content">
-                            <span class="post-tag">chop store</span>
-                            <a href="/app/product/category?species=other" class="post-title tagA">작은친구들</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
   <div id="admin-content">
     <div class="d-flex justify-content-between align-items-center py-0 mb-3 pInfo">
@@ -141,15 +58,16 @@
         관리자페이지</a>&nbsp>&nbsp전체상품목록
       </span>
     </div>
-    <button type="button" onclick="location.href='/app/product/form'">새 상품</button>
-    <select name="productCategory">
-      <option value="" selected="selected">전체</option>
-      <option value="">강아지</option>
-      <option value="">고양이</option>
-      <option value="">작은친구들</option>
-    </select>
-    
-    <table class='table table-hover' style="text-align: center;">
+    <div style="float:right;">
+      <button type="button" onclick="location.href='/app/product/form'">새 상품</button>
+      <select name="productCategory">
+        <option value="" selected="selected">전체</option>
+        <option value="">강아지</option>
+        <option value="">고양이</option>
+        <option value="">작은친구들</option>
+      </select>
+    </div>
+    <table class='table table-hover'>
       <tr>
         <th>상품번호</th>
         <th>상품명</th>

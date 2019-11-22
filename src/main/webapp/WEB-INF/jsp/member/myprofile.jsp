@@ -23,7 +23,7 @@
 <jsp:include page="../header.jsp" />
 <%-- <jsp:include page="../member/mypage_sidebar.jsp" /> --%>
 <body class="hold-transition sidebar-mini layout-fixed">
-	<div class="wrapper">
+<!-- 	<div class="wrapper"> -->
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper" style="width: 1100px;margin: 0 auto;height: 700px; min-height: 700px;">
       <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
@@ -33,20 +33,21 @@
       </div>
       
 			<figure class="snip1559" style="margin-left: 25%;">
+      <a href="detail?no=${member.memberNo}">
 				<div class="profile-image">
 					<input type="hidden" id="photo2" value="${member.photo}" /> <img
 						src='/upload/member/${member.photo}' id="imgThumb"
 						class="my-thumb profile-img">
 				</div>
-
 				<figcaption>
 					<h4>${member.nickname}</h4>
 				</figcaption>
+        </a>
 			</figure>
 
 			<jsp:include page="../member/mypage_sidebar.jsp" />
 		</div>
-	</div>
+<!-- 	</div> -->
 	<!-- ./wrapper -->
 
 	<!--  mypage_sidebar script  start -->

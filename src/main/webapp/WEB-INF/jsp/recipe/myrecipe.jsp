@@ -22,7 +22,7 @@
   <div class="w2-main w2-content px-0" style="margin: 0 auto; margin-bottom: 200px;">
     <div
       class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
-      <h3>My Recipe</h3>
+      <h3 class="recipe-h3">My Recipe</h3>
       <span class="rInfo-span"> <a href="/app/member/myprofile"
         class="mypage-tagA">My Page</a>&nbsp>&nbspMy Recipe
       </span>
@@ -35,7 +35,7 @@
   <script id="t1" type="listHtml">
 {{#each result}}
 <div class='w2-quarter my-list'>
-  <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;'>
+  <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;object-fit:cover;'>
   <div>
     <img src='/img/recipe/eye.png' style='height:15px; margin-top:-2.5px;'>&nbsp{{viewCount}}&nbsp&nbsp
     <img src='/img/recipe/like.png' style='height:15px; margin-top:-2px;'>&nbsp{{scrap}}
