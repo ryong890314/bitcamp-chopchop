@@ -64,11 +64,11 @@
   </style>
 
 </head>
-<body>
-  
 
 <jsp:include page="../header.jsp"/>
-<jsp:include page="admin_sidebar.jsp"/>
+.<jsp:include page="admin_sidebar.jsp"/>
+<body>
+  
 
   
 <div id="admin-content">

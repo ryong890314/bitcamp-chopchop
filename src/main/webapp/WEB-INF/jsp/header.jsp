@@ -18,7 +18,12 @@
 					<div class="top-social-info">
 						<a href="#" data-toggle="tooltip" data-placement="bottom"
 							title="Pinterest"><i class="fa fa-pinterest"
-							aria-hidden="true"></i></a> <a href="https://www.facebook.com/"
+							aria-hidden="true"></i></a> 
+							
+							<a href="https://github.com/Hecklebot/bitcamp-chopchop" data-toggle="tooltip" data-placement="bottom"
+              title="GitHub"><i class="fa fa-github"
+              aria-hidden="true"></i></a>
+							<a href="https://www.facebook.com/"
 							data-toggle="tooltip" data-placement="bottom" title="Facebook"><i
 							class="fa fa-facebook" aria-hidden="true"></i></a> <a
 							href="https://twitter.com/" data-toggle="tooltip"
