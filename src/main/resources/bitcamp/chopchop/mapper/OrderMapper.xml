@@ -8,6 +8,7 @@
   <resultMap type="Order" id="OrderMap">
     <id column="order_id" property="orderNo"/>
     <result column="member_id" property="memberNo"/>
+    <result column="name" property="name"/>
     <result column="tel" property="tel"/>
     <result column="post_no" property="postNo"/>
     <result column="base_address" property="baseAddress"/>
@@ -21,6 +22,7 @@
   <resultMap type="Order" id="findByMember">
     <id column="order_id" property="orderNo"/>
     <result column="member_id" property="memberNo"/>
+    <result column="name" property="name"/>
     <result column="tel" property="tel"/>
     <result column="post_no" property="postNo"/>
     <result column="base_address" property="baseAddress"/>
@@ -57,6 +59,7 @@
   <select id="findAll" resultMap="findByMember">
     select
       s.order_id,
+      s.name,
       s.tel,
       s.post_no,
       s.base_address,

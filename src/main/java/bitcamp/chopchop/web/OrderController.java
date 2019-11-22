@@ -185,11 +185,11 @@ public class OrderController {
   }
   
   @PostMapping("statusupdate")
-  public String statusUpdate(int no, int status) throws Exception {
+  public String statusUpdate(int no, int shipStatus) throws Exception {
     Order order = orderService.get(no);
-    order.setShipStatus(String.valueOf(status));
+    order.setShipStatus(String.valueOf(shipStatus));
     orderService.updateStatus(order);
-    return "redirect:searchbymember";
+    return "redirect:list";
   }
 
 }
