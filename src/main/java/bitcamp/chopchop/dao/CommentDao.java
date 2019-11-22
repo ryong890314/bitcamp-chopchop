@@ -12,4 +12,5 @@ public interface CommentDao {
   int deleteAll(int no) throws Exception;
   int commentDelete(int no) throws Exception;
   List<Comment> simplyGetComments(int no) throws Exception;
+  int insertAnswer(Comment comment) throws Exception;
 }
