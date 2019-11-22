@@ -120,6 +120,7 @@
 	<select id="findBy" parameterType="int" resultMap="MemberMap">
 		<include refid="basicColumn" />
 		,
+    grade,
 		photo,
 		post_no,
 		base_address,

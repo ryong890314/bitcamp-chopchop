@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
+import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.domain.Recipe;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
@@ -50,5 +51,16 @@ public class AdminController {
     }
     List<Recipe> recipes = recipeService.list(pageNo, pageSize);
     model.addAttribute("recipes", recipes);
+  }
+  
+//  @GetMapping("order_list")
+//  public void orderTotalList(Model model) throws Exception {
+//    model.addAttribute("orders", orderService.list());
+//  }
+  
+  @GetMapping("product_list")
+  public void list(Model model) throws Exception {
+    model.addAttribute("products", productService.list());
+    
   }
 }

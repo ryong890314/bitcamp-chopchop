@@ -44,7 +44,7 @@
     color: #ffffff;
 }
     </style>
-    <title>RECIPE LIST</title>
+    <title>ALL RECIPE LIST</title>
 </head>
 <body>
 <jsp:include page="../header.jsp" /> 

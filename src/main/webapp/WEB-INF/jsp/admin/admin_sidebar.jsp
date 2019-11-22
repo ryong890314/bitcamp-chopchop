@@ -38,30 +38,30 @@ Favicon
 
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item"><a href="/app/member/detail"
-            class="nav-link" style="font-size: large;"> <i
-              class="nav-icon fa fa-user"></i>
-              <p>My Profile</p>
-          </a></li>
+<!--           <li class="nav-item"><a href="/app/member/detail" -->
+<!--             class="nav-link" style="font-size: large;"> <i -->
+<!--               class="nav-icon fa fa-user"></i> -->
+<!--               <p>My Profile</p> -->
+<!--           </a></li> -->
           <li class="nav-item"><a href="/app/admin/recipe_list"
             class="nav-link" style="font-size: large;"> <i
               class="nav-icon fa fa-paw"></i>
-              <p>My Recipe</p>
+              <p>All Recipe</p>
           </a></li>
           <li class="nav-item"><a href="/app/mypage/myreview"
             class="nav-link" style="font-size: large;"> <i
               class="nav-icon fa fa-book"></i>
-              <p>My Review</p>
+              <p>All Review</p>
           </a></li>
-          <li class="nav-item"><a href="/app/order/searchbymember"
+          <li class="nav-item"><a href="/app/admin/product_list"
             class="nav-link" style="font-size: large;"> <i
               class="nav-icon fa fa-list"></i>
-              <p>My Order</p>
+              <p>All Order</p>
           </a></li>
           <li class="nav-item"><a href="/app/recipe/myscrap"
             class="nav-link" style="font-size: large;"> <i
               class="nav-icon fa fa-bookmark"></i>
-              <p>My Bookmark</p>
+              <p>All Bookmark</p>
           </a></li>
         </ul>
       </nav>

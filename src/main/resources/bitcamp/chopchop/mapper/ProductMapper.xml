@@ -23,6 +23,7 @@
     <result column="price" property="price"/>
     <result column="detail" property="detail"/>
     <result column="stock" property="stock"/>
+    <result column="view_count" property="viewCount"/>
     <result column="discount" property="discount"/>
     <result column="category" property="category"/>
     <result column="species" property="species"/>
@@ -92,6 +93,7 @@
       p.discount,
       p.category,
       p.species,
+      p.view_count,
       f.photo_id,
       f.file_path
     from 
