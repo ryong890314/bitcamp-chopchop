@@ -71,12 +71,6 @@
           onclick='uncheck_all();'>모두 해제</button>
       </div>
       <div style="float: right;" >
-        <select name='productCategory'>
-            <option value="" selected="selected">전체</option>
-            <option value="">강아지</option>
-            <option value="">고양이</option>
-            <option value="">작은친구들</option>
-          </select>
           <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='/app/product/form'">상품등록</button>
       </div>
     </div>
