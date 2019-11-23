@@ -122,7 +122,7 @@ public class MemberController {
   @GetMapping("delete")
   public String delete(int no) throws Exception {
     memberService.delete(no);
-    return "redirect:list";
+    return "redirect:/app/auth/logout";
   }
 
   @PostMapping("chkPw")

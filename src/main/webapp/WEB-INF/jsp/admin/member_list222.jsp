@@ -48,7 +48,10 @@
 }
 </style>
 </head>
+<!-- Theme style -->
+<link rel="stylesheet" href="/css/member/adminlte.min.css">
 <jsp:include page="../header.jsp" />
+<jsp:include page="admin_sidebar.jsp"/>
 <%-- <jsp:include page="admin_sidebar.jsp"/> --%>
 <body>
   <div id="admin-content">
@@ -60,7 +63,15 @@
       관리자페이지</a>&nbsp>&nbsp전체회원목록
       </span>
     </div>
-
+    
+    <div class="input-group">
+    <select id="pageSize">
+      <option value="3">3</option>
+      <option value="8">8</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+    </select>
+  </div>
     <table class='table table-hover tableList'>
       <tr>
         <th>번호</th>

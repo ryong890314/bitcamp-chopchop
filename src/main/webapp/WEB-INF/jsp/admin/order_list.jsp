@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ALL ORDER LIST</title>
+  <title>주문 조회</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
   <link rel='stylesheet' href='/css/style.css'>
   <style>
@@ -61,15 +61,18 @@
   line-height: 1.2 !important;
   margin: 0 0 8px !important;
 }
+
+.tableList {
+  text-align: center;
+}
   </style>
 
 </head>
 
 <jsp:include page="../header.jsp"/>
-.<jsp:include page="admin_sidebar.jsp"/>
+<%-- <jsp:include page="admin_sidebar.jsp"/> --%>
 <body>
   
-
   
 <div id="admin-content">
 <div class="d-flex justify-content-between align-items-center py-0 mb-3 oInfo">
@@ -80,7 +83,7 @@
       </span>
     </div>
   <div class="d-flex align-content-start flex-wrap">
-      <table class='table table-hover'>
+      <table class='table table-hover tableList'>
       <tr>
         <th>주문번호</th>
         <th>회원이름</th>
@@ -101,7 +104,7 @@
   <td>${order.detailAddress}</td>
   <td>${order.paymentDate}</td>
   <td>${order.paymentMethod}</td>
-  <td>${order.shipDate}</td>
+  <td>${order.shipStatus}</td>
   <td>${order.invoice}</td>
 </tr>
 </c:forEach>

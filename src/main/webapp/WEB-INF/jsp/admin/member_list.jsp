@@ -42,10 +42,12 @@
   line-height: 1.2 !important;
   margin: 0 0 8px !important;
 }
+
+.tableList {
+  text-align: center;
+}
 </style>
 </head>
-<!-- Theme style -->
-<link rel="stylesheet" href="/css/member/adminlte.min.css">
 <jsp:include page="../header.jsp" />
 <jsp:include page="admin_sidebar.jsp"/>
 <body>
@@ -53,12 +55,9 @@
     <div
       class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
       <h3 class="member-h3">회원 목록</h3>
-      <span class="mInfo-span"> 
-<!--       <a href="/app/member/myprofile" class="admin-tagA"> -->
-      관리자페이지</a>&nbsp>&nbsp전체회원목록
-      </span>
+      <span class="mInfo-span">관리자페이지&nbsp;>&nbsp;전체회원목록</span>
     </div>
-    <table class='table table-hover'>
+    <table class='table table-hover tableList'>
       <tr>
         <th>번호</th>
         <th>이메일</th>
@@ -72,38 +71,13 @@
           <td>${member.email}</td>
           <td>${member.nickname}</td>
           <td>${member.tel}</td>
-          <td>
-            <button type="button" class="memberDelete" id="${member.memberNo }">탈퇴</button>
-          </td>
+          <td>활동중</td>
         </tr>
       </c:forEach>
     </table>
   </div>
 </body>
 <jsp:include page="../footer.jsp" />
-<script type="text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-$('.memberDelete').click(function(){
-  Swal.fire({
-  title: '정말로 탈퇴 시키시겠습니까?',
-  text: "저장된 데이터가 모두 사라집니다.",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#b0c364;',
-  cancelButtonColor: '#d33',
-  confirmButtonText: '탈퇴',
-  cancelButtonText: '취소'
-}).then((result) => {
-  console.log(result);
-  if (result.value) {
-//    Swal.fire(
-//      '탈퇴가 정상 처리되었습니다.',
-//      '데이터가 모두 삭제되었습니다.',
-//      'success',
-//      )
-     location.href='delete?no=${member.memberNo}'
-    }
-  })
-})
-</script>
 </html>

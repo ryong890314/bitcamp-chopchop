@@ -60,7 +60,7 @@
 }
 
 span {
-  color: #7a7a7a;
+  color: #404040;
   font-size: 15px;
   line-height: 2;
   font-weight: 400;
@@ -104,7 +104,7 @@ span {
                 <a href="/app/product/detail?no=${productReview.products[0].productNo}" target="_blank" class="r-tagA"> 
                 ${productReview.products[0].title}</a><br>
                 <c:if test="${not empty productReview.options[0].title}">
-                  <span>[옵션] ${productReview.options[0].title}</span>
+                  <span style="color:#7a7a7a;">[옵션] ${productReview.options[0].title}</span>
                 </c:if>
               </div>
             </td>
