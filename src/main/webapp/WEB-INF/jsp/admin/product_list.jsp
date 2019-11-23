@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>상품 목록</title>
+  <title>전체 상품 목록</title>
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
   <style>
 
@@ -33,12 +33,19 @@
 }
 
 .product-h3 {
-/*   font-family: 'Oswald' !important; */
+  font-family: 'Oswald' !important; 
   text-transform: uppercase;
   font-size: 37px !important;
   font-weight: 500 !important;
   line-height: 1.2 !important;
   margin: 0 0 8px !important;
+}
+
+.r-tagA {
+  outline: 0 solid transparent;
+  color: #404040 !important;
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .tableList {
@@ -52,11 +59,9 @@
 <jsp:include page="admin_sidebar.jsp"/>
 <body>
 
-
-
   <div id="admin-content">
     <div class="d-flex justify-content-between align-items-center py-0 mb-3 pInfo">
-      <h3 class="product-h3">상품 목록</h3>
+      <h3 class="product-h3">All Product</h3>
       <span class="pInfo-span"> 
 <!--         <a href="/app/member/myprofile" class="admin-tagA"> -->
         관리자페이지</a>&nbsp;>&nbsp;전체상품목록

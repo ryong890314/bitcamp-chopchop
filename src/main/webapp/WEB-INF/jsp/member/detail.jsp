@@ -189,18 +189,13 @@
     text: "저장된 데이터가 모두 사라집니다.",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#b0c364;',
+    confirmButtonColor: '#b0c364',
     cancelButtonColor: '#d33',
     confirmButtonText: '탈퇴',
     cancelButtonText: '취소'
   }).then((result) => {
     console.log(result);
     if (result.value) {
-//      Swal.fire(
-//        '탈퇴가 정상 처리되었습니다.',
-//        '데이터가 모두 삭제되었습니다.',
-//        'success',
-//        )
        location.href='delete?no=${member.memberNo}'
       }
     })

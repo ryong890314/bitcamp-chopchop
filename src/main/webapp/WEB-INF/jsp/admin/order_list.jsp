@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>주문 조회</title>
+  <title>전체 주문 조회</title>
   <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
   <link rel='stylesheet' href='/css/style.css'>
   <style>
@@ -54,7 +54,7 @@
 }
 
 .order-h3 {
-/*   font-family: 'Oswald' !important; */
+  font-family: 'Oswald' !important; 
   text-transform: uppercase;
   font-size: 37px !important;
   font-weight: 500 !important;
@@ -70,13 +70,13 @@
 </head>
 
 <jsp:include page="../header.jsp"/>
-<%-- <jsp:include page="admin_sidebar.jsp"/> --%>
+<jsp:include page="admin_sidebar.jsp"/>
 <body>
   
   
 <div id="admin-content">
 <div class="d-flex justify-content-between align-items-center py-0 mb-3 oInfo">
-      <h3 class="order-h3">주문 목록</h3>
+      <h3 class="order-h3">All Order</h3>
       <span class="oInfo-span"> 
 <!--       <a href="/app/member/myprofile" class="admin-tagA"> -->
       관리자페이지</a>&nbsp>&nbsp전체주문목록

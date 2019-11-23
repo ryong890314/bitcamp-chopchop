@@ -119,6 +119,8 @@
     where product_review_id=#{productReviewNo}
   </delete>
   
+  <!-- ================================================================================== -->
+  
   <select id="myreview" parameterType="int" resultMap="findProductReviewMap">
     select
       r.product_review_id,
@@ -139,6 +141,28 @@
       
     where
       m.member_id=#{value}
+    order by r.created_date desc
+  </select>
+  
+  <select id="storeReview" parameterType="int" resultMap="findProductReviewMap">
+    select
+      r.product_review_id,
+      r.product_id,
+      r.member_id,
+      r.file_path,
+      r.content,
+      r.rating,
+      r.created_date,
+      m.member_id, 
+      m.nickname,
+      p.title, 
+      o.title otitle
+    from
+      product_review r
+      left outer join member m on r.member_id = m.member_id
+      left outer join product p on p.product_id = r.product_id
+      left outer join product_option o on p.product_id = o.product_id
+
     order by r.created_date desc
   </select>
   

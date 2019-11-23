@@ -31,10 +31,6 @@ public class MypageController {
   public void myreview(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
     List<ProductReview> productReviews = productReviewService.myreview(loginUser.getMemberNo());
-    System.out.println("11111111111111111111111111111111111111111111111111111111111111");
-    for(ProductReview a : productReviews) {
-      System.out.println(a.toString());
-    }
     model.addAttribute("member", member);
     model.addAttribute("productReviews", productReviews);
     

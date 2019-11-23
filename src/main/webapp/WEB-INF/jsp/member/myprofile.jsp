@@ -40,7 +40,7 @@
 						class="my-thumb profile-img">
 				</div>
 				<figcaption>
-					<h4>${member.nickname}</h4>
+					<h4 class="myprofile-h4 mypage-tagA" >${member.nickname}</h4>
 				</figcaption>
         </a>
 			</figure>

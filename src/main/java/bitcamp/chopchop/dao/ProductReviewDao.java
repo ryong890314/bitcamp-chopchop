@@ -12,4 +12,5 @@ public interface ProductReviewDao {
   int deleteAll(int no) throws Exception;
   int delete(int no) throws Exception;
   List<ProductReview> myreview(int no) throws Exception;
+  List<ProductReview> storeReview(int no) throws Exception;
 }

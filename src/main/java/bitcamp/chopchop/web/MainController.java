@@ -41,16 +41,11 @@ public class MainController {
     for (int i = 0; i < originRecipeList.size(); i++) {
       HashMap<String,Object> hashMap = new HashMap<>();
       hashMap.put("recipe", originRecipeList.get(i));
-//      hashMap.put("recipeMember", memberService.get(originRecipeList.get(i).getMemberNo()));
       recipeList.add(hashMap);
     }
     
     List<Product> productList = productService.mainTop();
     model.addAttribute("recipeList", recipeList);
     model.addAttribute("productList", productList);
-    System.out.println("-------------------------------------------------");
-//    for (Recipe r : recipeList) {
-//      System.out.println(r);
-//    }
   }
 }

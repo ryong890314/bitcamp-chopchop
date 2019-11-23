@@ -65,6 +65,10 @@ span {
   line-height: 2;
   font-weight: 400;
 }
+
+.tableList {
+  text-align: center;
+}
 </style>
 
 </head>
@@ -87,7 +91,7 @@ span {
         class="mypage-tagA">My Page</a>&nbsp>&nbspMy Review
       </span>
     </div>
-    <table class='table table-hover'>
+    <table class='table table-hover tableList'>
       <tr class="review-tr">
         <th style="width: 70px">번호</th>
         <th style="width: 270px">상품명</th>

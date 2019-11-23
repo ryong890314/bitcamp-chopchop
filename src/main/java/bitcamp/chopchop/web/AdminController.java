@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
-import bitcamp.chopchop.domain.Product;
+import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.domain.Recipe;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
 import bitcamp.chopchop.service.PetService;
+import bitcamp.chopchop.service.ProductReviewService;
 import bitcamp.chopchop.service.ProductService;
 import bitcamp.chopchop.service.RecipeService;
 
@@ -29,6 +30,7 @@ public class AdminController {
   @Resource private MemberService memberService;
   @Resource private PetService petService;
   @Resource private ProductService productService;
+  @Resource private ProductReviewService productReviewService;
   @Resource private OrderService orderService;
   
   @GetMapping("member_list")
@@ -65,6 +67,14 @@ public class AdminController {
     Member member = memberService.get(loginUser.getMemberNo());
     model.addAttribute("member", member);
     model.addAttribute("products", productService.list());
+  }
+  
+  @GetMapping("storeReview_list")
+  public void storeReviewTotalList(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    List<ProductReview> storeReviews = productReviewService.storeReview(loginUser.getMemberNo());
+    model.addAttribute("member", member);
+    model.addAttribute("storeReviews", storeReviews);
     
   }
 }

@@ -30,17 +30,17 @@
   font-weight: 600;
 }
 
-.review-tr, .tr-test {
-  text-align: center;
-}
-
 .review-tagP {
   text-align: left;
-  overflow: hidden;
+   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 320px;
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  width: 275px;
+  line-height: 2em;
+  height: 4.0em;
 }
 
 .r-tagA {
@@ -65,6 +65,10 @@ span {
   line-height: 2;
   font-weight: 400;
 }
+
+.tableList {
+  text-align: center;
+}
 </style>
 
 </head>
@@ -77,32 +81,33 @@ span {
   href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- mypage_sidebar  end -->
 <jsp:include page="../header.jsp" />
-  <jsp:include page="../member/mypage_sidebar.jsp" />
+  <jsp:include page="admin_sidebar.jsp"/>
 <body>
   <div id="orderBody" style="margin: 0 auto; margin-bottom: 200px;">
     <div
       class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3 class="recipe-h3">All Review</h3>
-      <span class="mInfo-span">관리자페이지&nbsp;>&nbsp;전체리뷰목록</span>
+      <span class="rInfo-span">관리자페이지&nbsp;>&nbsp;전체리뷰목록</span>
     </div>
-    <table class='table table-hover'>
-      <tr class="review-tr">
-        <th style="width: 70px">번호</th>
-        <th style="width: 270px">상품명</th>
-        <th>내용</th>
-        <th style="width: 140px">평점</th>
-        <th style="width: 140px">작성일</th>
+    <table class='table table-hover tableList'>
+      <tr class="review-tr"> 
+        <th style="width: 60px">번호</th>
+        <th style="width: 280px">상품명</th>
+        <th style="width: 415px">내용</th>
+        <th style="width: 100px">작성자</th>
+        <th style="width: 70px">평점</th>
+        <th style="width: 115px">작성일</th>
       </tr>
-      <c:forEach items="${productReviews}" var="productReview" varStatus="status">
+      <c:forEach items="${storeReviews}" var="storeReviews" varStatus="status">
         <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
           <tr class="tr-test">
             <td><div style="vertical-align: middle;">${status.count}</div></td>
             <td>
               <div>
-                <a href="/app/product/detail?no=${productReview.products[0].productNo}" target="_blank" class="r-tagA"> 
-                ${productReview.products[0].title}</a><br>
-                <c:if test="${not empty productReview.options[0].title}">
-                  <span style="color:#7a7a7a;">[옵션] ${productReview.options[0].title}</span>
+                <a href="/app/product/detail?no=${storeReviews.products[0].productNo}" target="_blank" class="r-tagA"> 
+                ${storeReviews.products[0].title}</a><br>
+                <c:if test="${not empty storeReviews.options[0].title}">
+                  <span style="color:#7a7a7a;">[옵션] ${storeReviews.options[0].title}</span>
                 </c:if>
               </div>
             </td>
@@ -110,23 +115,24 @@ span {
             <td>
               <div>
                 <p style="float: left;">
-                <img src="/upload/productreview/${productReview.filePath}" style="width: 100px; margin-right: 22px;"></p>
+                <img src="/upload/productreview/${storeReviews.filePath}" style="width: 100px; margin-right: 22px;"></p>
                 <div>
                   <p class="review-tagP">
-                    ${productReview.content}</p>
+                    ${storeReviews.content}</p>
                 </div>
               </div>
             </td>
             
+            <td>${storeReviews.members[0].nickname}</td>
             
             <td style="color: red;">
-              <c:if test="${productReview.rating == 1}">★☆☆☆☆</c:if> 
-              <c:if test="${productReview.rating == 2}">★★☆☆☆</c:if> 
-              <c:if test="${productReview.rating == 3}">★★★☆☆</c:if> 
-              <c:if test="${productReview.rating == 4}">★★★★☆</c:if> 
-              <c:if test="${productReview.rating == 5}">★★★★★</c:if>
+              <c:if test="${storeReviews.rating == 1}">★☆☆☆☆</c:if> 
+              <c:if test="${storeReviews.rating == 2}">★★☆☆☆</c:if> 
+              <c:if test="${storeReviews.rating == 3}">★★★☆☆</c:if> 
+              <c:if test="${storeReviews.rating == 4}">★★★★☆</c:if> 
+              <c:if test="${storeReviews.rating == 5}">★★★★★</c:if>
             </td>
-            <td>${productReview.createdDate}</td>
+            <td>${storeReviews.createdDate}</td>
           </tr>
         </tr>
       </c:forEach>

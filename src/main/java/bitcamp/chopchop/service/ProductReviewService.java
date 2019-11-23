@@ -10,4 +10,6 @@ public interface ProductReviewService {
   void update(ProductReview productReview) throws Exception;
   void delete(int no) throws Exception;
   List<ProductReview> myreview(int no) throws Exception;
+  List<ProductReview> storeReview(int no) throws Exception;
+  
 }

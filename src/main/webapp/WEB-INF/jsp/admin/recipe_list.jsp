@@ -1,198 +1,158 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/css/recipe/w3.css">
-<link rel="stylesheet" href="/css/recipe/list.css">
+<link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel="icon" href="/img/core-img/favicon.ico">
+<link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
+<title>My Review</title>
+
 <style>
-img.thumbnail {
-	width: 280px;
-	height: 250px;
-	object-fit: cover;
+#orderBody {
+  width: 1100px;
 }
 
-.my-list a {
-	color: #000000;
-}
-/* :: 3.7.0 bueno Button */
-.bueno-btn {
-	background-color: #b0c364;
-	-webkit-transition-duration: 500ms;
-	transition-duration: 500ms;
-	position: relative;
-	z-index: 1;
-	display: inline-block;
-	min-width: 160px;
-	height: 50px;
-	color: #ffffff;
-	border-radius: 0;
-	padding: 0 30px;
-	font-size: 14px;
-	line-height: 50px;
-	font-weight: 500;
-	text-transform: capitalize;
+.rInfo {
+  border-bottom: 2px solid #404040;
+  padding-bottom: 5px;
 }
 
-.bueno-btn:hover, .bueno-btn:focus {
-	font-size: 14px;
-	font-weight: 500;
-	background-color: #000000;
-	color: #ffffff;
+.mypage-tagA {
+  font-size: inherit;
+  color:#404040;
+}
+  
+.rInfo-span {
+  float: right;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.review-tagP {
+  text-align: left;
+   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  width: 275px;
+  line-height: 2em;
+  height: 4.0em;
+}
+
+.r-tagA {
+  outline: 0 solid transparent;
+  color: #404040 !important;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.recipe-h3 {
+  font-family: 'Oswald' !important;
+  text-transform: uppercase;
+  font-size: 37px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  margin: 0 0 8px !important;
+}
+
+span {
+  color: #404040;
+  font-size: 15px;
+  line-height: 2;
+  font-weight: 400;
+}
+
+.tableList {
+  text-align: center;
 }
 </style>
-<title>ALL RECIPE LIST</title>
+
 </head>
+<!-- mypage_sidebar start-->
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- mypage_sidebar  end -->
+<jsp:include page="../header.jsp" />
+  <jsp:include page="admin_sidebar.jsp"/>
 <body>
-	<jsp:include page="../header.jsp" />
-	<jsp:include page="admin_sidebar.jsp" />
+  <div id="orderBody" style="margin: 0 auto; margin-bottom: 200px;">
+    <div
+      class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
+      <h3 class="recipe-h3">All Recipe</h3>
+      <span class="rInfo-span">관리자페이지&nbsp;>&nbsp;전체레시피목록</span>
+    </div>
+    <table class='table table-hover tableList'>
+      <tr class="review-tr"> 
+        <th>번호</th>
+        <th>레시피명/사진</th>
+        <th>작성자</th>
+        <th>조회수</th>
+        <th>추천수</th>
+        <th>작성일</th>
+      </tr>
+      <c:forEach items="${recipes}" var="recipes" varStatus="status">
+          <tr class="tr-test">
+            <td><div style="vertical-align: middle;">${status.count}</div></td>
+            <td>
+              <div>
+<%--                 <a href="/app/product/detail?no=${recipes.recipeNo}" target="_blank" class="r-tagA">  --%>
+<%--                 ${recipes.title}</a><br> --%>
+                <p style="float: left;">
+                <img src="/upload/productreview/${recipes.thumbnail}" style="width: 100px; margin-right: 22px;"></p>
+                <div>
+                  <p class="review-tagP">
+                    ${recipes.title}</p>
+                </div>
+              </div>
+            </td>
+            <td>${recipes.members[0].nickname}</td>
+            <td>${recipes.viewCount}</td>
+            <td>${recipes.scrap}</td>
+            <td>${recipes.createdDate}</td>
+          </tr>
+      </c:forEach>
+    </table>
+  </div>
 
 
-	<!-- ##### Search Area Start ##### -->
-	<div class="bueno-search-area pb-70 bg-img" style="height: 40px;">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<form action="#" method="post">
-						<div class="row">
-							<div class="col-12 col-sm-6 col-lg-3">
-								<div class="form-group mb-30" style="display: none"></div>
-							</div>
-							<div class="col-12 col-sm-6 col-lg-3">
-								<div class="form-group mb-30">
-									<select id="selectCategory" name='category'
-										class="form-control my-category">
-										<option value="0" selected="selected">카테고리 보기</option>
-										<option value="1">강아지</option>
-										<option value="2">고양이</option>
-										<option value="3">작은동물</option>
-										<option value="4">기타</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-12 col-sm-6 col-lg-3">
-								<div class="form-group mb-30">
-									<select id="selectColumn" name='column'
-										class="form-control my-sort">
-										<option value="recipe_id" selected="selected">리스트 보기</option>
-										<option value="view_count">조회순</option>
-										<option value="scrap">좋아요순</option>
-										<option value="created_date">최신순</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-12 col-sm-6 col-lg-3">
-								<button id="add" class="btn bueno-btn w-100" type="button"
-									onclick="location='form.jsp'">레시피등록</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+  <jsp:include page="../footer.jsp" />
 
-	<div class="w3-main w3-content w3-padding"
-		style="max-width: 1100px; margin-top: 100px">
-		<!-- First Photo Grid-->
-		<div class="w3-row-padding w3-padding-16 w3-center" id="food"></div>
-		<button type="button"
-			class="btn btn-outline-secondary btn-lg btn-block view-more">더보기</button>
-	</div>
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
-	<script src="/js/jquery/jquery-2.2.4.min.js"></script>
-	<script src="/js/plugins/plugins.js"></script>
-	<script src="/js/active.js"></script>
-	<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
-
-	<script id="t1back" type="listHtml">
-<div class='w3-quarter my-list'>
-  <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
-  <h3><a href='detail?no={{recipeNo}}'>{{title}}</a></h3>
-  <p>{{otherInfo}}</p>
-</div>
-</script>
-	<script id="t1" type="listHtml">
-<div class='w3-quarter my-list'>
-  <a href='detail?no={{recipeNo}}' style='text-decoration:none;'>
-  <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
-  <h3>{{title}}</a></h3>
-    <p>{{otherInfo}}</p>
-<button type="del-btn" class="btn btn-light" onclick="del({{recipeNo}});">DELETE</button>
-</div>
-</script>
-
-	<script>
-"use strict";
-var dbody = $('#food');
-var templateSrc = $('#t1').html();
-var template = Handlebars.compile(templateSrc);
-
-loadList();
-function loadList() {
-  $.get("/app/json/recipe/list", function(data) {
-    console.log(data.result);
-    for (var b of data.result.recipes) {
-      $(template(b)).appendTo(dbody);
-    }
-    
-    window.currentPage = data.result.pageNo;
-    window.pageSize = data.result.pageSize;
-    window.totalPage = data.result.totalPage;
-  });
-}
-
-$('.my-sort').on('change', function() {
-  var selectOption = $('.my-sort').val();
-  $.get("/app/json/recipe/listSort?column=" + selectOption, function(data) {  
-  $('.my-list').remove();
-  $('.view-more').remove();
-    for (var b of data.result) {
-      $(template(b)).appendTo(dbody);
-    }
-  });
-}); 
   
-$('.my-category').on('change', function() {
-  var selectOption = $('.my-category').val();
-  
-  console.log(selectOption);
-  $.get("/app/json/recipe/listCategory?category=" + selectOption, function(data) {
-    console.log(data);
-    $('.my-list').remove();
-    $('.view-more').remove();
-    for (var b of data.result) {
-      $(template(b)).appendTo(dbody);
-    }
-  });
-});
-
-$('.view-more').click((e) => {
-  if (currentPage >= totalPage)
-    return;
-  next(currentPage, pageSize, totalPage);
-});
-
-function next(currentPage, pageSize, totalPage) {
-  $.get("/app/json/recipe/list?pageNo=" + (currentPage + 1), function(data) {
-    console.log(data.result);
-    for (var b of data.result.recipes) {
-      $(template(b)).appendTo(dbody);
-    }
-    window.currentPage = data.result.pageNo;
-    window.pageSize = data.result.pageSize;
-    window.totalPage = data.result.totalPage;
-  });
-};
-</script>
-	<script>
-function del(recipeNo) {
-    $.get('/app/recipe/delete?no=' + recipeNo, function(data) {
-      loadList();
-    });
-  }
-</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

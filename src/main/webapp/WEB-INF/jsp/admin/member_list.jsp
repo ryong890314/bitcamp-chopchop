@@ -9,7 +9,7 @@
 <style>
 #admin-content {
   width: 1100px !important;
-  margin: 30px auto;
+  margin: 0 auto;
 }
 
 .mInfo {
@@ -35,7 +35,7 @@
 }
 
 .member-h3 {
-/*   font-family: 'Oswald' !important; */
+  font-family: 'Oswald' !important; 
   text-transform: uppercase;
   font-size: 37px !important;
   font-weight: 500 !important;
@@ -54,12 +54,12 @@
   <div id="admin-content">
     <div
       class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
-      <h3 class="member-h3">회원 목록</h3>
+      <h3 class="member-h3">All Member</h3>
       <span class="mInfo-span">관리자페이지&nbsp;>&nbsp;전체회원목록</span>
     </div>
     <table class='table table-hover tableList'>
       <tr>
-        <th>번호</th>
+        <th>회원 번호</th>
         <th>이메일</th>
         <th>닉네임</th>
         <th>핸드폰 번호</th>
@@ -67,7 +67,7 @@
       </tr>
       <c:forEach items="${members}" var="member">
         <tr>
-          <td><a href='detail?no=${member.memberNo}'>${member.memberNo}</a></td>
+          <td>${member.memberNo}</td>
           <td>${member.email}</td>
           <td>${member.nickname}</td>
           <td>${member.tel}</td>

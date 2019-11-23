@@ -48,6 +48,12 @@ public class DefaultProductReviewService implements ProductReviewService {
   public List<ProductReview> myreview(int no) throws Exception {
     return productReviewDao.myreview(no);
   }
+
+  @Override
+  public List<ProductReview> storeReview(int no) throws Exception {
+    return productReviewDao.storeReview(no);
+  }
+
 }
 
 
