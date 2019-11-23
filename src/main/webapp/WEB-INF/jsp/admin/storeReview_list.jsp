@@ -46,7 +46,7 @@
 .r-tagA {
   outline: 0 solid transparent;
   color: #404040 !important;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
 }
 

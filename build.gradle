@@ -3,17 +3,9 @@ plugins {
     id 'eclipse-wtp'
     id 'war'
 }
-<<<<<<< HEAD
-
 repositories {
     jcenter()
 }
-
-=======
-repositories {
-    jcenter()
-}
->>>>>>> 380eae4e9bc3f9c50eeb85d50b31669fda53bd5f
 dependencies {
     // MariaDB JDBC Driver
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.3'

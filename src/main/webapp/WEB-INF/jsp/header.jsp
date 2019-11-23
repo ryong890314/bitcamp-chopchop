@@ -30,9 +30,9 @@
 							data-placement="bottom" title="Twitter"><i
 							class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#"
 							data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i
-							class="fa fa-dribbble" aria-hidden="true"></i></a> <a href="#"
-							data-toggle="tooltip" data-placement="bottom" title="Behance"><i
-							class="fa fa-behance" aria-hidden="true"></i></a> <a href="#"
+							class="fa fa-dribbble" aria-hidden="true"></i></a> <a href="https://www.instagram.com/chop0527/"
+							data-toggle="tooltip" data-placement="bottom" title="instagram"><i
+							class="fa fa-instagram" aria-hidden="true"></i></a> <a href="#"
 							data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i
 							class="fa fa-linkedin" aria-hidden="true"></i></a>
 						<div>
