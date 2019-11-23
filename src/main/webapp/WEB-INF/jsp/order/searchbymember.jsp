@@ -47,17 +47,39 @@
     font-size: inherit;
     color:#404040;
   }
+  
+  .recipe-h3 {
+  font-family: 'Oswald' !important;
+  text-transform: uppercase;
+  font-size: 37px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  margin: 0 0 8px !important;
+}
+
+.rInfo-span {
+  float: right;
+  font-size: 14px;
+  font-weight: 600;
+}
   </style>
 </head>
+<!-- mypage_sidebar start-->
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- mypage_sidebar  end -->
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-<%--   <jsp:include page="../member/mypage_sidebar.jsp" /> --%>
-  <div id="orderBody" style="max-width: 1200px;margin-left: 530px;margin-bottom: 300px;">
+  <div id="orderBody" style="margin: 0 auto; margin-bottom: 200px;">
   <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
-      <h3>My Order</h3>
-       <span style="float: right;font-size: 14px;">
-       <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Order</a></span> 
+      <h3 class="recipe-h3">My Order</h3>
+       <span class="rInfo-span">
+       <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Order</span> 
     </div>
     <div class="d-flex align-content-start flex-wrap">
       <table class='table table-hover' style="text-align:center;">
@@ -68,7 +90,7 @@
           <th>최종가격</th>
           <th>주문일</th>
           <th>상태</th>
-          <th></th>
+          <th> </th>
         </tr>
         <c:forEach items="${orderProducts}" var="orderProduct">
           <tr>

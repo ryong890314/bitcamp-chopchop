@@ -7,14 +7,22 @@
 <meta charset="UTF-8">
 <title>MY RECIPES</title>
 <link rel="stylesheet" href="/css/recipe/myrecipe.css">
+<!-- mypage_sidebar start-->
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- mypage_sidebar  end -->
 </head>
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-  <div class="w2-main w2-content px-0" style="margin-left: 530px; margin-bottom: 360px;">
+  <div class="w2-main w2-content px-0" style="margin: 0 auto; margin-bottom: 200px;">
     <div
       class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
-      <h3>My Recipe</h3>
+      <h3 class="recipe-h3">My Recipe</h3>
       <span class="rInfo-span"> <a href="/app/member/myprofile"
         class="mypage-tagA">My Page</a>&nbsp>&nbspMy Recipe
       </span>
@@ -23,10 +31,11 @@
     </div>
   </div>
 
+
   <script id="t1" type="listHtml">
 {{#each result}}
 <div class='w2-quarter my-list'>
-  <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;'>
+  <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;object-fit:cover;'>
   <div>
     <img src='/img/recipe/eye.png' style='height:15px; margin-top:-2.5px;'>&nbsp{{viewCount}}&nbsp&nbsp
     <img src='/img/recipe/like.png' style='height:15px; margin-top:-2px;'>&nbsp{{scrap}}

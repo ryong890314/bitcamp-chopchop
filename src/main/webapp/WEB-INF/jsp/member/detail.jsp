@@ -9,13 +9,12 @@
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
 </head>
-<jsp:include page="../member/mypage_sidebar.jsp" />
 <jsp:include page="../header.jsp" />
 <body onload="formLoad();">
-	<div class="content-wrapper">
+	<div class="content-wrapper" style="width: 1100px;margin: 0px auto;min-height: 680px;"> 
 		<div class="container memb-info px-0">
 			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
-        <h3>My Information</h3>
+        <h3 class="recipe-h3">My Information</h3>
 			   <span class="mInfo-span">
          <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Information</span> 
       </div>
@@ -190,18 +189,13 @@
     text: "저장된 데이터가 모두 사라집니다.",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#b0c364;',
+    confirmButtonColor: '#b0c364',
     cancelButtonColor: '#d33',
     confirmButtonText: '탈퇴',
     cancelButtonText: '취소'
   }).then((result) => {
     console.log(result);
     if (result.value) {
-//      Swal.fire(
-//        '탈퇴가 정상 처리되었습니다.',
-//        '데이터가 모두 삭제되었습니다.',
-//        'success',
-//        )
        location.href='delete?no=${member.memberNo}'
       }
     })

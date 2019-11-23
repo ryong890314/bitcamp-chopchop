@@ -123,6 +123,7 @@
 	<select id="findBy" parameterType="int" resultMap="MemberMap">
 		<include refid="basicColumn" />
 		,
+    grade,
 		photo,
 		post_no,
 		base_address,
@@ -179,6 +180,10 @@
 	<select id="findMyID" resultMap="MemberMap" resultType="String">
     select * from member
     where tel= #{tel}
+  </select>
+  
+  <select id="countAll" resultType="int">
+    select count(*) from member
   </select>
 	
 </mapper>

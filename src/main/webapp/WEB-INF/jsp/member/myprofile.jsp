@@ -21,102 +21,33 @@
 <!-- mypage_sidebar  end -->
 </head>
 <jsp:include page="../header.jsp" />
-<jsp:include page="../member/mypage_sidebar.jsp" />
+<%-- <jsp:include page="../member/mypage_sidebar.jsp" /> --%>
 <body class="hold-transition sidebar-mini layout-fixed">
-	<div class="wrapper" style="margin: 0 0 0 15%;">
+<!-- 	<div class="wrapper"> -->
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper"
-			style="max-width: 1200px; width: 982px;">
-			<div
-				class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo"
-				style="border-bottom: 2px solid #404040;">
-				<h3>My profile</h3>
-				<span class="mInfo-span"> <a class="mypage-tagA">My Page</a><a>&nbsp>&nbspMyprofile</a></span>
-			</div>
+		<div class="content-wrapper" style="width: 1100px;margin: 0 auto;height: 700px; min-height: 700px;">
+      <div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
+        <h3>My profile</h3>
+         <span class="mInfo-span">
+         <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Profile</span> 
+      </div>
+      
 			<figure class="snip1559" style="margin-left: 25%;">
-
+      <a href="detail?no=${member.memberNo}">
 				<div class="profile-image">
 					<input type="hidden" id="photo2" value="${member.photo}" /> <img
 						src='/upload/member/${member.photo}' id="imgThumb"
 						class="my-thumb profile-img">
 				</div>
-
 				<figcaption>
-					<h4>${member.nickname}</h4>
+					<h4 class="myprofile-h4 mypage-tagA" >${member.nickname}</h4>
 				</figcaption>
+        </a>
 			</figure>
 
-			<!-- Main content -->
-			<section class="content">
-				<!-- Small boxes (Stat box) -->
-				<div class="row">
-					<div class="col-lg-3 col-6">
-						<!-- small box -->
-						<div class="small-box">
-							<div class="inner">
-								<h4 class="myprofile-h4">Recipe</h4>
-								<p>All my recipes</p>
-							</div>
-							<div class="icon">
-								<i class="ion ion-ios-paw"></i>
-							</div>
-							<a href="/app/recipe/myrecipe" class="small-box-footer">More
-								info <i class="fas fa-arrow-circle-right"></i>
-							</a>
-						</div>
-					</div>
-					<!-- ./col -->
-					<div class="col-lg-3 col-6">
-						<!-- small box -->
-						<div class="small-box">
-							<div class="inner">
-								<h4 class="myprofile-h4">Review</h4>
-								<p>All my reviews</p>
-							</div>
-							<div class="icon">
-								<i class="ion ion-ios-book"></i>
-							</div>
-							<a href="#" class="small-box-footer">More info <i
-								class="fas fa-arrow-circle-right"></i></a>
-						</div>
-					</div>
-					<!-- ./col -->
-					<div class="col-lg-3 col-6">
-						<!-- small box -->
-						<div class="small-box ">
-							<div class="inner">
-								<h4 class="myprofile-h4">Order</h4>
-								<p>All my orders</p>
-							</div>
-							<div class="icon">
-								<i class="ion ion-ios-list"></i>
-							</div>
-							<a href="/app/order/searchbymember" class="small-box-footer">More
-								info <i class="fas fa-arrow-circle-right"></i>
-							</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-6">
-						<!-- small box -->
-						<div class="small-box">
-							<div class="inner">
-								<h4 class="myprofile-h4">Bookmark</h4>
-								<p>All my bookmarks</p>
-							</div>
-							<div class="icon">
-								<i class="ion ion-bookmark"></i>
-							</div>
-							<a href="/app/recipe/myscrap" class="small-box-footer">More
-								info <i class="fas fa-arrow-circle-right"></i>
-							</a>
-						</div>
-					</div>
-					<!-- ./col -->
-				</div>
-				<!-- /.row -->
-			</section>
+			<jsp:include page="../member/mypage_sidebar.jsp" />
 		</div>
-	</div>
+<!-- 	</div> -->
 	<!-- ./wrapper -->
 
 	<!--  mypage_sidebar script  start -->

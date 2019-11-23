@@ -9,7 +9,7 @@
 <body>
 	<div id='content' class="container pet-info px-0">
 	 <div class="d-flex justify-content-between align-items-center pt-3 pb-0 mb-3 pInfo">
-		<h3>My Pet Information</h3>
+		<h3 class="recipe-h3">My Pet Information</h3>
 	 </div>
    <span class="pl-2" style="float: right;">
 		<button type="button" class="btn btn-primary my-button" 

@@ -13,6 +13,7 @@
 #orderBody {
 	width: 1100px;
 }
+
 .rInfo {
   border-bottom: 2px solid #404040;
   padding-bottom: 5px;
@@ -45,23 +46,52 @@
 .r-tagA {
   outline: 0 solid transparent;
   color: #404040 !important;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.recipe-h3 {
+  font-family: 'Oswald' !important;
+  text-transform: uppercase;
+  font-size: 37px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  margin: 0 0 8px !important;
+}
+
+span {
+  color: #404040;
+  font-size: 15px;
+  line-height: 2;
+  font-weight: 400;
+}
+
+.tableList {
+  text-align: center;
 }
 </style>
 
 </head>
+<!-- mypage_sidebar start-->
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- mypage_sidebar  end -->
 <jsp:include page="../header.jsp" />
 	<jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-  <div id="orderBody" style="margin-left: 530px; margin-bottom: 360px;">
+  <div id="orderBody" style="margin: 0 auto; margin-bottom: 200px;">
     <div
       class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
-      <h3>My Review</h3>
+      <h3 class="recipe-h3">My Review</h3>
       <span class="rInfo-span"> <a href="/app/member/myprofile"
         class="mypage-tagA">My Page</a>&nbsp>&nbspMy Review
       </span>
     </div>
-    <table class='table table-hover'>
+    <table class='table table-hover tableList'>
       <tr class="review-tr">
         <th style="width: 70px">번호</th>
         <th style="width: 270px">상품명</th>
@@ -78,7 +108,7 @@
                 <a href="/app/product/detail?no=${productReview.products[0].productNo}" target="_blank" class="r-tagA"> 
                 ${productReview.products[0].title}</a><br>
                 <c:if test="${not empty productReview.options[0].title}">
-                  <span>[옵션] ${productReview.options[0].title}</span>
+                  <span style="color:#7a7a7a;">[옵션] ${productReview.options[0].title}</span>
                 </c:if>
               </div>
             </td>
