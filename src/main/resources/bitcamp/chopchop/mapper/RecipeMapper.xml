@@ -258,7 +258,7 @@
   
   <!-- ========================================================================== -->
   
-  <select id="mainTop" resultMap="RecipeMap">
+  <select id="mainTop" resultMap="TotalRecipeMap">
     SELECT 
       r.recipe_id,
       r.member_id,

@@ -30,13 +30,12 @@
 						<input type="hidden" name="recipeNo" id="recipeNo"
 							value="${recipes.recipe.recipeNo}">
 						<div class="blog-content-bg">
-							<div class="blog-content">
-								<span class="post-tag">${recipes.recipe.category}</span> <a
-									href="/app/recipe/detail?no=${recipes.recipe.recipeNo}"
+							<div class="blog-content"> 
+              <a href="/app/recipe/detail?no=${recipes.recipe.recipeNo}"
 									class="post-title tagA">${recipes.recipe.title}</a>
 								<div class="post-meta">
 									<span class="post-author">by
-										${recipes.recipeMember.nickname}</span><br> <span
+										${recipes.recipe.members[0].nickname}</span><br> <span
 										class="post-date">${recipes.recipe.createdDate}</span>
 								</div>
 							</div>
