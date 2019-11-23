@@ -84,6 +84,6 @@ public class AdminController {
   @GetMapping("recipeComment_list")
   public void recipeComment_list(Model model, @ModelAttribute("loginUser")Member loginUser) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
-    List<RecipeComment> recipeComments = recipeCommentService
+//    List<RecipeComment> recipeComments = recipeCommentService.
   }
 }
