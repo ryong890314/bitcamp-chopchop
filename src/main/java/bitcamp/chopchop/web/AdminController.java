@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
-import bitcamp.chopchop.domain.Product;
 import bitcamp.chopchop.domain.Recipe;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
