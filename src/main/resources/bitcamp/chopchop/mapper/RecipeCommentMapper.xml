@@ -55,5 +55,12 @@
     select count(*) from recipe_comment
     where recipe_id=#{value}
   </select>
+  
+    <select id="findAllComment" parameterType="map" resultMap="RecipeCommentMap">
+    select
+      comment_id, recipe_id, member_id, content, created_date
+    from recipe_comment
+    where recipe_id=#{no}
+  </select>
 
 </mapper>
