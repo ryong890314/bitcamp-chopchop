@@ -13,7 +13,7 @@
 	 </div>
    <span class="pl-2" style="float: right;">
 		<button type="button" class="btn btn-primary my-button" 
-			onclick="location.href='/app/pet/form'">펫 등록</button>
+			onclick="location.href='/app/pet/form?no=${member.memberNo}'">펫 등록</button>
     </span>
     <div>
 		<form action='/app/pet/updateForm' method='post'>
