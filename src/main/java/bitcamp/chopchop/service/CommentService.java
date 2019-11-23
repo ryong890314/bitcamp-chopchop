@@ -14,4 +14,5 @@ public interface CommentService {
   void update(Comment comment) throws Exception;
   void commentDelete(int no) throws Exception;
   List<Comment> findByProductWith(int no) throws Exception;
+  void commentAnswer(Comment comment) throws Exception;
 }

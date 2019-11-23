@@ -9,7 +9,7 @@
 
 <head>
   <title>상품 상세</title>
-  <link rel='stylesheet' href='/css/recipe/comments.css'>
+  <link rel='stylesheet' href='/css/product/style.css'>
   <link rel='stylesheet' href='/css/member/style_footer.css'>
   <link rel='stylesheet' href='/css/member/style-header.css'>
   <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
@@ -265,12 +265,11 @@
         <p><span id="memberName" style="font-size:14px;">{{nickname}}</span></p>
       </div>
       <div class="comment-meta">
-        <div class="d-flex">
-          <span class="comment-no" style="color:red;">{{commentNo}}</span>
-          <span class="update-title">{{title}}</span>
-          <span class="post-date">{{createdDate}}</span>
-          <button style="" class="reply">수정</button>
-          <button style="" class="comment-delete-btn">삭제</button>
+        <div class="d-flex" style="height:60px";>
+          <a class="update-title" style="font-weight:bold;">{{title}}&nbsp;&nbsp;</a>
+          <a class="post-date">{{createdDate}}</a>
+          &nbsp;<a style="" id="" class="reply-btn">수정</a>&nbsp;
+          &nbsp;<a style="" class="comment-delete-btn">삭제</a>&nbsp;
         </div>
         <p class="update-content">{{content}}</p>
       </div>
@@ -423,11 +422,10 @@
   
   // 자기 댓글만 수정 삭제
   var commentNo = $('.comment-no');
-  $(document).on('click', '.reply', function(e) {
-    console.log(this);
-    console.log($(this));
+  $(document).on('click', '.reply-btn', function(e) {
+    console.log($(this.parentNode).find('span[class="comment-no"]').text());
     $('#exampleModal').modal('show');
-    $('.modal-commentNo').val($(this.parentNode).find('span[class="comment-no"]').text());
+    $('.modal-commentNo').val($(this.parentNode).find('a[class="comment-no"]').text());
   })
   
   $('#exampleModal').on('show.bs.modal', function () {
@@ -437,15 +435,13 @@
   
   var memberGrade = ${loginUser.grade};
   var commentMember = $('.member-no');
-  var updateButton = $('.reply');
+  var updateButton = $('.reply-btn');
   var deleteButton = $('.comment-delete-btn');
   for(var i=0; i<commentMember.length; i++) {
-    if(commentMember[i].innerText == loginCheck) {
-      updateButton[i].setAttribute("style", 'display:inline');
-      deleteButton[i].setAttribute("style", 'display:inline');
-    } else if(memberGrade == 0) {
-      updateButton[i].setAttribute("style", 'display:inline');
-      deleteButton[i].setAttribute("style", 'display:inline');
+    console.log("updateButton " + updateButton[i]);
+    if(commentMember[i].innerText == loginCheck || memberGrade == 0) {
+      $(updateButton[i]).attr("style", 'display:inline; height:30px;');
+      $(deleteButton[i]).attr("style", 'display:inline; height:30px;');
     }
   }
 
@@ -526,32 +522,76 @@
   
   // 댓글 삭제
   $(document).on('click', '.comment-delete-btn', function (e) {
-    alert('삭제하시겠습니까?')
-    var commentDiv = $(this.parentNode.parentNode.parentNode.parentNode);
-    var commentNo = $(this.parentNode).find('a[class="comment-no"]').text();
-    console.log(commentDiv);
-    $.ajax({
-      url:'/app/comment/commentDelete',
-      method: 'post',
-      data: {commentNo: commentNo, productNo: ${product.productNo}},
-      success: function(result) {
-        console.log('댓글 삭제');
-        $(commentDiv).remove();
-      }
-    });
+    if(confirm('삭제하시겠습니까?')) {
+      var commentDiv = $(this.parentNode.parentNode.parentNode.parentNode);
+      var commentNo = $(this.parentNode).find('a[class="comment-no"]').text();
+      console.log(commentDiv);
+      $.ajax({
+        url:'/app/comment/commentDelete',
+        method: 'post',
+        data: {commentNo: commentNo, productNo: ${product.productNo}},
+        success: function(result) {
+          console.log('댓글 삭제');
+          $(commentDiv).remove();
+        }
+      });
+    }
   })
   
   // 관리자 기능
   var adminCheck = ${loginUser.grade};
   var commentAnswer = $('.comment-answer-btn');
+//   var answerBtn = $('.comment-answer-btn');
   if(adminCheck == 0) {
     console.log("들어오지마");
     console.log(adminCheck);
     $('#update-product').attr('style', 'display:inline');
     for(var i=0; i<commentAnswer.length;i++){
-      commentAnswer[i].setAttribute('style', 'display:inline')
+      commentAnswer[i].setAttribute('style', 'display:inline; height:30px;')
+//       answerBtn[i].style.display="inline";
     }
   }
+  
+  // 문의 답변(관리자)
+  $(document).on('click', '.comment-answer-btn', function(e){
+    var answerForm = $(this.parentNode.parentNode).find('textarea');
+    var updateBtn = $(this.parentNode.parentNode).find('.reply-btn');
+    var deleteBtn = $(this.parentNode.parentNode).find('.comment-delete-btnn');
+    var answerBtn = $(this.parentNode.parentNode).find('.comment-answer-btn');
+    var answerAddBtn = $(this.parentNode.parentNode).find('#answer-submit');
+    var answerLabel = $(this.parentNode.parentNode).find('label');
+    $(answerForm).attr('style', 'width:900px; height:300px; display:inline;');
+    $(answerLabel).attr('style', 'display:inline; height:30px;');
+    $(answerAddBtn).attr('style', 'display:inline; margin-bottom:30px; margin-left:10px;');
+  })
+  
+  $(document).on('click', '#answer-submit', function(e) {
+    var answerForm = $(this.parentNode).find('textarea');
+    var commentNo = $(this.parentNode).find('.d-flex').find('.comment-no');
+    var answer = $(this.parentNode).find('#answer-submit');
+    console.log($(answer).attr('style'));
+    $.ajax({
+      url: '/app/comment/insertanswer',
+      method: 'post',
+      data: {commentNo : $(commentNo).text(), answer: $(answerForm).val()},
+      success: function(result) {
+        $(answerForm).val('');
+        console.log($(answerForm));
+        $(answerForm).attr('style', 'display:none;');
+        $(answer).attr('style', 'display:none');
+      }
+    })
+  })
+  
+  
+  // 문의 내용 보기
+  $(document).on('click', '.update-title', function(e){
+    if($(this.parentNode.parentNode).find('p').attr('style') == 'display:none') {
+      $(this.parentNode.parentNode).find('p').attr('style', 'display:inline');
+    } else {
+      $(this.parentNode.parentNode).find('p').attr('style', 'display:none');
+    }
+  })
   </script>
 </body>
 </html>

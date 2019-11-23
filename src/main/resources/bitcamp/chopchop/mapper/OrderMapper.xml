@@ -8,6 +8,8 @@
   <resultMap type="Order" id="OrderMap">
     <id column="order_id" property="orderNo"/>
     <result column="member_id" property="memberNo"/>
+    <result column="name" property="name"/>
+    <result column="tel" property="tel"/>
     <result column="post_no" property="postNo"/>
     <result column="base_address" property="baseAddress"/>
     <result column="detail_address" property="detailAddress"/>
@@ -20,6 +22,8 @@
   <resultMap type="Order" id="findByMember">
     <id column="order_id" property="orderNo"/>
     <result column="member_id" property="memberNo"/>
+    <result column="name" property="name"/>
+    <result column="tel" property="tel"/>
     <result column="post_no" property="postNo"/>
     <result column="base_address" property="baseAddress"/>
     <result column="detail_address" property="detailAddress"/>
@@ -31,6 +35,8 @@
     <collection property="orderProducts" ofType="OrderProduct">
       <id column="order_id" property="orderNo"/>
       <id column="product_id" property="productNo"/>
+      <result column="option_id" property="optionNo"/>
+      <result column="order_product_id" property="orderProductNo"/>
       <result column="quantity" property="quantity"/>
       <result column="discount_price" property="discountPrice"/>
     </collection>
@@ -41,7 +47,7 @@
       <result column="email" property="email"/>
       <result column="photo" property="photo"/>
       <result column="nickname" property="nickname"/>
-      <result column="tel" property="nickname"/>
+      <result column="tel" property="tel"/>
       <result column="post_no" property="postNo"/>
       <result column="base_address" property="baseAddress"/>
       <result column="detail_address" property="detailAddress"/>
@@ -53,6 +59,8 @@
   <select id="findAll" resultMap="findByMember">
     select
       s.order_id,
+      s.name,
+      s.tel,
       s.post_no,
       s.base_address,
       s.detail_address,
@@ -60,9 +68,14 @@
       s.payment_method,
       s.ship_status,
       s.invoice,
+      p.product_id,
+      p.order_product_id,
+      p.option_id,
       p.quantity,
       p.discount_price,
-      m.member_id
+      m.member_id,
+      m.email,
+      m.nickname
     from 
       store_order s
         left outer join order_product p on s.order_id=p.order_id

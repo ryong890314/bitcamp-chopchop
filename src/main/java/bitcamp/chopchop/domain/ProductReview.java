@@ -8,6 +8,7 @@ public class ProductReview {
   private int productReviewNo;
   private int productNo;
   private int memberNo;
+  private int orderNo;
   private String filePath;
   private String content;
   private int rating;
@@ -101,9 +102,11 @@ public class ProductReview {
 
   @Override
   public String toString() {
-    return "ProductReview [content=" + content + ", createdDate=" + createdDate + ", filePath=" + filePath
-        + ", memberNo=" + memberNo + ", members=" + members + ", options=" + options + ", productNo=" + productNo
-        + ", productReviewNo=" + productReviewNo + ", products=" + products + ", rating=" + rating + "]";
+    return "ProductReview [productReviewNo=" + productReviewNo + ", productNo=" + productNo
+        + ", memberNo=" + memberNo + ", orderNo=" + orderNo + ", filePath=" + filePath
+        + ", content=" + content + ", rating=" + rating + ", createdDate=" + createdDate
+        + ", writer=" + writer + ", products=" + products + ", members=" + members + ", options="
+        + options + "]";
   }
 
   public List<ProductOption> getOptions() {
@@ -113,5 +116,15 @@ public class ProductReview {
   public void setOptions(List<ProductOption> options) {
     this.options = options;
   }
+
+  public int getOrderNo() {
+    return orderNo;
+  }
+
+  public void setOrderNo(int orderNo) {
+    this.orderNo = orderNo;
+  }
+  
+  
   
 }

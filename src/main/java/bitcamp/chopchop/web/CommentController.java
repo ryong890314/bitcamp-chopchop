@@ -63,6 +63,12 @@ public class CommentController {
   @GetMapping("productCommentList")
   public void productCommentList(Model model, int no) throws Exception {
   }
+  
+  @PostMapping("insertanswer")
+  public String insertAnswer(Comment comment) throws Exception {
+    commentService.commentAnswer(comment);
+    return "redirect:/app/product/list";
+  }
 }
 
 
