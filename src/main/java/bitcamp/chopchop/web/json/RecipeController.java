@@ -79,30 +79,7 @@ public class RecipeController {
   @GetMapping("detail")
   public JsonResult detail(int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     try {
-      Recipe recipe = recipeService.get(no);
-      recipeService.insertViewCount(no);
-      Member member = memberService.get(recipe.getMemberNo());
-      Member viewer = memberService.get(loginUser.getMemberNo());
-      
-      RecipeLike recipeLike = new RecipeLike();
-      recipeLike.setMemberNo(viewer.getMemberNo());
-      recipeLike.setRecipeNo(recipe.getRecipeNo());
-      int check = recipeService.findLike(recipeLike);
-      boolean likeCheck = false;
-      if (check == 1) { // 좋아요햇음
-        likeCheck = true;
-      } else if (check == 0){ // 좋아요 안했음
-        likeCheck = false;
-      }
-
-      JsonResult jsonResult = new JsonResult();
-      HashMap<String,Object> hashMap = new HashMap<>();
-      hashMap.put("member", member);
-      hashMap.put("recipe", recipe);
-      hashMap.put("isCheck", likeCheck);
-      hashMap.put("viewer", viewer);
-      jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
-      return jsonResult;
+      return null;
     } catch (Exception e) {
       return new JsonResult().setState(JsonResult.FAILURE).setMessage(e.getMessage());
     }
@@ -146,10 +123,10 @@ public class RecipeController {
 
   @GetMapping("list")
   public JsonResult list(@RequestParam(defaultValue = "1") int pageNo,
-                         @RequestParam(defaultValue = "4") int pageSize) throws Exception {
+                         @RequestParam(defaultValue = "16") int pageSize) throws Exception {
     // 총 페이지 개수 알아내기
-    if (pageSize < 4 || pageSize > 20) {
-      pageSize = 4;
+    if (pageSize < 16 || pageSize > 20) {
+      pageSize = 16;
     }
     int size = recipeService.size();
     int totalPage = size / pageSize;
@@ -213,7 +190,7 @@ public class RecipeController {
     try {
       List<Recipe> originRecipes = recipeService.listSort(column);
       List<HashMap> recipes = new ArrayList<>();
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 20; i++) {
         HashMap<String,Object> hashMap = new HashMap<>();
         hashMap.put("recipes", originRecipes.get(i)); // recipes;
         hashMap.put("member", memberService.get(originRecipes.get(i).getMemberNo()));
@@ -240,21 +217,18 @@ public class RecipeController {
     try {
       Member member = memberService.get(loginUser.getMemberNo());
       Recipe recipe = recipeService.get(no);
-
       RecipeLike recipeLike = new RecipeLike();
       recipeLike.setMemberNo(member.getMemberNo());
       recipeLike.setRecipeNo(recipe.getRecipeNo());
 
       JsonResult jsonResult = new JsonResult();
       HashMap<String,Object> hashMap = new HashMap<>();
-      
-      
       if (recipeService.findLike(recipeLike) == 1) { // 좋아요 취소해야함
         recipeService.deleteLike(recipeLike);
         hashMap.put("recipeNo", recipe.getRecipeNo());
         hashMap.put("member", member);
         hashMap.put("isLike", false);
-        hashMap.put("scrap", recipe.getScrap());
+        hashMap.put("scrap", recipeService.get(no).getScrap());
         jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
         return jsonResult;
 
@@ -264,7 +238,7 @@ public class RecipeController {
         hashMap.put("recipeNo", recipe.getRecipeNo());
         hashMap.put("member", member);
         hashMap.put("isLike", true);
-        hashMap.put("scrap", recipe.getScrap());
+        hashMap.put("scrap", recipeService.get(no).getScrap());
         jsonResult.setState(JsonResult.SUCCESS).setResult(hashMap);
         return jsonResult;
       }

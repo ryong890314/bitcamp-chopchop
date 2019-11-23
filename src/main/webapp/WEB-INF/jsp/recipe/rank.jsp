@@ -26,35 +26,12 @@
   <div class="container">
     <div class="row justify-content-center" style="">
         <!-- Sidebar Area -->
-        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 rank-silver">
-          <div class="sidebar-area">
-            <!-- Single Widget Area -->
-            <div class="single-widget-area author-widget mb-30" style="width:280px;">
-              <div style="text-align: center;">
-                <img src="/img/recipe/silver.png" style="height:50px;">
-<!--                 <img src="/img/recipe/star.png" style="height:30px;"> -->
-              </div>
-              <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
-                <div class="author-thumbnail">
-                  <img class="thumbnail">
-                </div>
-                <h5></h5>
-                <img src='/img/recipe/eye.png' style='height:15px; margin-right:2px;'>&nbsp;<span class="view-count"></span>
-                <img src='/img/recipe/like.png' style='height:15px;'>&nbsp;<span class="scrap"></span>
-                <p></p>
-              </div>
-            </div>
-          </div>
-        </div>
-            
         <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 rank-gold">
           <div class="sidebar-area">
             <!-- Single Widget Area -->
             <div class="single-widget-area author-widget mb-30" style="width:280px;">
               <div style="text-align: center;">
                 <img src="/img/recipe/gold.png" style="height:50px;">
-<!--                 <img src="/img/recipe/star.png" style="height:30px;"> -->
-<!--                 <img src="/img/recipe/star.png" style="height:30px;"> -->
               </div>
               <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
                 <div class="author-thumbnail">
@@ -62,6 +39,26 @@
                 </div>
                 <h5></h5>
                 <img src='/img/recipe/eye.png' style='height:15px;'>&nbsp;<span class="view-count"></span>
+                <img src='/img/recipe/like.png' style='height:15px;'>&nbsp;<span class="scrap"></span>
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 rank-silver">
+          <div class="sidebar-area">
+            <!-- Single Widget Area -->
+            <div class="single-widget-area author-widget mb-30" style="width:280px;">
+              <div style="text-align: center;">
+                <img src="/img/recipe/silver.png" style="height:50px;">
+              </div>
+              <div class="background-pattern bg-img"  style="background-color:#f6f6f6; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
+                <div class="author-thumbnail">
+                  <img class="thumbnail">
+                </div>
+                <h5></h5>
+                <img src='/img/recipe/eye.png' style='height:15px; margin-right:2px;'>&nbsp;<span class="view-count"></span>
                 <img src='/img/recipe/like.png' style='height:15px;'>&nbsp;<span class="scrap"></span>
                 <p></p>
               </div>
@@ -178,7 +175,8 @@ function loadList() {
     });
 };
 
-$('a#scraps-tab').click(function() {
+$('a#scraps-tab').click(function(e) {
+  e.preventDefault();
   $.get("/app/json/recipe/rank?column=" + "scrap", function(data) {
     var no = 0;
     for (var item of data.result) {
@@ -193,7 +191,8 @@ $('a#scraps-tab').click(function() {
   })
 });
 
-$('a#views-tab').click(function() {
+$('a#views-tab').click(function(e) {
+  e.preventDefault();
   loadList();
 });
 
@@ -219,5 +218,6 @@ function showRank(object) {
 };
 
 </script>
+<jsp:include page="../footer.jsp" />
 </body>
 </html>

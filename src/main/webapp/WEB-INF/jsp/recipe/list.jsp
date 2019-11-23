@@ -5,9 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel="stylesheet" href="/css/recipe/w3.css">
 <link rel="stylesheet" href="/css/recipe/list.css">
 <style>
+
  img.thumbnail {
   width: 280px;
   height: 250px;
@@ -105,16 +107,18 @@
 <script src="/js/active.js"></script>
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 
-<script id="t1back" type="listHtml">
-<div class='w3-quarter my-list'>
-  <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
-  <h3><a href='detail?no={{recipeNo}}'>{{title}}</a></h3>
-  <p>{{otherInfo}}</p>
-</div>
-</script>
-<script id="t1" type="listHtml">
+<script id="t1bak" type="listHtml">
 <div class='w3-quarter my-list'>
   <a href='detail?no={{recipeNo}}' style='text-decoration:none;'>
+  <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
+  <h3>{{title}}</a></h3>
+    <p>{{otherInfo}}</p>
+</div>
+</script>
+
+<script id="t1" type="listHtml">
+<div class='w3-quarter my-list'>
+  <a href='detail?no={{recipeNo}}' class='detail' style='text-decoration:none;'>
   <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
   <h3>{{title}}</a></h3>
     <p>{{otherInfo}}</p>
@@ -183,7 +187,14 @@ function next(currentPage, pageSize, totalPage) {
     window.totalPage = data.result.totalPage;
   });
 };
-</script>
 
+
+// $(document).on('click', '.detail', function(e) {
+//   e.preventDefault();
+//   console.log("클릭");
+  
+// });
+</script>
+<jsp:include page="../footer.jsp" />
 </body>
 </html>

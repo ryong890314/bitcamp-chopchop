@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/css/recipe/detail.css">
 <link rel="stylesheet" href="/css/recipe/comment.css">
 <style>
+
  .comment-author {
   width: 150px;
   height: 150px; 
@@ -21,7 +22,7 @@
   object-fit: cover;
  }
 
- button:focus {
+ #likeBtn:focus {
   outline:none;
  }
  .cookingphoto {
@@ -75,7 +76,6 @@
               <div class="col-4">
                   <div class="recipe-info">
                     <ul class="info-data">
-                        <li><span>30 min</span></li>
                         <li><span>CATEGORY:${category}</span></li>
                         <li><span>${recipe.tag}</span></li>
                     </ul>
@@ -97,17 +97,17 @@
            
            <div class="row post-details-content mb-30">
              <div class="col-12 blog-content">
-               <h4 class="post-title">${recipe.title}</h4>
+               <h4 class="post-title" style= "font-weight: 700; line-height: 1.2;">${recipe.title}</h4>
                <div class="post-meta mb-50">
                  <a class="post-date">${recipe.createdDate}</a>
-                 <a class="post-author">By ${member.nickname}</a><br>
+                 <a class="post-author">By ${recipeMember.nickname}</a><br>
                  <a class="post-author">Views ${recipe.viewCount}</a>
 <button style="border:none; background-color: #ffffff;" id="likeBtn" type="button" ><img id="likeimg" class="btn-img" style="margin-top:-4px; margin-left:10px; height:15px;" src="${isCheck ? '/img/recipe/like.png' : '/img/recipe/unlike.png'}"></button>
                  <input type="hidden" name='recipeNo' value="${recipe.recipeNo}">
                  <span id="scrap" style="margin-left:5px; margin-bottom:2px;font-size:15px;">${recipe.scrap}</span><br>
                  <button id="updateBtn" class="btn bueno-btn">수정하기</button>
                 </div>
-                <div>
+                <div style="font-size:18px;">
                 ${recipe.content}
                 </div>
              </div>
@@ -117,7 +117,7 @@
            <div class="cooking">
              <div class="row">
                <div class="col-12">
-                 <h5 class="mb-30" style="margin-bottom:5px !important;">Step ${cooking.processNo} </h5>
+                 <h5 class="mb-30" style="font-weight: 800; margin-bottom:5px !important;">Step ${cooking.processNo} </h5>
                </div>
              </div>
              <div class="row">
@@ -125,7 +125,7 @@
                 <img src='/upload/recipe/${cooking.filePath}' class='cookingphoto'>
               </div>
                <div class="col-8">
-                 <p class="mb-30">${cooking.content}</p>
+                 <p class="mb-30" style="font-size:16px;">${cooking.content}</p>
                </div>
              </div>
            </div><br>
@@ -143,8 +143,8 @@
 "use strict";
 loadData();
 function loadData() {
-  var writerNo = ${member.memberNo};
-  var viewerNo = ${viewer.memberNo};
+  var writerNo = ${recipeMember.memberNo};
+  var viewerNo = ${member.memberNo};
   if (writerNo != viewerNo) {
     $('#updateBtn').css('display', 'none');
   }
@@ -153,9 +153,13 @@ function loadData() {
 $('#likeBtn').click(function() {
   $.get("/app/json/recipe/like?no=" + ${recipe.recipeNo}, function(data) {
     if(data.result.isLike) { 
+      console.log("좋아요");
+      console.log(data.result.scrap);
       $('#likeimg').attr('src', '/img/recipe/like.png');
       $('span#scrap').html(data.result.scrap);
     } else { 
+      console.log("좋아요 취소");
+      console.log(data.result.scrap);
       $('#likeimg').attr('src', '/img/recipe/unlike.png');
       $('span#scrap').html(data.result.scrap);
     }
@@ -166,6 +170,16 @@ $('#updateBtn').click(function() {
   location.href='/app/recipe/updateform?no=' + ${recipe.recipeNo};
 });
 </script>
+
+
+
+
+
+
+
+
+
+<%-- <jsp:include page="../footer.jsp"/> --%>
 
 </body>
 </html>

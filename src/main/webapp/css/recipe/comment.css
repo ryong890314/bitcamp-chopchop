@@ -6,10 +6,10 @@
 /*   margin: 0; */
 /*   padding: 0; } */
 
+
 body {
 	margin: 0;
 	padding: 0;
-  font-family: "Montserrat", sans-serif;
   font-size: 14px; }
 
 h1,
@@ -37,8 +37,7 @@ a:focus {
   outline: 0 solid transparent;
   color: #000000;
   font-weight: 600;
-  font-size: 16px;
-  font-family: "Montserrat", sans-serif; }
+  font-size: 16px; }
 
 ul,
 ol {
@@ -249,3 +248,7 @@ h3 {
     border-bottom-color: #b0c364; }
 .contact-form-area textarea.form-control {
   height: 100px; }
+  
+  a.chop-logo {
+  font-weight: bold;
+}

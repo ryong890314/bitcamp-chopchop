@@ -56,7 +56,7 @@
                                   <div class="block-content">
                                       <div class="row form-group">
                                           <div class="col-xs-2"><label class="label">작성자</label></div>
-                                          <div class="col-xs-10"><input type="text" name="nickname" class="form-control" value="${loginUser.nickname}" readonly></div>
+                                          <div class="col-xs-10"><label class="label">&nbsp${member.nickname}</label></div>
                                           <div class="col-xs-10"><input type="hidden" name="memberNo" class="form-control" value="${loginUser.memberNo}" readonly></div>
                                       </div>
                                       <div class="row form-group">

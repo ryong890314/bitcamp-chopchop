@@ -1,3 +1,7 @@
+a.chop-logo {
+  font-weight: bold;
+}
+
 img {
   max-width: 100%; }
 /* :: 3.1.0 Spacing */
@@ -48,6 +52,7 @@ img {
 #nav-tab > a:hover {
   background-color: #b0c364;
 }
-td a {
+
+nav a, td a {
   color : #000000;
 }

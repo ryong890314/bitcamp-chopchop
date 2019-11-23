@@ -1,9 +1,12 @@
 /* Master Stylesheet - 1.0 */
 /* :: 1.0 Import Fonts */
 /* :: 2.0 Import All CSS */
-@import url(/node_modules/bootstrap/dist/css/bootstrap.min.css);
+/* @import url(/node_modules/bootstrap/dist/css/bootstrap.min.css); */
 @import url(/css/common/nice-select.css);
 /* :: 3.0 Base CSS */
+a.chop-logo {
+	font-weight: bold;
+}
 
 .pb-70 {
     padding-bottom: 70px !important;
@@ -23,7 +26,6 @@
 }
 
 .bueno-search-area {
-    font-family: "Montserrat", sans-serif;
     font-size: 14px;
     margin: 0;
     padding: 0;
