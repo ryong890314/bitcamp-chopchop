@@ -190,7 +190,7 @@ public class RecipeController {
     try {
       List<Recipe> originRecipes = recipeService.listSort(column);
       List<HashMap> recipes = new ArrayList<>();
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 20; i++) {
         HashMap<String,Object> hashMap = new HashMap<>();
         hashMap.put("recipes", originRecipes.get(i)); // recipes;
         hashMap.put("member", memberService.get(originRecipes.get(i).getMemberNo()));
