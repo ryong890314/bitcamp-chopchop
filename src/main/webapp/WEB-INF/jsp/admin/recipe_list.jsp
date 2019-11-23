@@ -111,7 +111,7 @@ span {
                 </div>
               </div>
             </td>
-            <td>${recipes.members[0].nickname}</td>
+            <td>${memberNameList[status.index]}</td>
             <td>${recipes.viewCount}</td>
             <td>${recipes.scrap}</td>
             <td>${recipes.createdDate}</td>
