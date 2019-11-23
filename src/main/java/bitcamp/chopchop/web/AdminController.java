@@ -1,5 +1,6 @@
 package bitcamp.chopchop.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -14,7 +15,6 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
 import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.domain.Recipe;
-import bitcamp.chopchop.domain.RecipeComment;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
 import bitcamp.chopchop.service.PetService;
@@ -55,7 +55,16 @@ public class AdminController {
       model.addAttribute("member", member);
     }
     List<Recipe> recipes = recipeService.list(pageNo, pageSize);
+    List<String>memberNameList =new ArrayList<>();
+    for(Recipe a: recipes ) {
+       int k =a.getMemberNo();
+       Member member =memberService.get(k);
+       String nickname= member.getNickname();
+       memberNameList.add(nickname);
+    }
     model.addAttribute("recipes", recipes);
+    model.addAttribute("memberNameList",memberNameList);
+    
   }
   
   @GetMapping("order_list")

@@ -92,7 +92,7 @@ span {
     <table class='table table-hover tableList'>
       <tr class="review-tr"> 
         <th>번호</th>
-        <th>레시피명/사진</th>
+        <th>레시피명&사진</th>
         <th>작성자</th>
         <th>조회수</th>
         <th>추천수</th>
@@ -103,17 +103,15 @@ span {
             <td><div style="vertical-align: middle;">${status.count}</div></td>
             <td>
               <div>
-<%--                 <a href="/app/product/detail?no=${recipes.recipeNo}" target="_blank" class="r-tagA">  --%>
-<%--                 ${recipes.title}</a><br> --%>
                 <p style="float: left;">
-                <img src="/upload/productreview/${recipes.thumbnail}" style="width: 100px; margin-right: 22px;"></p>
+                <img src="/upload/recipe/${recipes.thumbnail}" style="width: 100px; margin-right: 22px;"></p>
                 <div>
-                  <p class="review-tagP">
-                    ${recipes.title}</p>
+                <a href="/app/product/detail?no=${recipes.recipeNo}" target="_blank" class="r-tagA review-tagP"> 
+                ${recipes.title}</a>
                 </div>
               </div>
             </td>
-            <td>${recipes.members[0].nickname}</td>
+            <td>${memberNameList[status.index]}</td>
             <td>${recipes.viewCount}</td>
             <td>${recipes.scrap}</td>
             <td>${recipes.createdDate}</td>

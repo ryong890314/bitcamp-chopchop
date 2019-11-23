@@ -189,7 +189,7 @@ public class OrderController {
     Order order = orderService.get(no);
     order.setShipStatus(String.valueOf(shipStatus));
     orderService.updateStatus(order);
-    return "redirect:list";
+    return "redirect:/app/admin/order_list";
   }
 
 }
