@@ -77,7 +77,7 @@
 									style="padding-left: 25px !important; font-size: 18px;">ChopRecipe</a>
 								<li><a class="nav-items" href="/app/product/list"
 									style="padding-left: 25px !important; font-size: 18px;">ChopStore</a></li>
-								<li><a class="nav-items" href=""
+								<li><a class="nav-items" href="/app/event/list"
 									style="padding-left: 25px !important; font-size: 18px;">ChopEvent</a></li>
 								<li><a class="nav-items" href="/app/recipe/rank"
 									style="padding-left: 25px !important; font-size: 18px;">ChopRank</a></li>
