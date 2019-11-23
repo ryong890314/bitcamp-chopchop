@@ -22,14 +22,15 @@
       margin-left: auto; 
       margin-right: auto; 
     }
+
   </style>
 </head>
 <body>
   <jsp:include page="../header.jsp"/>
   
   <form action="addfromcart" method="post" id="orderForm">
-      <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
-      <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto;">
+    <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
+    <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto;">
     <tr>
       <td>상품명</td>
       <td>상품 가격</td>
@@ -64,18 +65,18 @@
       <div class="row">
       <div class="col-md-6">
         <label for="exampleInput">주문자 이름</label>
-        <input type="text" id="customerName" class="form-control" value="${loginUser.nickname}">
+        <input type="text" id="customerName" class="form-control" value="${loginUser.nickname}" readonly>
       </div>
       <div class="col-md-6">
         <label for="exampleInput">수령인 이름</label>
         <input type="text" id="recipientName" class="form-control" name="name" value="" placeholder="이름을 입력하세요." required="required">
-        <div id="nameCheck" style="color:red;"> </div>
+        <div id="nameCheck" style="color:red;"></div>
       </div>
       </div>
       <div class="row">
         <div class="col-md-6">
           <label for="exampleInput">주문자 연락처</label>
-          <input type="text" id="customerTel" class="form-control" name="" value="${loginUser.tel}">
+          <input type="text" id="customerTel" class="form-control" name="" value="${loginUser.tel}" readonly>
         </div>
         <div class="col-md-6">      
           <label for="exampleInput">수령인 연락처</label>
@@ -86,7 +87,7 @@
       <div class="row">
         <div class="col-md-6">
           <label for="exampleInput">우편번호</label>
-          <input type="text" id="customerPostNo" class="form-control" name="" value="${loginUser.postNo}">
+          <input type="text" id="customerPostNo" class="form-control" name="" value="${loginUser.postNo}" readonly>
         </div>
         <div class="col-md-6">      
           <label for="exampleInput">수령인 우편번호</label>
@@ -97,7 +98,7 @@
       <div class="row">
         <div class="col-md-6">
           <label for="exampleInput">기본주소</label>
-          <input type="text" id="customerBaseAddress" class="form-control" name="" value="${loginUser.baseAddress}">
+          <input type="text" id="customerBaseAddress" class="form-control" name="" value="${loginUser.baseAddress}" readonly>
         </div>
         <div class="col-md-6">      
           <label for="exampleInput">수령인 기본주소</label>
@@ -108,7 +109,7 @@
       <div class="row">
         <div class="col-md-6">
           <label for="exampleInput">상세주소</label>
-          <input type="text" id="customerDetailAddress" class="form-control" name="" value="${loginUser.detailAddress}">
+          <input type="text" id="customerDetailAddress" class="form-control" name="" value="${loginUser.detailAddress}" readonly>
         </div>
         <div class="col-md-6">
           <label for="exampleInput">수령인 상세주소</label>

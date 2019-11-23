@@ -9,14 +9,15 @@ public class Comment {
   private int memberNo;
   private String title;
   private String content;
+  private String answer;
   private Date createdDate;
   private Member member;
 
   @Override
   public String toString() {
     return "Comment [commentNo=" + commentNo + ", productNo=" + productNo + ", memberNo=" + memberNo
-        + ", title=" + title + ", content=" + content + ", createdDate=" + createdDate + ", member="
-        + member + "]";
+        + ", title=" + title + ", content=" + content + ", answer=" + answer + ", createdDate="
+        + createdDate + ", member=" + member + "]";
   }
 
   public int getCommentNo() {
@@ -74,6 +75,12 @@ public class Comment {
   public void setMember(Member member) {
     this.member = member;
   }
-  
-  
+
+  public String getAnswer() {
+    return answer;
+  }
+
+  public void setAnswer(String answer) {
+    this.answer = answer;
+  }
 }

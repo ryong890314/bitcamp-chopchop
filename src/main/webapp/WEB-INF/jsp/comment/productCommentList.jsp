@@ -14,21 +14,23 @@
           <!-- Comment Content -->
           <div class="comment-content d-flex">
             <!-- Comment Author -->
-              <div class="comment-author">
-                <span class="member-no" style="display:none">${comment.member.memberNo}</span>
-                <p><span id="memberName" style="font-size:14px;">${comment.member.nickname}</span></p>
-              </div>
+            <div class="comment-author">
+              <span class="member-no" style="display:none">${comment.member.memberNo}</span>
+              <p><span id="memberName" style="font-size:14px;">${comment.member.nickname}</span></p>
+            </div>
             <!-- Comment Meta -->
             <div class="comment-meta">
-              <div class="d-flex">
+              <div class="d-flex" style="height:60px;">
                 <a class="comment-no" style="display:none;">${comment.commentNo}</a>
-                <a class="update-title">${comment.title}</a>
+                <a class="update-title">${comment.title}&nbsp;&nbsp;</a>
                 <a class="post-date">${comment.createdDate}</a>
-                <button style="display:none;" class="reply">수정</button>
-                <button style="display:none;" class="comment-delete-btn">삭제</button>
-                <button class="comment-answer-btn">답변</button>
+                &nbsp;<a style="display:none;" id="" class="reply-btn">수정</a>&nbsp;
+                &nbsp;<a style="display:none;" class="comment-delete-btn">삭제</a>&nbsp;
+                &nbsp;<a class="comment-answer-btn" style="display:none">답변</a>&nbsp;
               </div>
-                <p class="update-content">${comment.content}</p>
+              <p class="update-content" style="display:none">${comment.content}</p>
+              <label class="answer-label" style="display:none">답변<br></label><textarea class="form-control" id="comment-answer" placeholder="답변을 입력해주세요." style="display:none;"></textarea>
+              <button class="btn btn-success" id="answer-submit" style="display:none;">입력</button>
             </div>
           </div><hr style="width:1100px;">
         </li>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,10 +47,15 @@ public class ProductController {
   public void form() {}
 
   @GetMapping("list")
-  public void list(Model model, HttpSession session, Member loginUser) throws Exception {
+  public void list(Model model, HttpSession session) throws Exception {
+    if (session.getAttribute("loginUser") != null) {
+      Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
+      model.addAttribute("member", member);
+    }
     model.addAttribute("products", productService.list());
   }
-
+  
+  @Transactional
   @PostMapping("add")
   public String add(
       Product product, MultipartFile[] filePath, String[] optionTitle, String[] optionPrice) 
@@ -65,7 +71,8 @@ public class ProductController {
     }
     return "redirect:list";
   }
-
+  
+  @Transactional
   @PostMapping("delete")
   public String delete(int productNo) throws Exception {
     productService.delete(productNo);
@@ -73,7 +80,12 @@ public class ProductController {
   }
 
   @GetMapping("detail")
-  public void detail(Model model, int no) throws Exception {
+  public void detail(Model model, int no, HttpSession session) throws Exception {
+    if (session.getAttribute("loginUser") != null) {
+      Member member = (Member)session.getAttribute("loginUser");
+      System.out.println(member);
+      model.addAttribute("member", member);
+    }
     Product product = productService.get(no);
     List<Comment> comments = commentService.findByProductWith(product.getProductNo());
     List<ProductReview> productReviews = productReviewService.list(product.getProductNo());
@@ -83,17 +95,26 @@ public class ProductController {
   }
 
   @GetMapping("search")
-  public void search(Model model, String keyword) throws Exception {
+  public void search(Model model, String keyword, HttpSession session) throws Exception {
+    if (session.getAttribute("loginUser") != null) {
+      Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
+      model.addAttribute("member", member);
+    }
     List<Product> products = productService.search(keyword);
     model.addAttribute("products", products);
   }
 
   @GetMapping("category")
-  public void categorySearch(String species, Model model) throws Exception {
+  public void categorySearch(String species, Model model, HttpSession session) throws Exception {
+    if (session.getAttribute("loginUser") != null) {
+      Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
+      model.addAttribute("member", member);
+    }
     List<Product> products = productService.categorySearch(species);
     model.addAttribute("products", products);
   }
 
+  @Transactional
   @PostMapping("update")
   public String update(
       Product product, MultipartFile[] filePath, String[] optionTitle, String[] optionPrice)
@@ -121,7 +142,7 @@ public class ProductController {
     return "redirect:detail?no=" + product.getProductNo();
   }
 
-  @GetMapping("updateform")
+  @PostMapping("updateform")
   public void updateform(Model model, int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
     model.addAttribute("product", productService.get(no));

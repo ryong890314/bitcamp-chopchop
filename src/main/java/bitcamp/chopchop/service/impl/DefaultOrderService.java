@@ -67,4 +67,13 @@ public class DefaultOrderService implements OrderService {
   public List<OrderProduct> searchByMember(int no) throws Exception {
     return orderProductDao.findByMemberWith(no);
   }
+  
+  @Override
+  public void updateStatus(Order order) throws Exception {
+    orderDao.statusUpdate(order);
+  }
+  
+  
+  
+  
 }
