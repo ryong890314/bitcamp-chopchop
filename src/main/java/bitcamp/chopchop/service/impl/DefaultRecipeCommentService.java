@@ -48,4 +48,9 @@ public class DefaultRecipeCommentService implements RecipeCommentService {
   public int size(int no) throws Exception {
     return recipeCommentDao.countAll(no);
   }
+
+  @Override
+  public List<RecipeComment> recipeCommentList(int no) throws Exception {
+    return recipeCommentDao.recipeCommentList(no);
+  }
 }

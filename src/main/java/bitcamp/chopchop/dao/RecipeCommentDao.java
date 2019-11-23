@@ -12,4 +12,5 @@ public interface RecipeCommentDao {
   int delete(int no) throws Exception;
   int deleteAll(int no) throws Exception;
   int countAll(int no) throws Exception;
+  List<RecipeComment> recipeCommentList(int no) throws Exception;
 }

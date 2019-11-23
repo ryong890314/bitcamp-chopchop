@@ -14,6 +14,7 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
 import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.domain.Recipe;
+import bitcamp.chopchop.domain.RecipeComment;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
 import bitcamp.chopchop.service.PetService;
@@ -81,8 +82,10 @@ public class AdminController {
   }
   
   @GetMapping("recipeComment_list")
-  public void recipeComment_list(Model model, @ModelAttribute("loginUser")Member loginUser) throws Exception {
+  public void recipeCommentList(Model model, @ModelAttribute("loginUser")Member loginUser) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
-//    List<RecipeComment> recipeComments = recipeCommentService.
+    List<RecipeComment> recipeCommentList = recipeCommentService.recipeCommentList(loginUser.getMemberNo());
+    model.addAttribute("member", member);
+    model.addAttribute("recipeCommentList", recipeCommentList);
   }
 }
