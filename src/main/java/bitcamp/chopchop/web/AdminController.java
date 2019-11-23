@@ -14,7 +14,6 @@ import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.domain.Pet;
 import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.domain.Recipe;
-import bitcamp.chopchop.domain.RecipeComment;
 import bitcamp.chopchop.service.MemberService;
 import bitcamp.chopchop.service.OrderService;
 import bitcamp.chopchop.service.PetService;
