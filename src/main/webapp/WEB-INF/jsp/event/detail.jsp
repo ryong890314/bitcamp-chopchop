@@ -83,7 +83,7 @@
       <hr class="my-4">
       <p>
         <c:forEach items="${event.files}" var="file" begin="1">
-          <img src="/upload/event/${file.filePath}" class="rounded mx-auto d-block" alt="...">
+          <img src="/upload/event/${file.filePath}" style="width: 1100px;">
         </c:forEach>
       </p>
        <hr class="my-4">
