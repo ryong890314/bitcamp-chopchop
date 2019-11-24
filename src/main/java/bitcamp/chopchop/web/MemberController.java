@@ -55,13 +55,13 @@ public class MemberController {
     return "redirect:list";
   }
 
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    List<Member> members = memberService.list();
-    model.addAttribute("members", members);
-    List<Pet> pets = petService.list();
-    model.addAttribute("pets", pets);
-  }
+//  @GetMapping("list")
+//  public void list(Model model) throws Exception {
+//    List<Member> members = memberService.list();
+//    model.addAttribute("members", members);
+//    List<Pet> pets = petService.list();
+//    model.addAttribute("pets", pets);
+//  }
 
   @GetMapping("contact")
   public void contact(Model model, HttpSession session) throws Exception {

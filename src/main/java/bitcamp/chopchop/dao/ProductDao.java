@@ -1,5 +1,6 @@
 package bitcamp.chopchop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import bitcamp.chopchop.domain.Product;
 
@@ -15,4 +16,6 @@ public interface ProductDao {
   List<Product> findCategory(String species) throws Exception;
   
   List<Product> mainTop() throws Exception;
+  int size() throws Exception;
+  List<Product> findAllPaging(HashMap<String, Object> param) throws Exception;
 }

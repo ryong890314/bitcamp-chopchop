@@ -18,6 +18,8 @@ public interface ProductService {
   void delete(int no) throws Exception;
   
   List<Product> mainTop() throws Exception;
+  int size() throws Exception;
+  List<Product> pagingList(int pageNo, int pageSize) throws Exception;
 }
 
 
