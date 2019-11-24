@@ -120,9 +120,9 @@
       </c:forEach>
     </table>
 
-    <c:if test="${sessionScope.loginUser != null}">
+    <!-- <c:if test="${sessionScope.loginUser != null}">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">후기등록</button>
-    </c:if>
+    </c:if> -->
 
   </div>
 

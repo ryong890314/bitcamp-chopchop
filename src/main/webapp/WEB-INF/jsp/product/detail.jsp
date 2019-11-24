@@ -183,7 +183,7 @@
       </div>
 
       <hr class="my-4">
-      <h1 class="display-4">${product.title}</h1>
+      <span style="font-size: 30px;">${product.title}</span>
       <p class="lead">${product.detail}</p>
       <hr class="my-4">
       <p>
