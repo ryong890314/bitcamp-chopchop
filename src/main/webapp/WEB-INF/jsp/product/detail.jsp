@@ -9,6 +9,7 @@
 
 <head>
   <title>상품 상세</title>
+  <link rel="stylesheet" href="/css/member/style-header.css">
   <link rel='stylesheet' href='/css/product/style.css'>
   <link rel='stylesheet' href='/css/member/style_footer.css'>
   <link rel='stylesheet' href='/css/member/style-header.css'>
@@ -71,10 +72,9 @@
     }
   </style>
 </head>
-
+  <jsp:include page="../header.jsp" />
 <body>
 
-  <jsp:include page="../header.jsp" />
 
   <div>
     <div id="productBody">
