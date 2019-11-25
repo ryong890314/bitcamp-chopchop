@@ -105,7 +105,7 @@
 <button style="border:none; background-color: #ffffff;" id="likeBtn" type="button" ><img id="likeimg" class="btn-img" style="margin-top:-4px; margin-left:10px; height:15px;" src="${isCheck ? '/img/recipe/like.png' : '/img/recipe/unlike.png'}"></button>
                  <input type="hidden" name='recipeNo' value="${recipe.recipeNo}">
                  <span id="scrap" style="margin-left:5px; margin-bottom:2px;font-size:15px;">${recipe.scrap}</span><br>
-                 <button id="updateBtn" class="btn bueno-btn">수정하기</button>
+                 <button id="updateBtn" class="btn bueno-btn" style="display:none;">수정하기</button>
                 </div>
                 <div style="font-size:18px;">
                 ${recipe.content}
@@ -145,8 +145,8 @@ loadData();
 function loadData() {
   var writerNo = ${recipeMember.memberNo};
   var viewerNo = ${member.memberNo};
-  if (writerNo != viewerNo) {
-    $('#updateBtn').css('display', 'none');
+  if (writerNo == viewerNo) {
+    $('#updateBtn').css('display', '');
   }
 };
 

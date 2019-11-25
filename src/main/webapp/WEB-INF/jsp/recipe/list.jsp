@@ -118,9 +118,10 @@
 
 <script id="t1" type="listHtml">
 <div class='w3-quarter my-list'>
-  <a href='detail?no={{recipeNo}}' class='detail' style='text-decoration:none;'>
+  <a href='#' class='detail' style='text-decoration:none;'>
+  <input class='recipeNo' type='hidden' value='{{recipeNo}}'>
   <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
-  <h3>{{title}}</a></h3>
+  <h3>{{title}}</h3></a>
     <p>{{otherInfo}}</p>
 </div>
 </script>
@@ -189,11 +190,17 @@ function next(currentPage, pageSize, totalPage) {
 };
 
 
-// $(document).on('click', '.detail', function(e) {
-//   e.preventDefault();
-//   console.log("클릭");
-  
-// });
+$(document).on('click', '.detail', function(e) {
+  e.preventDefault();
+  console.log("클릭");
+  var no = $(this.parentNode).find('.recipeNo').val();
+  var loginCheck = '${loginUser.memberNo}';
+  if (loginCheck == '') {
+    alert("로그인이 필요한 서비스입니다.");
+  } else {
+    location.href = '/app/recipe/detail?no=' + no;
+  }
+});
 </script>
 <jsp:include page="../footer.jsp" />
 </body>
