@@ -7,7 +7,7 @@
 <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel="icon" href="/img/core-img/favicon.ico">
 <link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
-<title>All Store Review</title>
+<title>전체 스토어리뷰 목록</title>
 
 <style>
 #orderBody {

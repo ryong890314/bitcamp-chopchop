@@ -81,7 +81,6 @@
     </div>
     <table class='table table-hover tableList' style="margin-top: 5px;">
       <tr>
-        <th>선택</th>
         <th>상품번호</th>
         <th>상품명</th>
         <th>상품금액</th>
@@ -91,9 +90,6 @@
       </tr>
       <c:forEach items="${products}" var="product">
         <tr>
-        <td class="check-td">
-          <input class="myChkbox" type="checkbox" name="chkbox" value="${product.productNo}">
-        </td>
           <td>${product.productNo}</td>
           <td><a href='/app/product/detail?no=${product.productNo}' target="_blank" class="r-tagA">
           <div>
@@ -143,15 +139,9 @@
 
 <jsp:include page="../footer.jsp"/>
 
-<script src="/js/jquery/jquery-2.2.4.min.js"></script>
-<!-- Popper js -->
-<script src="../js/bootstrap/popper.min.js"></script>
-<!-- Bootstrap js -->
-<script src="../js/bootstrap/bootstrap.min.js"></script>
-<!-- All Plugins js -->
-<script src="../js/plugins/plugins.js"></script>
-<!-- Active js -->
-<script src="../js/active.js"></script>
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/node_modules/popper.js/dist/popper.min.js"></script>
 
  <script>
  

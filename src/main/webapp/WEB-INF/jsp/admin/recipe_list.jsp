@@ -5,13 +5,12 @@
 <html>
 <head>
 <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel="icon" href="/img/core-img/favicon.ico">
-<link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <title>전체 레시피 목록</title>
 
 <style>
-#orderBody {
+#admin-content {
   width: 1100px;
+  margin: 0 auto;
 }
 
 .rInfo {
@@ -72,20 +71,12 @@ span {
 </style>
 
 </head>
-<!-- mypage_sidebar start-->
-<!-- Font Awesome -->
-<link rel="stylesheet"
-  href="/js/plugins/fontawesome-free/css/all.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- mypage_sidebar  end -->
+
 <jsp:include page="../header.jsp" />
   <jsp:include page="admin_sidebar.jsp"/>
 <body>
-  <div id="orderBody" style="margin: 0 auto; margin-bottom: 200px;">
-    <div
-      class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
+  <div id="admin-content">
+    <div class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3 class="recipe-h3">All Recipe</h3>
       <span class="rInfo-span">관리자페이지&nbsp;>&nbsp;전체레시피목록</span>
     </div>
@@ -100,7 +91,8 @@ span {
       </div>
     </div>
     <table class='table table-hover tableList'>
-      <tr class="review-tr"> 
+      <tr> 
+        <th></th>
         <th>번호</th>
         <th>레시피명&사진</th>
         <th>작성자</th>
@@ -109,8 +101,9 @@ span {
         <th>작성일</th>
       </tr>
       <c:forEach items="${recipes}" var="recipes" varStatus="status">
-          <tr class="tr-test">
-            <td><div style="vertical-align: middle;">${status.count}</div></td>
+          <tr>
+            <td><div style="display: none;">${status.count}</div></td>
+            <td><div style="vertical-align: middle;">${recipes.recipeNo}</div></td>
             <td>
               <div>
                 <p style="float: left;">
@@ -154,6 +147,7 @@ span {
 
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/node_modules/popper.js/dist/popper.min.js"></script>
 
   <script>
  
