@@ -181,10 +181,29 @@ public class AdminController {
   }
   
   @GetMapping("recipeComment_list")
-  public void recipeCommentList(Model model, @ModelAttribute("loginUser")Member loginUser) throws Exception {
+  public void recipeCommentList(Model model, @ModelAttribute("loginUser")Member loginUser,
+      @RequestParam(defaultValue = "1") int pageNo, 
+      @RequestParam(defaultValue = "3") int pageSize) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
-    List<RecipeComment> recipeCommentList = recipeCommentService.recipeCommentList();
+    List<RecipeComment> recipeCommentList = recipeCommentService.recipeCommentList(pageNo, pageSize);
+    
+ // 멤버 총 건수
+    int size = productReviewService.size();
+    
+    // 페이징처리에서 보여주는 숫자
+    int totalPage = size / pageSize; // 13 / 3 = 4.x
+    if (size % pageSize > 0) {
+      totalPage++;
+    }
+    
     model.addAttribute("member", member);
     model.addAttribute("recipeCommentList", recipeCommentList);
+    
+    model.addAttribute("pageNo", pageNo);
+    model.addAttribute("pageSize", pageSize);
+    model.addAttribute("totalPage", totalPage);
+    model.addAttribute("size", size);
+    model.addAttribute("beginPage", (pageNo - 2) > 0 ? (pageNo - 2) : 1);
+    model.addAttribute("endPage", (pageNo + 2) < totalPage ? (pageNo + 2) : totalPage);
   }
 }

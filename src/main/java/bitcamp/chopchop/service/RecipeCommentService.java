@@ -10,5 +10,5 @@ public interface RecipeCommentService {
   void update(RecipeComment recipeComment) throws Exception;
   void delete(int no) throws Exception;
   int size(int no) throws Exception;
-  List<RecipeComment> recipeCommentList () throws Exception;
+  List<RecipeComment> recipeCommentList (int pageNo, int pageSize) throws Exception;
 }

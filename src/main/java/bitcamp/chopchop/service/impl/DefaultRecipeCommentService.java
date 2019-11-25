@@ -50,7 +50,10 @@ public class DefaultRecipeCommentService implements RecipeCommentService {
   }
 
   @Override
-  public List<RecipeComment> recipeCommentList() throws Exception {
-    return recipeCommentDao.recipeCommentList();
+  public List<RecipeComment> recipeCommentList(int pageNo, int pageSize) throws Exception {
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("offset", (pageNo - 1) * pageSize);
+    param.put("pageSize", pageSize);
+    return recipeCommentDao.recipeCommentList(param);
   }
 }
