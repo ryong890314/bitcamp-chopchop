@@ -136,6 +136,7 @@
       c.title ct,
       c.content cc,
       c.created_date,
+      c.answer,
       o.option_id,
       o.title optionTitle,
       o.price optionPrice

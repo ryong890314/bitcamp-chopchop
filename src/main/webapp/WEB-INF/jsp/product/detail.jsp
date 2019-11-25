@@ -585,11 +585,14 @@
   
   
   // 문의 내용 보기
-  $(document).on('click', '.update-title', function(e){
-    if($(this.parentNode.parentNode).find('p').attr('style') == 'display:none') {
+  $(document).on('click', '.update-title', function(e) {
+    if($(this.parentNode.parentNode).find('.update-content').attr('style') == 'display:none') {
       $(this.parentNode.parentNode).find('p').attr('style', 'display:inline');
+      $(this.parentNode.parentNode).find('.content-answer-line').attr('style', 'display:block; width:950px;');
+      $(this.parentNode.parentNode).find('.answer-label').attr('style', 'display:inline');
     } else {
       $(this.parentNode.parentNode).find('p').attr('style', 'display:none');
+      $(this.parentNode.parentNode).find('.content-answer-line').attr('style', 'display:none');
     }
   })
   </script>
