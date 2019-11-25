@@ -1,5 +1,6 @@
 package bitcamp.chopchop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import bitcamp.chopchop.domain.RecipeComment;
@@ -12,5 +13,5 @@ public interface RecipeCommentDao {
   int delete(int no) throws Exception;
   int deleteAll(int no) throws Exception;
   int countAll(int no) throws Exception;
-  List<RecipeComment> recipeCommentList() throws Exception;
+  List<RecipeComment> recipeCommentList(HashMap<String,Object> param) throws Exception;
 }

@@ -56,11 +56,12 @@
     where recipe_id=#{value}
   </select>
   
-    <select id="recipeCommentList" resultMap="RecipeCommentMap">
+    <select id="recipeCommentList" parameterType="map" resultMap="RecipeCommentMap">
     select
       comment_id, recipe_id, member_id, content, created_date
     from recipe_comment
     order by comment_id desc
+    limit #{offset}, #{pageSize}
   </select>
 
 </mapper>
