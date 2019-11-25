@@ -75,9 +75,11 @@
           <option value="20">20</option>
         </select>
       </div>
+    <button class="btn btn-secondary btn-sm" type="button" 
+    onclick="location.href='/app/product/form'" 
+    style="float:right;">새 상품</button>
     </div>
-    
-    <table class='table table-hover tableList'>
+    <table class='table table-hover tableList' style="margin-top: 5px;">
       <tr>
         <th>선택</th>
         <th>상품번호</th>
