@@ -5,13 +5,12 @@
 <html>
 <head>
 <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel="icon" href="/img/core-img/favicon.ico">
-<link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
 <title>전체 스토어리뷰 목록</title>
 
 <style>
-#orderBody {
+#admin-content {
   width: 1100px;
+  margin: 0 auto;
 }
 
 .rInfo {
@@ -59,33 +58,18 @@
   margin: 0 0 8px !important;
 }
 
-span {
-  color: #404040;
-  font-size: 15px;
-  line-height: 2;
-  font-weight: 400;
-}
-
 .tableList {
   text-align: center;
+  margin-top: 5px;
 }
 </style>
 
 </head>
-<!-- mypage_sidebar start-->
-<!-- Font Awesome -->
-<link rel="stylesheet"
-  href="/js/plugins/fontawesome-free/css/all.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- mypage_sidebar  end -->
 <jsp:include page="../header.jsp" />
   <jsp:include page="admin_sidebar.jsp"/>
 <body>
-  <div id="orderBody" style="margin: 0 auto; margin-bottom: 200px;">
-    <div
-      class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
+  <div id="admin-content">
+    <div class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3 class="recipe-h3">All Review</h3>
       <span class="rInfo-span">관리자페이지&nbsp;>&nbsp;전체리뷰목록</span>
     </div>
@@ -100,7 +84,7 @@ span {
       </div>
     </div>
     <table class='table table-hover tableList'>
-      <tr class="review-tr"> 
+      <tr> 
         <th style="width: 60px">번호</th>
         <th style="width: 280px">상품명</th>
         <th style="width: 415px">내용</th>
@@ -110,7 +94,7 @@ span {
       </tr>
       <c:forEach items="${storeReviews}" var="storeReviews" varStatus="status">
         <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
-          <tr class="tr-test">
+          <tr>
             <td><div style="vertical-align: middle;">${status.count}</div></td>
             <td>
               <div>
@@ -167,10 +151,7 @@ span {
       </ul>
      </nav>
   </div>
-
-
   <jsp:include page="../footer.jsp" />
-
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 

@@ -58,15 +58,9 @@
   margin: 0 0 8px !important;
 }
 
-span {
-  color: #404040;
-  font-size: 15px;
-  line-height: 2;
-  font-weight: 400;
-}
-
 .tableList {
   text-align: center;
+  margin-top: 5px;
 }
 </style>
 
@@ -141,13 +135,9 @@ span {
       </ul>
      </nav>
   </div>
-
-
   <jsp:include page="../footer.jsp" />
-
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="/node_modules/popper.js/dist/popper.min.js"></script>
 
   <script>
  

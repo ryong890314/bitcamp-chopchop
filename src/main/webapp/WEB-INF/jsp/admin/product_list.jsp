@@ -50,6 +50,7 @@
 
 .tableList {
   text-align: center;
+  margin-top: 5px;
 }
   </style>
 
@@ -62,8 +63,7 @@
   <div id="admin-content">
     <div class="d-flex justify-content-between align-items-center py-0 mb-3 pInfo">
       <h3 class="product-h3">All Product</h3>
-      <span class="pInfo-span"> 
-        관리자페이지&nbsp;>&nbsp;전체상품목록</span>
+      <span class="pInfo-span">관리자페이지&nbsp;>&nbsp;전체상품목록</span>
     </div>
     
     <div class="btn-toolbar justify-content-between" role="toolbar">
@@ -79,7 +79,7 @@
     onclick="location.href='/app/product/form'" 
     style="float:right;">새 상품</button>
     </div>
-    <table class='table table-hover tableList' style="margin-top: 5px;">
+    <table class='table table-hover tableList'>
       <tr>
         <th>상품번호</th>
         <th>상품명</th>
@@ -96,7 +96,7 @@
                 <p style="float: left;">
                 <img src="/upload/product/${product.files[0].filePath}" style="width: 100px; margin-right: 22px;"></p>
                 <div>
-                  <p class="review-tagP">${product.title}</p>
+                  <p>${product.title}</p>
                 </div>
               </div></a><br>
           </td>
@@ -133,15 +133,10 @@
         </li>
       </ul>
      </nav>
-    
   </div>
-
-
-<jsp:include page="../footer.jsp"/>
-
+  <jsp:include page="../footer.jsp"/>
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="/node_modules/popper.js/dist/popper.min.js"></script>
 
  <script>
  

@@ -168,16 +168,13 @@ public class AdminController {
     if (size % pageSize > 0) {
       totalPage++;
     }
-    List<ProductReview> storeReviews = productReviewService.storeReview(pageNo, pageSize);
-    model.addAttribute("storeReviews", storeReviews);
-    
+    model.addAttribute("storeReviews", productReviewService.storeReview(pageNo, pageSize));
     model.addAttribute("pageNo", pageNo);
     model.addAttribute("pageSize", pageSize);
     model.addAttribute("totalPage", totalPage);
     model.addAttribute("size", size);
     model.addAttribute("beginPage", (pageNo - 2) > 0 ? (pageNo - 2) : 1);
     model.addAttribute("endPage", (pageNo + 2) < totalPage ? (pageNo + 2) : totalPage);
-    
   }
   
   @GetMapping("recipeComment_list")
