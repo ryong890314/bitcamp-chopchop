@@ -175,8 +175,8 @@
     </div>
 
 		<!-- Single Instagram -->
-    <div class="https://www.instagram.com/p/B5RU15VBF1G/">
-      <a href="https://www.instagram.com/p/B5MuIEnhVBY/"><img
+    <div class="single-instagram">
+      <a href="https://www.instagram.com/p/B5RU15VBF1G/"><img
         src="../img/bg-img/insta6.jpg" alt="insta" style="
     height: 167px; width:220px;"></a>
     </div>
