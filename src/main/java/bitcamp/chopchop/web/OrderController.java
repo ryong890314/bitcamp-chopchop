@@ -185,9 +185,10 @@ public class OrderController {
   }
   
   @PostMapping("statusupdate")
-  public String statusUpdate(int no, int shipStatus) throws Exception {
+  public String statusUpdate(int no, String status) throws Exception {
     Order order = orderService.get(no);
-    order.setShipStatus(String.valueOf(shipStatus));
+    order.setShipStatus(String.valueOf(status));
+    System.out.println(order);
     orderService.updateStatus(order);
     return "redirect:list";
   }

@@ -224,6 +224,9 @@
     
     
     $(document).on('click', '.recieveBtn' , function(e){
+      if(!confirm('구매확정하시겠습니까?')) {
+        return false;
+      }
       var ship = $(this.parentNode.parentNode).find('.ship').find('.ship-status');
       var orderNo = $(this.parentNode).find('.order-no').text();
       var recieveBtn = $(this);
