@@ -141,62 +141,72 @@
 		style="max-width: 1100px; margin: 0 auto;">
 		<!-- Single Instagram -->
     <div class="single-instagram">
-      <a href="https://www.instagram.com/p/B5MuYT0hHpj/"><img
-        src="../img/bg-img/insta1.jpg" alt="insta"></a>
+      <a href="https://www.instagram.com/p/B5RUYnfhcYe/"><img
+        src="../img/bg-img/insta1.jpg" alt="insta" style="
+    height: 167px;width:220px;"></a>
     </div>
 
 		<!-- Single Instagram -->
     <div class="single-instagram">
-      <a href="https://www.instagram.com/p/B5MuSvZhOpb/"><img
-        src="../img/bg-img/insta2.jpg" alt="insta"></a>
+      <a href="https://www.instagram.com/p/B5RUZbMh7tM/"><img
+        src="../img/bg-img/insta2.jpg" alt="insta" style="
+    height: 167px;width:220px;"></a>
     </div>
 
 		<!-- Single Instagram -->
     <div class="single-instagram">
-      <a href="https://www.instagram.com/p/B5MuRK6B0o6/"><img
-        src="../img/bg-img/insta3.jpg" alt="insta"></a>
+      <a href="https://www.instagram.com/p/B5RUaUnBFMf/"><img
+        src="../img/bg-img/insta3.jpg" alt="insta" style="
+    height: 167px;width:220px;"></a>
     </div>
 
 		<!-- Single Instagram -->
     <div class="single-instagram">
-      <a href="https://www.instagram.com/p/B5MuQdBBEH-/"><img
-        src="../img/bg-img/insta4.jpg" alt="insta"></a>
+      <a href="https://www.instagram.com/p/B5RUa_lBvDz/"><img
+        src="../img/bg-img/insta4.jpg" alt="insta" style="
+    height: 167px;width:220px;"></a>
     </div>
 
 		<!-- Single Instagram -->
     <div class="single-instagram">
-      <a href="https://www.instagram.com/p/B5MuI71BXGw/"><img
-        src="../img/bg-img/insta5.jpg" alt="insta"></a>
+      <a href="https://www.instagram.com/p/B5RUpkdh8jG/"><img
+        src="../img/bg-img/insta5.jpg" alt="insta" style="
+    height: 167px; width:220px;"></a>
     </div>
 
 		<!-- Single Instagram -->
-    <div class="single-instagram">
+    <div class="https://www.instagram.com/p/B5RU15VBF1G/">
       <a href="https://www.instagram.com/p/B5MuIEnhVBY/"><img
-        src="../img/bg-img/insta6.jpg" alt="insta"></a>
+        src="../img/bg-img/insta6.jpg" alt="insta" style="
+    height: 167px; width:220px;"></a>
     </div>
 
 		<!-- Single Instagram -->
     <div class="single-instagram">
-      <a href="https://www.instagram.com/p/B5MuHe3B7bs/"><img
-        src="../img/bg-img/insta7.jpg" alt="insta"></a>
+      <a href="https://www.instagram.com/p/B5RU2oKBZG2/"><img
+        src="../img/bg-img/insta7.jpg" alt="insta" style="
+    height: 167px; width:220px;"></a>
     </div>
 
 		<!-- Single Instagram -->
     <div class="single-instagram">
-      <a href="https://www.instagram.com/p/B5MuGwJhPla/"><img
-        src="../img/bg-img/insta8.jpg" alt="insta"></a>
+      <a href="https://www.instagram.com/p/B5RU3gRB8dZ/"><img
+        src="../img/bg-img/insta8.jpg" alt="insta" style="
+    height: 167px; width:220px;"></a>
     </div>
 
 		<!-- Single Instagram -->
     <div class="single-instagram">
-      <a href="https://www.instagram.com/p/B5MuFkBBX4_/"><img
-        src="../img/bg-img/insta9.jpg" alt="insta"></a>
+      <a href="https://www.instagram.com/p/B5RU4H1hvLG/"><img
+        src="../img/bg-img/insta9.jpg" alt="insta" style="
+    height: 167px; width:220px;"></a>
     </div>
 
 		<!-- Single Instagram -->
 		<div class="single-instagram">
-			<a href="https://www.instagram.com/p/B5Mt_KPhtby/"><img
-				src="../img/bg-img/insta10.jpg" alt="insta"></a>
+			<a href="https://www.instagram.com/p/B5RU407BIy7/"><img
+				src="../img/bg-img/insta10.jpg" alt="insta" style="
+    height: 167px; width:220px;"></a>
 		</div>
 	</div>
 	<!-- ##### Instagram Area End ##### -->
