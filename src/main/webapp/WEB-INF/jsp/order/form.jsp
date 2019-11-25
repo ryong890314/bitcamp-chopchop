@@ -29,12 +29,12 @@
   
   <form action="add" method="post" id="orderForm">
     <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
-    <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto;">
+    <table class='table table-bordered' style="width:1100px; display: table; margin-left: auto; margin-right:auto; text-align: center">
     <tr>
-      <td>상품명</td>
+      <td style="background-color: #e9ecef;">상품명</td>
       <td>${product.title}</td>
     </tr>
-    <tr>
+    <tr style="background-color: #e9ecef;">
       <td>상품 가격</td>
       <td>옵션명</td>
       <td>옵션 가격</td>
@@ -55,12 +55,12 @@
       <input type="hidden" name="optionNo" value="${option.optionNo}">
       <input type="hidden" name="quantity" value="${option.quantity}">
     </c:forEach>
-    <tr>
-      <td>총 상품금액</td>
+    <tr style="border-top:3px solid #ced4da;">
+      <td style="background-color: #e9ecef;">총 상품금액</td>
       <td><span id="resultPrice"><fmt:formatNumber value="" pattern="#,###"/></span>원</td>
-      <td>배송비</td>
+      <td style="background-color: #e9ecef;">배송비</td>
       <td><span id="shipPrice"></span>원</td>
-      <td>총 주문금액</td>
+      <td style="background-color: #e9ecef;">총 주문금액</td>
       <td><span id="ship-price-sum"></span>원</td>
     </tr>
   </table>
@@ -172,20 +172,34 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-6">제품명</div>
-          <div class="col-md-6">가격</div>
+          <div class="col-md-6"><b>제품명</b></div>
+          <div class="col-md-6"><b>가격</b></div>
         </div>
         <div class="row">
           <div class="col-md-6"><span id="modalProduct"></span></div>
           <div class="col-md-6" id="modalPrice" style="display:inline"></div>
         </div><hr>
-        수령인: <span id="modalName"></span><br>
-        수령인 연락처: <span id="modalTel"></span><br>
-        수령인 우편번호: <span id="modalPostNo"></span><br>
-        수령인 기본주소: <span id="modalbaseAddress"></span><br>
-        수령인 상세주소: <span id="modalDetailAddress"></span><br>
-        주문자 이메일: <span id="modalEmail">${loginUser.email}</span><br>
-        결제 수단: <span id="modalPayment"></span>
+
+        <div class="row">
+          <div class="col-md-3">
+            <b>수령인</b><br>
+            <b>연락처</b><br>
+            <b>이메일</b><br>
+            <b>우편번호</b><br>
+            <b>기본주소</b><br>
+            <b>상세주소</b><br>
+            <b>결제수단</b>
+          </div>
+          <div class="col-md-9">
+            <span id="modalName"></span><br>
+            <span id="modalTel"></span><br>
+            <span id="modalEmail">${loginUser.email}</span><br>
+            <span id="modalPostNo"></span><br>
+            <span id="modalbaseAddress"></span><br>
+            <span id="modalDetailAddress"></span><br>
+            <span id="modalPayment"></span>
+        </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary">결제</button>
