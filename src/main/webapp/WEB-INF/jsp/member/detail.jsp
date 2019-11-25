@@ -10,6 +10,7 @@
 <link rel="icon" href="/img/core-img/favicon.ico">
 </head>
 <jsp:include page="../header.jsp" />
+<jsp:include page="../member/mypage_sidebar.jsp" />
 <body onload="formLoad();">
 	<div class="content-wrapper" style="width: 1100px;margin: 0px auto;min-height: 680px;"> 
 		<div class="container memb-info px-0">

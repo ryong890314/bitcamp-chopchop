@@ -50,7 +50,7 @@ public class DefaultRecipeCommentService implements RecipeCommentService {
   }
 
   @Override
-  public List<RecipeComment> recipeCommentList(int no) throws Exception {
-    return recipeCommentDao.recipeCommentList(no);
+  public List<RecipeComment> recipeCommentList() throws Exception {
+    return recipeCommentDao.recipeCommentList();
   }
 }
