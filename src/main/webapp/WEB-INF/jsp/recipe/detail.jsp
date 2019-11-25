@@ -61,8 +61,8 @@
 
 <title>RECIPE</title>
 </head>
-<body>
 <jsp:include page="../header.jsp" />
+<body>
 <section class="post-news-area section-padding-100-0 mb-70">
       <div class="container">
           <div class="justify-content-center">

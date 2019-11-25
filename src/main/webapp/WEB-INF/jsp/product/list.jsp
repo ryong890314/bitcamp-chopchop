@@ -39,9 +39,9 @@
   </style>
 
 </head>
+<jsp:include page="../header.jsp"/>
 <body>
 
-<jsp:include page="../header.jsp"/>
 
 <h3>chop Store</h3>          
 <div class="post-catagory section-padding-100-0 mb-70">
