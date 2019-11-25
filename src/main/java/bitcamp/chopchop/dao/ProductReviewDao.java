@@ -12,7 +12,9 @@ public interface ProductReviewDao {
   int update(ProductReview productReview) throws Exception;
   int deleteAll(int no) throws Exception;
   int delete(int no) throws Exception;
+  
+  //==================================================================
   List<ProductReview> myreview(int no) throws Exception;
-  List<ProductReview> storeReview(HashMap<String,Object> param) throws Exception;
   int size() throws Exception;
+  List<ProductReview> storeReview(HashMap<String,Object> param) throws Exception;
 }
