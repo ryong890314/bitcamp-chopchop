@@ -183,7 +183,7 @@ public class AdminController {
   @GetMapping("recipeComment_list")
   public void recipeCommentList(Model model, @ModelAttribute("loginUser")Member loginUser) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
-    List<RecipeComment> recipeCommentList = recipeCommentService.recipeCommentList(loginUser.getMemberNo());
+    List<RecipeComment> recipeCommentList = recipeCommentService.recipeCommentList();
     model.addAttribute("member", member);
     model.addAttribute("recipeCommentList", recipeCommentList);
   }
