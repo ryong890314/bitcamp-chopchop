@@ -14,8 +14,8 @@
   <link rel="stylesheet" href="/css/style_contact.css">
   <link rel="stylesheet" href="/css/style_footer.css">
 </head>
-<body>
   <jsp:include page="../header.jsp" />
+<body>
   <div id='content'>
     <h1>상품 목록</h1>
     <a href='form'>상품 등록</a><br>

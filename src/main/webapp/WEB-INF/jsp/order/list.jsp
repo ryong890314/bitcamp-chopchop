@@ -26,9 +26,9 @@
 
 </head>
 
+  <jsp:include page="../header.jsp" />
 <body>
 
-  <jsp:include page="../header.jsp" />
 
   <div id="orderBody">
     <div class="d-flex align-content-start flex-wrap">

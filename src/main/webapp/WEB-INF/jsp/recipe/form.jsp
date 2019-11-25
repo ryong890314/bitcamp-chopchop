@@ -44,9 +44,9 @@
 </style>
 <title>레시피 등록폼</title>
 </head>
+<header class="header-area">
 <body>
 
-<header class="header-area">
   <!-- Top Header Area -->
   <div class="top-header-area bg-img bg-overlay"
     style="background-image: url(/img/bg-img/header.jpg);">

@@ -17,59 +17,53 @@
 }
 
 .rInfo {
-	border-bottom: 2px solid #404040;
-	padding-bottom: 5px;
+  border-bottom: 2px solid #404040;
+  padding-bottom: 5px;
 }
 
 .mypage-tagA {
-	font-size: inherit;
-	color: #404040;
+  font-size: inherit;
+  color:#404040;
 }
-
+  
 .rInfo-span {
-	float: right;
-	font-size: 14px;
-	font-weight: 600;
+  float: right;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .review-tagP {
-	text-align: left;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	word-wrap: break-word;
-	width: 275px;
-	line-height: 2em;
-	height: 4.0em;
+  text-align: left;
+   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  width: 275px;
+  line-height: 2em;
+  height: 4.0em;
 }
 
 .r-tagA {
-	outline: 0 solid transparent;
-	color: #404040 !important;
-	font-size: 17px;
-	font-weight: 600;
+  outline: 0 solid transparent;
+  color: #404040 !important;
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .recipe-h3 {
-	font-family: 'Oswald' !important;
-	text-transform: uppercase;
-	font-size: 37px !important;
-	font-weight: 500 !important;
-	line-height: 1.2 !important;
-	margin: 0 0 8px !important;
-}
-
-span {
-	color: #404040;
-	font-size: 15px;
-	line-height: 2;
-	font-weight: 400;
+  font-family: 'Oswald' !important;
+  text-transform: uppercase;
+  font-size: 37px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  margin: 0 0 8px !important;
 }
 
 .tableList {
-	text-align: center;
+  text-align: center;
+  margin-top: 5px;
 }
 </style>
 

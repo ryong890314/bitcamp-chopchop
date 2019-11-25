@@ -15,8 +15,8 @@
   </style>
 </head>
 
-<body>
   <jsp:include page="../header.jsp" />
+<body>
 
 
   <div class="jumbotron" id="resultForm" style="padding-bottom: 20px;">

@@ -24,8 +24,8 @@
     }
   </style>
 </head>
-<body>
   <jsp:include page="../header.jsp"/>
+<body>
   
   <form action="add" method="post" id="orderForm">
     <input type="hidden" name="memberNo" value="${loginUser.memberNo}">
