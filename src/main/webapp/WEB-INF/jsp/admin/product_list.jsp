@@ -50,6 +50,7 @@
 
 .tableList {
   text-align: center;
+  margin-top: 5px;
 }
   </style>
 
@@ -62,27 +63,24 @@
   <div id="admin-content">
     <div class="d-flex justify-content-between align-items-center py-0 mb-3 pInfo">
       <h3 class="product-h3">All Product</h3>
-      <span class="pInfo-span"> 
-<!--         <a href="/app/member/myprofile" class="admin-tagA"> -->
-        관리자페이지</a>&nbsp;>&nbsp;전체상품목록
-      </span>
+      <span class="pInfo-span">관리자페이지&nbsp;>&nbsp;전체상품목록</span>
     </div>
     
-    <div>
-      <div style="margin-bottom: 5px;float: left;">
-        <button type='button' class="btn btn-secondary btn-sm"
-          onclick='check_all();'>모두 선택</button>
-        <button type='button' class="btn btn-secondary btn-sm"
-          onclick='uncheck_all();'>모두 해제</button>
+    <div class="btn-toolbar justify-content-between" role="toolbar">
+      <div class="input-group">
+        <select id="pageSize">
+          <option value="3">3</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
       </div>
-      <div style="float: right;" >
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='/app/product/form'">상품등록</button>
-      </div>
+    <button class="btn btn-secondary btn-sm" type="button" 
+    onclick="location.href='/app/product/form'" 
+    style="float:right;">새 상품</button>
     </div>
-    
     <table class='table table-hover tableList'>
       <tr>
-        <th>선택</th>
         <th>상품번호</th>
         <th>상품명</th>
         <th>상품금액</th>
@@ -92,16 +90,13 @@
       </tr>
       <c:forEach items="${products}" var="product">
         <tr>
-        <td class="check-td">
-          <input class="myChkbox" type="checkbox" name="chkbox" value="${product.productNo}">
-        </td>
           <td>${product.productNo}</td>
           <td><a href='/app/product/detail?no=${product.productNo}' target="_blank" class="r-tagA">
           <div>
                 <p style="float: left;">
                 <img src="/upload/product/${product.files[0].filePath}" style="width: 100px; margin-right: 22px;"></p>
                 <div>
-                  <p class="review-tagP">${product.title}</p>
+                  <p>${product.title}</p>
                 </div>
               </div></a><br>
           </td>
@@ -119,33 +114,59 @@
       </c:forEach>
     </table>
     
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" data-page="prev">
+          <a class="page-link" href="#">
+            <span aria-hidden="true">&laquo;</span> 
+          </a>
+        </li>
+        <c:forEach begin="${beginPage}" end="${endPage}" var="page">
+        <li class="page-item" data-page="${page}">
+          <a class="page-link" ${page != pageNo ? "href=#" : ""}>${page}</a>
+        </li>
+        </c:forEach>
+        <li class="page-item" data-page="next">
+          <a class="page-link" href="#">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+     </nav>
   </div>
-
-
-<jsp:include page="../footer.jsp"/>
-
-<script src="/js/jquery/jquery-2.2.4.min.js"></script>
-<!-- Popper js -->
-<script src="../js/bootstrap/popper.min.js"></script>
-<!-- Bootstrap js -->
-<script src="../js/bootstrap/bootstrap.min.js"></script>
-<!-- All Plugins js -->
-<script src="../js/plugins/plugins.js"></script>
-<!-- Active js -->
-<script src="../js/active.js"></script>
+  <jsp:include page="../footer.jsp"/>
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
  <script>
-      myCheckBoxes = document.getElementsByClassName('myChkbox');
-      function check_all() {
-        for (i = 0; i < myCheckBoxes.length; i++) {
-          myCheckBoxes[i].checked = true;
-        }
-      }
-      function uncheck_all() {
-        for (i = 0; i < myCheckBoxes.length; i++) {
-          myCheckBoxes[i].checked = false;
-        }
-      }
-    </script>
+ 
+ (function() {
+	    $('#pageSize').val('${pageSize}')
+	  })();
+	  $('#pageSize').change((e) => {
+	    location.href = "product_list?pageSize=" + $(e.target).val();
+	  });
+	  var currentPage = ${pageNo};
+	  $('.page-item').click((e) => {
+	    e.preventDefault();
+	    // e.currentTarget? 리스너가 호출될 때, 그 리스너가 등록된 태그를 가르킨다.
+	    // e.target? 이벤트가 발생된 원천 태그이다. 
+	    //var page = e.currentTarget.getAttribute('data-page');
+	    var page = $(e.currentTarget).attr('data-page');
+	    if (page == "prev") {
+	      if (currentPage == 1)
+	        return;
+	      location.href = "product_list?pageNo=" + (currentPage - 1) + "&pageSize=" + ${pageSize};
+	      
+	    } else if (page == "next") {
+	      if (currentPage >= ${totalPage})
+	        return;
+	      location.href = "product_list?pageNo=" + (currentPage + 1) + "&pageSize=" + ${pageSize};
+	    
+	    } else {
+	      location.href = "product_list?pageNo=" + page + "&pageSize=" + ${pageSize};
+	    }
+	  });
+</script>
 </body>
 </html>

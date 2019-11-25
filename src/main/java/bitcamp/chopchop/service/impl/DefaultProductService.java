@@ -1,5 +1,6 @@
 package bitcamp.chopchop.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -100,6 +101,19 @@ public class DefaultProductService implements ProductService {
   @Override
   public List<Product> mainTop() throws Exception {
     return productDao.mainTop();
+  }
+
+  @Override
+  public int size() throws Exception {
+    return productDao.size();
+  }
+
+  @Override
+  public List<Product> pagingList(int pageNo, int pageSize) throws Exception {
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("offset", (pageNo - 1) * pageSize);
+    param.put("pageSize", pageSize);
+    return productDao.findAllPaging(param);
   }
   
 }

@@ -56,7 +56,7 @@
     </collection>
   </resultMap>
   
-  <select id="findAll" resultMap="findByMember">
+  <select id="findAll" parameterType="map" resultMap="findByMember">
     select
       s.order_id,
       s.name,
@@ -81,6 +81,7 @@
         left outer join order_product p on s.order_id=p.order_id
         left outer join member m on s.member_id=m.member_id
     order by s.order_id desc
+    limit #{offset}, #{pageSize}
   </select>
   
   <select id="findByMember" resultMap="findByMember">
@@ -177,6 +178,10 @@
     where
       order_id=#{orderNo}
   </update>
+  
+  <select id="countAll" resultType="int">
+    select count(*) from member
+  </select>
   
   
 </mapper>

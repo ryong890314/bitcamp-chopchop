@@ -83,7 +83,7 @@
     <result column="tel" property="tel"/>
   </resultMap>
 
-  <select id="findAll" resultMap="findWithFilesMap">
+  <select id="findAll" parameterType="map" resultMap="findWithFilesMap">
     select
       p.product_id,
       p.title,
@@ -100,6 +100,25 @@
       product p 
         left outer join store_photo f on p.product_id=f.product_id
     order by p.product_id desc
+  </select>
+  
+  <select id="findAllPaging" parameterType="map" resultMap="findWithFilesMap">
+    select
+      p.product_id,
+      p.title,
+      p.price,
+      p.detail,
+      p.stock,
+      p.discount,
+      p.category,
+      p.species,
+      p.view_count,
+      f.photo_id,
+      f.file_path
+    from 
+      product p 
+        left outer join store_photo f on p.product_id=f.product_id
+    limit #{offset}, #{pageSize}
   </select>
   
   <select id="findBy" parameterType="int" resultMap="ProductMap">
@@ -226,5 +245,9 @@
     SELECT product.product_id, detail, title, price, view_count, file_path, photo_id, discount
     FROM product left JOIN store_photo ON product.product_id = store_photo.product_id 
     ORDER BY view_count DESC, photo_id ASC
+  </select>
+  
+  <select id="size" resultType="int">
+    select count(*) from product
   </select>
 </mapper>

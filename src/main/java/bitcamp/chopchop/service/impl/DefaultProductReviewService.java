@@ -1,5 +1,6 @@
 package bitcamp.chopchop.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -50,8 +51,16 @@ public class DefaultProductReviewService implements ProductReviewService {
   }
 
   @Override
-  public List<ProductReview> storeReview(int no) throws Exception {
-    return productReviewDao.storeReview(no);
+  public List<ProductReview> storeReview(int pageNo, int pageSize) throws Exception {
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("offset", (pageNo - 1) * pageSize);
+    param.put("pageSize", pageSize);
+    return productReviewDao.storeReview(param);
+  }
+
+  @Override
+  public int size() throws Exception {
+    return productReviewDao.size();
   }
 
 }

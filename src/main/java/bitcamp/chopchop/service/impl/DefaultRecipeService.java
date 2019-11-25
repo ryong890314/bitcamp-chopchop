@@ -158,4 +158,12 @@ public class DefaultRecipeService implements RecipeService {
     
   }
 
+  @Override
+  public List<Recipe> pagingList(int pageNo, int pageSize) throws Exception {
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("offset", (pageNo - 1) * pageSize);
+    param.put("pageSize", pageSize);
+    return recipeDao.findAllPaging(param);
+  }
+
 }

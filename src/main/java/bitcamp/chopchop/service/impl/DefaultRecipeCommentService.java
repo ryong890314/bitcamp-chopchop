@@ -48,4 +48,12 @@ public class DefaultRecipeCommentService implements RecipeCommentService {
   public int size(int no) throws Exception {
     return recipeCommentDao.countAll(no);
   }
+
+  @Override
+  public List<RecipeComment> recipeCommentList(int pageNo, int pageSize) throws Exception {
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("offset", (pageNo - 1) * pageSize);
+    param.put("pageSize", pageSize);
+    return recipeCommentDao.recipeCommentList(param);
+  }
 }

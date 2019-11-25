@@ -6,7 +6,7 @@ import bitcamp.chopchop.domain.OrderProduct;
 
 public interface OrderService {
   
-  List<Order> list() throws Exception;
+  List<Order> list(int pageNo, int pageSize) throws Exception;
 //  List<Order> searchByMember(int no) throws Exception;
   Order get(int no) throws Exception;
   void insert(Order order) throws Exception;
@@ -16,4 +16,5 @@ public interface OrderService {
   OrderProduct getOrderProduct(int no) throws Exception;
   List<OrderProduct> searchByMember(int no) throws Exception;
   void updateStatus(Order order) throws Exception;
+  int size() throws Exception;
 }

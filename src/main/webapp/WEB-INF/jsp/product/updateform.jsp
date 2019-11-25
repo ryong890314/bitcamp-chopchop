@@ -48,8 +48,8 @@
     }
 </style>
 </head>
-<body>
   <jsp:include page="../header.jsp" />
+<body>
   <div id='content'>
     <h1>상품 수정</h1>
     <form action='update' method='post' enctype='multipart/form-data'>

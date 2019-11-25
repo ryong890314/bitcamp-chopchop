@@ -48,8 +48,8 @@
     </style>
     <title>RECIPE LIST</title>
 </head>
-<body>
 <jsp:include page="../header.jsp" /> 
+<body>
 <jsp:include page="findRecipe.jsp"/>
 
 

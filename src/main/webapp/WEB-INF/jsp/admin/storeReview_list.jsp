@@ -5,13 +5,12 @@
 <html>
 <head>
 <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel="icon" href="/img/core-img/favicon.ico">
-<link rel="stylesheet" href="/node_modules/blueimp-file-upload/css/jquery.fileupload.css">
-<title>My Review</title>
+<title>전체 스토어리뷰 목록</title>
 
 <style>
-#orderBody {
+#admin-content {
   width: 1100px;
+  margin: 0 auto;
 }
 
 .rInfo {
@@ -38,7 +37,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
-  width: 275px;
+  width: 270px;
   line-height: 2em;
   height: 4.0em;
 }
@@ -59,38 +58,33 @@
   margin: 0 0 8px !important;
 }
 
-span {
-  color: #404040;
-  font-size: 15px;
-  line-height: 2;
-  font-weight: 400;
-}
-
 .tableList {
   text-align: center;
+  margin-top: 5px;
 }
 </style>
 
 </head>
-<!-- mypage_sidebar start-->
-<!-- Font Awesome -->
-<link rel="stylesheet"
-  href="/js/plugins/fontawesome-free/css/all.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- mypage_sidebar  end -->
 <jsp:include page="../header.jsp" />
   <jsp:include page="admin_sidebar.jsp"/>
 <body>
-  <div id="orderBody" style="margin: 0 auto; margin-bottom: 200px;">
-    <div
-      class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
+  <div id="admin-content">
+    <div class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
       <h3 class="recipe-h3">All Review</h3>
       <span class="rInfo-span">관리자페이지&nbsp;>&nbsp;전체리뷰목록</span>
     </div>
+    <div class="btn-toolbar justify-content-between" role="toolbar">
+      <div class="input-group">
+        <select id="pageSize">
+          <option value="3">3</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+    </div>
     <table class='table table-hover tableList'>
-      <tr class="review-tr"> 
+      <tr> 
         <th style="width: 60px">번호</th>
         <th style="width: 280px">상품명</th>
         <th style="width: 415px">내용</th>
@@ -100,7 +94,7 @@ span {
       </tr>
       <c:forEach items="${storeReviews}" var="storeReviews" varStatus="status">
         <tr class="tempTr" style="text-align: center;" data-toggle="modal" data-target="#myModal">
-          <tr class="tr-test">
+          <tr>
             <td><div style="vertical-align: middle;">${status.count}</div></td>
             <td>
               <div>
@@ -137,39 +131,60 @@ span {
         </tr>
       </c:forEach>
     </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" data-page="prev">
+          <a class="page-link" href="#">
+            <span aria-hidden="true">&laquo;</span> 
+          </a>
+        </li>
+        <c:forEach begin="${beginPage}" end="${endPage}" var="page">
+        <li class="page-item" data-page="${page}">
+          <a class="page-link" ${page != pageNo ? "href=#" : ""}>${page}</a>
+        </li>
+        </c:forEach>
+        <li class="page-item" data-page="next">
+          <a class="page-link" href="#">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+     </nav>
   </div>
-
-
   <jsp:include page="../footer.jsp" />
-
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
+  <script>
+  (function() {
+    $('#pageSize').val('${pageSize}')
+  })();
+  $('#pageSize').change((e) => {
+    location.href = "storeReview_list?pageSize=" + $(e.target).val();
+  });
+  var currentPage = ${pageNo};
+  $('.page-item').click((e) => {
+    e.preventDefault();
+    // e.currentTarget? 리스너가 호출될 때, 그 리스너가 등록된 태그를 가르킨다.
+    // e.target? 이벤트가 발생된 원천 태그이다. 
+    //var page = e.currentTarget.getAttribute('data-page');
+    var page = $(e.currentTarget).attr('data-page');
+    if (page == "prev") {
+      if (currentPage == 1)
+        return;
+      location.href = "storeReview_list?pageNo=" + (currentPage - 1) + "&pageSize=" + ${pageSize};
+      
+    } else if (page == "next") {
+      if (currentPage >= ${totalPage})
+        return;
+      location.href = "storeReview_list?pageNo=" + (currentPage + 1) + "&pageSize=" + ${pageSize};
+    
+    } else {
+      location.href = "storeReview_list?pageNo=" + page + "&pageSize=" + ${pageSize};
+    }
+  });
+  </script>
   
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

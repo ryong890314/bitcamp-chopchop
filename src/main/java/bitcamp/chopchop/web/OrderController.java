@@ -75,11 +75,6 @@ public class OrderController {
     session.setAttribute("selectedProduct", carts);
   }
 
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    model.addAttribute("orders", orderService.list());
-  }
-
   @GetMapping("searchbymember")
   public void searchByMember(Model model, HttpSession session) throws Exception {
     
@@ -190,7 +185,7 @@ public class OrderController {
     order.setShipStatus(String.valueOf(status));
     System.out.println(order);
     orderService.updateStatus(order);
-    return "redirect:list";
+    return "redirect:/app/admin/order_list";
   }
 
 }

@@ -72,6 +72,7 @@
     }
   </style>
 </head>
+
   <jsp:include page="../header.jsp" />
 <body>
 
@@ -535,8 +536,8 @@
           $(commentDiv).remove();
         }
       });
-    }
-  })
+    };
+  });
   
   // 관리자 기능
   var adminCheck = ${loginUser.grade};

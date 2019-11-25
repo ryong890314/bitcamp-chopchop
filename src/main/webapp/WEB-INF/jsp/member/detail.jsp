@@ -8,16 +8,23 @@
 <link rel="stylesheet" href="/css/member/style_detail.css">
 <!-- Favicon -->
 <link rel="icon" href="/img/core-img/favicon.ico">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+  href="/js/plugins/fontawesome-free/css/all.min.css">
 </head>
 <jsp:include page="../header.jsp" />
+<jsp:include page="../member/mypage_sidebar.jsp" />
 <body onload="formLoad();">
-	<div class="content-wrapper" style="width: 1100px;margin: 0px auto;min-height: 680px;"> 
+	<div class="content-wrapper"
+		style="width: 1100px; margin: 0px auto; min-height: 680px;">
 		<div class="container memb-info px-0">
-			<div class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
-        <h3 class="recipe-h3">My Information</h3>
-			   <span class="mInfo-span">
-         <a href="/app/member/myprofile" class="mypage-tagA">My Page</a>&nbsp>&nbspMy Information</span> 
-      </div>
+			<div
+				class="d-flex justify-content-between align-items-center py-0 mb-3 mInfo">
+				<h3 class="recipe-h3">My Information</h3>
+				<span class="mInfo-span"> <a href="/app/member/myprofile"
+					class="mypage-tagA">My Page</a>&nbsp>&nbspMy Information
+				</span>
+			</div>
 			<form action='update' method='post' name="form"
 				enctype='multipart/form-data' onsubmit="return checkAll();">
 				<div class="row justify-content-center mem-Row">
@@ -103,7 +110,9 @@
 					</div>
 				</div>
 			</form>
-		</div> <br><br>
+		</div>
+		<br>
+		<br>
 		<jsp:include page="../pet/detail.jsp" />
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -166,6 +175,7 @@
 	<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
 	<script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
 	<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 	<script>
   
    $(function(){
@@ -470,8 +480,6 @@
       }
     }
   </script>
-
-	<!--  mypage_sidebar script  end -->
 </body>
 <jsp:include page="../footer.jsp" />
 </html>

@@ -26,8 +26,8 @@
   </style>
 
 </head>
-<body>
   <jsp:include page="../header.jsp"/>
+<body>
   <div id="orderBody">
     <div class="d-flex align-content-start flex-wrap">
     <form action="update" method="post">

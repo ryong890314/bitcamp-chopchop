@@ -25,8 +25,11 @@ public class DefaultMemberService implements MemberService {
   private MemberDao memberDao;
 
   @Override
-  public List<Member> list() throws Exception {
-    return memberDao.findAll();
+  public List<Member> list(int pageNo, int pageSize) throws Exception {
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("offset", (pageNo - 1) * pageSize);
+    param.put("pageSize", pageSize);
+    return memberDao.findAll(param);
   }
 
   @Override
@@ -153,5 +156,10 @@ public class DefaultMemberService implements MemberService {
     map.put("password", password);
     map.put("memberNo", memberNo);
     return memberDao.uptPw(map);
+  }
+
+  @Override
+  public int size() throws Exception {
+    return memberDao.countAll();
   }
 }

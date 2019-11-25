@@ -8,7 +8,7 @@ import bitcamp.chopchop.domain.Member;
 // 회원 관리 DAO의 사용 규칙을 정의한다.
 public interface MemberDao {
   int insert(Member member) throws Exception;
-  List<Member> findAll() throws Exception;
+  List<Member> findAll(HashMap<String,Object> param) throws Exception;
   List<Member> findByKeyword(String keyword) throws Exception;
   int update(Member member) throws Exception;
   Member findByEmailPassword(Map<String,Object> params) throws Exception;
@@ -21,6 +21,7 @@ public interface MemberDao {
   int chkPw(HashMap<String, Object> map) throws Exception;
   int uptPw(HashMap<String, Object> map) throws Exception;
   Member findMyID(String tel) throws Exception;
+  int countAll() throws Exception;
 }
 
 

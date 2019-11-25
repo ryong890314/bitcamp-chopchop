@@ -1,5 +1,6 @@
 package bitcamp.chopchop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import bitcamp.chopchop.domain.Recipe;
@@ -22,4 +23,5 @@ public interface RecipeDao {
 //  int updateRecipeLike(Recipe recipe) throws Exception;
   
   List<Recipe> mainTop() throws Exception;
+  List<Recipe> findAllPaging(HashMap<String, Object> param) throws Exception;
 }

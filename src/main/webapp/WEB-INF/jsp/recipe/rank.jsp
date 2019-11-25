@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/recipe/rank.css">
 </head>
-<body>
 <jsp:include page="../header.jsp" />
+<body>
 
 <div id="ranking" style="width:1100px; margin:auto;">
   

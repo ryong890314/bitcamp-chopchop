@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -10,29 +10,35 @@
 <!-- mypage_sidebar start-->
 <!-- Font Awesome -->
 <link rel="stylesheet"
-  href="/js/plugins/fontawesome-free/css/all.min.css">
+	href="/js/plugins/fontawesome-free/css/all.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet"
-  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- mypage_sidebar  end -->
 </head>
 <jsp:include page="../header.jsp" />
 <jsp:include page="../member/mypage_sidebar.jsp" />
 <body>
-  <div class="w2-main w2-content px-0" style="margin: 0 auto; margin-bottom: 200px;">
-    <div
-      class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
-      <h3 class="recipe-h3">My Recipe</h3>
-      <span class="rInfo-span"> <a href="/app/member/myprofile"
-        class="mypage-tagA">My Page</a>&nbsp>&nbspMy Recipe
-      </span>
-    </div>
-    <div class="w2-row-padding w2-padding-16 w2-center" id="food">
-    </div>
-  </div>
+	<div class="w2-main w2-content px-0"
+		style="margin: 0 auto; margin-bottom: 200px;">
+		<div
+			class="d-flex justify-content-between align-items-center py-0 mb-3 rInfo">
+			<h3 class="recipe-h3">My Recipe</h3>
+			<span class="rInfo-span"> <a href="/app/member/myprofile"
+				class="mypage-tagA">My Page</a>&nbsp>&nbspMy Recipe
+			</span>
+		</div>
+		<div class="w2-row-padding w2-padding-16 w2-center" id="food"></div>
+	</div>
+	<div class="w3-main w3-content w3-padding"
+		style="max-width: 1200px; margin: 0 auto;">
+		<!-- First Photo Grid-->
+		<div class="w3-row-padding w3-padding-16 w3-center" id="food"></div>
+		<button type="button"
+			class="btn btn-outline-secondary btn-lg btn-block view-more">더보기</button>
+	</div>
 
-
-  <script id="t1" type="listHtml">
+	<script id="t1" type="listHtml">
 {{#each result}}
 <div class='w2-quarter my-list'>
   <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;object-fit:cover;'>
@@ -46,39 +52,141 @@
 </div>
 {{/each}}
 </script>
+	<script id="t1" type="listHtml">
+<div class='w3-quarter my-list'>
+  <a href='detail?no={{recipeNo}}' class='detail' style='text-decoration:none;'>
+  <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
+  <h3>{{title}}</a></h3>
+    <p>{{otherInfo}}</p>
+</div>
+</script>
+	<script>
+		"use strict";
+		var dbody = $('#food');
+		var templateSrc = $('#t1').html();
+		var template = Handlebars.compile(templateSrc);
+		loadList();
+		function loadList() {
+			$.get("/app/json/recipe/myrecipe", function(data) {
+				console.log(data.result);
+				dbody.html(template(data));
+			});
+		}
+		function del(recipeNo) {
+			$.get('/app/recipe/delete?no=' + recipeNo, function(data) {
+				loadList();
+			});
+		}
+	</script>
 
-  <script>
-      "use strict";
-      var dbody = $('#food');
-      var templateSrc = $('#t1').html();
-      var template = Handlebars.compile(templateSrc);
-      loadList();
-      function loadList() {
-        $.get("/app/json/recipe/myrecipe", function(data) {
-          console.log(data.result);
-          dbody.html(template(data));
-        });
-      }
-      function del(recipeNo) {
-        $.get('/app/recipe/delete?no=' + recipeNo, function(data) {
-          loadList();
-        });
-      }
-    </script>
+	<script>
+		function formLoad() {
+			// hidden값을 이용해서 자바스크립트를 이용한 경우
+			if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
+				$("#userThumb").attr("src", "/upload/member/info_photo.jpg");
+			} else {
+				$("#userThumb").attr("src",
+						"/upload/member/" + $("#userphoto").val());
+			}
+		}
+	</script>
+<script src="/js/jquery/jquery-2.2.4.min.js"></script>
+<script src="/js/plugins/plugins.js"></script>
+<script src="/js/active.js"></script>
+<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+
+<script id="t1bak" type="listHtml">
+<div class='w3-quarter my-list'>
+  <a href='detail?no={{recipeNo}}' style='text-decoration:none;'>
+  <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
+  <h3>{{title}}</a></h3>
+    <p>{{otherInfo}}</p>
+</div>
+</script>
+
+<script id="t1" type="listHtml">
+<div class='w3-quarter my-list'>
+  <a href='detail?no={{recipeNo}}' class='detail' style='text-decoration:none;'>
+  <img class='thumbnail' src='/upload/recipe/{{thumbnail}}' alt=''>
+  <h3>{{title}}</a></h3>
+    <p>{{otherInfo}}</p>
+</div>
+</script>
+
+<script>
+"use strict";
+var dbody = $('#food');
+var templateSrc = $('#t1').html();
+var template = Handlebars.compile(templateSrc);
+
+loadList();
+function loadList() {
+  $.get("/app/json/recipe/list", function(data) {
+    console.log(data.result);
+    for (var b of data.result.recipes) {
+      $(template(b)).appendTo(dbody);
+    }
+    
+    window.currentPage = data.result.pageNo;
+    window.pageSize = data.result.pageSize;
+    window.totalPage = data.result.totalPage;
+  });
+}
+
+$('.my-sort').on('change', function() {
+  var selectOption = $('.my-sort').val();
+  $.get("/app/json/recipe/listSort?column=" + selectOption, function(data) {  
+  $('.my-list').remove();
+  $('.view-more').remove();
+    for (var b of data.result) {
+      $(template(b)).appendTo(dbody);
+    }
+  });
+}); 
+  
+$('.my-category').on('change', function() {
+  var selectOption = $('.my-category').val();
+  
+  console.log(selectOption);
+  $.get("/app/json/recipe/listCategory?category=" + selectOption, function(data) {
+    console.log(data);
+    $('.my-list').remove();
+    $('.view-more').remove();
+    for (var b of data.result) {
+      $(template(b)).appendTo(dbody);
+    }
+  });
+});
+
+$('.view-more').click((e) => {
+  if (currentPage >= totalPage)
+    return;
+  next(currentPage, pageSize, totalPage);
+});
+
+function next(currentPage, pageSize, totalPage) {
+  $.get("/app/json/recipe/list?pageNo=" + (currentPage + 1), function(data) {
+    console.log(data.result);
+    for (var b of data.result.recipes) {
+      $(template(b)).appendTo(dbody);
+    }
+    window.currentPage = data.result.pageNo;
+    window.pageSize = data.result.pageSize;
+    window.totalPage = data.result.totalPage;
+  });
+};
+
+
+// $(document).on('click', '.detail', function(e) {
+//   e.preventDefault();
+//   console.log("클릭");
+  
+// });
+</script>
 
 
 
-  <script>
-      function formLoad() {
-        // hidden값을 이용해서 자바스크립트를 이용한 경우
-        if ($("#userphoto").val() == null || $("#userphoto").val() == "") {
-          $("#userThumb").attr("src", "/upload/member/info_photo.jpg");
-        } else {
-          $("#userThumb")
-              .attr("src", "/upload/member/" + $("#userphoto").val());
-        }
-      }
-    </script>
+
 </body>
 <jsp:include page="../footer.jsp" />
 </html>

@@ -60,7 +60,16 @@
       관리자페이지</a>&nbsp>&nbsp전체회원목록
       </span>
     </div>
-
+    <div class="btn-toolbar justify-content-between" role="toolbar">
+		  <div class="input-group">
+		    <select id="pageSize">
+		      <option value="3">3</option>
+		      <option value="8">8</option>
+		      <option value="10">10</option>
+		      <option value="20">20</option>
+		    </select>
+		  </div>
+		</div>
     <table class='table table-hover tableList'>
       <tr>
         <th>번호</th>
@@ -81,24 +90,24 @@
     </table>
     
     <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item" data-page="prev">
-      <a class="page-link" href="#" >
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-  <c:forEach begin="${beginPage}" end="${endPage}" var="page">
-    <li class="page-item" data-page="${page}">
-      <a class="page-link" ${page != pageNo ? "href=#" : ""}> ${page}</a>
-    </li>
-  </c:forEach>
-    <li class="page-item" data-page="next">
-      <a class="page-link" href="#" >
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+	  <ul class="pagination">
+	    <li class="page-item" data-page="prev">
+	      <a class="page-link" href="#" >
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+	  <c:forEach begin="${beginPage}" end="${endPage}" var="page">
+	    <li class="page-item" data-page="${page}">
+	      <a class="page-link" ${page != pageNo ? "href=#" : ""}> ${page}</a>
+	    </li>
+	  </c:forEach>
+	    <li class="page-item" data-page="next">
+	      <a class="page-link" href="#" >
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+	  </ul>
+	</nav>
     
     
     

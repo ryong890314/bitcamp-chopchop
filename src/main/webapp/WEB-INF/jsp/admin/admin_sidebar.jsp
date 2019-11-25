@@ -60,7 +60,7 @@ Theme style
 					         <li class="nav-item"><a href="/app/admin/recipeComment_list"
             class="nav-link" style="font-size: large;"> <i
               class="nav-icon fa fa-comments-o"></i>
-              <p>All Recite Comments</p>
+              <p>All Recipe Comments</p>
           </a></li>
 				</ul>
 			</nav>

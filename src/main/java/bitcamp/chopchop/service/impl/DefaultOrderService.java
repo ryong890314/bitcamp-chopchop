@@ -1,5 +1,6 @@
 package bitcamp.chopchop.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,6 @@ public class DefaultOrderService implements OrderService {
   OrderDao orderDao;
   @Resource
   OrderProductDao orderProductDao;
-
-  @Override
-  public List<Order> list() throws Exception {
-    return orderDao.findAll();
-  }
 
   @Override
   public Order get(int no) throws Exception {
@@ -71,6 +67,19 @@ public class DefaultOrderService implements OrderService {
   @Override
   public void updateStatus(Order order) throws Exception {
     orderDao.statusUpdate(order);
+  }
+
+  @Override
+  public List<Order> list(int pageNo, int pageSize) throws Exception {
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("offset", (pageNo - 1) * pageSize);
+    param.put("pageSize", pageSize);
+    return orderDao.findAll(param);
+  }
+  
+  @Override
+  public int size() throws Exception {
+    return orderDao.countAll();
   }
   
   

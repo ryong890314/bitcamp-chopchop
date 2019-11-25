@@ -70,9 +70,11 @@
 		)
 	</insert>
 
-	<select id="findAll" resultMap="MemberMap">
+	<select id="findAll" parameterType="map" resultMap="MemberMap">
 		select * from member
+		limit #{offset}, #{pageSize}
 	</select>
+	
 
 	<select id="dupEmailCheck" parameterType="String"
 		resultType="int">
