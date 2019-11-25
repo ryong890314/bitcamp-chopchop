@@ -277,6 +277,26 @@
       recipe r left join member m on r.member_id = m.member_id  
     ORDER BY view_count DESC LIMIT 5
   </select>
+  
+  <select id="findAllPaging" resultMap="RecipeMap" parameterType="map">
+    select
+      recipe_id,
+      member_id,
+      title,
+      created_date, 
+      view_count,
+      thumbnail,
+      other_info,
+      category,
+      content,
+      tag,
+      scrap
+    from
+      recipe
+    order by
+      recipe_id desc
+    limit #{offset}, #{pageSize}
+  </select>
 
  </mapper>
 

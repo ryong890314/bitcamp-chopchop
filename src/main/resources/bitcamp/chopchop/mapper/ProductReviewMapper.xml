@@ -144,7 +144,7 @@
     order by r.created_date desc
   </select>
   
-  <select id="storeReview" parameterType="int" resultMap="findProductReviewMap">
+  <select id="storeReview" parameterType="map" resultMap="findProductReviewMap">
     select
       r.product_review_id,
       r.product_id,
@@ -164,6 +164,11 @@
       left outer join product_option o on p.product_id = o.product_id
 
     order by r.created_date desc
+    limit #{offset}, #{pageSize}
+  </select>
+  
+   <select id="size" resultType="int">
+    select count(*) from product
   </select>
   
 </mapper>

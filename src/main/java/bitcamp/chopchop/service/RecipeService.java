@@ -23,5 +23,6 @@ public interface RecipeService {
   
   List<Recipe> mainTop() throws Exception;
   List<RecipeLike> listLike() throws Exception;
+  List<Recipe> pagingList(int pageNo, int pageSize) throws Exception;
 }
 

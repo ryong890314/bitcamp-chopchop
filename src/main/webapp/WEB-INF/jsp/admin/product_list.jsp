@@ -63,21 +63,7 @@
     <div class="d-flex justify-content-between align-items-center py-0 mb-3 pInfo">
       <h3 class="product-h3">All Product</h3>
       <span class="pInfo-span"> 
-<!--         <a href="/app/member/myprofile" class="admin-tagA"> -->
-        관리자페이지</a>&nbsp;>&nbsp;전체상품목록
-      </span>
-    </div>
-    
-    <div>
-      <div style="margin-bottom: 5px;float: left;">
-        <button type='button' class="btn btn-secondary btn-sm"
-          onclick='check_all();'>모두 선택</button>
-        <button type='button' class="btn btn-secondary btn-sm"
-          onclick='uncheck_all();'>모두 해제</button>
-      </div>
-      <div style="float: right;" >
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='/app/product/form'">상품등록</button>
-      </div>
+        관리자페이지&nbsp;>&nbsp;전체상품목록</span>
     </div>
     
     <div class="btn-toolbar justify-content-between" role="toolbar">
@@ -194,18 +180,6 @@
 	      location.href = "product_list?pageNo=" + page + "&pageSize=" + ${pageSize};
 	    }
 	  });
- 
-  myCheckBoxes = document.getElementsByClassName('myChkbox');
-  function check_all() {
-    for (i = 0; i < myCheckBoxes.length; i++) {
-      myCheckBoxes[i].checked = true;
-    }
-  }
-  function uncheck_all() {
-    for (i = 0; i < myCheckBoxes.length; i++) {
-      myCheckBoxes[i].checked = false;
-    }
-  }
 </script>
 </body>
 </html>

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import bitcamp.chopchop.domain.Member;
-import bitcamp.chopchop.domain.Pet;
+import bitcamp.chopchop.domain.Order;
 import bitcamp.chopchop.domain.ProductReview;
 import bitcamp.chopchop.domain.Recipe;
 import bitcamp.chopchop.domain.RecipeComment;
@@ -42,10 +42,7 @@ public class AdminController {
       @RequestParam(defaultValue = "1") int pageNo, 
       @RequestParam(defaultValue = "3") int pageSize) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
-    // 총 페이지 개수 알아내기
-    if (pageSize < 3 || pageSize > 20) {
-      pageSize = 3;
-    }
+    
     // 멤버 총 건수
     int size = memberService.size();
     
@@ -53,11 +50,6 @@ public class AdminController {
     int totalPage = size / pageSize; // 13 / 3 = 4.x
     if (size % pageSize > 0) {
       totalPage++;
-    }
-    
-    // 요청하는 페이지 번호가 유효하지 않을 때는 기본 값으로 1페이지로 지정한다.
-    if (pageNo < 1 || pageNo > totalPage) {
-      pageNo = 1;
     }
     
     List<Member> members = memberService.list(pageNo, pageSize);
@@ -78,30 +70,64 @@ public class AdminController {
   
   @GetMapping("recipe_list")
   public void recipeTotalList(HttpSession session, Model model,
-      @RequestParam(defaultValue = "1") int pageNo,
-      @RequestParam(defaultValue = "4") int pageSize) throws Exception {
+      @RequestParam(defaultValue = "1") int pageNo, 
+      @RequestParam(defaultValue = "3") int pageSize) throws Exception {
     if (session.getAttribute("loginUser") != null) {
       Member member = memberService.get(((Member)session.getAttribute("loginUser")).getMemberNo());
       model.addAttribute("member", member);
     }
-    List<Recipe> recipes = recipeService.list(pageNo, pageSize);
+    // 멤버 총 건수
+    int size = recipeService.size();
+    
+    // 페이징처리에서 보여주는 숫자
+    int totalPage = size / pageSize; // 13 / 3 = 4.x
+    if (size % pageSize > 0) {
+      totalPage++;
+    }
+    List<Recipe> recipes = recipeService.pagingList(pageNo, pageSize);
     List<String>memberNameList =new ArrayList<>();
     for(Recipe a: recipes ) {
-       int k =a.getMemberNo();
-       Member member =memberService.get(k);
-       String nickname= member.getNickname();
-       memberNameList.add(nickname);
+      int k =a.getMemberNo();
+      Member member =memberService.get(k);
+      String nickname= member.getNickname();
+      memberNameList.add(nickname);
     }
     model.addAttribute("recipes", recipes);
     model.addAttribute("memberNameList",memberNameList);
+    model.addAttribute("pageNo", pageNo);
+    model.addAttribute("pageSize", pageSize);
+    model.addAttribute("totalPage", totalPage);
+    model.addAttribute("size", size);
+    model.addAttribute("beginPage", (pageNo - 2) > 0 ? (pageNo - 2) : 1);
+    model.addAttribute("endPage", (pageNo + 2) < totalPage ? (pageNo + 2) : totalPage);
     
   }
   
   @GetMapping("order_list")
-  public void orderTotalList(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+  public void orderTotalList(Model model, @ModelAttribute("loginUser") Member loginUser,
+      @RequestParam(defaultValue = "1") int pageNo, 
+      @RequestParam(defaultValue = "3") int pageSize) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
+    
+    // 멤버 총 건수
+    int size = orderService.size();
+    
+    // 페이징처리에서 보여주는 숫자
+    int totalPage = size / pageSize; // 13 / 3 = 4.x
+    if (size % pageSize > 0) {
+      totalPage++;
+    }
+    
+    List<Order> orders = orderService.list(pageNo, pageSize);
     model.addAttribute("member", member);
-    model.addAttribute("orders", orderService.list());
+    model.addAttribute("orders", orders);
+    
+    model.addAttribute("pageNo", pageNo);
+    model.addAttribute("pageSize", pageSize);
+    model.addAttribute("totalPage", totalPage);
+    model.addAttribute("size", size);
+    model.addAttribute("beginPage", (pageNo - 2) > 0 ? (pageNo - 2) : 1);
+    model.addAttribute("endPage", (pageNo + 2) < totalPage ? (pageNo + 2) : totalPage);
   }
   
   @GetMapping("product_list")
@@ -128,11 +154,29 @@ public class AdminController {
   }
   
   @GetMapping("storeReview_list")
-  public void storeReviewTotalList(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+  public void storeReviewTotalList(Model model, @ModelAttribute("loginUser") Member loginUser, 
+      @RequestParam(defaultValue = "1") int pageNo, 
+      @RequestParam(defaultValue = "3") int pageSize) throws Exception {
     Member member = memberService.get(loginUser.getMemberNo());
-    List<ProductReview> storeReviews = productReviewService.storeReview(loginUser.getMemberNo());
     model.addAttribute("member", member);
+    
+    // 멤버 총 건수
+    int size = productReviewService.size();
+    
+    // 페이징처리에서 보여주는 숫자
+    int totalPage = size / pageSize; // 13 / 3 = 4.x
+    if (size % pageSize > 0) {
+      totalPage++;
+    }
+    List<ProductReview> storeReviews = productReviewService.storeReview(pageNo, pageSize);
     model.addAttribute("storeReviews", storeReviews);
+    
+    model.addAttribute("pageNo", pageNo);
+    model.addAttribute("pageSize", pageSize);
+    model.addAttribute("totalPage", totalPage);
+    model.addAttribute("size", size);
+    model.addAttribute("beginPage", (pageNo - 2) > 0 ? (pageNo - 2) : 1);
+    model.addAttribute("endPage", (pageNo + 2) < totalPage ? (pageNo + 2) : totalPage);
     
   }
   

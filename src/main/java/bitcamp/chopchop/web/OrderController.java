@@ -75,11 +75,6 @@ public class OrderController {
     session.setAttribute("selectedProduct", carts);
   }
 
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    model.addAttribute("orders", orderService.list());
-  }
-
   @GetMapping("searchbymember")
   public void searchByMember(Model model, HttpSession session) throws Exception {
     

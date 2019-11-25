@@ -1,5 +1,6 @@
 package bitcamp.chopchop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import bitcamp.chopchop.domain.ProductReview;
 
@@ -12,5 +13,6 @@ public interface ProductReviewDao {
   int deleteAll(int no) throws Exception;
   int delete(int no) throws Exception;
   List<ProductReview> myreview(int no) throws Exception;
-  List<ProductReview> storeReview(int no) throws Exception;
+  List<ProductReview> storeReview(HashMap<String,Object> param) throws Exception;
+  int size() throws Exception;
 }
