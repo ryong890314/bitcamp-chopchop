@@ -37,7 +37,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
-  width: 275px;
+  width: 270px;
   line-height: 2em;
   height: 4.0em;
 }

@@ -53,16 +53,16 @@
 }
 
 .recipe-h3 {
-  font-family: 'Oswald' !important;
-  text-transform: uppercase;
-  font-size: 37px !important;
-  font-weight: 500 !important;
-  line-height: 1.2 !important;
-  margin: 0 0 8px !important;
+	font-family: 'Oswald' !important;
+	text-transform: uppercase;
+	font-size: 37px !important;
+	font-weight: 500 !important;
+	line-height: 1.2 !important;
+	margin: 0 0 8px !important;
 }
 
 .tableList {
-  text-align: center;
+	text-align: center;
   margin-top: 5px;
 }
 </style>
