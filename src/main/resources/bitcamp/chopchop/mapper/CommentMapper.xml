@@ -75,6 +75,7 @@
       c.title,
       c.content,
       c.created_date,
+      c.answer,
       p.product_id,
       m.nickname
     from

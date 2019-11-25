@@ -26,11 +26,14 @@
                 <a class="post-date">${comment.createdDate}</a>
                 &nbsp;<a style="display:none;" id="" class="reply-btn">수정</a>&nbsp;
                 &nbsp;<a style="display:none;" class="comment-delete-btn">삭제</a>&nbsp;
-                &nbsp;<a class="comment-answer-btn" style="display:none">답변</a>&nbsp;
               </div>
-              <p class="update-content" style="display:none">${comment.content}</p>
-              <label class="answer-label" style="display:none">답변<br></label><textarea class="form-control" id="comment-answer" placeholder="답변을 입력해주세요." style="display:none;"></textarea>
+              <p class="update-content" style="display:none;">${comment.content}</p><br>
+              <textarea class="form-control" id="comment-answer" placeholder="답변을 입력해주세요." style="display:none;">${comment.answer}</textarea>
+<!--               <label class="answer-label" style="display:none">답변<br></label><br> -->
+              <hr class="content-answer-line" style="display:none;">
               <button class="btn btn-success" id="answer-submit" style="display:none;">입력</button>
+              <p style="display:none;">${comment.answer}</p>
+              <br><br><a class="comment-answer-btn" style="display:none">답변하기</a>
             </div>
           </div><hr style="width:1100px;">
         </li>
