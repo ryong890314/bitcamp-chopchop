@@ -5,27 +5,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import bitcamp.chopchop.domain.Event;
+import bitcamp.chopchop.domain.Member;
 import bitcamp.chopchop.service.EventService;
+import bitcamp.chopchop.service.MemberService;
 
 @Controller
 @RequestMapping("/event")
+@SessionAttributes("loginUser")
 public class EventController {
 
   @Resource
   private EventService eventService;
   @Resource
   private EventPhotoFileWriter eventPhotoFileWriter;
+  @Resource
+  private MemberService memberService;
 
   @GetMapping("form")
   public void form() {
   }
 
   @GetMapping("list")
-  public void list(Model model) throws Exception {
+  public void list(Model model, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
     model.addAttribute("events", eventService.list());
   }
 
@@ -45,7 +54,9 @@ public class EventController {
   }
 
   @GetMapping("detail")
-  public void detail(Model model, int no) throws Exception {
+  public void detail(Model model, int no, @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    Member member = memberService.get(loginUser.getMemberNo());
+    model.addAttribute("member", member);
     model.addAttribute("event", eventService.get(no));
   }
 
