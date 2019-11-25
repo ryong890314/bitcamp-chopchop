@@ -53,8 +53,8 @@
   </style>
   
 </head>
-<body>
   <jsp:include page="../header.jsp"/>
+<body>
   <div id='content'>
     <form action='add' method='post' enctype='multipart/form-data'>
     <h1>상품 등록</h1>

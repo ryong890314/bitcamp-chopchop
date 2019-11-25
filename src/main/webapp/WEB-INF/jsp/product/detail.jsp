@@ -72,9 +72,9 @@
   </style>
 </head>
 
+  <jsp:include page="../header.jsp" />
 <body>
 
-  <jsp:include page="../header.jsp" />
 
   <div>
     <div id="productBody">
