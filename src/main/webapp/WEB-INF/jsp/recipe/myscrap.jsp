@@ -36,38 +36,38 @@
 <div class='w2-quarter my-list'>
     <img src='/upload/recipe/{{thumbnail}}' alt='Sandwich' style='width:200px; height:215px;object-fit:cover;'>
     <h3><a href='detail?no={{recipeNo}}' class="r-tagA">{{title}}</a></h3>
-    <p>{{content}}</p>
+    <p>{{otherInfo}}</p>
 </div>
 {{/each}}
 </script>
 
-    <script>
-      "use strict";
-      var dbody = $('#food');
-      var templateSrc = $('#t1').html();
-      var template = Handlebars.compile(templateSrc);
-      loadList();
-      function loadList() {
-        $.get("/app/json/recipe/myscrap", function(data) {
-          console.log(data.result);
-          dbody.html(template(data));
-        });
-      }
-    </script>
+<script>
+  "use strict";
+  var dbody = $('#food');
+  var templateSrc = $('#t1').html();
+  var template = Handlebars.compile(templateSrc);
+  loadList();
+  function loadList() {
+    $.get("/app/json/recipe/myscrap", function(data) {
+      console.log(data.result);
+      dbody.html(template(data));
+    });
+  }
+</script>
 
-    <script>
-      function formLoad() {
-        // hidden값을 이용해서 자바스크립트를 이용한 경우
-        if ($("#userphoto").val() == null
-            || $("#userphoto").val() == "") {
-          $("#userThumb")
-              .attr("src", "/upload/member/info_photo.jpg");
-        } else {
-          $("#userThumb").attr("src",
-              "/upload/member/" + $("#userphoto").val());
-        }
-      }
-    </script>
+<script>
+  function formLoad() {
+    // hidden값을 이용해서 자바스크립트를 이용한 경우
+    if ($("#userphoto").val() == null
+        || $("#userphoto").val() == "") {
+      $("#userThumb")
+          .attr("src", "/upload/member/info_photo.jpg");
+    } else {
+      $("#userThumb").attr("src",
+          "/upload/member/" + $("#userphoto").val());
+    }
+  }
+</script>
 </body>
 <jsp:include page="../footer.jsp" />
 </html>
